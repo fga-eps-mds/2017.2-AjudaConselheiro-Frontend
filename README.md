@@ -1,6 +1,6 @@
 # Ajuda Conselheiro
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.1.
+![travis](https://travis-ci.org/fga-gpp-mds/2017.2-AjudaConselheiro-Frontend.svg?branch=development)
 
 ## Build docker image
 

@@ -1,0 +1,24 @@
+#.travis.yml
+
+language: node_js
+
+node_js:
+  - "8.2.1"
+
+branches:
+  only:
+  - gh-pages
+  - /.*/
+
+before_script:
+  - set -e
+  - npm install
+  - npm install -g @angular/cli
+
+script:
+  - ng build --prod
+
+notifications:
+  email:
+    on_failure: change
+    on_success: change
