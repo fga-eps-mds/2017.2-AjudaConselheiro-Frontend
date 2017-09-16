@@ -1,3 +1,4 @@
+import { CounselorService } from './counselor/counselor.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -12,7 +13,7 @@ import { CounselorComponent } from './counselor/counselor.component';
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [CounselorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
