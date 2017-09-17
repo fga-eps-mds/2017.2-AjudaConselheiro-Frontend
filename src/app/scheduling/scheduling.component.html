@@ -3,26 +3,40 @@
     <div class="form-container">
       <div class="row columns">
         <h1>Agendamento</h1>
+
         <li><label>Local
           <input type="text" formControlName="local">
         </label></li>
+
         <li><label>Participantes
           <input type="text" formControlName="members">
         </label></li> 
-        <input type="checkbox" name="validate" formControlName="validate" value="1"> On
-        
+
+        <li><label>Data
+        <input type="date" formControlName="date">
+        </label></li> 
+
+        <li><label>Horario
+            <input type="time" formControlName="time">
+            </label></li> 
+                
         <input type="submit" class="button expanded" value="Submit Form" [disabled]="!rForm.valid">
       </div>
     </div>
   </form>
 </div>
-
+<div>
+ 
+    
+  <p>Data {{today | date}}</p>
+  
+</div>`
 <ng-template #forminfo>
   <div class="form-container">
     <div class="row columns">
         <h1>{{ local }}</h1>
-
         <p>{{ members }}</p>
+        <p>{{ date }}</p>
     </div>
   </div>
 </ng-template>

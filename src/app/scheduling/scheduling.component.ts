@@ -13,12 +13,16 @@ export class SchedulingComponent implements OnInit {
   scheduling:any;                     // A property for our submitted form
   local:string = '';
   members:string = '';
+  date: any;
+  time: any;
 
   constructor(private fb: FormBuilder) { 
 
     this.rForm = fb.group({
       'local' : [null, Validators.required],
       'members' : [null, Validators.required],
+      'date' : [null, Validators.required],
+      'time' : [null, Validators.required],
       'validate' : ''
     });
 
@@ -26,7 +30,10 @@ export class SchedulingComponent implements OnInit {
   addScheduling(schedunling) {
     this.local = schedunling.local;
     this.members = schedunling.members;
+    this.date = schedunling.date;
+    this.time = schedunling.time;
   }
+  today: number = Date.now();
   ngOnInit() {
   }
 
