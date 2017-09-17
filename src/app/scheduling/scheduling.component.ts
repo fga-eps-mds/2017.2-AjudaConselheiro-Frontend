@@ -13,8 +13,8 @@ export class SchedulingComponent implements OnInit {
   scheduling:any;                     // A property for our submitted form
   local:string = '';
   members:string = '';
-  date: any;
-  time: any;
+  date: number;
+  time: number;
 
   constructor(private fb: FormBuilder) { 
 
