@@ -1,3 +1,17 @@
-<p>
-  scheduling works!
-</p>
+<div *ngIf="!local; else forminfo">
+  <form [formGroup]="rForm" (ngSubmit)="addSchedulling(rForm.value)">
+    <div class="form-container">
+      <div class="row columns">
+        <h1>Agendamento</h1>
+        <li><label>Local
+          <input type="text" formControlName="local">
+        </label></li>
+        <li><label>Participantes
+          <input type="text" formControlName="members">
+        </label></li> 
+        <input type="submit" class="button expanded" value="Submit Form" [disabled]="!rForm.valid">
+      </div>
+    </div>
+  </form>
+</div>
+
