@@ -1,5 +1,5 @@
 <div *ngIf="!local; else forminfo">
-  <form [formGroup]="rForm" (ngSubmit)="addSchedulling(rForm.value)">
+  <form [formGroup]="rForm" (ngSubmit)="addScheduling(rForm.value)">
     <div class="form-container">
       <div class="row columns">
         <h1>Agendamento</h1>
@@ -9,9 +9,20 @@
         <li><label>Participantes
           <input type="text" formControlName="members">
         </label></li> 
+        <input type="checkbox" name="validate" formControlName="validate" value="1"> On
+        
         <input type="submit" class="button expanded" value="Submit Form" [disabled]="!rForm.valid">
       </div>
     </div>
   </form>
 </div>
 
+<ng-template #forminfo>
+  <div class="form-container">
+    <div class="row columns">
+        <h1>{{ local }}</h1>
+
+        <p>{{ members }}</p>
+    </div>
+  </div>
+</ng-template>

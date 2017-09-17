@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpModule } from '@angular/http';
 
 import { SchedulingComponent } from './scheduling.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -8,7 +9,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HttpModule,
+    
   ],
   declarations: [SchedulingComponent],
   exports: [
