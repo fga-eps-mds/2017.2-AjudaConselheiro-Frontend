@@ -7,17 +7,20 @@ import { SchedulingComponent } from './scheduling/scheduling.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SchedulingModule } from './scheduling/scheduling.module';
 import { Routes, RouterModule } from '@angular/router';
+import { SchedulingVisitComponent } from './scheduling-visit/scheduling-visit.component';
 
 
 const appRoutes: Routes = [
-  {path: 'agendamento', component: SchedulingComponent}
-]
+  {path: 'agendamento', component: SchedulingComponent},
+  {path: 'agendamento/visita', component: SchedulingVisitComponent},
+];
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    SchedulingVisitComponent,
     
   ],
   imports: [
