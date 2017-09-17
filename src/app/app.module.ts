@@ -7,14 +7,16 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { CounselorComponent } from './counselor/counselor.component';
 import { LayoutsComponent } from './layouts/layouts.component';
-import { NavBarComponent } from './layouts/nav-bar/nav-bar.component';
+import { HomeComponent } from './layouts/home/home.component';
+import { NavbarHomeComponent } from './layouts/home/navbar-home/navbar-home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CounselorComponent,
     LayoutsComponent,
-    NavBarComponent
+    HomeComponent,
+    NavbarHomeComponent
   ],
   imports: [
     BrowserModule,
