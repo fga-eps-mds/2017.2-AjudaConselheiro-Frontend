@@ -8,7 +8,8 @@ import { Scheduling } from './scheduling';
   styleUrls: ['./scheduling.component.css']
 })
 export class SchedulingComponent {
-  
-  scheduling: Array<Scheduling> =[]; 
-  
+  today: any;
+  local: any;
+  scheduling: Array<Scheduling> = [];
+
 }

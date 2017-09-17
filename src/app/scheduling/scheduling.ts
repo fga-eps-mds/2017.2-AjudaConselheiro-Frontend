@@ -4,12 +4,19 @@ export class Scheduling {
     local:string;
     members:string;
     date: number;
-    time: number;  
+    time: number;
 
-    constructor(                 
-        local:'',
-        members:'',
-        date:0,
-        time:0,
-    ){}
+    constructor(
+      scheduling:any,
+      local:string,
+      members:string,
+      date: number,
+      time: number
+    ){
+      this.date = scheduling;
+      this.local = local;
+      this.members = members;
+      this.scheduling = scheduling;
+      this.time = time;
+    }
 }
