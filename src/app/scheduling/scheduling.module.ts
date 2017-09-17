@@ -10,7 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpModule,
+    HttpModule
     
   ],
   declarations: [SchedulingComponent],
