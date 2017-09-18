@@ -8,8 +8,37 @@ import { Scheduling } from './scheduling';
   styleUrls: ['./scheduling.component.css']
 })
 export class SchedulingComponent {
-  today: any;
-  local: any;
-  scheduling: Array<Scheduling> = [];
+
+  rForm: FormGroup;
+  scheduling:any;                     // A property for our submitted form
+  local:string = '';
+  members:string = '';
+  date: number;
+  time: number;
+
+  constructor(private fb: FormBuilder) {
+
+    this.rForm = fb.group({
+      'local' : [null, Validators.required],
+      'members' : [null, Validators.required],
+      'date' : [null, Validators.required],
+      'time' : [null, Validators.required],
+      'validate' : ''
+    });
+
+  }
+  addScheduling(schedunling) {
+    this.local = schedunling.local;
+    this.members = schedunling.members;
+    this.date = schedunling.date;
+    this.time = schedunling.time;
+  }
+
+  //scheduling: Array<Scheduling> = [];
 
 }
+
+
+
+
+

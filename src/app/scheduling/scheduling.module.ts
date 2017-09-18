@@ -13,7 +13,6 @@ import { SchedulingService } from './scheduling.service';
     ReactiveFormsModule,
     FormsModule,
     HttpModule
-    
   ],
   declarations: [SchedulingComponent],
   exports: [

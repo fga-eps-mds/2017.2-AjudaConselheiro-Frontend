@@ -10,27 +10,26 @@
 
         <li><label>Participantes
           <input type="text" formControlName="members">
-        </label></li> 
+        </label></li>
 
         <li><label>Data
         <input type="date" formControlName="date">
-        </label></li> 
+        </label></li>
 
         <li><label>Horario
             <input type="time" formControlName="time">
-            </label></li> 
-                
+            </label></li>
+
         <input type="submit" class="button expanded" value="Submit Form" [disabled]="!rForm.valid">
       </div>
     </div>
   </form>
 </div>
 <div>
- 
-  
-  <p>Data {{today | date}}</p> 
-  
-</div>
+
+
+
+</div>`
 <ng-template #forminfo>
   <div class="form-container">
     <div class="row columns">
