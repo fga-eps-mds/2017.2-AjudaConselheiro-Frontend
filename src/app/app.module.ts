@@ -8,6 +8,7 @@ import { ChecklistthreeComponent } from './checklists/checklistthree/checklistth
 import { SchedulingComponent } from './scheduling/scheduling.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SchedulingModule } from './scheduling/scheduling.module';
+import { ChecklistModule } from './checklists/checklist.module';
 import { Routes, RouterModule } from '@angular/router';
 
 const appRoutes: Routes = [
@@ -25,6 +26,7 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,
     SchedulingModule,
+    ChecklistModule,
     RouterModule.forRoot(appRoutes),
   ],
 
