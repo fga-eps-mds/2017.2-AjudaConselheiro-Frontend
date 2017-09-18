@@ -5,6 +5,7 @@ import { DatePipe } from '@angular/common';
 
 import { SchedulingComponent } from './scheduling.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SchedulingService } from './scheduling.service';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   declarations: [SchedulingComponent],
   exports: [
     SchedulingComponent
-  ]
+  ],
+  providers: [SchedulingService]
 })
 export class SchedulingModule { }
