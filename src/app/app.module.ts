@@ -1,3 +1,4 @@
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule} from '@angular/forms'
@@ -5,6 +6,15 @@ import { AppComponent } from './app.component';
 import { ChecklistoneComponent } from './checklists/checklistone/checklistone.component';
 import { ChecklisttwoComponent } from './checklists/checklisttwo/checklisttwo.component';
 import { ChecklistthreeComponent } from './checklists/checklistthree/checklistthree.component';
+import { SchedulingComponent } from './scheduling/scheduling.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SchedulingModule } from './scheduling/scheduling.module';
+import { Routes, RouterModule } from '@angular/router';
+
+const appRoutes: Routes = [
+  {path: 'agendamento', component: SchedulingComponent}
+]
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -14,8 +24,11 @@ import { ChecklistthreeComponent } from './checklists/checklistthree/checklistth
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    SchedulingModule,
+    RouterModule.forRoot(appRoutes),
   ],
+
   providers: [],
   bootstrap: [AppComponent]
 })
