@@ -9,6 +9,7 @@ import { SchedulingComponent } from './scheduling/scheduling.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SchedulingModule } from './scheduling/scheduling.module';
 import { Routes, RouterModule } from '@angular/router';
+import { ChecklistModule} from './checklists/checklist.module';
 
 const appRoutes: Routes = [
   {path: 'agendamento', component: SchedulingComponent}
@@ -25,6 +26,7 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,
     SchedulingModule,
+    ChecklistModule,
     RouterModule.forRoot(appRoutes),
   ],
 
