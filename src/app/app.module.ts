@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { HttpModule } from '@angular/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { CounselorComponent } from './counselor/counselor.component';
@@ -18,13 +20,9 @@ import { ChecklistoneComponent } from './checklists/checklistone/checklistone.co
 import { ChecklisttwoComponent } from './checklists/checklisttwo/checklisttwo.component';
 import { ChecklistthreeComponent } from './checklists/checklistthree/checklistthree.component';
 import { SchedulingComponent } from './scheduling/scheduling.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SchedulingModule } from './scheduling/scheduling.module';
-import { Routes, RouterModule } from '@angular/router';
-
-const appRoutes: Routes = [
-  {path: 'agendamento', component: SchedulingComponent}
-]
+import { SchedulingVisitComponent } from './scheduling-visit/scheduling-visit.component';
+import { ROUTES } from './app.routes';
 
 @NgModule({
   declarations: [
@@ -37,17 +35,18 @@ const appRoutes: Routes = [
     NavbarSignupComponent,
     FormSignupComponent,
     CarouselComponent,
+    SchedulingVisitComponent,
     ChecklistoneComponent,
     ChecklisttwoComponent,
-    ChecklistthreeComponent,
+    ChecklistthreeComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
+    RouterModule.forRoot(ROUTES),
     MDBBootstrapModule.forRoot(),
     FormsModule,
     SchedulingModule,
-    RouterModule.forRoot(appRoutes),
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [CounselorService],
