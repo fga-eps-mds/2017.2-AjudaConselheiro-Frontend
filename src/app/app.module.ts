@@ -9,6 +9,10 @@ import { CounselorComponent } from './counselor/counselor.component';
 import { LayoutsComponent } from './layouts/layouts.component';
 import { HomeComponent } from './layouts/home/home.component';
 import { NavbarHomeComponent } from './layouts/home/navbar-home/navbar-home.component';
+import { SignupComponent } from './layouts/signup/signup.component';
+import { NavbarSignupComponent } from './layouts/signup/navbar-signup/navbar-signup.component';
+import { FormSignupComponent } from './layouts/signup/form-signup/form-signup.component';
+import { CarouselComponent } from './layouts/home/carousel/carousel.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +20,11 @@ import { NavbarHomeComponent } from './layouts/home/navbar-home/navbar-home.comp
     CounselorComponent,
     LayoutsComponent,
     HomeComponent,
-    NavbarHomeComponent
+    NavbarHomeComponent,
+    SignupComponent,
+    NavbarSignupComponent,
+    FormSignupComponent,
+    CarouselComponent
   ],
   imports: [
     BrowserModule,
