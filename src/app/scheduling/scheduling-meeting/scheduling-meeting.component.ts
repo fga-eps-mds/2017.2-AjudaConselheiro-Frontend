@@ -1,11 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Scheduling } from './scheduling';
+import { Scheduling } from './scheduling-meeting';
 
 @Component({
-  selector: 'app-scheduling',
-  templateUrl: './scheduling.component.html',
-  styleUrls: ['./scheduling.component.css']
+  selector: 'app-scheduling-meeting',
+  templateUrl: './scheduling-meeting.component.html'
 })
 export class SchedulingComponent {
 
@@ -27,11 +26,11 @@ export class SchedulingComponent {
     });
 
   }
-  addScheduling(schedunling) {
-    this.local = schedunling.local;
-    this.members = schedunling.members;
-    this.date = schedunling.date;
-    this.time = schedunling.time;
+  addScheduling(scheduling) {
+    this.local = scheduling.local;
+    this.members = scheduling.members;
+    this.date = scheduling.date;
+    this.time = scheduling.time;
   }
 
   //scheduling: Array<Scheduling> = [];

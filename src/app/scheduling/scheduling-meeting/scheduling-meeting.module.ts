@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
 import { DatePipe } from '@angular/common';
 
-import { SchedulingComponent } from './scheduling.component';
+import { SchedulingComponent } from './scheduling-meeting.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SchedulingService } from './scheduling.service';
+import { SchedulingService } from './scheduling-meeting.service';
 
 @NgModule({
   imports: [
