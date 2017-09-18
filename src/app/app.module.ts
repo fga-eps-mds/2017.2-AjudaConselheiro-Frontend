@@ -22,6 +22,7 @@ import { SchedulingComponent } from './scheduling/scheduling.component';
 import { SchedulingModule } from './scheduling/scheduling.module';
 import { SchedulingVisitComponent } from './scheduling-visit/scheduling-visit.component';
 import { ROUTES } from './app.routes';
+import { SigninComponent } from './layouts/home/signin/signin.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { ROUTES } from './app.routes';
     SchedulingVisitComponent,
     ChecklistoneComponent,
     ChecklisttwoComponent,
-    ChecklistthreeComponent
+    ChecklistthreeComponent,
+    SigninComponent
   ],
   imports: [
     BrowserModule,
