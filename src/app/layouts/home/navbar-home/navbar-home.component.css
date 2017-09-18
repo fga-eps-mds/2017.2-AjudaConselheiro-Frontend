@@ -1,0 +1,13 @@
+.navbar {
+  background-color: transparent;
+}
+
+.top-nav-collapse {
+  background-color: #fb8c00 ;
+}
+
+@media only screen and (max-width: 768px) {
+  .navbar {
+      background-color: #fb8c00 ;
+  }
+}
