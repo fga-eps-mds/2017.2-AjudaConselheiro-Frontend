@@ -14,6 +14,18 @@ import { NavbarSignupComponent } from './layouts/signup/navbar-signup/navbar-sig
 import { FormSignupComponent } from './layouts/signup/form-signup/form-signup.component';
 import { CarouselComponent } from './layouts/home/carousel/carousel.component';
 
+import { ChecklistoneComponent } from './checklists/checklistone/checklistone.component';
+import { ChecklisttwoComponent } from './checklists/checklisttwo/checklisttwo.component';
+import { ChecklistthreeComponent } from './checklists/checklistthree/checklistthree.component';
+import { SchedulingComponent } from './scheduling/scheduling.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SchedulingModule } from './scheduling/scheduling.module';
+import { Routes, RouterModule } from '@angular/router';
+
+const appRoutes: Routes = [
+  {path: 'agendamento', component: SchedulingComponent}
+]
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,12 +36,18 @@ import { CarouselComponent } from './layouts/home/carousel/carousel.component';
     SignupComponent,
     NavbarSignupComponent,
     FormSignupComponent,
-    CarouselComponent
+    CarouselComponent,
+    ChecklistoneComponent,
+    ChecklisttwoComponent,
+    ChecklistthreeComponent,
   ],
   imports: [
     BrowserModule,
     HttpModule,
-    MDBBootstrapModule.forRoot()    
+    MDBBootstrapModule.forRoot(),
+    FormsModule,
+    SchedulingModule,
+    RouterModule.forRoot(appRoutes),
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [CounselorService],
