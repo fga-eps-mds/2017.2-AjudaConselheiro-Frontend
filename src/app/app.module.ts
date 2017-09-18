@@ -8,7 +8,6 @@ import { ChecklistthreeComponent } from './checklists/checklistthree/checklistth
 import { SchedulingComponent } from './scheduling/scheduling.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SchedulingModule } from './scheduling/scheduling.module';
-import { Routes, RouterModule } from '@angular/router';
 import { SchedulingVisitComponent } from './scheduling-visit/scheduling-visit.component';
 import { SchedulingVisitModule } from './scheduling-visit/scheduling-visit.module';
 import { ROUTES } from './app.routes';
