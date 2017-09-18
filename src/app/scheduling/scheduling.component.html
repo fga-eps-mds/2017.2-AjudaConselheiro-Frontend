@@ -1,46 +1,27 @@
 <div *ngIf="!local; else forminfo">
-  <form [formGroup]="rForm" (ngSubmit)="addScheduling(rForm.value)">
+   <form [formGroup]="rForm" (ngSubmit)="addScheduling(rForm.value)">
     <div class="form-container">
       <div class="row columns">
         <h1>Agendamento</h1>
+         <li><label>Local
+            <input type="text" formControlName="local">
+          </label></li>
+          <li><label>Participantes
+            <input type="text" formControlName="members">
+          </label></li>
+          <input type="checkbox" name="validate" formControlName="validate" value="1"> On
 
-        <li><label>Local
-          <input type="text" formControlName="local">
-        </label></li>
+          <input type="submit" class="button expanded" value="Submit Form" [disabled]="!rForm.valid">
+        </div>
+      </div>
+   </form>
+  </div>
 
-        <li><label>Participantes
-          <input type="text" formControlName="members">
-        </label></li> 
-
-        <li><label>Data
-        <input type="date" formControlName="date">
-        </label></li> 
-
-        <li><label>Horario
-            <input type="time" formControlName="time">
-            </label></li> 
-                
-        <input type="submit" class="button expanded" value="Submit Form" [disabled]="!rForm.valid">
+  <ng-template #forminfo>
+    <div class="form-container">
+      <div class="row columns">
+          <h1>{{ local }}</h1>
+            <p>{{ members }}</p>
       </div>
     </div>
-  </form>
-</div>
-<div>
- 
-  
-  <p>Data {{today | date}}</p> 
-  
-</div>
-<ng-template #forminfo>
-  <div class="form-container">
-    <div class="row columns">
-        <h1>{{ local }}</h1>
-        <p>{{ members }}</p>
-        <p>{{ date }}</p>
-        <p>{{ time }}</p>
-    <button class ="btn btn-danger">
-        <i class="fa fa-minus"></i>
-    </button>
-    </div>
-  </div>
-</ng-template>
+  </ng-template>
