@@ -10,18 +10,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SchedulingModule } from './scheduling/scheduling-meeting/scheduling-meeting.module';
 import { SchedulingVisitComponent } from './scheduling/scheduling-visit/scheduling-visit.component';
 import { ROUTES } from './app.routes';
+import { SchedulingHomeComponent } from './scheduling/scheduling-home/scheduling-home.component';
 
-const appRoutes: Routes = [
-  {path: 'agendamento', component: SchedulingComponent},
-  {path: 'agendamento/visita', component: SchedulingVisitComponent},
-];
+
 @NgModule({
   declarations: [
     AppComponent,
     SchedulingVisitComponent,
     ChecklistoneComponent,
     ChecklisttwoComponent,
-    ChecklistthreeComponent
+    ChecklistthreeComponent,
+    SchedulingHomeComponent
 
   ],
 
@@ -29,7 +28,6 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,
     SchedulingModule,
-    RouterModule.forRoot(appRoutes),
     RouterModule.forRoot(ROUTES)
   ],
 

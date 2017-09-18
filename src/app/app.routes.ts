@@ -6,6 +6,6 @@ import { SchedulingComponent } from './scheduling/scheduling-meeting/scheduling-
 
 
 export const ROUTES: Routes = [
-    {path: 'agendamento', component: SchedulingComponent},
+    {path: 'agendamento/reuniao', component: SchedulingComponent},
     {path: 'agendamento/visita', component: SchedulingVisitComponent}
   ];
