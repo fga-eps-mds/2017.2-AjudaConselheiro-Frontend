@@ -53,7 +53,7 @@ import { FormSigninComponent } from './layouts/home/signin/form-signin/form-sign
     FormsModule,
     SchedulingModule,
     ChecklistModule,
-    RouterModule.forRoot(appRoutes),
+    // RouterModule.forRoot(appRoutes),
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [CounselorService],
