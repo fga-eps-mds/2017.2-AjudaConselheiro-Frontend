@@ -14,12 +14,11 @@ export const ROUTES: Routes = [
   { path: 'conselheiro', component: CounselorComponent },
   { path: 'agendamento/reuniao', component: SchedulingComponent },
   { path: 'agendamento', component: SchedulingHomeComponent },
-  { path: 'agendamento/visita', component: SchedulingVisitComponent }
-  { path: 'entrar', component: SigninComponent}
+  { path: 'agendamento/visita', component: SchedulingVisitComponent },
+  { path: 'entrar', component: SigninComponent }
 ];
 
 // PARA CRIAR SUA ROTA BASTA FAZER O Q FOI FEITO ACIMA
 // path: e nome da sua rota exemplo localhost:4200/agendamento
 // component: 'e o q vai aparecer la
 // <router-outlet></router-outlet> <--- isso aqui faz o resto pra vc no HTML principal
-

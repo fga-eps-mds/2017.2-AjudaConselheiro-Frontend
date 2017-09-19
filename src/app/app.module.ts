@@ -17,9 +17,9 @@ import { ChecklistoneComponent } from './checklists/checklistone/checklistone.co
 import { ChecklisttwoComponent } from './checklists/checklisttwo/checklisttwo.component';
 import { ChecklistthreeComponent } from './checklists/checklistthree/checklistthree.component';
 import { SchedulingHomeComponent } from './scheduling/scheduling-home/scheduling-home.component';
-import { SchedulingComponent } from './scheduling/scheduling.component';
-import { SchedulingModule } from './scheduling/scheduling.module';
-import { SchedulingVisitComponent } from './scheduling-visit/scheduling-visit.component';
+import { SchedulingComponent } from './scheduling/scheduling-meeting/scheduling-meeting.component';
+import { SchedulingModule } from './scheduling/scheduling-meeting/scheduling-meeting.module';
+import { SchedulingVisitComponent } from './scheduling/scheduling-visit/scheduling-visit.component';
 import { ROUTES } from './app.routes';
 import { SigninComponent } from './layouts/home/signin/signin.component';
 import { FormSigninComponent } from './layouts/home/signin/form-signin/form-signin.component';
@@ -38,7 +38,7 @@ import { FormSigninComponent } from './layouts/home/signin/form-signin/form-sign
     ChecklistoneComponent,
     ChecklisttwoComponent,
     ChecklistthreeComponent,
-    SchedulingHomeComponent
+    SchedulingHomeComponent,
     SigninComponent,
     FormSigninComponent
   ],
