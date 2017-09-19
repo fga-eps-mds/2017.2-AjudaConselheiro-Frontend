@@ -10,6 +10,4 @@ import { ChecklistComponent} from './checklist.component';
     ]
 })
 
-export class ChecklistModule{
-    
-}
+export class ChecklistModule{}
