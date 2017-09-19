@@ -1,12 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Scheduling } from './scheduling-meeting';
+import { SchedulingMeeting } from './scheduling-meeting';
 
 @Component({
   selector: 'app-scheduling-meeting',
   templateUrl: './scheduling-meeting.component.html'
 })
-export class SchedulingComponent {
+export class SchedulingMeetingComponent {
 
   rForm: FormGroup;
   scheduling:any;                     // A property for our submitted form

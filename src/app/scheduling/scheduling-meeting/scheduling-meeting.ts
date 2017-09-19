@@ -1,4 +1,4 @@
-export class Scheduling {
+export class SchedulingMeeting {
 
     scheduling:any;
     local:string;

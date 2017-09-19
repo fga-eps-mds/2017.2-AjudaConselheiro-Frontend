@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Scheduling } from './scheduling-meeting'
+import { SchedulingMeeting } from './scheduling-meeting';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 @Injectable()
-export class SchedulingService {
+export class SchedulingMeetingService {
 
 
     getScheduling(){
