@@ -5,7 +5,6 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
-
 import { AppComponent } from './app.component';
 import { CounselorComponent } from './counselor/counselor.component';
 import { LayoutsComponent } from './layouts/layouts.component';
@@ -14,10 +13,10 @@ import { NavbarHomeComponent } from './layouts/home/navbar-home/navbar-home.comp
 import { SignupComponent } from './layouts/signup/signup.component';
 import { FormSignupComponent } from './layouts/signup/form-signup/form-signup.component';
 import { CarouselComponent } from './layouts/home/carousel/carousel.component';
-
 import { ChecklistoneComponent } from './checklists/checklistone/checklistone.component';
 import { ChecklisttwoComponent } from './checklists/checklisttwo/checklisttwo.component';
 import { ChecklistthreeComponent } from './checklists/checklistthree/checklistthree.component';
+import { SchedulingHomeComponent } from './scheduling/scheduling-home/scheduling-home.component';
 import { SchedulingComponent } from './scheduling/scheduling.component';
 import { SchedulingModule } from './scheduling/scheduling.module';
 import { SchedulingVisitComponent } from './scheduling-visit/scheduling-visit.component';
@@ -39,9 +38,11 @@ import { FormSigninComponent } from './layouts/home/signin/form-signin/form-sign
     ChecklistoneComponent,
     ChecklisttwoComponent,
     ChecklistthreeComponent,
+    SchedulingHomeComponent
     SigninComponent,
     FormSigninComponent
   ],
+
   imports: [
     BrowserModule,
     HttpModule,

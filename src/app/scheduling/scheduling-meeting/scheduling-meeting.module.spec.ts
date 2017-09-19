@@ -1,4 +1,4 @@
-import { SchedulingModule } from './scheduling.module';
+import { SchedulingModule } from './scheduling-meeting.module';
 
 describe('SchedulingModule', () => {
   let schedulingModule: SchedulingModule;
