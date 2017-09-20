@@ -54,6 +54,7 @@ import { FormSigninComponent } from './layouts/home/signin/form-signin/form-sign
     SchedulingModule,
     ChecklistModule,
     // RouterModule.forRoot(appRoutes),
+    //Comentei o erro da linha 56, não faço ideia do que ta acontecendo, caso for usar, resolva.
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [CounselorService],

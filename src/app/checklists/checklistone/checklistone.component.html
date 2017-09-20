@@ -7,29 +7,33 @@
   </head>
   <body>
     <h1></h1>
+    <br>
+    <br>
+    <br>
     <table>
-      <thead>
+      <thead class="orange darken-1">
         <th >Itens Avaliados</th>
         <th >Critérios de Avaliação</th>
       </thead>
     </table>
-    <form class="" action="" method="post">
-    <table>
-      <thead>
-        <th >Hiegiene e Organização dos Ambientes</th>
+    <form (ngSubmit) = "SaveChecklist(f)" #f="ngForm">
+    <table class="table table-hover">
+      <thead class="orange darken-1">
+        <th align="center">Hiegiene e Organização dos Ambientes</th>
       </thead>
-      <thead>
-        <th>Area Externa, Cozinha e Depósito</th>
-        <th width="100">Sim</th>
-        <th width="100">Não</th>
-        <th width="100">Não se aplica</th>
+      <thead class="orange darken-1">
+        <th class="text-white">Area Externa, Cozinha e Depósito</th>
+        <th class="text-white" width="100px">Sim</th>
+        <th class="text-white" width="100px">Não</th>
+        <th class="text-white" width="100px">Não se aplica</th>
       </thead>
+      {{sector1Save}}
       <!-- É necessário ainda inserir as referências e para onde o dado acolhido será enviado -->
       <tr>
         <td>Área externa livre de sujeiras, objetos em desuso, acúmulo de lixo</td>
-        <td align="center" valign="middle"><input type="radio" name="check1_1" value="Sim" required></td>
-        <td align="center" valign="middle"><input type="radio" name="check1_1" value="Nao"></td>
-        <td align="center" valign="middle"><input type="radio" name="check1_1" value="NA"></td>
+        <td align="center" valign="middle" width="100px"><input type="radio" name="check1_1" value="Sim" required></td>
+        <td align="center" valign="middle" width="100px"><input type="radio" name="check1_1" value="Nao"></td>
+        <td align="center" valign="middle" width="100px"><input type="radio" name="check1_1" value="NA"></td>
       </tr>
       <tr>
         <td>Área da cozinha limpa de organizada</td>
@@ -81,18 +85,18 @@
       </tr>
       <tr>
         <td>Observações</td>
-        <td align="center" valign="middle"><input type="radio" name="checkobs1" value="Sim" (click)="CheckObservationTrue1();" required></td>
-        <td align="center" valign="middle"><input type="radio" name="checkobs1" value="Nao" (click)= "CheckObservationFalse1();"></td>
+        <td align="center" valign="middle"><input type="radio" name="checkobs1" value=true (click)="CheckObservationTrue1();" required></td>
+        <td align="center" valign="middle"><input type="radio" name="checkobs1" value=false (click)= "CheckObservationFalse1();"></td>
       </tr>
       <tr *ngIf = "setComment1">
-        <td><textarea name="obs1" rows="8" cols="80" placeholder="Insira a Observação Aqui" required></textarea><td>
+        <td><textarea align="center" name="obs1" rows="8" cols="80" placeholder="Insira a Observação Aqui" required></textarea><td>
       </tr>
       <!-- Complementar caixa de texto de forma correta -->
-      <thead>
-        <th>Estrutura física da cozinha e do depósito</th>
-        <th>Sim</th>
-        <th>Não</th>
-        <th>Não se aplica</th>
+      <thead class="orange darken-1">
+        <th class="text-white" valign="baseline"><b>Estrutura física da cozinha e do depósito</b></th>
+        <th class="text-white" align="center" valign="bottom" width ="150"><b>Sim</b></th>
+        <th class="text-white" align="center" valign="bottom" width ="150"><b>Não</b></th>
+        <th class="text-white" align="center" valign="bottom" width ="150"><b>Não se aplica</b></th>
       </thead>
       <!-- Início Segunda Parte da Tabela  -->
       <tr>
@@ -221,7 +225,7 @@
       <tr *ngIf = "setComment2">
         <td><textarea name="obs2" rows="8" cols="80" placeholder="Insira a Observação Aqui" required></textarea><td>
       </tr>
-      <thead>
+      <thead class="orange darken-1">
         <th>Abastecimento de Água e Esgoto Sanitário</th>
         <th>Sim</th>
         <th>Não</th>
@@ -255,7 +259,7 @@
         <td><textarea name="obs3" rows="8" cols="80" placeholder="Insira a Observação Aqui" required></textarea><td>
       </tr>
 
-      <thead>
+      <thead class="orange darken-1">
         <th>Equipamentos de Utensílios</th>
         <th>Sim</th>
         <th>Não</th>
@@ -312,7 +316,7 @@
         <td><textarea name="obs4" rows="8" cols="80" placeholder="Insira a Observação Aqui" required></textarea><td>
       </tr>
 
-      <thead>
+      <thead class="orange darken-1">
         <th>Manipuladores de Alimentos</th>
         <th>Sim</th>
         <th>Não</th>
@@ -357,7 +361,7 @@
         <td><textarea name="obs5" rows="8" cols="80" placeholder="Insira a Observação Aqui" required></textarea><td>
       </tr>
 
-      <thead>
+      <thead class="orange darken-1">
         <th>Pré-Preparo, Preparo dos Alimentos e Distribuição dos Alimentos</th>
         <th>Sim</th>
         <th>Não</th>
@@ -428,7 +432,7 @@
         <td><textarea name="obs6" rows="8" cols="80" placeholder="Insira a Observação Aqui" required></textarea><td>
       </tr>
 
-      <thead>
+      <thead class="orange darken-1">
         <th>Qualidade da Alimentação Escolar</th>
         <th>Sim</th>
         <th>Não</th>
@@ -475,7 +479,7 @@
         <td><textarea name="obs7" rows="8" cols="80" placeholder="Insira a Observação Aqui" required></textarea><td>
       </tr>
 
-      <thead>
+      <thead class="orange darken-1">
         <th>Documentação</th>
         <th>Sim</th>
         <th>Não</th>

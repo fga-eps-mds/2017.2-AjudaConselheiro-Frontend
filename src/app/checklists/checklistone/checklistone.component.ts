@@ -14,10 +14,14 @@ export class ChecklistoneComponent implements OnInit {
   setComment6 = false;
   setComment7 = false;
   setComment8 = false;
-
+  sector1Save = [];
   constructor() { }
 
   ngOnInit() {
+  }
+  SaveChecklist(){
+    this.sector1Save.push("name=formData1");
+    // "input[name=nameGoesHere]"
   }
   CheckObservationTrue1(){
       this.setComment1 = true;
@@ -67,4 +71,5 @@ export class ChecklistoneComponent implements OnInit {
   CheckObservationFalse8(){
     this.setComment8 = false;
   }
+
 }
