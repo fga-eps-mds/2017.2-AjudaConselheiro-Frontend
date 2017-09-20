@@ -1,7 +1,11 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { ChecklistComponent} from './checklist.component';
 
 @NgModule({
+    imports:[
+        CommonModule
+    ],
     declarations: [
         ChecklistComponent
     ],
@@ -10,6 +14,4 @@ import { ChecklistComponent} from './checklist.component';
     ]
 })
 
-export class ChecklistModule{
-
-}
+export class ChecklistModule{}
