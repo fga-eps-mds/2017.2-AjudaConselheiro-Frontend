@@ -1,3 +1,4 @@
+import { SchedulingvisitsComponent } from './schedulingvisits/schedulingvisits.component';
 import { CounselorService } from './counselor/counselor.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
@@ -19,11 +20,10 @@ import { ChecklistthreeComponent } from './checklists/checklistthree/checklistth
 import { SchedulingHomeComponent } from './scheduling/scheduling-home/scheduling-home.component';
 import { SchedulingMeetingComponent } from './scheduling/scheduling-meeting/scheduling-meeting.component';
 import { SchedulingMeetingModule } from './scheduling/scheduling-meeting/scheduling-meeting.module';
-import { SchedulingVisitComponent } from './scheduling/scheduling-visit/scheduling-visit.component';
 import { ROUTES } from './app.routes';
 import { SigninComponent } from './layouts/home/signin/signin.component';
 import { FormSigninComponent } from './layouts/home/signin/form-signin/form-signin.component';
-
+import { SchedulingvisitComponent } from './schedulingvisits/schedulingvisit/schedulingvisit.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,13 +34,14 @@ import { FormSigninComponent } from './layouts/home/signin/form-signin/form-sign
     SignupComponent,
     FormSignupComponent,
     CarouselComponent,
-    SchedulingVisitComponent,
     ChecklistoneComponent,
     ChecklisttwoComponent,
     ChecklistthreeComponent,
     SchedulingHomeComponent,
     SigninComponent,
-    FormSigninComponent
+    FormSigninComponent,
+    SchedulingvisitComponent,
+    SchedulingvisitsComponent
   ],
 
   imports: [
