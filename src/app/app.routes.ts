@@ -1,6 +1,7 @@
+import { SchedulingvisitComponent } from './schedulingvisits/schedulingvisit/schedulingvisit.component';
+import { SchedulingvisitsComponent } from './schedulingvisits/schedulingvisits.component';
 import { Routes } from '@angular/router';
-import { SchedulingVisitComponent } from './scheduling/scheduling-visit/scheduling-visit.component';
-import { SchedulingComponent } from './scheduling/scheduling-meeting/scheduling-meeting.component';
+import { SchedulingMeetingComponent } from './scheduling/scheduling-meeting/scheduling-meeting.component';
 import { SchedulingHomeComponent } from './scheduling/scheduling-home/scheduling-home.component';
 import { HomeComponent } from './layouts/home/home.component';
 import { SignupComponent } from './layouts/signup/signup.component';
@@ -12,10 +13,10 @@ export const ROUTES: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'cadastrar', component: SignupComponent },
   { path: 'conselheiro', component: CounselorComponent },
-  { path: 'agendamento/reuniao', component: SchedulingComponent },
+  { path: 'agendamento/reuniao', component: SchedulingMeetingComponent },
   { path: 'agendamento', component: SchedulingHomeComponent },
-  { path: 'agendamento/visita', component: SchedulingVisitComponent },
-  { path: 'entrar', component: SigninComponent }
+  { path: 'entrar', component: SigninComponent },
+  { path: 'agendamento/visita', component: SchedulingvisitsComponent}
 ];
 
 // PARA CRIAR SUA ROTA BASTA FAZER O Q FOI FEITO ACIMA

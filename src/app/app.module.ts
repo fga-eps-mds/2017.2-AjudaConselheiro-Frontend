@@ -1,3 +1,4 @@
+import { SchedulingvisitsComponent } from './schedulingvisits/schedulingvisits.component';
 import { CounselorService } from './counselor/counselor.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
@@ -17,13 +18,12 @@ import { ChecklistoneComponent } from './checklists/checklistone/checklistone.co
 import { ChecklisttwoComponent } from './checklists/checklisttwo/checklisttwo.component';
 import { ChecklistthreeComponent } from './checklists/checklistthree/checklistthree.component';
 import { SchedulingHomeComponent } from './scheduling/scheduling-home/scheduling-home.component';
-import { SchedulingComponent } from './scheduling/scheduling-meeting/scheduling-meeting.component';
-import { SchedulingModule } from './scheduling/scheduling-meeting/scheduling-meeting.module';
-import { SchedulingVisitComponent } from './scheduling/scheduling-visit/scheduling-visit.component';
+import { SchedulingMeetingComponent } from './scheduling/scheduling-meeting/scheduling-meeting.component';
+import { SchedulingMeetingModule } from './scheduling/scheduling-meeting/scheduling-meeting.module';
 import { ROUTES } from './app.routes';
 import { SigninComponent } from './layouts/home/signin/signin.component';
 import { FormSigninComponent } from './layouts/home/signin/form-signin/form-signin.component';
-
+import { SchedulingvisitComponent } from './schedulingvisits/schedulingvisit/schedulingvisit.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,13 +34,14 @@ import { FormSigninComponent } from './layouts/home/signin/form-signin/form-sign
     SignupComponent,
     FormSignupComponent,
     CarouselComponent,
-    SchedulingVisitComponent,
     ChecklistoneComponent,
     ChecklisttwoComponent,
     ChecklistthreeComponent,
     SchedulingHomeComponent,
     SigninComponent,
-    FormSigninComponent
+    FormSigninComponent,
+    SchedulingvisitComponent,
+    SchedulingvisitsComponent
   ],
 
   imports: [
@@ -49,7 +50,7 @@ import { FormSigninComponent } from './layouts/home/signin/form-signin/form-sign
     RouterModule.forRoot(ROUTES),
     MDBBootstrapModule.forRoot(),
     FormsModule,
-    SchedulingModule,
+    SchedulingMeetingModule
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [CounselorService],
