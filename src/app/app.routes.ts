@@ -1,5 +1,5 @@
-import { SchedulingvisitComponent } from './schedulingvisits/schedulingvisit/schedulingvisit.component';
-import { SchedulingvisitsComponent } from './schedulingvisits/schedulingvisits.component';
+import { SchedulingvisitComponent } from './scheduling/schedulingvisits/schedulingvisit/schedulingvisit.component';
+import { SchedulingvisitsComponent } from './scheduling/schedulingvisits/schedulingvisits.component';
 import { Routes } from '@angular/router';
 import { SchedulingMeetingComponent } from './scheduling/scheduling-meeting/scheduling-meeting.component';
 import { SchedulingHomeComponent } from './scheduling/scheduling-home/scheduling-home.component';

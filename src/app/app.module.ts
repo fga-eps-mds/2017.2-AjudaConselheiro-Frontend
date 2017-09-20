@@ -1,4 +1,4 @@
-import { SchedulingvisitsComponent } from './schedulingvisits/schedulingvisits.component';
+import { SchedulingvisitsComponent } from './scheduling/schedulingvisits/schedulingvisits.component';
 import { CounselorService } from './counselor/counselor.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
@@ -23,7 +23,7 @@ import { SchedulingMeetingModule } from './scheduling/scheduling-meeting/schedul
 import { ROUTES } from './app.routes';
 import { SigninComponent } from './layouts/home/signin/signin.component';
 import { FormSigninComponent } from './layouts/home/signin/form-signin/form-signin.component';
-import { SchedulingvisitComponent } from './schedulingvisits/schedulingvisit/schedulingvisit.component';
+import { SchedulingvisitComponent } from './scheduling/schedulingvisits/schedulingvisit/schedulingvisit.component';
 @NgModule({
   declarations: [
     AppComponent,
