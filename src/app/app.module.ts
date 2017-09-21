@@ -41,8 +41,12 @@ import { SchedulingMeetingComponent } from './scheduling/scheduling-meeting/sche
     SchedulingHomeComponent,
     SigninComponent,
     FormSigninComponent,
+<<<<<<< HEAD
     SchedulingvisitsComponent,
     SchedulingvisitComponent
+=======
+    SchedulingvisitsComponent
+>>>>>>> 6906aac7e9be33f9fe6750a985d1f651aeae1778
   ],
 
   imports: [

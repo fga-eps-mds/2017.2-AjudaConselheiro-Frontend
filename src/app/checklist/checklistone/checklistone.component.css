@@ -1,3 +1,7 @@
-textarea{
-  resize: none;
+table {
+  table-layout: auto;
+}
+th{
+  
+  border-style: ridge;
 }
