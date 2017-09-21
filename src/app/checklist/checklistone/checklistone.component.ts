@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {CheckQuestion} from '../checklist.model';
+import {CheckQuestion} from '../checklist.module';
 @Component({
   selector: 'app-checklistone',
   templateUrl: './checklistone.component.html',
