@@ -22,9 +22,9 @@ import { SigninComponent } from './layouts/home/signin/signin.component';
 import { FormSigninComponent } from './layouts/home/signin/form-signin/form-signin.component';
 import { SchedulingvisitComponent } from './schedulingvisits/schedulingvisit/schedulingvisit.component';
 import { SchedulingHomeComponent } from './scheduling/scheduling-home/scheduling-home.component';
-import { SchedulingvisitsComponent } from './schedulingvisits/schedulingvisits.component';
 import { SchedulingMeetingModule } from './scheduling/scheduling-meeting/scheduling-meeting.module';
 import { SchedulingMeetingComponent } from './scheduling/scheduling-meeting/scheduling-meeting.component';
+import { SchedulingvisitsComponent } from './schedulingvisits/schedulingvisits.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +42,8 @@ import { SchedulingMeetingComponent } from './scheduling/scheduling-meeting/sche
     SchedulingHomeComponent,
     SigninComponent,
     FormSigninComponent,
-    SchedulingvisitsComponent
+    SchedulingvisitsComponent,
+    SchedulingvisitComponent
   ],
 
   imports: [
