@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/toPromise';
 
-import { User } from './user';
+import { User } from '../user/user';
 
 @Injectable()
 export class UserService {

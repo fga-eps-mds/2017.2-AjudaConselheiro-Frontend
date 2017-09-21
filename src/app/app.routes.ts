@@ -4,10 +4,10 @@ import { SchedulingvisitComponent } from './schedulingvisits/schedulingvisit/sch
 import { SchedulingvisitsComponent } from './schedulingvisits/schedulingvisits.component';
 import { SchedulingMeetingComponent } from './scheduling/scheduling-meeting/scheduling-meeting.component';
 import { SchedulingHomeComponent } from './scheduling/scheduling-home/scheduling-home.component';
-import { HomeComponent } from './layouts/home/home.component';
-import { SignupComponent } from './layouts/signup/signup.component';
+import { HomeComponent } from './home/home.component';
+import { SignupComponent } from './sign-up/signup.component';
 import { UserComponent } from './user/user.component';
-import { SigninComponent } from './layouts/home/signin/signin.component';
+import { SigninComponent } from './sign-in/signin.component';
 
 export const ROUTES: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
