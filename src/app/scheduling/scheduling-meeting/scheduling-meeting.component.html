@@ -1,4 +1,9 @@
-<div *ngIf="!local; else forminfo">
+<div *ngFor="let schedulingMeeting of schedulingsMeeting">
+  Local: {{schedulingMeeting.local}} - Membros: {{schedulingMeeting.members}} - Data: {{schedulingMeeting.date}} - Hora: {{schedulingMeeting.time}}
+</div>
+
+
+<!-- <div *ngIf="!local; else forminfo">
   <form [formGroup]="rForm" (ngSubmit)="addScheduling(rForm.value)">
     <div class="form-container">
       <div class="row columns">
@@ -29,7 +34,7 @@
 
 
 
-</div>`
+</div>
 <ng-template #forminfo>
   <div class="form-container">
     <div class="row columns">
@@ -40,4 +45,4 @@
 
     </div>
   </div>
-</ng-template>
+</ng-template> -->

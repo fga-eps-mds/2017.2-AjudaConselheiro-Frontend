@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
 import { DatePipe } from '@angular/common';
 
-import { SchedulingComponent } from './scheduling-meeting.component';
+import { SchedulingMeetingComponent } from './scheduling-meeting.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SchedulingService } from './scheduling-meeting.service';
+import { SchedulingMeetingService } from './scheduling-meeting.service';
 
 @NgModule({
   imports: [
@@ -14,10 +14,10 @@ import { SchedulingService } from './scheduling-meeting.service';
     FormsModule,
     HttpModule
   ],
-  declarations: [SchedulingComponent],
+  declarations: [SchedulingMeetingComponent],
   exports: [
-    SchedulingComponent
+    SchedulingMeetingComponent
   ],
-  providers: [SchedulingService]
+  providers: [SchedulingMeetingService]
 })
-export class SchedulingModule { }
+export class SchedulingMeetingModule { }

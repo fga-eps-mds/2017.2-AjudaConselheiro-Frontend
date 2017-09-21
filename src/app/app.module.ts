@@ -16,15 +16,15 @@ import { CarouselComponent } from './layouts/home/carousel/carousel.component';
 import { ChecklistoneComponent } from './checklists/checklistone/checklistone.component';
 import { ChecklisttwoComponent } from './checklists/checklisttwo/checklisttwo.component';
 import { ChecklistthreeComponent } from './checklists/checklistthree/checklistthree.component';
-import { SchedulingHomeComponent } from './scheduling/scheduling-home/scheduling-home.component';
-import { SchedulingComponent } from './scheduling/scheduling-meeting/scheduling-meeting.component';
-import { SchedulingModule } from './scheduling/scheduling-meeting/scheduling-meeting.module';
 import { ChecklistModule } from './checklist/checklist.module';
-import { SchedulingVisitComponent } from './scheduling/scheduling-visit/scheduling-visit.component';
 import { ROUTES } from './app.routes';
 import { SigninComponent } from './layouts/home/signin/signin.component';
 import { FormSigninComponent } from './layouts/home/signin/form-signin/form-signin.component';
-
+import { SchedulingvisitComponent } from './schedulingvisits/schedulingvisit/schedulingvisit.component';
+import { SchedulingHomeComponent } from './scheduling/scheduling-home/scheduling-home.component';
+import { SchedulingvisitsComponent } from './schedulingvisits/schedulingvisits.component';
+import { SchedulingMeetingModule } from './scheduling/scheduling-meeting/scheduling-meeting.module';
+import { SchedulingMeetingComponent } from './scheduling/scheduling-meeting/scheduling-meeting.component';
 
 @NgModule({
   declarations: [
@@ -36,13 +36,13 @@ import { FormSigninComponent } from './layouts/home/signin/form-signin/form-sign
     SignupComponent,
     FormSignupComponent,
     CarouselComponent,
-    SchedulingVisitComponent,
     ChecklistoneComponent,
     ChecklisttwoComponent,
     ChecklistthreeComponent,
     SchedulingHomeComponent,
     SigninComponent,
-    FormSigninComponent
+    FormSigninComponent,
+    SchedulingvisitsComponent
   ],
 
   imports: [
@@ -51,7 +51,6 @@ import { FormSigninComponent } from './layouts/home/signin/form-signin/form-sign
     RouterModule.forRoot(ROUTES),
     MDBBootstrapModule.forRoot(),
     FormsModule,
-    SchedulingModule,
     ChecklistModule,
     // RouterModule.forRoot(appRoutes),
   ],
