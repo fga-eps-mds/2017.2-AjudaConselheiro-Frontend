@@ -1,18 +1,19 @@
+import { Routes } from '@angular/router';
+
 import { SchedulingvisitComponent } from './schedulingvisits/schedulingvisit/schedulingvisit.component';
 import { SchedulingvisitsComponent } from './schedulingvisits/schedulingvisits.component';
-import { Routes } from '@angular/router';
 import { SchedulingMeetingComponent } from './scheduling/scheduling-meeting/scheduling-meeting.component';
 import { SchedulingHomeComponent } from './scheduling/scheduling-home/scheduling-home.component';
 import { HomeComponent } from './layouts/home/home.component';
 import { SignupComponent } from './layouts/signup/signup.component';
-import { CounselorComponent } from './counselor/counselor.component';
+import { UserComponent } from './user/user.component';
 import { SigninComponent } from './layouts/home/signin/signin.component';
 
 export const ROUTES: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'cadastrar', component: SignupComponent },
-  { path: 'conselheiro', component: CounselorComponent },
+  { path: 'user', component: UserComponent },
   { path: 'agendamento/reuniao', component: SchedulingMeetingComponent },
   { path: 'agendamento', component: SchedulingHomeComponent },
   { path: 'entrar', component: SigninComponent },

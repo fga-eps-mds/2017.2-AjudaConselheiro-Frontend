@@ -1,13 +1,14 @@
 import { SchedulingvisitsComponent } from './schedulingvisits/schedulingvisits.component';
-import { CounselorService } from './counselor/counselor.service';
+import { UserService } from './user/user.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
+
 import { AppComponent } from './app.component';
-import { CounselorComponent } from './counselor/counselor.component';
+import { UserComponent } from './user/user.component';
 import { LayoutsComponent } from './layouts/layouts.component';
 import { HomeComponent } from './layouts/home/home.component';
 import { NavbarHomeComponent } from './layouts/home/navbar-home/navbar-home.component';
@@ -27,7 +28,7 @@ import { SchedulingvisitComponent } from './schedulingvisits/schedulingvisit/sch
 @NgModule({
   declarations: [
     AppComponent,
-    CounselorComponent,
+    UserComponent,
     LayoutsComponent,
     HomeComponent,
     NavbarHomeComponent,
@@ -53,7 +54,7 @@ import { SchedulingvisitComponent } from './schedulingvisits/schedulingvisit/sch
     SchedulingMeetingModule
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
-  providers: [CounselorService],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
