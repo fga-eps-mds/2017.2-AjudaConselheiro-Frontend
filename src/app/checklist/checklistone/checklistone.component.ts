@@ -9,7 +9,7 @@ import {CheckQuestion} from '../checklist.model';
 export class ChecklistoneComponent implements OnInit {
   //This component is destined to the checklist corresponding to
   // LISTA PARA VERIFICAÇÃO DAS BOAS PRÁTICAS DE FABRICAÇÃO
-  private checkSecOne: CheckQuestion[] = [
+  checkSecOne: CheckQuestion[] = [
     new CheckQuestion("Área externa livre de sujeiras, objetos em desuso, acúmulo de lixo"),
     new CheckQuestion("Área da cozinha limpa e organizada"),
     new CheckQuestion("Área do deposito limpa e organizada"),
@@ -20,7 +20,7 @@ export class ChecklistoneComponent implements OnInit {
     new CheckQuestion("Presença da lixeira com tampa e pedal funcionando"),
     new CheckQuestion("Sacos de lixo fora da lixeira"),
   ]
-  private checkSecTwo: CheckQuestion[]=[
+  checkSecTwo: CheckQuestion[]=[
     new CheckQuestion("Tamanho da cozinha é adequado e em bom estado de conservação"),
     new CheckQuestion("Tamanho do depósito é adeequado e em bom estado de conservação"),
     new CheckQuestion("Existe mais de um depósito de alimentos"),
@@ -40,12 +40,12 @@ export class ChecklistoneComponent implements OnInit {
     new CheckQuestion("Lavatórios em condições de higiene, dotados de sabonete líquido inodoro antiséptico,toalhas de papel não reciclado ou outro sistema higiênico e seguro de secagem e coletorde papel acionados sem contato manual"),
     new CheckQuestion("Existência de lavatórios na área de manipulação com água corrente, em posições adequadas em relação ao fluxo de produção e serviço e em número suficiente de modo a atender toda a área de produção"),
     ]
-    private checkSecThree: CheckQuestion[]=[
+   checkSecThree: CheckQuestion[]=[
       new CheckQuestion("Reservatório de água e encanamentos acessíveis, dotados de tampas, em satifatóriacondição de uso, livre de vazamentos, infiltrações e descasccamentos"),
       new CheckQuestion("Fossas e esgotos conectados à rede pública"),
       new CheckQuestion("Caixas de gordura em adequado estado de conservação e funcionamento"),
     ]
-    private checkSecFour: CheckQuestion[]=[
+   checkSecFour: CheckQuestion[]=[
       new CheckQuestion("A quantidade de equipamentos é suficiente (geladeira, freezer, fogão, liquidificador,etc."),
       new CheckQuestion("Presença de termômetro no freezer"),
       new CheckQuestion("A quantidade de utensílios é suficiente(pratos, copos, talheres, etc)"),
@@ -54,14 +54,14 @@ export class ChecklistoneComponent implements OnInit {
       new CheckQuestion("Produtos de higienização identificados e guardados em local adequado, afastados dos alimentos"),
       new CheckQuestion("Produtos de higienização regularizados pelo Ministério da Saúde"),
     ]
-    private checkSecFive: CheckQuestion[]=[
+   checkSecFive: CheckQuestion[]=[
       new CheckQuestion("Uniforme Completo"),
       new CheckQuestion("Manipuladores com esmaltes e/ou unhas compridas"),
       new CheckQuestion("Manipuladores usando adornos (brincos, anéis,pulseiras, relógio, etc.)"),
       new CheckQuestion("Manipuladores com maquiagem (batom, sombra, lápis de olho,etc)"),
       new CheckQuestion("Manipuladores doentes e/ou com cortes feridas nas mãos"),
     ]
-    private checkSecSix: CheckQuestion[]=[
+   checkSecSix: CheckQuestion[]=[
       new CheckQuestion("Higienização de frutas e verduras é realizada de maneira adequada"),
       new CheckQuestion("A água sanitária utilizada é própria para alimentos"),
       new CheckQuestion("O descongelamento dos alimentos é feito na geladeira"),
@@ -72,7 +72,7 @@ export class ChecklistoneComponent implements OnInit {
       new CheckQuestion("Caso as refeições aconteçam em sala de aula, a escola possui carrinho para transportar os alimentos?"),
       new CheckQuestion("Os carrinhos estão em boas condições e em quantidades suficientes"),
     ]
-    private checkSecSeven: CheckQuestion[]=[
+   checkSecSeven: CheckQuestion[]=[
       new CheckQuestion("A alimentação escolar tem paladar saboroso e gostoso"),
       new CheckQuestion("Os alimentos fornecidos pelo orgão de distribuição do estado são de qualidade"),
       new CheckQuestion("Os cardápios são variados"),
@@ -80,7 +80,7 @@ export class ChecklistoneComponent implements OnInit {
       new CheckQuestion("Qual o cardápio mais aceito?"),
       new CheckQuestion("Qual o cardápio menos aceito?"),
     ]
-    private checkSecEight: CheckQuestion[]=[
+   checkSecEight: CheckQuestion[]=[
       new CheckQuestion("Presença de comprovante de limpeza da caixa d'agua(semestral)"),
       new CheckQuestion("Presença de comprovante de limpeza do reservatório de água subterrâneo(semestral)"),
       new CheckQuestion("Presença de registro de potabilidade da água (RDC 275/2002 - ANVISA e RDC 216/2004 - ANVISA)"),
