@@ -13,19 +13,18 @@ import { NavbarHomeComponent } from './layouts/home/navbar-home/navbar-home.comp
 import { SignupComponent } from './layouts/signup/signup.component';
 import { FormSignupComponent } from './layouts/signup/form-signup/form-signup.component';
 import { CarouselComponent } from './layouts/home/carousel/carousel.component';
-import { ChecklistoneComponent } from './checklists/checklistone/checklistone.component';
-import { ChecklisttwoComponent } from './checklists/checklisttwo/checklisttwo.component';
-import { ChecklistthreeComponent } from './checklists/checklistthree/checklistthree.component';
-import { SchedulingHomeComponent } from './scheduling/scheduling-home/scheduling-home.component';
-import { SchedulingComponent } from './scheduling/scheduling-meeting/scheduling-meeting.component';
-import { SchedulingModule } from './scheduling/scheduling-meeting/scheduling-meeting.module';
+import { ChecklistoneComponent } from './checklist/checklistone/checklistone.component';
+import { ChecklisttwoComponent } from './checklist/checklisttwo/checklisttwo.component';
+import { ChecklistthreeComponent } from './checklist/checklistthree/checklistthree.component';
 import { ChecklistModule } from './checklist/checklist.module';
-import { SchedulingVisitComponent } from './scheduling/scheduling-visit/scheduling-visit.component';
 import { ROUTES } from './app.routes';
 import { SigninComponent } from './layouts/home/signin/signin.component';
 import { FormSigninComponent } from './layouts/home/signin/form-signin/form-signin.component';
-
-
+import { SchedulingvisitComponent } from './schedulingvisits/schedulingvisit/schedulingvisit.component';
+import { SchedulingHomeComponent } from './scheduling/scheduling-home/scheduling-home.component';
+import { SchedulingvisitsComponent } from './schedulingvisits/schedulingvisits.component';
+import { SchedulingMeetingModule } from './scheduling/scheduling-meeting/scheduling-meeting.module';
+import { SchedulingMeetingComponent } from './scheduling/scheduling-meeting/scheduling-meeting.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,13 +35,14 @@ import { FormSigninComponent } from './layouts/home/signin/form-signin/form-sign
     SignupComponent,
     FormSignupComponent,
     CarouselComponent,
-    SchedulingVisitComponent,
     ChecklistoneComponent,
     ChecklisttwoComponent,
     ChecklistthreeComponent,
     SchedulingHomeComponent,
     SigninComponent,
-    FormSigninComponent
+    FormSigninComponent,
+    SchedulingvisitsComponent,
+    SchedulingvisitComponent
   ],
 
   imports: [
@@ -51,10 +51,9 @@ import { FormSigninComponent } from './layouts/home/signin/form-signin/form-sign
     RouterModule.forRoot(ROUTES),
     MDBBootstrapModule.forRoot(),
     FormsModule,
-    SchedulingModule,
     ChecklistModule,
+    SchedulingMeetingModule
     // RouterModule.forRoot(appRoutes),
-    //Comentei o erro da linha 56, não faço ideia do que ta acontecendo, caso for usar, resolva.
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [CounselorService],

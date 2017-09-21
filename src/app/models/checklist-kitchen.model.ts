@@ -1,9 +1,9 @@
-import { Form } from './form.interf';
+import { Form } from './checklist-form.interf';
 
 export class ChecklistKitchen{
 
-    constructor(private nameCook: string,
-                private form : Array<Form>,
-                private foodRatio : string    
+    constructor(public nameCook: string,
+                public form : Array<Form>,
+                public foodRatio : string    
     ){}
 }
