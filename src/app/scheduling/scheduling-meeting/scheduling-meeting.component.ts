@@ -1,4 +1,4 @@
-import { SchedulingMeetingService } from './scheduling-meeting.service';
+import { SchedulingMeetingService } from '../../services/scheduling-meeting.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SchedulingMeeting } from './scheduling-meeting';

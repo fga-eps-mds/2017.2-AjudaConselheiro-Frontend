@@ -1,7 +1,7 @@
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
-import { SchedulingMeeting } from './scheduling-meeting';
+import { SchedulingMeeting } from '../scheduling/scheduling-meeting/scheduling-meeting';
 import "rxjs";
 import { Observable } from "rxjs";
 

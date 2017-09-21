@@ -5,7 +5,7 @@ import { DatePipe } from '@angular/common';
 
 import { SchedulingMeetingComponent } from './scheduling-meeting.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SchedulingMeetingService } from './scheduling-meeting.service';
+import { SchedulingMeetingService } from '../../services/scheduling-meeting.service';
 
 @NgModule({
   imports: [
