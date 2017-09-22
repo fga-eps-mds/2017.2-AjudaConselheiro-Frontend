@@ -1,3 +1,4 @@
+import { SchedulingModule } from './scheduling/scheduling.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
@@ -45,10 +46,7 @@ import { BaseRequestOptions } from '@angular/http';
     ChecklistoneComponent,
     ChecklisttwoComponent,
     ChecklistthreeComponent,
-
-
     SchedulingComponent,
-
     FormSigninComponent,
     LoginComponent,
     AlertComponent,
@@ -62,6 +60,7 @@ import { BaseRequestOptions } from '@angular/http';
     MDBBootstrapModule.forRoot(),
     FormsModule,
     ChecklistModule,
+    SchedulingModule
     // RouterModule.forRoot(appRoutes),
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
