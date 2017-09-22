@@ -9,6 +9,17 @@ import {CheckQuestion} from '../checklist.model';
 export class ChecklistoneComponent implements OnInit {
   //This component is destined to the checklist corresponding to
   // LISTA PARA VERIFICAÇÃO DAS BOAS PRÁTICAS DE FABRICAÇÃO
+
+  topicSecHeader: CheckQuestion[]=[
+    new CheckQuestion("Higienização e organização dos ambientes área externa, cozinha e depósito"),
+    new CheckQuestion("Estrutura física da cozinha e do depósito"),
+    new CheckQuestion("Abastecimento de água e esgoto sanitário"),
+    new CheckQuestion("Equipamentos e utensílios"),
+    new CheckQuestion("Manipuladores de alimentos"),
+    new CheckQuestion("Pré-preparo, preparo dos alimentos e distruibuição dos alimentos"),
+    new CheckQuestion("Qualidade da alimentação escolar"),
+    new CheckQuestion("Documentação"),
+  ]
   checkSecOne: CheckQuestion[] = [
     new CheckQuestion("Área externa livre de sujeiras, objetos em desuso, acúmulo de lixo"),
     new CheckQuestion("Área da cozinha limpa e organizada"),
@@ -89,6 +100,12 @@ export class ChecklistoneComponent implements OnInit {
       new CheckQuestion("Atestado de Saúde Ocupacional (ASO) em dia e de fácil visualização (anual)"),
       new CheckQuestion("Os manipuladores de alimentos são, comprovadamente, capacitados em cursos sobre higiene alimentar"),
       new CheckQuestion("A prestação de contas (controle diário) está em dia"),
+    ]
+    checkSecIteration=[
+      this.checkSecOne,
+      this.checkSecTwo,
+      this.checkSecTwo,
+
     ]
   constructor() { }
 
