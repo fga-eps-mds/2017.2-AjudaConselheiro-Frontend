@@ -1,5 +1,3 @@
-
-import { SchedulingvisitsComponent } from './scheduling/schedulingvisits/schedulingvisits.component';
 import { UserService } from './services/user.service';
 
 import { BrowserModule } from '@angular/platform-browser';
@@ -19,18 +17,14 @@ import { SignupComponent } from './sign-up/signup.component';
 import { FormSignupComponent } from './sign-up/form-signup/form-signup.component';
 import { CarouselComponent } from './layouts/carousel/carousel.component';
 
-import { SchedulingHomeComponent } from './scheduling/scheduling-home/scheduling-home.component';
-import { SchedulingMeetingComponent } from './scheduling/scheduling-meeting/scheduling-meeting.component';
-import { SchedulingMeetingModule } from './scheduling/scheduling-meeting/scheduling-meeting.module';
-
 import { ChecklistoneComponent } from './checklist/checklistone/checklistone.component';
 import { ChecklisttwoComponent } from './checklist/checklisttwo/checklisttwo.component';
 import { ChecklistthreeComponent } from './checklist/checklistthree/checklistthree.component';
 import { ChecklistModule } from './checklist/checklist.module';
 import { ROUTES } from './app.routes';
-import { SchedulingvisitComponent } from './scheduling/schedulingvisits/schedulingvisit/schedulingvisit.component';
 import { SigninComponent } from './sign-in/signin.component';
 import { FormSigninComponent } from './sign-in/form-signin/form-signin.component';
+import { SchedulingComponent } from './scheduling/scheduling.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,11 +38,9 @@ import { FormSigninComponent } from './sign-in/form-signin/form-signin.component
     ChecklistoneComponent,
     ChecklisttwoComponent,
     ChecklistthreeComponent,
-    SchedulingHomeComponent,
     SigninComponent,
     FormSigninComponent,
-    SchedulingvisitsComponent,
-    SchedulingvisitComponent
+    SchedulingComponent
 
   ],
 
@@ -59,7 +51,6 @@ import { FormSigninComponent } from './sign-in/form-signin/form-signin.component
     MDBBootstrapModule.forRoot(),
     FormsModule,
     ChecklistModule,
-    SchedulingMeetingModule
     // RouterModule.forRoot(appRoutes),
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
