@@ -4,6 +4,7 @@ export class SchedulingVisit{
       public local?: string,
       public members?: string,
       public date?: number,
-      public horaly?: number
+      public horaly?: number,
+      public finish?: boolean
   ){}
 }
