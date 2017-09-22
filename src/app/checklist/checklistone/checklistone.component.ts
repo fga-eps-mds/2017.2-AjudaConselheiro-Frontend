@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {CheckQuestion} from '../checklist.model';
+import {CheckQuestion,ConfirmComentary} from '../checklist.model';
 
 @Component({
   selector: 'app-checklistone',
@@ -9,7 +9,6 @@ import {CheckQuestion} from '../checklist.model';
 export class ChecklistoneComponent implements OnInit {
   //This component is destined to the checklist corresponding to
   // LISTA PARA VERIFICAÇÃO DAS BOAS PRÁTICAS DE FABRICAÇÃO
-
   topicSecHeader: CheckQuestion[]=[
     new CheckQuestion("Higienização e organização dos ambientes área externa, cozinha e depósito"),
     new CheckQuestion("Estrutura física da cozinha e do depósito"),
@@ -101,12 +100,34 @@ export class ChecklistoneComponent implements OnInit {
       new CheckQuestion("Os manipuladores de alimentos são, comprovadamente, capacitados em cursos sobre higiene alimentar"),
       new CheckQuestion("A prestação de contas (controle diário) está em dia"),
     ]
+    checkComentary: ConfirmComentary[]=[
+      new ConfirmComentary(false,"Comment1"),
+      new ConfirmComentary(false,"Comment2"),
+      new ConfirmComentary(false,"Comment3"),
+      new ConfirmComentary(false,"Comment4"),
+      new ConfirmComentary(false,"Comment5"),
+      new ConfirmComentary(false,"Comment6"),
+      new ConfirmComentary(false,"Comment7"),
+      new ConfirmComentary(false,"Comment8"),
+    ]
+    AlterComentaryValue(x){
+
+      x=true;
+    }
+
+
     checkSecIteration=[
       this.checkSecOne,
       this.checkSecTwo,
-      this.checkSecTwo,
+      this.checkSecThree,
+      this.checkSecFour,
+      this.checkSecFive,
+      this.checkSecSix,
+      this.checkSecSeven,
+      this.checkSecEight,
 
     ]
+
   constructor() { }
 
   ngOnInit() {

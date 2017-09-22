@@ -2,44 +2,48 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Lista para verificação de boas práticas alimentares</title>
   </head>
   <body>
     <div class="container">
       <div class="row">
         <div class="col-md-12" align="center"><h2>Lista para verificação de boas práticas alimentares</h2></div>
       </div>
-        <div *ngFor="let title of topicSecHeader; let j=index">
-        <div class="row" >
-          <div class="col-md-9"><h5>{{topicSecHeader[j].pergunta}}</h5></div>
-          <div class="col-md-1"><h5>Sim</h5></div>
-          <div class="col-md-1"><h5>Não</h5></div>
-          <div class="col-md-1"><h5>Não se Aplica</h5></div>
-        </div>
-        <div class="row" *ngFor="let check of checkSecOne;let i=index">
-          <div class="col-md-9" align="left">{{checkSecOne[i].pergunta}}</div>
-          <div class="col-md-1" align="center"><input type="radio" name="{{checkSecOne[i].pergunta}}" id="{{checkSecOne[i].pergunta}}"required></div>
-          <div class="col-md-1" align="center"><input type="radio" name="{{checkSecOne[i].pergunta}}" id="{{checkSecOne[i].pergunta}}"></div>
-          <div class="col-md-1" align="center"><input type="radio" name="{{checkSecOne[i].pergunta}}" id="{{checkSecOne[i].pergunta}}"></div>
-        </div>
-        <div class="row">
-          <div class="col-md-9" align="left">Observações?</div>
-          <div class="col-md-1" align="center"><input type="radio" name=""></div>
-          <div class="col-md-1" align="center"><input type="radio" name=""></div>
-        </div>
-        <br>
-      </div>
-      <div class="row">
-        <h1>{{checkSecIteration[0][3].pergunta}}</h1>
-        <div class="col-md-8"></div>
-        <div class="col-md-4">
-          <div class="md-form">
-            <textarea mdbActive type="text" id="form7" class="md-textarea" placeholder="Observações"></textarea>
-            <label for="form7" ></label>
+      <br>
+      <!-- Here we are making an iteration through a 2d array consisting of various objects and its atributes
+      meanwhile printing the header determined to each section, with that we will print all of the atributes
+      that are stored inside the determined object array-->
+        <form ng-submit="">
+          <div *ngFor="let topic of checkSecIteration;let i=index">
+            <div class="row" >
+              <div class="col-md-9"><h5>{{topicSecHeader[i].pergunta}}</h5></div>
+              <div class="col-md-1"><h5>Sim</h5></div>
+              <div class="col-md-1"><h5>Não</h5></div>
+              <div class="col-md-1"><h5>Não se Aplica</h5></div>
+            </div>
+          <div class="row" *ngFor="let question of topic;let j=index">
+            <div class="col-md-9" align="left">{{question.pergunta}}</div>
+            <div class="col-md-1" align="center"><input type="radio" name="{{question.pergunta}}" id="{{checkSecOne[i].pergunta}}"required></div>
+            <div class="col-md-1" align="center"><input type="radio" name="{{question.pergunta}}" id="{{checkSecOne[i].pergunta}}"></div>
+            <div class="col-md-1" align="center"><input type="radio" name="{{question.pergunta}}" id="{{checkSecOne[i].pergunta}}"></div>
           </div>
+          <div class="row">
+            <div class="col-md-9" align="left">Observações?</div>
+            <div class="col-md-1" align="center"><input type="radio" name="{{checkComentary[i].identificador}}" (click)="checkComentary[i].value=true"></div>
+            <div class="col-md-1" align="center"><input type="radio" name="{{checkComentary[i].identificador}}" (click)="checkComentary[i].value=null"></div>
+          </div>
+          <div class="row" *ngIf="checkComentary[i].value ===true">
+            <div class="col-md-9"></div>
+            <div class="col-md-3">
+              <div class="md-form">
+                <textarea mdbActive align ="center"type="text" id="form7" class="md-textarea" placeholder="Observações"></textarea>
+                <label for="form7" ></label>
+              </div>
+            </div>
+          </div>
+          <br>
         </div>
-      </div>
+      </form>
     </div>
-
   </body>
 </html>
