@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { SchedulingVisitService } from './../services/scheduling-visit.service';
+import { SchedulingVisitComponent } from './scheduling-visit';
 
 @NgModule({
   imports: [
     CommonModule
   ],
-  declarations: [],
+  declarations: [
+    SchedulingVisitComponent],
   providers: [
     SchedulingVisitService
   ]
