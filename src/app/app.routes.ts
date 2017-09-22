@@ -6,9 +6,9 @@ import { SchedulingMeetingComponent } from './scheduling/scheduling-meeting/sche
 import { SchedulingHomeComponent } from './scheduling/scheduling-home/scheduling-home.component';
 
 import { HomeComponent } from './home/home.component';
-import { SignupComponent } from './sign-up/signup.component';
+import { RegisterComponent } from './sign-up/signup.component';
 import { UserComponent } from './user/user.component';
-import { SigninComponent } from './sign-in/signin.component';
+import { LoginComponent } from './sign-in/signin.component';
 
 import { ChecklistoneComponent } from './checklist/checklistone/checklistone.component';
 import { ChecklisttwoComponent } from './checklist/checklisttwo/checklisttwo.component';
@@ -18,7 +18,7 @@ import { ChecklistComponent } from './checklist/checklist.component';
 export const ROUTES: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'cadastrar', component: SignupComponent },
+  { path: 'register', component: RegisterComponent },
   { path: 'user', component: UserComponent },
   { path: 'agendamento/reuniao', component: SchedulingMeetingComponent },
   { path: 'agendamento', component: SchedulingHomeComponent },
@@ -26,7 +26,7 @@ export const ROUTES: Routes = [
   { path: 'checklist/1', component: ChecklistoneComponent},
   { path: 'checklist/2', component: ChecklisttwoComponent},
   { path: 'checklist/3', component: ChecklistthreeComponent},
-  { path: 'entrar', component: SigninComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'agendamento/visita', component: SchedulingvisitsComponent}
 ];
 
