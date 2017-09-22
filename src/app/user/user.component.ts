@@ -1,28 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 
-import { User } from './user';
-import { UserService } from '../services/user.service';
+import { User } from '../models/index';
+import { UserService } from '../services/index';
 
 @Component({
-  selector: 'app-user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css']
+    moduleId: module.id,
+    templateUrl: 'user.component.html'
 })
+
 export class UserComponent implements OnInit {
-  users: User[];
-  error: any;
+    currentUser: User;
+    users: User[] = [];
 
-  constructor(
-    private userService: UserService) { }
+    constructor(private userService: UserService) {
+        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    }
 
-  getUsers(): void {
-    this.userService
-      .getUsers()
-      .then(users => this.users = users)
-      .catch(error => this.error = error);
-  }
+    ngOnInit() {
+        this.loadAllUsers();
+    }
 
-  ngOnInit(): void {
-    // this.getUsers();
-  }
+    deleteUser(id: number) {
+        this.userService.delete(id).subscribe(() => { this.loadAllUsers() });
+    }
+
+    private loadAllUsers() {
+        this.userService.getAll().subscribe(users => { this.users = users; });
+    }
 }

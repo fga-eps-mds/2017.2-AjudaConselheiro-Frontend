@@ -1,48 +1,40 @@
-import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Http, Headers, RequestOptions, Response } from '@angular/http';
 
-import 'rxjs/add/operator/toPromise';
-
-import { User } from '../user/user';
+import { User } from '../models/index';
 
 @Injectable()
 export class UserService {
+    constructor(private http: Http) { }
 
-  constructor(private http: Http) { }
+    getAll() {
+        return this.http.get('/api/users', this.jwt()).map((response: Response) => response.json());
+    }
 
-  create(user: User) {
-    this.http.post('conselheiros/', user)
-    .map(data => data.json).toPromise();
-  }
+    getById(id: number) {
+        return this.http.get('/api/users/' + id, this.jwt()).map((response: Response) => response.json());
+    }
 
-  destroy(user: User) {
-    this.http.delete('conselheiros/' + user.full_name)
-    .map(data => data.json).toPromise();
-  }
+    create(user: User) {
+        return this.http.post('/api/users', user, this.jwt()).map((response: Response) => response.json());
+    }
 
-  update(user: User) {
-    this.http.put('conselheiros/' + user.full_name, user)
-    .map(data => data.json).toPromise();
-  }
+    update(user: User) {
+        return this.http.put('/api/users/' + user.id, user, this.jwt()).map((response: Response) => response.json());
+    }
 
-  getUsers(): Promise<Array<User>> {
-    return this.http
-    .get('conselheiros/')
-    .toPromise()
-    .then((response) => {
-      return response.json().data as User[];
-    })
-    .catch(this.handleError);
-  }
+    delete(id: number) {
+        return this.http.delete('/api/users/' + id, this.jwt()).map((response: Response) => response.json());
+    }
 
-  getUser(full_name: string) {
-    return this.getUsers()
-    .then(users => users.find(user => user.full_name === full_name));
-  }
+    // private helper methods
 
-  private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error);
-    return Promise.reject(error.message || error);
-  }
+    private jwt() {
+        // create authorization header with jwt token
+        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (currentUser && currentUser.token) {
+            let headers = new Headers({ 'Authorization': 'Bearer ' + currentUser.token });
+            return new RequestOptions({ headers: headers });
+        }
+    }
 }
