@@ -10,7 +10,6 @@ import { ChecklisttwoComponent } from './checklist/checklisttwo/checklisttwo.com
 import { ChecklistthreeComponent } from './checklist/checklistthree/checklistthree.component';
 import { ChecklistComponent } from './checklist/checklist.component';
 
-import { SchedulingComponent } from './scheduling/scheduling.component';
 
 export const ROUTES: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -21,7 +20,6 @@ export const ROUTES: Routes = [
   { path: 'checklist/1', component: ChecklistoneComponent},
   { path: 'checklist/2', component: ChecklisttwoComponent},
   { path: 'checklist/3', component: ChecklistthreeComponent},
-  { path: 'agendamento', component: SchedulingComponent },
   { path: 'login', component: LoginComponent },
 ];
 

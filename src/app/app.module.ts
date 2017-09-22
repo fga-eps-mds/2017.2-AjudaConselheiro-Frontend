@@ -22,7 +22,6 @@ import { ChecklistthreeComponent } from './checklist/checklistthree/checklistthr
 import { ChecklistModule } from './checklist/checklist.module';
 import { ROUTES } from './app.routes';
 
-import { SchedulingComponent } from './scheduling/scheduling.component';
 import { AlertService } from './services/alert.service';
 import { AlertComponent } from './directives/alert.component';
 import { AuthenticationService } from './services/userauthentication.service';
@@ -46,7 +45,6 @@ import { BaseRequestOptions } from '@angular/http';
     ChecklistoneComponent,
     ChecklisttwoComponent,
     ChecklistthreeComponent,
-    SchedulingComponent,
     FormSigninComponent,
     LoginComponent,
     AlertComponent,
