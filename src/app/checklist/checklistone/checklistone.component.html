@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12" align="center"><h2>Lista para verificação de boas práticas alimentares</h2></div>
+      </div>
+      <div class="row">
+        <div class="col-md-9"><h5>Higienização e organização dos ambientes área externa, cozinha e depósito</h5></div>
+        <div class="col-md-1"><h5>Sim</h5></div>
+        <div class="col-md-1"><h5>Não</h5></div>
+        <div class="col-md-1"><h5>Não se Aplica</h5></div>
+      </div>
+      <div class="row" *ngFor="let check of checkSecOne;let i=index">
+        <div class="col-md-9" align="left">{{checkSecOne[i].pergunta}}</div>
+        <div class="col-md-1" align="center"><input type="radio" name=""required></div>
+        <div class="col-md-1" align="center"><input type="radio" name=""></div>
+        <div class="col-md-1" align="center"><input type="radio" name=""></div>
+      </div>
+      <div class="row">
+        <div class="col-md-9" align="left">Observações?</div>
+        <div class="col-md-1" align="center"><input type="radio" name=""></div>
+        <div class="col-md-1" align="center"><input type="radio" name=""></div>
+      </div>
+      <div class="row">
+
+        <div class="col-md-8"></div>
+        <div class="col-md-4">
+          <div class="md-form">
+            <textarea mdbActive type="text" id="form7" class="md-textarea" placeholder="Observações"></textarea>
+            <label for="form7" ></label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

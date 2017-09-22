@@ -1,33 +1,40 @@
+
 import { SchedulingvisitsComponent } from './scheduling/schedulingvisits/schedulingvisits.component';
-import { CounselorService } from './counselor/counselor.service';
+import { UserService } from './services/user.service';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
+
 import { AppComponent } from './app.component';
-import { CounselorComponent } from './counselor/counselor.component';
+import { UserComponent } from './user/user.component';
 import { LayoutsComponent } from './layouts/layouts.component';
-import { HomeComponent } from './layouts/home/home.component';
-import { NavbarHomeComponent } from './layouts/home/navbar-home/navbar-home.component';
-import { SignupComponent } from './layouts/signup/signup.component';
-import { FormSignupComponent } from './layouts/signup/form-signup/form-signup.component';
-import { CarouselComponent } from './layouts/home/carousel/carousel.component';
-import { ChecklistoneComponent } from './checklists/checklistone/checklistone.component';
-import { ChecklisttwoComponent } from './checklists/checklisttwo/checklisttwo.component';
-import { ChecklistthreeComponent } from './checklists/checklistthree/checklistthree.component';
+
+import { HomeComponent } from './home/home.component';
+import { NavbarHomeComponent } from './layouts/navbar/navbar.component';
+import { SignupComponent } from './sign-up/signup.component';
+import { FormSignupComponent } from './sign-up/form-signup/form-signup.component';
+import { CarouselComponent } from './layouts/carousel/carousel.component';
+
 import { SchedulingHomeComponent } from './scheduling/scheduling-home/scheduling-home.component';
 import { SchedulingMeetingComponent } from './scheduling/scheduling-meeting/scheduling-meeting.component';
 import { SchedulingMeetingModule } from './scheduling/scheduling-meeting/scheduling-meeting.module';
+
+import { ChecklistoneComponent } from './checklist/checklistone/checklistone.component';
+import { ChecklisttwoComponent } from './checklist/checklisttwo/checklisttwo.component';
+import { ChecklistthreeComponent } from './checklist/checklistthree/checklistthree.component';
+import { ChecklistModule } from './checklist/checklist.module';
 import { ROUTES } from './app.routes';
-import { SigninComponent } from './layouts/home/signin/signin.component';
-import { FormSigninComponent } from './layouts/home/signin/form-signin/form-signin.component';
 import { SchedulingvisitComponent } from './scheduling/schedulingvisits/schedulingvisit/schedulingvisit.component';
+import { SigninComponent } from './sign-in/signin.component';
+import { FormSigninComponent } from './sign-in/form-signin/form-signin.component';
 @NgModule({
   declarations: [
     AppComponent,
-    CounselorComponent,
+    UserComponent,
     LayoutsComponent,
     HomeComponent,
     NavbarHomeComponent,
@@ -40,8 +47,9 @@ import { SchedulingvisitComponent } from './scheduling/schedulingvisits/scheduli
     SchedulingHomeComponent,
     SigninComponent,
     FormSigninComponent,
-    SchedulingvisitComponent,
-    SchedulingvisitsComponent
+    SchedulingvisitsComponent,
+    SchedulingvisitComponent
+
   ],
 
   imports: [
@@ -50,10 +58,12 @@ import { SchedulingvisitComponent } from './scheduling/schedulingvisits/scheduli
     RouterModule.forRoot(ROUTES),
     MDBBootstrapModule.forRoot(),
     FormsModule,
+    ChecklistModule,
     SchedulingMeetingModule
+    // RouterModule.forRoot(appRoutes),
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
-  providers: [CounselorService],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
