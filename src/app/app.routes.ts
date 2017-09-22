@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
-import { SignupComponent } from './sign-up/signup.component';
+import { RegisterComponent } from './sign-up/signup.component';
 import { UserComponent } from './user/user.component';
-import { SigninComponent } from './sign-in/signin.component';
+import { LoginComponent } from './sign-in/signin.component';
 
 import { ChecklistoneComponent } from './checklist/checklistone/checklistone.component';
 import { ChecklisttwoComponent } from './checklist/checklisttwo/checklisttwo.component';
@@ -15,14 +15,14 @@ import { SchedulingComponent } from './scheduling/scheduling.component';
 export const ROUTES: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'cadastrar', component: SignupComponent },
+  { path: 'register', component: RegisterComponent },
   { path: 'user', component: UserComponent },
   { path: 'checklist', component: ChecklistComponent },
   { path: 'checklist/1', component: ChecklistoneComponent},
   { path: 'checklist/2', component: ChecklisttwoComponent},
   { path: 'checklist/3', component: ChecklistthreeComponent},
   { path: 'agendamento', component: SchedulingComponent },
-  { path: 'entrar', component: SigninComponent },
+  { path: 'login', component: LoginComponent },
 ];
 
 // PARA CRIAR SUA ROTA BASTA FAZER O Q FOI FEITO ACIMA
