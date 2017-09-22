@@ -9,8 +9,10 @@ import { ChecklistoneComponent } from './checklist/checklistone/checklistone.com
 import { ChecklisttwoComponent } from './checklist/checklisttwo/checklisttwo.component';
 import { ChecklistthreeComponent } from './checklist/checklistthree/checklistthree.component';
 import { ChecklistComponent } from './checklist/checklist.component';
+import { SchedulingVisitComponent } from './scheduling/scheduling-visit/scheduling-visit.component';
 
-import { SchedulingComponent } from './scheduling/scheduling.component';
+
+
 
 export const ROUTES: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -21,11 +23,7 @@ export const ROUTES: Routes = [
   { path: 'checklist/1', component: ChecklistoneComponent},
   { path: 'checklist/2', component: ChecklisttwoComponent},
   { path: 'checklist/3', component: ChecklistthreeComponent},
-  { path: 'agendamento', component: SchedulingComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'schedulingvisit', component: SchedulingVisitComponent},
 ];
 
-// PARA CRIAR SUA ROTA BASTA FAZER O Q FOI FEITO ACIMA
-// path: e nome da sua rota exemplo localhost:4200/agendamento
-// component: 'e o q vai aparecer la
-// <router-outlet></router-outlet> <--- isso aqui faz o resto pra vc no HTML principal
