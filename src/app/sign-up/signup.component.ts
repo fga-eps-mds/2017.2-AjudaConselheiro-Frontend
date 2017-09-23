@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { AlertService, UserService } from '../services/index';
 
 @Component({
-  selector: 'app-signup',
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css']
+    moduleId: module.id,
+    templateUrl: './form-signup/form-signup.component.html'
 })
-export class SignupComponent implements OnInit {
 
-  constructor() { }
+export class RegisterComponent {
+    model: any = {};
+    loading = false;
 
-  ngOnInit() {
-  }
+    constructor(
+        private router: Router,
+        private userService: UserService,
+        private alertService: AlertService) { }
 
 }

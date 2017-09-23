@@ -1,34 +1,37 @@
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { Http } from '@angular/http';
+import { SchedulingMeeting } from './../models/scheduling-meeting.model';
 import { Injectable } from '@angular/core';
-import { SchedulingMeeting } from '../scheduling/scheduling-meeting/scheduling-meeting';
-import "rxjs";
-import { Observable } from "rxjs";
 
 
 @Injectable()
 export class SchedulingMeetingService {
 
-    constructor(private _http: Http){}
+  constructor() { }
 
-    create(schedulingMeeting:SchedulingMeeting){
-        return this._http.post("/agendamento/reuniao",schedulingMeeting)
-        .map(data => data.json()).toPromise();
-    }
-    destroy(schedulingMeeting:SchedulingMeeting){
-        return this._http.delete("/agendamento/reuniao/"+schedulingMeeting.local)
-        .map(data => data.json()).toPromise();
-    }
-    update(schedulingMeeting:SchedulingMeeting){
-        return this._http.put("/agendamento/reuniao/"+schedulingMeeting.local,schedulingMeeting)
-        .map(data => data.json()).toPromise();
-    }
-    getSchedulingsMeeting(){
-        return this._http.get("/agendamento/reuniao")
-        .map(data => data.json()).toPromise();
-    }
-    getSchedulingMeeting(schedulingMeeting:SchedulingMeeting){
-        return this._http.get("/agendamento/reuniao/"+schedulingMeeting.local)
-        .map(data => data.json()).toPromise();
-    }
+  listAllScheculingMeeting():SchedulingMeeting[]{
+    const schedulingsMeeting = localStorage['schedulingsMeeting'];
+    return schedulingsMeeting ? JSON.parse(schedulingsMeeting):[];
+  } 
+
+  newSchedulingMeeting(schedulingMeeting:SchedulingMeeting): void {
+    const schedulingsMeeting = this.listAllScheculingMeeting();
+    schedulingMeeting.id = new Date().getTime();
+    schedulingsMeeting.push(schedulingMeeting);
+    localStorage['schedulingsMeeting'] = JSON.stringify(schedulingsMeeting);
+  }
+
+  updateSchedulingMeeting(schedulingMeeting:SchedulingMeeting):void{
+    const schedulingsMeeting: SchedulingMeeting[] = this.listAllScheculingMeeting();
+    schedulingsMeeting.forEach((obj,index,objs)=>{
+      if (schedulingMeeting.id == obj.id){
+        objs[index] = schedulingMeeting;
+      }
+    });
+    localStorage['schedulingsMeeting'] = JSON.stringify(schedulingsMeeting);
+  }
+
+  deleteSchedulingMeeting(id:number):void{
+    let schedulingsMeeting: SchedulingMeeting[] = this.listAllScheculingMeeting();
+    schedulingsMeeting = schedulingsMeeting.filter(schedulingMeeting => schedulingMeeting.id != id);
+    localStorage['schedulingsMeeting'] = JSON.stringify(schedulingsMeeting);
+  }
 }

@@ -1,33 +1,29 @@
-import { SchedulingMeetingService } from '../../services/scheduling-meeting.service';
-import { Component, OnInit, Input } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SchedulingMeeting } from './scheduling-meeting';
+import { SchedulingMeeting } from './../../models/scheduling-meeting.model';
+import { SchedulingMeetingService } from './../../services/scheduling-meeting.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-scheduling-meeting',
   templateUrl: './scheduling-meeting.component.html'
 })
-export class SchedulingMeetingComponent {
+export class SchedulingMeetingComponent implements OnInit {
 
-  schedulingsMeeting: Array<SchedulingMeeting> = [
-    new SchedulingMeeting("GAMA","JOÃO,MARIA",24072017,1400),
-    new SchedulingMeeting("SAMAMBAIA","CARLOS,MARIA",23082017,1400)
-  ];
+  schedulingsMeeting: SchedulingMeeting[];
 
   constructor(private schedulingMeetingService: SchedulingMeetingService){}
 
-  ngOnInit(){
-    //this.getSchedulingsMeeting();
+  ngOnInit() {
+    this.schedulingsMeeting = this.listAllScheculingMeeting();
   }
 
-  create(schedulingMeeting: SchedulingMeeting){
-    this.schedulingsMeeting.push(schedulingMeeting);
+  listAllScheculingMeeting(): SchedulingMeeting[]{
+    return this.schedulingMeetingService.listAllScheculingMeeting();
   }
 
-  getSchedulingsMeeting(){
-    this.schedulingMeetingService.getSchedulingsMeeting()
-    .then(schedulingsMeeting => this.schedulingsMeeting = schedulingsMeeting)
-  }
+  // getSchedulingsMeeting(){
+  //   this.schedulingMeetingService.getSchedulingsMeeting()
+  //   .then(schedulingsMeeting => this.schedulingsMeeting = schedulingsMeeting);
+  // }
 
 
   // rForm: FormGroup;
@@ -55,11 +51,4 @@ export class SchedulingMeetingComponent {
   //   this.time = scheduling.time;
   // }
 
-  //scheduling: Array<Scheduling> = [];
-
 }
-
-
-
-
-

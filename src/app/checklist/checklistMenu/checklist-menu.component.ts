@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsMenu, FormMenuTwo, FormCheckAnswer, FormCheck} from '../models/index'
+import { FormsMenu, FormMenuTwo, FormCheckAnswer, FormCheck} from '../../models/index'
 
 @Component({
   selector: 'app-checklistMenu',
