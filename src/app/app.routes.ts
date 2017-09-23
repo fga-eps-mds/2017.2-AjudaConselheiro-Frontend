@@ -11,6 +11,7 @@ import { ChecklistthreeComponent } from './checklist/checklistthree/checklistthr
 import { ChecklistComponent } from './checklist/checklist.component';
 import { SchedulingVisitComponent } from './scheduling/scheduling-visit/scheduling-visit.component';
 import { SchedulingHomeComponent } from './scheduling/scheduling-home/scheduling-home.component';
+import { SchedulingMeetingComponent } from './scheduling/scheduling-meeting/scheduling-meeting.component';
 
 
 
@@ -27,4 +28,5 @@ export const ROUTES: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'schedulingvisit', component: SchedulingVisitComponent},
   { path: 'schedulinghome', component: SchedulingHomeComponent},
+  { path: 'schedulingmeeting', component: SchedulingMeetingComponent}
 ];

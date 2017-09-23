@@ -19,4 +19,19 @@ export class SchedulingMeetingService {
     localStorage['schedulingsMeeting'] = JSON.stringify(schedulingsMeeting);
   }
 
+  updateSchedulingMeeting(schedulingMeeting:SchedulingMeeting):void{
+    const schedulingsMeeting: SchedulingMeeting[] = this.listAllScheculingMeeting();
+    schedulingsMeeting.forEach((obj,index,objs)=>{
+      if (schedulingMeeting.id == obj.id){
+        objs[index] = schedulingMeeting;
+      }
+    });
+    localStorage['schedulingsMeeting'] = JSON.stringify(schedulingsMeeting);
+  }
+
+  deleteSchedulingMeeting(id:number):void{
+    let schedulingsMeeting: SchedulingMeeting[] = this.listAllScheculingMeeting();
+    schedulingsMeeting = schedulingsMeeting.filter(schedulingMeeting => schedulingMeeting.id != id);
+    localStorage['schedulingsMeeting'] = JSON.stringify(schedulingsMeeting);
+  }
 }
