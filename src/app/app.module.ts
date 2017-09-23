@@ -1,4 +1,3 @@
-import { SchedulingModule } from './scheduling/scheduling.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
@@ -9,6 +8,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { UserComponent } from './user//user/user.component';
 import { LayoutsComponent } from './layouts/layouts.component';
+import { SchedulingVisitComponent } from './scheduling/scheduling-visit/scheduling-visit.component';
 
 import { HomeComponent } from './home/home.component';
 import { NavbarHomeComponent } from './layouts/navbar/navbar.component';
@@ -19,7 +19,7 @@ import { CarouselComponent } from './layouts/carousel/carousel.component';
 import { SchedulingHomeComponent } from './scheduling/scheduling-home/scheduling-home.component';
 import { UserHomeComponent } from './user/user-home/user-home.component';
 import { SchedulingMeetingComponent } from './scheduling/scheduling-meeting/scheduling-meeting.component';
-import { SchedulingMeetingModule } from './scheduling/scheduling-meeting/scheduling-meeting.module';
+import { SchedulingModule } from './scheduling/scheduling-meeting.module';
 
 
 import { ChecklistoneComponent } from './checklist/checklistone/checklistone.component';
@@ -52,6 +52,8 @@ import { BaseRequestOptions } from '@angular/http';
     ChecklisttwoComponent,
     ChecklistthreeComponent,
     SchedulingHomeComponent,
+    SchedulingMeetingComponent,
+    SchedulingVisitComponent,
     UserHomeComponent,
     FormSigninComponent,
     LoginComponent,
@@ -66,7 +68,6 @@ import { BaseRequestOptions } from '@angular/http';
     MDBBootstrapModule.forRoot(),
     FormsModule,
     ChecklistModule,
-    SchedulingModule
     // RouterModule.forRoot(appRoutes),
   ],
   schemas: [ NO_ERRORS_SCHEMA ],

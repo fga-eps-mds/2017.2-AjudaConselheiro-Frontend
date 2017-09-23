@@ -20,10 +20,10 @@ export class SchedulingMeetingComponent implements OnInit {
     return this.schedulingMeetingService.listAllScheculingMeeting();
   }
 
-  getSchedulingsMeeting(){
-    this.schedulingMeetingService.getSchedulingsMeeting()
-    .then(schedulingsMeeting => this.schedulingsMeeting = schedulingsMeeting);
-  }
+  // getSchedulingsMeeting(){
+  //   this.schedulingMeetingService.getSchedulingsMeeting()
+  //   .then(schedulingsMeeting => this.schedulingsMeeting = schedulingsMeeting);
+  // }
 
 
   // rForm: FormGroup;
