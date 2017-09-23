@@ -8,7 +8,7 @@ import {CheckQuestion} from '../checklist.model'
 export class ChecklistthreeComponent implements OnInit {
 //This component is destined to the checklist corresponding to
 //ACOMPANHAMENTO DAS CANTINAS PARTICULARES
-  private checkThree: CheckQuestion[]=[
+  checkThree: CheckQuestion[]=[
     new CheckQuestion("O cantineiro tem conhecimento da Lei n.º5.146/2013? "),
     new CheckQuestion("O cantineiro tem conhecimento do Decreto n.º36.900/2015?"),
     new CheckQuestion("O cantineiro já recebeu a visita da vigilância sanitária para fiscalização?"),
