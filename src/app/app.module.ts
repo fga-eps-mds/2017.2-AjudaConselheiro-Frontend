@@ -19,7 +19,9 @@ import { CarouselComponent } from './layouts/carousel/carousel.component';
 import { SchedulingHomeComponent } from './scheduling/scheduling-home/scheduling-home.component';
 import { UserHomeComponent } from './user/user-home/user-home.component';
 import { SchedulingMeetingComponent } from './scheduling/scheduling-meeting/scheduling-meeting.component';
-import { SchedulingModule } from './scheduling/scheduling-meeting.module';
+import { SchedulingVisitService } from './services/scheduling-visit.service';
+import { SchedulingMeetingService } from './services/scheduling-meeting.service';
+
 
 
 import { ChecklistoneComponent } from './checklist/checklistone/checklistone.component';
@@ -75,6 +77,8 @@ import { BaseRequestOptions } from '@angular/http';
     AlertService,
     AuthenticationService,
     UserService,
+    SchedulingVisitService,
+    SchedulingMeetingService,
 
     // providers used to create fake backend
 
