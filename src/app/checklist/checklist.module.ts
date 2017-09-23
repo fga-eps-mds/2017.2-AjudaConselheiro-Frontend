@@ -1,16 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ChecklistComponent} from './checklist.component';
+import { ChecklistMenuComponent } from './checklistMenu/checklist-menu.component';
 
 @NgModule({
     imports:[
-        CommonModule
+        CommonModule //para usar o ng
     ],
     declarations: [
-        ChecklistComponent
+        ChecklistComponent,
+        ChecklistMenuComponent
     ],
     exports: [
-        ChecklistComponent
+        ChecklistComponent,
+        ChecklistMenuComponent
     ]
 })
 
