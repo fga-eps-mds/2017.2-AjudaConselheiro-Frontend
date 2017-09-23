@@ -17,17 +17,4 @@ export class RegisterComponent {
         private userService: UserService,
         private alertService: AlertService) { }
 
-    register() {
-        this.loading = true;
-        this.userService.create(this.model)
-            .subscribe(
-                data => {
-                    this.alertService.success('Registration successful', true);
-                    this.router.navigate(['/login']);
-                },
-                error => {
-                    this.alertService.error(error);
-                    this.loading = false;
-                });
-    }
 }

@@ -26,7 +26,7 @@ export class SchedulingMeetingComponent {
 
   getSchedulingsMeeting(){
     this.schedulingMeetingService.getSchedulingsMeeting()
-    .then(schedulingsMeeting => this.schedulingsMeeting = schedulingsMeeting)
+    .then(schedulingsMeeting => this.schedulingsMeeting = schedulingsMeeting);
   }
 
 

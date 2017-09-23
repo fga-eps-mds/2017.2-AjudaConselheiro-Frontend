@@ -1,40 +1,33 @@
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions, Response } from '@angular/http';
+import { User } from '../models/user';
+import { Observable } from 'rxjs/Observable';
 
-import { User } from '../models/index';
 
 @Injectable()
 export class UserService {
-    constructor(private http: Http) { }
 
-    getAll() {
-        return this.http.get('/api/users', this.jwt()).map((response: Response) => response.json());
-    }
-
-    getById(id: number) {
-        return this.http.get('/api/users/' + id, this.jwt()).map((response: Response) => response.json());
-    }
+    constructor(private _http: Http) {}
 
     create(user: User) {
-        return this.http.post('/api/users', user, this.jwt()).map((response: Response) => response.json());
+        return this._http.post('/users/list', user)
+        .map(data => data.json()).toPromise();
     }
-
+    destroy(user: User) {
+        return this._http.delete('/users/list/' + user.id)
+        .map(data => data.json()).toPromise();
+    }
     update(user: User) {
-        return this.http.put('/api/users/' + user.id, user, this.jwt()).map((response: Response) => response.json());
+        return this._http.put('/users/list/' + user.id, user)
+        .map(data => data.json()).toPromise();
     }
-
-    delete(id: number) {
-        return this.http.delete('/api/users/' + id, this.jwt()).map((response: Response) => response.json());
+    getUsers() {
+        return this._http.get('/users/list')
+        .map(data => data.json()).toPromise();
     }
-
-    // private helper methods
-
-    private jwt() {
-        // create authorization header with jwt token
-        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        if (currentUser && currentUser.token) {
-            let headers = new Headers({ 'Authorization': 'Bearer ' + currentUser.token });
-            return new RequestOptions({ headers: headers });
-        }
+    getUser(user: User) {
+        return this._http.get('/users/list/' + user.id)
+        .map(data => data.json()).toPromise();
     }
 }

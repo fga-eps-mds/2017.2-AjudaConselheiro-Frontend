@@ -8,7 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { UserComponent } from './user/user.component';
+import { UserComponent } from './user//user/user.component';
 import { LayoutsComponent } from './layouts/layouts.component';
 
 import { HomeComponent } from './home/home.component';
@@ -18,6 +18,7 @@ import { FormSignupComponent } from './sign-up/form-signup/form-signup.component
 import { CarouselComponent } from './layouts/carousel/carousel.component';
 
 import { SchedulingHomeComponent } from './scheduling/scheduling-home/scheduling-home.component';
+import { UserHomeComponent } from './user/user-home/user-home.component';
 import { SchedulingMeetingComponent } from './scheduling/scheduling-meeting/scheduling-meeting.component';
 import { SchedulingMeetingModule } from './scheduling/scheduling-meeting/scheduling-meeting.module';
 
@@ -54,6 +55,7 @@ import { BaseRequestOptions } from '@angular/http';
     ChecklisttwoComponent,
     ChecklistthreeComponent,
     SchedulingHomeComponent,
+    UserHomeComponent,
     FormSigninComponent,
     SchedulingvisitsComponent,
     SchedulingvisitComponent,

@@ -1,4 +1,3 @@
-export * from './user';
 export * from './checklist-form-desc.interf';
 export * from './checklist-form.interf';
 export * from './checklist-kitchen.model';

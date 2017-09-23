@@ -7,7 +7,8 @@ import { SchedulingHomeComponent } from './scheduling/scheduling-home/scheduling
 
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './sign-up/signup.component';
-import { UserComponent } from './user/user.component';
+import { UserComponent } from './user/user/user.component';
+import { UserHomeComponent } from './user/user-home/user-home.component';
 import { LoginComponent } from './sign-in/signin.component';
 
 import { ChecklistoneComponent } from './checklist/checklistone/checklistone.component';
@@ -19,9 +20,10 @@ export const ROUTES: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'user', component: UserComponent },
+  { path: 'users/list', component: UserComponent },
   { path: 'agendamento/reuniao', component: SchedulingMeetingComponent },
   { path: 'agendamento', component: SchedulingHomeComponent },
+  { path: 'users', component: UserHomeComponent },
   { path: 'checklist', component: ChecklistComponent },
   { path: 'checklist/1', component: ChecklistoneComponent},
   { path: 'checklist/2', component: ChecklisttwoComponent},
