@@ -1,13 +1,11 @@
-// User atributes -> id missing
 export class User {
   constructor(
-    full_name: string = '',
-    email: string = '',
-    phone: string = '',
-    county: string,
-    cpf: number,
-    isPresiden: boolean = false,
-    password: string,
-  ) {}
-  id: number;
+    public id?: number,
+    public full_name?: string,
+    public email?: string,
+    public phone?: string,
+    public county?: string,
+    public cpf?: number,
+    public isPresident?: boolean,
+    public password?: string) {}
 }
