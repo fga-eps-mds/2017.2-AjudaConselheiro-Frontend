@@ -1,6 +1,9 @@
+import { Router } from '@angular/router';
 import { SchedulingMeeting } from './../../models/scheduling-meeting.model';
 import { SchedulingMeetingService } from './../../services/scheduling-meeting.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+
 
 @Component({
   selector: 'app-scheduling-meeting',
@@ -8,17 +11,39 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SchedulingMeetingComponent implements OnInit {
 
-  schedulingsMeeting: SchedulingMeeting[];
+  @ViewChild('formSchedulingMeeting') formSchedulingMeeting: NgForm;
+  schedulingMeeting: SchedulingMeeting;
 
-  constructor(private schedulingMeetingService: SchedulingMeetingService){}
 
-  ngOnInit() {
-    this.schedulingsMeeting = this.listAllScheculingMeeting();
+  constructor(
+    private schedulingMeetingService: SchedulingMeetingService,
+    private router: Router){}
+
+  ngOnInit(){
+    this.schedulingMeeting = new SchedulingMeeting();
   }
 
-  listAllScheculingMeeting(): SchedulingMeeting[]{
-    return this.schedulingMeetingService.listAllScheculingMeeting();
+  newSchedulingMeeting(): void {
+    if(this.formSchedulingMeeting.form.valid){
+      this.schedulingMeetingService.newSchedulingMeeting(this.schedulingMeeting);
+      this.router.navigate(["/schedulinghome"]);
+    }
   }
+
+
+  // ngOnInit() {
+  //   this.schedulingsMeeting = [
+  //     new SchedulingMeeting(1,"Gama","Fulano",0,1400),
+  //     new SchedulingMeeting(2,"Guara","Cicrano",0,1500)
+  //   ];
+  //   this.schedulingsMeeting = this.listAllScheculingMeeting();
+  // }
+
+  // listAllScheculingMeeting(): SchedulingMeeting[]{
+  //   return this.schedulingMeetingService.listAllScheculingMeeting();
+  // }
+
+
 
   // getSchedulingsMeeting(){
   //   this.schedulingMeetingService.getSchedulingsMeeting()
@@ -50,5 +75,6 @@ export class SchedulingMeetingComponent implements OnInit {
   //   this.date = scheduling.date;
   //   this.time = scheduling.time;
   // }
+
 
 }

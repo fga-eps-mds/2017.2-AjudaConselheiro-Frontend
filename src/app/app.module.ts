@@ -1,3 +1,4 @@
+import { SchedulingModule } from './scheduling/scheduling.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
@@ -35,7 +36,7 @@ import { BaseRequestOptions } from '@angular/http';
 import { ChecklistMenuService } from  './services/checklist-menu.service';
 
 @NgModule({
-  
+
   declarations: [
     AppComponent,
     UserComponent,
@@ -47,9 +48,6 @@ import { ChecklistMenuService } from  './services/checklist-menu.service';
     CarouselComponent,
     ChecklistoneComponent,
     ChecklistthreeComponent,
-    SchedulingHomeComponent,
-    SchedulingMeetingComponent,
-    SchedulingVisitComponent,
     UserHomeComponent,
     FormSigninComponent,
     LoginComponent,
@@ -63,7 +61,8 @@ import { ChecklistMenuService } from  './services/checklist-menu.service';
     RouterModule.forRoot(ROUTES),
     MDBBootstrapModule.forRoot(),
     FormsModule,
-    ChecklistModule
+    ChecklistModule,
+    SchedulingModule,
     // RouterModule.forRoot(appRoutes),
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
@@ -71,8 +70,6 @@ import { ChecklistMenuService } from  './services/checklist-menu.service';
     AlertService,
     AuthenticationService,
     UserService,
-    SchedulingVisitService,
-    SchedulingMeetingService,
     ChecklistMenuService,
     // providers used to create fake backend
 
