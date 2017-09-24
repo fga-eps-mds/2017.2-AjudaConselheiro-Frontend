@@ -32,9 +32,10 @@ import { FormSigninComponent } from './sign-in/form-signin/form-signin.component
 import { fakeBackendProvider } from './helpers/fake-backend';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 import { BaseRequestOptions } from '@angular/http';
+import { ChecklistMenuService } from  './services/checklist-menu.service';
 
 @NgModule({
-
+  
   declarations: [
     AppComponent,
     UserComponent,
@@ -62,7 +63,7 @@ import { BaseRequestOptions } from '@angular/http';
     RouterModule.forRoot(ROUTES),
     MDBBootstrapModule.forRoot(),
     FormsModule,
-    ChecklistModule,
+    ChecklistModule
     // RouterModule.forRoot(appRoutes),
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
@@ -72,7 +73,7 @@ import { BaseRequestOptions } from '@angular/http';
     UserService,
     SchedulingVisitService,
     SchedulingMeetingService,
-
+    ChecklistMenuService,
     // providers used to create fake backend
 
     fakeBackendProvider,
