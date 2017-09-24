@@ -1,3 +1,4 @@
+
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -5,6 +6,10 @@ import { CommonModule } from '@angular/common';
 
 import { SchedulingVisitService } from './../services/scheduling-visit.service';
 import { SchedulingVisitComponent } from './scheduling-visit';
+import { SchedulingHomeComponent } from './scheduling-home/scheduling-home.component';
+import { SchedulingMeetingComponent } from './scheduling-meeting/scheduling-meeting.component';
+import { SchedulingMeetingService } from './../services/scheduling-meeting.service';
+
 
 
 @NgModule({
@@ -14,9 +19,13 @@ import { SchedulingVisitComponent } from './scheduling-visit';
     FormsModule
   ],
   declarations: [
-    SchedulingVisitComponent],
+    SchedulingVisitComponent,
+    SchedulingHomeComponent,
+    SchedulingMeetingComponent
+  ],
   providers: [
-    SchedulingVisitService
+    SchedulingVisitService,
+    SchedulingMeetingService
   ]
 })
 export class SchedulingModule { }

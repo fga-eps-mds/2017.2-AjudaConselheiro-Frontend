@@ -1,0 +1,76 @@
+<br><br><br>
+
+<h1>Cadastrar Agendamento Reunião</h1>
+
+<br>
+
+<div class="well">
+    <form #formSchedulingMeeting="ngForm">
+        <div class="form-group">
+
+            <label for="local">Local:</label>
+            <input
+                type="text"
+                class="form-control"
+                id="local"
+                name="local"
+                [(ngModel)]="schedulingMeeting.local"
+                #local="ngModel"
+                minlength="3"
+                required>
+
+            <label for="members">Membros:</label>
+            <input
+                type="text"
+                class="form-control"
+                id="members"
+                name="members"
+                [(ngModel)]="schedulingMeeting.members"
+                #members="ngModel"
+                required>
+
+            <label for="date">Data:</label>
+            <input
+                type="date"
+                class="form-control"
+                id="date"
+                name="date"
+                [(ngModel)]="schedulingMeeting.date"
+                #date="ngModel"
+                required>
+
+            <label for="time">Hora:</label>
+            <input
+                type="time"
+                class="form-control"
+                id="time"
+                name="time"
+                [(ngModel)]="schedulingMeeting.time"
+                #time="ngModel"
+                required>
+
+            <div *ngIf="local.erros && (local.dirty || local.touched)"
+                class="alert alert-danger">
+                <div [hidden]="local.errors.required">
+                    Preencha o campo!
+                </div>
+                <div [hidden]="local.errors.minlength">
+                    Local deve conter no minimo 3 caracteres!
+                </div>
+            </div>    
+        </div>
+        <div class="form-group text-center">
+            <input 
+            type="button"
+            class="btn btn-deep-orange"
+            (click)="newSchedulingMeeting()"
+            value="Agendar"
+            [disabled]="!formSchedulingMeeting.form.valid">
+            <a href="/scheduling"
+                class="btn btn-outline-warning waves-effect">
+                <span class="glyphicon glyphicon-chevron-left"
+                    aria-hidden="false"></span>Voltar    
+            </a>
+        </div>
+    </form>
+</div>
