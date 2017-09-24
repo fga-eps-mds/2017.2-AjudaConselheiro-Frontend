@@ -3,7 +3,7 @@ export class SchedulingMeeting{
         public id?: number,
         public local?: string,
         public members?: string,
-        public date?: number,
-        public time?: number
+        public date?: any,
+        public time?: any
     ){}
 }

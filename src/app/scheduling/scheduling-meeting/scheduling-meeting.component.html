@@ -25,6 +25,8 @@
                 class="form-control"
                 id="members"
                 name="members"
+                [(ngModel)]="schedulingMeeting.members"
+                #members="ngModel"
                 required>
 
             <label for="date">Data:</label>
@@ -33,6 +35,8 @@
                 class="form-control"
                 id="date"
                 name="date"
+                [(ngModel)]="schedulingMeeting.date"
+                #date="ngModel"
                 required>
 
             <label for="time">Hora:</label>
@@ -41,6 +45,8 @@
                 class="form-control"
                 id="time"
                 name="time"
+                [(ngModel)]="schedulingMeeting.time"
+                #time="ngModel"
                 required>
 
             <div *ngIf="local.erros && (local.dirty || local.touched)"
@@ -60,7 +66,7 @@
             (click)="newSchedulingMeeting()"
             value="Agendar"
             [disabled]="!formSchedulingMeeting.form.valid">
-            <a href="/login"
+            <a href="/scheduling"
                 class="btn btn-outline-warning waves-effect">
                 <span class="glyphicon glyphicon-chevron-left"
                     aria-hidden="false"></span>Voltar    
