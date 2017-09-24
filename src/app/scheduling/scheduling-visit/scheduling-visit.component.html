@@ -1,33 +1,40 @@
 <br><br><br><br>
+<div class="container">
+    <h1>Agendar Visita</h1>
 
-<h1>Tarefas</h1>
+    <br>
 
-<table class="table table-striped table-bordered table-hover">
-    <tr>
-        <th>Tarefa</th>
-        <th>Concluída</th>
-        <th class="text-center">
-            <a class="btn btn-xs btn-success">
-                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Novo
-            </a>
-        </th>
-    </tr>
-    <tr>
-        <td>
+    <div class="well">
+        <form #formSchedulingVisit="ngForm">
+            <div class="form-group">
 
-        </td>
-        <td style="width: 70px" class="text-center">
-            <input type="checkbox">
-        </td>
-        <td class="text-center" style="width: 200px">
-            <a title="Editar" alt="Editar" class="btn btn-xs btn-info">
-                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar
-            </a>
-            <a href="#" title="Remover" alt="Remover" class="btn btn-xs btn-danger">
-                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Remover
-            </a>
-        </td>
-    </tr>
-</table>
+                <label for="local">Local:</label>
+                <input type="text" class="form-control" id="local" name="local" [(ngModel)]="schedulingVisits.local" #local="ngModel" minlength="3" required>
 
-<p>Nenhuma tarefa cadastrada.</p>
+                <label for="members">Membros:</label>
+                <input type="text" class="form-control" id="members" name="members" [(ngModel)]="schedulingVisits.members" #members="ngModel" required>
+
+                <label for="date">Data:</label>
+                <input type="date" class="form-control" id="date" name="date" [(ngModel)]="schedulingVisits.date" #date="ngModel" required>
+
+                <label for="time">Hora:</label>
+                <input type="time" class="form-control" id="time" name="time" [(ngModel)]="schedulingVisits.horaly" #time="ngModel" required>
+
+                <div *ngIf="local.erros && (local.dirty || local.touched)" class="alert alert-danger">
+                    <div [hidden]="local.errors.required">
+                        Preencha o campo!
+                    </div>
+                    <div [hidden]="local.errors.minlength">
+
+                    </div>
+                </div>
+            </div>
+            <div class="form-group text-center">
+                <input type="button" class="btn btn-deep-orange" (click)="newSchedulingVisit()" value="Agendar" [disabled]="!formSchedulingVisit.form.valid">
+                <a href="/home" class="btn btn-outline-warning waves-effect">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="false"></span>Voltar
+                </a>
+            </div>
+        </form>
+    </div>
+</div>

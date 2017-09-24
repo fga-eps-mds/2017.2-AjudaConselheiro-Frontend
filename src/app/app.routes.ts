@@ -24,6 +24,6 @@ export const ROUTES: Routes = [
   { path: 'checklist/2', component: ChecklisttwoComponent},
   { path: 'checklist/3', component: ChecklistthreeComponent},
   { path: 'login', component: LoginComponent },
-  { path: 'schedulingvisit', component: SchedulingVisitComponent},
+  { path: 'scheduling/visit', component: SchedulingVisitComponent},
 ];
 
