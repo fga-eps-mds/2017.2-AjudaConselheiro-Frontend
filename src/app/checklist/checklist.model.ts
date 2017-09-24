@@ -5,6 +5,9 @@ export class CheckQuestion{
     this.pergunta= pergunta;
   }
 }
+export class ConfirmComentary{
+  constructor(public value:boolean,public identificador:string){}
+}
 
 export class InfoData{
   constructor(public data:number,public responsavelPrenchimento:string,

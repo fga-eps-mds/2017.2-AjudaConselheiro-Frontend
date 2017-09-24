@@ -1,11 +1,62 @@
 <!DOCTYPE html>
-<!-- HTML destinado à formatação da página de acompanhamento das cantinas particulares -->
+<!-- HTML destinado à formatação da página da checklist da Avaliação
+dos cardápios das escolas parque e escolas classes da CRE/PPC -->
 <html>
   <head>
     <meta charset="utf-8">
     <title></title>
   </head>
   <body>
+    <!-- AVALIAÇÃO DOS CARDÁPIOS DAS ESCOLAS PARQUE E ESCOLAS CLASSES DA CRE/PPC -->
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2 align="center">Avaliação dos cardápios das escolas parque e escolas classes da CRE/PPC</h2>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-8" align="center"><h5>Avaliação da cantina particular</h5></div>
+        <div class="col-md-1" align="center"><h5>Sim</h5></div>
+        <div class="col-md-1" align="center"><h5>Não</h5></div>
+        <div class="col-md-1"></div>
+      </div>
+      <br>
+      <form ng-submit>
+        <div class="row" *ngFor="let item of checkThree;let i=index">
+          <div class="col-md-1"></div>
+          <div class="col-md-8">{{item.pergunta}}</div>
+          <div class="col-md-1" align="center"><input type="radio" name="{{checkThree[i].pergunta}}" value="true" required></div>
+          <div class="col-md-1" align="center"><input type="radio" name="{{checkThree[i].pergunta}}" value="false"></div>
+          <div class="col-md-1"></div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-8">
+            <h5 align="center"><label for="exampleFormControlTextarea6">Relação dos alimentos encontrados na cantina</label></h5>
+          </div>
+          <div class="col-md-2"></div>
+        </div>
+        <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-8">
+            <div class="form-group basic-textarea rounded-corners shadow-textarea">
+              <textarea mdbActive align ="center"type="text" id="checkthreetext" class="form-control z-depth-1" rows="3" placeholder="Observações" required></textarea>
+              <label for="checkthreetext" ></label>
+            </div>
+          </div>
+          <div class="col-md-2"></div>
+        </div>
+      </form>
+      <div class="row">
+        <div class="col-md-5"></div>
+        <div class="col-md-2"><button type="submit" class="btn btn-warning btn-rounded waves-light" mdbRippleRadius>Enviar</button></div>
+        <div class="col-md-5"></div>
+      </div>
+
+    </div>
 
   </body>
 </html>
