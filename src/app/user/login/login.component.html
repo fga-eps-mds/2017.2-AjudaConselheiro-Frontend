@@ -1,5 +1,5 @@
 <br><br><br>
-<link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
 <div class="well">
     <form>
         <br>
@@ -7,11 +7,24 @@
 
         <div class="form-group">
             <i class="fa fa-address-card prefix grey-text"></i>
-            <input type="text" id="orangeForm-name" class="form-control" name="cpf" minlength="11" placeholder="CPF" required [textMask]="{mask: maskcpf}" />
+            <input type="text" id="orangeForm-name" class="form-control" name="cpf" minlength="11" placeholder="CPF" [(ngModel)]="user.cpf" #cpf="ngModel" required [textMask]="{mask: maskcpf}" />
+            <div *ngIf="cpf.errors && (cpf.dirty || cpf.touched)" class="alert alert-danger">
+                <div [hidden]="!cpf.errors.required">
+                    Digite um CPF válido
+                </div>
+                <div [hidden]="!cpf.errors.minlength">
+                    O CPF deve ter ao menos 11 caracteres.
+                </div>
+            </div>
         </div>
         <div class="form-group">
             <i class="fa fa-envelope prefix grey-text"></i>
-            <input type="email" id="orangeForm-name" class="form-control" name="email" placeholder="Email" required>
+            <input type="email" id="orangeForm-name" class="form-control" name="email" placeholder="Email" [(ngModel)]="user.email" #email="ngModel" required>
+            <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert alert-danger">
+                <div [hidden]="!email.errors.required">
+                    Digite um email válido
+                </div>
+            </div>
         </div>
         <div class="form-group">
             <i class="fa fa-lock prefix grey-text"></i>

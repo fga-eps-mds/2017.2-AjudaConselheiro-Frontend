@@ -1,4 +1,12 @@
 p,
 th {
-    font-family: 'Gloria Hallelujah', cursive;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+a:visited {
+    color: green;
+}
+
+a span {
+    color: green;
 }

@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+
 html,
 body,
 header,
@@ -11,7 +12,7 @@ header,
 }
 
 .carousel-item:nth-child(1) {
-    background-image: url("http://mdbootstrap.com/img/Photos/Horizontal/Nature/full%20page/img%20(1).jpg");
+    background-image: url("http://www.hdwallpapersfreedownload.com/uploads/large/fruits/all-fruits-wallpaper.jpg");
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -29,10 +30,10 @@ header,
 }
 
 @media (min-width: 776px) {
-  .carousel .view ul li {
-      display: inline;
-  }
-  .carousel .view .full-bg-img ul li .flex-item {
-      margin-bottom: 1.5rem;
-  }
+    .carousel .view ul li {
+        display: inline;
+    }
+    .carousel .view .full-bg-img ul li .flex-item {
+        margin-bottom: 1.5rem;
+    }
 }
