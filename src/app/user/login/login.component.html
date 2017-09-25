@@ -1,0 +1,27 @@
+<br><br><br>
+<link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
+<div class="well">
+    <form>
+        <br>
+        <p class="h3 text-center mb-4"> Entrar </p>
+
+        <div class="form-group">
+            <i class="fa fa-address-card prefix grey-text"></i>
+            <input type="text" id="orangeForm-name" class="form-control" name="cpf" minlength="11" placeholder="CPF" required [textMask]="{mask: maskcpf}" />
+        </div>
+        <div class="form-group">
+            <i class="fa fa-envelope prefix grey-text"></i>
+            <input type="email" id="orangeForm-name" class="form-control" name="email" placeholder="Email" required>
+        </div>
+        <div class="form-group">
+            <i class="fa fa-lock prefix grey-text"></i>
+            <input type="password" id="orangeForm-name" class="form-control" name="password" minlength="5" placeholder="Senha" required>
+        </div>
+        <div class="form-group text-center">
+            <input type="button" class="btn btn-deep-orange" value="Entrar">
+            <a href="/home" class="btn btn-outline-warning waves-effect">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="false"></span>Voltar
+            </a>
+        </div>
+    </form>
+</div>
