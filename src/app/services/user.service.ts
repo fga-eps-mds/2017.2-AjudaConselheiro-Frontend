@@ -14,6 +14,7 @@ export class UserService {
   createUser(user: User): void {
     const users = this.getUsers();
     user.id = new Date().getTime();
+    user.isPresident = false;
     users.push(user);
     localStorage['users'] = JSON.stringify(users);
   }
