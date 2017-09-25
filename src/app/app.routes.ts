@@ -10,6 +10,7 @@ import { SchedulingHomeComponent } from './scheduling/scheduling-home/scheduling
 import { SchedulingMeetingComponent } from './scheduling/scheduling-meeting/scheduling-meeting.component';
 import { UserListComponent } from './user';
 import { CreateUserComponent } from './user';
+import { UserEditComponent } from './user';
 
 export const ROUTES: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -27,4 +28,5 @@ export const ROUTES: Routes = [
   { path: 'users', component: UserListComponent},
   { path: 'users/list', component: UserListComponent},
   { path: 'register', component: CreateUserComponent },
+  { path: 'users/edit/:id', component: UserEditComponent },
 ];

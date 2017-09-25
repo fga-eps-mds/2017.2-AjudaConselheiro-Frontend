@@ -39,7 +39,7 @@ export class UserService {
     localStorage['users'] = JSON.stringify(users);
   }
 
-  private isPresident(id: number): void {
+  isPresident(id: number): void {
     const users: User[] = this.getUsers();
     users.forEach((obj, index, objs) => {
       if (id === obj.id) {

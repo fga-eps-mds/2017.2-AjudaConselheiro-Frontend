@@ -15,21 +15,23 @@ export class UserListComponent implements OnInit {
 
   ngOnInit() {
     this.users = this.getUsers();
-    this.users = [
-      new User(1, 'Filipe Dias', 'lipao.dias@hotmail.com', '(61)983131691', 'Brasilia', 573, true, 'teste123'),
-      new User(1, 'Gustavo Carvalho', 'gustavocarvalho1002@gmail.com', '(61)30224461', 'Brasilia', 723, false, 'teste321'),
-
-    ];
   }
 
   getUsers(): User[] {
     return this.userService.getUsers();
   }
 
-  // deleteUser($event: any, user: User): void {
-  //   $event.preventDefault();
-  //   if (confirm('Dejesa remover o usuário "' + user.full_name + '"?'))
-  //   this.userService.deleteUser(user.id);
-  //   this.users = this.userService.getUsers();
-  // }
+  deleteUser($event: any, user: User): void {
+    $event.preventDefault();
+    if (confirm('Deseja excluir o usuário "' + user.fullname + '"?')) {
+    this.userService.deleteUser(user.id);
+    this.users = this.userService.getUsers();
+  }}
+
+  isPresident(user: User): void {
+    if (confirm('Deseja setar o usuário "' + user.fullname + '" como presidente?')) {
+      this.userService.isPresident(user.id);
+      this.users = this.getUsers();
+    }
+  }
 }

@@ -3,8 +3,7 @@
 <div class="well">
     <form #formUser="ngForm">
         <br>
-        <p class="h3 text-center mb-4"> Cadastro Conselheiro </p>
-
+        <p class="h3 text-center mb-4"> Editar Perfil </p>
         <div class="form-group">
             <i class="fa fa-user prefix grey-text"></i>
             <input type="text" id="orangeForm-name" class="form-control" name="fullname" minlength="10" placeholder="Nome Completo" [(ngModel)]="user.fullname" #fullname="ngModel" required>
@@ -19,7 +18,7 @@
         </div>
         <div class="form-group">
             <i class="fa fa-address-card prefix grey-text"></i>
-            <input type="text" id="orangeForm-name" class="form-control" name="cpf" minlength="11" placeholder="CPF" [(ngModel)]="user.cpf" #cpf="ngModel" required data-mask="(000)___.___.__" />
+            <input type="text" id="orangeForm-name" class="form-control" name="cpf" minlength="11" placeholder="CPF" [(ngModel)]="user.cpf" #cpf="ngModel" required>
             <div *ngIf="cpf.errors && (cpf.dirty || cpf.touched)" class="alert alert-danger">
                 <div [hidden]="!cpf.errors.required">
                     Digite um CPF válido
@@ -43,7 +42,7 @@
         </div>
         <div class="form-group">
             <i class="fa fa-envelope prefix grey-text"></i>
-            <input type="email" id="orangeForm-name" class="form-control" name="email" placeholder="Email" [(ngModel)]="user.email" #email="ngModel" required>
+            <input type="text" id="orangeForm-name" class="form-control" name="email" placeholder="Email" [(ngModel)]="user.email" #email="ngModel" required>
             <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert alert-danger">
                 <div [hidden]="!email.errors.required">
                     Digite um email válido
@@ -63,9 +62,9 @@
             </div>
         </div>
         <div class="form-group text-center">
-            <input type="button" class="btn btn-deep-orange" (click)="createUser()" value="Cadastrar" [disabled]="!formUser.form.valid">
+            <input type="button" class="btn btn-deep-orange" (click)="updateUser()" value="Atualizar" [disabled]="!formUser.form.valid">
             <a href="/home" class="btn btn-outline-warning waves-effect">
-                <span class="glyphicon glyphicon-chevron-left" aria-hidden="false"></span>Voltar
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Voltar
             </a>
         </div>
     </form>

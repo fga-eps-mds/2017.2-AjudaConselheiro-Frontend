@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
+import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
+
+import { UserService } from '../../services/index';
+import { User } from '../../models/index';
 
 @Component({
   selector: 'app-create-user',
@@ -7,9 +12,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateUserComponent implements OnInit {
 
-  constructor() { }
+  @ViewChild('formUser') formUser: NgForm;
+  user: User;
+
+  constructor(
+    private userService: UserService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
+    this.user = new User();
+  }
+
+  createUser(): void {
+    if (this.formUser.form.valid) {
+      this.userService.createUser(this.user);
+      this.router.navigate(['/users']);
+    }
   }
 
 }
