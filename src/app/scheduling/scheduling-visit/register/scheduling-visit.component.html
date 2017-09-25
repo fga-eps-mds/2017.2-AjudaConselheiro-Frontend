@@ -7,10 +7,9 @@
     <div class="well">
         <form #formSchedulingVisit="ngForm">
             <div class="form-group">
-
-                <label for="local">Local:</label>
+                <label for="local">Escola:</label>
                 <input type="text" class="form-control" id="local" name="local" [(ngModel)]="schedulingVisits.local" #local="ngModel" minlength="3" required>
-
+                <input type="hidden" id="schedulingVisit.type" value="hfg">
                 <label for="members">Membros:</label>
                 <input type="text" class="form-control" id="members" name="members" [(ngModel)]="schedulingVisits.members" #members="ngModel" required>
 

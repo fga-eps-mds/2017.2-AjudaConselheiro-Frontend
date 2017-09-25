@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { SchedulingVisitService } from './../services/scheduling-visit.service';
-import { SchedulingVisitComponent } from './scheduling-visit';
+import { SchedulingService } from './../services/scheduling.service';
+import { SchedulingVisitComponent } from './shared';
 import { SchedulingHomeComponent } from './scheduling-home/scheduling-home.component';
 import { SchedulingMeetingComponent } from './scheduling-meeting/scheduling-meeting.component';
 import { SchedulingMeetingService } from './../services/scheduling-meeting.service';
+import { EditComponent } from './scheduling-visit/edit/edit.component';
 
 
 
@@ -21,10 +22,11 @@ import { SchedulingMeetingService } from './../services/scheduling-meeting.servi
   declarations: [
     SchedulingVisitComponent,
     SchedulingHomeComponent,
-    SchedulingMeetingComponent
+    SchedulingMeetingComponent,
+    EditComponent
   ],
   providers: [
-    SchedulingVisitService,
+    SchedulingService,
     SchedulingMeetingService
   ]
 })
