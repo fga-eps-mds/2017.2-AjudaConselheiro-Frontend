@@ -4,7 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { ChecklistoneComponent } from './checklist/checklistone/checklistone.component';
 import { ChecklistthreeComponent } from './checklist/checklistthree/checklistthree.component';
 import { ChecklistComponent } from './checklist/checklist.component';
-import { SchedulingVisitComponent } from './scheduling/scheduling-visit/scheduling-visit.component';
+import { SchedulingVisitComponent, EditComponent } from './scheduling/shared';
 import { SchedulingHomeComponent } from './scheduling/scheduling-home/scheduling-home.component';
 import { SchedulingMeetingComponent } from './scheduling/scheduling-meeting/scheduling-meeting.component';
 import { UserListComponent } from './user';
@@ -24,6 +24,7 @@ export const ROUTES: Routes = [
   { path: 'scheduling/visit', component: SchedulingVisitComponent},
   { path: 'schedulinghome', component: SchedulingHomeComponent},
   { path: 'schedulingmeeting', component: SchedulingMeetingComponent},
+  { path: 'scheduling/visit/edit/:id', component: EditComponent },
   { path: 'users', component: UserListComponent},
   { path: 'users/list', component: UserListComponent},
   { path: 'login', component: LoginComponent },

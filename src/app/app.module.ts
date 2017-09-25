@@ -10,7 +10,6 @@ import { ChecklistModule } from './checklist/checklist.module';
 
 import { AppComponent } from './app.component';
 import { LayoutsComponent } from './layouts/layouts.component';
-import { SchedulingVisitComponent } from './scheduling/scheduling-visit/scheduling-visit.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarHomeComponent } from './layouts/navbar/navbar.component';
 import { CarouselComponent } from './layouts/carousel/carousel.component';

@@ -1,3 +1,5 @@
+import { SchedulingService } from './../../services/scheduling.service';
+import { Scheduling } from './../../models/scheduling.model';
 import { Router } from '@angular/router';
 import { SchedulingMeeting } from './../../models/scheduling-meeting.model';
 import { SchedulingMeetingService } from './../../services/scheduling-meeting.service';
@@ -12,20 +14,20 @@ import { NgForm } from '@angular/forms';
 export class SchedulingMeetingComponent implements OnInit {
 
   @ViewChild('formSchedulingMeeting') formSchedulingMeeting: NgForm;
-  schedulingMeeting: SchedulingMeeting;
+  schedulingMeeting: Scheduling;
 
 
   constructor(
-    private schedulingMeetingService: SchedulingMeetingService,
+    private schedulingMeetingService: SchedulingService,
     private router: Router){}
 
   ngOnInit(){
-    this.schedulingMeeting = new SchedulingMeeting();
+    this.schedulingMeeting = new Scheduling();
   }
 
   newSchedulingMeeting(): void {
     if(this.formSchedulingMeeting.form.valid){
-      this.schedulingMeetingService.newSchedulingMeeting(this.schedulingMeeting);
+      this.schedulingMeetingService.newScheduling(this.schedulingMeeting);
       this.router.navigate(["/schedulinghome"]);
     }
   }

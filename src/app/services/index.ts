@@ -1,3 +1,3 @@
-export * from './scheduling-visit.service';
+export * from './scheduling.service';
 export * from './checklist-menu.service';
 export * from './user.service';
