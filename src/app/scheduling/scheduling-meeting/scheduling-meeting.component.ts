@@ -18,16 +18,16 @@ export class SchedulingMeetingComponent implements OnInit {
 
 
   constructor(
-    private schedulingMeetingService: SchedulingService,
+    private schedulingMeetingService: SchedulingMeetingService,
     private router: Router){}
 
   ngOnInit(){
-    this.schedulingMeeting = new Scheduling();
+    this.schedulingMeeting = new SchedulingMeeting();
   }
 
   newSchedulingMeeting(): void {
     if(this.formSchedulingMeeting.form.valid){
-      this.schedulingMeetingService.newScheduling(this.schedulingMeeting);
+      this.schedulingMeetingService.newSchedulingMeeting(this.schedulingMeeting);
       this.router.navigate(["/schedulinghome"]);
     }
   }
