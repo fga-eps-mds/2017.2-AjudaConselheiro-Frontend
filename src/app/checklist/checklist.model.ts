@@ -9,8 +9,9 @@ export class ConfirmComentary{
   constructor(public value:boolean,public identificador:string){}
 }
 
-export class InfoData{
-  constructor(public data:number,public responsavelPrenchimento:string,
-    public responsavelInfo:string,public cargo:string,public escola:string,
-    public cantineiro:string){}
+export class SaveFormCheckOne{
+  constructor(public answer:string,public questionSector:number,public questionNumber:number){}
+}
+export class SaveFormCheckTwo{
+  constructor(public answer:boolean,public questionNumber:number){}
 }
