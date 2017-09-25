@@ -19,6 +19,7 @@ import { ChecklistMenuComponent } from './checklist/checklistMenu/checklist-menu
 import { ChecklistthreeComponent } from './checklist/checklistthree/checklistthree.component';
 import { LoginComponent } from './sign-in/signin.component';
 import { FormSigninComponent } from './sign-in/form-signin/form-signin.component';
+import { TextMaskModule } from 'angular2-text-mask';
 
 
 import { ROUTES } from './app.routes';
@@ -49,7 +50,7 @@ import { ChecklistMenuService } from './services/checklist-menu.service';
     ChecklistModule,
     SchedulingModule,
     UserModule,
-    // RouterModule.forRoot(appRoutes),
+    TextMaskModule
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [

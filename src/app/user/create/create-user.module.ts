@@ -3,10 +3,6 @@ import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
-import { CreateUserComponent } from '../user/create/create-user.component';
-import { UserListComponent } from './list/index';
-import { UserService } from '../services/index';
-import { UserEditComponent } from './edit/index';
 import { TextMaskModule } from 'angular2-text-mask';
 
 @NgModule({
@@ -16,14 +12,8 @@ import { TextMaskModule } from 'angular2-text-mask';
     FormsModule,
     TextMaskModule
   ],
-  declarations: [
-    UserListComponent,
-    CreateUserComponent,
-    UserEditComponent,
-  ],
-  providers: [
-    UserService,
-  ]
+  declarations: [],
+  providers: []
 })
 export class UserModule { }
 
