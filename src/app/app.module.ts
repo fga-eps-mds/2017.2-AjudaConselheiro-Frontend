@@ -1,3 +1,4 @@
+import { UserModule } from './user/user.module';
 import { SchedulingModule } from './scheduling/scheduling.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
@@ -18,14 +19,13 @@ import { ChecklistMenuComponent } from './checklist/checklistMenu/checklist-menu
 import { ChecklistthreeComponent } from './checklist/checklistthree/checklistthree.component';
 import { LoginComponent } from './sign-in/signin.component';
 import { FormSigninComponent } from './sign-in/form-signin/form-signin.component';
-import { UserListComponent } from './user';
-import { UserService } from './services/index';
+import { TextMaskModule } from 'angular2-text-mask';
+
 
 import { ROUTES } from './app.routes';
 import { BaseRequestOptions } from '@angular/http';
 
 import { ChecklistMenuService } from './services/checklist-menu.service';
-import { CreateUserComponent } from './user/create/create-user.component';
 
 @NgModule({
 
@@ -39,8 +39,6 @@ import { CreateUserComponent } from './user/create/create-user.component';
     ChecklistthreeComponent,
     FormSigninComponent,
     LoginComponent,
-    UserListComponent,
-    CreateUserComponent,
   ],
 
   imports: [
@@ -51,14 +49,12 @@ import { CreateUserComponent } from './user/create/create-user.component';
     FormsModule,
     ChecklistModule,
     SchedulingModule,
-    // RouterModule.forRoot(appRoutes),
+    UserModule,
+    TextMaskModule
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [
     ChecklistMenuService,
-    UserListComponent,
-    CreateUserComponent,
-    UserService,
     BaseRequestOptions
   ],
   bootstrap: [AppComponent]
