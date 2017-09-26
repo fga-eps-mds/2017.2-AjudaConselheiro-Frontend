@@ -110,10 +110,6 @@ export class ChecklistoneComponent implements OnInit {
       new ConfirmComentary(false,"Comment7"),
       new ConfirmComentary(false,"Comment8"),
     ]
-    AlterComentaryValue(x){
-
-      x=true;
-    }
 
 
     checkSecIteration=[
