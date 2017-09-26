@@ -8,7 +8,7 @@
             <i class="fa fa-user prefix grey-text"></i>
             <input type="text" id="orangeForm-name" class="form-control" name="fullname" minlength="10" placeholder="Nome Completo" [(ngModel)]="user.fullname" #fullname="ngModel" required>
             <div *ngIf="fullname.errors && (fullname.dirty || fullname.touched)" class="alert alert-danger">
-                <div [hidden]="!fullname.errors.requirerd">
+                <div [hidden]="!fullname.errors.required">
                     Digite o nome completo.
                 </div>
                 <div [hidden]="!fullname.errors.minlength">
