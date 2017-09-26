@@ -16,8 +16,7 @@ import { CarouselComponent } from './layouts/carousel/carousel.component';
 import { ChecklistoneComponent } from './checklist/checklistone/checklistone.component';
 import { ChecklistMenuComponent } from './checklist/checklistMenu/checklist-menu.component';
 import { ChecklistthreeComponent } from './checklist/checklistthree/checklistthree.component';
-import { LoginComponent } from './sign-in/signin.component';
-import { FormSigninComponent } from './sign-in/form-signin/form-signin.component';
+import { LoginComponent } from './user';
 import { TextMaskModule } from 'angular2-text-mask';
 
 
@@ -36,7 +35,6 @@ import { ChecklistMenuService } from './services/checklist-menu.service';
     CarouselComponent,
     ChecklistoneComponent,
     ChecklistthreeComponent,
-    FormSigninComponent,
     LoginComponent,
   ],
 
@@ -54,7 +52,7 @@ import { ChecklistMenuService } from './services/checklist-menu.service';
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [
     ChecklistMenuService,
-    BaseRequestOptions
+    BaseRequestOptions,
   ],
   bootstrap: [AppComponent]
 })

@@ -15,7 +15,8 @@ export class CreateUserComponent implements OnInit {
   @ViewChild('formUser') formUser: NgForm;
   user: User;
 
-  maskcpf: any[] = ['(', /[0-9]/, /\d/, /\d/, ')', '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/];
+  maskcpf: any[] = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/];
+  maskphone: any[] = ['(', /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
 
   constructor(
     private userService: UserService,

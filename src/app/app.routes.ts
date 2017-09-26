@@ -3,7 +3,6 @@ import { CreateSchedulingComponent } from './scheduling/create/create-scheduling
 import { Routes } from '@angular/router';
 import { ChecklistMenuComponent } from './checklist/checklistMenu/checklist-menu.component';
 import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './sign-in/signin.component';
 import { ChecklistoneComponent } from './checklist/checklistone/checklistone.component';
 import { ChecklistthreeComponent } from './checklist/checklistthree/checklistthree.component';
 import { ChecklistComponent } from './checklist/checklist.component';
@@ -11,6 +10,7 @@ import { SchedulingHomeComponent } from './scheduling/scheduling-home/scheduling
 import { UserListComponent } from './user';
 import { CreateUserComponent } from './user';
 import { UserEditComponent } from './user';
+import { LoginComponent } from './user';
 
 export const ROUTES: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -25,6 +25,7 @@ export const ROUTES: Routes = [
   { path: 'agendamento/editar/:id', component: EditComponent },
   { path: 'users', component: UserListComponent},
   { path: 'users/list', component: UserListComponent},
+  { path: 'login', component: LoginComponent },
   { path: 'register', component: CreateUserComponent },
   { path: 'users/edit/:id', component: UserEditComponent },
 ];

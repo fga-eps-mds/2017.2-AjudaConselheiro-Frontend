@@ -14,6 +14,9 @@ export class UserEditComponent implements OnInit {
   @ViewChild('formUser') formUser: NgForm;
   user: User;
 
+  maskcpf: any[] = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/];
+  maskphone: any[] = ['(', /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
+
   constructor(
     private userService: UserService,
     private route: ActivatedRoute,
