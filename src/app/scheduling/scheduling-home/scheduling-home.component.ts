@@ -1,5 +1,5 @@
-import { SchedulingMeeting } from './../../models/scheduling-meeting.model';
-import { SchedulingMeetingService } from './../../services/scheduling-meeting.service';
+import { SchedulingService } from './../../services/scheduling.service';
+import { Scheduling } from './../../models/scheduling.model';
 import { Component, OnInit } from '@angular/core';
 
 
@@ -9,16 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SchedulingHomeComponent implements OnInit {
 
-  schedulingsMeeting: SchedulingMeeting[];
+  schedulings: Scheduling[];
 
-  constructor(private schedulingMeetingService: SchedulingMeetingService) { }
+  constructor(private schedulingService: SchedulingService) { }
 
   ngOnInit() {
-    this.schedulingsMeeting = this.listAllScheculingMeeting();
+    this.schedulings = this.listAllScheculings();
   }
 
-  listAllScheculingMeeting():SchedulingMeeting[]{
-    return this.schedulingMeetingService.listAllScheculingMeeting();
+  listAllScheculings():Scheduling[]{
+    return this.schedulingService.listAllScheculings();
   }
 
 }

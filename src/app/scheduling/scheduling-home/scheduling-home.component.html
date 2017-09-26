@@ -29,18 +29,18 @@
 
     </tr>
 
-    <tr *ngFor="let schedulingMeeting of schedulingsMeeting">
+    <tr *ngFor="let scheduling of schedulings">
             <td>
-                {{schedulingMeeting.local}}
+                {{scheduling.local}}
             </td>
             <td>
-                {{schedulingMeeting.members}}
+                {{scheduling.members}}
             </td>
             <td>
-                {{schedulingMeeting.date}}
+                {{scheduling.date}}
             </td>
             <td>
-                {{schedulingMeeting.horaly}}
+                {{scheduling.time}}
             </td>
         </tr>
 </table>
