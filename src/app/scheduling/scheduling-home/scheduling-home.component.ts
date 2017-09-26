@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-scheduling-home',
   templateUrl: './scheduling-home.component.html',
+  styleUrls: ['./scheduling-home.component.css']
 })
 export class SchedulingHomeComponent implements OnInit {
 

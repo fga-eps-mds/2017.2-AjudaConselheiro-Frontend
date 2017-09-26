@@ -1,50 +1,39 @@
-<br><br><br><br>
-
-<h1>Listas de Agendamentos</h1>
-<br>
-<h2>Agendamento de Visitas</h2>
-
-<table class="table table-striped table-bordered table-hover">
-    <tr>
-        <th>Agendamento</th>
-        <th>Membros</th>
-        <th>Data</th>
-        <th>Hora</th>
-
-    </tr>
-
-</table>
-
-<button class="btn btn-primary">Criar Visita</button>
-<br><br>
-
-<h2>Agendamento de Reunião</h2> 
-
-<table class="table table-striped table-bordered table-hover">
-    <tr>
-        <th>Agendamento</th>
-        <th>Membros</th>
-        <th>Data</th>
-        <th>Hora</th>
-
-    </tr>
-
-    <tr *ngFor="let scheduling of schedulings">
-            <td>
-                {{scheduling.local}}
-            </td>
-            <td>
-                {{scheduling.members}}
-            </td>
-            <td>
-                {{scheduling.date}}
-            </td>
-            <td>
-                {{scheduling.time}}
-            </td>
-        </tr>
-</table>
-
-<br><br>
-
-<button class="btn btn-primary">Criar Reunião</button>
+<div class="well">
+        <br><br><br><br>
+        
+        <h1><b>Agendamentos</b><span style="padding-left:850px;"></span><button  [routerLink]="['/agendamento/criar'] " class="btn btn-primary">Criar Visita</button>
+        </h1>
+        <br>
+        
+        <table *ngFor="let scheduling of schedulings"  class="table table-striped table-bordered table-hover" >
+           
+            <tr><h5><b>Agendamento {{scheduling.type}}</b></h5></tr>
+            <tr>
+                <th>Local</th>
+                <th>Membros</th>
+                <th>Data</th>
+                <th>Hora</th>
+        
+            </tr>
+        
+            <tr>
+                    <td>
+                        {{scheduling.local}}
+                    </td>
+                    <td>
+                        {{scheduling.members}}
+                    </td>
+                    <td>
+                        {{scheduling.date}}
+                    </td>
+                    <td>
+                        {{scheduling.time}}
+                    </td>
+                </tr>
+                <br><br>
+        </table>
+        
+        <br><br>
+        
+        
+</div>

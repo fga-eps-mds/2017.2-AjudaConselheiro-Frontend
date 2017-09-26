@@ -1,0 +1,15 @@
+.well {
+    margin: 0 auto;
+    max-width: 1280px;
+    width: 70%;
+}
+table
+{
+  table-layout:fixed;
+}
+td,th
+{
+  width:20px; 
+  word-wrap:break-word;
+}
+
