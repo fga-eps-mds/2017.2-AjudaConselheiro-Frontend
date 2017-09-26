@@ -1,7 +1,7 @@
 <br><br><br><br>
 
 <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
-<div *ngIf="users.length>0">
+<div class="well" *ngIf="users.length>0">
     <p class="h3 text-center mb-4"> Usuários </p>
 
     <table class="table table-striped table-bordered table-hover">
@@ -9,7 +9,7 @@
             <th>Usuário</th>
             <th>Presidente</th>
             <th class="text-center">
-                <a class="btn btn-sucess" href="/register">
+                <a class="btn btn-warning" href="/register">
                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Novo
                 </a>
             </th>

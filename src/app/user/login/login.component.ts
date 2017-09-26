@@ -22,4 +22,17 @@ export class LoginComponent implements OnInit {
     return this.userService.getUsers();
   }
 
+  getLocalStorage(): boolean {
+    const myStorage = window.localStorage ;
+    const users = myStorage.getItem('users');
+    console.log(users);
+      return true;
+  }
+
+  login(): boolean {
+    const myStorage = window.localStorage;
+    const users = myStorage.getItem('users');
+    return true;
+  }
+
 }
