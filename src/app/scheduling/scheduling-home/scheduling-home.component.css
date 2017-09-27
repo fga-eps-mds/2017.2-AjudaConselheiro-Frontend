@@ -3,22 +3,32 @@
     max-width: 1280px;
     width: 70%;
 }
-table
-{
-  table-layout:fixed;
-}
-td,th
-{
-  width:20px; 
-  word-wrap:break-word;
-  border-radius: 0px;
-  font-family: 'Oxygen', sans-serif;
-  
-}
-h1{
-    font-family: 'Muli', sans-serif;
-}
-#header button {
-  float:left;
+
+table {
+    table-layout: fixed;
 }
 
+td,
+th {
+    width: 20px;
+    word-wrap: break-word;
+    border-radius: 0px;
+    font-family: 'Oxygen', sans-serif;
+}
+
+h1 {
+    font-family: 'Muli', sans-serif;
+    margin: 0 auto;
+    max-width: 1280px;
+    width: 70%;
+}
+
+#header button {
+    float: right;
+}
+
+.sidebar {
+    display: inline;
+    width: 14%;
+    float: right;
+}

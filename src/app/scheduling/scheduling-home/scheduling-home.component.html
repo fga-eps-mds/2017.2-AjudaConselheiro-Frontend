@@ -2,8 +2,9 @@
 
 <link href="https://fonts.googleapis.com/css?family=Muli|Oxygen" rel="stylesheet">
 
-<h1><span style="padding-left:150px;"></span> <b>Agendamentos</b><span style="padding-left:470px;">
-</span><button  [routerLink]="['/agendamento/criar'] " class="btn btn-primary">Criar Agendamento</button>
+<h1>Agendamentos
+    <div class="sidebar"><button [routerLink]="['/agendamento/criar'] " class="btn btn-success">Novo <i class="fa fa-pencil" aria-hidden="true"></i> Agendamento</button>
+    </div>
 </h1>
 
 <br><br>
@@ -11,32 +12,34 @@
 <table *ngFor="let scheduling of schedulings" class="table">
     <thead class="orange accent-4">
         <tr>
-            <th colspan="2"><p style="color:#FFFFFF;" class="h4 text-left mb-6">{{scheduling.type}}
-                        
-                    </p></th>
+            <th colspan="2">
+                <p style="color:#FFFFFF;" class="h4 text-left mb-6">{{scheduling.type}}
+
+                </p>
+            </th>
             <th>
-                    <p style="color:#FFFFFF;" class="h4 text-right mb-6">
-                        <button 
-                            type="button" 
-                            class="btn btn-success btn-rounded" 
-                            [routerLink]="['/agendamento/editar/',scheduling.id]">
+                <p style="color:#FFFFFF;" class="h4 text-right mb-6">
+                    <button type="button" class="btn btn-primary btn-rounded" [routerLink]="['/agendamento/editar/',scheduling.id]">
                             <i class="fa fa-edit"></i>Editar</button>
-                            <button 
-                            type="button" 
-                            class="btn btn-danger btn-rounded" 
-                            (click)="deleteScheduling($event, scheduling)">
-                            <i class="fa fa-remove"></i></button>
-                    </p>   
-            </th>        
+                    <button type="button" class="btn btn-danger btn-rounded" (click)="deleteScheduling($event, scheduling)">
+                            <i class="fa fa-trash"></i></button>
+                </p>
+            </th>
         </tr>
     </thead>
-        <tr class="grey lighten-2">
-            <td colspan="2"><p class="h6 text-left mb-6">Local:</p>{{scheduling.local}}</td>
-            <td><p class="h6 text-left mb-6">Membros:</p>{{scheduling.members}}</td>
-        </tr>
-        <tr class="grey lighten-2">
-            <td colspan="2"><p class="h6 text-left mb-6">Data:</p>{{scheduling.date}}</td>
-            <td><p class="h6 text-left mb-6">Hora:</p>{{scheduling.time}}</td>
-        </tr>
+    <tr class="grey lighten-2">
+        <td colspan="2">
+            <p class="h6 text-left mb-6">Local:</p>{{scheduling.local}} &nbsp; <i class="fa fa-map-marker" aria-hidden="true"></i></td>
+        <td>
+            <p class="h6 text-left mb-6">Membros:</p>{{scheduling.members}} &nbsp; <i class="fa fa-group" aria-hidden="true"></i>
+        </td>
+    </tr>
+
+    <tr class="grey lighten-2">
+        <td colspan="2">
+            <p class="h6 text-left mb-6">Data:</p>{{scheduling.date}} &nbsp; <i class="fa fa-calendar-plus-o" aria-hidden="true"></i></td>
+        <td>
+            <p class="h6 text-left mb-6">Hora:</p>{{scheduling.time}} &nbsp; <i class="fa fa-clock-o" aria-hidden="true"></i></td>
+    </tr>
     <br><br>
 </table>
