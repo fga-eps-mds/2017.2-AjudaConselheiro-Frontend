@@ -16,4 +16,3 @@ import { TextMaskModule } from 'angular2-text-mask';
   providers: []
 })
 export class UserModule { }
-
