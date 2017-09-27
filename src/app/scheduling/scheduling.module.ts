@@ -1,3 +1,4 @@
+import { CreateSchedulingComponent } from './create/create-scheduling.component';
 
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -5,12 +6,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { SchedulingService } from './../services/scheduling.service';
-import { SchedulingVisitComponent } from './shared';
 import { SchedulingHomeComponent } from './scheduling-home/scheduling-home.component';
-import { SchedulingMeetingComponent } from './scheduling-meeting/scheduling-meeting.component';
-import { SchedulingMeetingService } from './../services/scheduling-meeting.service';
-import { EditComponent } from './scheduling-visit/edit/edit.component';
-
+import { EditComponent } from './edit/edit.component';
 
 
 @NgModule({
@@ -20,14 +17,12 @@ import { EditComponent } from './scheduling-visit/edit/edit.component';
     FormsModule
   ],
   declarations: [
-    SchedulingVisitComponent,
     SchedulingHomeComponent,
-    SchedulingMeetingComponent,
-    EditComponent
+    EditComponent,
+    CreateSchedulingComponent
   ],
   providers: [
-    SchedulingService,
-    SchedulingMeetingService
+    SchedulingService
   ]
 })
 export class SchedulingModule { }
