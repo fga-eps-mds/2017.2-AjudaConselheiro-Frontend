@@ -19,6 +19,7 @@ import { ChecklistthreeComponent } from './checklist/checklistthree/checklistthr
 import { LoginComponent } from './user';
 import { TextMaskModule } from 'angular2-text-mask';
 
+
 import { ROUTES } from './app.routes';
 import { BaseRequestOptions } from '@angular/http';
 
