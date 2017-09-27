@@ -18,11 +18,11 @@ import { ChecklistMenuComponent } from './checklist/checklistMenu/checklist-menu
 import { ChecklistthreeComponent } from './checklist/checklistthree/checklistthree.component';
 import { LoginComponent } from './user';
 import { TextMaskModule } from 'angular2-text-mask';
-
 import { ROUTES } from './app.routes';
 import { BaseRequestOptions } from '@angular/http';
-
 import { ChecklistMenuService } from './services/checklist-menu.service';
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './in-memory-data.service'; 
 
 @NgModule({
 
@@ -46,7 +46,9 @@ import { ChecklistMenuService } from './services/checklist-menu.service';
     ChecklistModule,
     SchedulingModule,
     UserModule,
-    TextMaskModule
+    TextMaskModule, 
+    InMemoryWebApiModule.forRoot(InMemoryDataService)
+    
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [
