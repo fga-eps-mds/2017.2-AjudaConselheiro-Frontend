@@ -22,4 +22,12 @@ export class SchedulingHomeComponent implements OnInit {
     return this.schedulingService.listAllScheculings();
   }
 
+  deleteScheduling($event: any, scheduling: Scheduling): void {
+    $event.preventDefault();
+    if (confirm('Deseja remover este agendamento?')) {
+    this.schedulingService.deleteScheduling(scheduling.id);
+    this.schedulings = this.schedulingService.listAllScheculings();
+    }
+  }  
+
 }

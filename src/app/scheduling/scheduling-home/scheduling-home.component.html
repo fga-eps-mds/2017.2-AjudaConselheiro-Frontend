@@ -12,16 +12,30 @@
     <thead class="orange accent-4">
         <tr>
             <th colspan="2"><p style="color:#FFFFFF;" class="h4 text-left mb-6">{{scheduling.type}}
-                        <button type="button" class="btn btn-success btn-rounded" [routerLink]="['/agendamento/editar/:id']">Editar</button>
+                        
                     </p></th>
+            <th>
+                    <p style="color:#FFFFFF;" class="h4 text-right mb-6">
+                        <button 
+                            type="button" 
+                            class="btn btn-success btn-rounded" 
+                            [routerLink]="['/agendamento/editar/',scheduling.id]">
+                            <i class="fa fa-edit"></i>Editar</button>
+                            <button 
+                            type="button" 
+                            class="btn btn-danger btn-rounded" 
+                            (click)="deleteScheduling($event, scheduling)">
+                            <i class="fa fa-remove"></i></button>
+                    </p>   
+            </th>        
         </tr>
     </thead>
         <tr class="grey lighten-2">
-            <td><p class="h6 text-left mb-6">Local:</p>{{scheduling.local}}</td>
+            <td colspan="2"><p class="h6 text-left mb-6">Local:</p>{{scheduling.local}}</td>
             <td><p class="h6 text-left mb-6">Membros:</p>{{scheduling.members}}</td>
         </tr>
         <tr class="grey lighten-2">
-            <td><p class="h6 text-left mb-6">Data:</p>{{scheduling.date}}</td>
+            <td colspan="2"><p class="h6 text-left mb-6">Data:</p>{{scheduling.date}}</td>
             <td><p class="h6 text-left mb-6">Hora:</p>{{scheduling.time}}</td>
         </tr>
     <br><br>

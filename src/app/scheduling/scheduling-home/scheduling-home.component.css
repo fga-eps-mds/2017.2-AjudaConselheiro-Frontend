@@ -11,11 +11,14 @@ td,th
 {
   width:20px; 
   word-wrap:break-word;
-  border-radius: 10px;
+  border-radius: 0px;
   font-family: 'Oxygen', sans-serif;
   
 }
 h1{
     font-family: 'Muli', sans-serif;
+}
+#header button {
+  float:left;
 }
 
