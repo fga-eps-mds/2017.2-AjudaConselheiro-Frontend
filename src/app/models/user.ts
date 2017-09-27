@@ -6,6 +6,6 @@ export class User {
     public phone?: string,
     public county?: string,
     public cpf?: number,
-    public isPresident?: boolean,
+    public isPresident: boolean = false,
     public password?: string) {}
 }

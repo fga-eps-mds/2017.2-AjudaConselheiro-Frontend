@@ -24,6 +24,8 @@ export class CreateUserComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.userService.getUsers()
+      .subscribe(data => this.user = data);
     this.user = new User();
   }
 

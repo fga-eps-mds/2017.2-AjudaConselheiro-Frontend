@@ -9,21 +9,18 @@ import { UserService } from '../../services/index';
 })
 export class LoginComponent implements OnInit {
 
-  user: User[];
+  users: User[] = [];
   maskcpf: any[] = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/];
 
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-    this.user = this.getUsers();
-  }
-
-  getUsers(): User[] {
-    return this.userService.getUsers();
+    this.userService.getUsers()
+     .subscribe(data => this.users = data);
   }
 
   getLocalStorage(): boolean {
-    const myStorage = window.localStorage ;
+    const myStorage = window.localStorage;
     const users = myStorage.getItem('users');
     console.log(users);
       return true;
@@ -32,6 +29,7 @@ export class LoginComponent implements OnInit {
   login(): boolean {
     const myStorage = window.localStorage;
     const users = myStorage.getItem('users');
+
     return true;
   }
 

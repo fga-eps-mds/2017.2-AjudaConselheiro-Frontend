@@ -1,52 +1,61 @@
 import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
+
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/catch';
+import { Observable } from 'rxjs/Rx';
 import { User } from '../models/user';
 
 @Injectable()
 export class UserService {
 
-  constructor() { }
+  // URL for fake API localhost using JSON Server
+  private url = 'http://localhost:3000/users';
 
-  getUsers(): User[] {
-    const users = localStorage['users'];
-    return users ? JSON.parse(users) : [];
+  constructor(private http: Http) { }
+
+  getUsers() {
+    return this.http.get(this.url)
+    .map(res => res.json());
   }
 
-  createUser(user: User): void {
-    const users = this.getUsers();
+  // Http POST
+  createUser(user: User) {
     user.id = new Date().getTime();
-    user.isPresident = false;
-    users.push(user);
-    localStorage['users'] = JSON.stringify(users);
+    return this.http.post(this.url, JSON.stringify(user))
+    .map(res => res.json());
   }
 
-  searchUsingID(id: number): User {
-    const users: User[] = this.getUsers();
-    return users.find(user => user.id === id);
+  // Http GET
+  searchUsingID(id: number) {
+    return this.http.get(this.getUserUrl(id))
+      .map(res => res.json());
   }
 
-  updateUser(user: User): void {
-    const users: User[] = this.getUsers();
-    users.forEach((obj, index, objs) => {
-      if (user.id === obj.id) {
-        objs[index] = user;
-      }
-  });
-  localStorage['users'] = JSON.stringify(users);
+  // Http PUT
+  updateUser(user: User) {
+    return this.http.put(this.getUserUrl(user.id), JSON.stringify(user))
+    .map(res => res.json());
   }
 
-  deleteUser(id: number): void {
-    let users: User[] = this.getUsers();
-    users = users.filter(user => user.id !== id);
-    localStorage['users'] = JSON.stringify(users);
+  // Http DELETE
+  deleteUser(id: number) {
+    return this.http.delete(this.getUserUrl(id))
+    .map(res => res.json());
   }
 
-  isPresident(id: number): void {
-    const users: User[] = this.getUsers();
-    users.forEach((obj, index, objs) => {
-      if (id === obj.id) {
-        objs[index].isPresident = !obj.isPresident;
-      }
-    });
-    localStorage['users'] = JSON.stringify(users);
+  // setPresident(id: number): void {
+  //   const users: User[] = this.getUsers();
+  //   users.forEach((obj, index, objs) => {
+  //     if (id === obj.id) {
+  //       objs[index].isPresident = !obj.isPresident;
+  //     }
+  //   });
+  //   localStorage['users'] = JSON.stringify(users);
+  // }
+
+  private getUserUrl(id) {
+    return this.url + '/' + id;
   }
 }
