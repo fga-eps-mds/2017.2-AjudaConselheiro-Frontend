@@ -23,13 +23,17 @@ dos cardápios das escolas parque e escolas classes da CRE/PPC -->
         <div class="col-md-1"></div>
       </div>
       <br>
-      <form ng-submit>
-        <div class="row" *ngFor="let item of checkThree;let i=index">
-          <div class="col-md-1"></div>
-          <div class="col-md-8">{{item.pergunta}}</div>
-          <div class="col-md-1" align="center"><input type="radio" name="{{checkThree[i].pergunta}}" value="true" required></div>
-          <div class="col-md-1" align="center"><input type="radio" name="{{checkThree[i].pergunta}}" value="false"></div>
-          <div class="col-md-1"></div>
+      <!--Form Start-->
+      <form (ngSubmit)="newFormulario(f)" #f="ngForm">
+        <div class="form-group">
+          <div class="row" *ngFor="let item of checkThree;let i=index">
+            <div class="col-md-1"></div>
+            <div class="col-md-8">{{item.pergunta}}</div>
+            <div class="col-md-1" align="center"><input type="radio" name="{{checkThree[i].pergunta}}" value="true" #checkThreeRef[i] class="form-control" ngModel required></div>
+            <div class="col-md-1" align="center"><input type="radio" name="{{checkThree[i].pergunta}}" value="false"#checkThreeRef[i] class="form-control" ngModel></div>
+<!-- {{checkThree[i].pergunta}} -->
+            <div class="col-md-1"></div>
+          </div>
         </div>
         <br>
         <div class="row">
