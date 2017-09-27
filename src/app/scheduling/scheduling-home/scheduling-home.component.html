@@ -1,39 +1,28 @@
-<div class="well">
-        <br><br><br><br>
-        
-        <h1><b>Agendamentos</b><span style="padding-left:850px;"></span><button  [routerLink]="['/agendamento/criar'] " class="btn btn-primary">Criar Visita</button>
-        </h1>
-        <br>
-        
-        <table *ngFor="let scheduling of schedulings"  class="table table-striped table-bordered table-hover" >
-           
-            <tr><h5><b>Agendamento {{scheduling.type}}</b></h5></tr>
-            <tr>
-                <th>Local</th>
-                <th>Membros</th>
-                <th>Data</th>
-                <th>Hora</th>
-        
-            </tr>
-        
-            <tr>
-                    <td>
-                        {{scheduling.local}}
-                    </td>
-                    <td>
-                        {{scheduling.members}}
-                    </td>
-                    <td>
-                        {{scheduling.date}}
-                    </td>
-                    <td>
-                        {{scheduling.time}}
-                    </td>
-                </tr>
-                <br><br>
-        </table>
-        
-        <br><br>
-        
-        
-</div>
+<br><br><br>
+
+<link href="https://fonts.googleapis.com/css?family=Muli|Oxygen" rel="stylesheet">
+
+<h1><span style="padding-left:150px;"></span> <b>Agendamentos</b><span style="padding-left:470px;">
+</span><button  [routerLink]="['/agendamento/criar'] " class="btn btn-primary">Criar Agendamento</button>
+</h1>
+
+<br><br>
+
+<table *ngFor="let scheduling of schedulings" class="table">
+    <thead class="orange accent-4">
+        <tr>
+            <th colspan="2"><p style="color:#FFFFFF;" class="h4 text-left mb-6">{{scheduling.type}}
+                        <button type="button" class="btn btn-success btn-rounded" [routerLink]="['/agendamento/editar/:id']">Editar</button>
+                    </p></th>
+        </tr>
+    </thead>
+        <tr class="grey lighten-2">
+            <td><p class="h6 text-left mb-6">Local:</p>{{scheduling.local}}</td>
+            <td><p class="h6 text-left mb-6">Membros:</p>{{scheduling.members}}</td>
+        </tr>
+        <tr class="grey lighten-2">
+            <td><p class="h6 text-left mb-6">Data:</p>{{scheduling.date}}</td>
+            <td><p class="h6 text-left mb-6">Hora:</p>{{scheduling.time}}</td>
+        </tr>
+    <br><br>
+</table>

@@ -1,4 +1,4 @@
-.well {
+.table {
     margin: 0 auto;
     max-width: 1280px;
     width: 70%;
@@ -11,5 +11,11 @@ td,th
 {
   width:20px; 
   word-wrap:break-word;
+  border-radius: 10px;
+  font-family: 'Oxygen', sans-serif;
+  
+}
+h1{
+    font-family: 'Muli', sans-serif;
 }
 
