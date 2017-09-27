@@ -19,6 +19,14 @@ export class InMemoryDataService implements InMemoryDbService{
             {question: "A escola recebe doação de alimentos?", check: false, answer: ""},
         ]; 
 
-        return {formsMenu};
+        let formCheckAnswer : Array<FormCheck> = [
+            {question: "Qual a quantidade de frutas e hortaliças que estão sendo oferecidas por aluno, durante o período de uma semana?", answer: ""},            
+            {question: "Qual a preparação mais aceita?", answer: ""},
+            {question: "Qual a preparação menos aceita?", answer: ""},
+            {question: "Qual produto é mais aceito?", answer: ""},
+            {question: "Qual produto é menos aceito?", answer: ""},    
+        ];
+
+        return {formsMenu, formCheckAnswer};
     }
 }   

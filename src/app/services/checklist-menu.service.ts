@@ -7,14 +7,13 @@ import 'rxjs';
 export class ChecklistMenuService{
 
     constructor(private http: Http){}
-    private formUrl = 'app/formsMenu';    
+    private formMenuUrl = 'app/formsMenu';    
+    private formMenuAnswerUrl = 'app/formCheckAnswer';
 
     getFormsMenu(): Promise<FormCheckAnswer[]>{
-        console.log("Entrou");
-        return this.http.get(this.formUrl, 'formsMenu')
+        return this.http.get(this.formMenuUrl)
             .toPromise()
             .then(response => response.json().data as FormCheckAnswer[]);
-        // return Promise.resolve(CONTATOS);
     }
 
     // getFormsMenu(): Promise<FormCheckAnswer[]>{
@@ -22,7 +21,9 @@ export class ChecklistMenuService{
     // }
 
     getFormsMenuTwo(): Promise<FormCheck[]>{
-        return Promise.resolve(FormMenuTwo);
-    } 
+        return this.http.get(this.formMenuAnswerUrl)
+        .toPromise()
+        .then(response => response.json().data as FormCheck[]);
+    }
 
 }

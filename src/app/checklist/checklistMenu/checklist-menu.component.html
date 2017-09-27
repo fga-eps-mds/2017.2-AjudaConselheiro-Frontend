@@ -31,15 +31,15 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let questionOne of formsMenu">
-                            <td>{{ questionOne.question }}></td>
+                            <td>{{ questionOne.question }}</td>
                             <td>    
                                 <input name="group1" type="radio" id="radio1">
                             </td>
                             <td>
-                              <input name="group1" type="radio" id="radio2">
+                              <input name="group1" type="radio" id="radio2" checked="true">
                             </td>
                             <td>
-                                <button type="button" id="idComentario" onclick="insereTexto()" style="box-shadow: none !important; color: #ed6209 !important; margin-top:-15px !important;" class="btn btn-flat btn-lg">Observação</button>
+                                <button type="button" id="idComentario" style="box-shadow: none !important; color: #ed6209 !important; margin-top:-15px !important;" class="btn btn-flat btn-lg">Observação</button>
                             </td>
                         </tr>
                         <tr *ngFor="let questionTwo  of formMenuTwo">
@@ -51,7 +51,7 @@
                                 <input name="group1" type="radio" id="radio2">
                              </td>
                             <td>
-                                <button type="button" id="idComentario" onclick="insereTexto()" style="box-shadow: none !important; color: #ed6209 !important; margin-top:-15px !important;" class="btn btn-flat btn-lg">Observação</button>
+                                <button type="button" id="idComentario" style="box-shadow: none !important; color: #ed6209 !important; margin-top:-15px !important;" class="btn btn-flat btn-lg">Observação</button>
                             </td>
                         </tr>
                     </tbody>
