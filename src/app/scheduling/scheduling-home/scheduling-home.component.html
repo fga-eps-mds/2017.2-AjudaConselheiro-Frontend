@@ -1,31 +1,45 @@
-<br><br><br><br>
+<br><br><br>
 
-<h1>Listas de Agendamentos</h1>
-<br>
-<h2>Agendamento de Visitas</h2>
+<link href="https://fonts.googleapis.com/css?family=Muli|Oxygen" rel="stylesheet">
 
-<table class="table table-striped table-bordered table-hover">
-    <tr>
-        <th>Agendamento</th>
-        <th>Data</th>
-        <th>Hora</th>
-
-    </tr>
-</table>
+<h1>Agendamentos
+    <div class="sidebar"><button [routerLink]="['/agendamento/criar'] " class="btn btn-success">Novo <i class="fa fa-pencil" aria-hidden="true"></i> Agendamento</button>
+    </div>
+</h1>
 
 <br><br>
 
-<h2>Agendamento de Reunião</h2>
+<table *ngFor="let scheduling of schedulings" class="table">
+    <thead class="orange accent-4">
+        <tr>
+            <th colspan="2">
+                <p style="color:#FFFFFF;" class="h4 text-left mb-6">{{scheduling.type}}
 
-<table class="table table-striped table-bordered table-hover">
-    <tr>
-        <th>Agendamento</th>
-        <th>Data</th>
-        <th>Hora</th>
-
+                </p>
+            </th>
+            <th>
+                <p style="color:#FFFFFF;" class="h4 text-right mb-6">
+                    <button type="button" class="btn btn-primary btn-rounded" [routerLink]="['/agendamento/editar/',scheduling.id]">
+                            <i class="fa fa-edit"></i>Editar</button>
+                    <button type="button" class="btn btn-danger btn-rounded" (click)="deleteScheduling($event, scheduling)">
+                            <i class="fa fa-trash"></i></button>
+                </p>
+            </th>
+        </tr>
+    </thead>
+    <tr class="grey lighten-2">
+        <td colspan="2">
+            <p class="h6 text-left mb-6">Local:</p>{{scheduling.local}} &nbsp; <i class="fa fa-map-marker" aria-hidden="true"></i></td>
+        <td>
+            <p class="h6 text-left mb-6">Membros:</p>{{scheduling.members}} &nbsp; <i class="fa fa-group" aria-hidden="true"></i>
+        </td>
     </tr>
+
+    <tr class="grey lighten-2">
+        <td colspan="2">
+            <p class="h6 text-left mb-6">Data:</p>{{scheduling.date}} &nbsp; <i class="fa fa-calendar-plus-o" aria-hidden="true"></i></td>
+        <td>
+            <p class="h6 text-left mb-6">Hora:</p>{{scheduling.time}} &nbsp; <i class="fa fa-clock-o" aria-hidden="true"></i></td>
+    </tr>
+    <br><br>
 </table>
-
-<br><br>
-
-<button class="btn btn-primary">Calendario de Agendamentos</button>

@@ -1,0 +1,110 @@
+<br><br><br>
+
+<p class="h1 text-center mb-6"> Criar Agendamento </p>
+
+<br>
+
+<div class="create-form">
+    <form #formScheduling="ngForm">
+        <div class="form-group">
+
+            <label for="local">Local:</label>
+            <input
+                type="text"
+                class="form-control"
+                id="local"
+                name="local"
+                [(ngModel)]="scheduling.local"
+                #local="ngModel"
+                minlength="3"
+                required>
+            <div *ngIf="local.errors && (local.dirty || local.touched)" class="alert alert-danger">
+                <div [hidden]="!local.errors.required">
+                    Digite um local!
+                </div>
+                <div [hidden]="!local.errors.minlength">
+                    Local deve conter ao menos 3 caracteres!
+                </div>
+            </div>
+
+            <label for="members">Membros:</label>
+            <input
+                type="text"
+                class="form-control"
+                id="members"
+                name="members"
+                [(ngModel)]="scheduling.members"
+                #members="ngModel"
+                required>
+            <div *ngIf="members.errors && (members.dirty || members.touched)" class="alert alert-danger">
+                <div [hidden]="!members.errors.required">
+                    Digite o nome dos conselheiros participantes!
+                </div>
+            </div>
+
+            <label for="date">Data:</label>
+            <input
+                type="date"
+                class="form-control"
+                id="date"
+                name="date"
+                [(ngModel)]="scheduling.date"
+                #date="ngModel"
+                required>
+            <div *ngIf="date.errors && (date.dirty || date.touched)" class="alert alert-danger">
+                <div [hidden]="!date.errors.required">
+                    Informe a data do agendamento!
+                </div>
+            </div>
+
+            <label for="time">Hora:</label>
+            <input
+                type="time"
+                class="form-control"
+                id="time"
+                name="time"
+                [(ngModel)]="scheduling.time"
+                #time="ngModel"
+                required>
+            <div *ngIf="time.errors && (time.dirty || time.touched)" class="alert alert-danger">
+                <div [hidden]="!time.errors.required">
+                    Informe a hora do agendamento!
+                </div>
+            </div>
+
+            <label for="type">Tipo:</label>  
+            <select
+
+                id="type" 
+                name="type"
+                [(ngModel)]="scheduling.type"
+                #type="ngModel"
+                required>
+
+                <option value="" disabled selected>-----</option>
+                <option value="Reunião">Reunião</option>
+                <option value="Visita">Visita</option>
+            </select>
+            <div *ngIf="type.errors && (type.dirty || type.touched)" class="alert alert-danger">
+                <div [hidden]="!type.errors.required">
+                    Seleciona a tipo do agendamento!
+                </div>
+            </div>    
+        </div>
+        <div class="form-group text-center">
+            <input 
+            type="button"
+            class="btn btn-deep-orange"
+            (click)="newScheduling()"
+            value="Agendar"
+            [disabled]="!formScheduling.form.valid">
+            <a href="/agendamento"
+                class="btn btn-outline-warning waves-effect">
+                <span class="glyphicon glyphicon-chevron-left"
+                    aria-hidden="false"></span>Voltar    
+            </a>
+        </div>
+    </form>
+</div>
+
+          
