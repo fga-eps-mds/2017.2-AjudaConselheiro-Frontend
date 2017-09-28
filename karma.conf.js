@@ -33,7 +33,7 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome_travis_ci', 'Chrome', 'ChromeCanary'],
+    browsers: ['Chrome_travis_ci'],
     singleRun: false
   });
 };
