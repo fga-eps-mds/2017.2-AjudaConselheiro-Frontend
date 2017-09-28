@@ -29,17 +29,26 @@
     </thead>
     <tr class="grey lighten-2">
         <td colspan="2">
-            <p class="h6 text-left mb-6">Local:</p>{{scheduling.local}} &nbsp; <i class="fa fa-map-marker" aria-hidden="true"></i></td>
+            <p class="h6 text-left mb-6"><i class="fa fa-map-marker" aria-hidden="true"></i> Local:</p>{{scheduling.local}}
+        </td>
         <td>
-            <p class="h6 text-left mb-6">Membros:</p>{{scheduling.members}} &nbsp; <i class="fa fa-group" aria-hidden="true"></i>
+            <p class="h6 text-left mb-6"><i class="fa fa-group" aria-hidden="true"></i> Membros:</p>{{scheduling.members}}
         </td>
     </tr>
 
     <tr class="grey lighten-2">
         <td colspan="2">
-            <p class="h6 text-left mb-6">Data:</p>{{scheduling.date}} &nbsp; <i class="fa fa-calendar-plus-o" aria-hidden="true"></i></td>
+            <p class="h6 text-left mb-6"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i> Data:</p>{{scheduling.date}}
+        </td>
         <td>
-            <p class="h6 text-left mb-6">Hora:</p>{{scheduling.time}} &nbsp; <i class="fa fa-clock-o" aria-hidden="true"></i></td>
+            <p class="h6 text-left mb-6"><i class="fa fa-clock-o" aria-hidden="true"></i> Hora:</p>{{scheduling.time}}
+        </td>
     </tr>
     <br><br>
 </table>
+
+
+<div *ngIf="schedulings.length==0">
+    <br><br><br>
+    <p class="text-center">AGENDAMENTO VAZIO!</p>
+</div>
