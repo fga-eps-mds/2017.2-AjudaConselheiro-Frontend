@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {CheckQuestion,ConfirmComentary} from '../checklist.model';
+import {CheckQuestion,ConfirmComentary} from '../../models/checklist.model';
 
 @Component({
   selector: 'app-checklistone',

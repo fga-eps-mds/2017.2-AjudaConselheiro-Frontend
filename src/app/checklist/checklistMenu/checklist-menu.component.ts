@@ -11,7 +11,6 @@ export class ChecklistMenuComponent implements OnInit {
 
   formsMenu : Array<FormCheckAnswer>;
   formMenuTwo: Array<FormCheck>;
-  textArea: boolean = false;
 
   constructor(private menuService : ChecklistMenuService){}
 
@@ -27,9 +26,6 @@ export class ChecklistMenuComponent implements OnInit {
       }).catch(err => console.log(err));
   }
 
-  onSubmit(): void{
-    console.log(this.formMenuTwo);
-    console.log(this.formsMenu);
-  }
+  onSubmit(): void{}
 }
  

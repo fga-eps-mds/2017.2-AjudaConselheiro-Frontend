@@ -1,5 +1,5 @@
 import { Component, OnInit,Input } from '@angular/core';
-import {CheckQuestion,SaveFormCheckTwo} from '../checklist.model'
+import {CheckQuestion,SaveFormCheckTwo} from '../../models/checklist.model'
 import {NgForm} from '@angular/forms'
 @Component({
   selector: 'app-checklistthree',
