@@ -22,3 +22,4 @@ notifications:
   email:
     on_failure: change
     on_success: change
+  webhooks: https://fathomless-fjord-24024.herokuapp.com/notify
