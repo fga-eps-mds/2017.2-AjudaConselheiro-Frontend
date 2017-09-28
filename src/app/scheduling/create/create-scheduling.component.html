@@ -8,7 +8,7 @@
     <form #formScheduling="ngForm">
         <div class="form-group">
 
-            <label for="local">Local:</label>
+            <label for="local"><i class="fa fa-map-marker" aria-hidden="true"></i> Local:</label>
             <input
                 type="text"
                 class="form-control"
@@ -27,7 +27,7 @@
                 </div>
             </div>
 
-            <label for="members">Membros:</label>
+            <label for="members"><i class="fa fa-group" aria-hidden="true"></i> Membros:</label>
             <input
                 type="text"
                 class="form-control"
@@ -42,22 +42,24 @@
                 </div>
             </div>
 
-            <label for="date">Data:</label>
+            <label for="date"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i> Data:</label>
             <input
-                type="date"
+                type="text"
                 class="form-control"
                 id="date"
                 name="date"
+                placeholder="dd/mm/aaaa"
                 [(ngModel)]="scheduling.date"
                 #date="ngModel"
-                required>
+                required
+                [textMask]="{mask: maskdate}" />
             <div *ngIf="date.errors && (date.dirty || date.touched)" class="alert alert-danger">
                 <div [hidden]="!date.errors.required">
                     Informe a data do agendamento!
                 </div>
             </div>
 
-            <label for="time">Hora:</label>
+            <label for="time"><i class="fa fa-clock-o" aria-hidden="true"></i> Hora:</label>
             <input
                 type="time"
                 class="form-control"
