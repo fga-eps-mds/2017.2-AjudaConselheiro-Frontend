@@ -10,13 +10,23 @@ branches:
   - gh-pages
   - /.*/
 
+env:
+  global:
+    - CODECLIMATE_API_HOST=https://codebeat.co/webhooks/code_coverage
+    - CODECLIMATE_REPO_TOKEN=4368e3d4-20fc-4d27-ae50-fe3492ca6200
+
 before_script:
   - set -e
   - npm install -g @angular/cli
+  - npm install -g codeclimate-test-reporter
   - npm install
 
 script:
   - ng build --prod
+
+after_script:
+  - ng test --watch=false --code-coverage
+  - codeclimate-test-reporter < coverage/lcov.info
 
 notifications:
   email:
