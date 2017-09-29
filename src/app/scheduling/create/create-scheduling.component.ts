@@ -14,8 +14,6 @@ export class CreateSchedulingComponent implements OnInit {
   @ViewChild('formScheduling') formScheduling: NgForm;
   scheduling: Scheduling;
 
-  maskdate: any[] = [/[0-3]/, /[0-9]/ , '/', /[0-1]/, /[1-9]/, '/', /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/];
-
   constructor(
     private schedulingService: SchedulingService,
     private router: Router) {}
