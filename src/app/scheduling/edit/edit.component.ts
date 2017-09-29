@@ -23,8 +23,8 @@ export class EditComponent implements OnInit {
     const id = +this.route.snapshot.params['id'];
     this.scheduling = this.schedulingService.searchSchedulingId(id);
   }
-  update(): void{
-    if(this.formScheduling.form.valid){
+  update(): void {
+    if (this.formScheduling.form.valid) {
       this.schedulingService.updateScheduling(this.scheduling);
       this.router.navigate(['/agendamento']);
        }

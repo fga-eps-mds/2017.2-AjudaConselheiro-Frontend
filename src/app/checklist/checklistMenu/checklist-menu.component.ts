@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsMenu, FormMenuTwo, FormCheckAnswer, FormCheck} from '../../models/index'
+import { FormsMenu, FormMenuTwo, FormCheckAnswer, FormCheck} from '../../models/index';
 import { ChecklistMenuService } from '../../services/index';
 
 @Component({
@@ -9,10 +9,10 @@ import { ChecklistMenuService } from '../../services/index';
 })
 export class ChecklistMenuComponent implements OnInit {
 
-  formsMenu : Array<FormCheckAnswer>;
+  formsMenu: Array<FormCheckAnswer>;
   formMenuTwo: Array<FormCheck>;
 
-  constructor(private menuService : ChecklistMenuService){}
+  constructor(private menuService: ChecklistMenuService) {}
 
   ngOnInit(): void {
     this.menuService.getFormsMenu()
@@ -25,6 +25,4 @@ export class ChecklistMenuComponent implements OnInit {
           this.formMenuTwo = formsMenuTwo;
       }).catch(err => console.log(err));
   }
-
 }
- 

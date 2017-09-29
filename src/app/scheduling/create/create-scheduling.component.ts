@@ -16,16 +16,16 @@ export class CreateSchedulingComponent implements OnInit {
 
   constructor(
     private schedulingService: SchedulingService,
-    private router: Router){}
+    private router: Router) {}
 
-  ngOnInit(){
+  ngOnInit() {
     this.scheduling = new Scheduling();
-  }   
+  }
 
   newScheduling(): void {
-    if(this.formScheduling.form.valid){
+    if (this.formScheduling.form.valid) {
       this.schedulingService.newScheduling(this.scheduling);
-      this.router.navigate(["/agendamento"]);
+      this.router.navigate(['/agendamento']);
     }
   }
 }

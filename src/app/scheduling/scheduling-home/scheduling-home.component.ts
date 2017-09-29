@@ -28,6 +28,5 @@ export class SchedulingHomeComponent implements OnInit {
     this.schedulingService.deleteScheduling(scheduling.id);
     this.schedulings = this.schedulingService.listAllScheculings();
     }
-  }  
-
+  }
 }
