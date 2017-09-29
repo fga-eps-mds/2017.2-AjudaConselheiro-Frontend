@@ -5,14 +5,14 @@
 
 <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
 <div class="well" *ngIf="users.length>0">
-    <p class="h3 text-center mb-4"> Usuários <img src="../../layouts/ic_group_black_48dp.png">
-    </p>
+  <p class="h3 text-center mb-4"> Usuários <img src="../../layouts/ic_group_black_48dp.png">
+  </p>
 
-    <table class="table  table-bordered table-hover">
-        <tr>
-            <th class="orange accent-4 h5 text-center mb-4">Usuário</th>
-            <th class="orange accent-4 text-center mb-4"> Segmento
-                <select id="mySelector" name="county2" required>
+  <table class="table  table-bordered table-hover">
+    <tr>
+      <th class="orange accent-4 h5 text-center mb-4">Usuário</th>
+      <th class="orange accent-4 text-center mb-4">
+        <select id="mySelector" name="county2" required>
                 <option value="" disabled selected>Município</option>
                 <option value="Acre">Acre</option>
                 <option value="Alagoas">Alagoas</option>
@@ -42,51 +42,49 @@
                 <option value="Sergipe">Sergipe</option>
                 <option value="Tocantins">Tocatins</option>
             </select>
-            </th>
-            <th class="orange accent-4">Contato</th>
-            <th class="orange accent-4">
-                Presidente
-            </th>
-            <th class="orange accent-4 text-center">
-                <a class="btn btn-light-green waves-light" href="/registrar">
-                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Novo
-                </a>
-            </th>
-        </tr>
-        <tr *ngFor="let user of users">
-            <td class="text-center mb-4" [class.sucess]="!user.isPresident">
-                {{ user.fullname }}
-            </td>
-            <td [class.sucess]="!user.isPresident">
-                {{ user.county }}
-            </td>
-            <td>
-                {{ user.email }}
-                <br><br> Telefone: {{ user.phone }}
-            </td>
-            <td style="width: 70px" class="text-center">
-                <input type="checkbox" [value]="user.id" [checked]="user.isPresident" (click)="isPresident(user)">
-            </td>
-            <td class="text-center" style="width: 200px">
-                <a [routerLink]="['/usuarios/editar', user.id]" title="Editar" alt="Editar" class="btn btn-xs btn-info">
-                    <i class="fa fa-edit"></i> Editar
-                </a>
-                <br><br>
-                <a title="Remover" alt="Remover" class="btn btn-xs btn-danger" (click)="deleteUser($event, user)">
-                    <i class="fa fa-trash"></i>
-                </a>
-            </td>
-        </tr>
-    </table>
-
-</div>
-<div *ngIf="users.length==0">
-    <img class="displayed" src="https://www.heypoorplayer.com/wp-content/uploads/2017/04/30-xin-loi.png">
-    <br>
-    <p class="h4 text-center mb-4">Nenhum usuário cadastrado.</p>
-    <p class="h3 text-center mb-4">
+      </th>
+      <th class="orange accent-4 text-center">Contato</th>
+      <th class="orange accent-4 text-center">Presidente</th>
+      <th class="orange accent-4 text-center">
         <a class="btn btn-light-green waves-light" href="/registrar">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Novo
         </a>
-    </p>
+      </th>
+    </tr>
+    <tr *ngFor="let user of users">
+      <td class="text-center mb-4" [class.sucess]="!user.isPresident">
+        {{ user.fullname }}
+      </td>
+      <td [class.sucess]="!user.isPresident">
+        {{ user.county }}
+      </td>
+      <td>
+        {{ user.email }}
+        <br><br> Telefone: {{ user.phone }}
+      </td>
+      <td style="width: 70px" class="text-center">
+        <input type="checkbox" [value]="user.id" [checked]="user.isPresident" (click)="isPresident(user)">
+      </td>
+      <td class="text-center" style="width: 200px">
+        <a [routerLink]="['/usuarios/editar', user.id]" title="Editar" alt="Editar" class="btn btn-xs btn-info">
+          <i class="fa fa-edit"></i> Editar
+        </a>
+        <br><br>
+        <a title="Remover" alt="Remover" class="btn btn-xs btn-danger" (click)="deleteUser($event, user)">
+          <i class="fa fa-trash"></i>
+        </a>
+      </td>
+    </tr>
+  </table>
+
+</div>
+<div *ngIf="users.length==0">
+  <img class="displayed" src="https://www.heypoorplayer.com/wp-content/uploads/2017/04/30-xin-loi.png">
+  <br>
+  <p class="h4 text-center mb-4">Nenhum usuário cadastrado.</p>
+  <p class="h3 text-center mb-4">
+    <a class="btn btn-light-green waves-light" href="/registrar">
+      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Novo
+    </a>
+  </p>
 </div>

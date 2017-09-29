@@ -1,71 +1,76 @@
 <br><br><br>
 <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
 <div class="well">
-    <form #formUser="ngForm">
-        <br>
-        <p class="h3 text-center mb-4"> Cadastro Conselheiro </p>
+  <form #formUser="ngForm">
+    <br>
+    <p class="h2 text-center mb-4"> Cadastro </p>
 
-        <div class="form-group">
-            <i class="fa fa-user prefix grey-text"></i>
-            <input type="text" id="orangeForm-name" class="form-control" name="fullname" minlength="10" placeholder="Nome Completo" [(ngModel)]="user.fullname" #fullname="ngModel" required>
-            <div *ngIf="fullname.errors && (fullname.dirty)" class="alert alert-danger">
-                <div [hidden]="!fullname.errors.required">
-                    Digite o nome completo.
-                </div>
-                <div [hidden]="!fullname.errors.minlength">
-                    O Nome deve ter ao menos 10 caracteres.
-                </div>
-            </div>
+    <div class="form-group">
+      <i class="fa fa-user prefix grey-text"></i>
+      <input type="text" id="orangeForm-name" class="form-control" name="fullname" minlength="10" placeholder="Nome Completo" [(ngModel)]="user.fullname"
+        #fullname="ngModel" required>
+      <div *ngIf="fullname.errors && (fullname.dirty)" class="alert alert-danger">
+        <div [hidden]="!fullname.errors.required">
+          Digite o nome completo.
         </div>
-        <div class="form-group">
-            <i class="fa fa-address-card prefix grey-text"></i>
-            <input type="text" id="orangeForm-name" class="form-control" name="cpf" minlength="11" placeholder="CPF" [(ngModel)]="user.cpf" #cpf="ngModel" required [textMask]="{mask: maskcpf}" />
-            <div *ngIf="cpf.errors && (cpf.dirty)" class="alert alert-danger">
-                <div [hidden]="!cpf.errors.required">
-                    Digite um CPF válido
-                </div>
-                <div [hidden]="!cpf.errors.minlength">
-                    O CPF deve ter ao menos 11 caracteres.
-                </div>
-            </div>
+        <div [hidden]="!fullname.errors.minlength">
+          O Nome deve ter ao menos 10 caracteres.
         </div>
-        <div class="form-group">
-            <i class="fa fa-phone prefix grey-text"></i>
-            <input type="text" id="orangeForm-name" class="form-control" name="phonw" minlength="10" placeholder="Telefone Móvel" [(ngModel)]="user.phone" #phone="ngModel" required [textMask]="{mask: maskphone}" />
-            <div *ngIf="phone.errors && (phone.dirty)" class="alert alert-danger">
-                <div [hidden]="!phone.errors.required">
-                    Digite um Telefone válido
-                </div>
-                <div [hidden]="!phone.errors.minlength">
-                    O telefone deve ter ao menos 10 caracteres.
-                </div>
-            </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <i class="fa fa-address-card prefix grey-text"></i>
+      <input type="text" id="orangeForm-name" class="form-control" name="cpf" minlength="11" placeholder="CPF" [(ngModel)]="user.cpf"
+        #cpf="ngModel" required [textMask]="{mask: maskcpf}" />
+      <div *ngIf="cpf.errors && (cpf.dirty)" class="alert alert-danger">
+        <div [hidden]="!cpf.errors.required">
+          Digite um CPF válido
         </div>
-        <div class="form-group">
-            <i class="fa fa-envelope prefix grey-text"></i>
-            <input type="email" id="orangeForm-name" class="form-control" name="email" placeholder="Email" [(ngModel)]="user.email" #email="ngModel" required>
-            <div *ngIf="email.errors && (email.dirty)" class="alert alert-danger">
-                <div [hidden]="!email.errors.required">
-                    Digite um email válido
-                </div>
-            </div>
+        <div [hidden]="!cpf.errors.minlength">
+          O CPF deve ter ao menos 11 caracteres.
         </div>
-        <div class="form-group">
-            <i class="fa fa-lock prefix grey-text"></i>
-            <input type="password" id="orangeForm-name" class="form-control" name="password" minlength="5" placeholder="Senha" [(ngModel)]="user.password" #password="ngModel" required>
-            <div *ngIf="password.errors && (password.dirty)" class="alert alert-danger">
-                <div [hidden]="!password.errors.required">
-                    Digite uma senha válida.
-                </div>
-                <div [hidden]="!password.errors.minlength">
-                    A senha deve ter mais do que 5 caracteres.
-                </div>
-            </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <i class="fa fa-phone prefix grey-text"></i>
+      <input type="text" id="orangeForm-name" class="form-control" name="phonw" minlength="10" placeholder="Telefone Móvel" [(ngModel)]="user.phone"
+        #phone="ngModel" required [textMask]="{mask: maskphone}" />
+      <div *ngIf="phone.errors && (phone.dirty)" class="alert alert-danger">
+        <div [hidden]="!phone.errors.required">
+          Digite um Telefone válido
         </div>
-        <i class="fa fa-home prefix grey-text"></i>
-        <div class="form-group">
-            <label for="county">Segmento:</label>
-            <select id="county" name="county" [(ngModel)]="user.county" #county="ngModel" required>
+        <div [hidden]="!phone.errors.minlength">
+          O telefone deve ter ao menos 10 caracteres.
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <i class="fa fa-envelope prefix grey-text"></i>
+      <input type="email" id="orangeForm-name" class="form-control" name="email" placeholder="Email" [(ngModel)]="user.email" #email="ngModel"
+        required>
+      <div *ngIf="email.errors && (email.dirty)" class="alert alert-danger">
+        <div [hidden]="!email.errors.required">
+          Digite um email válido
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <i class="fa fa-lock prefix grey-text"></i>
+      <input type="password" id="orangeForm-name" class="form-control" name="password" minlength="5" placeholder="Senha" [(ngModel)]="user.password"
+        #password="ngModel" required>
+      <div *ngIf="password.errors && (password.dirty)" class="alert alert-danger">
+        <div [hidden]="!password.errors.required">
+          Digite uma senha válida.
+        </div>
+        <div [hidden]="!password.errors.minlength">
+          A senha deve ter mais do que 5 caracteres.
+        </div>
+      </div>
+    </div>
+    <i class="fa fa-home prefix grey-text"></i>
+    <div class="form-group">
+      <label for="county">Segmento:</label>
+      <select id="county" name="county" [(ngModel)]="user.county" #county="ngModel" required>
           <option value="" disabled selected></option>
           <option>Acre</option>
           <option>Alagoas</option>
@@ -95,17 +100,17 @@
           <option>Sergipe</option>
           <option>Tocatins</option>
       </select>
-            <div *ngIf="county.errors && (county.dirty)" class="alert alert-danger">
-                <div [hidden]="!county.errors.required">
-                    Selecione o segmento!
-                </div>
-            </div>
+      <div *ngIf="county.errors && (county.dirty)" class="alert alert-danger">
+        <div [hidden]="!county.errors.required">
+          Selecione o segmento!
         </div>
-        <div class="form-group text-center">
-            <input type="button" class="btn btn-deep-orange" (click)="createUser()" value="Cadastrar" [disabled]="!formUser.form.valid">
-            <a href="/home" class="btn btn-outline-warning waves-effect">
+      </div>
+    </div>
+    <div class="form-group text-center">
+      <input type="button" class="btn btn-deep-orange" (click)="createUser()" value="Cadastrar" [disabled]="!formUser.form.valid">
+      <a href="/home" class="btn btn-outline-warning waves-effect">
                 <span class="glyphicon glyphicon-chevron-left" aria-hidden="false"></span>Voltar
             </a>
-        </div>
-    </form>
+    </div>
+  </form>
 </div>
