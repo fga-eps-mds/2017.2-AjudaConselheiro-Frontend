@@ -14,6 +14,7 @@ import { LoginComponent } from './user';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 
 import { TextMaskModule } from 'angular2-text-mask';
+import { FormsModule }   from '@angular/forms';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -30,7 +31,10 @@ describe('AppComponent', () => {
         LoginComponent
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      imports: [TextMaskModule],
+      imports: [
+        TextMaskModule,
+        FormsModule
+      ],
     }).compileComponents();
   }));
   it('should create the app', async(() => {
