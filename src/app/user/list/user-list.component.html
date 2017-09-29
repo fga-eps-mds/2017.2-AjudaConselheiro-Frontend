@@ -1,33 +1,79 @@
 <br><br><br><br>
 
+<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+<script src="script.component.js"></script>
+
 <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
 <div class="well" *ngIf="users.length>0">
-    <p class="h3 text-center mb-4"> Usuários </p>
+    <p class="h3 text-center mb-4"> Usuários <img src="../../layouts/ic_group_black_48dp.png">
+    </p>
 
-    <table class="table table-striped table-bordered table-hover">
+    <table class="table  table-bordered table-hover">
         <tr>
-            <th>Usuário</th>
-            <th>Presidente</th>
-            <th class="text-center">
-                <a class="btn btn-warning" href="/register">
+            <th class="orange accent-4 h5 text-center mb-4">Usuário</th>
+            <th class="orange accent-4 text-center mb-4"> Segmento
+                <select id="mySelector" name="county2" required>
+                <option value="" disabled selected>Município</option>
+                <option value="Acre">Acre</option>
+                <option value="Alagoas">Alagoas</option>
+                <option value="Amapá">Amapá</option>
+                <option value="Amazonas">Amazonas</option>
+                <option value="Bahia">Bahia</option>
+                <option value="Ceará">Ceará</option>
+                <option value="Distrito Federal">Distrito Federal</option>
+                <option value="Espírito Santo">Espírito Santo</option>
+                <option value="Goiás">Goiás</option>
+                <option value="Maranhão">Maranhão</option>
+                <option value="Mato Grosso">Mato Grosso</option>
+                <option value="Mato Grosso do Sul">Mato Grosso do Sul</option>
+                <option value="Minas Gerais">Minas Gerais</option>
+                <option value="Pará">Pará</option>
+                <option value="Paraíba">Paraíba</option>
+                <option value="Paraná">Paraná</option>
+                <option value="Pernambuco">Pernambuco</option>
+                <option value="Piauí">Piauí</option>
+                <option value="Rio de Janeiro">Rio de Janeiro</option>
+                <option value="Rio Grande do Norte">Rio Grande do Norte</option>
+                <option value="Rio Grande do Sul">Rio Grande do Sul</option>
+                <option value="Rondônia">Rondônia</option>
+                <option value="Roraima">Roraima</option>
+                <option value="Santa Catarina">Santa Catarina</option>
+                <option value="São Paulo">São Paulo</option>
+                <option value="Sergipe">Sergipe</option>
+                <option value="Tocantins">Tocatins</option>
+            </select>
+            </th>
+            <th class="orange accent-4">Contato</th>
+            <th class="orange accent-4">
+                Presidente
+            </th>
+            <th class="orange accent-4 text-center">
+                <a class="btn btn-light-green waves-light" href="/registrar">
                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Novo
                 </a>
             </th>
         </tr>
         <tr *ngFor="let user of users">
-            <td [class.sucess]="!user.isPresident">
+            <td class="text-center mb-4" [class.sucess]="!user.isPresident">
                 {{ user.fullname }}
+            </td>
+            <td [class.sucess]="!user.isPresident">
+                {{ user.county }}
+            </td>
+            <td>
+                {{ user.email }}
+                <br><br> Telefone: {{ user.phone }}
             </td>
             <td style="width: 70px" class="text-center">
                 <input type="checkbox" [value]="user.id" [checked]="user.isPresident" (click)="isPresident(user)">
             </td>
             <td class="text-center" style="width: 200px">
-                <a [routerLink]="['/users/edit', user.id]" title="Editar" alt="Editar" class="btn btn-xs btn-info">
-                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>Editar
+                <a [routerLink]="['/usuarios/editar', user.id]" title="Editar" alt="Editar" class="btn btn-xs btn-info">
+                    <i class="fa fa-edit"></i> Editar
                 </a>
                 <br><br>
                 <a title="Remover" alt="Remover" class="btn btn-xs btn-danger" (click)="deleteUser($event, user)">
-                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Remover
+                    <i class="fa fa-trash"></i>
                 </a>
             </td>
         </tr>
@@ -35,9 +81,11 @@
 
 </div>
 <div *ngIf="users.length==0">
+    <img class="displayed" src="https://www.heypoorplayer.com/wp-content/uploads/2017/04/30-xin-loi.png">
+    <br>
     <p class="h4 text-center mb-4">Nenhum usuário cadastrado.</p>
     <p class="h3 text-center mb-4">
-        <a href="/register">
+        <a class="btn btn-light-green waves-light" href="/registrar">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Novo
         </a>
     </p>

@@ -7,3 +7,8 @@
 p {
     font-family: 'Roboto Condensed', sans-serif;
 }
+
+label {
+    font-family: 'Roboto Condensed', sans-serif;
+    color: grey;
+}

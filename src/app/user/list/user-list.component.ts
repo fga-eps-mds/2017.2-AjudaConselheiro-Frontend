@@ -29,9 +29,17 @@ export class UserListComponent implements OnInit {
   }}
 
   isPresident(user: User): void {
-    if (confirm('Deseja setar o usuário "' + user.fullname + '" como presidente?')) {
-      this.userService.isPresident(user.id);
-      this.users = this.getUsers();
+    if (user.isPresident === false) {
+      if (confirm('Deseja setar o usuário "' + user.fullname + '" como presidente?')) {
+        this.userService.isPresident(user.id);
+        this.users = this.getUsers();
+      }
+    }
+    if (user.isPresident === true) {
+      if (confirm('Deseja retirar o status de presidente do usuário "' + user.fullname + '?')) {
+        this.userService.isPresident(user.id);
+        this.users = this.getUsers();
+      }
     }
   }
 }
