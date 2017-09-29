@@ -31,8 +31,7 @@ export class CreateUserComponent implements OnInit {
   createUser(): void {
     if (this.formUser.form.valid) {
       this.userService.createUser(this.user);
-      this.router.navigate(['/users']);
+      this.router.navigate(['/usuarios']);
     }
   }
-
 }

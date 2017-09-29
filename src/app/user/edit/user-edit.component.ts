@@ -32,8 +32,7 @@ export class UserEditComponent implements OnInit {
   updateUser(): void {
     if (this.formUser.form.valid ) {
       this.userService.updateUser(this.user);
-      this.router.navigate(['/users']);
+      this.router.navigate(['/usuarios']);
     }
   }
-
 }

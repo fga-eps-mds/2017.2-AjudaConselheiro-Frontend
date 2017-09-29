@@ -3,12 +3,10 @@ import { CommonModule } from '@angular/common';
 import { ChecklistComponent} from './checklist.component';
 import { ChecklistMenuComponent } from './checklistMenu/checklist-menu.component';
 import { ChecklistMenuService } from '../services/index';
-import { FormsModule } from '@angular/forms'
 
 @NgModule({
     imports:[
-        CommonModule,
-        FormsModule
+        CommonModule //para usar o ng
     ],
     declarations: [
         ChecklistComponent,

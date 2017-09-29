@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/index';
 import { UserService } from '../../services/index';
@@ -23,4 +24,10 @@ export class LoginComponent implements OnInit {
     return this.userService.getUsers();
   }
 
+  getLocalStorage(): boolean {
+    const myStorage = window.localStorage;
+    const users = myStorage.getItem('users');
+    console.log(users);
+      return true;
+  }
 }

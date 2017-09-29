@@ -1,4 +1,28 @@
 p,
 th {
-    font-family: 'Gloria Hallelujah', cursive;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+a:visited {
+    color: green;
+}
+
+a span {
+    color: green;
+}
+
+.well {
+    margin: 0 auto;
+    max-width: 1280px;
+    width: 70%;
+}
+
+th {
+    background-color: orange;
+}
+
+img.displayed {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
