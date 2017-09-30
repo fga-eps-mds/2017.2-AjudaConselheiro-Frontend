@@ -29,14 +29,13 @@
 
                 <label for="date"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i> Data:</label>
                 <input
-                type="text"
+                type="date"
                 class="form-control"
                 id="date"
                 name="date"
                 [(ngModel)]="scheduling.date"
                 #date="ngModel"
-                required
-                [textMask]="{mask: maskdate}" />
+                required>
                 <div *ngIf="date.errors && (date.dirty || date.touched)" class="alert alert-danger">
                     <div [hidden]="!date.errors.required">
                         Informe a data do agendamento!
