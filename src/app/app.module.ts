@@ -19,10 +19,8 @@ import { LoginComponent } from './user';
 import { TextMaskModule } from 'angular2-text-mask';
 import { ROUTES } from './app.routes';
 import { BaseRequestOptions } from '@angular/http';
-import { ChecklistMenuService } from './services/checklist-menu.service';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
-import {ChecklistThreeService} from './services/checklistthree.service';
 @NgModule({
 
   declarations: [
@@ -31,8 +29,6 @@ import {ChecklistThreeService} from './services/checklistthree.service';
     HomeComponent,
     NavbarHomeComponent,
     CarouselComponent,
-    ChecklistoneComponent,
-    ChecklistthreeComponent,
     LoginComponent,
   ],
 
@@ -51,9 +47,7 @@ import {ChecklistThreeService} from './services/checklistthree.service';
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [
-    ChecklistMenuService,
     BaseRequestOptions,
-    ChecklistThreeService,
   ],
   bootstrap: [AppComponent]
 })

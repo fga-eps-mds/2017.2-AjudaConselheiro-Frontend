@@ -1,8 +1,10 @@
+import { ChecklistoneComponent } from './checklistone/checklistone.component';
+import { ChecklistthreeComponent } from './checklistthree/checklistthree.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ChecklistComponent} from './checklist.component';
 import { ChecklistMenuComponent } from './checklistMenu/checklist-menu.component';
-import { ChecklistMenuService , ChecklistThreeService } from '../services/index';
+import { ChecklistMenuService , ChecklistThreeService, SaveNewFormTwoService } from '../services/index';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -12,7 +14,9 @@ import { FormsModule } from '@angular/forms';
     ],
     declarations: [
         ChecklistComponent,
-        ChecklistMenuComponent
+        ChecklistMenuComponent,
+        ChecklistthreeComponent,
+        ChecklistoneComponent,
     ],
     exports: [
         ChecklistComponent,
@@ -20,7 +24,8 @@ import { FormsModule } from '@angular/forms';
     ],
     providers: [
         ChecklistMenuService,
-        ChecklistThreeService
+        ChecklistThreeService,
+        SaveNewFormTwoService
     ]
 })
 
