@@ -18,7 +18,7 @@ export class SchedulingHomeComponent implements OnInit {
     this.schedulings = this.listAllScheculings();
   }
 
-  listAllScheculings():Scheduling[]{
+  listAllScheculings(): Scheduling[] {
     return this.schedulingService.listAllScheculings();
   }
 
@@ -28,6 +28,5 @@ export class SchedulingHomeComponent implements OnInit {
     this.schedulingService.deleteScheduling(scheduling.id);
     this.schedulings = this.schedulingService.listAllScheculings();
     }
-  }  
-
+  }
 }

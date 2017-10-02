@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HomeComponent } from './home.component';
+import { NavbarHomeComponent } from '../layouts/navbar/navbar.component';
+import { CarouselComponent } from '../layouts/carousel/carousel.component';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -8,7 +10,11 @@ describe('HomeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HomeComponent ]
+      declarations: [
+        HomeComponent,
+        NavbarHomeComponent,
+        CarouselComponent
+      ]
     })
     .compileComponents();
   }));
