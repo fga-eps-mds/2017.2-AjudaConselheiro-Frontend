@@ -1,12 +1,12 @@
-import {SaveFormCheckTwo} from './checklist.model'
-import {Subject} from 'rxjs/Subject'
+import {SaveFormCheckTwo} from './checklist.model';
+import {Subject} from 'rxjs/Subject';
 
-export class SaveNewFormTwoService{
+export class SaveNewFormTwoService {
   newChecklist = new Subject<SaveFormCheckTwo[]>();
-  private answersTwo:SaveFormCheckTwo[]=[
+  private answersTwo: SaveFormCheckTwo[] = [
 
-  ]
-  getChecklist(){
+  ];
+  getChecklist() {
     this.answersTwo.slice();
   }
 
