@@ -1,4 +1,3 @@
-import { TextMaskModule } from 'angular2-text-mask';
 import { CreateSchedulingComponent } from './create/create-scheduling.component';
 
 import { Router, RouterModule } from '@angular/router';
@@ -15,8 +14,7 @@ import { EditComponent } from './edit/edit.component';
   imports: [
     CommonModule,
     RouterModule,
-    FormsModule,
-    TextMaskModule
+    FormsModule
   ],
   declarations: [
     SchedulingHomeComponent,
