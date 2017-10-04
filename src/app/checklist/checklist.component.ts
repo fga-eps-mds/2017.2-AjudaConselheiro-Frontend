@@ -6,5 +6,3 @@ import { Component } from '@angular/core';
     templateUrl: 'checklist.component.html'
 })
 export class ChecklistComponent{}
-
-//Vou chamar os serviços da checklist aqui.

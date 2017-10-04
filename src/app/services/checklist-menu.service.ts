@@ -15,11 +15,7 @@ export class ChecklistMenuService{
             .toPromise()
             .then(response => response.json().data as FormCheckAnswer[]);
     }
-
-    // getFormsMenu(): Promise<FormCheckAnswer[]>{
-    //     return Promise.resolve(FormsMenu);
-    // }
-
+    
     getFormsMenuTwo(): Promise<FormCheck[]>{
         return this.http.get(this.formMenuAnswerUrl)
         .toPromise()

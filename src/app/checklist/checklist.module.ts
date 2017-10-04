@@ -1,40 +1,46 @@
+import { ChecklistoneComponent } from './checklistone/checklistone.component';
+import { ChecklistthreeComponent } from './checklistthree/checklistthree.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ChecklistComponent} from './checklist.component';
 import { ChecklistMenuComponent } from './checklistMenu/checklist-menu.component';
-import { ChecklistMenuService } from '../services/index';
-import { FormsModule } from '@angular/forms'
+import { ChecklistMenuService , ChecklistThreeService, SaveNewFormTwoService } from '../services/index';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-    imports:[
+    imports: [
         CommonModule,
         FormsModule
     ],
     declarations: [
         ChecklistComponent,
-        ChecklistMenuComponent
+        ChecklistMenuComponent,
+        ChecklistthreeComponent,
+        ChecklistoneComponent,
     ],
     exports: [
         ChecklistComponent,
         ChecklistMenuComponent
-    ], 
-    providers:[
-        ChecklistMenuService
+    ],
+    providers: [
+        ChecklistMenuService,
+        ChecklistThreeService,
+        SaveNewFormTwoService
     ]
 })
 
-export class ChecklistModule{}
+export class ChecklistModule {}
 
-export class CheckQuestion{
-  public pergunta:string;
+export class CheckQuestion {
+  public pergunta: string;
 
-  constructor(pergunta:string){
-    this.pergunta= pergunta;
+  constructor(pergunta: string) {
+    this.pergunta = pergunta;
   }
 }
 
-export class InfoData{
-  constructor(public data:number,public responsavelPrenchimento:string,
-    public responsavelInfo:string,public cargo:string,public escola:string,
-    public cantineiro:string){}
+export class InfoData {
+  constructor(public data: number, public responsavelPrenchimento: string,
+    public responsavelInfo: string, public cargo: string, public escola: string,
+    public cantineiro: string) {}
 }
