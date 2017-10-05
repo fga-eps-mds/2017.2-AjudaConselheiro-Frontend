@@ -2,10 +2,9 @@ import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import {CheckQuestion, SaveFormCheckTwo} from '../../models/checklist.model';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-
-
 import { ChecklistThreeService } from './../../services/checklistthree.service';
 import { ChecklistThree } from './../../models/checklistthree.model';
+
 
 @Component({
   selector: 'app-checklistthree',

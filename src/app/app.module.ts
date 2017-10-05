@@ -21,6 +21,7 @@ import { ROUTES } from './app.routes';
 import { BaseRequestOptions } from '@angular/http';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
+
 @NgModule({
 
   declarations: [
@@ -43,7 +44,6 @@ import { InMemoryDataService } from './in-memory-data.service';
     UserModule,
     TextMaskModule,
     InMemoryWebApiModule.forRoot(InMemoryDataService)
-
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [
