@@ -25,8 +25,6 @@ export class UserEditComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    const id = +this.route.snapshot.params['id'];
-    this.user = this.userService.searchUsingID(id);
   }
 
   updateUser(): void {

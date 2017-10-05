@@ -2,36 +2,46 @@ import { Component, OnInit, ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
-import { UserService } from '../../services/index';
+import { UserService, AlertService } from '../../services/index';
 import { User } from '../../models/index';
 
 @Component({
   selector: 'app-create-user',
   templateUrl: './create-user.component.html',
   styleUrls: ['./create-user.component.css'],
-  providers: [UserService],
+  providers: [UserService, AlertService],
+  moduleId: module.id,
 })
 export class CreateUserComponent implements OnInit {
 
   @ViewChild('formUser') formUser: NgForm;
   user: User;
-
+  model: any = {};
+  loading = false;
   maskcpf: any[] = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/];
   maskphone: any[] = ['(', /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
 
   constructor(
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private alertService: AlertService
   ) { }
 
   ngOnInit() {
     this.user = new User();
   }
 
-  createUser(): void {
-    if (this.formUser.form.valid) {
-      this.userService.createUser(this.user);
-      this.router.navigate(['/usuarios']);
-    }
+  register() {
+    this.loading = true;
+    this.userService.createUser(this.model)
+        .subscribe(
+            data => {
+                this.alertService.success('Registration successful', true);
+                this.router.navigate(['/login']);
+            },
+            error => {
+                this.alertService.error(error);
+                this.loading = false;
+            });
   }
 }

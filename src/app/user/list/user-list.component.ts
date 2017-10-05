@@ -1,45 +1,33 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../services/user.service';
+import { UserService, AlertService } from '../../services/index';
 import { User } from '../../models/index';
 
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.css'],
-  providers: [UserService],
+  moduleId: module.id,
+
 })
 export class UserListComponent implements OnInit {
 
-  users: User[];
+  currentUser: User;
+  users: User[] = [];
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService) {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  }
 
   ngOnInit() {
-    this.users = this.getUsers();
+    this.userService.getUsers();
+}
+
+  deleteUser(id: number) {
+     this.userService.deleteUser(id).subscribe(() => { this.loadAllUsers(); }
+   );
   }
 
-  getUsers(): User[] {
-    return this.userService.getUsers();
-  }
-
-  deleteUser($event: any, user: User): void {
-    $event.preventDefault();
-    if (confirm('Deseja excluir o usuário "' + user.fullname + '"?')) {
-    this.userService.deleteUser(user.id);
-    this.users = this.userService.getUsers();
-  }}
-
-  isPresident(user: User): void {
-    if (user.isPresident === false) {
-      if (confirm('Deseja setar o usuário "' + user.fullname + '" como presidente?')) {
-        this.userService.isPresident(user.id);
-        this.users = this.getUsers();
-      }
-    } else {
-      if (confirm('Deseja retirar o status de presidente do usuário "' + user.fullname + '?')) {
-        this.userService.isPresident(user.id);
-        this.users = this.getUsers();
-      }
-    }
+private loadAllUsers() {
+    this.userService.getUsers().subscribe(users => { this.users = users; });
   }
 }
