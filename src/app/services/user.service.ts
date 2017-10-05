@@ -1,51 +1,42 @@
 import { Injectable } from '@angular/core';
-import { User } from '../models/user';
+import { Http, Headers, RequestOptions, Response } from '@angular/http';
+import { User } from '../models/index';
 
 @Injectable()
 export class UserService {
+    constructor(private http: Http) { }
 
-  constructor() { }
+    getUsers() {
+        return this.http.get('http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas',
+        this.jwt()).map((response: Response) => response.json());
+    }
 
-  getUsers(): User[] {
-    const users = localStorage['users'];
-    return users ? JSON.parse(users) : [];
-  }
+    getUser(id: number) {
+        return this.http.get('http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas' + id,
+         this.jwt()).map((response: Response) => response.json());
+    }
 
-  createUser(user: User): void {
-    const users = this.getUsers();
-    user.id = new Date().getTime();
-    users.push(user);
-    localStorage['users'] = JSON.stringify(users);
-  }
+    createUser(user: User) {
+        return this.http.post('http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas',
+        user, this.jwt()).map((response: Response) => response.json());
+    }
 
-  searchUsingID(id: number): User {
-    const users: User[] = this.getUsers();
-    return users.find(user => user.id === id);
-  }
+    updateUser(user: User) {
+        return this.http.put('http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas' + user.id,
+         user, this.jwt()).map((response: Response) => response.json());
+    }
 
-  updateUser(user: User): void {
-    const users: User[] = this.getUsers();
-    users.forEach((obj, index, objs) => {
-      if (user.id === obj.id) {
-        objs[index] = user;
+    deleteUser(id: number) {
+        return this.http.delete('http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas' + id,
+        this.jwt()).map((response: Response) => response.json());
+    }
+
+    private jwt() {
+        // create authorization header with jwt token
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (currentUser && currentUser.token) {
+            const headers = new Headers({ 'Authorization': 'Bearer ' + currentUser.token });
+            return new RequestOptions({ headers: headers });
       }
-  });
-  localStorage['users'] = JSON.stringify(users);
-  }
-
-  deleteUser(id: number): void {
-    let users: User[] = this.getUsers();
-    users = users.filter(user => user.id !== id);
-    localStorage['users'] = JSON.stringify(users);
-  }
-
-  isPresident(id: number): void {
-    const users: User[] = this.getUsers();
-    users.forEach((obj, index, objs) => {
-      if (id === obj.id) {
-        objs[index].isPresident = !obj.isPresident;
-      }
-    });
-    localStorage['users'] = JSON.stringify(users);
-  }
+    }
 }
