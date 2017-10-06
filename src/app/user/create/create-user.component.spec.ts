@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpModule } from '@angular/http';
 import { CreateUserComponent } from './create-user.component';
 import { FormsModule } from '@angular/forms';
 import { TextMaskModule } from 'angular2-text-mask';
@@ -16,6 +16,7 @@ describe('CreateUserComponent', () => {
         FormsModule,
         TextMaskModule,
         RouterTestingModule,
+        HttpModule
        ],
     })
     .compileComponents();
