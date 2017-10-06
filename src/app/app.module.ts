@@ -23,6 +23,7 @@ import { ChecklistMenuService } from './services/checklist-menu.service';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { FooterComponent } from './layouts/footer/footer.component';
 
 @NgModule({
 
@@ -35,6 +36,7 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     ChecklistoneComponent,
     ChecklistthreeComponent,
     LoginComponent,
+    FooterComponent
   ],
 
   imports: [
