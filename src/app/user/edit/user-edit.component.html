@@ -6,29 +6,29 @@
         <p class="h3 text-center mb-4"> Editar Perfil </p>
         <div class="form-group">
             <i class="fa fa-user prefix grey-text"></i>
-            <input type="text" id="orangeForm-name" class="form-control" name="fullname" minlength="10" placeholder="Nome Completo" [(ngModel)]="user.fullname" #fullname="ngModel" required>
-            <div *ngIf="fullname.errors && (fullname.dirty)" class="alert alert-danger">
-                <div [hidden]="!fullname.errors.required">
+            <input type="text" id="orangeForm-name" class="form-control" name="fullname" minlength="10" placeholder="Nome Completo" [(ngModel)]="user.nomeCompleto" #nomeCompleto="ngModel" required>
+            <div *ngIf="nomeCompleto.errors && (nomeCompleto.dirty)" class="alert alert-danger">
+                <div [hidden]="!nomeCompleto.errors.required">
                     Digite o nome completo.
                 </div>
-                <div [hidden]="!fullname.errors.minlength">
+                <div [hidden]="!nomeCompleto.errors.minlength">
                     O Nome deve ter ao menos 10 caracteres.
                 </div>
             </div>
         </div>
         <div class="form-group">
             <i class="fa fa-address-card prefix grey-text"></i>
-            <input type="text" id="orangeForm-name" class="form-control" name="cpf" minlength="11" placeholder="CPF" [(ngModel)]="user.cpf" #cpf="ngModel" required [textMask]="{mask: maskcpf}" />
-            <div *ngIf="cpf.errors && (cpf.dirty)" class="alert alert-danger">
-                <div [hidden]="!cpf.errors.required">
+            <input type="text" id="orangeForm-name" class="form-control" name="cpf" minlength="11" placeholder="CPF" [(ngModel)]="user.CEP" #CEP="ngModel" required [textMask]="{mask: maskcpf}" />
+            <div *ngIf="CEP.errors && (CEP.dirty)" class="alert alert-danger">
+                <div [hidden]="!CEP.errors.required">
                     Digite um CPF válido
                 </div>
-                <div [hidden]="!cpf.errors.minlength">
+                <div [hidden]="!CEP.errors.minlength">
                     O CPF deve ter ao menos 11 caracteres.
                 </div>
             </div>
         </div>
-        <div class="form-group">
+        <!-- <div class="form-group">
             <i class="fa fa-phone prefix grey-text"></i>
             <input type="text" id="orangeForm-name" class="form-control" name="phonw" minlength="10" placeholder="phone" [(ngModel)]="user.phone" #phone="ngModel" required [textMask]="{mask: maskphone}" />
             <div *ngIf="phone.errors && (phone.dirty)" class="alert alert-danger">
@@ -94,12 +94,14 @@
           <option>Sergipe</option>
           <option>Tocatins</option>
         </select>
-        </div>
+        </div> -->
         <div class="form-group text-center">
             <input type="button" class="btn btn-deep-orange" (click)="updateUser()" value="Atualizar" [disabled]="!formUser.form.valid">
             <a [routerLink]="['/usuarios']" class="btn btn-outline-warning waves-effect">
                 <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Voltar
             </a>
+            <input type="button" class="btn btn-danger" (click)="deleteUser()" value="Deletar conta">
         </div>
+
     </form>
 </div>

@@ -33,4 +33,11 @@ export class UserEditComponent implements OnInit {
       this.router.navigate(['/usuarios']);
     }
   }
+
+deleteUser(): void {
+  console.log('deletando contato...');
+  this.userService.delete(this.user.cod).
+  subscribe(result => console.log(result),
+            error => console.log(error));
+}
 }

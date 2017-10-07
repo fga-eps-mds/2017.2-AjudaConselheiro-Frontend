@@ -25,5 +25,8 @@ export class ChecklistMenuComponent implements OnInit {
           this.formMenuTwo = formsMenuTwo;
       }).catch(err => console.log(err));
   }
-  onSubmit(): void {}
+  onSubmit(): void {
+
+    console.log('submit');
+  }
 }

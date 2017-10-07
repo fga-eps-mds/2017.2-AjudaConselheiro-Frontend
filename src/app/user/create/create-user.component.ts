@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-
 import { UserService, AlertService } from '../../services/index';
 import { User } from '../../models/index';
 
@@ -18,7 +17,7 @@ export class CreateUserComponent implements OnInit {
   user: User;
   model: any = {};
   loading = false;
-  maskcpf: any[] = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/];
+  maskcep: any[] = [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
   maskphone: any[] = ['(', /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
 
   constructor(
@@ -27,21 +26,20 @@ export class CreateUserComponent implements OnInit {
     private alertService: AlertService
   ) { }
 
-  ngOnInit() {
+  ngOnInit() { 
     this.user = new User();
   }
 
-  register() {
+  register(): void {
     this.loading = true;
-    this.userService.createUser(this.model)
-        .subscribe(
-            data => {
-                this.alertService.success('Registration successful', true);
-                this.router.navigate(['/login']);
-            },
-            error => {
-                this.alertService.error(error);
-                this.loading = false;
-            });
+    this.userService.createUser(this.user)
+      .subscribe(
+          result => {
+            this.user = result;
+          },
+          error => {
+              this.alertService.error(error);
+              this.loading = false;
+      });
   }
 }
