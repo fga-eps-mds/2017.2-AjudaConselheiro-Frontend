@@ -3,7 +3,7 @@ import { FormsMenu, FormMenuTwo, FormCheckAnswer, FormCheck} from '../../models/
 import { ChecklistMenuService } from '../../services/index';
 
 @Component({
-  selector: 'app-checklistMenu',
+  selector: 'app-checklist-menu-component',
   templateUrl:  './checklist-menu.component.html',
   styleUrls: ['./checklist-menu.component.css']
 })
@@ -24,5 +24,9 @@ export class ChecklistMenuComponent implements OnInit {
       .then((formsMenuTwo: FormCheck[]) => {
           this.formMenuTwo = formsMenuTwo;
       }).catch(err => console.log(err));
+  }
+  onSubmit(): void {
+
+    console.log('submit');
   }
 }

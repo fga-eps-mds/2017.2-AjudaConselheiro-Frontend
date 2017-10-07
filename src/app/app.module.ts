@@ -19,9 +19,6 @@ import { LoginComponent } from './user';
 import { TextMaskModule } from 'angular2-text-mask';
 import { ROUTES } from './app.routes';
 import { BaseRequestOptions } from '@angular/http';
-import { ChecklistMenuService } from './services/checklist-menu.service';
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './in-memory-data.service';
 
 @NgModule({
 
@@ -31,8 +28,6 @@ import { InMemoryDataService } from './in-memory-data.service';
     HomeComponent,
     NavbarHomeComponent,
     CarouselComponent,
-    ChecklistoneComponent,
-    ChecklistthreeComponent,
     LoginComponent,
   ],
 
@@ -45,12 +40,10 @@ import { InMemoryDataService } from './in-memory-data.service';
     ChecklistModule,
     SchedulingModule,
     UserModule,
-    TextMaskModule,
-    InMemoryWebApiModule.forRoot(InMemoryDataService)
+    TextMaskModule
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [
-    ChecklistMenuService,
     BaseRequestOptions,
   ],
   bootstrap: [AppComponent]

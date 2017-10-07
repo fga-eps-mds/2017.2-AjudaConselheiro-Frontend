@@ -1,11 +1,12 @@
 export class User {
-  constructor(
-    public id?: number,
-    public fullname?: string,
-    public email?: string,
-    public phone?: string,
-    public county?: string,
-    public cpf?: number,
-    public isPresident: boolean = false,
-    public password?: string) {}
+
+    constructor(
+      public CEP?: string,
+      public cod?: number,
+      public email?: string,
+      public nomeCompleto?: string,
+      public nomeUsuario?: string,
+      public senha?: string,
+    ) {}
+
 }

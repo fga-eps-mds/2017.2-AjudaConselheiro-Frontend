@@ -1,4 +1,4 @@
-import {SaveFormCheckTwo} from './checklist.model';
+import {SaveFormCheckTwo} from '../models/checklist.model';
 import {Subject} from 'rxjs/Subject';
 
 export class SaveNewFormTwoService {

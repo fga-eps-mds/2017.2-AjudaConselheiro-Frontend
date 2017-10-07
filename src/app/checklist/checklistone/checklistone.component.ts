@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {CheckQuestion,ConfirmComentary} from '../checklist.model';
+import {CheckQuestion, ConfirmComentary} from '../../models/checklist.model';
 
 @Component({
   selector: 'app-checklistone',
@@ -95,9 +95,9 @@ export class ChecklistoneComponent implements OnInit {
       new CheckQuestion('Os cardápios estão afixados para visualização dos alunos e comunidade escolar'),
       new CheckQuestion('Qual o cardápio mais aceito?'),
       new CheckQuestion('Qual o cardápio menos aceito?'),
-    ]
+    ];
    checkSecEight: CheckQuestion[] = [
-      new CheckQuestion("Presença de comprovante de limpeza da caixa d'agua(semestral) "),
+      new CheckQuestion('Presença de comprovante de limpeza da caixa d\'\agua(semestral)'),
       new CheckQuestion('Presença de comprovante de limpeza do reservatório de água subterrâneo(semestral)'),
       new CheckQuestion('Presença de registro de potabilidade da água (RDC 275/2002 - ANVISA e RDC 216/2004 - ANVISA)'),
       new CheckQuestion('Presença de comprovante de limpeza da caixa de gordura(quinzenal)'),

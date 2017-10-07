@@ -19,15 +19,19 @@ export class UserListComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log('entrou!!');
     this.userService.getUsers();
 }
 
   deleteUser(id: number) {
-     this.userService.deleteUser(id).subscribe(() => { this.loadAllUsers(); }
+     this.userService.delete(id).subscribe(() => { this.loadAllUsers(); }
    );
   }
 
 private loadAllUsers() {
+
+  console.log('entrou!!');
+
     this.userService.getUsers().subscribe(users => { this.users = users; });
   }
 }

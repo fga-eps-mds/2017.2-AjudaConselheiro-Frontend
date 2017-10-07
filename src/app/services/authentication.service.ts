@@ -8,7 +8,8 @@ export class AuthenticationService {
     constructor(private http: Http) { }
 
     login(email: string, password: string) {
-        return this.http.post('/rest/pessoas/autenticar', JSON.stringify({ email: email, password: password }))
+        return this.http.get('http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas/autenticar',
+        JSON.stringify({ email: email, password: password }))
             .map((response: Response) => {
                 // login successful if there's a jwt token in the response
                 const user = response.json();
