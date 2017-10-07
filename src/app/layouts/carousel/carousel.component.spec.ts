@@ -28,4 +28,19 @@ describe('CarouselComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have a carousel', () => {
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('carousel')).not.toBe(null);
+  });
+
+  it('should have three slides', () => {
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelectorAll('slide').length).toBe(3);
+  });
+
+  it('should have three images', () => {
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelectorAll('img').length).toBe(3);
+  });
 });

@@ -32,4 +32,14 @@ describe('HomeComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have a navBar', () => {
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('app-navbar')).not.toBe(null);
+  });
+
+  it('should have a Carousel', () => {
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('app-carousel')).not.toBe(null);
+  });
 });
