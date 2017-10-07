@@ -24,7 +24,7 @@ export class CreateSchedulingComponent implements OnInit {
 
   newScheduling(): void {
     if (this.formScheduling.form.valid) {
-      this.schedulingService.newScheduling(this.scheduling);
+      this.schedulingService.createScheduling(this.scheduling);
       this.router.navigate(['/agendamento']);
     }
   }

@@ -20,7 +20,7 @@ export class EditComponent implements OnInit {
 
   ngOnInit() {
     const id = +this.route.snapshot.params['id'];
-    this.scheduling = this.schedulingService.searchSchedulingId(id);
+    this.scheduling = this.schedulingService.getScheduling(id);
   }
   update(): void {
     if (this.formScheduling.form.valid) {
