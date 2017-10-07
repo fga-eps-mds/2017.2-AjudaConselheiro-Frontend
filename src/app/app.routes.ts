@@ -11,6 +11,7 @@ import { UserListComponent } from './user';
 import { CreateUserComponent } from './user';
 import { UserEditComponent } from './user';
 import { LoginComponent } from './user';
+import { ProfileComponent } from './user';
 
 export const ROUTES: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -28,4 +29,5 @@ export const ROUTES: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'registrar', component: CreateUserComponent },
   { path: 'usuarios/editar/:id', component: UserEditComponent },
+  { path: 'profile', component: ProfileComponent },
 ];
