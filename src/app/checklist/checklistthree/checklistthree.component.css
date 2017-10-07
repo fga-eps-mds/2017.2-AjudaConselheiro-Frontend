@@ -5,4 +5,10 @@
 .shadow-textarea textarea.form-control {
     padding-left: 0.8rem;
 }
-                
+body {
+    background-color: white;
+}
+
+.container {
+    background-color: white;
+}
