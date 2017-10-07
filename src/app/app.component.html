@@ -2,6 +2,11 @@
     <app-navbar></app-navbar>
     <ng-template [ngIf]="isLogged">
       <app-sidebar></app-sidebar>
+      <div style="margin-left:250px;">
+        <router-outlet></router-outlet>
+      </div>
     </ng-template>
-    <router-outlet></router-outlet>
+    <ng-template [ngIf]="!isLogged">
+      <router-outlet></router-outlet>
+    </ng-template>
 </body>
