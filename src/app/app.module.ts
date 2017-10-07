@@ -19,6 +19,7 @@ import { LoginComponent } from './user';
 import { TextMaskModule } from 'angular2-text-mask';
 import { ROUTES } from './app.routes';
 import { BaseRequestOptions } from '@angular/http';
+import { SidebarComponent } from './layouts/sidebar/sidebar.component';
 
 @NgModule({
 
@@ -29,6 +30,7 @@ import { BaseRequestOptions } from '@angular/http';
     NavbarHomeComponent,
     CarouselComponent,
     LoginComponent,
+    SidebarComponent,
   ],
 
   imports: [

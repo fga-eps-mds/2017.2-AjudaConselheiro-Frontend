@@ -1,4 +1,7 @@
 <body>
     <app-navbar></app-navbar>
+    <ng-template [ngIf]="isLogged">
+      <app-sidebar></app-sidebar>
+    </ng-template>
     <router-outlet></router-outlet>
 </body>
