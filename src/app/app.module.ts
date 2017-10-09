@@ -16,12 +16,13 @@ import { ChecklistoneComponent } from './checklist/checklistone/checklistone.com
 import { ChecklistMenuComponent } from './checklist/checklistMenu/checklist-menu.component';
 import { ChecklistthreeComponent } from './checklist/checklistthree/checklistthree.component';
 import { LoginComponent } from './user';
-import { TextMaskModule } from 'angular2-text-mask'; 
+import { TextMaskModule } from 'angular2-text-mask';
 import { ROUTES } from './app.routes';
 import { BaseRequestOptions } from '@angular/http';
 import { ChecklistMenuService } from './services/checklist-menu.service';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './in-memory-data.service'; 
+import { InMemoryDataService } from './in-memory-data.service';
+import { CouncilGroupComponent } from './council-group/council-group.component';
 
 @NgModule({
 
@@ -34,6 +35,7 @@ import { InMemoryDataService } from './in-memory-data.service';
     ChecklistoneComponent,
     ChecklistthreeComponent,
     LoginComponent,
+    CouncilGroupComponent,
   ],
 
   imports: [
@@ -45,9 +47,8 @@ import { InMemoryDataService } from './in-memory-data.service';
     ChecklistModule,
     SchedulingModule,
     UserModule,
-    TextMaskModule, 
+    TextMaskModule,
     InMemoryWebApiModule.forRoot(InMemoryDataService)
-    
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [
