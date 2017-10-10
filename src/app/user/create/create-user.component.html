@@ -1,7 +1,7 @@
 <br><br><br>
 <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
 <div class="well">
-    <form #formUser="ngForm">
+    <form (ngSubmit)="formUser.form.valid && register()" #formUser="ngForm">
         <br>
         <p class="h2 text-center mb-4"> Cadastro </p>
 
@@ -64,7 +64,7 @@
         </div>
 
         <div class="form-group text-center">
-            <input type="button" class="btn btn-deep-orange" (click)="register()" value="Cadastrar" [disabled]="!formUser.form.valid">
+            <button type="submit" class="btn btn-deep-orange" [disabled]="!formUser.form.valid">Cadastrar</button>
             <a href="/home" class="btn btn-outline-warning waves-effect">
                 <span class="glyphicon glyphicon-chevron-left" aria-hidden="false"></span>Voltar
             </a>

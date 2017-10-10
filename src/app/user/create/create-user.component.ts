@@ -17,8 +17,9 @@ export class CreateUserComponent implements OnInit {
   user: User;
   model: any = {};
   loading = false;
-  maskcep: any[] = [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
+  maskcep: any[] = [ /\d/, /\d/, /\d/, /\d/, /\d/, ' ' ,  '-', ' ', /\d/, /\d/, /\d/];
   maskphone: any[] = ['(', /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
+
 
   constructor(
     private userService: UserService,

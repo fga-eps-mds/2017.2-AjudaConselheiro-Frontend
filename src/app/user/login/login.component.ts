@@ -13,8 +13,10 @@ import { UserService, AuthenticationService, AlertService } from '../../services
 export class LoginComponent implements OnInit {
 
   user: User[];
+  token: any;
   maskcpf: any[] = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/];
-  model: any = {};
+  email: string;
+  password: string;
   loading = false;
   returnUrl: string;
 
@@ -34,14 +36,21 @@ export class LoginComponent implements OnInit {
 
     login() {
       this.loading = true;
-      this.authenticationService.login(this.model.email, this.model.password)
+      this.authenticationService.login(this.email, this.password)
           .subscribe(
-              data => {
-                  this.router.navigate([this.returnUrl]);
+              result => {
+                  this.token = result;
               },
               error => {
                   this.alertService.error(error);
                   this.loading = false;
+                  if (error = 401) {
+                    console.log('Falha na autenticação');
+                  }
               });
+          if (this.token) {
+            localStorage.setItem('token', this.token);
+            // routerNavigate -> localhost:4200/usuario/userx
+          }
   }
 }
