@@ -25,15 +25,20 @@ export class UserEditComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    const id = +this.route.snapshot.params['id'];
-    this.user = this.userService.searchUsingID(id);
+    this.userService.getUser(this.user.cod);
   }
 
   updateUser(): void {
     if (this.formUser.form.valid ) {
       this.userService.updateUser(this.user);
-      this.router.navigate(['/users']);
+      this.router.navigate(['/usuarios']);
     }
   }
 
+deleteUser(): void {
+  console.log('deletando contato...');
+  this.userService.delete(this.user.cod).
+  subscribe(result => console.log(result),
+            error => console.log(error));
+}
 }
