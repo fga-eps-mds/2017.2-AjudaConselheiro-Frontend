@@ -1,3 +1,4 @@
+
 import { Injectable } from '@angular/core';
 
 import { ChecklistThree } from '../models/checklistthree.model'
@@ -7,12 +8,13 @@ export class ChecklistThreeService {
 
   constructor() { }
 
-  listAllScheculings():ChecklistThree[]{
+  listAllCheck():ChecklistThree[]{
     const checklistThree = localStorage['checklistThree'];
     return checklistThree ? JSON.parse(checklistThree):[];
   }
-  newScheduling(checkThree:ChecklistThree): void {
-    const checklistThree = this.listAllScheculings();
+
+  newCheck(checkThree:ChecklistThree): void {
+    const checklistThree = this.listAllCheck();
     checkThree.id = new Date().getTime();
     checklistThree.push(checkThree);
     localStorage['checklistThree'] = JSON.stringify(checklistThree);
