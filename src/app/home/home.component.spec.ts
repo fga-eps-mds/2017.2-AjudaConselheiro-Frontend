@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { HomeComponent } from './home.component';
 import { NavbarHomeComponent } from '../layouts/navbar/navbar.component';
@@ -17,7 +18,8 @@ describe('HomeComponent', () => {
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       imports: [
-        CarouselModule
+        CarouselModule,
+        RouterTestingModule
       ]
     })
     .compileComponents();

@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 
 import { CreateUserComponent } from '../user/create/create-user.component';
 import { UserListComponent } from './list/index';
-import { UserService } from '../services/index';
+import { UserService, AlertService, AuthenticationService } from '../services/index';
 import { UserEditComponent } from './edit/index';
 import { TextMaskModule } from 'angular2-text-mask';
 
@@ -22,7 +22,7 @@ import { TextMaskModule } from 'angular2-text-mask';
     UserEditComponent,
   ],
   providers: [
-    UserService,
+    UserService, AlertService, AuthenticationService
   ]
 })
 export class UserModule { }
