@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ChecklistComponent} from './checklist.component';
 import { ChecklistMenuComponent } from './checklistMenu/checklist-menu.component';
-import { ChecklistMenuService } from '../services/index';
+import { ChecklistMenuService, ChecklistThreeService } from '../services/index';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -19,7 +19,8 @@ import { FormsModule } from '@angular/forms';
         ChecklistMenuComponent
     ],
     providers: [
-        ChecklistMenuService
+        ChecklistMenuService,
+        ChecklistThreeService
     ]
 })
 
