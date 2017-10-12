@@ -9,7 +9,8 @@ import { ChecklistThree } from './../../models/checklistthree.model';
 @Component({
   selector: 'app-checklistthree',
   templateUrl: './checklistthree.component.html',
-  styleUrls: ['./checklistthree.component.css']
+  styleUrls: ['./checklistthree.component.css'],
+  providers: [ChecklistThreeService]
 })
 export class ChecklistthreeComponent implements OnInit {
   checklist: ChecklistThree;

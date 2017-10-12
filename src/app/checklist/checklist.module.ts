@@ -1,3 +1,5 @@
+import { RouterModule } from '@angular/router';
+import { ChecklistthreeComponent } from './checklistthree/checklistthree.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ChecklistComponent} from './checklist.component';
@@ -8,15 +10,18 @@ import { FormsModule } from '@angular/forms';
 @NgModule({
     imports: [
         CommonModule,
-        FormsModule
+        FormsModule,
+        RouterModule,
     ],
     declarations: [
         ChecklistComponent,
-        ChecklistMenuComponent
+        ChecklistMenuComponent,
+        ChecklistthreeComponent
     ],
     exports: [
         ChecklistComponent,
-        ChecklistMenuComponent
+        ChecklistMenuComponent,
+        ChecklistthreeComponent,
     ],
     providers: [
         ChecklistMenuService,
@@ -26,7 +31,7 @@ import { FormsModule } from '@angular/forms';
 
 export class ChecklistModule {}
 
-export class CheckQuestion {
+/*export class CheckQuestion {
   public pergunta: string;
 
   constructor(pergunta: string) {
@@ -39,3 +44,5 @@ export class InfoData {
     public responsavelInfo: string, public cargo: string, public escola: string,
     public cantineiro: string) {}
 }
+
+*/
