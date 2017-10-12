@@ -1,11 +1,11 @@
-//This interface represents the form with question, answer and yes/not.
+// This interface represents the form with question, answer and yes/not.
 export interface FormCheckAnswer{
-    question : string;
-    check : boolean;
+    question: string;
+    check: boolean;
     answer: string;
 }
 
 export interface FormCheck{
-    question : string;
+    question: string;
     answer: string;
 }

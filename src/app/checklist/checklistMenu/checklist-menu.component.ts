@@ -1,19 +1,31 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsMenu, FormMenuTwo, FormCheckAnswer, FormCheck} from '../../models/index'
+import { FormsMenu, FormMenuTwo, FormCheckAnswer, FormCheck} from '../../models/index';
 import { ChecklistMenuService } from '../../services/index';
+import { ConfirmComentary} from '../checklist.model';
 
 @Component({
-  selector: 'app-checklistMenu',
+  selector: 'app-checklistmenu',
   templateUrl:  './checklist-menu.component.html',
   styleUrls: ['./checklist-menu.component.css']
 })
 export class ChecklistMenuComponent implements OnInit {
 
-  formsMenu : Array<FormCheckAnswer>;
+  formsMenu: Array<FormCheckAnswer>;
   formMenuTwo: Array<FormCheck>;
-  textArea: boolean = false;
+  textArea = false;
 
-  constructor(private menuService : ChecklistMenuService){}
+  checkComentary: ConfirmComentary[]= [
+    new ConfirmComentary(false, 'Comment1'),
+    new ConfirmComentary(false, 'Comment2'),
+    new ConfirmComentary(false, 'Comment3'),
+    new ConfirmComentary(false, 'Comment4'),
+    new ConfirmComentary(false, 'Comment5'),
+    new ConfirmComentary(false, 'Comment6'),
+    new ConfirmComentary(false, 'Comment7'),
+    new ConfirmComentary(false, 'Comment8'),
+  ];
+
+  constructor(private menuService: ChecklistMenuService) {}
 
   ngOnInit(): void {
     this.menuService.getFormsMenu()
@@ -27,8 +39,9 @@ export class ChecklistMenuComponent implements OnInit {
       }).catch(err => console.log(err));
   }
 
-  onSubmit(): void{
+  onSubmit(): void {
     console.log(this.formMenuTwo);
     console.log(this.formsMenu);
   }
+
 }
