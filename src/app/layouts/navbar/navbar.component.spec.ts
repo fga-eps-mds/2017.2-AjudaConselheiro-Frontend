@@ -43,9 +43,39 @@ describe('NavbarHomeComponent', () => {
     expect(compiled.querySelector('.navbar-collapse')).not.toBe(null);
   });
 
-  it('should have two navbar items', () => {
+  it('should have two navbar items when user is not logged in', () => {
+    localStorage.removeItem('token');
+    fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelectorAll('.nav-item').length).toBe(2);
+  });
+
+  it('should have one navbar items when user is logged in', () => {
+    localStorage.setItem('token', 'newToken');
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelectorAll('.nav-item').length).toBe(1);
+  });
+
+  it('should have a login button when user is not logged in', () => {
+    localStorage.removeItem('token');
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelectorAll('.nav-item')[0].innerText).toEqual('Entrar');
+  });
+
+  it('should have a sign up button when user is not logged in', () => {
+    localStorage.removeItem('token');
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelectorAll('.nav-item')[1].innerText).toEqual('Cadastrar');
+  });
+
+  it('should have a logout button when user is logged in', () => {
+    localStorage.setItem('token', 'newToken');
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('.nav-item').innerText).toEqual('Sair');
   });
 
 });

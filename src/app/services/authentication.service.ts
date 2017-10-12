@@ -23,7 +23,6 @@ export class AuthenticationService {
     }
 
     logout() {
-        console.log('Oi');
         localStorage.removeItem('token');
         localStorage.removeItem('currentUser');
     }
