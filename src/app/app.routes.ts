@@ -11,6 +11,7 @@ import { UserListComponent } from './user';
 import { CreateUserComponent } from './user';
 import { UserEditComponent } from './user';
 import { LoginComponent } from './user';
+import { CouncilGroupComponent } from './council-group/council-group.component';
 
 export const ROUTES: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -28,4 +29,5 @@ export const ROUTES: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: CreateUserComponent },
   { path: 'users/edit/:id', component: UserEditComponent },
+  { path: 'conselho', component: CouncilGroupComponent },
 ];
