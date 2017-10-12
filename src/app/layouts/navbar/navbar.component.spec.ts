@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpModule } from '@angular/http';
 
 import { NavbarHomeComponent } from './navbar.component';
+import { AuthenticationService } from './../../services/authentication.service';
 
 describe('NavbarHomeComponent', () => {
   let component: NavbarHomeComponent;
@@ -8,7 +10,15 @@ describe('NavbarHomeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NavbarHomeComponent ]
+      declarations: [
+        NavbarHomeComponent
+      ],
+      providers: [
+        AuthenticationService
+      ],
+      imports: [
+      HttpModule
+      ]
     })
     .compileComponents();
   }));
@@ -37,4 +47,5 @@ describe('NavbarHomeComponent', () => {
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelectorAll('.nav-item').length).toBe(2);
   });
+
 });
