@@ -32,4 +32,3 @@ export class ChecklistMenuComponent implements OnInit {
     console.log(this.formsMenu);
   }
 }
- 

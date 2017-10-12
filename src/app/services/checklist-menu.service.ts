@@ -7,7 +7,7 @@ import 'rxjs';
 export class ChecklistMenuService{
 
     constructor(private http: Http){}
-    private formMenuUrl = 'app/formsMenu';    
+    private formMenuUrl = 'app/formsMenu';
     private formMenuAnswerUrl = 'app/formCheckAnswer';
 
     getFormsMenu(): Promise<FormCheckAnswer[]>{
