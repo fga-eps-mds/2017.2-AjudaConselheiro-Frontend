@@ -17,9 +17,16 @@ export class SchoolService {
 
     constructor(private http: Http) { }
 
-    searchSchool(): Observable<Scheduling> {
+    searchSchool(): Observable<Array<Object>> {
       return this.http
-      .get('http://educacao.dadosabertosbr.com/api/escolas?nome=CED%2004', this.options)
+      .get('http://educacao.dadosabertosbr.com/api/escolas/buscaavancada?', this.options)
+      .map(res => this.extractData(res))
+      .catch(this.handleError);
+    }
+
+    searchCity(state: String):  Observable<Array<Object>> {
+      return this.http
+      .get('http://educacao.dadosabertosbr.com/api/cidades/'+ state, this.options)
       .map(res => this.extractData(res))
       .catch(this.handleError);
     }

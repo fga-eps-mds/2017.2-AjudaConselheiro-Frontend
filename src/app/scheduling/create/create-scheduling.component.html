@@ -5,11 +5,37 @@
 <br>
 
 <div class="create-form">
+
+  <label for="local"><i class="fa fa-map-marker" aria-hidden="true"></i> Local:</label>
+
+      <input
+        type="text"
+        class="form-control"
+        id="state"
+        name="state"
+        [(ngModel)]="state"
+        #local="ngModel"
+        required>
+
+      <div class="form-group text-center">
+        <select [(ngModel)]="city">
+          <option *ngFor="let c of cities" [value]="c.code">{{c.name}}</option>
+        </select>
+
+          <input
+          type="button"
+          class="btn btn-deep-orange"
+          (click)="searchCity()"
+          value="Agendar">
+      </div>
+
     <form #formScheduling="ngForm">
         <div class="form-group">
 
-            <label for="local"><i class="fa fa-map-marker" aria-hidden="true"></i> Local:</label>
-            <input
+
+
+
+      <!--      <input
                 type="text"
                 class="form-control"
                 id="local"
@@ -25,7 +51,7 @@
                 <div [hidden]="!local.errors.minlength">
                     Local deve conter ao menos 3 caracteres!
                 </div>
-            </div>
+            </div> -->
 
             <label for="members"><i class="fa fa-group" aria-hidden="true"></i> Membros:</label>
             <input
