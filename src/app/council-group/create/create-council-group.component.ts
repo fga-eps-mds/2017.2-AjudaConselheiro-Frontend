@@ -1,17 +1,17 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
-import { CouncilGroup } from '../models/index';
-import { CouncilGroupService } from '../services/index';
+import { CouncilGroup } from '../../models/index';
+import { CouncilGroupService } from '../../services/index';
 
 @Component({
-  selector: 'app-council-group',
-  templateUrl: './council-group.component.html',
-  styleUrls: ['./council-group.component.css'],
+  selector: 'app-create-council-group',
+  templateUrl: './create-council-group.component.html',
+  styleUrls: ['./create-council-group.component.css'],
   providers: [ CouncilGroupService ]
 })
 
-export class CouncilGroupComponent implements OnInit {
+export class CreateCouncilGroupComponent implements OnInit {
 
   @ViewChild('formCouncilGroup') formCouncilGroup: NgForm;
   councilGroup: CouncilGroup;

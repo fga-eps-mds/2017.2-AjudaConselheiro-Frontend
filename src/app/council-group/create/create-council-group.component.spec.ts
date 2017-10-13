@@ -2,15 +2,15 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 
-import { CouncilGroupComponent } from './council-group.component';
+import { CreateCouncilGroupComponent } from './create-council-group.component';
 
-describe('CouncilGroupComponent', () => {
-  let component: CouncilGroupComponent;
-  let fixture: ComponentFixture<CouncilGroupComponent>;
+describe('CreateCouncilGroupComponent', () => {
+  let component: CreateCouncilGroupComponent;
+  let fixture: ComponentFixture<CreateCouncilGroupComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CouncilGroupComponent ],
+      declarations: [ CreateCouncilGroupComponent ],
       imports: [
         HttpModule,
         FormsModule
@@ -20,7 +20,7 @@ describe('CouncilGroupComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CouncilGroupComponent);
+    fixture = TestBed.createComponent(CreateCouncilGroupComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
