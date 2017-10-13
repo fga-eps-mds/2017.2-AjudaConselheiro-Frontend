@@ -22,4 +22,19 @@ describe('NavbarHomeComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have a navbar', () => {
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('.navbar')).not.toBe(null);
+  });
+
+  it('should have a navbar collapse', () => {
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('.navbar-collapse')).not.toBe(null);
+  });
+
+  it('should have two navbar items', () => {
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelectorAll('.nav-item').length).toBe(2);
+  });
 });

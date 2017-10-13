@@ -23,6 +23,8 @@ import { ChecklistMenuService } from './services/checklist-menu.service';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
 import { CouncilGroupComponent } from './council-group/council-group.component';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { FooterComponent } from './layouts/footer/footer.component';
 
 @NgModule({
 
@@ -36,6 +38,7 @@ import { CouncilGroupComponent } from './council-group/council-group.component';
     ChecklistthreeComponent,
     LoginComponent,
     CouncilGroupComponent,
+    FooterComponent
   ],
 
   imports: [
@@ -43,6 +46,7 @@ import { CouncilGroupComponent } from './council-group/council-group.component';
     HttpModule,
     RouterModule.forRoot(ROUTES),
     MDBBootstrapModule.forRoot(),
+    CarouselModule.forRoot(),
     FormsModule,
     ChecklistModule,
     SchedulingModule,
