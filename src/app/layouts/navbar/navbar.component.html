@@ -11,8 +11,21 @@
             <li *ngIf="!hasToken" class="nav-item">
                 <a class="nav-link" href="/registrar">Cadastrar</a>
             </li>
-            <li *ngIf="hasToken" class="nav-item">
-                <a class="nav-link" href="/home" (click)="logout()">Sair</a>
+            <li
+              *ngIf="hasToken"
+              class="nav-item"
+              mwlConfirmationPopover
+              [title]="title"
+              [message]="message"
+              [confirmText]="confirmText"
+              [cancelText]="cancelText"
+              [placement]="placement"
+              (confirm)="logout()"
+              confirmButtonType="danger"
+              cancelButtonType="default"
+              (click)="confirm=false"
+              [appendToBody]="true">
+              <a class="nav-link" href="/home">Sair</a>
             </li>
         </ul>
     </div>

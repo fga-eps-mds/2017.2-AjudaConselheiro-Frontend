@@ -3,6 +3,9 @@ import { HttpModule } from '@angular/http';
 
 import { NavbarHomeComponent } from './navbar.component';
 import { AuthenticationService } from './../../services/authentication.service';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('NavbarHomeComponent', () => {
   let component: NavbarHomeComponent;
@@ -13,11 +16,16 @@ describe('NavbarHomeComponent', () => {
       declarations: [
         NavbarHomeComponent
       ],
+      schemas: [
+        CUSTOM_ELEMENTS_SCHEMA,
+        NO_ERRORS_SCHEMA
+      ],
       providers: [
         AuthenticationService
       ],
       imports: [
-      HttpModule
+      HttpModule,
+      RouterTestingModule
       ]
     })
     .compileComponents();

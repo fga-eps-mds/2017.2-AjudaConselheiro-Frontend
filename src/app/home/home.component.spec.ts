@@ -5,7 +5,8 @@ import { HttpModule } from '@angular/http';
 import { HomeComponent } from './home.component';
 import { NavbarHomeComponent } from '../layouts/navbar/navbar.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
-import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { AuthenticationService } from './../services/authentication.service';
 
 describe('HomeComponent', () => {
@@ -18,7 +19,10 @@ describe('HomeComponent', () => {
         HomeComponent,
         NavbarHomeComponent
       ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      schemas: [
+        CUSTOM_ELEMENTS_SCHEMA,
+        NO_ERRORS_SCHEMA
+      ],
       imports: [
         CarouselModule,
         RouterTestingModule,

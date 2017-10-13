@@ -20,9 +20,10 @@ import { TextMaskModule } from 'angular2-text-mask';
 import { ROUTES } from './app.routes';
 import { BaseRequestOptions } from '@angular/http';
 import { ChecklistMenuService } from './services/checklist-menu.service';
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { FooterComponent } from './layouts/footer/footer.component';
+import {ConfirmationPopoverModule} from 'angular-confirmation-popover';
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 @NgModule({
 
@@ -43,10 +44,14 @@ import { FooterComponent } from './layouts/footer/footer.component';
     MDBBootstrapModule.forRoot(),
     CarouselModule.forRoot(),
     FormsModule,
+    AlertModule.forRoot(),
     ChecklistModule,
     SchedulingModule,
     UserModule,
-    TextMaskModule
+    TextMaskModule,
+    ConfirmationPopoverModule.forRoot({
+      confirmButtonType: 'danger' // set defaults here
+    })
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [
