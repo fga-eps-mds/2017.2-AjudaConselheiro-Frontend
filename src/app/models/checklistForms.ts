@@ -1,11 +1,16 @@
 // This interface represents the form with question, answer and yes/not.
-export interface FormCheckAnswer{
+export interface FormCheckAnswer {
     question: string;
-    check: boolean;
-    answer: string;
+    commentCheck: boolean;
+    answer: boolean;
+    commentary: string;
 }
 
-export interface FormCheck{
+export interface FormCheck {
     question: string;
     answer: string;
+}
+export interface BinaryFormCardapio {
+  question: string;
+  answer: boolean;
 }

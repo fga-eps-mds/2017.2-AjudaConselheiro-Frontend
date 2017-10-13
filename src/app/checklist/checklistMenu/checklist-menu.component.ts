@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsMenu, FormMenuTwo, FormCheckAnswer, FormCheck} from '../../models/index';
+import { FormsMenu, FormMenuTwo, FormCheckAnswer, FormCheck, BinaryFormCardapio, FormBinary} from '../../models/index';
 import { ChecklistMenuService } from '../../services/index';
 import { ConfirmComentary} from '../checklist.model';
 
@@ -10,19 +10,16 @@ import { ConfirmComentary} from '../checklist.model';
 })
 export class ChecklistMenuComponent implements OnInit {
 
-  formsMenu: Array<FormCheckAnswer>;
-  formMenuTwo: Array<FormCheck>;
+  formsMenu: Array<FormCheckAnswer> = FormsMenu ;
+  formMenuTwo: Array<FormCheck> = FormMenuTwo;
+  formBinary: Array<BinaryFormCardapio> = FormBinary ;
   textArea = false;
 
   checkComentary: ConfirmComentary[]= [
     new ConfirmComentary(false, 'Comment1'),
     new ConfirmComentary(false, 'Comment2'),
-    new ConfirmComentary(false, 'Comment3'),
-    new ConfirmComentary(false, 'Comment4'),
-    new ConfirmComentary(false, 'Comment5'),
-    new ConfirmComentary(false, 'Comment6'),
-    new ConfirmComentary(false, 'Comment7'),
-    new ConfirmComentary(false, 'Comment8'),
+    new ConfirmComentary(null, 'Comment3'),
+    new ConfirmComentary(null, 'Comment4'),
   ];
 
   constructor(private menuService: ChecklistMenuService) {}
@@ -37,7 +34,12 @@ export class ChecklistMenuComponent implements OnInit {
       .then((formsMenuTwo: FormCheck[]) => {
           this.formMenuTwo = formsMenuTwo;
       }).catch(err => console.log(err));
-  }
+
+  // this.menuService.getBinaryFormCardapio()
+  //   .then((formBinary: BinaryFormCardapio[]) => {
+  //       this.formBinary = formBinary;
+  //   }).catch(err => console.log(err));
+}
 
   onSubmit(): void {
     console.log(this.formMenuTwo);

@@ -1,52 +1,242 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
 
-<!-- -->
-<br><br><br><br>
-<div clas="container col-md-12 border border-dark">
-  <div class="row"><br><br><br><br></div>
-    <form (ngSubmit)="onSubmit()">
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <p class="h3 text-center mb-4" align="center">Avaliação dos cardápios das escolas parque e escolas classes da CRE/PPC</p>
-                </div>
-                </div>
-                <form ng-submit="">
-                    <div class="row" >
-                      <div class="col-md-9" align="center"><h5>Avaliação dos cardápios</h5></div>
-                      <div class="col-md-1" align="center"><h5>Sim</h5></div>
-                      <div class="col-md-1" align="center"><h5>Não</h5></div>
+    <!-- -->
+    <br><br><br><br>
+    <div class="container col-md-10 border border-dark">
+      <div class="row"><br><br><br><br></div>
+        <form (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-md-10">
+                    <div class="col-md-10"><br><br></div>
+                    <p class="h3 text-center mb-4" align="center">Avaliação dos cardápios das escolas parque e escolas classes da CRE/PPC</p>
                     </div>
-                    <br>
-                    <br>
-                    <div class="" *ngFor="let item of formsMenu; let i=index;">
-                      <div class="row"  >
-                        <div class="col-md-1"></div>
-                        <div class="col-md-8">{{item.question}}</div>
-                        <div class="col-md-1" align="center"><input type="radio" name="{{item.question}}" value="true" (click)="checkComentary[i].value=true" required></div>
-                        <div class="col-md-1" align="center"><input type="radio" name="{{item.question}}" value="false" (click)="checkComentary[i].value=null"></div>
-                      </div>
-
-                      <div class="row" *ngIf="checkComentary[i].value ===true">
-                        <div class="col-md-8"></div>
-                        <div class="col-md-4">
-                          <div class="md-form">
-                            <textarea mdbActive align ="center"type="text" id="form7" class="md-textarea" placeholder="Observações"></textarea>
-                            <label for="form7" ></label>
-                          </div>
+                    </div>
+                    <form ng-submit="">
+                        <div class="row" >
+                          <div class="col-md-9" align="center"><h5>Avaliação dos cardápios</h5></div>
+                          <div class="col-md-1" align="center"><h5>Sim</h5></div>
+                          <div class="col-md-1" align="center"><h5>Não</h5></div>
                         </div>
-                      </div>
-                  </div>
-                  <br>
-              </form>
+                        <br>
+                        <br>
+                        <!-- Começo da parte referente às perguntas com comentários -->
 
-                <div class="row">
-                  <div class="col-md-1"></div>
-                  <div class="col-md-2"><a href="/checklist" class="btn btn-outline-warning waves-effect"><span class="glyphicon glyphicon-chevron-left " aria-hidden="false"></span><i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>  Voltar</a></div>
-                  <div class="col-md-3"></div>
-                  <div class="col-md-3"></div>
-                  <div class="col-md-2"><button type="submit" class="btn btn-warning btn-rounded waves-light" mdbRippleRadius>Enviar <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></button></div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12"><br></div>
-                </div>
-    </form>
-</div>
+                          <div class="row"  >
+                            <div class="col-md-1"></div>
+                            <div class="col-md-8">Houve falta de alimentação escolar durante o período letivo?
+                               Caso positivo informe o(s) períodos e os produtos?</div>
+                            <div class="col-md-1" align="center"><input type="radio" name="formsMenu0" value="true" (click)="checkComentary[0].value=true" required></div>
+                            <div class="col-md-1" align="center"><input type="radio" name="formsMenu0" value="false" (click)="checkComentary[0].value=null"></div>
+                          </div>
+                          <div class="row" *ngIf="checkComentary[0].value ===true">
+                            <div class="col-md-8"></div>
+                            <div class="col-md-4">
+                              <div class="md-form">
+                                <textarea mdbActive align ="center"type="text" id="form7" class="md-textarea" placeholder="Observações"></textarea>
+                                <label for="form7" ></label>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row"  >
+                            <div class="col-md-1"></div>
+                            <div class="col-md-8">A quantidade de gêneros entregues nas escolas foi suficiente para ofertar refeições para todos os alunos
+                               até que se proceda à próxima distribuição?</div>
+                            <div class="col-md-1" align="center"><input type="radio" name="formsMenu1" value="true" (click)="checkComentary[1].value=true" required></div>
+                            <div class="col-md-1" align="center"><input type="radio" name="formsMenu1" value="false" (click)="checkComentary[1].value=null"></div>
+                          </div>
+                          <div class="row" *ngIf="checkComentary[1].value ===true">
+                            <div class="col-md-8"></div>
+                            <div class="col-md-4">
+                              <div class="md-form">
+                                <textarea mdbActive align ="center"type="text" id="form7" class="md-textarea" placeholder="Observações"></textarea>
+                                <label for="form7" ></label>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row"  >
+                            <div class="col-md-1"></div>
+                            <div class="col-md-8">Há excesso de algum gênero alimentício no cardápio? Qual(ais)?</div>
+                            <div class="col-md-1" align="center"><input type="radio" name="formsMenu2" value="true" (click)="checkComentary[2].value=true" required></div>
+                            <div class="col-md-1" align="center"><input type="radio" name="formsMenu2" value="false" (click)="checkComentary[2].value=null"></div>
+                          </div>
+                          <div class="row" *ngIf="checkComentary[2].value ===true">
+                            <div class="col-md-8"></div>
+                            <div class="col-md-4">
+                              <div class="md-form">
+                                <textarea mdbActive align ="center"type="text" id="form7" class="md-textarea" placeholder="Observações"></textarea>
+                                <label for="form7" ></label>
+                              </div>
+                            </div>
+                          </div>
+
+
+                          <div class="row"  >
+                            <div class="col-md-1"></div>
+                            <div class="col-md-8">A escola complementa a alimentação escolar? Como?</div>
+                            <div class="col-md-1" align="center"><input type="radio" name="formsMenu3" value="true" (click)="checkComentary[3].value=true" required></div>
+                            <div class="col-md-1" align="center"><input type="radio" name="formsMenu3" value="false" (click)="checkComentary[3].value=null"></div>
+                          </div>
+                          <div class="row" *ngIf="checkComentary[3].value ===true">
+                            <div class="col-md-8"></div>
+                            <div class="col-md-4">
+                              <div class="md-form">
+                                <textarea mdbActive align ="center"type="text" id="form7" class="md-textarea" placeholder="Observações"></textarea>
+                                <label for="form7" ></label>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-8">A escola complementa a alimentação escolar? Como?</div>
+                            <div class="col-md-1" align="center"><input type="radio" name="formsMenu4" value="true" (click)="checkComentary[4].value=true" required></div>
+                            <div class="col-md-1" align="center"><input type="radio" name="formsMenu4" value="false" (click)="checkComentary[4].value=null"></div>
+                          </div>
+
+                          <div class="row" *ngIf="checkComentary[4].value ===true">
+                            <div class="col-md-8"></div>
+                            <div class="col-md-4">
+                              <div class="md-form">
+                                <textarea mdbActive align ="center"type="text" id="form7" class="md-textarea" placeholder="Observações"></textarea>
+                                <label for="form7" ></label>
+                              </div>
+                            </div>
+                          </div>
+
+                      <!-- Fim da parte referente às perguntas com comentários -->
+                      <!-- Inicio da parte referente às perguntas binárias -->
+
+                        <div class="row">
+                          <div class="col-md-1"></div>
+                          <div class="col-md-8">De maneira geral, os cardápios são bem elaborados</div>
+                          <div class="col-md-1" align="center"><input type="radio" name="formBinary0" value="true" required></div>
+                          <div class="col-md-1" align="center"><input type="radio" name="formBinary0" value="false"></div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-1"></div>
+                          <div class="col-md-8">De maneira geral, os cardápios são bem aceitos pelos alunos?</div>
+                          <div class="col-md-1" align="center"><input type="radio" name="formBinary1" value="true" required></div>
+                          <div class="col-md-1" align="center"><input type="radio" name="formBinary1" value="false"></div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-1"></div>
+                          <div class="col-md-8">De maneira geral, os cardápios são bem elaborados?</div>
+                          <div class="col-md-1" align="center"><input type="radio" name="formBinary2" value="true" required></div>
+                          <div class="col-md-1" align="center"><input type="radio" name="formBinary2" value="false"></div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-1"></div>
+                          <div class="col-md-8">O cardápio fica exposto para os alunos e comunidade</div>
+                          <div class="col-md-1" align="center"><input type="radio" name="formBinary3" value="true" required></div>
+                          <div class="col-md-1" align="center"><input type="radio" name="formBinary3" value="false"></div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-1"></div>
+                          <div class="col-md-8">A escola recebe doação de alimentos?</div>
+                          <div class="col-md-1" align="center"><input type="radio" name="formBinary4" value="true" required></div>
+                          <div class="col-md-1" align="center"><input type="radio" name="formBinary4" value="false"></div>
+                        </div>
+                        <br>
+                        <br>
+                        <!-- Fim das questões com respostas binárias e início das questões com perguntas de comentário  -->
+                        <div class="row">
+                          <div class="col-md-12" align="center"><h5>Qual a quantidade de frutas e hortaliças que estão sendo oferecidas por aluno,
+                           durante o período de uma semana?</h5></div>
+                          </div>
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                <div class="form-group basic-textarea rounded-corners shadow-textarea">
+                                    <textarea mdbActive align="center" type="text" id="obs" class="form-control z-depth-1" name="obs" rows="3" placeholder="Observações" required></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-12" align="center"><h5>Qual a preparação mais aceita?</h5></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                <div class="form-group basic-textarea rounded-corners shadow-textarea">
+                                    <textarea mdbActive align="center" type="text" id="obs" class="form-control z-depth-1" name="obs"  rows="3" placeholder="Observações" required></textarea>
+                                    <label for="checkthreetext"></label>
+                                </div>
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-12" align="center"><h5>Qual a preparação menos aceita?</h5></div>
+                          </div>
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                <div class="form-group basic-textarea rounded-corners shadow-textarea">
+                                    <textarea mdbActive align="center" type="text" id="obs" class="form-control z-depth-1" name="obs"  rows="3" placeholder="Observações" required></textarea>
+                                    <label for="checkthreetext"></label>
+                                </div>
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+                        <div class="row">
+
+                          <div class="col-md-12" align="center"><h5>Qual produto é mais aceito?</h5></div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                <div class="form-group basic-textarea rounded-corners shadow-textarea">
+                                    <textarea mdbActive align="center" type="text" id="obs" class="form-control z-depth-1" name="obs"  rows="3" placeholder="Observações" required></textarea>
+                                    <label for="checkthreetext"></label>
+                                </div>
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+
+                        <div class="row">
+                          <!-- <div class="col-md-2"></div> -->
+                          <div class="col-md-12" align="center"><h5>Qual produto é menos aceito?</h5></div>
+                          <!-- <div class="col-md-1"></div> -->
+                          <!-- <div class="col-md-1"></div> -->
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                <div class="form-group basic-textarea rounded-corners shadow-textarea">
+                                    <textarea mdbActive align="center" type="text" id="obs" class="form-control z-depth-1" name="obs"  rows="3" placeholder="Observações" required></textarea>
+                                    <label for="checkthreetext"></label>
+                                </div>
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+                        <!--Fim da secção de perguntas com apenas comentários e fim das perguntas  -->
+                      <br>
+
+                  </form>
+
+                    <div class="row">
+                      <div class="col-md-1"></div>
+                      <div class="col-md-2"><a href="/checklist" class="btn btn-outline-warning waves-effect"><span class="glyphicon glyphicon-chevron-left " aria-hidden="false"></span><i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>  Voltar</a></div>
+                      <div class="col-md-3"></div>
+                      <div class="col-md-3"></div>
+                      <div class="col-md-2"><button type="submit" class="btn btn-warning btn-rounded waves-light" mdbRippleRadius>Enviar <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></button></div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12"><br></div>
+                    </div>
+        </form>
+    </div>
+
+  </body>
+</html>

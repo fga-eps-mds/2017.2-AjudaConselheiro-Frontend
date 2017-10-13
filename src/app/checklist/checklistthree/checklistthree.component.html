@@ -11,7 +11,13 @@ dos cardápios das escolas parque e escolas classes da CRE/PPC -->
 
 <body>
     <!-- AVALIAÇÃO DOS CARDÁPIOS DAS ESCOLAS PARQUE E ESCOLAS CLASSES DA CRE/PPC -->
-    <div class="container">
+    <div class="container border border-dark ">
+      <div class="row">
+        <div class="col-md-12">
+          <br>
+          <br>
+        </div>
+      </div>
         <div class="row">
             <div class="col-md-12">
                 <h2 align="center">Avaliação dos cardápios das escolas parque e escolas classes da CRE/PPC</h2>
@@ -84,12 +90,12 @@ dos cardápios das escolas parque e escolas classes da CRE/PPC -->
             </div>
         </form>
         <div class="form-group text-center">
+          <a href="/checklist" class="btn btn-outline-warning waves-effect">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="false"></span>Voltar
+          </a>
             <input type="button" class="btn btn-deep-orange" (click)="newFormulario()" value="Enviar" [disabled]="!formChecklist.form.valid">
-            <a href="/checklist" class="btn btn-outline-warning waves-effect">
-                <span class="glyphicon glyphicon-chevron-left" aria-hidden="false"></span>Voltar
-            </a>
         </div>
-
+        <div class="row"><div class="col-md-12"><br></div></div>
     </div>
 
 </body>
