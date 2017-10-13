@@ -3,6 +3,7 @@ import { SchedulingService } from './../../services/scheduling.service';
 import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { SchoolService } from '../../services/index';
 
 @Component({
   selector: 'app-create-scheduling',
@@ -16,10 +17,23 @@ export class CreateSchedulingComponent implements OnInit {
 
   constructor(
     private schedulingService: SchedulingService,
-    private router: Router) {}
+    private router: Router,
+    private schoolService: SchoolService,
+  ) {}
 
   ngOnInit() {
     this.scheduling = new Scheduling();
+  }
+
+  searchSchool(): void {
+    this.schoolService.searchSchool()
+      .subscribe(
+          result => {
+            console.log(result);
+          },
+          error => {
+            console.error(error);
+      });
   }
 
   newScheduling(): void {

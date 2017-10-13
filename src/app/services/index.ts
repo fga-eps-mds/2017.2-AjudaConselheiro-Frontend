@@ -5,3 +5,4 @@ export * from './checklistthree.service';
 export * from './checklist.service';
 export * from './authentication.service';
 export * from './alert.service';
+export * from './school.service';
