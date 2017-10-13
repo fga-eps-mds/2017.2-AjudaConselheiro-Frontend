@@ -3,4 +3,6 @@ export class CouncilGroup {
   superGroupId: number;
   id: number;
   description: string;
+  county: string;
+  state: string;
 }
