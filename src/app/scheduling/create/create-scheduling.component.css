@@ -26,4 +26,38 @@
 
   .form-simple input[type=password]:focus:not([readonly]) + label {
     color: #4f4f4f; }
-                  
+
+  .search{
+    margin-bottom: 20px;
+  }
+  .search > div{
+    margin: 5px;
+  }
+
+  .school-form{
+    margin: 15px;
+  }
+
+  .select-style {
+      border: 1px solid #ccc;
+      width: 100%;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      border-radius: 3px;
+      overflow: hidden;
+      background: #fafafa;
+  }
+
+  .select-style select {
+      width: 100%;
+     -webkit-appearance: none;
+     -moz-appearance: none;
+     appearance: none;
+     padding: 2px 2px 2px 2px;
+     border: none;
+     background: transparent url("http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png") no-repeat 100% center;
+  }
+
+  .select-style select:focus {
+      outline: none;
+  }

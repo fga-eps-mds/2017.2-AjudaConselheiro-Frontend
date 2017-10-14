@@ -6,7 +6,7 @@
 
 <div class="create-form">
   <div>
-    <div class="card container">
+    <div class="card container search">
       <div class="d-flex justify-content-end">
         <p class="mr-auto p-2 h5 text-center">Buscar Escolas</p>
           <button class="btn btn-deep-orange p-2" type="button" data-toggle="collapse"
@@ -19,7 +19,7 @@
 
       <div [ngClass]="{'collapse': collapsed, 'navbar-collapse': true}">
 
-        <label for="name"><i class="fa fa-pencil" aria-hidden="true"></i> Sigla do Estado:</label>
+        <label for="name"><i class="fa fa-globe" aria-hidden="true"></i> Sigla do Estado:</label>
         <div class="input-group">
           <input
             type="text"
@@ -38,14 +38,15 @@
           </span>
         </div>
 
-        <div class="">
+      <div class="school-form">
+        <label><i class="fa fa-road" aria-hidden="true"></i> Municipio:</label>
+        <div class="container select-style">
           <select [(ngModel)]="search.city">
             <option value="" selected disabled>Escolha um Município</option>
             <option *ngFor="let c of cities" [value]="c.code">{{c.name}}</option>
           </select>
         </div>
-
-        <label for="name"><i class="fa fa-pencil" aria-hidden="true"></i> Nome da Escola:</label>
+        <label for="name"><i class="fa fa-info" aria-hidden="true"></i> Nome da Escola:</label>
         <input
           type="text"
           class="form-control"
@@ -55,28 +56,45 @@
           #name="ngModel">
 
 
-        <label for="code"><i class="fa fa-group" aria-hidden="true"></i> Código da Escola:</label>
+        <label for="code"><i class="fa fa-pencil" aria-hidden="true"></i> Código da Escola:</label>
         <input
           type="text"
-          class="form-control fa fa-user prefix"
+          class="form-control"
           id="code"
           name="code"
           [(ngModel)]="search.code"
           #code="ngModel">
-
-        <div class="form-group text-center">
+      </div>
+        <div class="text-center">
           <input
             type="button"
             class="btn btn-deep-orange"
             (click)="searchSchool()"
             value="Buscar Escolas">
         </div>
+        <table *ngIf="schools.length>0"class="table">
+          <thead class="deep-orange lighten-4">
+            <tr>
+              <th>#</th>
+              <th>Nome</th>
+              <th>Código</th>
+              <th>Rede</th>
+              <th>Cidade</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
 
-        <div *ngFor="let school of schools">
-          <ul>
-            <li >Nome: {{school.nome}}</li>
-          </ul>
-        </div>
+          <tbody>
+            <tr *ngFor="let school of schools; let i = index ">
+              <th scope="row">{{i + 1}}</th>
+              <td>{{school.nome}}</td>
+              <td>{{school.cod}}</td>
+              <td>{{school.dependenciaAdministrativaTxt}}</td>
+              <td>{{school.cidade}}</td>
+              <td>{{school.estado}}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
 

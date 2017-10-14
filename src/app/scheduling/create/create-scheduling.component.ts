@@ -55,6 +55,7 @@ export class CreateSchedulingComponent implements OnInit {
             console.log("Resultado da busca: ", this.schools);
           },
           error => {
+            alert(error);
             console.error(error);
       });
   }
@@ -91,6 +92,7 @@ export class CreateSchedulingComponent implements OnInit {
             console.log(this.cities);
           },
           error => {
+            alert(error);
             console.error(error);
       });
   }
