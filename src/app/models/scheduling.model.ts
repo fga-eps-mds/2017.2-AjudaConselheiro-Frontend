@@ -1,4 +1,4 @@
-export class Scheduling{
+export class Scheduling {
   constructor(
       public id?: number,
       public local?: string,
@@ -6,5 +6,5 @@ export class Scheduling{
       public date?: number,
       public time?: number,
       public type?: string
-  ){}
+  ) {}
 }

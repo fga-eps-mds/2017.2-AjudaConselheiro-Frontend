@@ -23,9 +23,9 @@ export const ROUTES: Routes = [
   { path: 'agendamento', component: SchedulingHomeComponent },
   { path: 'agendamento/criar', component: CreateSchedulingComponent},
   { path: 'agendamento/editar/:id', component: EditComponent },
-  { path: 'users', component: UserListComponent},
-  { path: 'users/list', component: UserListComponent},
+  { path: 'usuarios', component: UserListComponent},
+  { path: 'usuarios/todos', component: UserListComponent},
   { path: 'login', component: LoginComponent },
-  { path: 'register', component: CreateUserComponent },
-  { path: 'users/edit/:id', component: UserEditComponent },
+  { path: 'registrar', component: CreateUserComponent },
+  { path: 'usuarios/editar/:id', component: UserEditComponent },
 ];

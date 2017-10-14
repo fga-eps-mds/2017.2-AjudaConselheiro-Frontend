@@ -1,7 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ChecklistThreeService } from '../../services/index';
 import { ChecklistthreeComponent } from './checklistthree.component';
-import { FormsModule }   from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
+import { FormsModule } from '@angular/forms';
 
 describe('ChecklistthreeComponent', () => {
   let component: ChecklistthreeComponent;
@@ -10,7 +11,8 @@ describe('ChecklistthreeComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ChecklistthreeComponent ],
-      imports: [ FormsModule ],
+      imports: [ FormsModule, RouterTestingModule ],
+      providers: [ChecklistThreeService]
     })
     .compileComponents();
   }));
