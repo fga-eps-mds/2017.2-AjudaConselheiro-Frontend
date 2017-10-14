@@ -9,14 +9,14 @@ export class InMemoryDataService implements InMemoryDbService {
 
         const formsMenu: Array<FormCheckAnswer> = [
                 {question: `Houve falta de alimentação escolar durante o período letivo?
-                   Caso positivo informe o(s) períodos e os produtos?`, commentCheck: null, answer: false, commentary: ''},
+                   Caso positivo informe o(s) períodos e os produtos?`,  answer: false, commentary: ''},
                 {question: `A escola conseguiu dubstituir a preparação/produto que faltou por outra,
-                   para que não houvesse prejuízo aos alunos? Qual foi a substituição?`, commentCheck: null, answer: false, commentary: ''},
+                   para que não houvesse prejuízo aos alunos? Qual foi a substituição?`,  answer: false, commentary: ''},
                 {question: `Há excesso de algum gênero alimentício no cardápio? Qual(ais)?`,
-                   commentCheck: null, answer: false, commentary: ''},
-                {question: 'A escola complementa a alimentação escolar? Como?', commentCheck: null, answer: false, commentary: ''},
+                    answer: false, commentary: ''},
+                {question: 'A escola complementa a alimentação escolar? Como?',  answer: false, commentary: ''},
                 {question: `A quantidade de gêneros entregues nas escolas foi suficiente para ofertar refeições para todos os alunos até
-                 que se proceda à próxima distribuição?`, commentCheck: null, answer: false, commentary: ''},
+                 que se proceda à próxima distribuição?`,  answer: false, commentary: ''},
             ];
 
             const formMenuTwo: Array<FormCheck> = [

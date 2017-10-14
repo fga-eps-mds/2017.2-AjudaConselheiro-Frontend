@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormCheck, FormCheckAnswer, FormsMenu, FormMenuTwo} from '../models/index';
+import { BinaryFormCardapio } from '../models/index';
 import {Http } from '@angular/http';
 import 'rxjs';
 
@@ -25,5 +26,10 @@ export class ChecklistMenuService {
         .toPromise()
         .then(response => response.json().data as FormCheck[]);
     }
+     getBinaryFormCardapio(): Promise<BinaryFormCardapio[]> {
+         return this.http.get(this.formMenuAnswerUrl)
+         .toPromise()
+         .then(response => response.json().data as BinaryFormCardapio[]);
+     }
 
 }

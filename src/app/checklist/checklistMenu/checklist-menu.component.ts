@@ -36,15 +36,16 @@ export class ChecklistMenuComponent implements OnInit {
           this.formMenuTwo = formsMenuTwo;
       }).catch(err => console.log(err));
 
-  // this.menuService.getBinaryFormCardapio()
-  //   .then((formBinary: BinaryFormCardapio[]) => {
-  //       this.formBinary = formBinary;
-  //   }).catch(err => console.log(err));
+   this.menuService.getBinaryFormCardapio()
+     .then((formBinary: BinaryFormCardapio[]) => {
+         this.formBinary = formBinary;
+     }).catch(err => console.log(err));
 }
 
   onSubmit(): void {
     console.log(this.formMenuTwo);
     console.log(this.formsMenu);
+    console.log(this.formBinary);
   }
 
 }
