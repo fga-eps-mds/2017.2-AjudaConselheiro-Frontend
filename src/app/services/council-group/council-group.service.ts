@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/catch';
 import { CouncilGroup } from '../../models/index';
 
 @Injectable()
 export class CouncilGroupService {
   private headers: Headers;
   private options: RequestOptions;
-  private url: 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/grupos';
   private appToken: any;
 
   constructor(private http: Http) { }
@@ -29,17 +27,24 @@ export class CouncilGroupService {
 
     this.options = new RequestOptions({ headers: this.headers });
     console.log('Create Council');
-    const body = JSON.stringify(councilGroup);
+
+    const body = {
+      'codAplicativo': 462,
+      'codGrupoPai': 1,
+      'codObjeto': 1,
+      'codTipoObjeto': 1,
+      'descricao': 'Slinger'
+    } ;
 
     return this.http
-      .post(this.url, body, this.options)
+      .post('http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/grupos', body, this.options)
       .map(res => this.extractData(res))
       .catch(this.handleError);
   }
 
   private extractData(res: Response) {
     const body = res.json();
-    const location = res.headers.get('apptoken');
+    const location = res.headers.get('location');
     console.log(body);
     console.log(location);
     return location || {};
