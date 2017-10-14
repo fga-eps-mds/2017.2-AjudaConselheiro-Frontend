@@ -20,6 +20,7 @@ export class ChecklistMenuComponent implements OnInit {
     new ConfirmComentary(false, 'Comment2'),
     new ConfirmComentary(null, 'Comment3'),
     new ConfirmComentary(null, 'Comment4'),
+    new ConfirmComentary(null, 'Comment5'),
   ];
 
   constructor(private menuService: ChecklistMenuService) {}
