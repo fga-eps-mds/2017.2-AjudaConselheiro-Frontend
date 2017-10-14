@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+
 import { CouncilGroup } from '../../models/index';
 
 @Injectable()
@@ -10,6 +11,7 @@ export class CouncilGroupService {
   private appToken: any;
 
   constructor(private http: Http) { }
+
   createCouncil(councilGroup: CouncilGroup): Observable<any> {
 
     this.appToken = localStorage.getItem('appToken');
@@ -28,13 +30,10 @@ export class CouncilGroupService {
     this.options = new RequestOptions({ headers: this.headers });
     console.log('Create Council');
 
-    const body = {
-      'codAplicativo': 462,
-      'codGrupoPai': 1,
-      'codObjeto': 1,
-      'codTipoObjeto': 1,
-      'descricao': 'Slinger'
-    } ;
+    // councilGroup.descricao = 'CAE - ' + councilGroup.municipio + ' - ' + councilGroup.estado;
+
+    const body = JSON.stringify(councilGroup);
+    console.log(body);
 
     return this.http
       .post('http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/grupos', body, this.options)

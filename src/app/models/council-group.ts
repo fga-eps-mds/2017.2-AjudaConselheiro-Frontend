@@ -1,8 +1,9 @@
 export class CouncilGroup {
-  appId: number;
-  superGroupId: number;
-  id: number;
-  description: string;
-  county: string;
-  state: string;
+  codAplicativo = 462;
+  codGrupoPai = 1;
+  codObjeto = 1;
+  codTipoObjeto = 1;
+  descricao = '';
+
+  constructor () {  }
 }
