@@ -30,6 +30,70 @@ describe('Checklist-menuComponent', () => {
     const checklist = fixture.debugElement.nativeElement;
     expect(checklist.nativeElement).not.toBe(null);
   });
+  it('should have a text area Question', () => {
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('.question')).not.toBe(null);
+  });
+  it('should have a text area Question1', () => {
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('.question1')).not.toBe(null);
+  });
+  it('should have a text area Question2', () => {
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('.question2')).not.toBe(null);
+  });
+  it('should have a text area Question3', () => {
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('.question3')).not.toBe(null);
+  });
+  it('should have a text area Question4', () => {
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('.question4')).not.toBe(null);
+  });
+  it('should have a text area Question5', () => {
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('.question5')).not.toBe(null);
+  });
+  it('should have a text area Question6', () => {
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('.question6')).not.toBe(null);
+  });
+  it('should have a text area Question7', () => {
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('.question7')).not.toBe(null);
+  });
+  it('should have a text area Question8', () => {
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('.question8')).not.toBe(null);
+  });
+  it('should have a text area Question9', () => {
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('.question9')).not.toBe(null);
+  });
+  it('should have a text area Question10', () => {
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('.question10')).not.toBe(null);
+  });
+  it('should have a text area Question11', () => {
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('.question11')).not.toBe(null);
+  });
+  it('should have a text area Question12', () => {
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('.question12')).not.toBe(null);
+  });
+  it('should have a text area Question13', () => {
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('.question13')).not.toBe(null);
+  });
+  it('should have a text area Question14', () => {
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('.question14')).not.toBe(null);
+  });
+  it('should have a text area Question15', () => {
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('.question15')).not.toBe(null);
+  });
   it('should have a text area for the first commentary', () => {
     component.checkComentary[0].value = true;
     fixture.detectChanges();
