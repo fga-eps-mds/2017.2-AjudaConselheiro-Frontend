@@ -42,7 +42,7 @@ export class CreateSchedulingComponent implements OnInit {
     this.schoolService.searchSchool(this.search)
       .subscribe(
           result => {
-            this.filterSchools(result);
+            this.schools = this.filterSchools(result);
           },
           error => {
             alert(error);
@@ -50,18 +50,15 @@ export class CreateSchedulingComponent implements OnInit {
       });
   }
 
-  filterSchools(result: Array<Object>): void {
+  filterSchools(result: Array<Object>): Array<Object> {
     var res = [];
 
     result.forEach(subitem => {
       res.push(subitem);
     });
-    this.schools = [];
 
-    res[1].forEach(subitem => {
-      this.schools.push(subitem);
-    });
-    console.log("Resultado da busca: ", this.schools);
+    console.log("Resultado da busca: ", res[1]);
+    return res[1];
   }
 
   searchCity(): void {
