@@ -42,53 +42,33 @@ export class CreateSchedulingComponent implements OnInit {
     this.schoolService.searchSchool(this.search)
       .subscribe(
           result => {
-            var res = [];
-
-            result.forEach(subitem => {
-              res.push(subitem);
-            });
-            this.schools = [];
-
-            res[1].forEach(subitem => {
-              this.schools.push(subitem);
-            });
-            console.log("Resultado da busca: ", this.schools);
+            this.filterSchools(result);
           },
           error => {
             alert(error);
             console.error(error);
       });
   }
+
+  filterSchools(result: Array<Object>): void {
+    var res = [];
+
+    result.forEach(subitem => {
+      res.push(subitem);
+    });
+    this.schools = [];
+
+    res[1].forEach(subitem => {
+      this.schools.push(subitem);
+    });
+    console.log("Resultado da busca: ", this.schools);
+  }
+
   searchCity(): void {
     this.schoolService.searchCity(this.state)
       .subscribe(
           result => {
-            console.log(result);
-            this.cities = [];
-            result.forEach(subitem => {
-              var city = {
-                name: <string> null,
-                code: <string> null
-              };
-              city.name = JSON.stringify(subitem);
-              console.log(city.name)
-              var quote = /\"/g;
-              var colon = /:/;
-              var letters = /[\d:-]+/g;
-              var numbers = /:[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/;
-
-              // console.log('antes: '+ this.city.name);
-
-              var removeQuote = city.name.replace(quote, '');
-              city.name = removeQuote.replace(letters, '');
-              city.code = removeQuote.replace(numbers, '');
-
-              // console.log('codigo: '+ this.city.code);
-              // console.log('nome: '+ this.city.name);
-              console.log(city);
-
-              this.cities.push(city);
-            });
+            this.cities = this.cityPush(result);
             console.log(this.cities);
           },
           error => {
@@ -97,6 +77,43 @@ export class CreateSchedulingComponent implements OnInit {
       });
   }
 
+  cityPush(result: Array<Object>): Array<Object>{
+    console.log(result);
+
+    var cities = [];
+
+    result.forEach(subitem => {
+      var untreated = JSON.stringify(subitem);
+      var city = this.cityFilter(untreated);
+      cities.push(city);
+    });
+
+    return cities;
+  }
+
+  cityFilter(untreated: string): Object{
+    var city = {
+      name: <string> null,
+      code: <string> null
+    };
+    city.name = untreated;
+    console.log(city.name)
+    var quote = /\"/g;
+    var colon = /:/;
+    var letters = /[\d:-]+/g;
+    var numbers = /:[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/;
+
+    // console.log('antes: '+ this.city.name);
+
+    var removeQuote = city.name.replace(quote, '');
+    city.name = removeQuote.replace(letters, '');
+    city.code = removeQuote.replace(numbers, '');
+
+    // console.log('codigo: '+ this.city.code);
+    // console.log('nome: '+ this.city.name);
+    console.log(city);
+    return city;
+  }
   newScheduling(): void {
     if (this.formScheduling.form.valid) {
       this.schedulingService.newScheduling(this.scheduling);
