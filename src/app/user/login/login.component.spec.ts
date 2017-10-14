@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TextMaskModule } from 'angular2-text-mask';
@@ -12,7 +12,7 @@ describe('LoginComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ LoginComponent ],
-      imports: [TextMaskModule, HttpModule, RouterTestingModule],
+      imports: [TextMaskModule, HttpModule, RouterTestingModule, FormsModule],
     })
     .compileComponents();
   }));
