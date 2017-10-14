@@ -54,4 +54,19 @@ describe('HomeComponent', () => {
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('app-carousel')).not.toBe(null);
   });
+
+  it('should know when the localStorage has not loggedOut property', () => {
+    localStorage.removeItem('loggedOut');
+    expect(fixture.componentInstance.fromLocalStorage()).toBeFalsy();
+  });
+
+  it('should know when the localStorage loggedOut property is truthy', () => {
+    localStorage.setItem('loggedOut', 'true');
+    expect(fixture.componentInstance.fromLocalStorage()).toBeTruthy();
+  });
+
+  it('should know when the localStorage loggedOut property is falsy', () => {
+    localStorage.setItem('loggedOut', 'false');
+    expect(fixture.componentInstance.fromLocalStorage()).toBeFalsy();
+  });
 });
