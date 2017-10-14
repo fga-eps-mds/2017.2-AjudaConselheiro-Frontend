@@ -17,10 +17,6 @@ export class CreateSchedulingComponent implements OnInit {
   scheduling: Scheduling;
   state: string;
   cities: Array<Object>;
-  city = {
-    name: <string> null,
-    code: <string> null
-  };
   search: Search;
   schools: Array<Object>;
 
@@ -36,10 +32,6 @@ export class CreateSchedulingComponent implements OnInit {
     this.state = '';
     this.cities = new Array<Object>();
     this.schools = new Array<Object>();
-    this.city = {
-      name: <string> null,
-      code: <string> null
-    };
     this.search = new Search();
   }
 
@@ -71,24 +63,30 @@ export class CreateSchedulingComponent implements OnInit {
       .subscribe(
           result => {
             console.log(result);
+            this.cities = [];
             result.forEach(subitem => {
-
-              this.city.name = JSON.stringify(subitem);
+              var city = {
+                name: <string> null,
+                code: <string> null
+              };
+              city.name = JSON.stringify(subitem);
+              console.log(city.name)
               var quote = /\"/g;
-              var letters = /[\d :-]+/;
-              var numbers = /:([^:\\) ]+)/;
+              var colon = /:/;
+              var letters = /[\d:-]+/g;
+              var numbers = /:[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/;
 
-              console.log('antes: '+ this.city.name);
+              // console.log('antes: '+ this.city.name);
 
-              var removeQuote = this.city.name.replace(quote, '');
-              this.city.code = removeQuote.replace(numbers, '');
-              this.city.name = removeQuote.replace(letters, '');
+              var removeQuote = city.name.replace(quote, '');
+              city.name = removeQuote.replace(letters, '');
+              city.code = removeQuote.replace(numbers, '');
 
-              console.log('codigo: '+ this.city.code);
-              console.log('nome: '+ this.city.name);
-              console.log(this.city);
+              // console.log('codigo: '+ this.city.code);
+              // console.log('nome: '+ this.city.name);
+              console.log(city);
 
-              this.cities.push(this.city);
+              this.cities.push(city);
             });
             console.log(this.cities);
           },
@@ -102,5 +100,10 @@ export class CreateSchedulingComponent implements OnInit {
       this.schedulingService.newScheduling(this.scheduling);
       this.router.navigate(['/agendamento']);
     }
+  }
+
+  collapsed = true;
+  toggleCollapsed(): void {
+    this.collapsed = !this.collapsed;
   }
 }

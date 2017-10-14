@@ -5,35 +5,48 @@
 <br>
 
 <div class="create-form">
+  <div>
+    <div class="card container">
+      <div class="d-flex justify-content-end">
+        <p class="mr-auto p-2 h5 text-center">Buscar Escolas</p>
+          <button class="btn btn-deep-orange p-2" type="button" data-toggle="collapse"
+          data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+          aria-expanded="false" aria-label="Toggle navigation"
+          (click)="toggleCollapsed()">
+          <span class="fa fa-chevron-down" ></span>
+        </button>
+      </div>
 
-  <label for="local"><i class="fa fa-map-marker" aria-hidden="true"></i> Sigla do Estado:</label>
+      <div [ngClass]="{'collapse': collapsed, 'navbar-collapse': true}">
 
-      <input
-        type="text"
-        class="form-control"
-        id="state"
-        name="state"
-        [(ngModel)]="state"
-        #stt="ngModel"
-        required>
-
-      <div class="form-group text-center">
+        <label for="name"><i class="fa fa-pencil" aria-hidden="true"></i> Sigla do Estado:</label>
+        <div class="input-group">
           <input
-          type="button"
-          class="btn btn-deep-orange"
-          (click)="searchCity()"
-          value="Buscar municípios neste Estado">
-      </div>
+            type="text"
+            class="form-control"
+            id="state"
+            name="state"
+            [(ngModel)]="state"
+            #stt="ngModel"
+            minlength="2"
+            maxlength="2">
+            <span class="input-group-btn">
+              <button class="btn btn-deep-orange rounded" type="button" aria-label="Search"
+              (click)="searchCity()">
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </button>
+          </span>
+        </div>
 
-      <div class="">
-        <select [(ngModel)]="city">
-          <option *ngFor="let c of cities" [value]="c.code">{{c.name}}</option>
-        </select>
-      </div>
+        <div class="">
+          <select [(ngModel)]="search.city">
+            <option value="" selected disabled>Escolha um Município</option>
+            <option *ngFor="let c of cities" [value]="c.code">{{c.name}}</option>
+          </select>
+        </div>
 
-      <label for="name"><i class="fa fa-map-marker" aria-hidden="true"></i> Nome da Escola:</label>
-
-      <input
+        <label for="name"><i class="fa fa-pencil" aria-hidden="true"></i> Nome da Escola:</label>
+        <input
           type="text"
           class="form-control"
           id="name"
@@ -41,51 +54,34 @@
           [(ngModel)]="search.name"
           #name="ngModel">
 
-      <input
+
+        <label for="code"><i class="fa fa-group" aria-hidden="true"></i> Código da Escola:</label>
+        <input
           type="text"
-          class="form-control"
+          class="form-control fa fa-user prefix"
           id="code"
           name="code"
           [(ngModel)]="search.code"
           #code="ngModel">
 
-      <div class="form-group text-center">
+        <div class="form-group text-center">
           <input
-          type="button"
-          class="btn btn-deep-orange"
-          (click)="searchSchool()"
-          value="Buscar Escolas">
-      </div>
-
-      <div *ngFor="let school of schools">
-            <ul>
-                <li >Nome: {{school.nome}}</li>
-            </ul>
+            type="button"
+            class="btn btn-deep-orange"
+            (click)="searchSchool()"
+            value="Buscar Escolas">
         </div>
+
+        <div *ngFor="let school of schools">
+          <ul>
+            <li >Nome: {{school.nome}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
 
     <form #formScheduling="ngForm">
         <div class="form-group">
-
-
-
-
-      <!--      <input
-                type="text"
-                class="form-control"
-                id="local"
-                name="local"
-                [(ngModel)]="scheduling.local"
-                #local="ngModel"
-                minlength="3"
-                required>
-            <div *ngIf="local.errors && (local.dirty || local.touched)" class="alert alert-danger">
-                <div [hidden]="!local.errors.required">
-                    Digite um local!
-                </div>
-                <div [hidden]="!local.errors.minlength">
-                    Local deve conter ao menos 3 caracteres!
-                </div>
-            </div> -->
 
             <label for="members"><i class="fa fa-group" aria-hidden="true"></i> Membros:</label>
             <input
