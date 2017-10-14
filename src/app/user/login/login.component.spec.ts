@@ -27,4 +27,18 @@ describe('LoginComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('Entering email', () => {
+    const email = fixture.debugElement.nativeElement;
+    // loginEl.nativeElement.value = "test@example.com";
+    // expect(email).toBeTruthy();
+    expect(email.nativeElement).not.toBe(null);
+  });
+
+  it('Entering password', () => {
+    const password = fixture.debugElement.nativeElement;
+    // loginEl.nativeElement.value = "test@example.com";
+    // expect(email).toBeTruthy();
+    expect(password.nativeElement).not.toBe(null);
+  });
 });
