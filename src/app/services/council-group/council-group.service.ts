@@ -30,15 +30,21 @@ export class CouncilGroupService {
     this.options = new RequestOptions({ headers: this.headers });
     console.log('Create Council');
 
-    // councilGroup.descricao = 'CAE - ' + councilGroup.municipio + ' - ' + councilGroup.estado;
-
-    const body = JSON.stringify(councilGroup);
+    const body = this.getFormattedData(councilGroup);
     console.log(body);
 
     return this.http
       .post('http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/grupos', body, this.options)
       .map(res => this.extractData(res))
       .catch(this.handleError);
+  }
+
+  private getFormattedData(councilGroup: CouncilGroup) {
+    councilGroup.descricao = 'CAE - ' + councilGroup.municipio + ' - ' + councilGroup.estado;
+
+    const temp = {'codAplicativo':councilGroup.codAplicativo, 'descricao':councilGroup.descricao};
+    console.log(temp);
+    return JSON.stringify(temp);
   }
 
   private extractData(res: Response) {
