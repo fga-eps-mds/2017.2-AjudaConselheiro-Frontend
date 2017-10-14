@@ -35,34 +35,54 @@ describe('Checklist-menuComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('.commentaryOne')).not.toBe(null);
-    
   });
   it('should have a text area for the second commentary', () => {
     component.checkComentary[1].value = true;
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('.commentaryTwo')).not.toBe(null);
-    
   });
   it('should have a text area for the third commentary', () => {
     component.checkComentary[2].value = true;
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('.commentaryThree')).not.toBe(null);
-    
   });
   it('should have a text area for the fourth commentary', () => {
     component.checkComentary[3].value = true;
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('.commentaryFour')).not.toBe(null);
-    
   });
   it('should have a text area for the fifth commentary', () => {
     component.checkComentary[4].value = true;
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('.commentaryFive')).not.toBe(null);
-    
+  });
+  it('should not have a text area for the first commentary', () => {
+    component.checkComentary[0].value = null;
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('.commentaryOne')).toBe(null);
+  });
+  it('should not have a text area for the second commentary', () => {
+    component.checkComentary[1].value = null;
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('.commentaryTwo')).toBe(null);
+  });
+  it('should not have a text area for the third commentary', () => {
+    component.checkComentary[2].value = null;
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('.commentaryThree')).toBe(null);
+  });
+  it('should not have a text area for the fourth commentary', () => {
+    component.checkComentary[3].value = null;
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('.commentaryFour')).toBe(null);
+  });
+  it('should not have a text area for the fifth commentary', () => {
+    component.checkComentary[4].value = null;
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('.commentaryFive')).toBe(null);
   });
 });
