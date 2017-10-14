@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-
 import { CouncilGroup } from '../../models/index';
 import { CouncilGroupService } from '../../services/index';
 
@@ -15,6 +14,7 @@ export class CreateCouncilGroupComponent implements OnInit {
 
   @ViewChild('formCouncilGroup') formCouncilGroup: NgForm;
   councilGroup: CouncilGroup;
+  private location: any;
 
   constructor(
     private councilGroupService: CouncilGroupService,
@@ -28,7 +28,8 @@ export class CreateCouncilGroupComponent implements OnInit {
     this.councilGroupService.createCouncil(this.councilGroup)
       .subscribe(
       result => {
-        this.councilGroup = result;
+        this.location = result;
+        console.log(this.location);
       },
       error => {
         console.log(error);
