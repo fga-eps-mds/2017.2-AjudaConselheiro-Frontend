@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { SchoolService } from '../../services/index';
+import { Search } from './../../models/search.model';
 
 @Component({
   selector: 'app-create-scheduling',
@@ -14,12 +15,15 @@ export class CreateSchedulingComponent implements OnInit {
 
   @ViewChild('formScheduling') formScheduling: NgForm;
   scheduling: Scheduling;
-  state: String;
+  state: string;
   cities: Array<Object>;
   city = {
     name: <string> null,
     code: <string> null
   };
+  search: Search;
+  schools: Array<Object>;
+
 
   constructor(
     private schedulingService: SchedulingService,
@@ -29,19 +33,34 @@ export class CreateSchedulingComponent implements OnInit {
 
   ngOnInit() {
     this.scheduling = new Scheduling();
-    this.state = new String;
+    this.state = '';
     this.cities = new Array<Object>();
+    this.schools = new Array<Object>();
     this.city = {
       name: <string> null,
       code: <string> null
     };
+    this.search = new Search();
   }
 
   searchSchool(): void {
-    this.schoolService.searchSchool()
+    this.search.state = this.state;
+    this.search.situation = '1';
+
+    this.schoolService.searchSchool(this.search)
       .subscribe(
           result => {
-            console.log(result);
+            var res = [];
+
+            result.forEach(subitem => {
+              res.push(subitem);
+            });
+            this.schools = [];
+
+            res[1].forEach(subitem => {
+              this.schools.push(subitem);
+            });
+            console.log("Resultado da busca: ", this.schools);
           },
           error => {
             console.error(error);
@@ -58,13 +77,17 @@ export class CreateSchedulingComponent implements OnInit {
               var quote = /\"/g;
               var letters = /[\d :-]+/;
               var numbers = /:([^:\\) ]+)/;
-              console.log('antes: '+ this.city.name)
+
+              console.log('antes: '+ this.city.name);
+
               var removeQuote = this.city.name.replace(quote, '');
               this.city.code = removeQuote.replace(numbers, '');
               this.city.name = removeQuote.replace(letters, '');
+
               console.log('codigo: '+ this.city.code);
               console.log('nome: '+ this.city.name);
               console.log(this.city);
+
               this.cities.push(this.city);
             });
             console.log(this.cities);

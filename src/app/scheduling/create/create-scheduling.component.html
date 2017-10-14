@@ -6,7 +6,7 @@
 
 <div class="create-form">
 
-  <label for="local"><i class="fa fa-map-marker" aria-hidden="true"></i> Local:</label>
+  <label for="local"><i class="fa fa-map-marker" aria-hidden="true"></i> Sigla do Estado:</label>
 
       <input
         type="text"
@@ -14,20 +14,54 @@
         id="state"
         name="state"
         [(ngModel)]="state"
-        #local="ngModel"
+        #stt="ngModel"
         required>
 
       <div class="form-group text-center">
-        <select [(ngModel)]="city">
-          <option *ngFor="let c of cities" [value]="c.code">{{c.name}}</option>
-        </select>
-
           <input
           type="button"
           class="btn btn-deep-orange"
           (click)="searchCity()"
-          value="Agendar">
+          value="Buscar municípios neste Estado">
       </div>
+
+      <div class="">
+        <select [(ngModel)]="city">
+          <option *ngFor="let c of cities" [value]="c.code">{{c.name}}</option>
+        </select>
+      </div>
+
+      <label for="name"><i class="fa fa-map-marker" aria-hidden="true"></i> Nome da Escola:</label>
+
+      <input
+          type="text"
+          class="form-control"
+          id="name"
+          name="name"
+          [(ngModel)]="search.name"
+          #name="ngModel">
+
+      <input
+          type="text"
+          class="form-control"
+          id="code"
+          name="code"
+          [(ngModel)]="search.code"
+          #code="ngModel">
+
+      <div class="form-group text-center">
+          <input
+          type="button"
+          class="btn btn-deep-orange"
+          (click)="searchSchool()"
+          value="Buscar Escolas">
+      </div>
+
+      <div *ngFor="let school of schools">
+            <ul>
+                <li >Nome: {{school.nome}}</li>
+            </ul>
+        </div>
 
     <form #formScheduling="ngForm">
         <div class="form-group">
