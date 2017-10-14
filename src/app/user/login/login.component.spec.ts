@@ -1,9 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TextMaskModule } from 'angular2-text-mask';
 import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
+
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -25,5 +26,15 @@ describe('LoginComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+    it('Entering email', () => {
+    const email = fixture.debugElement.nativeElement;
+    expect(email.nativeElement).not.toBe(null);
+  });
+
+  it('Entering password', () => {
+    const password = fixture.debugElement.nativeElement;
+    expect(password.nativeElement).not.toBe(null);
   });
 });

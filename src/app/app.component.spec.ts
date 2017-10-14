@@ -3,12 +3,12 @@ import { AppComponent } from './app.component';
 import { LayoutsComponent } from './layouts/layouts.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarHomeComponent } from './layouts/navbar/navbar.component';
-import { CarouselComponent } from './layouts/carousel/carousel.component';
 import { ChecklistoneComponent } from './checklist/checklistone/checklistone.component';
 import { ChecklistMenuComponent } from './checklist/checklistMenu/checklist-menu.component';
 import { ChecklistthreeComponent } from './checklist/checklistthree/checklistthree.component';
 import { LoginComponent } from './user';
-// import { UserComponent } from './'
+import { FooterComponent } from './layouts/footer/footer.component';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 // As Angular testing guide in "Shallow components tests" for <router-outlet>
 // import { NO_ERRORS_SCHEMA } from '@angular/core';
@@ -26,17 +26,18 @@ describe('AppComponent', () => {
         LayoutsComponent,
         HomeComponent,
         NavbarHomeComponent,
-        CarouselComponent,
         ChecklistoneComponent,
         ChecklistMenuComponent,
         ChecklistthreeComponent,
-        LoginComponent
+        LoginComponent,
+        FooterComponent
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       imports: [
         TextMaskModule,
         FormsModule,
-        RouterTestingModule
+        RouterTestingModule,
+        CarouselModule
       ],
     }).compileComponents();
   }));

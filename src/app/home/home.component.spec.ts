@@ -3,7 +3,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { HomeComponent } from './home.component';
 import { NavbarHomeComponent } from '../layouts/navbar/navbar.component';
-import { CarouselComponent } from '../layouts/carousel/carousel.component';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -13,10 +14,12 @@ describe('HomeComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         HomeComponent,
-        NavbarHomeComponent,
-        CarouselComponent
+        NavbarHomeComponent
       ],
-      imports: [ RouterTestingModule ]
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      imports: [
+        CarouselModule
+      ]
     })
     .compileComponents();
   }));
@@ -29,5 +32,15 @@ describe('HomeComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should have a navBar', () => {
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('app-navbar')).not.toBe(null);
+  });
+
+  it('should have a Carousel', () => {
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('app-carousel')).not.toBe(null);
   });
 });

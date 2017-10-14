@@ -1,2 +1,19 @@
 @import '../layouts/navbar/navbar.component.css';
 @import '../layouts/carousel/carousel.component.css';
+
+div.one {
+    width:auto;
+    height: 500px;
+    margin: auto;
+    border: 0px;
+    background-color: #FFA931;
+    /* background-image: url("paper.gif"); */
+}
+div.two {
+    width:auto;
+    height: 500px;
+    margin: auto;
+    border: 0px;
+   	background-color:rgb(255, 255, 255);
+}
+

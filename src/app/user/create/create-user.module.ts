@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 import { TextMaskModule } from 'angular2-text-mask';
@@ -10,6 +10,7 @@ import { TextMaskModule } from 'angular2-text-mask';
     CommonModule,
     RouterModule,
     FormsModule,
+    ReactiveFormsModule,
     TextMaskModule
   ],
   declarations: [],
