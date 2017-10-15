@@ -2,9 +2,9 @@ export class CouncilGroup {
   municipio = '';
   estado = '';
   codAplicativo = 462;
-  codGrupoPai = 0;
-  codObjeto = 0;
-  codTipoObjeto = 0;
+  codGrupoPai = 1;
+  codObjeto = 1;
+  codTipoObjeto = 1;
   descricao = '';
 
   constructor () {

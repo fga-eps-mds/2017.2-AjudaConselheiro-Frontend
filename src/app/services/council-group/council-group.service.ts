@@ -9,6 +9,7 @@ export class CouncilGroupService {
   private headers: Headers;
   private options: RequestOptions;
   private appToken: any;
+  private url = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/grupos';
 
   constructor(private http: Http) { }
 
@@ -20,7 +21,7 @@ export class CouncilGroupService {
     '1D871426B74A3DEBEAE9ED24400F66D4522F6C299F36872837DDF3CCEDA09C943079C8E630DA7FA166C0EF2E63292D67A' +
     '090F8CFB31437FEC37AE6491810C081703F7B3ADF5D9078B51DD241DB26255A2DD3EFC0E0DBBC092711755080E72F14BC0' +
     'B617F8A6418D9700E5D4D417D785A7011858A28222C16DE79906C18EA047ABBB1B1DA7218738E962D0AC357E5BA635D5D477D42020402DEE900E';
-    /*appToken setado temporariamente*/
+    /* Temporary token for testing */
 
     this.headers = new Headers ({
       'Content-Type': 'application/json',
@@ -34,16 +35,22 @@ export class CouncilGroupService {
     console.log(body);
 
     return this.http
-      .post('http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/grupos', body, this.options)
+      .post(this.url, body, this.options)
       .map(res => this.extractData(res))
       .catch(this.handleError);
   }
 
   private getFormattedData(councilGroup: CouncilGroup) {
-    councilGroup.descricao = 'CAE - ' + councilGroup.municipio + ' - ' + councilGroup.estado;
+    councilGroup.descricao = 'CAE-' + councilGroup.municipio + '-' + councilGroup.estado;
 
-    const temp = {'codAplicativo':councilGroup.codAplicativo, 'descricao':councilGroup.descricao};
-    console.log(temp);
+    const temp = {
+      'codAplicativo': councilGroup.codAplicativo,
+      'codGrupoPai': councilGroup.codGrupoPai,
+      'codObjeto': councilGroup.codObjeto,
+      'codTipoObjeto': councilGroup.codTipoObjeto,
+      'descricao': councilGroup.descricao
+    };
+
     return JSON.stringify(temp);
   }
 
@@ -58,7 +65,13 @@ export class CouncilGroupService {
   private handleError(error: any) {
     const errMsg = (error.message) ? error.message :
       error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-    console.error(errMsg);
-    return Observable.throw(errMsg);
+
+    if (error.status === 400) {
+      alert('Erro: conselho inserido já está cadastrado.');
+    } else if (error.status > 400 && error.status < 500) {
+      alert('Erro: falha na comunicação com a Nuvem Cívica!');
+    }
+
+    return Observable.throw(error.status);
   }
 }
