@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="col-md-10">
                     <div class="col-md-10"><br><br></div>
-                    <p class="h3 text-center mb-4" align="center">Avaliação dos cardápios das escolas parque e escolas classes da CRE/PPC</p>
+                    <p class="h3 text-center mb-4 question15" align="center">Avaliação dos cardápios das escolas parque e escolas classes da CRE/PPC</p>
                     </div>
                     </div>
                     <form ng-submit="">
@@ -29,7 +29,7 @@
 
                           <div class="row"  >
                             <div class="col-md-1"></div>
-                            <div class="col-md-8">Houve falta de alimentação escolar durante o período letivo?
+                            <div class="col-md-8 question14">Houve falta de alimentação escolar durante o período letivo?
                                Caso positivo informe o(s) períodos e os produtos?</div>
                             <div class="col-md-1" align="center"><input type="radio" name="formsMenu0" value="true" [(ngModel)]="formsMenu[0].answer" (click)="checkComentary[0].value=true" required></div>
                             <div class="col-md-1" align="center"><input type="radio" name="formsMenu0" [(ngModel)]="formsMenu[0].answer" value="false" (click)="checkComentary[0].value=null"></div>
@@ -38,7 +38,7 @@
                             <div class="col-md-8"></div>
                             <div class="col-md-4">
                               <div class="md-form">
-                                <textarea mdbActive align ="center"type="text" id="form7" class="md-textarea" placeholder="Resposta" name="commentary1" [(ngModel)]="formsMenu[0].commentary"></textarea>
+                                <textarea mdbActive align ="center"type="text" id="form7" class="md-textarea commentaryOne" placeholder="Resposta" name="commentary1" [(ngModel)]="formsMenu[0].commentary"></textarea>
                                 <label for="form7" ></label>
                               </div>
                             </div>
@@ -46,7 +46,7 @@
 
                           <div class="row"  >
                             <div class="col-md-1"></div>
-                            <div class="col-md-8">A quantidade de gêneros entregues nas escolas foi suficiente para ofertar refeições para todos os alunos
+                            <div class="col-md-8 question13">A quantidade de gêneros entregues nas escolas foi suficiente para ofertar refeições para todos os alunos
                                até que se proceda à próxima distribuição?</div>
                             <div class="col-md-1" align="center"><input type="radio" name="formsMenu1" [(ngModel)]="formsMenu[1].answer" value="true" (click)="checkComentary[1].value=true" required></div>
                             <div class="col-md-1" align="center"><input type="radio" name="formsMenu1" [(ngModel)]="formsMenu[1].answer" value="false" (click)="checkComentary[1].value=null"></div>
@@ -55,7 +55,7 @@
                             <div class="col-md-8"></div>
                             <div class="col-md-4">
                               <div class="md-form">
-                                <textarea mdbActive align ="center"type="text" id="form7" class="md-textarea" placeholder="Resposta" name="commentary2" [(ngModel)]="formsMenu[1].commentary"></textarea>
+                                <textarea mdbActive align ="center"type="text" id="form7" class="md-textarea commentaryTwo" placeholder="Resposta" name="commentary2" [(ngModel)]="formsMenu[1].commentary"></textarea>
                                 <label for="form7" ></label>
                               </div>
                             </div>
@@ -63,7 +63,7 @@
 
                           <div class="row"  >
                             <div class="col-md-1"></div>
-                            <div class="col-md-8">Há excesso de algum gênero alimentício no cardápio? Qual(ais)?</div>
+                            <div class="col-md-8 question12">Há excesso de algum gênero alimentício no cardápio? Qual(ais)?</div>
                             <div class="col-md-1" align="center"><input type="radio" name="formsMenu2" [(ngModel)]="formsMenu[2].answer" value="true" (click)="checkComentary[2].value=true" required></div>
                             <div class="col-md-1" align="center"><input type="radio" name="formsMenu2" [(ngModel)]="formsMenu[2].answer" value="false" (click)="checkComentary[2].value=null"></div>
                           </div>
@@ -71,7 +71,7 @@
                             <div class="col-md-8"></div>
                             <div class="col-md-4">
                               <div class="md-form">
-                                <textarea mdbActive align ="center"type="text" id="form7" class="md-textarea" placeholder="Resposta" name="commentary3" [(ngModel)]="formsMenu[2].commentary"></textarea>
+                                <textarea mdbActive align ="center"type="text" id="form7" class="md-textarea commentaryThree" placeholder="Resposta" name="commentary3" [(ngModel)]="formsMenu[2].commentary"></textarea>
                                 <label for="form7" ></label>
                               </div>
                             </div>
@@ -80,7 +80,7 @@
 
                           <div class="row"  >
                             <div class="col-md-1"></div>
-                            <div class="col-md-8">A escola complementa a alimentação escolar? Como?</div>
+                            <div class="col-md-8 question11">A escola complementa a alimentação escolar? Como?</div>
                             <div class="col-md-1" align="center"><input type="radio" name="formsMenu3" [(ngModel)]="formsMenu[3].answer" value="true" (change)="checkComentary[3].value=true" required></div>
                             <div class="col-md-1" align="center"><input type="radio" name="formsMenu3" [(ngModel)]="formsMenu[3].answer" value="false" (change)="checkComentary[3].value=null"></div>
                           </div>
@@ -88,7 +88,7 @@
                             <div class="col-md-8"></div>
                             <div class="col-md-4">
                               <div class="md-form">
-                                <textarea mdbActive align ="center"type="text" id="form7" class="md-textarea" placeholder="Resposta" name="commentary3" [(ngModel)]="formsMenu[3].commentary"></textarea>
+                                <textarea mdbActive align ="center"type="text" id="form7" class="md-textarea commentaryFour" placeholder="Resposta" name="commentary3" [(ngModel)]="formsMenu[3].commentary"></textarea>
                                 <label for="form7" ></label>
                               </div>
                             </div>
@@ -96,7 +96,7 @@
 
                           <div class="row">
                             <div class="col-md-1"></div>
-                            <div class="col-md-8">A escola complementa a alimentação escolar? Como?</div>
+                            <div class="col-md-8 question10">A escola complementa a alimentação escolar? Como?</div>
                             <div class="col-md-1" align="center"><input type="radio" name="formsMenu4" value="true" [(ngModel)]="formsMenu[4].answer" (click)="checkComentary[4].value=true"required></div>
                             <div class="col-md-1" align="center"><input type="radio" name="formsMenu4" value="false" [(ngModel)]="formsMenu[4].answer" (click)="checkComentary[4].value=null"></div>
                           </div>
@@ -105,7 +105,7 @@
                             <div class="col-md-8"></div>
                             <div class="col-md-4">
                               <div class="md-form">
-                                <textarea mdbActive align ="center"type="text" id="form7" class="md-textarea" placeholder="Resposta" name="commentary4" [(ngModel)]="formsMenu[4].commentary" ></textarea>
+                                <textarea mdbActive align ="center"type="text" id="form7" class="md-textarea commentaryFive" placeholder="Resposta" name="commentary4" [(ngModel)]="formsMenu[4].commentary" ></textarea>
                                 <label for="form7" ></label>
                               </div>
                             </div>
@@ -116,31 +116,31 @@
 
                         <div class="row">
                           <div class="col-md-1"></div>
-                          <div class="col-md-8">De maneira geral, os cardápios são bem elaborados</div>
+                          <div class="col-md-8 question">De maneira geral, os cardápios são bem elaborados</div>
                           <div class="col-md-1" align="center"><input type="radio" name="formBinary0" [(ngModel)]="formBinary[0].answer" [value]="true" required></div>
                           <div class="col-md-1" align="center"><input type="radio" name="formBinary0" [(ngModel)]="formBinary[0].answer"[value]="false"></div>
                         </div>
                         <div class="row">
                           <div class="col-md-1"></div>
-                          <div class="col-md-8">De maneira geral, os cardápios são bem aceitos pelos alunos?</div>
+                          <div class="col-md-8 question1">De maneira geral, os cardápios são bem aceitos pelos alunos?</div>
                           <div class="col-md-1" align="center"><input type="radio" name="formBinary1" [(ngModel)]="formBinary[1].answer" [value]="true" required></div>
                           <div class="col-md-1" align="center"><input type="radio" name="formBinary1" [(ngModel)]="formBinary[1].answer"[value]="false"></div>
                         </div>
                         <div class="row">
                           <div class="col-md-1"></div>
-                          <div class="col-md-8">De maneira geral, os cardápios são bem elaborados?</div>
+                          <div class="col-md-8 question2">De maneira geral, os cardápios são bem elaborados?</div>
                           <div class="col-md-1" align="center"><input type="radio" name="formBinary2" [(ngModel)]="formBinary[2].answer" [value]="true" required></div>
                           <div class="col-md-1" align="center"><input type="radio" name="formBinary2" [(ngModel)]="formBinary[2].answer"[value]="false"></div>
                         </div>
                         <div class="row">
                           <div class="col-md-1"></div>
-                          <div class="col-md-8">O cardápio fica exposto para os alunos e comunidade</div>
+                          <div class="col-md-8 question3">O cardápio fica exposto para os alunos e comunidade</div>
                           <div class="col-md-1" align="center"><input type="radio" name="formBinary3" [(ngModel)]="formBinary[3].answer" [value]="true" required></div>
                           <div class="col-md-1" align="center"><input type="radio" name="formBinary3" [(ngModel)]="formBinary[3].answer"[value]="false"></div>
                         </div>
                         <div class="row">
                           <div class="col-md-1"></div>
-                          <div class="col-md-8">A escola recebe doação de alimentos?</div>
+                          <div class="col-md-8 question4">A escola recebe doação de alimentos?</div>
                           <div class="col-md-1" align="center"><input type="radio" name="formBinary4" [(ngModel)]="formBinary[4].answer" [value]="true" required></div>
                           <div class="col-md-1" align="center"><input type="radio" name="formBinary4" [(ngModel)]="formBinary[4].answer" [value]="false"></div>
                         </div>
@@ -148,7 +148,7 @@
                         <br>
                         <!-- Fim das questões com respostas binárias e início das questões com perguntas de comentário  -->
                         <div class="row">
-                          <div class="col-md-12" align="center"><h5>Qual a quantidade de frutas e hortaliças que estão sendo oferecidas por aluno,
+                          <div class="col-md-12 question5" align="center"><h5>Qual a quantidade de frutas e hortaliças que estão sendo oferecidas por aluno,
                            durante o período de uma semana?</h5></div>
                           </div>
                         <div class="row">
@@ -162,7 +162,7 @@
                         </div>
                         <br>
                         <div class="row">
-                          <div class="col-md-12" align="center"><h5>Qual a preparação mais aceita?</h5></div>
+                          <div class="col-md-12 question6" align="center"><h5>Qual a preparação mais aceita?</h5></div>
                         </div>
                         <div class="row">
                             <div class="col-md-2"></div>
@@ -176,7 +176,7 @@
                         </div>
 
                         <div class="row">
-                          <div class="col-md-12" align="center"><h5>Qual a preparação menos aceita?</h5></div>
+                          <div class="col-md-12 question7" align="center"><h5>Qual a preparação menos aceita?</h5></div>
                           </div>
                         <div class="row">
                             <div class="col-md-2"></div>
@@ -190,7 +190,7 @@
                         </div>
                         <div class="row">
 
-                          <div class="col-md-12" align="center"><h5>Qual produto é mais aceito?</h5></div>
+                          <div class="col-md-12 question8" align="center"><h5>Qual produto é mais aceito?</h5></div>
 
                         </div>
                         <div class="row">
@@ -206,7 +206,7 @@
 
                         <div class="row">
                           <!-- <div class="col-md-2"></div> -->
-                          <div class="col-md-12" align="center"><h5>Qual produto é menos aceito?</h5></div>
+                          <div class="col-md-12 question9" align="center"><h5>Qual produto é menos aceito?</h5></div>
                           <!-- <div class="col-md-1"></div> -->
                           <!-- <div class="col-md-1"></div> -->
                         </div>

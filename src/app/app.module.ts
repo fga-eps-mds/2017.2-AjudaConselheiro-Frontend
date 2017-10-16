@@ -22,6 +22,8 @@ import { BaseRequestOptions } from '@angular/http';
 import { ChecklistMenuService, ChecklistThreeService } from './services/index';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { FooterComponent } from './layouts/footer/footer.component';
 
 @NgModule({
 
@@ -33,6 +35,7 @@ import { InMemoryDataService } from './in-memory-data.service';
     CarouselComponent,
     ChecklistoneComponent,
     LoginComponent,
+    FooterComponent
   ],
 
   imports: [
@@ -40,6 +43,7 @@ import { InMemoryDataService } from './in-memory-data.service';
     HttpModule,
     RouterModule.forRoot(ROUTES),
     MDBBootstrapModule.forRoot(),
+    CarouselModule.forRoot(),
     FormsModule,
     ChecklistModule,
     SchedulingModule,
@@ -47,7 +51,6 @@ import { InMemoryDataService } from './in-memory-data.service';
     TextMaskModule,
     InMemoryWebApiModule.forRoot(InMemoryDataService),
     ReactiveFormsModule
-
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [
