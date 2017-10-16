@@ -26,27 +26,29 @@
             <div class="col-md-9" align="left">{{iteratorArray[topicNum][questNum].question}}</div>
             <div class="col-md-1" align="center" *ngIf= "topicNum!==6 && ( questNum!==4 || questNum!==5)">Sim <input type="radio" name="{{iteratorArray[topicNum][questNum].question}}" [value]="true" (ngModel)= "iteratorArray[topicNum][questNum].answer" required></div>
             <div class="col-md-1" align="center" *ngIf= "topicNum!==6 && ( questNum!==4 || questNum!==5)">Não <input type="radio" name="{{iteratorArray[topicNum][questNum].question}}" [value]="false" (ngModel)= "iteratorArray[topicNum][questNum].answer"></div>
-            
-            <div class="row" *ngIf="topicNum===6 && ( questNum===4 || questNum===5)">
-              <div class="col-md-1"></div>
-              <div class="col-md-8"><input type="text" placeholder="Resposta" (ngModel)= "iteratorArray[topicNum][questNum].commmentary" ></div>
-            </div>
+            <div class="col-md-1" align="center" *ngIf= "topicNum===6 && ( questNum===0 || questNum===1|| questNum===2|| questNum===3)">Sim <input type="radio" name="{{iteratorArray[topicNum][questNum].question}}" [value]="true" (ngModel)= "iteratorArray[topicNum][questNum].answer"></div>
+            <div class="col-md-1" align="center" *ngIf= "topicNum===6 && ( questNum===0 || questNum===1|| questNum===2|| questNum===3)">Não <input type="radio" name="{{iteratorArray[topicNum][questNum].question}}" [value]="false" (ngModel)= "iteratorArray[topicNum][questNum].answer"s></div>
+            <div class="col-md-2"><input type="text" placeholder="Resposta" *ngIf="topicNum===6 && ( questNum===4 || questNum===5)"(ngModel)= "iteratorArray[topicNum][questNum].commmentary" ></div>
           </div>
           
           <div class="row">
-            <div class="col-md-9" align="left">Observações?</div>
-            <div class="col-md-1" align="center">Sim <input type="radio" name="{{checkComentary[topicNum].identificador}}" (click)="checkComentary[i].value=true"></div>
-            <div class="col-md-1" align="center">Não <input type="radio" name="{{checkComentary[topicNum].identificador}}" (click)="checkComentary[i].value=null"></div>
-          </div>
-          <div class="row" *ngIf= "checkComentary[topicNum].value ===true">
-            <div class="col-md-8"></div>
+            <div class="col-md-8" align="left">Observações?</div>
             <div class="col-md-4">
               <div class="md-form">
-                <textarea mdbActive align ="center"type="text" id="form7" class="md-textarea" placeholder="Observações" (ngModel)="commentaries[topicNum].commentary" ></textarea>
+                <textarea mdbActive align ="center"type="text" id="form7" class="md-textarea" placeholder="Observações" (ngModel)="commentaries[topicNum].commentary"></textarea>
                 <label for="form7" ></label>
               </div>
             </div>
           </div>
+          <!-- <div class="row" *ngIf= "checkComentary[topicNum].value === true">
+            <div class="col-md-8"></div>
+            <div class="col-md-4">
+              <div class="md-form">
+                <textarea mdbActive align ="center"type="text" id="form7" class="md-textarea" placeholder="Observações" (ngModel)="commentaries[topicNum].commentary"></textarea>
+                <label for="form7" ></label>
+              </div>
+            </div>
+          </div> -->
           <br>
         </div>
       </form>
@@ -55,7 +57,7 @@
         <div class="col-md-2"><a href="/checklist" class="btn btn-outline-warning waves-effect"><span class="glyphicon glyphicon-chevron-left " aria-hidden="false"></span><i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>Voltar</a></div>
         <div class="col-md-3"></div>
         <div class="col-md-3"></div>
-        <div class="col-md-2"><button type="submit" class="btn btn-warning btn-rounded waves-light" mdbRippleRadius >Enviar<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></button></div>
+        <div class="col-md-2"><button type="submit" class="btn btn-warning btn-rounded waves-light" mdbRippleRadius (ngSubmit)="onSubmit()">Enviar <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></button></div>
       </div>
       <div class="row">
         <div class="col-md-12"><br></div>
