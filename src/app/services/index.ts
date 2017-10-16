@@ -5,4 +5,4 @@ export * from './council-group/council-group.service';
 export * from './checklistthree.service';
 export * from './checklist.service';
 export * from './authentication.service';
-export * from './alert.service';
+export * from './alert/alert.service';

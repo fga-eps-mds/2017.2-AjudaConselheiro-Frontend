@@ -23,6 +23,8 @@ import { ChecklistMenuService } from './services/checklist-menu.service';
 import { CouncilGroupModule } from './council-group/council-group.module';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { FooterComponent } from './layouts/footer/footer.component';
+import { AlertComponent } from './layouts/alert/alert.component';
+import { AlertService } from './services/alert/alert.service';
 
 @NgModule({
 
@@ -33,7 +35,8 @@ import { FooterComponent } from './layouts/footer/footer.component';
     NavbarHomeComponent,
     CarouselComponent,
     LoginComponent,
-    FooterComponent
+    FooterComponent,
+    AlertComponent
   ],
 
   imports: [
@@ -53,6 +56,7 @@ import { FooterComponent } from './layouts/footer/footer.component';
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [
     BaseRequestOptions,
+    AlertService
   ],
   bootstrap: [AppComponent]
 })
