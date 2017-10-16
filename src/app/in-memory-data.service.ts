@@ -1,5 +1,5 @@
 import { InMemoryDbService } from 'angular-in-memory-web-api';
-import { FormCheck, FormCheckAnswer, BinaryFormCardapio } from './models/index';
+import { CommentForm, CommentBinaryForm, BinaryForm } from './models/index';
 import { Injectable } from '@angular/core';
 
 @Injectable()
@@ -7,7 +7,7 @@ export class InMemoryDataService implements InMemoryDbService {
 
      createDb(): {} {
 
-        const formsMenu: Array<FormCheckAnswer> = [
+        const formsMenu: Array<CommentBinaryForm> = [
                 {question: `Houve falta de alimentação escolar durante o período letivo?
                    Caso positivo informe o(s) períodos e os produtos?`,  answer: false, commentary: ''},
                 {question: `A escola conseguiu dubstituir a preparação/produto que faltou por outra,
@@ -19,7 +19,7 @@ export class InMemoryDataService implements InMemoryDbService {
                  que se proceda à próxima distribuição?`,  answer: false, commentary: ''},
             ];
 
-            const formMenuTwo: Array<FormCheck> = [
+            const formMenuTwo: Array<CommentForm> = [
                     {question: `Qual a quantidade de frutas e hortaliças que estão sendo oferecidas por aluno,
                      durante o período de uma semana?`, answer: ''},
                     {question: 'Qual a preparação mais aceita?', answer: ''},
@@ -28,7 +28,7 @@ export class InMemoryDataService implements InMemoryDbService {
                     {question: 'Qual produto é menos aceito?', answer: ''},
             ];
 
-            const formBinary: Array<BinaryFormCardapio> = [
+            const formBinary: Array<BinaryForm> = [
               {question: 'De maneira geral, os cardápios são bem elaborados?', answer: false},
               {question: 'De maneira geral, os cardápios são bem aceitos pelos alunos?', answer: false },
               {question: 'De maneira geral, os cardápios são bem elaborados?', answer: false},

@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 
 import { ChecklistThreeService } from './../../services/checklistthree.service';
-import { ChecklistThree } from './../../models/checklistthree.model';
+import { ChecklistThree } from './../../models/checklist.model';
 
 @Component({
   selector: 'app-checklistthree',
@@ -26,7 +26,7 @@ export class ChecklistthreeComponent implements OnInit {
     this.checklist = new ChecklistThree();
   }
   newFormulario(): void {
-    if(this.formChecklist.form.valid){
+    if (this.formChecklist.form.valid) {
       this.checklistThree.newCheck(this.checklist);
       this.router.navigate(['/checklist']);
     }

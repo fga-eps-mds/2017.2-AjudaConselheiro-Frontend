@@ -1,7 +1,7 @@
 
 import { Injectable } from '@angular/core';
 
-import { ChecklistThree } from '../models/checklistthree.model';
+import { ChecklistThree } from '../models/checklist.model';
 
 @Injectable()
 export class ChecklistThreeService {

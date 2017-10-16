@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { FormCheck, FormCheckAnswer, FormsMenu, FormMenuTwo} from '../models/index';
-import { BinaryFormCardapio } from '../models/index';
+import { CommentBinaryForm, CommentForm, FormsMenu, FormMenuTwo} from '../models/index';
+import { BinaryForm } from '../models/index';
 import {Http } from '@angular/http';
 import 'rxjs';
 
@@ -11,25 +11,27 @@ export class ChecklistMenuService {
     private formMenuUrl = 'app/formsMenu';
     private formMenuAnswerUrl = 'app/formCheckAnswer';
 
-    getFormsMenu(): Promise<FormCheckAnswer[]> {
+    getFormsMenu(): Promise<CommentBinaryForm[]> {
         return this.http.get(this.formMenuUrl)
             .toPromise()
-            .then(response => response.json().data as FormCheckAnswer[]);
+            .then(response => response.json().data as CommentBinaryForm[]
+        );
     }
 
     // getFormsMenu(): Promise<FormCheckAnswer[]>{
     //     return Promise.resolve(FormsMenu);
     // }
 
-    getFormsMenuTwo(): Promise<FormCheck[]> {
+    getFormsMenuTwo(): Promise<CommentForm[]> {
         return this.http.get(this.formMenuAnswerUrl)
         .toPromise()
-        .then(response => response.json().data as FormCheck[]);
+        .then(response => response.json().data as CommentForm[]);
     }
-     getBinaryFormCardapio(): Promise<BinaryFormCardapio[]> {
+     getBinaryFormCardapio(): Promise<BinaryForm[]> {
          return this.http.get(this.formMenuAnswerUrl)
          .toPromise()
-         .then(response => response.json().data as BinaryFormCardapio[]);
+         .then(response => response.json().data as BinaryForm[]);
      }
 
 }
+export class ChecklistOneService {}

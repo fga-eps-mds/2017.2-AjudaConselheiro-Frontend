@@ -16,7 +16,7 @@
       meanwhile printing the header determined to each section, with that we will print all of the atributes
       that are stored inside the determined object array-->
         <form ng-submit="">
-          <div *ngFor="let topic of checkSecIteration;let i=index">
+          <div *ngFor = "let topic of checkSecIteration;let i=index">
             <div class="row" >
               <div class="col-md-9"><h5>{{topicSecHeader[i].pergunta}}</h5></div>
               <div class="col-md-1"><h5>Sim</h5></div>
@@ -34,11 +34,11 @@
             <div class="col-md-1" align="center"><input type="radio" name="{{checkComentary[i].identificador}}" (click)="checkComentary[i].value=true"></div>
             <div class="col-md-1" align="center"><input type="radio" name="{{checkComentary[i].identificador}}" (click)="checkComentary[i].value=null"></div>
           </div>
-          <div class="row" *ngIf="checkComentary[i].value ===true">
+          <div class="row" *ngIf= "checkComentary[i].value ===true">
             <div class="col-md-8"></div>
             <div class="col-md-4">
               <div class="md-form">
-                <textarea mdbActive align ="center"type="text" id="form7" class="md-textarea" placeholder="Observações"></textarea>
+                <textarea mdbActive align ="center"type="text" id="form7" class="md-textarea" placeholder="Observações" ></textarea>
                 <label for="form7" ></label>
               </div>
             </div>
