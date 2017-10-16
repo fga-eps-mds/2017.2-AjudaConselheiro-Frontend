@@ -1,7 +1,8 @@
+import { CheckOneTopicHeaders, CheckOneCommentaries } from './../../models/checklistForms';
 import { IteratorArray } from '../../models/checklistForms';
 import { Component, OnInit } from '@angular/core';
 import { FormsMenu, FormMenuTwo, CommentBinaryForm, CommentForm, BinaryForm, FormBinary, ConfirmComentary} from '../../models/index';
-
+import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-checklistone',
   templateUrl: './checklistone.component.html',
@@ -11,6 +12,8 @@ export class ChecklistoneComponent implements OnInit {
   // This component is destined to the checklist corresponding to
   // LISTA PARA VERIFICAÇÃO DAS BOAS PRÁTICAS DE FABRICAÇÃO
     iteratorArray= IteratorArray;
+    topicHeaders = CheckOneTopicHeaders;
+    commentaries = CheckOneCommentaries;
 
     checkComentary: ConfirmComentary[]= [
       new ConfirmComentary(false, 'Comment1'),
@@ -23,11 +26,13 @@ export class ChecklistoneComponent implements OnInit {
       new ConfirmComentary(false, 'Comment8'),
     ];
 
-
-
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onSubmit() {
+
   }
 
 }

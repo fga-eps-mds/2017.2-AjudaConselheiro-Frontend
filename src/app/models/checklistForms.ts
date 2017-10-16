@@ -1,3 +1,4 @@
+import { SectionCommentary } from './checklist.model';
 import { CommentForm, CommentBinaryForm, BinaryForm } from './index';
 
 
@@ -27,6 +28,17 @@ export const FormsMenu: Array<CommentBinaryForm> = [
         {question: 'Há excesso de algum gênero alimentício no cardápio? Qual(ais)?', answer: null, commentary: ''},
         {question: 'A escola complementa a alimentação escolar? Como?', answer: null, commentary: ''},
         {question: 'A escola complementa a alimentação escolar? Como?', answer: null, commentary: ''},
+];
+
+export const CheckOneCommentaries: Array<SectionCommentary> = [
+  {sectionNumber: 1, commentary: ''},
+  {sectionNumber: 2, commentary: ''},
+  {sectionNumber: 3, commentary: ''},
+  {sectionNumber: 4, commentary: ''},
+  {sectionNumber: 5, commentary: ''},
+  {sectionNumber: 6, commentary: ''},
+  {sectionNumber: 7, commentary: ''},
+  {sectionNumber: 8, commentary: ''},
 ];
 
 
@@ -138,6 +150,7 @@ export const IteratorArray: Array<Object> = [
   CheckOneThirdTopic,
   CheckOneFourthTopic,
   CheckOneFifthTopic,
+  CheckOneSixthTopic,
   CheckOneSeventhTopic,
   CheckOneEighthTopic,
 ];

@@ -45,7 +45,8 @@ import { InMemoryDataService } from './in-memory-data.service';
     SchedulingModule,
     UserModule,
     TextMaskModule,
-    InMemoryWebApiModule.forRoot(InMemoryDataService)
+    InMemoryWebApiModule.forRoot(InMemoryDataService),
+    ReactiveFormsModule
 
   ],
   schemas: [ NO_ERRORS_SCHEMA ],

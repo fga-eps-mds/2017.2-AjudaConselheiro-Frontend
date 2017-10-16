@@ -29,3 +29,8 @@ export class ChecklistThree {
     question: string;
     answer: boolean;
   }
+
+  export interface SectionCommentary {
+      sectionNumber: number;
+      commentary: string;
+  }
