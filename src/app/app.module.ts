@@ -48,6 +48,7 @@ import { AlertModule } from 'ngx-bootstrap/alert';
     ChecklistModule,
     SchedulingModule,
     UserModule,
+    ReactiveFormsModule,
     TextMaskModule,
     ConfirmationPopoverModule.forRoot({
       confirmButtonType: 'danger' // set defaults here
