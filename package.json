@@ -24,6 +24,7 @@
     "@angular/router": "^4.4.3",
     "angular-animate": "^1.6.6",
     "angular-bootstrap-md": "^4.3.5",
+    "angular-confirmation-popover": "^3.2.0",
     "angular2-text-mask": "^8.0.4",
     "bootstrap": "^3.3.7",
     "chart.js": "^2.7.0",
