@@ -1,8 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { CreateCouncilGroupComponent } from './create-council-group.component';
+import { AlertService } from '../../services/alert/alert.service';
 
 describe('CreateCouncilGroupComponent', () => {
   let component: CreateCouncilGroupComponent;
@@ -10,13 +12,15 @@ describe('CreateCouncilGroupComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CreateCouncilGroupComponent ],
+      declarations: [CreateCouncilGroupComponent],
       imports: [
         HttpModule,
-        FormsModule
-       ]
+        FormsModule,
+        RouterTestingModule
+      ],
+      providers: [ AlertService ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

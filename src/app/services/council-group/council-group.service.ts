@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/throw';
 
 import { CouncilGroup } from '../../models/index';
+import { AlertService } from '../../services/alert/alert.service';
 
 @Injectable()
 export class CouncilGroupService {
@@ -11,7 +13,7 @@ export class CouncilGroupService {
   private appToken: any;
   private url = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/grupos';
 
-  constructor(private http: Http) { }
+  constructor(private http: Http, private alertService: AlertService) { }
 
   createCouncil(councilGroup: CouncilGroup): Observable<any> {
 
@@ -66,12 +68,13 @@ export class CouncilGroupService {
     const errMsg = (error.message) ? error.message :
       error.status ? `${error.status} - ${error.statusText}` : 'Server error';
 
-    if (error.status === 400) {
-      alert('Erro: conselho inserido já está cadastrado.');
-    } else if (error.status > 400 && error.status < 500) {
-      alert('Erro: falha na comunicação com a Nuvem Cívica!');
-    }
+    console.log(error.status);
+    // if (error.status === 400) {
+    //   this.alertService.error('ERRO 400');
+    // } else if (error.status > 400 && error.status < 500) {
+    //   this.alertService.error('Erro: falha na comunicação com a Nuvem Cívica!');
+    // }
 
-    return Observable.throw(error.status);
+    return Observable.throw(error);
   }
 }

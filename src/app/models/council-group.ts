@@ -8,5 +8,6 @@ export class CouncilGroup {
   descricao = '';
 
   constructor () {
+    this.codObjeto = Date.now();
   }
 }
