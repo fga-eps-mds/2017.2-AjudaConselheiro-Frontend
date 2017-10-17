@@ -1,10 +1,11 @@
+import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { ChecklistthreeComponent } from './checklistthree/checklistthree.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ChecklistComponent} from './checklist.component';
 import { ChecklistMenuComponent } from './checklistMenu/checklist-menu.component';
-import { ChecklistMenuService, ChecklistThreeService } from '../services/index';
+import { ChecklistService} from '../services/index';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -12,6 +13,7 @@ import { FormsModule } from '@angular/forms';
         CommonModule,
         FormsModule,
         RouterModule,
+        HttpModule,
     ],
     declarations: [
         ChecklistComponent,
@@ -24,8 +26,7 @@ import { FormsModule } from '@angular/forms';
         ChecklistthreeComponent,
     ],
     providers: [
-        ChecklistMenuService,
-        ChecklistThreeService
+        ChecklistService,
     ]
 })
 

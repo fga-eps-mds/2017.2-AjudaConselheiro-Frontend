@@ -19,7 +19,7 @@ import { LoginComponent } from './user';
 import { TextMaskModule } from 'angular2-text-mask';
 import { ROUTES } from './app.routes';
 import { BaseRequestOptions } from '@angular/http';
-import { ChecklistMenuService, ChecklistThreeService } from './services/index';
+import { ChecklistService } from './services/index';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
@@ -54,9 +54,8 @@ import { FooterComponent } from './layouts/footer/footer.component';
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [
-    ChecklistMenuService,
+    ChecklistService,
     BaseRequestOptions,
-    ChecklistThreeService
   ],
   bootstrap: [AppComponent]
 })

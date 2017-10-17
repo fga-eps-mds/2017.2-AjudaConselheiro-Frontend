@@ -15,7 +15,7 @@
       <!-- Here we are making an iteration through a 2d array consisting of various objects and its atributes
       meanwhile printing the header determined to each section, with that we will print all of the atributes
       that are stored inside the determined object array-->
-        <form ngSubmit="onSubmit()">
+        <form (ngSubmit)= "onSubmit()" class="ngForm">
           <div *ngFor = "let topic of iteratorArray ;let topicNum=index">
             <div class="row" >
               <div class="col-md-9 " align="center"><h5>{{topicHeaders[topicNum]}}</h5></div>
@@ -24,31 +24,22 @@
             </div>
           <div class="row" *ngFor= "let question of topic;let questNum=index;">
             <div class="col-md-9" align="left">{{iteratorArray[topicNum][questNum].question}}</div>
-            <div class="col-md-1" align="center" *ngIf= "topicNum!==6 && ( questNum!==4 || questNum!==5)">Sim <input type="radio" name="{{iteratorArray[topicNum][questNum].question}}" [value]="true" (ngModel)= "iteratorArray[topicNum][questNum].answer" required></div>
+            <div class="col-md-1" align="center" *ngIf= "topicNum!==6 && ( questNum!==4 || questNum!==5)">Sim <input type="radio" name="{{iteratorArray[topicNum][questNum].question}}" [value]="true" (ngModel)= "iteratorArray[topicNum][questNum].answer"></div>
             <div class="col-md-1" align="center" *ngIf= "topicNum!==6 && ( questNum!==4 || questNum!==5)">Não <input type="radio" name="{{iteratorArray[topicNum][questNum].question}}" [value]="false" (ngModel)= "iteratorArray[topicNum][questNum].answer"></div>
             <div class="col-md-1" align="center" *ngIf= "topicNum===6 && ( questNum===0 || questNum===1|| questNum===2|| questNum===3)">Sim <input type="radio" name="{{iteratorArray[topicNum][questNum].question}}" [value]="true" (ngModel)= "iteratorArray[topicNum][questNum].answer"></div>
-            <div class="col-md-1" align="center" *ngIf= "topicNum===6 && ( questNum===0 || questNum===1|| questNum===2|| questNum===3)">Não <input type="radio" name="{{iteratorArray[topicNum][questNum].question}}" [value]="false" (ngModel)= "iteratorArray[topicNum][questNum].answer"s></div>
-            <div class="col-md-2"><input type="text" placeholder="Resposta" *ngIf="topicNum===6 && ( questNum===4 || questNum===5)"(ngModel)= "iteratorArray[topicNum][questNum].commmentary" ></div>
+            <div class="col-md-1" align="center" *ngIf= "topicNum===6 && ( questNum===0 || questNum===1|| questNum===2|| questNum===3)">Não <input type="radio" name="{{iteratorArray[topicNum][questNum].question}}" [value]="false" (ngModel)= "iteratorArray[topicNum][questNum].answer"></div>
+            <div class="col-md-2"><input type="text" placeholder="Resposta" *ngIf="topicNum===6 && ( questNum===4 || questNum===5)"(ngModel)= "iteratorArray[topicNum][questNum].commmentary" name="{{iteratorArray[topicNum][questNum].question}}"></div>
           </div>
           
           <div class="row">
             <div class="col-md-8" align="left">Observações?</div>
             <div class="col-md-4">
               <div class="md-form">
-                <textarea mdbActive align ="center"type="text" id="form7" class="md-textarea" placeholder="Observações" (ngModel)="commentaries[topicNum].commentary"></textarea>
+                <textarea mdbActive align ="center"type="text" id="form7" class="md-textarea" placeholder="Observações" name="{{commentaries[topicNum]}}" (ngModel)="commentaries[topicNum].commentary"></textarea>
                 <label for="form7" ></label>
               </div>
             </div>
           </div>
-          <!-- <div class="row" *ngIf= "checkComentary[topicNum].value === true">
-            <div class="col-md-8"></div>
-            <div class="col-md-4">
-              <div class="md-form">
-                <textarea mdbActive align ="center"type="text" id="form7" class="md-textarea" placeholder="Observações" (ngModel)="commentaries[topicNum].commentary"></textarea>
-                <label for="form7" ></label>
-              </div>
-            </div>
-          </div> -->
           <br>
         </div>
       </form>

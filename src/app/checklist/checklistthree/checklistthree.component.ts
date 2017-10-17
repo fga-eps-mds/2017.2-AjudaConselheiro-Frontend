@@ -3,14 +3,14 @@ import {NgForm} from '@angular/forms';
 import { Router } from '@angular/router';
 
 
-import { ChecklistThreeService } from './../../services/checklistthree.service';
+import { ChecklistService } from './../../services/checklist.service';
 import { ChecklistThree } from './../../models/checklist.model';
 
 @Component({
   selector: 'app-checklistthree',
   templateUrl: './checklistthree.component.html',
   styleUrls: ['./checklistthree.component.css'],
-  providers: [ChecklistThreeService]
+  providers: [ChecklistService]
 })
 export class ChecklistthreeComponent implements OnInit {
   checklist: ChecklistThree;
@@ -18,7 +18,7 @@ export class ChecklistthreeComponent implements OnInit {
 
 
   constructor(
-    private checklistThree: ChecklistThreeService,
+    private checklistThree: ChecklistService,
     private router: Router
   ) { }
 

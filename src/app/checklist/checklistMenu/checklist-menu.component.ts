@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsMenu, FormMenuTwo, CommentBinaryForm, CommentForm, BinaryForm, FormBinary, ConfirmComentary} from '../../models/index';
-import { ChecklistMenuService } from '../../services/index';
+import { ChecklistService } from '../../services/index';
 
 @Component({
   selector: 'app-checklistmenu',
   templateUrl:  './checklist-menu.component.html',
-  styleUrls: ['./checklist-menu.component.css']
+  styleUrls: ['./checklist-menu.component.css'],
+  providers: [ChecklistService],
 })
 export class ChecklistMenuComponent implements OnInit {
 
@@ -22,7 +23,7 @@ export class ChecklistMenuComponent implements OnInit {
     new ConfirmComentary(null, 'Comment5'),
   ];
 
-  constructor(private menuService: ChecklistMenuService) {}
+  constructor(private menuService: ChecklistService) {}
 
   ngOnInit(): void {
     this.menuService.getFormsMenu()
