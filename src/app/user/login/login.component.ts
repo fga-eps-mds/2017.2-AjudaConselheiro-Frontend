@@ -24,10 +24,11 @@ export class LoginComponent implements OnInit {
   returnUrl: string;
 
     constructor(
-      private route: ActivatedRoute,
-      private router: Router,
-      private authenticationService: AuthenticationService,
-      private alertService: AlertService) { }
+      private route: ActivatedRoute, private router: Router, private authenticationService: AuthenticationService) { }
+
+     private alertService: AlertService;
+
+
 
     ngOnInit() {
       // Reset status login
@@ -51,13 +52,11 @@ export class LoginComponent implements OnInit {
                 this.alertService.error(error);
                 this.loading = false;
                 if (error = 401) {
-                  console.log('Email ou senha inválidos');
                   if (confirm('Email ou senha inválidos')) {}
                 }
             });
         if (this.token) {
           localStorage.setItem('token', this.token);
-          // this.router.navigate(['usuarios/editar/' + this.user.cod ]);
         }
       } else {
         console.warn('Não fez login');
