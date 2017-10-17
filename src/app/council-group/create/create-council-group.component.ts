@@ -64,4 +64,12 @@ export class CreateCouncilGroupComponent implements OnInit {
   clear() {
     this.alertService.clear();
   }
+
+  isLoggedIn(): boolean {
+    if (localStorage.getItem('token') === null) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 }

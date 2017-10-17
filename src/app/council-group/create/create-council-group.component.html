@@ -4,7 +4,7 @@
 <br>
 <br>
 <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
-<div class="well">
+<div class="well" *ngIf="isLoggedIn()">
   <form #formCouncilGroup="ngForm">
     <br>
     <p class="h2 text-center mb-4"> Cadastro de Conselho </p>
@@ -37,11 +37,19 @@
     </div>
 
   </form>
+
 </div>
-<br>
-<br>
-<br>
-<br>
+<div align="center" *ngIf="!isLoggedIn()">
+    <br>
+    <p class="h2 text-center mb-4">Você precisa estar logado para acessar esta função.</p>
+    <br>
+    <a href="/login"
+      class="btn btn-deep-orange">
+      <span class="glyphicon glyphicon-chevron-left"
+        aria-hidden="false"></span>Entrar   
+    </a>
+</div> 
+
 <br>
 <br>
 <br>
