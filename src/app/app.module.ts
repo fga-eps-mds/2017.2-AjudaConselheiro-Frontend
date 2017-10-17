@@ -25,6 +25,7 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { AlertComponent } from './layouts/alert/alert.component';
 import { AlertService } from './services/alert/alert.service';
+import { SearchCouncilGroupComponent } from './council-group/search/search-council-group.component';
 
 @NgModule({
 
@@ -36,7 +37,8 @@ import { AlertService } from './services/alert/alert.service';
     CarouselComponent,
     LoginComponent,
     FooterComponent,
-    AlertComponent
+    AlertComponent,
+    SearchCouncilGroupComponent
   ],
 
   imports: [

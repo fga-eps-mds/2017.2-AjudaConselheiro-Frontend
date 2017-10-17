@@ -64,4 +64,11 @@ export class CouncilGroupService {
 
     return Observable.throw(error);
   }
+
+  getStates():  Observable<Array<Object>> {
+    return this.http
+    .get('http://servicodados.ibge.gov.br/api/v1/localidades/estados')
+    .map(res => this.extractData(res))
+    .catch(this.handleError);
+  }
 }
