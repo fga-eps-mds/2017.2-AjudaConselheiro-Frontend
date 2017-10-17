@@ -25,14 +25,12 @@ export class UserService {
 
   createUser(user: User): Observable<User> {
 
-    const body = JSON.stringify(user);
-
-    console.log('servico');
-    return this.http
-      .post('http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas', body)
-      .map(res => this.extractData(res))
-      .catch(this.handleError);
-  }
+        const body = JSON.stringify(user);
+        return this.http
+        .post('http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas', body, this.options)
+        .map(res => this.extractData(res))
+        .catch(this.handleError);
+    }
 
   private extractData(res: Response) {
     const body = res.json();

@@ -1,38 +1,40 @@
+import { HttpModule } from '@angular/http';
+import { RouterModule } from '@angular/router';
 import { ChecklistoneComponent } from './checklistone/checklistone.component';
 import { ChecklistthreeComponent } from './checklistthree/checklistthree.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ChecklistComponent} from './checklist.component';
 import { ChecklistMenuComponent } from './checklistMenu/checklist-menu.component';
-import { ChecklistMenuService , ChecklistThreeService, SaveNewFormTwoService } from '../services/index';
+import { ChecklistService} from '../services/index';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
     imports: [
         CommonModule,
-        FormsModule
-
+        FormsModule,
+        RouterModule,
+        HttpModule,
     ],
     declarations: [
         ChecklistComponent,
         ChecklistMenuComponent,
         ChecklistthreeComponent,
-        ChecklistoneComponent,
+        ChecklistoneComponent
     ],
     exports: [
         ChecklistComponent,
-        ChecklistMenuComponent
+        ChecklistMenuComponent,
+        ChecklistthreeComponent,
     ],
     providers: [
-        ChecklistMenuService,
-        ChecklistThreeService,
-        SaveNewFormTwoService
+        // ChecklistService,
     ]
 })
 
 export class ChecklistModule {}
 
-export class CheckQuestion {
+/*export class CheckQuestion {
   public pergunta: string;
 
   constructor(pergunta: string) {
@@ -45,3 +47,5 @@ export class InfoData {
     public responsavelInfo: string, public cargo: string, public escola: string,
     public cantineiro: string) {}
 }
+
+*/

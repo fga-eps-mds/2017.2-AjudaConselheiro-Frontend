@@ -19,6 +19,9 @@ import { LoginComponent } from './user';
 import { TextMaskModule } from 'angular2-text-mask';
 import { ROUTES } from './app.routes';
 import { BaseRequestOptions } from '@angular/http';
+import { ChecklistService } from './services/index';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { FooterComponent } from './layouts/footer/footer.component';
 
 @NgModule({
 
@@ -29,6 +32,7 @@ import { BaseRequestOptions } from '@angular/http';
     NavbarHomeComponent,
     CarouselComponent,
     LoginComponent,
+    FooterComponent
   ],
 
   imports: [
@@ -36,7 +40,9 @@ import { BaseRequestOptions } from '@angular/http';
     HttpModule,
     RouterModule.forRoot(ROUTES),
     MDBBootstrapModule.forRoot(),
+    CarouselModule.forRoot(),
     FormsModule,
+    ReactiveFormsModule,
     ChecklistModule,
     SchedulingModule,
     UserModule,
