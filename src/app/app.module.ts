@@ -20,7 +20,6 @@ import { TextMaskModule } from 'angular2-text-mask';
 import { ROUTES } from './app.routes';
 import { BaseRequestOptions } from '@angular/http';
 import { ChecklistService } from './services/index';
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { FooterComponent } from './layouts/footer/footer.component';
 
@@ -32,7 +31,6 @@ import { FooterComponent } from './layouts/footer/footer.component';
     HomeComponent,
     NavbarHomeComponent,
     CarouselComponent,
-    ChecklistoneComponent,
     LoginComponent,
     FooterComponent
   ],
@@ -44,15 +42,14 @@ import { FooterComponent } from './layouts/footer/footer.component';
     MDBBootstrapModule.forRoot(),
     CarouselModule.forRoot(),
     FormsModule,
+    ReactiveFormsModule,
     ChecklistModule,
     SchedulingModule,
     UserModule,
-    TextMaskModule,
-    ReactiveFormsModule
+    TextMaskModule
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [
-    ChecklistService,
     BaseRequestOptions,
   ],
   bootstrap: [AppComponent]

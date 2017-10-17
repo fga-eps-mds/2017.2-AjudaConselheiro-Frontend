@@ -1,62 +1,50 @@
 <br><br><br>
-<link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
 <div class="well">
-    <form #formUser="ngForm">
+    <form (ngSubmit)="formUser.form.valid && register()" #formUser="ngForm">
         <br>
-        <p class="h3 text-center mb-4"> Cadastro Conselheiro </p>
+        <p class="h2 text-center mb-4"> Cadastro </p>
 
         <div class="form-group">
             <i class="fa fa-user prefix grey-text"></i>
-            <input type="text" id="orangeForm-name" class="form-control" name="fullname" minlength="10" placeholder="Nome Completo" [(ngModel)]="user.fullname" #fullname="ngModel" required>
-            <div *ngIf="fullname.errors && (fullname.dirty || fullname.touched)" class="alert alert-danger">
-                <div [hidden]="!fullname.errors.requirerd">
+            <input type="text" id="orangeForm-name" class="form-control" name="fullname" minlength="10" placeholder="Nome Completo" [(ngModel)]="user.nomeCompleto" #nomeCompleto="ngModel" required>
+            <div *ngIf="nomeCompleto.errors && (nomeCompleto.dirty)" class="alert alert-danger">
+                <div [hidden]="!nomeCompleto.errors.required">
                     Digite o nome completo.
                 </div>
-                <div [hidden]="!fullname.errors.minlength">
+                <div [hidden]="!nomeCompleto.errors.minlength">
+                    O Nome deve ter ao menos 10 caracteres.
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <i class="fa fa-user-circle prefix grey-text"></i>
+            <input type="text" id="orangeForm-name" class="form-control" name="nomeUsuario" maxlength="20" placeholder="Nome de Usuário" [(ngModel)]="user.nomeUsuario" #nomeUsuario="ngModel" required>
+            <div *ngIf="nomeUsuario.errors && (nomeUsuario.dirty)" class="alert alert-danger">
+                <div [hidden]="!nomeUsuario.errors.required">
+                    Digite um nome de usuário válido.
+                </div>
+                <div [hidden]="!nomeUsuario.errors.minlength">
                     O Nome deve ter ao menos 10 caracteres.
                 </div>
             </div>
         </div>
         <div class="form-group">
             <i class="fa fa-address-card prefix grey-text"></i>
-            <input type="text" id="orangeForm-name" class="form-control" name="cpf" minlength="11" placeholder="CPF" [(ngModel)]="user.cpf" #cpf="ngModel" required [textMask]="{mask: maskcpf}" />
-            <div *ngIf="cpf.errors && (cpf.dirty || cpf.touched)" class="alert alert-danger">
-                <div [hidden]="!cpf.errors.required">
-                    Digite um CPF válido
+            <input type="text" id="orangeForm-name" class="form-control" name="cep" minlength="8" maxlength="8" placeholder="CEP" [(ngModel)]="user.CEP" #CEP="ngModel" required>
+            <div *ngIf="CEP.errors && (CEP.dirty)" class="alert alert-danger">
+                <div [hidden]="!CEP.errors.required">
+                    Digite um CEP válido
                 </div>
-                <div [hidden]="!cpf.errors.minlength">
-                    O CPF deve ter ao menos 11 caracteres.
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <i class="fa fa-phone prefix grey-text"></i>
-            <input type="text" id="orangeForm-name" class="form-control" name="phonw" minlength="10" placeholder="phone" [(ngModel)]="user.phone" #phone="ngModel" required [textMask]="{mask: maskphone}" />
-            <div *ngIf="phone.errors && (phone.dirty || phone.touched)" class="alert alert-danger">
-                <div [hidden]="!phone.errors.required">
-                    Digite um Telefone válido
-                </div>
-                <div [hidden]="!phone.errors.minlength">
-                    O telefone deve ter ao menos 10 caracteres.
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <i class="fa fa-home prefix grey-text"></i>
-            <input type="text" id="orangeForm-name" class="form-control" name="county" minlength="5" placeholder="Segmento" [(ngModel)]="user.county" #county="ngModel" required>
-            <div *ngIf="county.errors && (county.dirty || county.touched)" class="alert alert-danger">
-                <div [hidden]="!county.errors.required">
-                    Digite o nome do segmento.
-                </div>
-                <div [hidden]="!county.erros.minlength">
-                    O Segmento deve ter ao menos 5 caracteres.
+                <div [hidden]="!CEP.errors.minlength">
+                    O CEP deve ter 8 caracteres
                 </div>
             </div>
         </div>
         <div class="form-group">
             <i class="fa fa-envelope prefix grey-text"></i>
             <input type="email" id="orangeForm-name" class="form-control" name="email" placeholder="Email" [(ngModel)]="user.email" #email="ngModel" required>
-            <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert alert-danger">
+            <div *ngIf="email.errors && (email.dirty)" class="alert alert-danger">
                 <div [hidden]="!email.errors.required">
                     Digite um email válido
                 </div>
@@ -64,18 +52,19 @@
         </div>
         <div class="form-group">
             <i class="fa fa-lock prefix grey-text"></i>
-            <input type="password" id="orangeForm-name" class="form-control" name="password" minlength="5" placeholder="Senha" [(ngModel)]="user.password" #password="ngModel" required>
-            <div *ngIf="password.errors && (password.dirty || password.touched)" class="alert alert-danger">
-                <div [hidden]="!password.errros.required">
+            <input type="password" id="orangeForm-name" class="form-control" name="senha" minlength="7" placeholder="Senha" [(ngModel)]="user.senha" #senha="ngModel" required>
+            <div *ngIf="senha.errors && (senha.dirty)" class="alert alert-danger">
+                <div [hidden]="!senha.errors.required">
                     Digite uma senha válida.
                 </div>
-                <div [hidden]="!password.errors.minlength">
-                    A senha deve ter mais do que 5 caracteres.
+                <div [hidden]="!senha.errors.minlength">
+                    A senha deve ter mais do que 7 caracteres.
                 </div>
             </div>
         </div>
+
         <div class="form-group text-center">
-            <input type="button" class="btn btn-deep-orange" (click)="createUser()" value="Cadastrar" [disabled]="!formUser.form.valid">
+            <button type="submit" class="btn btn-deep-orange" [disabled]="!formUser.form.valid">Cadastrar</button>
             <a href="/home" class="btn btn-outline-warning waves-effect">
                 <span class="glyphicon glyphicon-chevron-left" aria-hidden="false"></span>Voltar
             </a>

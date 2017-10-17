@@ -12,8 +12,8 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 // As Angular testing guide in "Shallow components tests" for <router-outlet>
 // import { NO_ERRORS_SCHEMA } from '@angular/core';
-import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
-
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { RouterTestingModule } from '@angular/router/testing';
 import { TextMaskModule } from 'angular2-text-mask';
 import { FormsModule } from '@angular/forms';
 
@@ -35,6 +35,7 @@ describe('AppComponent', () => {
       imports: [
         TextMaskModule,
         FormsModule,
+        RouterTestingModule,
         CarouselModule
       ],
     }).compileComponents();

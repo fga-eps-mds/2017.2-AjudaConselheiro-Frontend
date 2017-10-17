@@ -1,7 +1,7 @@
 import { APP_BASE_HREF } from '@angular/common';
 import { AppModule } from './../../app.module';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ChecklistThreeService } from '../../services/index';
 import { ChecklistthreeComponent } from './checklistthree.component';
 
 describe('ChecklistthreeComponent', () => {
