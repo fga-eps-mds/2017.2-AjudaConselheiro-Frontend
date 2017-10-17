@@ -21,7 +21,6 @@ import { ROUTES } from './app.routes';
 import { BaseRequestOptions } from '@angular/http';
 import { ChecklistService } from './services/index';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './in-memory-data.service';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { FooterComponent } from './layouts/footer/footer.component';
 
@@ -49,7 +48,6 @@ import { FooterComponent } from './layouts/footer/footer.component';
     SchedulingModule,
     UserModule,
     TextMaskModule,
-    InMemoryWebApiModule.forRoot(InMemoryDataService),
     ReactiveFormsModule
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
