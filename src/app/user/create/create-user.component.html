@@ -3,11 +3,13 @@
 <div class="well">
     <form (ngSubmit)="formUser.form.valid && register()" #formUser="ngForm">
         <br>
+        <div *ngIf="loading == true" class="alert alert-danger">
+                Cadastro realizado com sucesso!
+        </div>
         <p class="h2 text-center mb-4"> Cadastro </p>
-
         <div class="form-group">
             <i class="fa fa-user prefix grey-text"></i>
-            <input type="text" id="orangeForm-name" class="form-control" name="fullname" minlength="10" placeholder="Nome Completo" [(ngModel)]="user.nomeCompleto" #nomeCompleto="ngModel" required>
+            <input type="text" id="orangeForm-name" class="form-control" name="nomeCompleto" minlength="10" placeholder="Nome Completo" [(ngModel)]="user.nomeCompleto" #nomeCompleto="ngModel" required>
             <div *ngIf="nomeCompleto.errors && (nomeCompleto.dirty)" class="alert alert-danger">
                 <div [hidden]="!nomeCompleto.errors.required">
                     Digite o nome completo.
@@ -64,10 +66,10 @@
         </div>
 
         <div class="form-group text-center">
-            <button type="submit" class="btn btn-deep-orange" [disabled]="!formUser.form.valid">Cadastrar</button>
-            <a href="/home" class="btn btn-outline-warning waves-effect">
-                <span class="glyphicon glyphicon-chevron-left" aria-hidden="false"></span>Voltar
-            </a>
+          <a href="/home" class="btn btn-outline-warning waves-effect">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="false"></span>Voltar
+          </a>
+          <button type="submit" class="btn btn-deep-orange" (click)="$event.stopPropagation()" [disabled]="!formUser.form.valid">Cadastrar</button>
         </div>
     </form>
 </div>
