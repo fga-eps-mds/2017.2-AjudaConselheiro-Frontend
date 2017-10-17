@@ -1,2 +1,10 @@
-<p>
-</p>
+<br><br><br><br><br>
+
+<div class="container select-style">
+  <select [(ngModel)]="state">
+    <option value="" selected disabled>Escolha um Município</option>
+    <option *ngFor="let st of states" [value]="st">{{st}}</option>
+  </select>
+</div>
+
+<br><br><br><br><br>
