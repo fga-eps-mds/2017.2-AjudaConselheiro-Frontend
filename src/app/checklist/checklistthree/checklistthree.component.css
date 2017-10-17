@@ -5,10 +5,22 @@
 .shadow-textarea textarea.form-control {
     padding-left: 0.8rem;
 }
-body {
-    background-color: white;
+
+input.placeholder {
+    text-align: center;
+}
+::-webkit-input-placeholder {
+   text-align: center;
 }
 
-.container {
-    background-color: white;
+:-moz-placeholder { /* Firefox 18- */
+   text-align: center;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   text-align: center;
+}
+
+:-ms-input-placeholder {
+   text-align: center;
 }

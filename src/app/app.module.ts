@@ -19,7 +19,7 @@ import { LoginComponent } from './user';
 import { TextMaskModule } from 'angular2-text-mask';
 import { ROUTES } from './app.routes';
 import { BaseRequestOptions } from '@angular/http';
-import { ChecklistMenuService } from './services/checklist-menu.service';
+import { ChecklistService } from './services/index';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { FooterComponent } from './layouts/footer/footer.component';
 

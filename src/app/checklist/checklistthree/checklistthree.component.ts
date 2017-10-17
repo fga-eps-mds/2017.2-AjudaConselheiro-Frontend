@@ -1,22 +1,24 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import {CheckQuestion, SaveFormCheckTwo} from '../../models/checklist.model';
-import { NgForm } from '@angular/forms';
+import {NgForm} from '@angular/forms';
 import { Router } from '@angular/router';
-import { ChecklistThreeService } from './../../services/checklistthree.service';
-import { ChecklistThree } from './../../models/checklistthree.model';
 
+
+import { ChecklistService } from './../../services/checklist.service';
+import { ChecklistThree } from './../../models/checklist.model';
 
 @Component({
   selector: 'app-checklistthree',
   templateUrl: './checklistthree.component.html',
-  styleUrls: ['./checklistthree.component.css']
+  styleUrls: ['./checklistthree.component.css'],
+  providers: [ChecklistService]
 })
 export class ChecklistthreeComponent implements OnInit {
   checklist: ChecklistThree;
   @ViewChild('formChecklist') formChecklist: NgForm;
 
+
   constructor(
-    private checklistThree: ChecklistThreeService,
+    private checklistThree: ChecklistService,
     private router: Router
   ) { }
 
