@@ -54,16 +54,12 @@ import { AlertModule } from 'ngx-bootstrap/alert';
     ChecklistModule,
     SchedulingModule,
     UserModule,
-<<<<<<< HEAD
     CouncilGroupModule,
-    TextMaskModule,
-=======
     ReactiveFormsModule,
     TextMaskModule,
     ConfirmationPopoverModule.forRoot({
       confirmButtonType: 'danger' // set defaults here
     })
->>>>>>> development
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [
