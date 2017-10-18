@@ -14,7 +14,8 @@ describe('CarouselComponent', () => {
       declarations: [ CarouselComponent ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       imports: [
-        CarouselModule
+        CarouselModule,
+        RouterTestingModule
       ],
     })
     .compileComponents();

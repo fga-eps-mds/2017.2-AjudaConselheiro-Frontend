@@ -9,6 +9,7 @@ import { ChecklistthreeComponent } from './checklist/checklistthree/checklistthr
 import { LoginComponent } from './user';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 // As Angular testing guide in "Shallow components tests" for <router-outlet>
 // import { NO_ERRORS_SCHEMA } from '@angular/core';
@@ -31,12 +32,15 @@ describe('AppComponent', () => {
         LoginComponent,
         FooterComponent
       ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      schemas: [
+        CUSTOM_ELEMENTS_SCHEMA,
+        NO_ERRORS_SCHEMA
+      ],
       imports: [
         TextMaskModule,
         FormsModule,
-        RouterTestingModule,
-        CarouselModule
+        CarouselModule,
+        RouterTestingModule
       ],
     }).compileComponents();
   }));
