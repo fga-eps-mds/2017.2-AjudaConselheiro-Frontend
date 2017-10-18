@@ -22,6 +22,8 @@ import { BaseRequestOptions } from '@angular/http';
 import { ChecklistService } from './services/index';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { FooterComponent } from './layouts/footer/footer.component';
+import {ConfirmationPopoverModule} from 'angular-confirmation-popover';
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 @NgModule({
 
@@ -42,11 +44,15 @@ import { FooterComponent } from './layouts/footer/footer.component';
     MDBBootstrapModule.forRoot(),
     CarouselModule.forRoot(),
     FormsModule,
-    ReactiveFormsModule,
+    AlertModule.forRoot(),
     ChecklistModule,
     SchedulingModule,
     UserModule,
-    TextMaskModule
+    ReactiveFormsModule,
+    TextMaskModule,
+    ConfirmationPopoverModule.forRoot({
+      confirmButtonType: 'danger' // set defaults here
+    })
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [

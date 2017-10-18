@@ -1,6 +1,11 @@
 @import '../layouts/navbar/navbar.component.css';
 @import '../layouts/carousel/carousel.component.css';
 
+.alerting {
+  margin-top: 64px;
+  margin-bottom: -44px;
+}
+
 div.one {
     width:auto;
     height: 500px;
@@ -16,4 +21,3 @@ div.two {
     border: 0px;
    	background-color:rgb(255, 255, 255);
 }
-
