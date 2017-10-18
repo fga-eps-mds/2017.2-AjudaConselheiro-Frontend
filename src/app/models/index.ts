@@ -6,3 +6,4 @@ export * from './council-group';
 export * from './checklistthree.model';
 export * from './alert.model';
 export * from './search.model';
+export * from './state.model';

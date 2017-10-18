@@ -3,7 +3,7 @@
 <div class="container select-style">
   <select [(ngModel)]="state">
     <option value="" selected disabled>Escolha um Município</option>
-    <option *ngFor="let st of states" [value]="st">{{st}}</option>
+    <option *ngFor="let st of states" [value]="st.id">{{st.sigla}}</option>
   </select>
 </div>
 

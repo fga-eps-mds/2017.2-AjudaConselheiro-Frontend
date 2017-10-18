@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { FormsModule } from '@angular/forms';
 import { SearchCouncilGroupComponent } from './search-council-group.component';
+import { HttpModule, Headers, RequestOptions, Response, URLSearchParams } from '@angular/http';
+import { AlertService } from '../../services/alert/alert.service';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('SearchCouncilGroupComponent', () => {
   let component: SearchCouncilGroupComponent;
@@ -8,7 +11,16 @@ describe('SearchCouncilGroupComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SearchCouncilGroupComponent ]
+      declarations: [
+        SearchCouncilGroupComponent
+      ],
+      imports: [
+        FormsModule,
+        HttpModule,
+        RouterTestingModule ],
+      providers: [
+        AlertService
+      ]
     })
     .compileComponents();
   }));
