@@ -1,64 +1,242 @@
-<!-- HTML destinado à formatação da página da checklist da Avaliação
-dos cardápios das escolas parque e escolas classes da CRE/PPC -->
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
-    <a class="navbar-brand" href="home"><strong>Ajuda Conselheiro</strong></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="/login">Voltar</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Sair</a>
-            </li>
-        </ul>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <!-- -->
+    <br><br><br><br>
+    <div class="container col-md-10 border border-dark">
+      <div class="row"><br><br><br><br></div>
+        <form (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-md-10">
+                    <div class="col-md-10"><br><br></div>
+                    <p class="h3 text-center mb-4 question15" align="center">Avaliação dos cardápios das escolas parque e escolas classes da CRE/PPC</p>
+                    </div>
+                    </div>
+                    <form ng-submit="">
+                        <div class="row" >
+                          <div class="col-md-9" align="center"><h5>Avaliação dos cardápios</h5></div>
+                          <div class="col-md-1" align="center"><h5>Sim</h5></div>
+                          <div class="col-md-1" align="center"><h5>Não</h5></div>
+                        </div>
+                        <br>
+                        <br>
+                        <!-- Começo da parte referente às perguntas com comentários -->
+
+                          <div class="row"  >
+                            <div class="col-md-1"></div>
+                            <div class="col-md-8 question14">Houve falta de alimentação escolar durante o período letivo?
+                               Caso positivo informe o(s) períodos e os produtos?</div>
+                            <div class="col-md-1" align="center"><input type="radio" name="formsMenu0" value="true" [(ngModel)]="formsMenu[0].answer" (click)="checkComentary[0].value=true" required></div>
+                            <div class="col-md-1" align="center"><input type="radio" name="formsMenu0" [(ngModel)]="formsMenu[0].answer" value="false" (click)="checkComentary[0].value=null"></div>
+                          </div>
+                          <div class="row" *ngIf="checkComentary[0].value ===true">
+                            <div class="col-md-8"></div>
+                            <div class="col-md-4">
+                              <div class="md-form">
+                                <textarea mdbActive align ="center"type="text" id="form7" class="md-textarea commentaryOne" placeholder="Resposta" name="commentary1" [(ngModel)]="formsMenu[0].commentary"></textarea>
+                                <label for="form7" ></label>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row"  >
+                            <div class="col-md-1"></div>
+                            <div class="col-md-8 question13">A quantidade de gêneros entregues nas escolas foi suficiente para ofertar refeições para todos os alunos
+                               até que se proceda à próxima distribuição?</div>
+                            <div class="col-md-1" align="center"><input type="radio" name="formsMenu1" [(ngModel)]="formsMenu[1].answer" value="true" (click)="checkComentary[1].value=true" required></div>
+                            <div class="col-md-1" align="center"><input type="radio" name="formsMenu1" [(ngModel)]="formsMenu[1].answer" value="false" (click)="checkComentary[1].value=null"></div>
+                          </div>
+                          <div class="row" *ngIf="checkComentary[1].value ===true">
+                            <div class="col-md-8"></div>
+                            <div class="col-md-4">
+                              <div class="md-form">
+                                <textarea mdbActive align ="center"type="text" id="form7" class="md-textarea commentaryTwo" placeholder="Resposta" name="commentary2" [(ngModel)]="formsMenu[1].commentary"></textarea>
+                                <label for="form7" ></label>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row"  >
+                            <div class="col-md-1"></div>
+                            <div class="col-md-8 question12">Há excesso de algum gênero alimentício no cardápio? Qual(ais)?</div>
+                            <div class="col-md-1" align="center"><input type="radio" name="formsMenu2" [(ngModel)]="formsMenu[2].answer" value="true" (click)="checkComentary[2].value=true" required></div>
+                            <div class="col-md-1" align="center"><input type="radio" name="formsMenu2" [(ngModel)]="formsMenu[2].answer" value="false" (click)="checkComentary[2].value=null"></div>
+                          </div>
+                          <div class="row" *ngIf="checkComentary[2].value ===true">
+                            <div class="col-md-8"></div>
+                            <div class="col-md-4">
+                              <div class="md-form">
+                                <textarea mdbActive align ="center"type="text" id="form7" class="md-textarea commentaryThree" placeholder="Resposta" name="commentary3" [(ngModel)]="formsMenu[2].commentary"></textarea>
+                                <label for="form7" ></label>
+                              </div>
+                            </div>
+                          </div>
+
+
+                          <div class="row"  >
+                            <div class="col-md-1"></div>
+                            <div class="col-md-8 question11">A escola complementa a alimentação escolar? Como?</div>
+                            <div class="col-md-1" align="center"><input type="radio" name="formsMenu3" [(ngModel)]="formsMenu[3].answer" value="true" (change)="checkComentary[3].value=true" required></div>
+                            <div class="col-md-1" align="center"><input type="radio" name="formsMenu3" [(ngModel)]="formsMenu[3].answer" value="false" (change)="checkComentary[3].value=null"></div>
+                          </div>
+                          <div class="row" *ngIf="checkComentary[3].value ===true">
+                            <div class="col-md-8"></div>
+                            <div class="col-md-4">
+                              <div class="md-form">
+                                <textarea mdbActive align ="center"type="text" id="form7" class="md-textarea commentaryFour" placeholder="Resposta" name="commentary3" [(ngModel)]="formsMenu[3].commentary"></textarea>
+                                <label for="form7" ></label>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-8 question10">A escola complementa a alimentação escolar? Como?</div>
+                            <div class="col-md-1" align="center"><input type="radio" name="formsMenu4" value="true" [(ngModel)]="formsMenu[4].answer" (click)="checkComentary[4].value=true"required></div>
+                            <div class="col-md-1" align="center"><input type="radio" name="formsMenu4" value="false" [(ngModel)]="formsMenu[4].answer" (click)="checkComentary[4].value=null"></div>
+                          </div>
+
+                          <div class="row" *ngIf="checkComentary[4].value ===true">
+                            <div class="col-md-8"></div>
+                            <div class="col-md-4">
+                              <div class="md-form">
+                                <textarea mdbActive align ="center"type="text" id="form7" class="md-textarea commentaryFive" placeholder="Resposta" name="commentary4" [(ngModel)]="formsMenu[4].commentary" ></textarea>
+                                <label for="form7" ></label>
+                              </div>
+                            </div>
+                          </div>
+
+                      <!-- Fim da parte referente às perguntas com comentários -->
+                      <!-- Inicio da parte referente às perguntas binárias -->
+
+                        <div class="row">
+                          <div class="col-md-1"></div>
+                          <div class="col-md-8 question">De maneira geral, os cardápios são bem elaborados</div>
+                          <div class="col-md-1" align="center"><input type="radio" name="formBinary0" [(ngModel)]="formBinary[0].answer" [value]="true" required></div>
+                          <div class="col-md-1" align="center"><input type="radio" name="formBinary0" [(ngModel)]="formBinary[0].answer"[value]="false"></div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-1"></div>
+                          <div class="col-md-8 question1">De maneira geral, os cardápios são bem aceitos pelos alunos?</div>
+                          <div class="col-md-1" align="center"><input type="radio" name="formBinary1" [(ngModel)]="formBinary[1].answer" [value]="true" required></div>
+                          <div class="col-md-1" align="center"><input type="radio" name="formBinary1" [(ngModel)]="formBinary[1].answer"[value]="false"></div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-1"></div>
+                          <div class="col-md-8 question2">De maneira geral, os cardápios são bem elaborados?</div>
+                          <div class="col-md-1" align="center"><input type="radio" name="formBinary2" [(ngModel)]="formBinary[2].answer" [value]="true" required></div>
+                          <div class="col-md-1" align="center"><input type="radio" name="formBinary2" [(ngModel)]="formBinary[2].answer"[value]="false"></div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-1"></div>
+                          <div class="col-md-8 question3">O cardápio fica exposto para os alunos e comunidade</div>
+                          <div class="col-md-1" align="center"><input type="radio" name="formBinary3" [(ngModel)]="formBinary[3].answer" [value]="true" required></div>
+                          <div class="col-md-1" align="center"><input type="radio" name="formBinary3" [(ngModel)]="formBinary[3].answer"[value]="false"></div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-1"></div>
+                          <div class="col-md-8 question4">A escola recebe doação de alimentos?</div>
+                          <div class="col-md-1" align="center"><input type="radio" name="formBinary4" [(ngModel)]="formBinary[4].answer" [value]="true" required></div>
+                          <div class="col-md-1" align="center"><input type="radio" name="formBinary4" [(ngModel)]="formBinary[4].answer" [value]="false"></div>
+                        </div>
+                        <br>
+                        <br>
+                        <!-- Fim das questões com respostas binárias e início das questões com perguntas de comentário  -->
+                        <div class="row">
+                          <div class="col-md-12 question5" align="center"><h5>Qual a quantidade de frutas e hortaliças que estão sendo oferecidas por aluno,
+                           durante o período de uma semana?</h5></div>
+                          </div>
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                <div class="form-group basic-textarea rounded-corners shadow-textarea">
+                                    <textarea mdbActive align="center" type="text" id="obs" class="form-control z-depth-1" name="answer" [(ngModel)]="formMenuTwo[0].answer" rows="3" placeholder="Resposta" required></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+                        <br>
+                        <div class="row">
+                          <div class="col-md-12 question6" align="center"><h5>Qual a preparação mais aceita?</h5></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                <div class="form-group basic-textarea rounded-corners shadow-textarea">
+                                    <textarea mdbActive align="center" type="text" id="obs" class="form-control z-depth-1" name="answer" [(ngModel)]="formMenuTwo[1].answer" rows="3" placeholder="Resposta" required></textarea>
+                                    <label for="checkthreetext"></label>
+                                </div>
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-12 question7" align="center"><h5>Qual a preparação menos aceita?</h5></div>
+                          </div>
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                <div class="form-group basic-textarea rounded-corners shadow-textarea">
+                                    <textarea mdbActive align="center" type="text" id="obs" class="form-control z-depth-1" name="answer" [(ngModel)]="formMenuTwo[2].answer" rows="3" placeholder="Resposta" required></textarea>
+                                    <label for="checkthreetext"></label>
+                                </div>
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+                        <div class="row">
+
+                          <div class="col-md-12 question8" align="center"><h5>Qual produto é mais aceito?</h5></div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                <div class="form-group basic-textarea rounded-corners shadow-textarea">
+                                    <textarea mdbActive align="center" type="text" id="obs" class="form-control z-depth-1" name="answer" [(ngModel)]="formMenuTwo[3].answer" rows="3" placeholder="Resposta"  required></textarea>
+                                    <label for="checkthreetext"></label>
+                                </div>
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+
+                        <div class="row">
+                          <!-- <div class="col-md-2"></div> -->
+                          <div class="col-md-12 question9" align="center"><h5>Qual produto é menos aceito?</h5></div>
+                          <!-- <div class="col-md-1"></div> -->
+                          <!-- <div class="col-md-1"></div> -->
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                <div class="form-group basic-textarea rounded-corners shadow-textarea">
+                                    <textarea mdbActive align="center" type="text" id="obs" class="form-control z-depth-1" name="obs5" [(ngModel)]="formMenuTwo[4].answer" rows="3" placeholder="Resposta" required></textarea>
+                                    <label for="checkthreetext"></label>
+                                </div>
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+                        <!--Fim da secção de perguntas com apenas comentários e fim das perguntas  -->
+                      <br>
+
+                  </form>
+
+                    <div class="row">
+                      <div class="col-md-1"></div>
+                      <div class="col-md-2"><a href="/checklist" class="btn btn-outline-warning waves-effect"><span class="glyphicon glyphicon-chevron-left " aria-hidden="false"></span><i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>  Voltar</a></div>
+                      <div class="col-md-3"></div>
+                      <div class="col-md-4"></div>
+                      <div class="col-md-2"><button type="submit" class="btn btn-warning btn-rounded waves-light" mdbRippleRadius (ngSubmit)="onSubmit()">Enviar <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></button></div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12"><br></div>
+                    </div>
+        </form>
     </div>
-</nav>
-<br><br><br><br>
-<div clas="container">
-    <form (ngSubmit)="onSubmit()">
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <p class="h3 text-center mb-4">AVALIAÇÃO DOS CARDÁPIOS DAS ESCOLAS PARQUE E ESCOLAS CLASSES DA CRE/PPC </p>
-                <table class="table table-striped table-hover ">
-                    <thead>
-                        <tr>
-                            <th>Perguntas</th>
-                            <th>Sim</th>
-                            <th>Não</th>
-                         </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let questionOne of formsMenu">
-                            <td>{{ questionOne.question }}</td>
-                            <td>
-                                <input type="checkbox" value="">
-                            </td>
-                            <td>
-                              <input  type="checkbox" value="">
-                            </td>
-                            <td>
-                                <button type="button" id="idComentario" style="box-shadow: none !important; color: #ed6209 !important; margin-top:-15px !important;" class="btn btn-flat btn-lg">Observação</button>
-                            </td>
-                        </tr>
-                        <tr *ngFor="let questionTwo  of formMenuTwo">
-                            <td>{{ questionTwo.question }}</td>
-                            <td >
-                                <input  type="checkbox" value="">
-                            </td>
-                            <td>
-                                <input  type="checkbox" value="">
-                            </td>
-                            <td>
-                                <button type="button" id="idComentario" style="box-shadow: none !important; color: #ed6209 !important; margin-top:-15px !important;" class="btn btn-flat btn-lg">Observação</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <button type="submit"  class="btn btn-warning">Enviar</button>
-            </div>
-        </div>
-    </form>
-</div>
+
+  </body>
+</html>

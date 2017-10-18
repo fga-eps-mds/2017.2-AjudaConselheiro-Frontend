@@ -22,8 +22,12 @@ export class AuthenticationService {
     }
 
     logout() {
-        this.token = null;
+        localStorage.removeItem('token');
         localStorage.removeItem('currentUser');
+    }
+
+    get hasToken(): any {
+      return localStorage.hasOwnProperty('token');
     }
 
     private extractData(res: Response) {
