@@ -15,6 +15,7 @@
       <!-- Here we are making an iteration through a 2d array consisting of various objects and its atributes
       meanwhile printing the header determined to each section, with that we will print all of the atributes
       that are stored inside the determined object array-->
+
         <form (ngSubmit)= "onSubmit()" class="ngForm">
           <div *ngFor = "let topic of iteratorArray ;let topicNum=index">
             <div class="row" >
@@ -23,12 +24,45 @@
               <div class="col-md-1 " align="center"><h5></h5></div>
             </div>
           <div class="row" *ngFor= "let question of topic;let questNum=index;">
+            <!-- Section header -->
             <div class="col-md-9" align="left">{{iteratorArray[topicNum][questNum].question}}</div>
-            <div class="col-md-1" align="center" *ngIf= "topicNum!==6 && ( questNum!==4 || questNum!==5)">Sim <input type="radio" name="{{iteratorArray[topicNum][questNum].question}}" [value]="true" (ngModel)= "iteratorArray[topicNum][questNum].answer"></div>
-            <div class="col-md-1" align="center" *ngIf= "topicNum!==6 && ( questNum!==4 || questNum!==5)">Não <input type="radio" name="{{iteratorArray[topicNum][questNum].question}}" [value]="false" (ngModel)= "iteratorArray[topicNum][questNum].answer"></div>
-            <div class="col-md-1" align="center" *ngIf= "topicNum===6 && ( questNum===0 || questNum===1|| questNum===2|| questNum===3)">Sim <input type="radio" name="{{iteratorArray[topicNum][questNum].question}}" [value]="true" (ngModel)= "iteratorArray[topicNum][questNum].answer"></div>
-            <div class="col-md-1" align="center" *ngIf= "topicNum===6 && ( questNum===0 || questNum===1|| questNum===2|| questNum===3)">Não <input type="radio" name="{{iteratorArray[topicNum][questNum].question}}" [value]="false" (ngModel)= "iteratorArray[topicNum][questNum].answer"></div>
-            <div class="col-md-2"><input type="text" placeholder="Resposta" *ngIf="topicNum===6 && ( questNum===4 || questNum===5)"(ngModel)= "iteratorArray[topicNum][questNum].commmentary" name="{{iteratorArray[topicNum][questNum].question}}"></div>
+            
+            <!-- Questions -->
+            <div class="col-md-2" align="center" valign="center" 
+                *ngIf= "topicNum!==6 && ( questNum!==4 || questNum!==5)">
+              Não 
+              <!-- Rounded switch -->
+              <label class=" align-middle switch">
+                <input type="checkbox" 
+                  name="{{iteratorArray[topicNum][questNum].question}}" 
+                  [value]="false" 
+                  (ngModel)= "iteratorArray[topicNum][questNum].answer">
+                <span class="slider round"></span>
+              </label>
+               Sim
+            </div>
+
+            <!-- Other questions -->
+            <div class="col-md-2" align="center" 
+                *ngIf= "topicNum===6 && ( questNum===0 || questNum===1|| questNum===2|| questNum===3)">
+              Não
+              <label class=" align-middle switch">
+                <input type="checkbox" 
+                  name="{{iteratorArray[topicNum][questNum].question}}" 
+                  [value]="false" 
+                  (ngModel)= "iteratorArray[topicNum][questNum].answer">
+                <span class="slider round"></span>
+              </label>
+               Sim
+            </div>
+
+            <!-- Commentary options for 2nd half of questions -->
+            <div class="col-md-2">
+              <input type="text" placeholder="Resposta" 
+                *ngIf="topicNum===6 && ( questNum===4 || questNum===5)"
+                (ngModel)= "iteratorArray[topicNum][questNum].commmentary" 
+                name="{{iteratorArray[topicNum][questNum].question}}">
+            </div>
           </div>
           
           <div class="row">
