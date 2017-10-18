@@ -7,28 +7,19 @@ import { User } from '../models/user';
 })
 
 export class HomeComponent implements OnInit {
-    loggedOut: boolean;
-    type = 'success';
+    isLoggedIn: boolean;
 
     ngOnInit() {
-      this.loggedOut = this.fromLocalStorage();
-
-      setTimeout(function() {
-       this.loggedOut = localStorage.loggedOut = false;
-     }, 5000);
+      this.isLoggedIn = this.hasToken();
+    //   setTimeout(function() {
+    //    this.isLoggedIn = localStorage.isLoggedIn = false;
+    //  }, 5000);
     }
 
-    fromLocalStorage(): boolean {
-      let result;
-      if (localStorage.hasOwnProperty('loggedOut')) {
-        if (localStorage.getItem('loggedOut') === 'true') {
-          result = true;
-        } else {
-          result = false;
-        }
-      } else {
-        result = false;
+    hasToken(): boolean {
+      if (localStorage.hasOwnProperty('token')) {
+        return true;
       }
-      return result;
+      return false;
     }
 }
