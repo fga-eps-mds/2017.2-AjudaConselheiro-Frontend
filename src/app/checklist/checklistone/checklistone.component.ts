@@ -17,7 +17,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class ChecklistoneComponent implements OnInit {
 
-  image: any[];
+  imageUrl: string;
   private base64Image: string;
 
   // This component is destined to the checklist corresponding to
@@ -78,4 +78,5 @@ export class ChecklistoneComponent implements OnInit {
     };
     myReader.readAsDataURL(file);
   }
+
 }

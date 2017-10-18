@@ -61,8 +61,9 @@
                 <br>
                 <label for="files" class="btn btn-warning btn-rounded waves-light">Selecione a imagem</label>
                 <input id="files" style="visibility:hidden;" type="file" accept="image/jpg, image/jpeg, image/png" (change)="changeListener($event)" />
-
-
+                
+                    <img *ngIf="base64Image != undefined" src={{base64Image}} />
+                    
                 <br>
                 <br>
             </div>
