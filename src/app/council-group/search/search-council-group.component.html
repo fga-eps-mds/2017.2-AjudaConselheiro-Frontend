@@ -1,22 +1,17 @@
-<br><br><br><br><br>
-
 <p class="h1 text-center mb-6"> Buscar Conselho </p>
 <br>
 <div class="create-form">
   <div class="card container search">
   <br>
       <div class="container select-style">
-          <label><i class="fa fa-road" aria-hidden="true"></i> Estados:</label>
+          <label>Estados:</label>
         <select [(ngModel)]="state" (change)="ngOnChanges(state)">
           <option value="" selected disabled>Escolha um Estado</option>
           <option *ngFor="let st of states" [value]="st.id">{{st.sigla}}</option>
         </select>
       </div>
-
-      <br><br>
-
-      <div class="container select-style">
-          <label><i class="fa fa-road" aria-hidden="true"></i> Municipio:</label>
+      <div class="container select-style" *ngIf="state!=null">
+          <label>Municipio:</label>
         <select [(ngModel)]="city">
           <option value="" selected disabled>Escolha um Município</option>
           <option *ngFor="let ct of cities" [value]="ct">{{ct}}</option>
@@ -25,5 +20,3 @@
   <br>
   </div>
 </div>
-
-<br><br><br><br><br>

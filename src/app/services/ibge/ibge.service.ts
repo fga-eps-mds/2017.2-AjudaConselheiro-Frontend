@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-
 import { AlertService } from '../../services/alert/alert.service';
 import { State } from '../../models/index';
 
@@ -47,7 +46,7 @@ export class IbgeService {
 
   getCities(state: string):  Observable<Array<Object>> {
     return this.http
-    .get('http://servicodados.ibge.gov.br/api/v1/localidades/estados/'+ state + '/municipios')
+    .get('http://servicodados.ibge.gov.br/api/v1/localidades/estados/' + state + '/municipios')
     .map(res => res.json())
     .catch(this.handleError);
   }
@@ -56,6 +55,7 @@ export class IbgeService {
     this.getStates()
       .subscribe(
           result => {
+            result.sort(this.sortingStates);
             this.filterState(result);
           },
           error => {
@@ -82,6 +82,7 @@ export class IbgeService {
       const codigoUntreated = JSON.stringify(subitem['id']);
 
       const state = new State(codigoUntreated, this.takeQuoteOff(siglaUntreated));
+
       this.states.push(state);
     });
   }
@@ -100,7 +101,17 @@ export class IbgeService {
     const quote = /\"/g;
 
     name = name.replace(quote, '');
-    
+
     return name;
+  }
+
+  sortingStates(firstState: State, secondState: State) {
+    if (firstState.sigla < secondState.sigla) {
+      return -1;
+    }
+    if (firstState.sigla > secondState.sigla) {
+      return 1;
+    }
+    return 0;
   }
 }

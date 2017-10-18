@@ -1,11 +1,15 @@
 .create-form {
     margin: 0 auto;
     max-width: 1280px;
-    width: 40%;
+    width: 50%;
+    margin-bottom: 10%;
+}
+.text-center {
+  margin-top: 10%;
 }
 .select-style {
     border: 1px solid #ccc;
-    width: 70%;
+    width: 40%;
     margin-top: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
