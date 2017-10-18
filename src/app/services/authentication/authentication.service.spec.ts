@@ -1,13 +1,18 @@
 import { TestBed, inject } from '@angular/core/testing';
 import { HttpModule } from '@angular/http';
-import { AuthenticationService } from './authentication.service';
+import { RouterTestingModule } from '@angular/router/testing';
 
+import { AuthenticationService } from './authentication.service';
+import { AlertService } from '../alert/alert.service';
 
 describe('AuthenticationService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [ AuthenticationService ],
-      imports: [ HttpModule ]
+      providers: [ AuthenticationService, AlertService ],
+      imports: [
+        HttpModule,
+        RouterTestingModule
+     ]
     });
   });
 
