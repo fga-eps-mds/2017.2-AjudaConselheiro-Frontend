@@ -57,25 +57,22 @@
             </div>
             <br>
             <div class="col-md-12" align="center">
-                <h4>Insira fotos à sua checklist</h4>
+                <h4>Adicionar Imagem</h4>
                 <br>
-                <input type="file">
-                <!-- <input type='file' (change)="readUrl($event)"> -->
-                <!-- <img [src]="url"> readUrl(event) { if (event.target.files && event.target.files[0]) { var reader = new FileReader(); reader.onload = (event) => { this.url = event.target.result; } reader.readAsDataURL(event.target.files[0]); } } -->
+                <label for="files" class="btn btn-warning btn-rounded waves-light">Selecione a imagem</label>
+                <input id="files" style="visibility:hidden;" type="file" accept="image/jpg, image/jpeg, image/png" (change)="changeListener($event)" multiple/>
                 <br>
-
-
-
+                <br>
             </div>
 
-            <br><br><br>
+            <br>
         </form>
         <div class="row ">
             <div class="col-md-1 "></div>
-            <div class="col-md-2 "><a href="/checklist " class="btn btn-outline-warning waves-effect "><span class="glyphicon glyphicon-chevron-left " aria-hidden="false "></span><i class="fa fa-arrow-circle-o-left " aria-hidden="true "></i> Voltar</a></div>
+            <div class="col-md-2 "><a href="/checklist " class="btn btn-warning btn-rounded waves-light"><span class="glyphicon glyphicon-chevron-left " aria-hidden="false "></span><i class="fa fa-arrow-circle-o-left " aria-hidden="true "></i> Voltar</a></div>
             <div class="col-md-3 "></div>
             <div class="col-md-3 "></div>
-            <div class="col-md-2 "><button type="submit " class="btn btn-warning btn-rounded waves-light " mdbRippleRadius (ngSubmit)="onSubmit() ">Enviar <i class="fa fa-arrow-circle-o-right " aria-hidden="true "></i></button></div>
+            <div class="col-md-2 "><button type="submit " class="btn btn-warning btn-rounded waves-light" mdbRippleRadius (ngSubmit)="onSubmit() ">Enviar <i class="fa fa-arrow-circle-o-right " aria-hidden="true "></i></button></div>
         </div>
         <div class="row ">
             <div class="col-md-12 "><br></div>

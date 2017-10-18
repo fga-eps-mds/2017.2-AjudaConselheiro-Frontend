@@ -15,6 +15,9 @@ import { Http, HttpModule } from '@angular/http';
   providers: [],
 })
 export class ChecklistoneComponent implements OnInit {
+
+  image: any[];
+
   // This component is destined to the checklist corresponding to
   // LISTA PARA VERIFICAÇÃO DAS BOAS PRÁTICAS DE FABRICAÇÃO
     iteratorArray: Array<Object>= IteratorArray;
@@ -58,4 +61,20 @@ export class ChecklistoneComponent implements OnInit {
       console.log(this.checkOneEighthTopic);
       console.log(this.commentaries);
   }
+
+  changeListener($event): void {
+    this.readThis($event.target);
+  }
+
+  readThis(inputValue: any): void {
+    const file: File = inputValue.files[0];
+    const myReader: FileReader = new FileReader();
+
+    myReader.onloadend = (e) => {
+      this.image = myReader.result;
+    };
+    myReader.readAsDataURL(file);
+    console.log(this.image);
+  }
+
 }
