@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { IbgeService } from '../../services/index';
 
 @Component({
@@ -8,12 +8,11 @@ import { IbgeService } from '../../services/index';
   providers: [IbgeService]
 })
 
-export class SearchCouncilGroupComponent implements OnInit {
-  state: string;
+export class SearchCouncilGroupComponent implements OnInit, OnChanges {
+  @Input() state: string;
   city: string;
   states: Array<Object>;
   cities: Array<Object>;
-  counsilGroup: Object;
 
   constructor(
     private ibgeService: IbgeService
@@ -21,6 +20,9 @@ export class SearchCouncilGroupComponent implements OnInit {
 
   ngOnInit() {
     this.states = this.ibgeService.statesRequest();
-    this.cities = new Array<Object>();
+  }
+
+  ngOnChanges(state) {
+    this.cities = this.ibgeService.citiesRequest(state);
   }
 }
