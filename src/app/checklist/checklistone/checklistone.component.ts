@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsMenu, FormMenuTwo, CommentBinaryForm, CommentForm, BinaryForm, FormBinary, ConfirmComentary} from '../../models/index';
 import { ChecklistService } from '../../services/index';
 import { Http, HttpModule } from '@angular/http';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-checklistone',
@@ -17,6 +18,7 @@ import { Http, HttpModule } from '@angular/http';
 export class ChecklistoneComponent implements OnInit {
 
   image: any[];
+  private base64Image: string;
 
   // This component is destined to the checklist corresponding to
   // LISTA PARA VERIFICAÇÃO DAS BOAS PRÁTICAS DE FABRICAÇÃO
@@ -44,7 +46,7 @@ export class ChecklistoneComponent implements OnInit {
       new ConfirmComentary(false, 'Comment8'),
     ];
 
-  constructor() {}
+  constructor(private domSanitizer: DomSanitizer) {}
 
   ngOnInit(): void {
 
@@ -71,10 +73,9 @@ export class ChecklistoneComponent implements OnInit {
     const myReader: FileReader = new FileReader();
 
     myReader.onloadend = (e) => {
-      this.image = myReader.result;
+      this.base64Image = myReader.result;
+      console.log(this.base64Image);
     };
     myReader.readAsDataURL(file);
-    console.log(this.image);
   }
-
 }
