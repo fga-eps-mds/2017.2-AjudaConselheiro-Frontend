@@ -1,8 +1,7 @@
+import { APP_BASE_HREF } from '@angular/common';
+import { AppModule } from './../../app.module';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { ChecklistThreeService } from '../../services/index';
 import { ChecklistthreeComponent } from './checklistthree.component';
-import { RouterTestingModule } from '@angular/router/testing';
-import { FormsModule } from '@angular/forms';
 
 describe('ChecklistthreeComponent', () => {
   let component: ChecklistthreeComponent;
@@ -10,9 +9,9 @@ describe('ChecklistthreeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ChecklistthreeComponent ],
-      imports: [ FormsModule, RouterTestingModule ],
-      providers: [ChecklistThreeService]
+      declarations: [  ],
+      providers: [{provide: APP_BASE_HREF, useValue : '/' }],
+      imports: [ AppModule ],
     })
     .compileComponents();
   }));

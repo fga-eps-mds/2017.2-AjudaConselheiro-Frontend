@@ -19,13 +19,15 @@ import { LoginComponent } from './user';
 import { TextMaskModule } from 'angular2-text-mask';
 import { ROUTES } from './app.routes';
 import { BaseRequestOptions } from '@angular/http';
-import { ChecklistMenuService } from './services/checklist-menu.service';
 import { CouncilGroupModule } from './council-group/council-group.module';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { AlertComponent } from './layouts/alert/alert.component';
 import { AlertService } from './services/alert/alert.service';
 import { SearchCouncilGroupComponent } from './council-group/search/search-council-group.component';
+import { ChecklistService } from './services/index';
+import {ConfirmationPopoverModule} from 'angular-confirmation-popover';
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 @NgModule({
 
@@ -48,12 +50,20 @@ import { SearchCouncilGroupComponent } from './council-group/search/search-counc
     MDBBootstrapModule.forRoot(),
     CarouselModule.forRoot(),
     FormsModule,
-    ReactiveFormsModule,
+    AlertModule.forRoot(),
     ChecklistModule,
     SchedulingModule,
     UserModule,
+<<<<<<< HEAD
     CouncilGroupModule,
     TextMaskModule,
+=======
+    ReactiveFormsModule,
+    TextMaskModule,
+    ConfirmationPopoverModule.forRoot({
+      confirmButtonType: 'danger' // set defaults here
+    })
+>>>>>>> development
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [
