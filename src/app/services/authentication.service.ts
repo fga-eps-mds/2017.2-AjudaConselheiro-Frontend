@@ -18,13 +18,16 @@ export class AuthenticationService {
 
       this.options = new RequestOptions({ headers: this.headers });
       return this.http.get('http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas/autenticar', this.options)
-      .map(res => this.extractData(res))
-      .catch(this.handleError);
+      .map(res => this.extractData(res));
     }
 
     logout() {
-        this.token = null;
+        localStorage.removeItem('token');
         localStorage.removeItem('currentUser');
+    }
+
+    get hasToken(): any {
+      return localStorage.hasOwnProperty('token');
     }
 
     private extractData(res: Response) {
@@ -33,12 +36,5 @@ export class AuthenticationService {
       console.log(body);
       console.log(this.token);
       return this.token || {};
-    }
-
-    private handleError(error: any) {
-      const errMsg = (error.message) ? error.message :
-        error.status ? `${ error.status } - ${ error.statusText }` : 'Server error';
-        console.error(errMsg);
-        return Observable.throw(errMsg);
     }
 }
