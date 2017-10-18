@@ -1,10 +1,11 @@
+import { FormMenuThree } from './../../models/index';
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import {NgForm} from '@angular/forms';
 import { Router } from '@angular/router';
 
 
 import { ChecklistService } from './../../services/checklist.service';
-import { ChecklistThree } from './../../models/checklist.model';
+import { ChecklistThree, SectionCommentaryTwo, ConfirmComentary } from './../../models/checklist.model';
 
 @Component({
   selector: 'app-checklistthree',
@@ -14,8 +15,8 @@ import { ChecklistThree } from './../../models/checklist.model';
 })
 export class ChecklistthreeComponent implements OnInit {
   checklist: ChecklistThree;
+  FormMenuThree: Array<SectionCommentaryTwo> = FormMenuThree;
   @ViewChild('formChecklist') formChecklist: NgForm;
-
 
   constructor(
     private checklistThree: ChecklistService,
@@ -32,3 +33,4 @@ export class ChecklistthreeComponent implements OnInit {
     }
   }
 }
+

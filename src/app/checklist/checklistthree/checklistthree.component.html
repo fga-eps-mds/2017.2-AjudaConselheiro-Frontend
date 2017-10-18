@@ -38,36 +38,29 @@ dos cardápios das escolas parque e escolas classes da CRE/PPC -->
             <div class="col-md-1"></div>
         </div>
         <br>
+        
         <!--Form Start-->
+        <div class="form-group"> 
+            <div *ngFor="let i of FormMenuThree">
+                <div class="row">
+                    <div class="col-md-8 question11"> {{i.question}}</div>
+                    <div class="col-md-1 question11"></div>
+                    <div class="col-md-1 question11" align="center"><input type="radio" name="quanstion1" value="true" id="question1" [(ngModel)]= "checklist" #question1="ngModel"
+                                                                      class="form-control"></div>
+                     <div class="col-md-1 question11" align="center"><input type="radio" name="quanstion1" value="true" id="question1" [(ngModel)]= "checklist" #question1="ngModel"
+                                                                      class="form-control"></div>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-2"></div>
+                </div>
+        </div>
+    </div>
+
+
+
         <form #formChecklist="ngForm">
             <div class="form-group">
                 <div class="row">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-8">O cantineiro tem conhecimento da Lei n.º5.146/2013? </div>
-                    <div class="col-md-1" align="center"><input type="radio" name="question1" value="true" id="question1" [(ngModel)]="checklist.question1" #question1="ngModel" class="form-control"></div>
-                    <div class="col-md-1" align="center"><input type="radio" name="question1" value="false" id="question1" [(ngModel)]="checklist.question1" #question1="ngModel" class="form-control"></div>
-                    <div class="col-md-1"></div>
-                    <div class="col-md-1"></div>
-                    <div class="col-md-8">O cantineiro tem conhecimento do Decreto n.º36.900/2015?</div>
-                    <div class="col-md-1" align="center"><input type="radio" name="question2" value="true" id="question2" [(ngModel)]="checklist.question2" #question1="ngModel" class="form-control"></div>
-                    <div class="col-md-1" align="center"><input type="radio" name="question2" value="false" id="question2" [(ngModel)]="checklist.question2" #question1="ngModel" class="form-control"></div>
-                    <div class="col-md-1"></div>
-                    <div class="col-md-1"></div>
-                    <div class="col-md-8">O cantineiro já recebeu a visita da vigilância sanitária para fiscalização? </div>
-                    <div class="col-md-1" align="center"><input type="radio" name="question3" value="true" id="question3" [(ngModel)]="checklist.question3" #question1="ngModel" class="form-control"></div>
-                    <div class="col-md-1" align="center"><input type="radio" name="question3" value="false" id="question3" [(ngModel)]="checklist.question3" #question1="ngModel" class="form-control"></div>
-                    <div class="col-md-1"></div>
-                    <div class="col-md-1"></div>
-                    <div class="col-md-8">Os funcionários possuem curso de boas práticas de manipulação de alimentos?</div>
-                    <div class="col-md-1" align="center"><input type="radio" name="question4" value="true" id="question4" [(ngModel)]="checklist.question4" #question1="ngModel" class="form-control"></div>
-                    <div class="col-md-1" align="center"><input type="radio" name="question4" value="false" id="question4" [(ngModel)]="checklist.question4" #question1="ngModel" class="form-control"></div>
-                    <div class="col-md-1"></div>
-                    <div class="col-md-1"></div>
-                    <div class="col-md-8">Os atestados de saúde ocupacional estão em dia e de fácil acesso? </div>
-                    <div class="col-md-1" align="center"><input type="radio" name="question5" value="true" id="question5" [(ngModel)]="checklist.question5" #question1="ngModel" class="form-control"></div>
-                    <div class="col-md-1" align="center"><input type="radio" name="question5" value="false" id="question5" [(ngModel)]="checklist.question5" #question1="ngModel" class="form-control"></div>
-
-                    <!-- {{checkThree[i].pergunta}} -->
+                    
                 </div>
             </div>
             <br>
