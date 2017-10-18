@@ -18,7 +18,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class ChecklistoneComponent implements OnInit {
 
   imageUrl: string;
-  private base64Image: string;
+  public base64Image: string;
 
   // This component is destined to the checklist corresponding to
   // LISTA PARA VERIFICAÇÃO DAS BOAS PRÁTICAS DE FABRICAÇÃO
