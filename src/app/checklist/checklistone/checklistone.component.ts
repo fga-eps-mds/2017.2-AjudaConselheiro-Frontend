@@ -7,11 +7,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormsMenu, FormMenuTwo, CommentBinaryForm, CommentForm, BinaryForm, FormBinary, ConfirmComentary} from '../../models/index';
 import { ChecklistService } from '../../services/index';
 import { Http, HttpModule } from '@angular/http';
+
 @Component({
   selector: 'app-checklistone',
   templateUrl: './checklistone.component.html',
   styleUrls: ['./checklistone.component.css'],
-  providers: [ChecklistService],
+  providers: [],
 })
 export class ChecklistoneComponent implements OnInit {
   // This component is destined to the checklist corresponding to
@@ -43,50 +44,7 @@ export class ChecklistoneComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    // this.checkoneService.getCheckOneFirstTopicAnswers()
-    // .then((checkOneFirstTopic: BinaryForm[]) => {
-    //     this.checkOneFirstTopic = checkOneFirstTopic;
-    // }).catch(err => console.log(err));
 
-    // this.checkoneService.getCheckOneSecondTopicAnswers()
-    // .then((checkOneSecondTopic: BinaryForm[]) => {
-    //    this.checkOneSecondTopic = checkOneSecondTopic;
-    // }).catch(err => console.log(err));
-
-    // this.checkoneService.getCheckOneThirdTopicAnswers()
-    // .then((checkOneThirdTopic: BinaryForm[]) => {
-    //    this.checkOneThirdTopic = checkOneThirdTopic;
-    // }).catch(err => console.log(err));
-
-    // this.checkoneService.getCheckOneFourthTopicAnswers()
-    // .then((checkOneFourthTopic: BinaryForm[]) => {
-    //        this.checkOneFourthTopic = checkOneFourthTopic;
-    //     }).catch(err => console.log(err));
-
-    // this.checkoneService.getCheckOneFifthTopicAnswers()
-    // .then((checkOneFifthTopic: BinaryForm[]) => {
-    //    this.checkOneFifthTopic = checkOneFifthTopic;
-    // }).catch(err => console.log(err));
-
-    // this.checkoneService.getCheckOneSixthTopicAnswers()
-    // .then((checkOneSixthTopic: BinaryForm[]) => {
-    //    this.checkOneSixthTopic = checkOneSixthTopic;
-    // }).catch(err => console.log(err));
-
-    // this.checkoneService.getCheckOneSeventhTopicAnswers()
-    // .then((checkOneSeventhTopic: CommentBinaryForm[]) => {
-    //    this.checkOneSeventhTopic = checkOneSeventhTopic;
-    // }).catch(err => console.log(err));
-
-    // this.checkoneService.getCheckOneEighthTopicAnswers()
-    // .then((checkOneEighthTopic: BinaryForm[]) => {
-    //    this.checkOneEighthTopic = checkOneEighthTopic;
-    // }).catch(err => console.log(err));
-
-    // this.checkoneService.getCheckOneCommentaries()
-    // .then((commentaries: SectionCommentary[]) => {
-    //     this.commentaries = commentaries;
-    // }).catch(err => console.log(err));
 }
 
   onSubmit(): void {

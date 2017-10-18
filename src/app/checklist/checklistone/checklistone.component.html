@@ -1,59 +1,87 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
+    <script src="../../js/checklistone.js"></script>
     <meta charset="utf-8">
     <title>Lista para verificação de boas práticas alimentares</title>
-  </head>
-  <body>
+</head>
+
+<body>
     <br><br><br><br>
     <div class="container border border-dark border-top-1 border-bottom-1 col-md-14 border-warning">
-      <div class="row"><div class="col-md-12"><br><br></div></div>
-      <div class="row">
-        <div class="col-md-12" align="center"><h2>Lista para verificação de boas práticas alimentares</h2></div>
-      </div>
-      <br>
-      <!-- Here we are making an iteration through a 2d array consisting of various objects and its atributes
+        <div class="row">
+            <div class="col-md-12"><br><br></div>
+        </div>
+        <div class="row">
+            <div class="col-md-12" align="center">
+                <h2>Lista para verificação de boas práticas alimentares</h2>
+            </div>
+        </div>
+        <br>
+        <!-- Here we are making an iteration through a 2d array consisting of various objects and its atributes
       meanwhile printing the header determined to each section, with that we will print all of the atributes
       that are stored inside the determined object array-->
-        <form (ngSubmit)= "onSubmit()" class="ngForm">
-          <div *ngFor = "let topic of iteratorArray ;let topicNum=index">
-            <div class="row" >
-              <div class="col-md-9 " align="center"><h5>{{topicHeaders[topicNum]}}</h5></div>
-              <div class="col-md-1 " align="center"><h5></h5></div>
-              <div class="col-md-1 " align="center"><h5></h5></div>
+        <form (ngSubmit)="onSubmit()" class="ngForm">
+            <div *ngFor="let topic of iteratorArray ;let topicNum=index">
+                <div class="row">
+                    <div class="col-md-9 " align="center">
+                        <h5>{{topicHeaders[topicNum]}}</h5>
+                    </div>
+                    <div class="col-md-1 " align="center">
+                        <h5></h5>
+                    </div>
+                    <div class="col-md-1 " align="center">
+                        <h5></h5>
+                    </div>
+                </div>
+                <div class="row" *ngFor="let question of topic;let questNum=index;">
+                    <div class="col-md-9" align="left">{{iteratorArray[topicNum][questNum].question}}</div>
+                    <div class="col-md-1" align="center" *ngIf="topicNum!==6 && ( questNum!==4 || questNum!==5)">Sim <input type="radio" name="{{iteratorArray[topicNum][questNum].question}}" [value]="true" (ngModel)="iteratorArray[topicNum][questNum].answer"></div>
+                    <div class="col-md-1" align="center" *ngIf="topicNum!==6 && ( questNum!==4 || questNum!==5)">Não <input type="radio" name="{{iteratorArray[topicNum][questNum].question}}" [value]="false" (ngModel)="iteratorArray[topicNum][questNum].answer"></div>
+                    <div class="col-md-1" align="center" *ngIf="topicNum===6 && ( questNum===0 || questNum===1|| questNum===2|| questNum===3)">Sim <input type="radio" name="{{iteratorArray[topicNum][questNum].question}}" [value]="true" (ngModel)="iteratorArray[topicNum][questNum].answer"></div>
+                    <div class="col-md-1" align="center" *ngIf="topicNum===6 && ( questNum===0 || questNum===1|| questNum===2|| questNum===3)">Não <input type="radio" name="{{iteratorArray[topicNum][questNum].question}}" [value]="false" (ngModel)="iteratorArray[topicNum][questNum].answer"></div>
+                    <div class="col-md-2"><input type="text" placeholder="Resposta" *ngIf="topicNum===6 && ( questNum===4 || questNum===5)" (ngModel)="iteratorArray[topicNum][questNum].commmentary" name="{{iteratorArray[topicNum][questNum].question}}"></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-8" align="left">Observações?</div>
+                    <div class="col-md-4">
+                        <div class="md-form">
+                            <textarea mdbActive align="center" type="text" id="form7" class="md-textarea" placeholder="Observações" name="{{commentaries[topicNum]}}" (ngModel)="commentaries[topicNum].commentary"></textarea>
+                            <label for="form7"></label>
+                        </div>
+                    </div>
+                </div>
+                <br>
             </div>
-          <div class="row" *ngFor= "let question of topic;let questNum=index;">
-            <div class="col-md-9" align="left">{{iteratorArray[topicNum][questNum].question}}</div>
-            <div class="col-md-1" align="center" *ngIf= "topicNum!==6 && ( questNum!==4 || questNum!==5)">Sim <input type="radio" name="{{iteratorArray[topicNum][questNum].question}}" [value]="true" (ngModel)= "iteratorArray[topicNum][questNum].answer"></div>
-            <div class="col-md-1" align="center" *ngIf= "topicNum!==6 && ( questNum!==4 || questNum!==5)">Não <input type="radio" name="{{iteratorArray[topicNum][questNum].question}}" [value]="false" (ngModel)= "iteratorArray[topicNum][questNum].answer"></div>
-            <div class="col-md-1" align="center" *ngIf= "topicNum===6 && ( questNum===0 || questNum===1|| questNum===2|| questNum===3)">Sim <input type="radio" name="{{iteratorArray[topicNum][questNum].question}}" [value]="true" (ngModel)= "iteratorArray[topicNum][questNum].answer"></div>
-            <div class="col-md-1" align="center" *ngIf= "topicNum===6 && ( questNum===0 || questNum===1|| questNum===2|| questNum===3)">Não <input type="radio" name="{{iteratorArray[topicNum][questNum].question}}" [value]="false" (ngModel)= "iteratorArray[topicNum][questNum].answer"></div>
-            <div class="col-md-2"><input type="text" placeholder="Resposta" *ngIf="topicNum===6 && ( questNum===4 || questNum===5)"(ngModel)= "iteratorArray[topicNum][questNum].commmentary" name="{{iteratorArray[topicNum][questNum].question}}"></div>
-          </div>
-          
-          <div class="row">
-            <div class="col-md-8" align="left">Observações?</div>
-            <div class="col-md-4">
-              <div class="md-form">
-                <textarea mdbActive align ="center"type="text" id="form7" class="md-textarea" placeholder="Observações" name="{{commentaries[topicNum]}}" (ngModel)="commentaries[topicNum].commentary"></textarea>
-                <label for="form7" ></label>
-              </div>
+            <br>
+            <div class="col-md-12" align="center">
+                <h4>Insira fotos à sua checklist</h4>
+                <br>
+                <input type="file">
+                <!-- <input type='file' (change)="readUrl($event)"> -->
+                <!-- <img [src]="url"> readUrl(event) { if (event.target.files && event.target.files[0]) { var reader = new FileReader(); reader.onload = (event) => { this.url = event.target.result; } reader.readAsDataURL(event.target.files[0]); } } -->
+                <br>
+
+
+
             </div>
-          </div>
-          <br>
+
+            <br><br><br>
+        </form>
+        <div class="row ">
+            <div class="col-md-1 "></div>
+            <div class="col-md-2 "><a href="/checklist " class="btn btn-outline-warning waves-effect "><span class="glyphicon glyphicon-chevron-left " aria-hidden="false "></span><i class="fa fa-arrow-circle-o-left " aria-hidden="true "></i> Voltar</a></div>
+            <div class="col-md-3 "></div>
+            <div class="col-md-3 "></div>
+            <div class="col-md-2 "><button type="submit " class="btn btn-warning btn-rounded waves-light " mdbRippleRadius (ngSubmit)="onSubmit() ">Enviar <i class="fa fa-arrow-circle-o-right " aria-hidden="true "></i></button></div>
         </div>
-      </form>
-      <div class="row">
-        <div class="col-md-1"></div>
-        <div class="col-md-2"><a href="/checklist" class="btn btn-outline-warning waves-effect"><span class="glyphicon glyphicon-chevron-left " aria-hidden="false"></span><i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>Voltar</a></div>
-        <div class="col-md-3"></div>
-        <div class="col-md-3"></div>
-        <div class="col-md-2"><button type="submit" class="btn btn-warning btn-rounded waves-light" mdbRippleRadius (ngSubmit)="onSubmit()">Enviar <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></button></div>
-      </div>
-      <div class="row">
-        <div class="col-md-12"><br></div>
-      </div>
+        <div class="row ">
+            <div class="col-md-12 "><br></div>
+        </div>
     </div>
     <br>
-  </body>
+</body>
+
 </html>
