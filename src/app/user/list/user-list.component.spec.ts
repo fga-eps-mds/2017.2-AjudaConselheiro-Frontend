@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { UserService } from '../../services/index';
+import { UserService, AlertService } from '../../services/index';
 import { UserListComponent } from './user-list.component';
 import { HttpModule } from '@angular/http';
 
@@ -12,7 +12,10 @@ describe('UserListComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ UserListComponent ],
       imports: [ RouterTestingModule, HttpModule ],
-      providers: [ UserService ]
+      providers: [
+        UserService,
+        AlertService
+       ]
     })
     .compileComponents();
   }));
