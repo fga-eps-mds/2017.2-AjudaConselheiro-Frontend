@@ -9,15 +9,16 @@ import { AlertService } from '../alert/alert.service';
 import { ServicesUtilitiesService } from '../services-utilities.service';
 
 @Injectable()
-export class AuthenticationService {
+export class AuthenticationService extends ServicesUtilitiesService {
 
   private headers: Headers;
   private options: RequestOptions;
   private token: any = null;
-  private utilServices: ServicesUtilitiesService;
   private url = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas/autenticar';
 
-  constructor(private http: Http, private alertService: AlertService) { }
+  constructor(private http: Http, private alertService: AlertService) {
+    super();
+  }
 
   login(email: string, password: string): Observable<any> {
     this.headers = new Headers({
@@ -29,7 +30,7 @@ export class AuthenticationService {
 
     return this.http.get(this.url, this.options)
       .map(res => this.getToken(res))
-      .catch(this.utilServices.handleError);
+      .catch(this.handleError);
   }
 
   logout() {

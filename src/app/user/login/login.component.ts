@@ -21,11 +21,8 @@ export class LoginComponent implements OnInit {
   emailRegex = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
   email: string;
   password: string;
-  returnUrl: string;
 
   constructor(
-    private route: ActivatedRoute,
-    private router: Router,
     private authenticationService: AuthenticationService,
     private alertService: AlertService
   ) { }
@@ -33,9 +30,6 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     // Reset status login
     this.authenticationService.logout();
-
-    // Get return url from  route  parameters of default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
   login() {
@@ -51,7 +45,7 @@ export class LoginComponent implements OnInit {
           this.alertService.success('Login efetuado sucesso!');
         },
         error => {
-          console.log('error: ', error);
+          console.log('error: ', error.status);
           if (error.status === 401) {
             this.alertService.warn('Erro: email e/ou senha errados!');
           } else if (error.status > 401) {
