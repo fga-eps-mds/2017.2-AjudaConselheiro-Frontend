@@ -47,28 +47,8 @@ describe('HomeComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have a navBar', () => {
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('app-navbar')).not.toBe(null);
-  });
-
   it('should have a Carousel', () => {
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('app-carousel')).not.toBe(null);
   });
-
-  // it('should know when the localStorage has not isLoggedIn property', () => {
-  //   localStorage.removeItem('isLoggedIn');
-  //   expect(fixture.componentInstance.hasToken()).toBeFalsy();
-  // });
-
-  // it('should know when the localStorage isLoggedIn property is truthy', () => {
-  //   localStorage.setItem('isLoggedIn', 'true');
-  //   expect(fixture.componentInstance.hasToken()).toBeTruthy();
-  // });
-
-  // it('should know when the localStorage isLoggedIn property is falsy', () => {
-  //   localStorage.setItem('isLoggedIn', 'false');
-  //   expect(fixture.componentInstance.hasToken()).toBeFalsy();
-  // });
 });
