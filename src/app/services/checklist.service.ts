@@ -1,3 +1,4 @@
+import { SectionCommentaryTwo } from './../models/checklist.model';
 import { SectionCommentary } from '../models/checklist.model';
 import { Injectable } from '@angular/core';
 import { CommentBinaryForm, CommentForm, FormsMenu, FormMenuTwo, ChecklistThree} from '../models/index';
@@ -10,6 +11,7 @@ export class ChecklistService {
 
     constructor(private http: Http) {}
     private formMenuUrl = 'app/formsMenu';
+    private formMenuThree = 'app/formsThree';
     private formMenuAnswerUrl = 'app/formCheckAnswer';
     private formOneAnswerUrl = 'app/checklist';
 
@@ -32,6 +34,12 @@ export class ChecklistService {
             .then(response => response.json().data as CommentBinaryForm[]
         );
     }
+    getFormsThree(): Promise<SectionCommentaryTwo[]> {
+      return this.http.get(this.formMenuThree)
+          .toPromise()
+          .then(response => response.json().data as SectionCommentaryTwo[]
+      );
+  }
 
     getFormsMenuTwo(): Promise<CommentForm[]> {
         return this.http.get(this.formMenuAnswerUrl)

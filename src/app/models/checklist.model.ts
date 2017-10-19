@@ -2,7 +2,7 @@ export class ChecklistThree {
     constructor(
         public id?: number,
         public obs?: string,
-        public answer?: boolean,
+        public FormMenuThree?: Array<SectionCommentaryTwo>,
     ) {}
   }
 
@@ -34,4 +34,6 @@ export class ChecklistThree {
 
   export interface SectionCommentaryTwo {
     question: string;
+    obs: string;
+    answer: boolean;
   }

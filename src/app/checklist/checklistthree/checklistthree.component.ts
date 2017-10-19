@@ -15,7 +15,7 @@ import { ChecklistThree, SectionCommentaryTwo, ConfirmComentary } from './../../
 })
 export class ChecklistthreeComponent implements OnInit {
   checklist: ChecklistThree;
-  FormMenuThree: Array<SectionCommentaryTwo> = FormMenuThree;
+  formMenuThree: Array<SectionCommentaryTwo> = FormMenuThree;
   @ViewChild('formChecklist') formChecklist: NgForm;
 
   constructor(
@@ -23,8 +23,12 @@ export class ChecklistthreeComponent implements OnInit {
     private router: Router
   ) { }
 
+
   ngOnInit() {
     this.checklist = new ChecklistThree();
+  }
+  copy(checklist, FormMenuThree): void {
+    this.checklist.FormMenuThree = this.formMenuThree;
   }
   newFormulario(): void {
     if (this.formChecklist.form.valid) {
@@ -32,5 +36,6 @@ export class ChecklistthreeComponent implements OnInit {
       this.router.navigate(['/checklist']);
     }
   }
+
 }
 
