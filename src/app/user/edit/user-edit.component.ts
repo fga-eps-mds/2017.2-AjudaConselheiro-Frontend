@@ -4,19 +4,22 @@ import { NgForm } from '@angular/forms';
 import { UserService } from '../../services/index';
 import { User } from '../../models/index';
 
+import { UserMasks } from '../userMasks';
+
 @Component({
   selector: 'app-user-edit',
   templateUrl: './user-edit.component.html',
   styleUrls: ['./user-edit.component.css'],
   providers: [UserService],
 })
+
 export class UserEditComponent implements OnInit {
 
   @ViewChild('formUser') formUser: NgForm;
   user: User;
 
-  maskcpf: any[] = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/];
-  maskphone: any[] = ['(', /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
+  maskcpf = UserMasks.MASK_CPF;
+  maskphone = UserMasks.MASK_PHONE;
 
   constructor(
     private userService: UserService,
@@ -35,10 +38,10 @@ export class UserEditComponent implements OnInit {
     }
   }
 
-deleteUser(): void {
-  console.log('deletando contato...');
-  this.userService.delete(this.user.cod).
-  subscribe(result => console.log(result),
-            error => console.log(error));
-}
+  deleteUser(): void {
+    console.log('deletando contato...');
+    this.userService.delete(this.user.cod).
+    subscribe(result => console.log(result),
+              error => console.log(error));
+  }
 }
