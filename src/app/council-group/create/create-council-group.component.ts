@@ -45,31 +45,11 @@ export class CreateCouncilGroupComponent implements OnInit {
       });
   }
 
-  success(message: string) {
-    this.alertService.success(message);
-  }
-
-  error(message: string) {
-    this.alertService.error(message);
-  }
-
-  info(message: string) {
-    this.alertService.info(message);
-  }
-
-  warn(message: string) {
-    this.alertService.warn(message);
-  }
-
-  clear() {
-    this.alertService.clear();
-  }
-
   isLoggedIn(): boolean {
-    if (localStorage.getItem('token') === null) {
-      return false;
-    } else {
+    if (localStorage.getItem('token')) {
       return true;
     }
+    return false;
   }
 }
+

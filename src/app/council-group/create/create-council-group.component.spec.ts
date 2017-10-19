@@ -32,4 +32,10 @@ describe('CreateCouncilGroupComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should know when localStorage has a token', () => {
+    localStorage.setItem('token', 'newToken');
+    expect(fixture.componentInstance.isLoggedIn()).toBeTruthy();
+  });
+
 });
