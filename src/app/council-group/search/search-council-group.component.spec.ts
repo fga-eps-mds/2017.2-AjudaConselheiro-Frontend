@@ -4,6 +4,7 @@ import { SearchCouncilGroupComponent } from './search-council-group.component';
 import { HttpModule, Headers, RequestOptions, Response, URLSearchParams } from '@angular/http';
 import { AlertService } from '../../services/alert/alert.service';
 import { RouterTestingModule } from '@angular/router/testing';
+import { CouncilGroupService } from '../../services/index';
 
 describe('SearchCouncilGroupComponent', () => {
   let component: SearchCouncilGroupComponent;
@@ -19,7 +20,8 @@ describe('SearchCouncilGroupComponent', () => {
         HttpModule,
         RouterTestingModule ],
       providers: [
-        AlertService
+        AlertService,
+        CouncilGroupService
       ]
     })
     .compileComponents();
