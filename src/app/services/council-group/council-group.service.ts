@@ -64,4 +64,24 @@ export class CouncilGroupService {
 
     return Observable.throw(error);
   }
+
+  getAjudaConselheiroCouncilGroups(description: string):  Observable<Array<Object>> {
+    return this.http
+    .get(this.url + '?codAplicativo=462')
+    .map(res => res.json().find(x => x.descricao === description))
+    .catch(this.handleError);
+  }
+
+  searchStates(description: string): void {
+    console.log(description);
+    this.getAjudaConselheiroCouncilGroups(description)
+      .subscribe(
+          result => {
+            console.log(result);
+          },
+          error => {
+            alert(error);
+            console.error(error);
+      });
+  }
 }

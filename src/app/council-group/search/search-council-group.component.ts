@@ -1,5 +1,6 @@
 import { Component, OnInit, OnChanges, Input } from '@angular/core';
-import { IbgeService } from '../../services/index';
+import { IbgeService, CouncilGroupService } from '../../services/index';
+import { State } from '../../models/index';
 
 @Component({
   selector: 'app-search-council-group',
@@ -9,20 +10,35 @@ import { IbgeService } from '../../services/index';
 })
 
 export class SearchCouncilGroupComponent implements OnInit, OnChanges {
-  @Input() state: string;
-  city: string;
-  states: Array<Object>;
+  @Input() state: any;
+  @Input() city: string;
+  stateSigla: string;
+  states: Array<State>;
   cities: Array<Object>;
 
   constructor(
-    private ibgeService: IbgeService
+    private ibgeService: IbgeService,
+    private councilGroupService: CouncilGroupService
   ) { }
 
   ngOnInit() {
     this.states = this.ibgeService.statesRequest();
   }
 
-  ngOnChanges(state) {
-    this.cities = this.ibgeService.citiesRequest(state);
+  ngOnChanges() {
+    this.cities = this.ibgeService.citiesRequest(this.state);
+    if (this.city !== undefined) {
+      console.log(this.stateSigla);
+      this.councilGroupService.searchStates(this.getCAEName());
+    }
+  }
+
+  getCAEName(): string {
+    return 'CAE-' + this.getStateNameById() + '-' + this.city;
+  }
+
+  getStateNameById(): string {
+    const stateSigla = this.states.filter(x => x.id === this.state)[0];
+    return stateSigla.sigla;
   }
 }

@@ -5,14 +5,14 @@
   <br>
       <div class="container select-style">
           <label>Estados:</label>
-        <select [(ngModel)]="state" (change)="ngOnChanges(state)">
+        <select [(ngModel)]="state" (change)="ngOnChanges()">
           <option value="" selected disabled>Escolha um Estado</option>
           <option *ngFor="let st of states" [value]="st.id">{{st.sigla}}</option>
         </select>
       </div>
       <div class="container select-style" *ngIf="state!=null">
           <label>Municipio:</label>
-        <select [(ngModel)]="city">
+        <select [(ngModel)]="city" (change)="ngOnChanges(state, city)">
           <option value="" selected disabled>Escolha um Município</option>
           <option *ngFor="let ct of cities" [value]="ct">{{ct}}</option>
         </select>
