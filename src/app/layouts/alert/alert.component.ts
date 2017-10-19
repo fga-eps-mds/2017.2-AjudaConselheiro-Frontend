@@ -17,17 +17,17 @@ export class AlertComponent implements OnInit {
 
   ngOnInit() {
     this.alertService.getAlert()
-    .subscribe((alert: Alert) => {
-      if (!alert) {
-        // clear alerts when an empty alert is received
-        this.alerts = [];
-        return;
-      }
-      if (this.alerts.length !== 0) {
-        this.removeAlert(alert);
-      }
-      this.alerts.push(alert);
-    });
+      .subscribe((alert: Alert) => {
+        if (!alert) {
+          // clear alerts when an empty alert is received
+          this.alerts = [];
+          return;
+        }
+        if (this.alerts.length !== 0) {
+          this.removeAlert(alert);
+        }
+        this.alerts.push(alert);
+      });
   }
 
   removeAlert(alert: Alert) {
@@ -61,13 +61,16 @@ export class AlertComponent implements OnInit {
       return;
     }
     switch (alert.type) {
-      //
+      // green
       case AlertType.Success:
         return '#007E33';
+      // red
       case AlertType.Error:
         return '#B71C1C';
+      // white
       case AlertType.Info:
         return '#FFFFFF';
+      // white
       case AlertType.Warning:
         return '#FFFFFF';
     }

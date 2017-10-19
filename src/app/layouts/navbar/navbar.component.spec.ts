@@ -2,10 +2,11 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpModule } from '@angular/http';
 
 import { NavbarHomeComponent } from './navbar.component';
-import { AuthenticationService } from './../../services/authentication.service';
+import { AuthenticationService } from './../../services/authentication/authentication.service';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
+import { AlertService } from '../../services/index';
 
 describe('NavbarHomeComponent', () => {
   let component: NavbarHomeComponent;
@@ -21,11 +22,12 @@ describe('NavbarHomeComponent', () => {
         NO_ERRORS_SCHEMA
       ],
       providers: [
-        AuthenticationService
+        AuthenticationService,
+        AlertService
       ],
       imports: [
-      HttpModule,
-      RouterTestingModule
+        HttpModule,
+        RouterTestingModule
       ]
     })
     .compileComponents();
@@ -45,7 +47,7 @@ describe('NavbarHomeComponent', () => {
     localStorage.setItem('token', 'newToken'); // Adding a generic token to the localStorage,
                                                // which means that user is logged in
     fixture.componentInstance.logout();
-    expect(localStorage.getItem('loggedOut')).toBeTruthy();
+    expect(localStorage.getItem('isLoggedIn')).toBeTruthy();
   });
 
   it('should have a navbar', () => {
@@ -66,8 +68,7 @@ describe('NavbarHomeComponent', () => {
   });
 
   it('should have one navbar items when user is logged in', () => {
-    localStorage.setItem('token', 'newToken'); // Adding a generic token to the localStorage,
-                                               // which means that user is logged in
+    localStorage.setItem('token', 'newToken'); // Adding a generic token to the localStorage,which means that user is logged in
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelectorAll('.nav-item').length).toBe(1);
@@ -98,12 +99,12 @@ describe('NavbarHomeComponent', () => {
   it('should know when localStorage has a token', () => {
     localStorage.setItem('token', 'newToken'); // Adding a generic token to the localStorage,
                                                // which means that user is logged in
-    expect(fixture.componentInstance.hasToken).toBeTruthy();
+    expect(fixture.componentInstance.hasToken()).toBeTruthy();
   });
 
   it('should know when localStorage hasnt a token', () => {
     fixture.componentInstance.logout();
-    expect(fixture.componentInstance.hasToken).toBeFalsy();
+    expect(fixture.componentInstance.hasToken()).toBeFalsy();
   });
 
 });

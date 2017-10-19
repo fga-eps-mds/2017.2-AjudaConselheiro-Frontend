@@ -8,7 +8,6 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "json:server": "json-server --watch db.json",
     "e2e": "ng e2e"
   },
   "private": true,
