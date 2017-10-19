@@ -1,54 +1,52 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+
+import 'rxjs/add/operator/catch';
 
 import { User } from '../models/index';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/catch';
+import { ServicesUtilitiesService } from './services-utilities.service';
 
 @Injectable()
 export class UserService {
 
+  private url = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas';
+  private utilService: ServicesUtilitiesService;
   private headers: Headers = new Headers({ 'Content-Type': 'application/json' });
   options: RequestOptions = new RequestOptions({ headers: this.headers });
 
   constructor(private http: Http) { }
 
   getUsers(): Observable<User[]> {
-    return this.http.get('http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas?codAplicativo=001')
-      .map((response: Response) => response.json());
+    return this.http.get(this.url + '?codAplicativo=462')
+      .map((response: Response) => response.json())
+      .catch(this.utilService.handleError);
   }
 
   getUser(id: number) {
-    return this.http.get('http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas' + id,
-      this.jwt()).map((response: Response) => response.json());
+    return this.http.get(this.url + id, this.jwt())
+      .map((response: Response) => response.json())
+      .catch(this.utilService.handleError);
   }
 
   createUser(user: User): Observable<User> {
-
-        const body = JSON.stringify(user);
-        return this.http
-        .post('http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas', body, this.options)
-        .map(res => this.extractData(res))
-        .catch(this.handleError);
-    }
-
-  private extractData(res: Response) {
-    const body = res.json();
-    console.log(body);
-    return body || {};
+    const body = JSON.stringify(user);
+    return this.http.post(this.url, body, this.options)
+      .map(res => this.utilService.extractData(res))
+      .catch(this.utilService.handleError);
   }
 
   updateUser(user: User) {
-    return this.http.put('http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas' + user.cod,
-      user, this.jwt()).map((response: Response) => response.json());
+    return this.http.put(this.url + user.cod, user, this.jwt())
+      .map((response: Response) => response.json())
+      .catch(this.utilService.handleError);
   }
 
   delete(cod: Number): Observable<String> {
-    const url = `${'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas?codAplicativo=462 &'}/${cod}`;
-    return this.http
-      .delete(url, this.options)
-      .map(res => this.extractData(res))
-      .catch(this.handleError);
+    const url = `${this.url + '?codAplicativo=462 &'}/${cod}`;
+    return this.http.delete(url, this.options)
+      .map(res => this.utilService.extractData(res))
+      .catch(this.utilService.handleError);
   }
 
   private jwt() {
@@ -58,12 +56,5 @@ export class UserService {
       const headers = new Headers({ 'Authorization': 'Bearer ' + currentUser.token });
       return new RequestOptions({ headers: headers });
     }
-  }
-
-  private handleError(error: any) {
-    const errMsg = (error.message) ? error.message :
-      error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-    console.error(errMsg);
-    return Observable.throw(errMsg);
   }
 }
