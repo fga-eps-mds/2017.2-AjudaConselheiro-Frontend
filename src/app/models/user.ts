@@ -2,7 +2,7 @@ export class User {
 
     constructor() {}
 
-    public cep: string;
+    public CEP: string;
     public cod?: number;
     public email: string;
     public nomeCompleto: string;
