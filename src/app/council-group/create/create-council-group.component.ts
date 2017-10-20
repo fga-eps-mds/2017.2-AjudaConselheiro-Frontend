@@ -2,8 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 import { CouncilGroup } from '../../models/index';
-import { CouncilGroupService } from '../../services/index';
-import { AlertService } from '../../services/alert/alert.service';
+import { CouncilGroupService, AlertService } from '../../services/index';
 
 @Component({
   selector: 'app-create-council-group',
