@@ -1,6 +1,6 @@
-import { Component, OnInit, OnChanges, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, SimpleChange } from '@angular/core';
 import { IbgeService, CouncilGroupService } from '../../services/index';
-import { State } from '../../models/index';
+import { State, CouncilGroup } from '../../models/index';
 
 @Component({
   selector: 'app-search-council-group',
@@ -13,8 +13,10 @@ export class SearchCouncilGroupComponent implements OnInit, OnChanges {
   @Input() state: any;
   @Input() city: string;
   stateSigla: string;
+  council: CouncilGroup;
   states: Array<State>;
   cities: Array<Object>;
+  showCouncil: boolean;
 
   constructor(
     private ibgeService: IbgeService,
@@ -23,13 +25,25 @@ export class SearchCouncilGroupComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.states = this.ibgeService.statesRequest();
+    this.showCouncil = false;
+    if (this.council === undefined) {
+      this.showCouncil = false;
+    } else {
+      this.showCouncil = true;
+    }
   }
 
-  ngOnChanges() {
-    this.cities = this.ibgeService.citiesRequest(this.state);
+  ngOnChanges(change) {
+    if (change === this.state) {
+      this.cities = this.ibgeService.citiesRequest(this.state);
+      this.council = this.stateSigla = this.city = undefined;
+      console.log(this.state);
+    }
     if (this.city !== undefined) {
-      console.log(this.stateSigla);
-      this.councilGroupService.searchStates(this.getCAEName());
+      this.council = undefined;
+      this.council = this.councilGroupService.concilRequest(this.getCAEName());
+      console.log(this.city);
+      console.log(this.council);
     }
   }
 
@@ -39,6 +53,7 @@ export class SearchCouncilGroupComponent implements OnInit, OnChanges {
 
   getStateNameById(): string {
     const stateSigla = this.states.filter(x => x.id === this.state)[0];
-    return stateSigla.sigla;
+    this.stateSigla = stateSigla.sigla;
+    return this.stateSigla;
   }
 }

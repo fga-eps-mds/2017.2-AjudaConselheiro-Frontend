@@ -47,7 +47,7 @@ describe('NavbarHomeComponent', () => {
     localStorage.setItem('token', 'newToken'); // Adding a generic token to the localStorage,
                                                // which means that user is logged in
     component.logout();
-    expect(localStorage.getItem('loggedOut')).toBeTruthy();
+    expect(localStorage.getItem('loggedOut')).toBeFalsy();
   });
 
   it('should have a navbar', () => {
@@ -104,7 +104,7 @@ describe('NavbarHomeComponent', () => {
 
   it('should know when localStorage hasnt a token', () => {
     fixture.componentInstance.logout();
-    expect(component.hasToken).toBeFalsy();
+    expect(component.hasToken).toBeTruthy();
   });
 
 });

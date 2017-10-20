@@ -4,19 +4,23 @@
   <div class="card container search">
   <br>
       <div class="container select-style">
-          <label>Estados:</label>
-        <select [(ngModel)]="state" (change)="ngOnChanges()">
+          <label><i class="fa fa-map-marker" aria-hidden="true"></i>Estados:</label>
+        <select [(ngModel)]="state" (change)="ngOnChanges(state)">
           <option value="" selected disabled>Escolha um Estado</option>
           <option *ngFor="let st of states" [value]="st.id">{{st.sigla}}</option>
         </select>
       </div>
       <div class="container select-style" *ngIf="state!=null">
-          <label>Municipio:</label>
-        <select [(ngModel)]="city" (change)="ngOnChanges(state, city)">
+          <label><i class="fa fa-street-view" aria-hidden="true"></i>Municipio:</label>
+        <select [(ngModel)]="city" (change)="ngOnChanges(city)">
           <option value="" selected disabled>Escolha um Município</option>
           <option *ngFor="let ct of cities" [value]="ct">{{ct}}</option>
         </select>
       </div>
   <br>
+  <div class="container select-style" *ngIf="city!=null">
+      <p class="h6 text-left mb-6">Conselho de Alimentação Escolar</p>
+      <p> {{stateSigla}} - {{city}} 
+    </div>
   </div>
 </div>
