@@ -36,16 +36,15 @@ input.placeholder {
     height: 25px;
 }
 
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-}
+
+/* Hide default HTML checkbox */
 
 .switch input {
     display: none;
 }
+
+
+/* The slider */
 
 .slider {
     position: absolute;
@@ -54,7 +53,7 @@ input.placeholder {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #ccc;
+    background-color: rgb(255, 16, 16);
     -webkit-transition: .4s;
     transition: .4s;
 }
@@ -62,8 +61,8 @@ input.placeholder {
 .slider:before {
     position: absolute;
     content: "";
-    height: 26px;
-    width: 26px;
+    height: 18px;
+    width: 18px;
     left: 4px;
     bottom: 4px;
     background-color: white;
@@ -72,7 +71,7 @@ input.placeholder {
 }
 
 input:checked+.slider {
-    background-color: #2196F3;
+    background-color: rgb(82, 243, 33);
 }
 
 input:focus+.slider {
@@ -80,9 +79,9 @@ input:focus+.slider {
 }
 
 input:checked+.slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
+    -webkit-transform: translateX(23px);
+    -ms-transform: translateX(23px);
+    transform: translateX(23px);
 }
 
 
@@ -94,4 +93,13 @@ input:checked+.slider:before {
 
 .slider.round:before {
     border-radius: 50%;
+}
+
+
+/* Override margins in label for centering slider */
+
+label {
+    margin-top: .5rem;
+    margin-left: .5rem;
+    margin-right: .5rem;
 }
