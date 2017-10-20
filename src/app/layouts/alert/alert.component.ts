@@ -17,17 +17,17 @@ export class AlertComponent implements OnInit {
 
   ngOnInit() {
     this.alertService.getAlert()
-    .subscribe((alert: Alert) => {
-      if (!alert) {
-        // clear alerts when an empty alert is received
-        this.alerts = [];
-        return;
-      }
-      if (this.alerts.length !== 0) {
-        this.removeAlert(alert);
-      }
-      this.alerts.push(alert);
-    });
+      .subscribe((alert: Alert) => {
+        if (!alert) {
+          // clear alerts when an empty alert is received
+          this.alerts = [];
+          return;
+        }
+        if (this.alerts.length !== 0) {
+          this.removeAlert(alert);
+        }
+        this.alerts.push(alert);
+      });
   }
 
   removeAlert(alert: Alert) {
@@ -35,18 +35,44 @@ export class AlertComponent implements OnInit {
   }
 
   getAlertColor(alert: Alert) {
+    // check if alert exists
     if (!alert) {
       return;
     }
     switch (alert.type) {
+      // light green
       case AlertType.Success:
-        return '#00C851';
+        return '#DCECDB';
+      // light red
       case AlertType.Error:
-        return '#ff4444';
+        return '#FE9A9A';
+      // light blue
       case AlertType.Info:
-        return '#33b5e5';
+        return '#33B5E5';
+      // light orange
       case AlertType.Warning:
-        return '#ffbb33';
+        return '#FFBB33';
+    }
+  }
+
+  getFontColor(alert: Alert) {
+    // check if alert exists
+    if (!alert) {
+      return;
+    }
+    switch (alert.type) {
+      // green
+      case AlertType.Success:
+        return '#007E33';
+      // red
+      case AlertType.Error:
+        return '#B71C1C';
+      // white
+      case AlertType.Info:
+        return '#FFFFFF';
+      // white
+      case AlertType.Warning:
+        return '#FFFFFF';
     }
   }
 }

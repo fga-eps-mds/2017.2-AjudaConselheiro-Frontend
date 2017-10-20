@@ -4,6 +4,7 @@ import { CreateUserComponent } from './create-user.component';
 import { FormsModule } from '@angular/forms';
 import { TextMaskModule } from 'angular2-text-mask';
 import { RouterTestingModule } from '@angular/router/testing';
+import { UserService, AlertService } from '../../services/index';
 
 describe('CreateUserComponent', () => {
   let component: CreateUserComponent;
@@ -18,6 +19,10 @@ describe('CreateUserComponent', () => {
         RouterTestingModule,
         HttpModule
        ],
+       providers: [
+         UserService,
+         AlertService
+        ]
     })
     .compileComponents();
   }));

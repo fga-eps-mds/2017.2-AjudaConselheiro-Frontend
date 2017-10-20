@@ -55,6 +55,7 @@ import { AlertModule } from 'ngx-bootstrap/alert';
     SchedulingModule,
     UserModule,
     CouncilGroupModule,
+    TextMaskModule,
     ReactiveFormsModule,
     TextMaskModule,
     ConfirmationPopoverModule.forRoot({
