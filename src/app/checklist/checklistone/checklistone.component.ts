@@ -18,12 +18,12 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class ChecklistoneComponent implements OnInit {
 
   imageUrl: string;
-  public base64Image: string;
+  public base64Image: String;
 
   // This component is destined to the checklist corresponding to
   // LISTA PARA VERIFICAÇÃO DAS BOAS PRÁTICAS DE FABRICAÇÃO
     iteratorArray: Array<Object>= IteratorArray;
-    topicHeaders: Array<string> = CheckOneTopicHeaders;
+    topicHeaders: Array<String> = CheckOneTopicHeaders;
     commentaries: Array<SectionCommentary> = CheckOneCommentaries;
     checkOneFirstTopic: Array<BinaryForm> = CheckOneFirstTopic;
     checkOneSecondTopic: Array<BinaryForm> = CheckOneSecondTopic;
@@ -77,6 +77,12 @@ export class ChecklistoneComponent implements OnInit {
       console.log(this.base64Image);
     };
     myReader.readAsDataURL(file);
+  }
+
+  deleteImage() {
+    this.base64Image = undefined;
+    console.clear();
+    console.log(this.base64Image);
   }
 
 }
