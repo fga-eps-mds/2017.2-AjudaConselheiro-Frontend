@@ -1,22 +1,23 @@
-import { SectionCommentary } from '../models/checklist.model';
 import { Injectable } from '@angular/core';
-import { CommentBinaryForm, CommentForm, FormsMenu, FormMenuTwo, ChecklistThree} from '../models/index';
 import { BinaryForm } from '../models/index';
 import { Http } from '@angular/http';
+import 'rxjs/add/operator/toPromise';
+import { CommentBinaryForm, CommentForm, FormsMenu, FormMenuTwo, ChecklistThree} from '../models/index';
+import { SectionCommentary } from '../models/checklist.model';
 
 @Injectable()
 export class ChecklistService {
 
-    constructor(private http: Http) {}
-    private formMenuUrl = 'app/formsMenu';
-    private formMenuAnswerUrl = 'app/formCheckAnswer';
-    private formOneAnswerUrl = 'app/checklist';
+  constructor(private http: Http) {}
+  private formMenuUrl = 'app/formsMenu';
+  private formMenuAnswerUrl = 'app/formCheckAnswer';
+  private formOneAnswerUrl = 'app/checklist';
 
-    // checklist three services
-    listAllCheck(): ChecklistThree[] {
-        const checklistThree = localStorage['checklistThree'];
-        return checklistThree ? JSON.parse(checklistThree) : [];
-      }
+  // checklist three services
+  listAllCheck(): ChecklistThree[] {
+    const checklistThree = localStorage['checklistThree'];
+    return checklistThree ? JSON.parse(checklistThree) : [];
+  }
 
       newCheck(checkThree: ChecklistThree): void {
         const checklistThree = this.listAllCheck();

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from './../../services/authentication.service';
 import {ConfirmationPopoverModule} from 'angular-confirmation-popover';
 import { Router } from '@angular/router';
+
+import { AuthenticationService } from './../../services/authentication/authentication.service';
 
 @Component({
   selector: 'app-navbar',
@@ -27,14 +28,13 @@ export class NavbarHomeComponent implements OnInit {
   }
 
   logout() {
-      localStorage.removeItem('token');
-      localStorage.removeItem('currentUser');
-      localStorage.setItem('loggedOut', 'true');
-      this.router.navigate(['/home']);
+    localStorage.removeItem('token');
+    localStorage.removeItem('currentUser');
+    localStorage.setItem('isLoggedIn', 'false');
+    this.router.navigate(['/home']);
   }
 
-  get hasToken(): any {
+  hasToken(): boolean {
     return localStorage.hasOwnProperty('token');
   }
-
 }

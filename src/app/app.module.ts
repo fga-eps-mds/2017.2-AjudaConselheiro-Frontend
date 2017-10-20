@@ -22,6 +22,8 @@ import { BaseRequestOptions } from '@angular/http';
 import { ChecklistService } from './services/index';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { FooterComponent } from './layouts/footer/footer.component';
+import { AlertComponent } from './layouts/alert/alert.component';
+import { AlertService } from './services/alert/alert.service';
 import {ConfirmationPopoverModule} from 'angular-confirmation-popover';
 import { AlertModule } from 'ngx-bootstrap/alert';
 
@@ -34,7 +36,8 @@ import { AlertModule } from 'ngx-bootstrap/alert';
     NavbarHomeComponent,
     CarouselComponent,
     LoginComponent,
-    FooterComponent
+    FooterComponent,
+    AlertComponent
   ],
 
   imports: [
@@ -48,6 +51,7 @@ import { AlertModule } from 'ngx-bootstrap/alert';
     ChecklistModule,
     SchedulingModule,
     UserModule,
+    TextMaskModule,
     ReactiveFormsModule,
     TextMaskModule,
     ConfirmationPopoverModule.forRoot({
@@ -57,6 +61,7 @@ import { AlertModule } from 'ngx-bootstrap/alert';
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [
     BaseRequestOptions,
+    AlertService
   ],
   bootstrap: [AppComponent]
 })
