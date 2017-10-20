@@ -1,13 +1,15 @@
+import { Component, OnInit } from '@angular/core';
 import { Binary } from '@angular/compiler';
+import { Http, HttpModule } from '@angular/http';
+import { DomSanitizer } from '@angular/platform-browser';
+
 import { SectionCommentary } from '../../models/checklist.model';
 import { CheckOneTopicHeaders, CheckOneCommentaries, CheckOneFirstTopic, CheckOneEighthTopic, CheckOneFifthTopic,
 CheckOneFourthTopic, CheckOneSecondTopic, CheckOneSixthTopic,
 CheckOneSeventhTopic, CheckOneThirdTopic, IteratorArray} from './../../models/checklistForms';
-import { Component, OnInit } from '@angular/core';
 import { FormsMenu, FormMenuTwo, CommentBinaryForm, CommentForm, BinaryForm, FormBinary, ConfirmComentary} from '../../models/index';
 import { ChecklistService } from '../../services/index';
-import { Http, HttpModule } from '@angular/http';
-import { DomSanitizer } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-checklistone',
@@ -17,11 +19,10 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class ChecklistoneComponent implements OnInit {
 
-  imageUrl: string;
+  base64Array: String[] = [];
   public base64Image: String;
 
   // This component is destined to the checklist corresponding to
-  // LISTA PARA VERIFICAÇÃO DAS BOAS PRÁTICAS DE FABRICAÇÃO
     iteratorArray: Array<Object>= IteratorArray;
     topicHeaders: Array<String> = CheckOneTopicHeaders;
     commentaries: Array<SectionCommentary> = CheckOneCommentaries;
@@ -74,15 +75,15 @@ export class ChecklistoneComponent implements OnInit {
 
     myReader.onloadend = (e) => {
       this.base64Image = myReader.result;
+      this.base64Array.push(this.base64Image);
       console.log(this.base64Image);
     };
     myReader.readAsDataURL(file);
   }
 
   deleteImage() {
-    this.base64Image = undefined;
+    this.base64Array = this.base64Array.filter(e => e !== this.base64Image);
     console.clear();
     console.log(this.base64Image);
   }
-
 }

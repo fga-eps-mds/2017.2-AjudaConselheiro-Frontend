@@ -34,3 +34,7 @@ input[type=file] {
     display: none;
     float: left;
 }
+
+button {
+    float: center;
+}
