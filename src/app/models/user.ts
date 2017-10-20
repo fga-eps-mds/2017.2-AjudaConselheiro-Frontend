@@ -6,7 +6,5 @@ export class User {
     public cod?: number;
     public email: string;
     public nomeCompleto: string;
-    public nomeUsuario: string;
     public senha: string;
-
 }

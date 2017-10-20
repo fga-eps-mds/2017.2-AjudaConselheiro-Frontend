@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { UserService, AlertService } from '../../services/index';
@@ -25,18 +25,19 @@ export class CreateUserComponent implements OnInit {
 
   ngOnInit() {
     this.user = new User();
+
   }
 
   register(): void {
     this.loading = true;
     this.userService.createUser(this.user)
       .subscribe(
-          result => {
-            this.user = result;
-          },
-          error => {
-              this.alertService.error(error);
-              this.loading = false;
+      result => {
+        this.user = result;
+      },
+      error => {
+        this.alertService.error(error);
+        this.loading = false;
       });
   }
 }
