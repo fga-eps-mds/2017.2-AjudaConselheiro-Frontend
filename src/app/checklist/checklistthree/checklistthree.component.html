@@ -14,73 +14,65 @@
         <div class="row"></div>
 
         <div class="row">
-            <div class="col-md-10">
-                <div class="col-md-10"><br><br></div>
-                <div class="col-md-2"></div>
-                <div class="col-md-2"></div>
+            <div class="col-md-12">
+                <div class="col-md-12"><br><br></div>
+
+                <p class="h3 text-center mb-5 question15" align="center">Avaliação da cantina particular</p>
+
             </div>
-            <p class="h3 text-center mb-5 question15" align="center">Avaliação dos cardápios das escolas parque e escolas classes da CRE/PPC</p>
 
         </div>
-
         <div class="row">
-            <div class="col-md-9" align="center">
+            <div class="col-md-12" align="center">
                 <h5>Avaliação dos cardápios</h5>
             </div>
-
         </div>
-        <br>
-        <br>
-        <!-- Começo da parte referente às perguntas com comentários -->
+        <br><br>
 
         <div *ngFor="let i of formMenuThree;let g = index">
             <div class="row">
-                <div class="col-md-8 question11"> {{i.question}}</div>
+                <div class="col-md-8 question11 h5  "> {{i.question}}</div>
                 <div class="col-md-1 question11"></div>
-                Não
+                <h5> Não</h5>
                 <label class="switch">
                 <input type="checkbox" name="formBinary_{{g}}" [(ngModel)]="formMenuThree[g].answer" [value]="true" required>
                 <span class="slider round"></span>
-              </label>Sim
+                </label>
+                <h5>Sim</h5>
                 <div class="col-md-2"></div>
-
                 <div class="col-md-2"></div>
-
-
-
-
-
             </div>
 
             <div class="row" *ngIf="formMenuThree[g].answer === true">
                 <div class="col-md-8"></div>
                 <div class="col-md-4">
                     <div class="md-form textAreaTrue">
-                        <textarea mdbActive align="center" type="text" class="md-textarea commentaryThree" placeholder="Observações" name="formBinary_{{g}}" [(ngModel)]="formMenuThree[g].obs"></textarea>
+                        <i class="fa fa-pencil prefix"></i>
+                        <textarea mdbActive align="center" type="text" class="basic-textarea commentaryThree" placeholder="Observações" name="formBinary_{{g}}" [(ngModel)]="formMenuThree[g].obs"></textarea>
                     </div>
                 </div>
             </div>
-
         </div>
 
-        <br>
-        <br>
-        <br>
+        <br><br><br>
+
 
 
         <form #formChecklist="ngForm">
             <div class="row">
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
-                    <h5 align="center"><label for="exampleFormControlTextarea6">Relação dos alimentos encontrados na cantina</label></h5>
+                    <h5 align="center ">Relação dos alimentos encontrados na cantina</h5>
                 </div>
                 <div class="col-md-2"></div>
             </div>
             <div class="row">
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
+
                     <div class="form-group basic-textarea rounded-corners shadow-textarea">
-                        <textarea mdbActive align="center" type="text" id="obs" class="form-control z-depth-1" name="obs" [(ngModel)]="checklist.obs" rows="3" placeholder="Resposta" required></textarea>
+                        <i class="fa fa-pencil prefix"></i>
+                        <textarea mdbActive align="center" type="text" id="obs" class="form-control z-depth-1" name="obs" [(ngModel)]="checklist.obs" rows="3" placeholder="Resposta"></textarea>
                         <label for="checkthreetext"></label>
                     </div>
                 </div>
@@ -98,7 +90,6 @@
             </div>
         </form>
     </div>
-
 </body>
 
 </html>
