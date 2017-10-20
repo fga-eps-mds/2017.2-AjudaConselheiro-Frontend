@@ -28,76 +28,11 @@ export class ChecklistoneComponent implements OnInit {
     checkOneSeventhTopic: Array<CommentBinaryForm> = CheckOneSeventhTopic;
     checkOneEighthTopic: Array<BinaryForm> = CheckOneEighthTopic;
 
-
-    checkComentary: ConfirmComentary[]= [
-      new ConfirmComentary(false, 'Comment1'),
-      new ConfirmComentary(false, 'Comment2'),
-      new ConfirmComentary(false, 'Comment3'),
-      new ConfirmComentary(false, 'Comment4'),
-      new ConfirmComentary(false, 'Comment5'),
-      new ConfirmComentary(false, 'Comment6'),
-      new ConfirmComentary(false, 'Comment7'),
-      new ConfirmComentary(false, 'Comment8'),
-    ];
-
   constructor() {}
 
-  ngOnInit(): void {
-    // this.checkoneService.getCheckOneFirstTopicAnswers()
-    // .then((checkOneFirstTopic: BinaryForm[]) => {
-    //     this.checkOneFirstTopic = checkOneFirstTopic;
-    // }).catch(err => console.log(err));
+  ngOnInit(): void {}
 
-    // this.checkoneService.getCheckOneSecondTopicAnswers()
-    // .then((checkOneSecondTopic: BinaryForm[]) => {
-    //    this.checkOneSecondTopic = checkOneSecondTopic;
-    // }).catch(err => console.log(err));
-
-    // this.checkoneService.getCheckOneThirdTopicAnswers()
-    // .then((checkOneThirdTopic: BinaryForm[]) => {
-    //    this.checkOneThirdTopic = checkOneThirdTopic;
-    // }).catch(err => console.log(err));
-
-    // this.checkoneService.getCheckOneFourthTopicAnswers()
-    // .then((checkOneFourthTopic: BinaryForm[]) => {
-    //        this.checkOneFourthTopic = checkOneFourthTopic;
-    //     }).catch(err => console.log(err));
-
-    // this.checkoneService.getCheckOneFifthTopicAnswers()
-    // .then((checkOneFifthTopic: BinaryForm[]) => {
-    //    this.checkOneFifthTopic = checkOneFifthTopic;
-    // }).catch(err => console.log(err));
-
-    // this.checkoneService.getCheckOneSixthTopicAnswers()
-    // .then((checkOneSixthTopic: BinaryForm[]) => {
-    //    this.checkOneSixthTopic = checkOneSixthTopic;
-    // }).catch(err => console.log(err));
-
-    // this.checkoneService.getCheckOneSeventhTopicAnswers()
-    // .then((checkOneSeventhTopic: CommentBinaryForm[]) => {
-    //    this.checkOneSeventhTopic = checkOneSeventhTopic;
-    // }).catch(err => console.log(err));
-
-    // this.checkoneService.getCheckOneEighthTopicAnswers()
-    // .then((checkOneEighthTopic: BinaryForm[]) => {
-    //    this.checkOneEighthTopic = checkOneEighthTopic;
-    // }).catch(err => console.log(err));
-
-    // this.checkoneService.getCheckOneCommentaries()
-    // .then((commentaries: SectionCommentary[]) => {
-    //     this.commentaries = commentaries;
-    // }).catch(err => console.log(err));
-}
-
-  onSubmit(): void {
+  onSubmit() {
       console.log(this.iteratorArray);
-      console.log(this.checkOneSecondTopic);
-      console.log(this.checkOneThirdTopic);
-      console.log(this.checkOneFourthTopic);
-      console.log(this.checkOneFifthTopic);
-      console.log(this.checkOneSixthTopic);
-      console.log(this.checkOneSeventhTopic);
-      console.log(this.checkOneEighthTopic);
-      console.log(this.commentaries);
   }
 }
