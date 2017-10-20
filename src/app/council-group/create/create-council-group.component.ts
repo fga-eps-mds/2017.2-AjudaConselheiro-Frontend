@@ -14,8 +14,8 @@ import { CouncilGroupService, AlertService } from '../../services/index';
 export class CreateCouncilGroupComponent implements OnInit {
 
   @ViewChild('formCouncilGroup') formCouncilGroup: NgForm;
-  councilGroup: CouncilGroup;
-  private location: any;
+  councilGroup: CouncilGroup = null;
+  private location: any = null;
 
   constructor(
     private councilGroupService: CouncilGroupService,

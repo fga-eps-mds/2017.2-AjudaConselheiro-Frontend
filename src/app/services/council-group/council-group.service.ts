@@ -8,9 +8,8 @@ import { ServicesUtilitiesService } from '../../services/services-utilities.serv
 
 @Injectable()
 export class CouncilGroupService extends ServicesUtilitiesService {
-  private headers: Headers;
-  private options: RequestOptions;
-  private appToken: any;
+  private headers: Headers = null;
+  private request: RequestOptions = null;
   private url = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/grupos';
 
   constructor(private http: Http, private alertService: AlertService) {
@@ -20,7 +19,7 @@ export class CouncilGroupService extends ServicesUtilitiesService {
   createCouncil(councilGroup: CouncilGroup): Observable<any> {
 
     if (!localStorage.getItem('token')) {
-      this.alertService.warn('Usuário precisa estar logado!');
+      this.alertService.warn('Usuário precisa estar logado para criar um conselho!');
     }
 
     this.headers = new Headers ({
@@ -28,22 +27,21 @@ export class CouncilGroupService extends ServicesUtilitiesService {
       'appToken': localStorage.getItem('token')
     });
 
-    this.options = new RequestOptions({ headers: this.headers });
+    this.request = new RequestOptions({ headers: this.headers });
     console.log('Create Council');
 
-    const body = this.getFormattedData(councilGroup);
-    console.log(body);
+    const formattedCouncil = this.getFormattedData(councilGroup);
+    console.log(formattedCouncil);
 
-    return this.http
-      .post(this.url, body, this.options)
-      .map(res => this.extractData(res))
+    return this.http.post(this.url, formattedCouncil, this.request)
+      .map(response => this.extractData(response))
       .catch(this.handleError);
   }
 
   private getFormattedData(councilGroup: CouncilGroup) {
     councilGroup.descricao = 'CAE-' + councilGroup.municipio + '-' + councilGroup.estado;
 
-    const temp = {
+    const council = {
       'codAplicativo': councilGroup.codAplicativo,
       'codGrupoPai': councilGroup.codGrupoPai,
       'codObjeto': councilGroup.codObjeto,
@@ -51,6 +49,6 @@ export class CouncilGroupService extends ServicesUtilitiesService {
       'descricao': councilGroup.descricao
     };
 
-    return JSON.stringify(temp);
+    return JSON.stringify(council);
   }
 }
