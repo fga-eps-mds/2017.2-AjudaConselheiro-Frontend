@@ -82,8 +82,10 @@ export class ChecklistoneComponent implements OnInit {
   }
 
   deleteImage() {
-    this.base64Array = this.base64Array.filter(e => e !== this.base64Image);
+    // this.base64Array = this.base64Array.filter(e => e !== this.base64Image);
+    this.base64Array.splice(this.base64Array.indexOf(this.base64Image), 1);
     console.clear();
     console.log(this.base64Image);
+    console.log(this.base64Array);
   }
 }
