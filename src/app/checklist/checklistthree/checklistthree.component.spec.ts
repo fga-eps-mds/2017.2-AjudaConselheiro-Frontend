@@ -1,3 +1,5 @@
+import { ChecklistService } from './../../services/checklist.service';
+import { ChecklistThree, SectionCommentaryTwo } from './../../models/checklist.model';
 import { FormMenuThree } from './../../models/checklistForms';
 import { APP_BASE_HREF } from '@angular/common';
 import { AppModule } from './../../app.module';
@@ -10,6 +12,9 @@ import { By } from '@angular/platform-browser';
 describe('ChecklistthreeComponent', () => {
   let component: ChecklistthreeComponent;
   let fixture: ComponentFixture<ChecklistthreeComponent>;
+  let checklist: ChecklistThree;
+  let formMenuThree: Array<SectionCommentaryTwo> = FormMenuThree;
+  let check: ChecklistService
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -25,13 +30,27 @@ describe('ChecklistthreeComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
+  it('Test checklist Copy ', () => {
+    component.copy(component, formMenuThree)
+    expect(component.formMenuThree).toEqual( formMenuThree);
+  });
+  it('Test unity id', () => {
+    component.newFormulario()
+    const newId = new Date().getTime();
+    expect(component.checklist.id).not.toEqual( newId );
+  });
+  it('Test localStorage', () => {
+    const newId = new Date().getTime();
+    component.newFormulario()
+    expect( localStorage['checklistThree'] ).toContain( JSON.stringify(component.checklist));
+  });
 
   it('should have a text area for the fourth commentary', () => {
     for ( let _i = 0; _i < FormMenuThree.length; _i++ ) {
     component.formMenuThree[_i].answer = true;
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.switch')).not.toBe(null);
+    expect(compiled.querySelector('.commentaryThree')).not.toBe(null);
     }
   });
   it('should have not a text area for the fourth commentary', () => {
@@ -39,7 +58,7 @@ describe('ChecklistthreeComponent', () => {
     fixture.detectChanges();
     component.formMenuThree[_i].answer = false;
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.switch')).not.toBe(null);
+    expect(compiled.querySelector('.commentaryThree')).not.toBe(null);
     }
   });
   it('should have2 not a text area for the fourth commentary', () => {
