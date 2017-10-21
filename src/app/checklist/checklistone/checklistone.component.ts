@@ -38,6 +38,10 @@ export class ChecklistoneComponent implements OnInit {
       console.warn(this.commentaries);
   }
 
+  isOtherQuestions (topic: number, question: number) {
+    return (topic !== 6 && ( question !== 4 && question !== 5));
+  }
+
   isRequiredQuestions(topic: number, question: number) {
     return (topic === 6 && ( question === 4 || question === 5));
   }

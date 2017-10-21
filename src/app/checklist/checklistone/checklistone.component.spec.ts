@@ -1,25 +1,58 @@
-// import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-// import { ChecklistoneComponent } from './checklistone.component';
+import { ChecklistoneComponent } from './checklistone.component';
+import { FormsModule } from '@angular/forms';
 
-// describe('ChecklistoneComponent', () => {
-//   let component: ChecklistoneComponent;
-//   let fixture: ComponentFixture<ChecklistoneComponent>;
+describe('ChecklistoneComponent', () => {
+  let component: ChecklistoneComponent;
+  let fixture: ComponentFixture<ChecklistoneComponent>;
+  let compiled: any;
 
-//   beforeEach(async(() => {
-//     TestBed.configureTestingModule({
-//       declarations: [ ChecklistoneComponent ]
-//     })
-//     .compileComponents();
-//   }));
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ ChecklistoneComponent ],
+      imports: [ FormsModule ],
+    })
+    .compileComponents();
+  }));
 
-//   beforeEach(() => {
-//     fixture = TestBed.createComponent(ChecklistoneComponent);
-//     component = fixture.componentInstance;
-//     fixture.detectChanges();
-//   });
+  beforeEach(() => {
+    fixture = TestBed.createComponent(ChecklistoneComponent);
+    component = fixture.componentInstance;
+    compiled = fixture.debugElement.nativeElement;
+    fixture.detectChanges();
+  });
 
-//   it('should create', () => {
-//     expect(component).toBeTruthy();
-//   });
-// });
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should fail incorrect not rquired questions', () => {
+      const invalidQuestionNumber = 4;
+      const invalidTopicNumber = 5;
+      const validQuestionNumber = 0;
+      const validTopicNumber = 6;
+
+      // First case
+      expect(component.isNotRequiredQuestions(invalidTopicNumber, invalidQuestionNumber)).toBeFalsy();
+
+      // Second case
+      expect(component.isNotRequiredQuestions(invalidTopicNumber, validQuestionNumber)).toBeFalsy();
+
+      // Third case
+      expect(component.isNotRequiredQuestions(validTopicNumber, invalidQuestionNumber)).toBeFalsy();
+  });
+
+  it('should pass correct not rquired questions', () => {
+    const validQuestionNumber = 0;
+    const validTopicNumber = 6;
+
+    // First case
+    expect(component.isNotRequiredQuestions(validTopicNumber, validQuestionNumber)).toBeTruthy();
+  });
+
+  it('should have back button', () => {
+    const backButton = compiled.querySelector('.backButton');
+    expect(backButton).toBeTruthy();
+  });
+});

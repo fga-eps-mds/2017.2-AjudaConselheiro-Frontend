@@ -29,7 +29,7 @@
             
             <!-- Questions -->
             <div class="col-md-2" align="center" valign="center" 
-                *ngIf= "topicNum!==6 && ( questNum!==4 || questNum!==5)">
+                *ngIf= "isOtherQuestions(topicNum, questNum)">
               Não 
               <!-- Rounded switch -->
               <label class=" align-middle switch">
@@ -85,7 +85,7 @@
           <div class="col-md-1"></div>
           <!-- Back button -->
           <div class="col-md-2">
-            <a href="/checklist" class="btn btn-outline-warning waves-effect">
+            <a href="/checklist" class="btn btn-outline-warning waves-effect backButton" >
             <span class="glyphicon glyphicon-chevron-left " aria-hidden="false"></span>
             <i class="fa fa-arrow-circle-o-left" aria-hidden="true">
             </i>Voltar</a>
