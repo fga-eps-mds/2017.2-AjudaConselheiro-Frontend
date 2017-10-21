@@ -44,7 +44,7 @@
 
             <!-- Other questions -->
             <div class="col-md-2" align="center"
-                *ngIf= "topicNum===6 && ( questNum===0 || questNum===1|| questNum===2|| questNum===3)">
+                *ngIf= "isNotRequiredQuestions(topicNum, questNum)">
               Não
               <label class=" align-middle switch">
                 <input type="checkbox" 
@@ -59,17 +59,22 @@
             <!-- Commentary options for 2nd half of questions -->
             <div class="col-md-2">
               <input required type="text" placeholder="Resposta"
-                *ngIf="topicNum===6 && ( questNum===4 || questNum===5)"
-                [(ngModel)]= "iteratorArray[topicNum][questNum].commmentary" 
+                *ngIf="isRequiredQuestions(topicNum,questNum)"
+                [(ngModel)]= "iteratorArray[topicNum][questNum].commentary" 
                 name="{{iteratorArray[topicNum][questNum].question}}">
             </div>
           </div>
           
           <div class="row">
+            <!-- Topics observation -->
             <div class="col-md-8" align="left">Observações?</div>
             <div class="col-md-4">
               <div class="md-form">
-                <textarea align ="center"type="text" id="form7" class="md-textarea" placeholder="Observações" name="{{commentaries[topicNum]}}" [(ngModel)]="commentaries[topicNum].commentary"></textarea>
+                <textarea align ="center"type="text" id="form7" 
+                  class="md-textarea" placeholder="Observações" 
+                  name="{{commentaries[topicNum]}}" 
+                  [(ngModel)]="commentaries[topicNum].commentary">
+                </textarea>
                 <label for="form7" ></label>
               </div>
             </div>
@@ -78,10 +83,23 @@
         </div>
         <div class="row">
           <div class="col-md-1"></div>
-          <div class="col-md-2"><a href="/checklist" class="btn btn-outline-warning waves-effect"><span class="glyphicon glyphicon-chevron-left " aria-hidden="false"></span><i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>Voltar</a></div>
+          <!-- Back button -->
+          <div class="col-md-2">
+            <a href="/checklist" class="btn btn-outline-warning waves-effect">
+            <span class="glyphicon glyphicon-chevron-left " aria-hidden="false"></span>
+            <i class="fa fa-arrow-circle-o-left" aria-hidden="true">
+            </i>Voltar</a>
+          </div>
           <div class="col-md-3"></div>
           <div class="col-md-3"></div>
-          <div class="col-md-2"><button type="submit" class="btn btn-warning btn-rounded waves-light" (ngSubmit)="onSubmit()" href="/checklist"[disabled]="!f.form.valid">Enviar</button></div>
+          <!-- Send button -->
+          <div class="col-md-2">
+            <button type="submit" class="btn btn-warning btn-rounded waves-light" 
+            (ngSubmit)="onSubmit()" href="/checklist"
+            [disabled]="!f.form.valid">
+              Enviar
+            </button>
+          </div>
         </div>
       </form>
       
