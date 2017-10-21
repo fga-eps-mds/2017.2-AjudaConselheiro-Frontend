@@ -1,6 +1,7 @@
 import { Component, OnInit, OnChanges, Input, SimpleChange } from '@angular/core';
 import { IbgeService, CouncilGroupService } from '../../services/index';
 import { State, CouncilGroup } from '../../models/index';
+import { AlertService } from '../../services/alert/alert.service';
 
 @Component({
   selector: 'app-search-council-group',
@@ -20,20 +21,17 @@ export class SearchCouncilGroupComponent implements OnInit, OnChanges {
 
   constructor(
     private ibgeService: IbgeService,
-    private councilGroupService: CouncilGroupService
+    private councilGroupService: CouncilGroupService,
+    private alertService: AlertService
   ) { }
 
   ngOnInit() {
     this.states = this.ibgeService.statesRequest();
     this.showCouncil = false;
-    if (this.council === undefined) {
-      this.showCouncil = false;
-    } else {
-      this.showCouncil = true;
-    }
   }
 
   ngOnChanges(change) {
+    this.showCouncil = false;
     if (change === this.state) {
       this.cities = this.ibgeService.citiesRequest(this.state);
       this.council = this.stateSigla = this.city = undefined;
@@ -41,10 +39,31 @@ export class SearchCouncilGroupComponent implements OnInit, OnChanges {
     }
     if (this.city !== undefined) {
       this.council = undefined;
-      this.council = this.councilGroupService.concilRequest(this.getCAEName());
-      console.log(this.city);
-      console.log(this.council);
+      this.searchCouncils(this.getCAEName());
     }
+    if (this.council === change) {
+      console.log('Oi');
+    }
+  }
+
+  searchCouncils(description: string): void {
+    this.councilGroupService.getAjudaConselheiroCouncilGroups(description)
+      .subscribe(
+          result => {
+            this.council = new CouncilGroup();
+            if (result !== undefined) {
+              this.alertService.success('Conselho encontrado com sucesso!');
+              this.dismemberCouncilAttributes(result);
+              this.showCouncil = true;
+            } else {
+              this.alertService.error('Conselho não encontrado');
+              this.showCouncil = false;
+            }
+          },
+          error => {
+            alert(error);
+            console.error(error);
+      });
   }
 
   getCAEName(): string {
@@ -55,5 +74,14 @@ export class SearchCouncilGroupComponent implements OnInit, OnChanges {
     const stateSigla = this.states.filter(x => x.id === this.state)[0];
     this.stateSigla = stateSigla.sigla;
     return this.stateSigla;
+  }
+
+  dismemberCouncilAttributes(result: any): void {
+    const description = result.descricao;
+    const attributes = description.split('-');
+
+    this.council.descricao = description;
+    this.council.estado = attributes[1];
+    this.council.municipio = attributes[2];
   }
 }

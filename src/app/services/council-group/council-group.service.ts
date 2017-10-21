@@ -11,7 +11,6 @@ export class CouncilGroupService {
   private headers: Headers;
   private options: RequestOptions;
   private appToken: any;
-  private councilRequested: CouncilGroup;
   private url = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/grupos';
 
   constructor(private http: Http, private alertService: AlertService) { }
@@ -66,43 +65,10 @@ export class CouncilGroupService {
     return Observable.throw(error);
   }
 
-  concilRequest(description: string): CouncilGroup {
-    this.searchCouncils(description);
-        return this.councilRequested;
-  }
-
   getAjudaConselheiroCouncilGroups(description: string):  Observable<Array<Object>> {
     return this.http
     .get(this.url + '?codAplicativo=462')
     .map(res => res.json().find(x => x.descricao === description))
     .catch(this.handleError);
   }
-
-  searchCouncils(description: string): void {
-    this.getAjudaConselheiroCouncilGroups(description)
-      .subscribe(
-          result => {
-            if (result !== undefined) {
-              this.councilRequested = new CouncilGroup();
-              this.dismemberCouncilAttributes(result);
-              // console.log(this.councilRequested);
-              // console.log(result);
-            } else {
-              this.councilRequested = undefined;
-            }
-          },
-          error => {
-            alert(error);
-            console.error(error);
-      });
-  }
-
-  dismemberCouncilAttributes(result: any): void {
-    const description = result.descricao;
-    const attributes = description.split('-');
-
-    this.councilRequested.descricao = description;
-    this.councilRequested.estado = attributes[1];
-    this.councilRequested.municipio = attributes[2];
-      }
 }
