@@ -8,7 +8,6 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "json:server": "json-server --watch db.json",
     "e2e": "ng e2e"
   },
   "private": true,
@@ -24,13 +23,16 @@
     "@angular/router": "^4.4.3",
     "angular-animate": "^1.6.6",
     "angular-bootstrap-md": "^4.3.5",
+    "angular-confirmation-popover": "^3.2.0",
     "angular2-text-mask": "^8.0.4",
     "bootstrap": "^3.3.7",
     "chart.js": "^2.7.0",
     "core-js": "^2.4.1",
     "font-awesome": "^4.7.0",
     "hammerjs": "^2.0.8",
+    "json-server": "^0.12.0",
     "ngx-bootstrap": "^1.9.3",
+    "rxjs": "^5.4.2",
     "zone.js": "^0.8.14"
   },
   "devDependencies": {

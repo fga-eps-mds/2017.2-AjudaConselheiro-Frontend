@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../models/user';
 
-
 @Component({
     moduleId: module.id,
     templateUrl: 'home.component.html'
@@ -9,6 +8,5 @@ import { User } from '../models/user';
 
 export class HomeComponent implements OnInit {
 
-    ngOnInit() {
-    }
+  ngOnInit() {}
 }

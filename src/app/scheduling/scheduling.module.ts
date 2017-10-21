@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { SchedulingService } from './../services/scheduling.service';
 import { SchedulingHomeComponent } from './scheduling-home/scheduling-home.component';
 import { EditComponent } from './edit/edit.component';
+import { SchoolService } from '../services/index';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { EditComponent } from './edit/edit.component';
     CreateSchedulingComponent
   ],
   providers: [
-    SchedulingService
+    SchedulingService,
+    SchoolService
   ]
 })
 export class SchedulingModule { }
