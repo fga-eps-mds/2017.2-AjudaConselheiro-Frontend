@@ -4,70 +4,101 @@
     <form (ngSubmit)="formUser.form.valid && register()" #formUser="ngForm">
         <br>
         <p class="h2 text-center mb-4"> Cadastro </p>
-
         <div class="form-group">
-            <i class="fa fa-user prefix grey-text"></i>
-            <input type="text" id="orangeForm-name" class="form-control" name="fullname" minlength="10" placeholder="Nome Completo" [(ngModel)]="user.nomeCompleto" #nomeCompleto="ngModel" required>
-            <div *ngIf="nomeCompleto.errors && (nomeCompleto.dirty)" class="alert alert-danger">
-                <div [hidden]="!nomeCompleto.errors.required">
-                    Digite o nome completo.
-                </div>
-                <div [hidden]="!nomeCompleto.errors.minlength">
-                    O Nome deve ter ao menos 10 caracteres.
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <i class="fa fa-user-circle prefix grey-text"></i>
-            <input type="text" id="orangeForm-name" class="form-control" name="nomeUsuario" maxlength="20" placeholder="Nome de Usuário" [(ngModel)]="user.nomeUsuario" #nomeUsuario="ngModel" required>
-            <div *ngIf="nomeUsuario.errors && (nomeUsuario.dirty)" class="alert alert-danger">
-                <div [hidden]="!nomeUsuario.errors.required">
-                    Digite um nome de usuário válido.
-                </div>
-                <div [hidden]="!nomeUsuario.errors.minlength">
-                    O Nome deve ter ao menos 10 caracteres.
-                </div>
+          <i class="fa fa-user prefix grey-text"></i>
+          <input type="text" class="form-control"
+                 name="nomeCompleto" id="orangeForm-name"
+                 placeholder="Nome Completo" [(ngModel)]="user.nomeCompleto"
+                 #nomeCompleto="ngModel" minlength="10"
+                 pattern="[a-zA-Z][a-zA-Z ]+"
+                 required>
+            <div *ngIf="nomeCompleto.errors && (nomeCompleto.dirty)"
+                  class="alert alert-danger">
+                  <div [hidden]="!nomeCompleto.errors.required">
+                      Nome Completo é obrigatório.
+                  </div>
+                  <div [hidden]="!nomeCompleto.errors.minlength">
+                      O Nome deve ter ao menos 10 caracteres.
+                  </div>
+                  <div [hidden]="!nomeCompleto.errors.pattern">
+                      Somente letras.
+                  </div>
             </div>
         </div>
         <div class="form-group">
             <i class="fa fa-address-card prefix grey-text"></i>
-            <input type="text" id="orangeForm-name" class="form-control" name="cep" minlength="8" maxlength="8" placeholder="CEP" [(ngModel)]="user.CEP" #CEP="ngModel" required>
-            <div *ngIf="CEP.errors && (CEP.dirty)" class="alert alert-danger">
+            <input type="text" id="orangeForm-name"
+                   class="form-control" name="cep"
+                   placeholder="CEP" [(ngModel)]="user.CEP"
+                   #CEP="ngModel"
+                   minlength="8" maxlength="8"
+                   required>
+            <div *ngIf="CEP.errors && (CEP.dirty)"
+                  class="alert alert-danger">
                 <div [hidden]="!CEP.errors.required">
-                    Digite um CEP válido
+                     CEP é obrigatório.
                 </div>
                 <div [hidden]="!CEP.errors.minlength">
-                    O CEP deve ter 8 caracteres
+                     O CEP deve ter 8 caracteres.
                 </div>
             </div>
         </div>
         <div class="form-group">
             <i class="fa fa-envelope prefix grey-text"></i>
-            <input type="email" id="orangeForm-name" class="form-control" name="email" placeholder="Email" [(ngModel)]="user.email" #email="ngModel" required>
-            <div *ngIf="email.errors && (email.dirty)" class="alert alert-danger">
+            <input type="email" id="orangeForm-name"
+                   class="form-control" name="email"
+                   placeholder="Email" [(ngModel)]="user.email"
+                   #email="ngModel" required
+                   pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" >
+            <div *ngIf="email.errors && (email.dirty)"
+                  class="alert alert-danger">
                 <div [hidden]="!email.errors.required">
-                    Digite um email válido
+                    Email é obrigatório.
+                </div>
+                  <div [hidden]="!email.errors.pattern">
+                    O formato deve ser
+                    <small><b>joao@abc.com</b></small>
                 </div>
             </div>
         </div>
         <div class="form-group">
             <i class="fa fa-lock prefix grey-text"></i>
-            <input type="password" id="orangeForm-name" class="form-control" name="senha" minlength="7" placeholder="Senha" [(ngModel)]="user.senha" #senha="ngModel" required>
-            <div *ngIf="senha.errors && (senha.dirty)" class="alert alert-danger">
+            <input type="password" id="orangeForm-name"
+                   class="form-control" name="senha"
+                   placeholder="Senha" [(ngModel)]="user.senha"
+                   minlength="7" maxlength="20"
+                   #senha="ngModel" required>
+            <div *ngIf="senha.errors && (senha.dirty)"
+                  class="alert alert-danger">
                 <div [hidden]="!senha.errors.required">
-                    Digite uma senha válida.
+                    Senha é obrigatório.
                 </div>
                 <div [hidden]="!senha.errors.minlength">
                     A senha deve ter mais do que 7 caracteres.
                 </div>
-            </div>
-        </div>
-
+             </div>
+        <!--</div>
+        <div class="form-group">
+          <i class="fa fa-key prefix grey-text"></i>
+          <input type="password" id="orangeForm-name"
+                 class="form-control" name="confirmPassword"
+                 placeholder="Confirma Senha"
+                 required>
+          <div *ngIf="confirmPassword.errors && (confirmPassword.dirty)"
+               class="alert alert-danger">
+              <div [hidden]="!confirmPassword.errors.required">
+                  Campo Obrigatório.
+              </div>
+          </div> -->
+      </div>
         <div class="form-group text-center">
-            <button type="submit" class="btn btn-deep-orange" [disabled]="!formUser.form.valid">Cadastrar</button>
-            <a href="/home" class="btn btn-outline-warning waves-effect">
-                <span class="glyphicon glyphicon-chevron-left" aria-hidden="false"></span>Voltar
-            </a>
+          <a href="/home" class="btn btn-outline-warning waves-effect">
+            <span class="glyphicon glyphicon-chevron-left"
+                  aria-hidden="false"></span>Voltar
+          </a>
+          <button type="submit" class="btn btn-deep-orange"
+                  (click)="$event.stopPropagation()"
+                  [disabled]="!formUser.form.valid">Cadastrar</button>
         </div>
     </form>
 </div>
