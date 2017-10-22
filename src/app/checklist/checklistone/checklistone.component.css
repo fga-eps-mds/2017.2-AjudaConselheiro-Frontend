@@ -1,40 +1,22 @@
 table {
-    table-layout: auto;
+  table-layout: auto;
 }
+th{
 
-th {
-    border-style: ridge;
+  border-style: ridge;
 }
-
 ::-webkit-input-placeholder {
-    text-align: center;
+   text-align: center;
 }
 
-:-moz-placeholder {
-    /* Firefox 18- */
-    text-align: center;
+:-moz-placeholder { /* Firefox 18- */
+   text-align: center;
 }
 
-::-moz-placeholder {
-    /* Firefox 19+ */
-    text-align: center;
+::-moz-placeholder {  /* Firefox 19+ */
+   text-align: center;
 }
 
 :-ms-input-placeholder {
-    text-align: center;
-}
-
-input[type=file] {
-    float: center;
-    display: block;
-    max-width: 100px;
-}
-
-.hide {
-    display: none;
-    float: left;
-}
-
-button {
-    float: center;
+   text-align: center;
 }
