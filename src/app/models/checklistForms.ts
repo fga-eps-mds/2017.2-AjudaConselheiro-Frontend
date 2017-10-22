@@ -1,4 +1,4 @@
-import { SectionCommentary } from './checklist.model';
+import { SectionCommentary, SectionCommentaryTwo } from './checklist.model';
 import { CommentForm, CommentBinaryForm, BinaryForm } from './index';
 
 
@@ -10,6 +10,14 @@ export const FormMenuTwo: Array<CommentForm> = [
         {question: 'Qual a preparação menos aceita?', answer: ''},
         {question: 'Qual produto é mais aceito?', answer: ''},
         {question: 'Qual produto é menos aceito?', answer: ''},
+];
+
+export const FormMenuThree: Array<SectionCommentaryTwo> = [
+  {question: 'O cantineiro tem conhecimento da Lei n.º5.146/2013?', obs: '', answer: false},
+  {question: 'O cantineiro tem conhecimento do Decreto n.º36.900/2015?', obs: '', answer: false},
+  {question: 'O cantineiro já recebeu a visita da vigilância sanitária para a fiscalização?', obs: '', answer: false},
+  {question: 'Os funcionários possuem curso de boas práticas de manipulação de alimentos?', obs: '', answer: false},
+  {question: 'Os atestados de saúde ocupacional estão em dia e de fácil acesso?', obs: '', answer: false},
 ];
 
 export const FormBinary: Array<BinaryForm> = [
