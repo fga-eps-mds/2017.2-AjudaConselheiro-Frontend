@@ -34,7 +34,7 @@ describe('ChecklistthreeComponent', () => {
         {question: 'A lei n.º36.900/2015?', obs: '*-*:D', answer: false},
         {question: 'O cantineiro já recebeu a visita da vigilância sanitária para a fiscalização?', obs: '', answer: true},
       ];
-      component.copy(formMenuThree)
+      component.copy(formMenuThree);
       expect(component.checklist.FormMenuThree).toEqual( formMenuThree);
     });
 
