@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Http } from '@angular/http';
+
 
 import { SearchSchoolComponent } from './search-school.component';
+import { SchoolService } from '../services/index';
+
 
 describe('SearchSchoolComponent', () => {
   let component: SearchSchoolComponent;
@@ -8,7 +12,11 @@ describe('SearchSchoolComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SearchSchoolComponent ]
+      declarations: [ SearchSchoolComponent ],
+      providers: [
+        Http,
+        SchoolService,
+      ]
     })
     .compileComponents();
   }));
@@ -19,7 +27,5 @@ describe('SearchSchoolComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+
 });
