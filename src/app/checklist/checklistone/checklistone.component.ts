@@ -1,13 +1,15 @@
-import { Component, OnInit } from '@angular/core';
 import { Binary } from '@angular/compiler';
 import { Http, HttpModule } from '@angular/http';
-import { DomSanitizer } from '@angular/platform-browser';
+import { Component, OnInit } from '@angular/core';
 
 import { SectionCommentary } from '../../models/checklist.model';
-import { CheckOneTopicHeaders, CheckOneCommentaries, CheckOneFirstTopic, CheckOneEighthTopic, CheckOneFifthTopic,
-CheckOneFourthTopic, CheckOneSecondTopic, CheckOneSixthTopic,
-CheckOneSeventhTopic, CheckOneThirdTopic, IteratorArray} from './../../models/checklistForms';
-import { FormsMenu, FormMenuTwo, CommentBinaryForm, CommentForm, BinaryForm, FormBinary, ConfirmComentary} from '../../models/index';
+import { CheckOneTopicHeaders, CheckOneCommentaries, CheckOneFirstTopic,
+  CheckOneEighthTopic, CheckOneFifthTopic, CheckOneFourthTopic,
+  CheckOneSecondTopic, CheckOneSixthTopic, CheckOneSeventhTopic,
+  CheckOneThirdTopic, IteratorArray} from './../../models/checklistForms';
+import { FormsMenu, FormMenuTwo, CommentBinaryForm,
+  CommentForm, BinaryForm, FormBinary,
+  ConfirmComentary} from '../../models/index';
 import { ChecklistService } from '../../services/index';
 
 
@@ -15,69 +17,36 @@ import { ChecklistService } from '../../services/index';
   selector: 'app-checklistone',
   templateUrl: './checklistone.component.html',
   styleUrls: ['./checklistone.component.css'],
-  providers: [],
+  providers: [ChecklistService],
 })
 export class ChecklistoneComponent implements OnInit {
-
-  base64Array: String[] = [];
-  public base64Image: String;
-
   // This component is destined to the checklist corresponding to
+  // LISTA PARA VERIFICAÇÃO DAS BOAS PRÁTICAS DE FABRICAÇÃO
     iteratorArray: Array<Object>= IteratorArray;
-    topicHeaders: Array<String> = CheckOneTopicHeaders;
+    topicHeaders: Array<string> = CheckOneTopicHeaders;
     commentaries: Array<SectionCommentary> = CheckOneCommentaries;
-    checkOneFirstTopic: Array<BinaryForm> = CheckOneFirstTopic;
-    checkOneSecondTopic: Array<BinaryForm> = CheckOneSecondTopic;
-    checkOneThirdTopic: Array<BinaryForm> = CheckOneThirdTopic;
-    checkOneFourthTopic: Array<BinaryForm> = CheckOneFourthTopic;
-    checkOneFifthTopic: Array<BinaryForm> = CheckOneFifthTopic;
-    checkOneSixthTopic: Array<BinaryForm> = CheckOneSixthTopic;
-    checkOneSeventhTopic: Array<CommentBinaryForm> = CheckOneSeventhTopic;
-    checkOneEighthTopic: Array<BinaryForm> = CheckOneEighthTopic;
 
+  constructor() {}
 
-    checkComentary: ConfirmComentary[]= [
-      new ConfirmComentary(false, 'Comment1'),
-      new ConfirmComentary(false, 'Comment2'),
-      new ConfirmComentary(false, 'Comment3'),
-      new ConfirmComentary(false, 'Comment4'),
-      new ConfirmComentary(false, 'Comment5'),
-      new ConfirmComentary(false, 'Comment6'),
-      new ConfirmComentary(false, 'Comment7'),
-      new ConfirmComentary(false, 'Comment8'),
-    ];
+  ngOnInit(): void {}
 
-  constructor(private domSanitizer: DomSanitizer) {}
+  onSubmit() {
+      // Show questions and anwsers
+      console.warn(this.iteratorArray);
 
-  ngOnInit(): void {
-
-}
-
-  onSubmit(): void {
-      console.log(this.iteratorArray);
-      console.log(this.checkOneSecondTopic);
-      console.log(this.checkOneThirdTopic);
-      console.log(this.checkOneFourthTopic);
-      console.log(this.checkOneFifthTopic);
-      console.log(this.checkOneSixthTopic);
-      console.log(this.checkOneSeventhTopic);
-      console.log(this.checkOneEighthTopic);
-      console.log(this.commentaries);
+      // Show commentaries for each section
+      console.warn(this.commentaries);
   }
 
-  changeListener($event): void {
-    this.readThis($event.target);
+  isOtherQuestions (topic: number, question: number) {
+    return (topic !== 6 && ( question !== 4 && question !== 5));
   }
 
-  readThis(inputValue: any): void {
-    const file: File = inputValue.files[0];
-    const myReader: FileReader = new FileReader();
+  isRequiredQuestions(topic: number, question: number) {
+    return (topic === 6 && ( question === 4 || question === 5));
+  }
 
-    myReader.onloadend = (e) => {
-      this.base64Image = myReader.result;
-      this.base64Array.push(this.base64Image);
-      console.log(this.base64Image);
-    };
-    myReader.readAsDataURL(file);
+  isNotRequiredQuestions(topic: number, question: number) {
+    return (topic === 6 && ( question >= 0 && question <= 3));
   }
 }
