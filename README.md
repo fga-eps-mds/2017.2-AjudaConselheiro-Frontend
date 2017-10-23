@@ -9,7 +9,7 @@ O Ajuda Conselheiro é um sistema web que é direcionado para o Conselho de Alim
 
 # Guia de instalação
 
-Primeiramente, certifique-se de possuir uma versão do Node atualizada
+Primeiramente, certifique-se de possuir uma versão do Node atualizada.
 
 ``` 
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.sh | bash
@@ -35,7 +35,7 @@ Para rodar o projeto, insira no terminal:
 ng serve
 ```
 
-Para rodar os teste basta inserir no terminal:
+Para rodar os testes basta inserir no terminal:
 ```
 ng test
 ```
@@ -48,14 +48,14 @@ ng build --prod
 
 Navigate to the app in http://localhost:8080
 
-## Principais funcionalidades desenvolvidas até o momento
+## Principais funcionalidades desenvolvidas até o momento:
 - Manter Conselheiro
 - Manter Agendamento
 - Manter Checklist
 
 ## Contribuição
 
-Para contribuir com o projeto Ajuda Conselheiro, atente-se a <a href="https://github.com/fga-gpp-mds/2017.2-AjudaConselheiro-Backend/wiki/Plano-de-Gerenciamento-de-Configura%C3%A7%C3%A3o#3-github" > politica de branches e commits </a>
+Para contribuir com o projeto Ajuda Conselheiro, atente-se a <a href="https://github.com/fga-gpp-mds/2017.2-AjudaConselheiro-Backend/wiki/Plano-de-Gerenciamento-de-Configura%C3%A7%C3%A3o#3-github" > politica de branches e commits. </a>
 
 ## Licença
 ![GNU General Public License v3.0](https://github.com/fga-gpp-mds/2017.2-AjudaConselheiro-Frontend/blob/development/LICENSE)
