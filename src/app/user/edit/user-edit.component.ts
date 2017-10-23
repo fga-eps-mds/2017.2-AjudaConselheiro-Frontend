@@ -1,16 +1,15 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { UserService } from '../../services/index';
+import { UserService, AlertService } from '../../services/index';
 import { User } from '../../models/index';
-
 import { UserMasks } from '../userMasks';
 
 @Component({
   selector: 'app-user-edit',
   templateUrl: './user-edit.component.html',
   styleUrls: ['./user-edit.component.css'],
-  providers: [UserService],
+  providers: [UserService, AlertService],
 })
 
 export class UserEditComponent implements OnInit {
@@ -24,6 +23,7 @@ export class UserEditComponent implements OnInit {
   constructor(
     private userService: UserService,
     private route: ActivatedRoute,
+    private alertService: AlertService,
     private router: Router
   ) { }
 

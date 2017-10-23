@@ -8,7 +8,7 @@ import { User } from '../../models/index';
   selector: 'app-create-user',
   templateUrl: './create-user.component.html',
   styleUrls: ['./create-user.component.css'],
-  providers: [UserService, AlertService],
+  providers: [UserService],
   moduleId: module.id,
 })
 export class CreateUserComponent implements OnInit {
@@ -25,76 +25,31 @@ export class CreateUserComponent implements OnInit {
 
   ngOnInit() {
     this.user = new User();
-
   }
-
-  // cpfDomainValidator(control: FormControl) {
-  //   const cpf = control.value;
-  //   let sum = 0;
-  //   let remainder = 0;
-  //   let i = 0;
-
-  //   if (cpf === '00000000000') {
-  //     return {
-  //       cpfValid: {
-  //         parsed: cpf
-  //       }
-  //     };
-  //   }
-
-  //   for (i = 1; i <= 9; i++) {
-  //     const substring = +cpf.substring(i - 1, i);
-  //     sum = sum + substring * (11 - i);
-
-  //   }
-
-  //   remainder = (sum * 10) % 11;
-
-  //   if ((remainder === 10) || (remainder === 11)) {
-  //     remainder = 0;
-  //   }
-
-  //   const parse = +cpf.substring(9, 10);
-  //   if (remainder !== parse) {
-  //     return {
-  //       cpfValid: {
-  //         parsed: cpf
-  //       }
-  //     };
-  //   }
-
-  //   sum = 0;
-  //   for (i = 1; i <= 10; i++) {
-  //     const substring = +cpf.substring(i - 1, i);
-  //     sum = sum + substring * (12 - i);
-  //   }
-  //   remainder = (sum * 10) % 11;
-
-  //   if ((remainder === 10) || (remainder === 11)) {
-  //     remainder = 0;
-  //   }
-
-  //   const lastNumber = +cpf.substring(10, 11);
-  //   if (remainder !== lastNumber) {
-  //     return {
-  //       cpfValid: {
-  //         parsed: cpf
-  //       }
-  //     };
-  //   }
-  //   return null;
-  // }
 
   register(): void {
     this.loading = true;
-    this.userService.createUser(this.user)
+    if (!this.user.sexo.match(this.user.senha)) {
+      this.alertService.warn('Senhas não conferem!');
+      console.log('Senhas não conferem.');
+    }else {
+      this.user.sexo = 'U';
+      this.userService.createUser(this.user)
       .subscribe(
       result => {
         this.user = result;
+        console.log('Cadastro com sucesso');
+        this.alertService.success('Cadastro efetuado com sucesso!');
       },
       error => {
-        this.alertService.error(error);
+        console.log('error: ', error.status);
+        if (error.status === 400) {
+          this.alertService.warn('Aviso: Usuário já cadastrado ou desativado!');
+        }else {
+          this.alertService.error('Erro: falha na comunicação com o sistema!');
+        }
         this.loading = false;
       });
+    }
   }
 }

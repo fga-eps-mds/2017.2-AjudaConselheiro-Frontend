@@ -7,4 +7,5 @@ export class User {
     public email: string;
     public nomeCompleto: string;
     public senha: string;
+    public sexo: string;
 }

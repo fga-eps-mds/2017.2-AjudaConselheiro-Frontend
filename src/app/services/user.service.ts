@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-
 import 'rxjs/add/operator/catch';
-
 import { User } from '../models/index';
 import { ServicesUtilitiesService } from './services-utilities.service';
+import { AlertService } from './alert/alert.service';
 
 @Injectable()
 export class UserService extends ServicesUtilitiesService {
@@ -15,7 +14,7 @@ export class UserService extends ServicesUtilitiesService {
   private headers: Headers = new Headers({ 'Content-Type': 'application/json' });
   options: RequestOptions = new RequestOptions({ headers: this.headers });
 
-  constructor(private http: Http) {
+  constructor(private http: Http, private alertService: AlertService) {
     super();
   }
 
