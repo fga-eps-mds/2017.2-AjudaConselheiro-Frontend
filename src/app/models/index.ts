@@ -4,4 +4,4 @@ export * from './checklistForms';
 export * from './council-group';
 export * from './alert.model';
 export * from './checklist.model';
-export * from './search.model';
+export * from './search-school.model';

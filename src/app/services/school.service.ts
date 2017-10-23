@@ -6,7 +6,7 @@ import 'rxjs/add/operator/catch';
 
 import { Scheduling } from '../models/index';
 import { ServicesUtilitiesService } from './services-utilities.service';
-import { Search } from '../models/search.model';
+import { SearchSchool } from '../models/search-school.model';
 
 @Injectable()
 export class SchoolService extends ServicesUtilitiesService {
@@ -17,7 +17,7 @@ export class SchoolService extends ServicesUtilitiesService {
     super();
   }
 
-  searchSchool(search: Search): Observable<Array<Object>> {
+  searchSchool(search: SearchSchool): Observable<Array<Object>> {
     const searchParams = new URLSearchParams();
     searchParams.append('codigo', search.code);
     searchParams.append('estado', search.state);

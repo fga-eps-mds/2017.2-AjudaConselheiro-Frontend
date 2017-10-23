@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { SchoolService } from '../services/index';
-import { Search } from '../models/search.model';
+import { SearchSchool } from '../models/search-school.model';
 
 @Component({
   selector: 'app-search-school',
@@ -12,7 +12,7 @@ export class SearchSchoolComponent implements OnInit {
 
   state: string;
   cities: Array<Object>;
-  search: Search;
+  search: SearchSchool;
   schools: Array<Object>;
 
   constructor(
@@ -23,7 +23,7 @@ export class SearchSchoolComponent implements OnInit {
     this.state = '';
     this.cities = new Array<Object>();
     this.schools = new Array<Object>();
-    this.search = new Search();
+    this.search = new SearchSchool();
   }
 
 
