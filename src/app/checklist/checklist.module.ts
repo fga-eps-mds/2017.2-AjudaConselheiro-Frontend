@@ -8,6 +8,7 @@ import { ChecklistComponent} from './checklist.component';
 import { ChecklistMenuComponent } from './checklistMenu/checklist-menu.component';
 import { ChecklistService} from '../services/index';
 import { FormsModule, FormGroup, Validators } from '@angular/forms';
+import { SearchSchoolComponent } from './../search-school/search-school.component';
 
 @NgModule({
     imports: [
@@ -20,7 +21,8 @@ import { FormsModule, FormGroup, Validators } from '@angular/forms';
         ChecklistComponent,
         ChecklistMenuComponent,
         ChecklistthreeComponent,
-        ChecklistoneComponent
+        ChecklistoneComponent,
+        SearchSchoolComponent
     ],
     exports: [
         ChecklistComponent,

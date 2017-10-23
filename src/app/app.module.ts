@@ -27,7 +27,6 @@ import { AlertComponent } from './layouts/alert/alert.component';
 import { AlertService } from './services/alert/alert.service';
 import {ConfirmationPopoverModule} from 'angular-confirmation-popover';
 import { AlertModule } from 'ngx-bootstrap/alert';
-import { SearchSchoolComponent } from './search-school/search-school.component';
 
 @NgModule({
 
@@ -40,7 +39,6 @@ import { SearchSchoolComponent } from './search-school/search-school.component';
     LoginComponent,
     FooterComponent,
     AlertComponent,
-    SearchSchoolComponent
   ],
 
   imports: [
