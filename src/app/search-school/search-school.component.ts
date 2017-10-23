@@ -12,8 +12,9 @@ export class SearchSchoolComponent implements OnInit {
 
   state: string;
   cities: Array<Object>;
-  search: SearchSchool;
-  schools: Array<Object>;
+  school: SearchSchool;
+  schools: Array<SearchSchool>;
+  collapsed = true;
 
   constructor(
     private schoolService: SchoolService,
@@ -23,15 +24,15 @@ export class SearchSchoolComponent implements OnInit {
     this.state = '';
     this.cities = new Array<Object>();
     this.schools = new Array<Object>();
-    this.search = new SearchSchool();
+    this.school = new SearchSchool();
   }
 
 
   searchSchool(): void {
-    this.search.state = this.state;
-    this.search.situation = '1';
+    this.school.state = this.state;
+    this.school.situation = '1';
 
-    this.schoolService.searchSchool(this.search)
+    this.schoolService.searchSchool(this.school)
       .subscribe(
           result => {
             this.schools = this.filterSchools(result);
@@ -104,9 +105,8 @@ export class SearchSchoolComponent implements OnInit {
     return city;
   }
 
-  // collapsed = true;
-  // toggleCollapsed(): void {
-  //   this.collapsed = !this.collapsed;
-  // }
+  toggleCollapsed(): void {
+    this.collapsed = !this.collapsed;
+  }
 }
 
