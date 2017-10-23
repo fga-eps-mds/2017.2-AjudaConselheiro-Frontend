@@ -1,36 +1,68 @@
-
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { AppComponent } from './app.component';
-import { ChecklistoneComponent } from './checklists/checklistone/checklistone.component';
-import { ChecklisttwoComponent } from './checklists/checklisttwo/checklisttwo.component';
-import { ChecklistthreeComponent } from './checklists/checklistthree/checklistthree.component';
-import { SchedulingComponent } from './scheduling/scheduling.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserModule } from './user/user.module';
 import { SchedulingModule } from './scheduling/scheduling.module';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { HttpModule } from '@angular/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
-import { ChecklistModule} from './checklists/checklist.module';
-
-const appRoutes: Routes = [
-  {path: 'agendamento', component: SchedulingComponent}
-]
+import { ChecklistModule } from './checklist/checklist.module';
+import { AppComponent } from './app.component';
+import { LayoutsComponent } from './layouts/layouts.component';
+import { HomeComponent } from './home/home.component';
+import { NavbarHomeComponent } from './layouts/navbar/navbar.component';
+import { CarouselComponent } from './layouts/carousel/carousel.component';
+import { ChecklistoneComponent } from './checklist/checklistone/checklistone.component';
+import { ChecklistMenuComponent } from './checklist/checklistMenu/checklist-menu.component';
+import { ChecklistthreeComponent } from './checklist/checklistthree/checklistthree.component';
+import { LoginComponent } from './user';
+import { TextMaskModule } from 'angular2-text-mask';
+import { ROUTES } from './app.routes';
+import { BaseRequestOptions } from '@angular/http';
+import { ChecklistService } from './services/index';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { FooterComponent } from './layouts/footer/footer.component';
+import { AlertComponent } from './layouts/alert/alert.component';
+import { AlertService } from './services/alert/alert.service';
+import {ConfirmationPopoverModule} from 'angular-confirmation-popover';
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 @NgModule({
+
   declarations: [
     AppComponent,
-    ChecklistoneComponent,
-    ChecklisttwoComponent,
-    ChecklistthreeComponent,
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    SchedulingModule,
-    ChecklistModule,
-    RouterModule.forRoot(appRoutes),
+    LayoutsComponent,
+    HomeComponent,
+    NavbarHomeComponent,
+    CarouselComponent,
+    LoginComponent,
+    FooterComponent,
+    AlertComponent
   ],
 
-  providers: [],
+  imports: [
+    BrowserModule,
+    HttpModule,
+    RouterModule.forRoot(ROUTES),
+    MDBBootstrapModule.forRoot(),
+    CarouselModule.forRoot(),
+    FormsModule,
+    AlertModule.forRoot(),
+    ChecklistModule,
+    SchedulingModule,
+    UserModule,
+    TextMaskModule,
+    ReactiveFormsModule,
+    TextMaskModule,
+    ConfirmationPopoverModule.forRoot({
+      confirmButtonType: 'danger' // set defaults here
+    })
+  ],
+  schemas: [ NO_ERRORS_SCHEMA ],
+  providers: [
+    BaseRequestOptions,
+    AlertService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

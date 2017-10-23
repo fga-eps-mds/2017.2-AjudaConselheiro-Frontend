@@ -1,24 +1,30 @@
+import { CreateSchedulingComponent } from './create/create-scheduling.component';
+
+import { Router, RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpModule } from '@angular/http';
-import { DatePipe } from '@angular/common';
 
-import { SchedulingComponent } from './scheduling.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SchedulingService } from './scheduling.service';
+import { SchedulingService } from './../services/scheduling.service';
+import { SchedulingHomeComponent } from './scheduling-home/scheduling-home.component';
+import { EditComponent } from './edit/edit.component';
+import { SchoolService } from '../services/index';
+
 
 @NgModule({
   imports: [
     CommonModule,
-    ReactiveFormsModule,
-    FormsModule,
-    HttpModule
-    
+    RouterModule,
+    FormsModule
   ],
-  declarations: [SchedulingComponent],
-  exports: [
-    SchedulingComponent
+  declarations: [
+    SchedulingHomeComponent,
+    EditComponent,
+    CreateSchedulingComponent
   ],
-  providers: [SchedulingService]
+  providers: [
+    SchedulingService,
+    SchoolService
+  ]
 })
 export class SchedulingModule { }

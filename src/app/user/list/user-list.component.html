@@ -1,0 +1,55 @@
+<br><br><br><br>
+
+<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+<script src="script.component.js"></script>
+
+<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+<div class="well" *ngIf="users.length>0">
+    <p class="h3 text-center mb-4"> Usuários
+    </p>
+
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th class="orange accent-4 h5 text-center mb-4">Usuário</th>
+            <th class="orange accent-4 text-center">Contato</th>
+            <th class="orange accent-4 text-center">Presidente</th>
+            <th class="orange accent-4 text-center">
+                <a class="btn btn-light-green waves-light" href="/registrar">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Novo
+                </a>
+            </th>
+        </tr>
+        <tr *ngFor="let user of users">
+            <td class="text-center mb-4" [class.sucess]="!user.isPresident">
+                {{ user.nomeCompleto }}
+            </td>
+            <td [class.sucess]="!user.isPresident">
+                {{ user.nomeUsuario }}
+            </td>
+            <td>
+                {{ user.email }}
+                <br><br> Email: {{ user.email }}
+            </td>
+            <td class="text-center" style="width: 200px">
+                <a [routerLink]="['/usuarios/editar', user.cod]" title="Editar" alt="Editar" class="btn btn-xs btn-info">
+                    <i class="fa fa-edit"></i> Editar
+                </a>
+                <br><br>
+                <a title="Remover" alt="Remover" class="btn btn-xs btn-danger" (click)="deleteUser($event, user)">
+                    <i class="fa fa-trash"></i>
+                </a>
+            </td>
+        </tr>
+    </table>
+
+</div>
+<div *ngIf="users.length==0">
+    <img class="displayed" src="https://www.heypoorplayer.com/wp-content/uploads/2017/04/30-xin-loi.png">
+    <br>
+    <p class="h4 text-center mb-4">Nenhum usuário cadastrado.</p>
+    <p class="h3 text-center mb-4">
+        <a class="btn btn-light-green waves-light" href="/registrar">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Novo
+        </a>
+    </p>
+</div>

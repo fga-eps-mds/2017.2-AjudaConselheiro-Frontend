@@ -1,0 +1,36 @@
+p,
+th {
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+a:visited {
+    color: green;
+}
+
+a span {
+    color: green;
+}
+
+.well {
+    margin: 0 auto;
+    max-width: 1280px;
+    width: 70%;
+}
+
+th {
+    background-color: orange;
+    font-size: 20px;
+    color: white;
+}
+
+img.displayed {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+select {
+  background-color:#ff6d00;
+  border-color: transparent;
+  color: white;
+}

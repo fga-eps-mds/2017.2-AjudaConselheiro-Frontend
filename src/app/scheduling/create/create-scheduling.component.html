@@ -1,0 +1,183 @@
+<br><br><br>
+
+<p class="h1 text-center mb-6"> Criar Agendamento </p>
+
+<br>
+
+<div class="create-form">
+  <div>
+    <div class="card container search">
+      <div class="d-flex justify-content-end">
+        <p class="mr-auto p-2 h5 text-center">Buscar Escolas</p>
+          <button class="btn btn-deep-orange p-2" type="button" data-toggle="collapse"
+          data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+          aria-expanded="false" aria-label="Toggle navigation"
+          (click)="toggleCollapsed()">
+          <span class="fa fa-chevron-down" ></span>
+        </button>
+      </div>
+
+      <div [ngClass]="{'collapse': collapsed, 'navbar-collapse': true}">
+
+        <label for="name"><i class="fa fa-globe" aria-hidden="true"></i> Sigla do Estado:</label>
+        <div class="input-group">
+          <input
+            type="text"
+            class="form-control"
+            id="state"
+            name="state"
+            [(ngModel)]="state"
+            #stt="ngModel"
+            minlength="2"
+            maxlength="2">
+            <span class="input-group-btn">
+              <button class="btn btn-deep-orange rounded" type="button" aria-label="Search"
+              (click)="searchCity()">
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </button>
+          </span>
+        </div>
+
+      <div class="school-form">
+        <label><i class="fa fa-road" aria-hidden="true"></i> Municipio:</label>
+        <div class="container select-style">
+          <select [(ngModel)]="search.city">
+            <option value="" selected disabled>Escolha um Município</option>
+            <option *ngFor="let c of cities" [value]="c.code">{{c.name}}</option>
+          </select>
+        </div>
+        <label for="name"><i class="fa fa-info" aria-hidden="true"></i> Nome da Escola:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          name="name"
+          [(ngModel)]="search.name"
+          #name="ngModel">
+
+
+        <label for="code"><i class="fa fa-pencil" aria-hidden="true"></i> Código da Escola:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="code"
+          name="code"
+          [(ngModel)]="search.code"
+          #code="ngModel">
+      </div>
+        <div class="text-center">
+          <input
+            type="button"
+            class="btn btn-deep-orange"
+            (click)="searchSchool()"
+            value="Buscar Escolas">
+        </div>
+        <table *ngIf="schools.length>0"class="table">
+          <thead class="deep-orange lighten-4">
+            <tr>
+              <th>#</th>
+              <th>Nome</th>
+              <th>Código</th>
+              <th>Rede</th>
+              <th>Cidade</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let school of schools; let i = index ">
+              <th scope="row">{{i + 1}}</th>
+              <td>{{school.nome}}</td>
+              <td>{{school.cod}}</td>
+              <td>{{school.dependenciaAdministrativaTxt}}</td>
+              <td>{{school.cidade}}</td>
+              <td>{{school.estado}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <form #formScheduling="ngForm">
+        <div class="form-group">
+
+            <label for="members"><i class="fa fa-group" aria-hidden="true"></i> Membros:</label>
+            <input
+                type="text"
+                class="form-control"
+                id="members"
+                name="members"
+                [(ngModel)]="scheduling.members"
+                #members="ngModel"
+                required>
+            <div *ngIf="members.errors && (members.dirty || members.touched)" class="alert alert-danger">
+                <div [hidden]="!members.errors.required">
+                    Digite o nome dos conselheiros participantes!
+                </div>
+            </div>
+
+            <label for="date"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i> Data:</label>
+            <input
+                type="date"
+                class="form-control"
+                id="date"
+                name="date"
+                placeholder="dd/mm/aaaa"
+                [(ngModel)]="scheduling.date"
+                #date="ngModel"
+                required>
+            <div *ngIf="date.errors && (date.dirty || date.touched)" class="alert alert-danger">
+                <div [hidden]="!date.errors.required">
+                    Informe a data do agendamento!
+                </div>
+            </div>
+
+            <label for="time"><i class="fa fa-clock-o" aria-hidden="true"></i> Hora:</label>
+            <input
+                type="time"
+                class="form-control"
+                id="time"
+                name="time"
+                [(ngModel)]="scheduling.time"
+                #time="ngModel"
+                required>
+            <div *ngIf="time.errors && (time.dirty || time.touched)" class="alert alert-danger">
+                <div [hidden]="!time.errors.required">
+                    Informe a hora do agendamento!
+                </div>
+            </div>
+
+            <label for="type">Tipo:</label>
+            <select
+
+                id="type"
+                name="type"
+                [(ngModel)]="scheduling.type"
+                #type="ngModel"
+                required>
+
+                <option value="" disabled selected>-----</option>
+                <option value="Reunião">Reunião</option>
+                <option value="Visita">Visita</option>
+            </select>
+            <div *ngIf="type.errors && (type.dirty || type.touched)" class="alert alert-danger">
+                <div [hidden]="!type.errors.required">
+                    Seleciona a tipo do agendamento!
+                </div>
+            </div>
+        </div>
+        <div class="form-group text-center">
+            <input
+            type="button"
+            class="btn btn-deep-orange"
+            (click)="searchSchool()"
+            value="Agendar"
+            [disabled]="!formScheduling.form.valid">
+            <a href="/agendamento"
+                class="btn btn-outline-warning waves-effect">
+                <span class="glyphicon glyphicon-chevron-left"
+                    aria-hidden="false"></span>Voltar
+            </a>
+        </div>
+    </form>
+</div>
