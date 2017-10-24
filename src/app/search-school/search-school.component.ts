@@ -1,23 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 
-import { SchoolService } from '../services/index';
+import { AlertService, SchoolService } from '../services/index';
 import { SearchSchool } from '../models/search-school.model';
 
 @Component({
   selector: 'app-search-school',
   templateUrl: './search-school.component.html',
-  styleUrls: ['./search-school.component.css']
+  styleUrls: ['./search-school.component.css'],
+  providers: [ SchoolService ]
 })
 export class SearchSchoolComponent implements OnInit {
 
-  state: string;
-  cities: Array<Object>;
-  school: SearchSchool;
-  schools: Array<SearchSchool>;
+  state = '';
+  cities: Array<Object> = null;
+  school: SearchSchool = null;
+  schools: Array<SearchSchool> = null;
   collapsed = true;
 
   constructor(
     private schoolService: SchoolService,
+    private alertService: AlertService
   ) { }
 
   ngOnInit() {
@@ -27,19 +29,20 @@ export class SearchSchoolComponent implements OnInit {
     this.school = new SearchSchool();
   }
 
-
   searchSchool(): void {
     this.school.state = this.state;
     this.school.situation = '1';
 
     this.schoolService.searchSchool(this.school)
       .subscribe(
-          result => {
-            this.schools = this.filterSchools(result);
-          },
-          error => {
-            alert(error);
-            console.error(error);
+        result => {
+          this.schools = this.filterSchools(result);
+          if (this.schools.length === 0) {
+            this.alertService.warn('Nenhuma escola encontrada!');
+          }
+        },
+        error => {
+          console.log(error);
       });
   }
 
@@ -57,13 +60,12 @@ export class SearchSchoolComponent implements OnInit {
   searchCity(): void {
     this.schoolService.searchCity(this.state)
       .subscribe(
-          result => {
-            this.cities = this.cityPush(result);
-            console.log(this.cities);
-          },
-          error => {
-            alert(error);
-            console.error(error);
+        result => {
+          this.cities = this.cityPush(result);
+          console.log(this.cities);
+        },
+        error => {
+          this.alertService.error('Campo Estado inválido!');
       });
   }
 

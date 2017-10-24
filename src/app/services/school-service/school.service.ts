@@ -4,16 +4,18 @@ import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/catch';
 
-import { Scheduling } from '../models/index';
-import { ServicesUtilitiesService } from './services-utilities.service';
-import { SearchSchool } from '../models/search-school.model';
+import { Scheduling } from '../../models/index';
+import { ServicesUtilitiesService } from '.././services-utilities.service';
+import { AlertService } from '.././alert/alert.service';
+import { SearchSchool } from '../../models/search-school.model';
 
 @Injectable()
 export class SchoolService extends ServicesUtilitiesService {
 
-  options: RequestOptions = new  RequestOptions();
+  private options: RequestOptions = new  RequestOptions();
+  private url = 'http://educacao.dadosabertosbr.com/api';
 
-  constructor(private http: Http) {
+  constructor(private http: Http, private alertService: AlertService) {
     super();
   }
 
@@ -27,13 +29,13 @@ export class SchoolService extends ServicesUtilitiesService {
 
     this.options.params = searchParams;
     console.log(this.options);
-    return this.http.get('http://educacao.dadosabertosbr.com/api/escolas/buscaavancada?', this.options)
+    return this.http.get(this.url + '/escolas/buscaavancada?', this.options)
       .map(res => this.extractData(res))
       .catch(this.handleError);
   }
 
   searchCity(state: String):  Observable<Array<Object>> {
-    return this.http.get('http://educacao.dadosabertosbr.com/api/cidades/' + state, this.options)
+    return this.http.get(this.url + '/cidades/' + state, this.options)
       .map(res => this.extractData(res))
       .catch(this.handleError);
   }

@@ -1,10 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Http } from '@angular/http';
-
+import { HttpModule } from '@angular/http';
 
 import { SearchSchoolComponent } from './search-school.component';
-import { SchoolService } from '../services/index';
-
+import { SchoolService, AlertService } from '../services/index';
 
 describe('SearchSchoolComponent', () => {
   let component: SearchSchoolComponent;
@@ -13,9 +11,10 @@ describe('SearchSchoolComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ SearchSchoolComponent ],
+      imports: [ HttpModule ],
       providers: [
-        Http,
         SchoolService,
+        AlertService
       ]
     })
     .compileComponents();
