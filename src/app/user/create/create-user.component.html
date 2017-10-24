@@ -24,14 +24,27 @@
                       Somente letras.
                   </div>
             </div>
+        </div><div class="form-group">
+          <i class="fa fa-user-circle prefix grey-text"></i>
+          <input type="text" class="form-control"
+                 name="nomeUsuario" id="orangeForm-name"
+                 placeholder="Nome de Usuário" [(ngModel)]="user.nomeUsuario"
+                 #nomeUsuario="ngModel"
+                 required>
+            <div *ngIf="nomeUsuario.errors && (nomeUsuario.dirty)"
+                  class="alert alert-danger">
+                  <div [hidden]="!nomeUsuario.errors.required">
+                      Nome Completo é obrigatório.
+                  </div>
+            </div>
         </div>
         <div class="form-group">
             <i class="fa fa-address-card prefix grey-text"></i>
-            <input type="number" id="orangeForm-name"
-                   class="form-control" name="cep"
+            <input type="text" id="CEP"
+                   class="form-control" name="CEP"
                    placeholder="CEP" [(ngModel)]="user.CEP"
                    #CEP="ngModel"
-                   min="8" max="8"
+                   minlength="8" maxlength="8"
                    required>
             <div *ngIf="CEP.errors && (CEP.dirty)"
                   class="alert alert-danger">
@@ -81,13 +94,13 @@
         <div class="form-group">
           <i class="fa fa-key prefix grey-text"></i>
           <input type="password" id="orangeForm-name"
-                 class="form-control" name="sexo"
+                 class="form-control" name="confirmaSenha"
                  placeholder="Confirmar Senha"
-                 required [(ngModel)]="user.sexo"
-                 #sexo="ngModel">
-          <div *ngIf="sexo.errors && (sexo.dirty)"
+                 required [(ngModel)]="user.confirmaSenha"
+                 #confirmaSenha="ngModel">
+          <div *ngIf="confirmaSenha.errors && (confirmaSenha.dirty)"
                class="alert alert-danger">
-              <div [hidden]="!sexo.errors.required">
+              <div [hidden]="!confirmaSenha.errors.required">
                   Campo Obrigatório.
               </div>
           </div>

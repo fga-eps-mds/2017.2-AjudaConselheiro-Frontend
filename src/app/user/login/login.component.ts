@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
         result => {
           this.token = result;
           localStorage.setItem('token', this.token);
-          this.alertService.success('Login efetuado sucesso!');
+          this.alertService.success('Login efetuado com sucesso!');
         },
         error => {
           console.log('error: ', error.status);

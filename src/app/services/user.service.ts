@@ -10,7 +10,6 @@ import { AlertService } from './alert/alert.service';
 export class UserService extends ServicesUtilitiesService {
 
   private url = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas';
-  // private: ServicesUtilitiesService = new ServicesUtilitiesService();
   private headers: Headers = new Headers({ 'Content-Type': 'application/json' });
   options: RequestOptions = new RequestOptions({ headers: this.headers });
 
@@ -31,8 +30,14 @@ export class UserService extends ServicesUtilitiesService {
   }
 
   createUser(user: User): Observable<User> {
-    const body = JSON.stringify(user);
-    return this.http.post(this.url, body, this.options)
+    const body = {
+      'email': user.email,
+      'nomeCompleto': user.nomeCompleto,
+      'nomeUsuario': user.nomeUsuario,
+      'CEP': user.CEP,
+      'senha': user.senha
+    };
+    return this.http.post(this.url, JSON.stringify(body), this.options)
       .map(res => this.extractData(res))
       .catch(this.handleError);
   }

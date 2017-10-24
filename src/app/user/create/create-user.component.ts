@@ -29,17 +29,15 @@ export class CreateUserComponent implements OnInit {
 
   register(): void {
     this.loading = true;
-    if (!this.user.sexo.match(this.user.senha)) {
+    if (!this.user.confirmaSenha.match(this.user.senha)) {
       this.alertService.warn('Senhas não conferem!');
-      console.log('Senhas não conferem.');
     }else {
-      this.user.sexo = 'U';
       this.userService.createUser(this.user)
       .subscribe(
       result => {
-        this.user = result;
         console.log('Cadastro com sucesso');
-        this.alertService.success('Cadastro efetuado com sucesso!');
+        this.alertService.success('Cadastro efetuado com sucesso! Faça seu login.');
+        this.router.navigate(['/login']);
       },
       error => {
         console.log('error: ', error.status);
