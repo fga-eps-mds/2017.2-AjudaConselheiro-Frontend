@@ -7,7 +7,7 @@
         <div class="form-group">
           <i class="fa fa-user prefix grey-text"></i>
           <input type="text" class="form-control"
-                 name="nomeCompleto" id="orangeForm-name"
+                 name="nomeCompleto" id="nomeCompleto"
                  placeholder="Nome Completo" [(ngModel)]="user.nomeCompleto"
                  #nomeCompleto="ngModel" minlength="10"
                  pattern="[a-zA-Z][a-zA-Z ]+"
@@ -27,7 +27,7 @@
         </div><div class="form-group">
           <i class="fa fa-user-circle prefix grey-text"></i>
           <input type="text" class="form-control"
-                 name="nomeUsuario" id="orangeForm-name"
+                 name="nomeUsuario" id="nomeUsuario"
                  placeholder="Nome de Usuário" [(ngModel)]="user.nomeUsuario"
                  #nomeUsuario="ngModel"
                  required>
@@ -58,7 +58,7 @@
         </div>
         <div class="form-group">
             <i class="fa fa-envelope prefix grey-text"></i>
-            <input type="email" id="orangeForm-name"
+            <input type="email" id="email"
                    class="form-control" name="email"
                    placeholder="Email" [(ngModel)]="user.email"
                    #email="ngModel" required
@@ -76,7 +76,7 @@
         </div>
         <div class="form-group">
             <i class="fa fa-lock prefix grey-text"></i>
-            <input type="password" id="orangeForm-name"
+            <input type="password" id="senha"
                    class="form-control" name="senha"
                    placeholder="Senha" [(ngModel)]="user.senha"
                    minlength="7" maxlength="20"
@@ -93,7 +93,7 @@
         </div>
         <div class="form-group">
           <i class="fa fa-key prefix grey-text"></i>
-          <input type="password" id="orangeForm-name"
+          <input type="password" id="confirmaSenha"
                  class="form-control" name="confirmaSenha"
                  placeholder="Confirmar Senha"
                  required [(ngModel)]="user.confirmaSenha"

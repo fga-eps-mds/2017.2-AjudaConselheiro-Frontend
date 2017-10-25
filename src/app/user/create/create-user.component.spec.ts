@@ -16,8 +16,6 @@ describe('CreateUserComponent', () => {
 
   let fixture: ComponentFixture<CreateUserComponent>;
   let component: CreateUserComponent;
-  let de: DebugElement;
-  let el: HTMLElement;
   let userService: UserService;
   let router: Router;
   const user: User = new User();
@@ -60,8 +58,7 @@ describe('CreateUserComponent', () => {
 
     userService = fixture.debugElement.injector.get(UserService);
 
-    router = TestBed.get(Router);
-    spyOn(router, 'navigate');
+    router = fixture.debugElement.injector.get(Router);
 
   }));
 
@@ -69,6 +66,48 @@ describe('CreateUserComponent', () => {
     const result = 'Cadastrado com sucesso.';
     fixture.detectChanges();
     tick();
+
+    const nomeCompleto = fixture.debugElement.query(By.css('#nomeCompleto')).nativeElement;
+    nomeCompleto.value = user.nomeCompleto;
+    nomeCompleto.dispatchEvent(new Event('input'));
+
+    tick();
+    fixture.detectChanges();
+
+    const cep = fixture.debugElement.query(By.css('#CEP')).nativeElement;
+    cep.value = user.CEP;
+    cep.dispatchEvent(new Event('input'));
+
+    tick();
+    fixture.detectChanges();
+
+    const email = fixture.debugElement.query(By.css('#email')).nativeElement;
+    email.value = user.email;
+    email.dispatchEvent(new Event('input'));
+
+    tick();
+    fixture.detectChanges();
+
+    const senha = fixture.debugElement.query(By.css('#senha')).nativeElement;
+    senha.value = user.senha;
+    senha.dispatchEvent(new Event('input'));
+
+    tick();
+    fixture.detectChanges();
+
+    const confirmaSenha = fixture.debugElement.query(By.css('#confirmaSenha')).nativeElement;
+    confirmaSenha.value = user.confirmaSenha;
+    confirmaSenha.dispatchEvent(new Event('input'));
+
+    tick();
+    fixture.detectChanges();
+
+    const nomeUsuario = fixture.debugElement.query(By.css('#nomeUsuario')).nativeElement;
+    nomeUsuario.value = user.nomeUsuario;
+    nomeUsuario.dispatchEvent(new Event('input'));
+
+    tick();
+    fixture.detectChanges();
 
     const btnCadastrar = fixture.debugElement.query(By.css('button'));
     btnCadastrar.triggerEventHandler('click', null);
@@ -78,9 +117,9 @@ describe('CreateUserComponent', () => {
     expect(spy.calls.count()).toBe(1, 'stubbed method was called once');
     expect(userService.createUser).toHaveBeenCalledTimes(1);
 
-    // expect(router.navigate).toHaveBeenCalled();
-    // expect(router.navigate).toHaveBeenCalledTimes(1);
-    // expect(router.navigate).toHaveBeenCalledWith([URL_NAV]);
+    const spy1 = spyOn(router, 'navigate');
+    const navArgs = spy1.calls.first();
+
   }));
 
   it('should return true when pass equals passwords', () => {
