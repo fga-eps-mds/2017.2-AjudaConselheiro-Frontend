@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { User } from '../../models/index';
+import { ServicesUtilitiesService } from './../services-utilities.service';
+import { AlertService } from './../alert/alert.service';
 import 'rxjs/add/operator/catch';
-import { User } from '../models/index';
-import { ServicesUtilitiesService } from './services-utilities.service';
-import { AlertService } from './alert/alert.service';
 
 @Injectable()
 export class UserService extends ServicesUtilitiesService {
@@ -24,7 +24,7 @@ export class UserService extends ServicesUtilitiesService {
   }
 
   getUser(id: number) {
-    return this.http.get(this.url + id, this.jwt())
+    return this.http.get(this.url + id)
       .map((response: Response) => response.json())
       .catch(this.handleError);
   }
@@ -43,7 +43,7 @@ export class UserService extends ServicesUtilitiesService {
   }
 
   updateUser(user: User) {
-    return this.http.put(this.url + user.cod, user, this.jwt())
+    return this.http.put(this.url + user.cod, user)
       .map((response: Response) => response.json())
       .catch(this.handleError);
   }
@@ -53,14 +53,5 @@ export class UserService extends ServicesUtilitiesService {
     return this.http.delete(url, this.options)
       .map(res => this.extractData(res))
       .catch(this.handleError);
-  }
-
-  private jwt() {
-    // create authorization header with jwt token
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    if (currentUser && currentUser.token) {
-      const headers = new Headers({ 'Authorization': 'Bearer ' + currentUser.token });
-      return new RequestOptions({ headers: headers });
-    }
   }
 }
