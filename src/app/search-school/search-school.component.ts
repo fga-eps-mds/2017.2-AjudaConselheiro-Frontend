@@ -53,7 +53,6 @@ export class SearchSchoolComponent implements OnInit {
       res.push(subitem);
     });
 
-    console.log('Resultado da busca: ', res[1]);
     return res[1];
   }
 
@@ -70,7 +69,6 @@ export class SearchSchoolComponent implements OnInit {
   }
 
   cityPush(result: Array<Object>): Array<Object> {
-    console.log(result);
 
     const cities = [];
 
@@ -89,21 +87,16 @@ export class SearchSchoolComponent implements OnInit {
       code: <string> null
     };
     city.name = untreated;
-    console.log(city.name);
+
     const quote = /\"/g;
     const colon = /:/;
     const letters = /[\d:-]+/g;
     const numbers = /:[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/;
 
-    // console.log('antes: '+ this.city.name);
-
     const removeQuote = city.name.replace(quote, '');
     city.name = removeQuote.replace(letters, '');
     city.code = removeQuote.replace(numbers, '');
 
-    // console.log('codigo: '+ this.city.code);
-    // console.log('nome: '+ this.city.name);
-    console.log(city);
     return city;
   }
 
