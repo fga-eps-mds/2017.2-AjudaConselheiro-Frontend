@@ -110,5 +110,8 @@ export class SearchSchoolComponent implements OnInit {
   toggleCollapsed(): void {
     this.collapsed = !this.collapsed;
   }
-}
 
+  getChosenSchool(school: string) {
+    this.schoolService.getSchool(school);
+  }
+}

@@ -53,8 +53,8 @@
       </thead>
 
       <tbody>
-        <tr *ngFor="let school of schools; let i = index ">
-          <th scope="row">{{i + 1}}</th>
+        <tr *ngFor="let school of schools; let i = index" (click)="getChosenSchool(school.nome)">
+          <th scope="row">{{i + 1}} </th>
           <td>{{school.nome}}</td>
           <td>{{school.cod}}</td>
           <td>{{school.dependenciaAdministrativaTxt}}</td>

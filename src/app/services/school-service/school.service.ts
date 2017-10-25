@@ -39,4 +39,9 @@ export class SchoolService extends ServicesUtilitiesService {
       .map(res => this.extractData(res))
       .catch(this.handleError);
   }
+
+  getSchool(school: string) {
+    console.log('Escola escolhida: ', school);
+    return school;
+  }
 }
