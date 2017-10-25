@@ -1,17 +1,27 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, fakeAsync } from '@angular/core/testing';
 import { Http, ConnectionBackend, HttpModule } from '@angular/http';
 import { CreateUserComponent } from './create-user.component';
-import { RouterTestingModule } from '@angular/router/testing';
 import { UserService, AlertService } from '../../services/index';
 import { FormsModule } from '@angular/forms';
 import { User } from '../../models/index';
 import { MockBackend } from '@angular/http/testing';
+import { DebugElement } from '@angular/core';
+import { ActivatedRouteStub } from './testing/activated-route-stubs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { RouterStubService } from './testing/router-stubs';
+import { tick } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 
 describe('CreateUserComponent', () => {
 
   let fixture: ComponentFixture<CreateUserComponent>;
-  const user: User = new User();
   let component: CreateUserComponent;
+  let de: DebugElement;
+  let el: HTMLElement;
+  let userService: UserService;
+  let router: Router;
+  const user: User = new User();
+  const URL_NAV = '/login';
 
   user.nomeCompleto = 'Joao Pereira';
   user.nomeUsuario = 'Joao';
@@ -25,32 +35,61 @@ describe('CreateUserComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ CreateUserComponent ],
       imports: [
-        RouterTestingModule,
         FormsModule,
         HttpModule
        ],
        providers: [
          Http,
+         UserService,
          AlertService,
          MockBackend,
-         ConnectionBackend
-        ]
-    })
-    .compileComponents();
-  }));
+         ConnectionBackend,
+         {
+          provide: Router,
+          useValue: new RouterStubService()
+         },
+         {
+          provide: ActivatedRoute,
+          useValue: new ActivatedRouteStub()
+         },
+      ]
+    });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(CreateUserComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
 
+    userService = fixture.debugElement.injector.get(UserService);
+
+    router = TestBed.get(Router);
+    spyOn(router, 'navigate');
+
+  }));
+
+  it('shoul create new user', fakeAsync(() => {
+    const result = 'Cadastrado com sucesso.';
+    fixture.detectChanges();
+    tick();
+
+    const btnCadastrar = fixture.debugElement.query(By.css('button'));
+    btnCadastrar.triggerEventHandler('click', null);
+
+    const spy = spyOn(userService, 'createUser').and.returnValue('Cadastrado com sucesso.');
+    expect(userService.createUser(user)).toBe( result , 'service returned stub value');
+    expect(spy.calls.count()).toBe(1, 'stubbed method was called once');
+    expect(userService.createUser).toHaveBeenCalledTimes(1);
+
+    // expect(router.navigate).toHaveBeenCalled();
+    // expect(router.navigate).toHaveBeenCalledTimes(1);
+    // expect(router.navigate).toHaveBeenCalledWith([URL_NAV]);
+  }));
 
   it('should return true when pass equals passwords', () => {
+    fixture.detectChanges();
     expect(component.matchPassword(user.senha, user.confirmaSenha)).toEqual(true);
   });
 
   it('should return false when pass different passwords', () => {
+    fixture.detectChanges();
     expect(component.matchPassword(user.senha, '123456789')).toEqual(false);
   });
 

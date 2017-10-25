@@ -29,7 +29,7 @@ export class UserService extends ServicesUtilitiesService {
       .catch(this.handleError);
   }
 
-  createUser(user: User): Observable<User> {
+  createUser(user: User): any {
     const body = {
       'email': user.email,
       'nomeCompleto': user.nomeCompleto,
