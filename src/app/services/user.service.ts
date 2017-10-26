@@ -11,7 +11,6 @@ import { ServicesUtilitiesService } from './services-utilities.service';
 export class UserService extends ServicesUtilitiesService {
 
   private url = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas';
-  // private: ServicesUtilitiesService = new ServicesUtilitiesService();
   private headers: Headers = new Headers({ 'Content-Type': 'application/json' });
   options: RequestOptions = new RequestOptions({ headers: this.headers });
 
