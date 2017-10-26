@@ -6,7 +6,6 @@ import { FormsModule } from '@angular/forms';
 import { User } from '../../models/index';
 import { MockBackend } from '@angular/http/testing';
 import { DebugElement } from '@angular/core';
-import { ActivatedRouteStub } from './testing/activated-route-stubs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RouterStubService } from './testing/router-stubs';
 import { tick } from '@angular/core/testing';
@@ -45,11 +44,7 @@ describe('CreateUserComponent', () => {
          {
           provide: Router,
           useValue: new RouterStubService()
-         },
-         {
-          provide: ActivatedRoute,
-          useValue: new ActivatedRouteStub()
-         },
+         }
       ]
     });
 
@@ -116,9 +111,11 @@ describe('CreateUserComponent', () => {
     expect(userService.createUser(user)).toBe( result , 'service returned stub value');
     expect(spy.calls.count()).toBe(1, 'stubbed method was called once');
     expect(userService.createUser).toHaveBeenCalledTimes(1);
+    expect(component.loading).toBe(false);
 
-    const spy1 = spyOn(router, 'navigate');
-    const navArgs = spy1.calls.first();
+    const spy1 = spyOn(component, 'register');
+    component.register();
+    expect(component.register()).toBeUndefined();
 
   }));
 

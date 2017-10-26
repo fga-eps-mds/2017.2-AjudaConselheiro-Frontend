@@ -30,31 +30,31 @@ export class CreateUserComponent implements OnInit {
   matchPassword(confirmPassword: string, password: string): boolean {
     if (confirmPassword.match(password)) {
       return true;
-    }else {
+    } else {
       return false;
     }
   }
 
   register(): void {
     this.loading = true;
-    if (!this.matchPassword(this.user.confirmaSenha, this.user.senha )) {
+    if (!this.matchPassword(this.user.confirmaSenha, this.user.senha)) {
       this.alertService.warn('Senhas não conferem!');
-    }else {
+    } else {
       this.userService.createUser(this.user)
-      .subscribe(
-      result => {
-        this.alertService.success('Cadastro efetuado com sucesso! Faça seu login.');
-        this.router.navigate(['/login']);
-      },
-      error => {
-        console.log('error: ', error.status);
-        if (error.status === 400) {
-          this.alertService.warn('Aviso: Usuário já cadastrado ou desativado!');
-        }else {
-          this.alertService.error('Erro: falha na comunicação com o sistema!');
-        }
-        this.loading = false;
-      });
+        .subscribe(
+        result => {
+          this.alertService.success('Cadastro efetuado com sucesso! Faça seu login.');
+          this.router.navigate(['/login']);
+        },
+        error => {
+          console.log('error: ', error.status);
+          if (error.status === 400) {
+            this.alertService.warn('Aviso: Usuário já cadastrado ou desativado!');
+          } else {
+            this.alertService.error('Erro: falha na comunicação com o sistema!');
+          }
+          this.loading = false;
+        });
     }
   }
 }
