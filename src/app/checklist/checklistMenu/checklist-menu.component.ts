@@ -25,22 +25,7 @@ export class ChecklistMenuComponent implements OnInit {
 
   constructor(private menuService: ChecklistService) {}
 
-  ngOnInit(): void {
-    this.menuService.getFormsMenu()
-      .then((formsMenu: CommentBinaryForm[]) => {
-          this.formsMenu = formsMenu;
-      }).catch(err => console.log(err));
-
-    this.menuService.getFormsMenuTwo()
-      .then((formsMenuTwo: CommentForm[]) => {
-          this.formMenuTwo = formsMenuTwo;
-      }).catch(err => console.log(err));
-
-   this.menuService.getBinaryFormCardapio()
-     .then((formBinary: BinaryForm[]) => {
-         this.formBinary = formBinary;
-     }).catch(err => console.log(err));
-}
+  ngOnInit(): void {}
 
   onSubmit(): void {
     console.log(this.formMenuTwo);

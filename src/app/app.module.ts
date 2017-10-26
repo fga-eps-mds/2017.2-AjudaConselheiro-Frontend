@@ -19,6 +19,7 @@ import { LoginComponent } from './user';
 import { TextMaskModule } from 'angular2-text-mask';
 import { ROUTES } from './app.routes';
 import { BaseRequestOptions } from '@angular/http';
+import { CouncilGroupModule } from './council-group/council-group.module';
 import { ChecklistService } from './services/index';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { FooterComponent } from './layouts/footer/footer.component';
@@ -51,11 +52,12 @@ import { AlertModule } from 'ngx-bootstrap/alert';
     ChecklistModule,
     SchedulingModule,
     UserModule,
+    CouncilGroupModule,
     TextMaskModule,
     ReactiveFormsModule,
     TextMaskModule,
     ConfirmationPopoverModule.forRoot({
-      confirmButtonType: 'danger' // set defaults here
+      confirmButtonType: 'danger', // set defaults here
     })
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
