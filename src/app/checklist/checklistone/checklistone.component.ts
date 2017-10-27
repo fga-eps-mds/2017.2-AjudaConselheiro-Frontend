@@ -55,8 +55,14 @@ export class ChecklistoneComponent implements OnInit {
     return (topic === 6 && ( question >= 0 && question <= 3));
   }
 
-  public loadAllUsers() {
-      console.log('Deu certo');
-      this.postService.getPosts().subscribe(posts => this.post = posts);
+  savePost() {
+      const jsonChecklistOne = JSON.stringify({
+        'interatorArray': this.iteratorArray,
+        'commentaries': this.commentaries
+      });
+
+      this.postService.savePost(jsonChecklistOne).subscribe(
+        result => console.log(result)
+      );
     }
 }
