@@ -1,6 +1,7 @@
 import { TestBed, inject } from '@angular/core/testing';
-import { HttpModule } from '@angular/http';
 import { RouterTestingModule } from '@angular/router/testing';
+import { HttpModule, Http, ConnectionBackend, ResponseOptions, XHRBackend, Response, } from '@angular/http';
+import { MockBackend, MockConnection } from '@angular/http/testing';
 
 import { CouncilGroupService } from './council-group.service';
 import { AlertService } from '../alert/alert.service';
@@ -10,10 +11,11 @@ import { CouncilGroup } from '../../models/index';
 describe('CouncilGroupService', () => {
   let councilGroup: CouncilGroup;
 
+
   beforeEach(() => {
     councilGroup = new CouncilGroup;
     TestBed.configureTestingModule({
-      providers: [CouncilGroupService, AlertService],
+      providers: [CouncilGroupService, AlertService,{ provide: XHRBackend, useClass: MockBackend },],
       imports: [
         HttpModule,
         RouterTestingModule
@@ -21,9 +23,14 @@ describe('CouncilGroupService', () => {
     });
   });
 
-  it('should be created', inject([CouncilGroupService], (service: CouncilGroupService) => {
+  fit('should be created', inject([CouncilGroupService], (service: CouncilGroupService) => {
     expect(service).toBeTruthy();
   }));
+
+  fit('should be createhd', inject([CouncilGroupService], (service: CouncilGroupService) => {
+    expect(service.handleError).toThrow();
+  }));
+
   fit('should be createde', inject([CouncilGroupService], (service: CouncilGroupService) => {
     councilGroup.municipio = 'nada';
     councilGroup.estado = 'otonda';

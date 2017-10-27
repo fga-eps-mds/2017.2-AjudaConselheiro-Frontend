@@ -35,7 +35,7 @@ export class CouncilGroupService {
       .catch(this.handleError);
   }
 
-  private getFormattedData(councilGroup: CouncilGroup) {
+  getFormattedData(councilGroup: CouncilGroup) {
     councilGroup.descricao = 'CAE-' + councilGroup.municipio + '-' + councilGroup.estado;
 
     const temp = {
@@ -49,7 +49,7 @@ export class CouncilGroupService {
     return JSON.stringify(temp);
   }
 
-  private extractData(res: Response) {
+    extractData(res: Response) {
     const body = res.json();
     const location = res.headers.get('location');
     console.log(body);
@@ -57,7 +57,7 @@ export class CouncilGroupService {
     return location || {};
   }
 
-  private handleError(error: any) {
+  handleError(error: any) {
     const errMsg = (error.message) ? error.message :
       error.status ? `${error.status} - ${error.statusText}` : 'Server error';
 
