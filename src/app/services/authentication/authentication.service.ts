@@ -29,7 +29,7 @@ export class AuthenticationService extends ServicesUtilitiesService {
     this.options = new RequestOptions({ headers: this.headers });
 
     return this.http.get(this.url, this.options)
-      .map(res => this.getToken(res))
+      .map(res => [this.getToken(res), res])
       .catch(this.handleError);
   }
 
@@ -37,6 +37,7 @@ export class AuthenticationService extends ServicesUtilitiesService {
     this.token = null;
     localStorage.removeItem('token');
     localStorage.removeItem('currentUser');
+    localStorage.removeItem('userData');
   }
 
   hasToken(): boolean {
