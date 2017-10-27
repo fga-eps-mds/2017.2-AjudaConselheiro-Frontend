@@ -3,32 +3,37 @@ import { Http, HttpModule } from '@angular/http';
 import { Component, OnInit } from '@angular/core';
 
 import { SectionCommentary } from '../../models/checklist.model';
-import { CheckOneTopicHeaders, CheckOneCommentaries, CheckOneFirstTopic,
-  CheckOneEighthTopic, CheckOneFifthTopic, CheckOneFourthTopic,
-  CheckOneSecondTopic, CheckOneSixthTopic, CheckOneSeventhTopic,
-  CheckOneThirdTopic, IteratorArray} from './../../models/checklistForms';
-import { FormsMenu, FormMenuTwo, CommentBinaryForm,
-  CommentForm, BinaryForm, FormBinary,
-  ConfirmComentary} from '../../models/index';
-import { ChecklistService } from '../../services/index';
-
+import { CheckOneTopicHeaders, CheckOneCommentaries, CheckOneFirstTopic, CheckOneEighthTopic, CheckOneFifthTopic, CheckOneFourthTopic,
+CheckOneSecondTopic, CheckOneSixthTopic, CheckOneSeventhTopic, CheckOneThirdTopic, IteratorArray} from './../../models/checklistForms';
+import { FormsMenu, FormMenuTwo, CommentBinaryForm, CommentForm, BinaryForm, FormBinary, ConfirmComentary} from '../../models/index';
+import { ChecklistService, AlertService } from '../../services/index';
+import { PostService } from '../../services/posts/post.service';
+import { Post } from '../../models/index';
 
 @Component({
   selector: 'app-checklistone',
   templateUrl: './checklistone.component.html',
   styleUrls: ['./checklistone.component.css'],
-  providers: [ChecklistService],
+  providers: [ChecklistService, PostService, AlertService],
 })
 export class ChecklistoneComponent implements OnInit {
-  // This component is destined to the checklist corresponding to
-  // LISTA PARA VERIFICAÇÃO DAS BOAS PRÁTICAS DE FABRICAÇÃO
+
     iteratorArray: Array<Object>= IteratorArray;
     topicHeaders: Array<string> = CheckOneTopicHeaders;
     commentaries: Array<SectionCommentary> = CheckOneCommentaries;
 
-  constructor() {}
+  constructor(
+    private postService: PostService,
+    private alertService: AlertService
+  ) {}
 
-  ngOnInit(): void {}
+  post: Post;
+  loading = false;
+
+  ngOnInit() {
+    console.log('entrou!!');
+    this.postService.getPosts();
+  }
 
   onSubmit() {
       // Show questions and anwsers
@@ -49,4 +54,15 @@ export class ChecklistoneComponent implements OnInit {
   isNotRequiredQuestions(topic: number, question: number) {
     return (topic === 6 && ( question >= 0 && question <= 3));
   }
+
+  savePost() {
+      const jsonChecklistOne = JSON.stringify({
+        'interatorArray': this.iteratorArray,
+        'commentaries': this.commentaries
+      });
+
+      this.postService.savePost(jsonChecklistOne).subscribe(
+        result => console.log(result)
+      );
+    }
 }
