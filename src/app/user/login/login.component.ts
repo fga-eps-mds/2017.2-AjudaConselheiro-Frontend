@@ -33,15 +33,15 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    if (!this.email.match(this.emailRegex)) {
-      this.alertService.warn('Email invalido');
-    }
-    if (this.email) {
+    const validEmail = this.emailRegex.test(this.email);
+
+    if (validEmail) {
       this.authenticationService.login(this.email, this.password)
-        .subscribe(
+      .subscribe(
         result => {
-          this.token = result;
-          localStorage.setItem('token', this.token);
+          localStorage.setItem('token', result[0]);
+          localStorage.setItem('userData', result[1]._body);
+
           this.alertService.success('Login efetuado sucesso!');
         },
         error => {
@@ -52,6 +52,8 @@ export class LoginComponent implements OnInit {
             this.alertService.error('Erro: falha na comunicação!');
           }
       });
+    } else {
+      this.alertService.warn('Email invalido');
     }
   }
 }
