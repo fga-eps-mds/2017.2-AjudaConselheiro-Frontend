@@ -33,16 +33,15 @@ export class SearchCouncilGroupComponent implements OnInit, OnChanges {
   ngOnChanges(change) {
     this.showCouncil = false;
     if (change === this.state) {
+      // When state changes, the list os cities is updated
       this.cities = this.ibgeService.citiesRequest(this.state);
       this.council = this.stateSigla = this.city = undefined;
       console.log(this.state);
     }
     if (this.city !== undefined) {
+      //When a city is selected, we get the CAE
       this.council = undefined;
       this.searchCouncils(this.getCAEName());
-    }
-    if (this.council === change) {
-      console.log('Oi');
     }
   }
 

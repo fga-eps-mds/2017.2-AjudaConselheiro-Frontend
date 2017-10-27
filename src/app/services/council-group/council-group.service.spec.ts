@@ -23,15 +23,18 @@ describe('CouncilGroupService', () => {
     });
   });
 
-  fit('should be created', inject([CouncilGroupService], (service: CouncilGroupService) => {
+  it('should be created', inject([CouncilGroupService], (service: CouncilGroupService) => {
     expect(service).toBeTruthy();
   }));
 
-  fit('should be createhd', inject([CouncilGroupService], (service: CouncilGroupService) => {
+
+  it('Test Handle Error', inject([CouncilGroupService], (service: CouncilGroupService) => {
     expect(service.handleError).toThrow();
   }));
 
-  fit('should be createde', inject([CouncilGroupService], (service: CouncilGroupService) => {
+
+  it('Test array info', inject([CouncilGroupService], (service: CouncilGroupService) => {
+
     councilGroup.municipio = 'nada';
     councilGroup.estado = 'otonda';
     service.createCouncil(councilGroup);
