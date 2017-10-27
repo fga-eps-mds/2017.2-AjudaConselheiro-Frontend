@@ -55,9 +55,8 @@ export class ChecklistoneComponent implements OnInit {
     return (topic === 6 && ( question >= 0 && question <= 3));
   }
 
-  private loadAllUsers() {
+  public loadAllUsers() {
       console.log('Deu certo');
       this.postService.getPosts().subscribe(posts => this.post = posts);
-      console.log(this.post);
     }
 }
