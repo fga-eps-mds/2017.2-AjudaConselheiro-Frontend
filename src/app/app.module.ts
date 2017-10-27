@@ -27,6 +27,7 @@ import { AlertComponent } from './layouts/alert/alert.component';
 import { AlertService } from './services/alert/alert.service';
 import {ConfirmationPopoverModule} from 'angular-confirmation-popover';
 import { AlertModule } from 'ngx-bootstrap/alert';
+import { SidebarComponent } from './layouts/sidebar/sidebar.component';
 
 @NgModule({
 
@@ -38,7 +39,8 @@ import { AlertModule } from 'ngx-bootstrap/alert';
     CarouselComponent,
     LoginComponent,
     FooterComponent,
-    AlertComponent
+    AlertComponent,
+    SidebarComponent
   ],
 
   imports: [

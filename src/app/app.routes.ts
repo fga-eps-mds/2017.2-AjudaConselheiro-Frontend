@@ -1,3 +1,4 @@
+import { SidebarComponent } from './layouts/sidebar/sidebar.component';
 import { EditComponent } from './scheduling/edit/edit.component';
 import { CreateSchedulingComponent } from './scheduling/create/create-scheduling.component';
 import { Routes } from '@angular/router';
@@ -30,4 +31,5 @@ export const ROUTES: Routes = [
   { path: 'registrar', component: CreateUserComponent },
   { path: 'usuarios/editar/:id', component: UserEditComponent },
   { path: 'conselho/cadastrar', component: CreateCouncilGroupComponent },
+  { path: 'side', component: SidebarComponent },
 ];
