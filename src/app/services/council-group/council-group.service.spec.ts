@@ -24,7 +24,8 @@ describe('CouncilGroupService', () => {
   it('should be created', inject([CouncilGroupService], (service: CouncilGroupService) => {
     expect(service).toBeTruthy();
   }));
-  fit('should be createde', inject([CouncilGroupService], (service: CouncilGroupService) => {
+
+  it('should be createde', inject([CouncilGroupService], (service: CouncilGroupService) => {
     councilGroup.municipio = 'nada';
     councilGroup.estado = 'otonda';
     service.createCouncil(councilGroup);

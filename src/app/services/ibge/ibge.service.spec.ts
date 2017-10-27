@@ -11,6 +11,8 @@ import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
 
 describe('IbgeService', () => {
+  let service: IbgeService;
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -22,29 +24,30 @@ describe('IbgeService', () => {
         AlertService
       ]
     });
+    service = TestBed.get(IbgeService);
   });
 
-  it('should be created', inject([IbgeService], (service: IbgeService) => {
+  it('should be created', () => {
     expect(service).toBeTruthy();
-  }));
+  });
 
-  it('should return a string without quotes', inject([IbgeService], (service: IbgeService) => {
+  it('should return a string without quotes', () => {
     const withQuotes = 'a\"Normal\"String\"With\"Quotes?';
     const withoutQuotes = 'aNormalStringWithQuotes?';
 
     expect(service.takeQuoteOff(withQuotes)).toEqual(withoutQuotes);
-  }));
+  });
 
-  it('should return a sorted array with states', inject([IbgeService], (service: IbgeService) => {
+  it('should return a sorted array with states', () => {
     const state1 = { sigla: 'DF' }, state2 = { sigla: 'GO' };
     const sorted = [state1, state2], unsorted = [state2, state1];
 
     unsorted.sort(service.sortingStates);
 
     expect(unsorted).toEqual(sorted);
-  }));
+  });
 
-  it('should have a city name on cities attribute', inject([IbgeService], (service: IbgeService) => {
+  it('should have a city name on cities attribute', () => {
     const city = [{
       nome: 'Brasília',
       uf: 'DF'
@@ -52,9 +55,9 @@ describe('IbgeService', () => {
 
     service.filterCityName(city);
     expect(service.cities[0]).toEqual(city[0].nome);
-  }));
+  });
 
-  it('should have an state on states attibute', inject([IbgeService], (service: IbgeService) => {
+  it('should have an state on states attibute', () => {
     const state = {
       id: 1,
       sigla: 'AC'
@@ -65,5 +68,5 @@ describe('IbgeService', () => {
     service.filterState([state]);
 
     expect(service.states[0]).toEqual(stateAsExpected);
-  }));
+  });
 });
