@@ -17,7 +17,7 @@ export class IbgeService {
     private alertService: AlertService
   ) { }
 
-  private handleError(error: any) {
+  handleError(error: any) {
     const errMsg = (error.message) ? error.message :
       error.status ? `${error.status} - ${error.statusText}` : 'Server error';
 
