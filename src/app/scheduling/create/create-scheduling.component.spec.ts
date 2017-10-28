@@ -7,7 +7,7 @@ import { MockBackend } from '@angular/http/testing';
 import { CreateSchedulingComponent } from './create-scheduling.component';
 import { Scheduling } from './../../models/scheduling.model';
 import { Search } from './../../models/search.model';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { Http, ConnectionBackend } from '@angular/http';
 import { HttpModule } from '@angular/http';
 

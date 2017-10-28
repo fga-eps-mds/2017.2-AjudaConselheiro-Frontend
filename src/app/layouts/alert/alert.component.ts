@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 import { Alert, AlertType } from '../../models/index';
 import { AlertService } from '../../services/alert/alert.service';
 

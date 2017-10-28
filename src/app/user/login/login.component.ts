@@ -2,15 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { TextMaskModule } from 'angular2-text-mask';
-
 import { User } from '../../models/index';
-import { UserService, AuthenticationService, AlertService } from '../../services/index';
+import { AuthenticationService, AlertService } from '../../services/index';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers: [ UserService, AuthenticationService ],
+  providers: [ AuthenticationService],
   moduleId: module.id
 })
 
@@ -42,13 +41,12 @@ export class LoginComponent implements OnInit {
         result => {
           localStorage.setItem('token', result[0]);
           localStorage.setItem('userData', result[1]._body);
-
           this.alertService.success('Login efetuado sucesso!');
         },
         error => {
           console.log('error: ', error.status);
           if (error.status === 401) {
-            this.alertService.warn('Erro: email e/ou senha errados!');
+            this.alertService.warn('Aviso: email e/ou senha errados!');
           } else if (error.status > 401) {
             this.alertService.error('Erro: falha na comunicação!');
           }
