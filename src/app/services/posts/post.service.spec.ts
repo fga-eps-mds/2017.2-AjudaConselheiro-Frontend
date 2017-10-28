@@ -6,8 +6,11 @@ import { TestBed, inject, async} from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 
+import { Observable } from 'rxjs/Observable';
+
 import { AlertService, UserService } from '../../services/index';
 import { PostService } from './post.service';
+import { Post } from '../../models/index';
 
 
 describe('PostService', () => {
@@ -34,6 +37,8 @@ describe('PostService', () => {
       ]
     });
 
+    // This section till the end of the function is responsible for mocking
+    // the needed localstorage functions, since the service uses them.
     let store = {};
     const mockLocalStorage = {
       getItem: (key: string): string => {
@@ -64,7 +69,7 @@ describe('PostService', () => {
   }));
 
   // For getPosts()
-  it('it should return null if there is no appToken',
+  it('getPosts() should return null if there is no appToken',
     inject([PostService, MockBackend], (postService, mockBackend) => {
 
       const fakeData = { Post: 'post' };
@@ -80,14 +85,11 @@ describe('PostService', () => {
       expect(response).toBeUndefined();
   }));
 
-  it('it should return fakeData if there is appToken',
-  inject([PostService, MockBackend], (postService, mockBackend) => {
+  it('getPosts()  should return fakeData if there is appToken',
+    inject([PostService, MockBackend], (postService, mockBackend) => {
 
+    // Setting fake data to prep getPosts()
     localStorage.setItem('token', 'TOKEN');
-
-    console.log('AQUI NO TESTE: ');
-    console.log(localStorage.getItem('token'));
-
     const fakeData = { Post: 'post' };
 
     // Mocking HTTP connection for this test
@@ -97,10 +99,60 @@ describe('PostService', () => {
       connection.mockRespond(new Response(options));
     });
 
+    // Makes the request
     postService.getPosts().subscribe((result) => {
-      console.log('No subscribe');
-      console.log(result);
       expect(result).toEqual(fakeData);
      });
+  }));
+
+  // For savePosts()
+  it('savePosts()  should return nothing if there isn\'t a valid logged user',
+    inject([PostService, MockBackend], (postService, mockBackend) => {
+
+    const fakeData = { Post: 'Saved!' };
+    const saveFakeData = 'Some Data';
+
+    // Mocking HTTP connection for this test
+    mockBackend.connections.subscribe((connection: MockConnection) => {
+      const options = new ResponseOptions({ body: fakeData });
+
+      connection.mockRespond(new Response(options));
+    });
+
+    // Makes the request
+    let response = postService.savePost(saveFakeData);
+    const emptyObs = new Observable<Post>();
+    expect(response).toEqual(emptyObs);
+
+    // Testing now a user with no cod attribute
+    const fakeUser = { userName: 'Gustavo' };
+    localStorage.setItem('userData', JSON.stringify(fakeUser));
+
+    // Making the request for no cod user
+    response = postService.savePost(saveFakeData);
+    expect(response).toEqual(emptyObs);
+
+  }));
+
+  it('savePosts() should return fakeData if there is a valid logged user',
+    inject([PostService, MockBackend], (postService, mockBackend) => {
+
+    // Setting up the data needed for savePosts()
+    const fakeData = { Post: 'Saved!' };
+    const fakeUser = { userName: 'Gustavo', cod: 35 };
+    const saveFakeData = 'Some Data';
+    localStorage.setItem('userData', JSON.stringify(fakeUser));
+
+    // Mocking HTTP connection for this test
+    mockBackend.connections.subscribe((connection: MockConnection) => {
+      const options = new ResponseOptions({ body: fakeData });
+
+      connection.mockRespond(new Response(options));
+    });
+
+    // Makes the request
+    postService.savePost(saveFakeData).subscribe((result) => {
+      expect(result).toEqual(fakeData);
+    });
   }));
 });
