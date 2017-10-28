@@ -6,18 +6,12 @@ import { HttpModule, Http, ConnectionBackend, ResponseOptions, XHRBackend, Respo
 import { MockBackend, MockConnection } from '@angular/http/testing';
 import { AlertService } from '../alert/alert.service';
 import { FormsModule } from '@angular/forms';
+import { FakeUser } from '../../user/create/testing/index';
 
 describe('AlertService', () => {
 
-  let user: User = new User();
-  user = new User();
-  user.nomeCompleto = 'Joao Pereira';
-  user.nomeUsuario = 'Joao';
-  user.CEP = '72000000';
-  user.cod = 0;
-  user.email = 'joao@angular.com';
-  user.senha = '1234567';
-  user.confirmaSenha = '1234567';
+  let user: User;
+  const fakeUser: FakeUser = new FakeUser();
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -37,6 +31,7 @@ describe('AlertService', () => {
   }));
 
   it('should create user', () => {
+    user = fakeUser.generateFakeUser();
     inject([UserService, XHRBackend], (service: UserService, mockBacked: MockBackend) => {
       mockBacked.connections.subscribe((connection: MockConnection) => {
         connection.mockRespond(new Response(

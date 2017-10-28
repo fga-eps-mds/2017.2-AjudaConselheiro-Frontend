@@ -7,7 +7,7 @@ import { User } from '../../models/index';
 import { MockBackend } from '@angular/http/testing';
 import { DebugElement } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { RouterStubService } from './testing/router-stubs';
+import { FakeUser } from './testing/index';
 import { tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
@@ -15,20 +15,24 @@ describe('CreateUserComponent', () => {
 
   let fixture: ComponentFixture<CreateUserComponent>;
   let component: CreateUserComponent;
-  let userService: UserService;
-  let router: Router;
-  const user: User = new User();
-  const URL_NAV = '/login';
-
-  user.nomeCompleto = 'Joao Pereira';
-  user.nomeUsuario = 'Joao';
-  user.CEP = '72000000';
-  user.cod = 0;
-  user.email = 'joao@angular.com';
-  user.senha = '1234567';
-  user.confirmaSenha = '1234567';
+  let user: User;
+  const fakeUser: FakeUser = new FakeUser();
+  let mockRouter;
+  let mockAlert;
+  let mockService;
 
   beforeEach(async(() => {
+    mockRouter = {
+      navigate: jasmine.createSpy('navigate')
+    };
+    mockAlert = {
+      success: jasmine.createSpy('success'),
+      warn: jasmine.createSpy('warn'),
+      error: jasmine.createSpy('error')
+    };
+    mockService = {
+      createUser: jasmine.createSpy('createUser')
+    };
     TestBed.configureTestingModule({
       declarations: [ CreateUserComponent ],
       imports: [
@@ -38,12 +42,19 @@ describe('CreateUserComponent', () => {
        providers: [
          Http,
          UserService,
-         AlertService,
          MockBackend,
          ConnectionBackend,
          {
           provide: Router,
-          useValue: new RouterStubService()
+          useValue: mockRouter
+         },
+         {
+          provide: AlertService,
+          useValue: mockAlert
+         },
+         {
+          provide: UserService,
+          useValue: mockAlert
          }
       ]
     });
@@ -51,17 +62,17 @@ describe('CreateUserComponent', () => {
     fixture = TestBed.createComponent(CreateUserComponent);
     component = fixture.componentInstance;
 
-    userService = fixture.debugElement.injector.get(UserService);
-
-    router = fixture.debugElement.injector.get(Router);
+    component = fixture.debugElement.injector.get(CreateUserComponent);
 
   }));
 
   it('shoul create new user', fakeAsync(() => {
     const result = 'Cadastrado com sucesso.';
+    user = fakeUser.generateFakeUser();
     fixture.detectChanges();
     tick();
 
+    /*testing the input html full name*/
     const nomeCompleto = fixture.debugElement.query(By.css('#nomeCompleto')).nativeElement;
     nomeCompleto.value = user.nomeCompleto;
     nomeCompleto.dispatchEvent(new Event('input'));
@@ -69,6 +80,7 @@ describe('CreateUserComponent', () => {
     tick();
     fixture.detectChanges();
 
+    /*testing the input html cep*/
     const cep = fixture.debugElement.query(By.css('#CEP')).nativeElement;
     cep.value = user.CEP;
     cep.dispatchEvent(new Event('input'));
@@ -76,6 +88,7 @@ describe('CreateUserComponent', () => {
     tick();
     fixture.detectChanges();
 
+     /*testing the input html email*/
     const email = fixture.debugElement.query(By.css('#email')).nativeElement;
     email.value = user.email;
     email.dispatchEvent(new Event('input'));
@@ -83,6 +96,7 @@ describe('CreateUserComponent', () => {
     tick();
     fixture.detectChanges();
 
+    /*testing the input html password*/
     const senha = fixture.debugElement.query(By.css('#senha')).nativeElement;
     senha.value = user.senha;
     senha.dispatchEvent(new Event('input'));
@@ -90,6 +104,7 @@ describe('CreateUserComponent', () => {
     tick();
     fixture.detectChanges();
 
+    /*testing the input html confirm password*/
     const confirmaSenha = fixture.debugElement.query(By.css('#confirmaSenha')).nativeElement;
     confirmaSenha.value = user.confirmaSenha;
     confirmaSenha.dispatchEvent(new Event('input'));
@@ -97,6 +112,7 @@ describe('CreateUserComponent', () => {
     tick();
     fixture.detectChanges();
 
+    /*testing the input html user name*/
     const nomeUsuario = fixture.debugElement.query(By.css('#nomeUsuario')).nativeElement;
     nomeUsuario.value = user.nomeUsuario;
     nomeUsuario.dispatchEvent(new Event('input'));
@@ -107,24 +123,41 @@ describe('CreateUserComponent', () => {
     const btnCadastrar = fixture.debugElement.query(By.css('button'));
     btnCadastrar.triggerEventHandler('click', null);
 
-    const spy = spyOn(userService, 'createUser').and.returnValue('Cadastrado com sucesso.');
-    expect(userService.createUser(user)).toBe( result , 'service returned stub value');
-    expect(spy.calls.count()).toBe(1, 'stubbed method was called once');
-    expect(userService.createUser).toHaveBeenCalledTimes(1);
-    expect(component.loading).toBe(false);
-
-    const spy1 = spyOn(component, 'register');
-    component.register();
-    expect(component.register()).toBeUndefined();
 
   }));
 
+  it('should navigate', () => {
+    fixture.detectChanges();
+    component.navigate();
+    expect(mockRouter.navigate).toHaveBeenCalledWith(['/login']);
+  });
+
+  it('should result', () => {
+    fixture.detectChanges();
+    component.result();
+    expect(mockAlert.success).toHaveBeenCalledWith('Cadastro efetuado com sucesso! Faça seu login.');
+  });
+
+  it('should warn alert', () => {
+    fixture.detectChanges();
+    component.error(400);
+    expect(mockAlert.warn).toHaveBeenCalledWith('Aviso: Usuário já cadastrado ou desativado!');
+  });
+
+  it('should error alert', () => {
+    fixture.detectChanges();
+    component.error(401);
+    expect(mockAlert.error).toHaveBeenCalledWith('Erro: falha na comunicação com o sistema!');
+  });
+
   it('should return true when pass equals passwords', () => {
+    user = fakeUser.generateFakeUser();
     fixture.detectChanges();
     expect(component.matchPassword(user.senha, user.confirmaSenha)).toEqual(true);
   });
 
   it('should return false when pass different passwords', () => {
+    user = fakeUser.generateFakeUser();
     fixture.detectChanges();
     expect(component.matchPassword(user.senha, '123456789')).toEqual(false);
   });

@@ -10,7 +10,7 @@
                  name="nomeCompleto" id="nomeCompleto"
                  placeholder="Nome Completo" [(ngModel)]="user.nomeCompleto"
                  #nomeCompleto="ngModel" minlength="10"
-                 pattern="[a-zA-Z][a-zA-Z ]+"
+                 pattern="^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$"
                  required>
             <div *ngIf="nomeCompleto.errors && (nomeCompleto.dirty)"
                   class="alert alert-danger">
