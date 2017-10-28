@@ -11,7 +11,6 @@ import { ServicesUtilitiesService } from './services-utilities.service';
 export class UserService extends ServicesUtilitiesService {
 
   private url = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas';
-  // private: ServicesUtilitiesService = new ServicesUtilitiesService();
   private headers: Headers = new Headers({ 'Content-Type': 'application/json' });
   options: RequestOptions = new RequestOptions({ headers: this.headers });
 
@@ -29,6 +28,16 @@ export class UserService extends ServicesUtilitiesService {
     return this.http.get(this.url + id, this.jwt())
       .map((response: Response) => response.json())
       .catch(this.handleError);
+  }
+
+  getLoggedUser() {
+    const localUserValue = localStorage.getItem('userData');
+
+    if (localUserValue) {
+      return JSON.parse(localUserValue);
+    } else {
+      console.error('No logged user found!');
+    }
   }
 
   createUser(user: User): Observable<User> {
