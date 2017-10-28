@@ -30,6 +30,16 @@ export class UserService extends ServicesUtilitiesService {
       .catch(this.handleError);
   }
 
+  getLoggedUser() {
+    const localUserValue = localStorage.getItem('userData');
+
+    if (localUserValue) {
+      return JSON.parse(localUserValue);
+    } else {
+      console.error('No logged user found!');
+    }
+  }
+
   createUser(user: User): Observable<User> {
     const body = JSON.stringify(user);
     return this.http.post(this.url, body, this.options)
