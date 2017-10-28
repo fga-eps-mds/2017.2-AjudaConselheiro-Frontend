@@ -39,7 +39,7 @@ export class SearchCouncilGroupComponent implements OnInit, OnChanges {
       console.log(this.state);
     }
     if (this.city !== undefined) {
-      //When a city is selected, we get the CAE
+      // When a city is selected, we get the CAE
       this.council = undefined;
       this.searchCouncils(this.getCAEName());
     }
