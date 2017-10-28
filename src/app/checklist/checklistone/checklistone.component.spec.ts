@@ -1,9 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { ChecklistoneComponent } from './checklistone.component';
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpModule } from '@angular/http';
+
+import { ChecklistoneComponent } from './checklistone.component';
+import { UserService } from '../../services/index';
 
 describe('ChecklistoneComponent', () => {
   let component: ChecklistoneComponent;
@@ -14,6 +15,9 @@ describe('ChecklistoneComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ ChecklistoneComponent ],
       imports: [ FormsModule, RouterTestingModule, HttpModule ],
+      providers: [
+        UserService
+      ]
     })
     .compileComponents();
   }));

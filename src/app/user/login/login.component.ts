@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
 
   user: User;
   token: any = null;
-  emailRegex = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
+  emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
   email: string;
   password: string;
 
@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     const validEmail = this.emailRegex.test(this.email);
+    console.log(validEmail);
 
     if (validEmail) {
       this.authenticationService.login(this.email, this.password)
