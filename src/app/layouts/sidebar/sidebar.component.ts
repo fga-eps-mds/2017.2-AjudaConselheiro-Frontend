@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { UserService } from './../../services/user.service';
+import { NgForm } from '@angular/forms';
+import { User } from './../../models/user';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor() { }
+  @ViewChild('formUser') formUser: NgForm;
+  user: User;
+  constructor(
+    private userService: UserService,
+  ) { }
 
   ngOnInit() {
+    this.user = this.userService.getLoggedUser();
   }
-
+  hasToken(): boolean {
+    return localStorage.hasOwnProperty('token');
+  }
 }
