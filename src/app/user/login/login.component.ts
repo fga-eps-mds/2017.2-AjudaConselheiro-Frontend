@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
 
   user: User;
   token: any = null;
-  emailRegex = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
+  emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
   email: string;
   password: string;
 
@@ -32,16 +32,16 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    if (!this.email.match(this.emailRegex)) {
-      this.alertService.warn('Email invalido');
-    }
-    if (this.email) {
+    const validEmail = this.emailRegex.test(this.email);
+    console.log(validEmail);
+
+    if (validEmail) {
       this.authenticationService.login(this.email, this.password)
-        .subscribe(
+      .subscribe(
         result => {
-          this.token = result;
-          localStorage.setItem('token', this.token);
-          this.alertService.success('Login efetuado com sucesso!');
+          localStorage.setItem('token', result[0]);
+          localStorage.setItem('userData', result[1]._body);
+          this.alertService.success('Login efetuado sucesso!');
         },
         error => {
           console.log('error: ', error.status);
@@ -51,6 +51,8 @@ export class LoginComponent implements OnInit {
             this.alertService.error('Erro: falha na comunicação!');
           }
       });
+    } else {
+      this.alertService.warn('Email invalido');
     }
   }
 }

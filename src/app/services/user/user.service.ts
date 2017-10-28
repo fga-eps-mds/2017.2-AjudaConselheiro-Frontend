@@ -29,7 +29,7 @@ export class UserService extends ServicesUtilitiesService {
       .catch(this.handleError);
   }
 
-  createUser(user: User): any {
+  createUser (user: User): any {
     const body = {
       'email': user.email,
       'nomeCompleto': user.nomeCompleto,
@@ -38,8 +38,18 @@ export class UserService extends ServicesUtilitiesService {
       'senha': user.senha
     };
     return this.http.post(this.url, JSON.stringify(body), this.options)
-      .map(res => this.extractData(res))
-      .catch(this.handleError);
+    .map(res => this.extractData(res))
+    .catch(this.handleError);
+}
+
+  getLoggedUser() {
+    const localUserValue = localStorage.getItem('userData');
+
+    if (localUserValue) {
+      return JSON.parse(localUserValue);
+    } else {
+      console.error('No logged user found!');
+    }
   }
 
   updateUser(user: User) {
