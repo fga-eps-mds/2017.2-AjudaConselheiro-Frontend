@@ -12,7 +12,7 @@ export class CouncilGroupService {
   private options: RequestOptions;
   private appToken: any;
   private url = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/grupos';
-  body: any;
+
 
   constructor(private http: Http, private alertService: AlertService) { }
 
@@ -26,11 +26,11 @@ export class CouncilGroupService {
     this.options = new RequestOptions({ headers: this.headers });
     console.log('Create Council');
 
-    this.body = this.getFormattedData(councilGroup);
-    console.log(this.body);
+    const body = this.getFormattedData(councilGroup);
+    console.log(body);
 
     return this.http
-      .post(this.url, this.body, this.options)
+      .post(this.url, body, this.options)
       .map(res => this.extractData(res))
       .catch(this.handleError);
   }
@@ -49,7 +49,7 @@ export class CouncilGroupService {
     return JSON.stringify(temp);
   }
 
-    extractData(res: Response) {
+   private extractData(res: Response) {
     const body = res.json();
     const location = res.headers.get('location');
     console.log(body);
