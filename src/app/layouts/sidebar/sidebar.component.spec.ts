@@ -1,7 +1,8 @@
+import { AlertService } from './../../services/alert/alert.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpModule } from '@angular/http';
 import { APP_BASE_HREF } from '@angular/common';
-import { UserService } from './../../services/user.service';
+import { UserService } from './../../services/user/user.service';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppModule } from './../../app.module';
 
@@ -14,10 +15,11 @@ describe('SidebarComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        SidebarComponent
+        SidebarComponent,
       ],
       providers: [
         UserService,
+        AlertService
       ],
       imports: [
         HttpModule,
@@ -36,10 +38,5 @@ describe('SidebarComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-  it('has token', () => {
-    const result = 'nada';
-    localStorage.setItem('token', result);
-    expect(component.hasToken()).toEqual(true);
   });
 });

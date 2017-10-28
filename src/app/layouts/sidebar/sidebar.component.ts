@@ -1,4 +1,4 @@
-import { UserService } from './../../services/user.service';
+import { UserService } from './../../services/user/user.service';
 import { NgForm } from '@angular/forms';
 import { User } from './../../models/user';
 import { Component, OnInit, ViewChild } from '@angular/core';
