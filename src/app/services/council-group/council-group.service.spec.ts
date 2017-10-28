@@ -32,20 +32,17 @@ describe('CouncilGroupService', () => {
     expect(service.handleError).toThrow();
   }));
 
-
   it('Test array info', inject([CouncilGroupService], (service: CouncilGroupService) => {
-
-    councilGroup.municipio = 'nada';
-    councilGroup.estado = 'otonda';
-    service.createCouncil(councilGroup);
-    const temp = service.body;
-    const teste = {
-      'codAplicativo': 462,
-      'codGrupoPai': 1,
-      'codObjeto': councilGroup.codObjeto,
-      'codTipoObjeto': 1,
-      'descricao': 'CAE-nada-otonda'
-    };
-    expect(temp).toEqual(JSON.stringify(teste));
-  }));
+        councilGroup.municipio = 'nada';
+        councilGroup.estado = 'otonda';
+        const temp = service.getFormattedData(councilGroup);
+        const teste = {
+          'codAplicativo': 462,
+          'codGrupoPai': 1,
+          'codObjeto': councilGroup.codObjeto,
+          'codTipoObjeto': 1,
+          'descricao': 'CAE-nada-otonda'
+        };
+        expect(temp).toEqual(JSON.stringify(teste));
+      }));
 });
