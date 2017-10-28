@@ -4,7 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { HttpModule } from '@angular/http';
 
 import { ChecklistoneComponent } from './checklistone.component';
-import { UserService } from '../../services/index';
+import { UserService, AlertService } from '../../services/index';
 
 describe('ChecklistoneComponent', () => {
   let component: ChecklistoneComponent;
@@ -16,7 +16,7 @@ describe('ChecklistoneComponent', () => {
       declarations: [ ChecklistoneComponent ],
       imports: [ FormsModule, RouterTestingModule, HttpModule ],
       providers: [
-        UserService
+        UserService, AlertService
       ]
     })
     .compileComponents();
