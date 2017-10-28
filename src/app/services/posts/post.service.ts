@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
-import { ServicesUtilitiesService, AlertService } from '../../services/index';
+import { ServicesUtilitiesService, AlertService, UserService } from '../../services/index';
 
 import { Post, User } from '../../models/index';
 
@@ -13,6 +13,7 @@ export class PostService extends ServicesUtilitiesService {
   private baseURL = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/postagens';
   private postURL = this.baseURL + '/conteudos';
 
+  // These are 'tipoPostagem' that already been set for this app, in the API
   private incompleteChecklist = 375;
   private completeChecklist = 376;
   private testChecklist = 377;
@@ -26,8 +27,10 @@ export class PostService extends ServicesUtilitiesService {
 
   options: RequestOptions = new RequestOptions({ headers: this.headers });
 
-  constructor(private http: Http, private alertService: AlertService) {
-    super();
+  constructor(private http: Http,
+    private alertService: AlertService,
+    private userService: UserService) {
+      super();
   }
 
     getPosts(): Observable<Post> {
@@ -41,22 +44,30 @@ export class PostService extends ServicesUtilitiesService {
     }
 
     savePost(data: any): Observable<Post> {
-      const body = this.formatPostBody(data, this.testChecklist);
+      const codUser = this.userService.getLoggedUser().cod;
 
-      return this.http.post(this.postURL, body, this.options)
-        .map(this.extractData)
-        .catch(this.handleError);
+      if (codUser) {
+        const body = this.formatPostBody(data, codUser, this.testChecklist);
+
+        return this.http.post(this.postURL, body, this.options)
+          .map(this.extractData)
+          .catch(this.handleError);
+      } else {
+        console.error('You cannot create a post without login first!');
+      }
+
+      return new Observable<Post>();
     }
 
     // The function below just take any JS Object and transforms it to a valid JSON
-    private formatPostBody(jsonData: any, codPost: number) {
+    private formatPostBody(jsonData: any, codUser: number, codPost: number) {
       const validBody = {
         'conteudo': {
           'JSON': jsonData
         },
         'postagem': {
           'autor': {
-            'codPessoa': 5676 // Valid for fake user 'Gustavo'
+            'codPessoa': codUser
           },
           'tipo': {
             'codTipoPostagem': codPost
