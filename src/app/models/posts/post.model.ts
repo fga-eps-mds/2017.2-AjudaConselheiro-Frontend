@@ -4,9 +4,10 @@ export class Post {
   static completePost: 376;
 
   constructor(
-    public autor?: string,
-    public codPessoa?: number,
-    public tipo?: string,
-    public codTipoPostagem?: number,
   ) {}
+
+  public autor?: string;
+  public codPessoa?: number;
+  public tipo?: string;
+  public codTipoPostagem?: number;
 }
