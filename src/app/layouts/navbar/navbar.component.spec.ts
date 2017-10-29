@@ -46,8 +46,8 @@ describe('NavbarHomeComponent', () => {
   it('should the user be logged out when logout() is called', () => {
     localStorage.setItem('token', 'newToken'); // Adding a generic token to the localStorage,
                                                // which means that user is logged in
-    fixture.componentInstance.logout();
-    expect(localStorage.getItem('isLoggedIn')).toBeTruthy();
+    component.logout();
+    expect(localStorage.getItem('loggedOut')).toBeFalsy();
   });
 
   it('should have a navbar', () => {
@@ -61,7 +61,7 @@ describe('NavbarHomeComponent', () => {
   });
 
   it('should have two navbar items when user is not logged in', () => {
-    fixture.componentInstance.logout();
+    component.logout();
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelectorAll('.nav-item').length).toBe(2);
@@ -75,14 +75,14 @@ describe('NavbarHomeComponent', () => {
   });
 
   it('should have a login button when user is not logged in', () => {
-    fixture.componentInstance.logout();
+    component.logout();
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelectorAll('.nav-item')[0].innerText).toEqual('Entrar');
   });
 
   it('should have a sign up button when user is not logged in', () => {
-    fixture.componentInstance.logout();
+    component.logout();
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelectorAll('.nav-item')[1].innerText).toEqual('Cadastrar');
@@ -99,12 +99,12 @@ describe('NavbarHomeComponent', () => {
   it('should know when localStorage has a token', () => {
     localStorage.setItem('token', 'newToken'); // Adding a generic token to the localStorage,
                                                // which means that user is logged in
-    expect(fixture.componentInstance.hasToken()).toBeTruthy();
+    expect(component.hasToken).toBeTruthy();
   });
 
   it('should know when localStorage hasnt a token', () => {
     fixture.componentInstance.logout();
-    expect(fixture.componentInstance.hasToken()).toBeFalsy();
+    expect(component.hasToken).toBeTruthy();
   });
 
 });

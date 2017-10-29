@@ -38,7 +38,7 @@ export class CouncilGroupService extends ServicesUtilitiesService {
       .catch(this.handleError);
   }
 
-  private getFormattedData(councilGroup: CouncilGroup) {
+  getFormattedData(councilGroup: CouncilGroup) {
     councilGroup.descricao = 'CAE-' + councilGroup.municipio + '-' + councilGroup.estado;
 
     const council = {
@@ -50,5 +50,20 @@ export class CouncilGroupService extends ServicesUtilitiesService {
     };
 
     return JSON.stringify(council);
+  }
+
+  extractData(res: Response) {
+    const body = res.json();
+    const location = res.headers.get('location');
+    console.log(body);
+    console.log(location);
+    return location || {};
+  }
+
+  getAjudaConselheiroCouncilGroups(description: string):  Observable<Array<Object>> {
+    return this.http
+    .get(this.url + '?codAplicativo=462')
+    .map(res => res.json().find(x => x.descricao === description))
+    .catch(this.handleError);
   }
 }
