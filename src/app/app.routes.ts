@@ -32,6 +32,6 @@ export const ROUTES: Routes = [
   { path: 'registrar', component: CreateUserComponent },
   { path: 'usuarios/editar/:id', component: UserEditComponent },
   { path: 'conselho/cadastrar', component: CreateCouncilGroupComponent },
-  { path: 'conselho/buscar', component: SearchCouncilGroupComponent}
+  { path: 'conselho/buscar', component: SearchCouncilGroupComponent},
   { path: 'side', component: SidebarComponent },
 ];
