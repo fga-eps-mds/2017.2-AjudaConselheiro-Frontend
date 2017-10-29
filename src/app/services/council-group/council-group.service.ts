@@ -60,15 +60,6 @@ export class CouncilGroupService extends ServicesUtilitiesService {
     return location || {};
   }
 
-  handleError(error: any) {
-    const errMsg = (error.message) ? error.message :
-      error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-
-    console.log(error.status);
-
-    return Observable.throw(error);
-  }
-
   getAjudaConselheiroCouncilGroups(description: string):  Observable<Array<Object>> {
     return this.http
     .get(this.url + '?codAplicativo=462')

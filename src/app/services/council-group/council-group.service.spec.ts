@@ -28,10 +28,6 @@ describe('CouncilGroupService', () => {
   }));
 
 
-  it('Test Handle Error', inject([CouncilGroupService], (service: CouncilGroupService) => {
-    expect(service.handleError).toThrow();
-  }));
-
   it('Test array info', inject([CouncilGroupService], (service: CouncilGroupService) => {
         councilGroup.municipio = 'nada';
         councilGroup.estado = 'otonda';

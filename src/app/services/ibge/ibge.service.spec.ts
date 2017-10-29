@@ -69,17 +69,4 @@ describe('IbgeService', () => {
 
     expect(service.states[0]).toEqual(stateAsExpected);
   });
-
-  it('correctly handles error', () => {
-    const spy = spyOn(console, 'log');
-    const error1 = { status: 'Bad Request 500'},
-          error2 = { status: 'Bad Request 500', message: 'Message'};
-
-    service.handleError(error1);
-    service.handleError(error2);
-
-    expect(spy).toHaveBeenCalledWith(error1.status);
-    expect(spy).toHaveBeenCalledWith(error2.status);
-  });
-
 });

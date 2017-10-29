@@ -6,25 +6,19 @@ import { State } from '../../models/index';
 
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
+import { ServicesUtilitiesService } from '../services-utilities.service';
 
 @Injectable()
-export class IbgeService {
+export class IbgeService extends ServicesUtilitiesService{
   states = new Array<State>();
   cities = new Array<String>();
 
   constructor(
     private http: Http,
     private alertService: AlertService
-  ) { }
+  ) {super();
+ }
 
-  handleError(error: any) {
-    const errMsg = (error.message) ? error.message :
-      error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-
-    console.log(error.status);
-
-    return Observable.throw(error);
-  }
 
   statesRequest(): any {
     this.searchStates();
