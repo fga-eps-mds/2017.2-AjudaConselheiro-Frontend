@@ -28,8 +28,8 @@ export const ROUTES: Routes = [
   { path: 'usuarios', component: UserListComponent},
   { path: 'usuarios/todos', component: UserListComponent},
   { path: 'login', component: LoginComponent },
-  { path: 'register', component: CreateUserComponent },
-  { path: 'users/edit/:id', component: UserEditComponent },
+  { path: 'registrar', component: CreateUserComponent },
+  { path: 'usuarios/editar/:id', component: UserEditComponent },
   { path: 'conselho/cadastrar', component: CreateCouncilGroupComponent },
   { path: 'conselho/buscar', component: SearchCouncilGroupComponent}
 ];

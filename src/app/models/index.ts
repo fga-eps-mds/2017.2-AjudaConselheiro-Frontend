@@ -7,3 +7,4 @@ export * from './search.model';
 export * from './state.model';
 export * from './checklist.model';
 export * from './search.model';
+export * from './posts/post.model';

@@ -59,7 +59,7 @@ import { AlertModule } from 'ngx-bootstrap/alert';
     ReactiveFormsModule,
     TextMaskModule,
     ConfirmationPopoverModule.forRoot({
-      confirmButtonType: 'danger' // set defaults here
+      confirmButtonType: 'danger', // set defaults here
     })
   ],
   schemas: [ NO_ERRORS_SCHEMA ],

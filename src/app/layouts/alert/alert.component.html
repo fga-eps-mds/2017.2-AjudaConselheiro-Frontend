@@ -1,6 +1,4 @@
 <div *ngFor="let alert of alerts" class="alert" [style.background]="getAlertColor(alert)" [style.color]="getFontColor(alert)">
-  <div class="centering">
-    {{alert.message}}
+  {{alert.message}}
   <a class="close" (click)="removeAlert(alert)">&times;</a>
   </div>
-</div>

@@ -2,8 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 import { CouncilGroup } from '../../models/index';
-import { CouncilGroupService } from '../../services/index';
-import { AlertService } from '../../services/alert/alert.service';
+import { CouncilGroupService, AlertService } from '../../services/index';
 
 @Component({
   selector: 'app-create-council-group',
@@ -15,8 +14,8 @@ import { AlertService } from '../../services/alert/alert.service';
 export class CreateCouncilGroupComponent implements OnInit {
 
   @ViewChild('formCouncilGroup') formCouncilGroup: NgForm;
-  councilGroup: CouncilGroup;
-  private location: any;
+  councilGroup: CouncilGroup = null;
+  private location: any = null;
 
   constructor(
     private councilGroupService: CouncilGroupService,
@@ -45,31 +44,11 @@ export class CreateCouncilGroupComponent implements OnInit {
       });
   }
 
-  success(message: string) {
-    this.alertService.success(message);
-  }
-
-  error(message: string) {
-    this.alertService.error(message);
-  }
-
-  info(message: string) {
-    this.alertService.info(message);
-  }
-
-  warn(message: string) {
-    this.alertService.warn(message);
-  }
-
-  clear() {
-    this.alertService.clear();
-  }
-
   isLoggedIn(): boolean {
-    if (localStorage.getItem('token') === null) {
-      return false;
-    } else {
+    if (localStorage.getItem('token')) {
       return true;
     }
+    return false;
   }
 }
+
