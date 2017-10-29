@@ -41,9 +41,8 @@ import { SidebarComponent } from './layouts/sidebar/sidebar.component';
     LoginComponent,
     FooterComponent,
     AlertComponent,
-    SearchCouncilGroupComponent
+    SearchCouncilGroupComponent,
     SidebarComponent
-
   ],
 
   imports: [
