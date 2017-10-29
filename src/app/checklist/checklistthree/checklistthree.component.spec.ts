@@ -80,7 +80,7 @@ describe('ChecklistthreeComponent', () => {
       expect(component.newFormulario).toHaveBeenCalled();
     }));
     it('navigate to "checklist" before call to newFormulario', fakeAsync(() => {
-      location = TestBed.get(Location)
+      location = TestBed.get(Location);
       component.newFormulario();
       tick();
       expect(location.path()).toBe('/checklist');
