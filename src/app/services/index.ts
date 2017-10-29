@@ -1,5 +1,5 @@
 export * from './scheduling.service';
-export * from './user.service';
+export * from './user/user.service';
 export * from './council-group/council-group.service';
 export * from './checklist.service';
 export * from './authentication/authentication.service';

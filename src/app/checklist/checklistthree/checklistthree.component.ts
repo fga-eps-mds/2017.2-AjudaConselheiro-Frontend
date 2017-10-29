@@ -1,11 +1,9 @@
-import { FormMenuThree } from './../../models/index';
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import {NgForm} from '@angular/forms';
 import { Router } from '@angular/router';
 
-
-import { ChecklistService } from './../../services/checklist.service';
-import { ChecklistThree, SectionCommentaryTwo, ConfirmComentary } from './../../models/checklist.model';
+import { ChecklistService } from './../../services/index';
+import { ChecklistThree, SectionCommentaryTwo, ConfirmComentary, FormMenuThree } from './../../models/index';
 
 @Component({
   selector: 'app-checklistthree',
@@ -13,6 +11,7 @@ import { ChecklistThree, SectionCommentaryTwo, ConfirmComentary } from './../../
   styleUrls: ['./checklistthree.component.css'],
   providers: [ChecklistService]
 })
+
 export class ChecklistthreeComponent implements OnInit {
   checklist: ChecklistThree;
   formMenuThree: Array<SectionCommentaryTwo> = FormMenuThree;
@@ -23,19 +22,19 @@ export class ChecklistthreeComponent implements OnInit {
     private router: Router
   ) { }
 
-
   ngOnInit() {
     this.checklist = new ChecklistThree();
   }
-  copy(checklist, FormMenuThree): void {
-    this.checklist.FormMenuThree = this.formMenuThree;
+
+  copy(formMenuThree): void {
+    this.checklist.FormMenuThree = formMenuThree;
   }
+
   newFormulario(): void {
     if (this.formChecklist.form.valid) {
       this.checklistThree.newCheck(this.checklist);
       this.router.navigate(['/checklist']);
     }
   }
-
 }
 
