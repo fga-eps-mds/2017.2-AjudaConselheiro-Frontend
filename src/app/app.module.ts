@@ -28,6 +28,7 @@ import { SearchCouncilGroupComponent } from './council-group/search/search-counc
 import { ChecklistService } from './services/index';
 import {ConfirmationPopoverModule} from 'angular-confirmation-popover';
 import { AlertModule } from 'ngx-bootstrap/alert';
+import { SidebarComponent } from './layouts/sidebar/sidebar.component';
 
 @NgModule({
 
@@ -41,6 +42,8 @@ import { AlertModule } from 'ngx-bootstrap/alert';
     FooterComponent,
     AlertComponent,
     SearchCouncilGroupComponent
+    SidebarComponent
+
   ],
 
   imports: [
