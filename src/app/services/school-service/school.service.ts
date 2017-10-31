@@ -1,8 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { Http, Headers, RequestOptions, Response, URLSearchParams } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
 
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/of';
 
 import { Scheduling } from '../../models/index';
 import { ServicesUtilitiesService } from '.././services-utilities.service';
@@ -11,6 +14,9 @@ import { SearchSchool } from '../../models/search-school.model';
 
 @Injectable()
 export class SchoolService extends ServicesUtilitiesService {
+
+  hasSchool = new BehaviorSubject<boolean>(null);
+  hasSchool$ = this.hasSchool.asObservable();
 
   private options: RequestOptions = new  RequestOptions();
   private url = 'http://educacao.dadosabertosbr.com/api';
@@ -43,5 +49,9 @@ export class SchoolService extends ServicesUtilitiesService {
   getSchool(school: string) {
     console.log('Escola escolhida: ', school);
     return school;
+  }
+
+  setHasSchool(hasSchool: boolean) {
+    this.hasSchool.next(hasSchool);
   }
 }
