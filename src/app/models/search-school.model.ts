@@ -4,6 +4,7 @@ export class SearchSchool {
       public city?: string,
       public state?: string,
       public name?: string,
+      public location?: string,
       public situation?: string
   ) {}
 }

@@ -31,6 +31,7 @@ export class SchoolService extends ServicesUtilitiesService {
     searchParams.append('estado', search.state);
     searchParams.append('nome', search.name);
     searchParams.append('cidade', search.city);
+    searchParams.append('tipoLocalizacao', search.location);
     searchParams.append('situacaoFuncionamento', search.situation);
 
     this.options.params = searchParams;

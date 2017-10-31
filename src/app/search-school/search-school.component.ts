@@ -17,7 +17,7 @@ export class SearchSchoolComponent implements OnInit {
   schools: Array<SearchSchool> = null;
   collapsed = true;
   schoolData: string;
-  habilitateChecklist: boolean = null;
+  selectOption: number;
 
   constructor(
     private schoolService: SchoolService,
@@ -35,6 +35,7 @@ export class SearchSchoolComponent implements OnInit {
   searchSchool(): void {
     this.school.state = this.state;
     this.school.situation = '1';
+    this.selectLocation(location);
 
     this.schoolService.searchSchool(this.school)
       .subscribe(
@@ -120,5 +121,12 @@ export class SearchSchoolComponent implements OnInit {
     // console.log(this.getSchoolData);
     this.schoolService.setSchool(this.schoolData);
     console.log(this.schoolData);
+  }
+  selectLocation(location) {
+    if (location === 1) {
+      this.selectOption = 1;
+    } else {
+      this.selectOption = 2;
+    }
   }
 }

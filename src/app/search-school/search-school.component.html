@@ -37,6 +37,14 @@
         <i class="fa fa-pencil" aria-hidden="true"></i> Código da Escola:</label>
       <input type="text" class="form-control" id="code" name="code" [(ngModel)]="school.code" #code="ngModel">
     </div>
+    <label><i class="fa fa-road" aria-hidden="true"></i> Região:</label>
+    <div class="container select-style">
+      <select [(ngModel)]="school.location">
+        <option value="" selected disabled>Escolha uma Região</option>
+        <option [ngValue]="1" selected >Urbana - 1</option>
+        <option [ngValue]="2" selected >Rural - 2</option>
+      </select>
+    </div>
     <div class="text-center">
       <button type="button" class="btn btn-deep-orange" (click)="searchSchool()"><i class="fa fa-search" aria-hidden="true"></i>Buscar</button>
     </div>
