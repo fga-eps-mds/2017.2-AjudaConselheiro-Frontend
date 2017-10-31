@@ -16,7 +16,7 @@ export class SearchSchoolComponent implements OnInit {
   school: SearchSchool = null;
   schools: Array<SearchSchool> = null;
   collapsed = true;
-  hasSchool: boolean;
+  schoolData: string;
   habilitateChecklist: boolean = null;
 
   constructor(
@@ -29,7 +29,7 @@ export class SearchSchoolComponent implements OnInit {
     this.cities = new Array<Object>();
     this.schools = new Array<Object>();
     this.school = new SearchSchool();
-    this.schoolService.hasSchool$.subscribe(hasSchool => this.hasSchool = hasSchool);
+    this.schoolService.schoolData$.subscribe(schoolData => this.schoolData = schoolData);
   }
 
   searchSchool(): void {
@@ -111,8 +111,14 @@ export class SearchSchoolComponent implements OnInit {
     this.schoolService.getSchool(school);
   }
 
-  schoolCheck() {
-    this.schoolService.setHasSchool(true);
-    console.log(this.hasSchool);
+  schoolCheck(school: string) {
+    // this.schoolService.setSchool(this.school.name);
+    // this.schoolService.setSchool(this.school.code);
+    // this.schoolService.setSchool(this.school.state);
+    // this.schoolService.setSchool(this.school.city);
+    // this.schoolService.setSchool(this.school.situation);
+    // console.log(this.getSchoolData);
+    this.schoolService.setSchool(this.schoolData);
+    console.log(this.schoolData);
   }
 }

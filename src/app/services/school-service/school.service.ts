@@ -15,8 +15,8 @@ import { SearchSchool } from '../../models/search-school.model';
 @Injectable()
 export class SchoolService extends ServicesUtilitiesService {
 
-  hasSchool = new BehaviorSubject<boolean>(null);
-  hasSchool$ = this.hasSchool.asObservable();
+  private getSchoolData = new BehaviorSubject<string>(null);
+  schoolData$ = this.getSchoolData.asObservable();
 
   private options: RequestOptions = new  RequestOptions();
   private url = 'http://educacao.dadosabertosbr.com/api';
@@ -46,12 +46,12 @@ export class SchoolService extends ServicesUtilitiesService {
       .catch(this.handleError);
   }
 
-  getSchool(school: string) {
-    console.log('Escola escolhida: ', school);
-    return school;
+  getSchool(schoolData: string) {
+    console.log('Escola escolhida: ', schoolData);
+    return schoolData;
   }
 
-  setHasSchool(hasSchool: boolean) {
-    this.hasSchool.next(hasSchool);
+  setSchool(getSchoolData: string) {
+    this.getSchoolData.next(getSchoolData);
   }
 }

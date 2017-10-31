@@ -10,7 +10,7 @@ import { CheckOneTopicHeaders, CheckOneCommentaries, CheckOneFirstTopic,
 import { FormsMenu, FormMenuTwo, CommentBinaryForm,
   CommentForm, BinaryForm, FormBinary,
   ConfirmComentary} from '../../models/index';
-import { ChecklistService } from '../../services/index';
+import { ChecklistService, SchoolService } from '../../services/index';
 
 
 @Component({

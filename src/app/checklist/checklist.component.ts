@@ -14,12 +14,12 @@ import { SchoolService } from '../services/index';
 export class ChecklistComponent implements OnInit {
   checklistSchool = false;
   subscription: Subscription;
-  hasSchool: boolean;
+  schoolData: string;
 
   constructor(private schoolService: SchoolService) {}
 
   ngOnInit() {
-    this.schoolService.hasSchool$.subscribe(hasSchool => this.hasSchool = hasSchool);
-    console.log(this.hasSchool);
+    this.schoolService.schoolData$.subscribe(schoolData => this.schoolData = schoolData);
+    console.log(this.schoolData);
   }
 }
