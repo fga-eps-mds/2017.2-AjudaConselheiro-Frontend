@@ -1,46 +1,59 @@
-import { SectionCommentaryTwo } from './../models/checklist.model';
 import { Injectable } from '@angular/core';
-import { BinaryForm } from '../models/index';
 import { Http } from '@angular/http';
+
 import 'rxjs/add/operator/toPromise';
-import { CommentBinaryForm, CommentForm, FormsMenu, FormMenuTwo, ChecklistThree} from '../models/index';
-import { SectionCommentary } from '../models/checklist.model';
+
+import {
+  CommentBinaryForm,
+  CommentForm,
+  FormsMenu,
+  FormMenuTwo,
+  ChecklistThree,
+  BinaryForm,
+  SectionCommentary,
+  SectionCommentaryTwo
+} from '../models/index';
+
+import { ServicesUtilitiesService } from './services-utilities.service';
+import { AlertService } from './alert/alert.service';
 
 @Injectable()
-export class ChecklistService {
+export class ChecklistService extends ServicesUtilitiesService {
 
-    constructor(private http: Http) {}
-    private formMenuUrl = 'app/formsMenu';
-    private formMenuThree = 'app/formsThree';
-    private formMenuAnswerUrl = 'app/formCheckAnswer';
-    private formOneAnswerUrl = 'app/checklist';
+  private formMenuUrl = 'app/formsMenu';
+  private formMenuThree = 'app/formsThree';
+  private formMenuAnswerUrl = 'app/formCheckAnswer';
+  private formOneAnswerUrl = 'app/checklist';
 
-    // checklist three services
-    listAllCheck(): ChecklistThree[] {
-        const checklistThree = localStorage['checklistThree'];
-        return checklistThree ? JSON.parse(checklistThree) : [];
-    }
+  constructor(private http: Http, private alertService: AlertService) {
+    super();
+  }
 
-    newCheck(checkThree: ChecklistThree): void {
-        const checklistThree = this.listAllCheck();
-        checkThree.id = new Date().getTime();
-        checklistThree.push(checkThree);
-        localStorage['checklistThree'] = JSON.stringify(checklistThree);
-    }
+  // checklist three services
+  listAllCheck(): ChecklistThree[] {
+    const checklistThree = localStorage['checklistThree'];
+    return checklistThree ? JSON.parse(checklistThree) : [];
+  }
 
-    // checklist 2 services
-    getFormsMenu(): Promise<CommentBinaryForm[]> {
-        return this.http.get(this.formMenuUrl)
-            .toPromise()
-            .then(response => response.json().data as CommentBinaryForm[]
-        );
-    }
+  newCheck(checkThree: ChecklistThree): void {
+    const checklistThree = this.listAllCheck();
+    checkThree.id = new Date().getTime();
+    checklistThree.push(checkThree);
+    localStorage['checklistThree'] = JSON.stringify(checklistThree);
+  }
 
-    getFormsThree(): Promise<SectionCommentaryTwo[]> {
-      return this.http.get(this.formMenuThree)
-          .toPromise()
-          .then(response => response.json().data as SectionCommentaryTwo[]
-      );
-    }
+  // checklist 2 services
+  getFormsMenu(): Promise<CommentBinaryForm[]> {
+    return this.http
+      .get(this.formMenuUrl)
+      .toPromise()
+      .then(response => response.json().data as CommentBinaryForm[]);
+  }
+
+  getFormsThree(): Promise<SectionCommentaryTwo[]> {
+    return this.http
+      .get(this.formMenuThree)
+      .toPromise()
+      .then(response => response.json().data as SectionCommentaryTwo[]);
+  }
 }
-
