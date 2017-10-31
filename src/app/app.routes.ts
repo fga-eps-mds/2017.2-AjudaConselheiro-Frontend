@@ -35,5 +35,5 @@ export const ROUTES: Routes = [
   { path: 'conselho/cadastrar', component: CreateCouncilGroupComponent },
   { path: 'conselho/buscar', component: SearchCouncilGroupComponent},
   { path: 'side', component: SidebarComponent },
-  { path: 'checklist/todos', component: ChecklistListComponent },
+  { path: 'checklist/mostrar/:id', component: ChecklistListComponent },
 ];
