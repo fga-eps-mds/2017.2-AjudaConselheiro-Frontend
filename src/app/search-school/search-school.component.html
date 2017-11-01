@@ -41,8 +41,8 @@
     <div class="container select-style">
       <select [(ngModel)]="school.location">
         <option value="" selected disabled>Escolha uma Região</option>
-        <option [ngValue]="1" selected >Urbana - 1</option>
-        <option [ngValue]="2" selected >Rural - 2</option>
+        <option [ngValue]="1" selected >Urbana</option>
+        <option [ngValue]="2" selected >Rural</option>
       </select>
     </div>
     <div class="text-center">
@@ -65,17 +65,19 @@
         </thead>
 
         <tbody>
-          <tr *ngFor="let school of schools; let i = index">
-            <th scope="row">{{i + 1}} </th>
-            <td>{{school.nome}}</td>
-            <td>{{school.cod}}</td>
-            <td>{{school.dependenciaAdministrativaTxt}}</td>
-            <td>{{school.cidade}}</td>
-            <td>{{school.estado}}</td>
-            <td>
-              <button type="button" class="btn btn-light-blue rounded p-1" (click)="getChosenSchool(school);schoolCheck(school)"><i class="fa fa-plus" aria-hidden="true"></i></button>
-            </td>
-          </tr>
+            <ng-container *ngFor="let school of schools; let i = index">
+              <tr *ngIf="school.dependenciaAdministrativaTxt !== 'Privada'">
+                <th scope="row">{{i + 1}} </th>
+                <td>{{school.nome}}</td>
+                <td>{{school.cod}}</td>
+                <td>{{school.dependenciaAdministrativaTxt}}</td>
+                <td>{{school.cidade}}</td>
+                <td>{{school.estado}}</td>
+                <td>
+                  <button type="button" class="btn btn-light-blue rounded p-1" (click)="getChosenSchool(school);schoolCheck()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                </td>
+              </tr>
+            </ng-container>
         </tbody>
       </table>
     </div>

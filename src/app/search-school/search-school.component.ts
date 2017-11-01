@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { AlertService, SchoolService } from '../services/index';
 import { SearchSchool } from '../models/search-school.model';
@@ -110,18 +110,13 @@ export class SearchSchoolComponent implements OnInit {
 
   getChosenSchool(school: string) {
     this.schoolService.getSchool(school);
+    console.log(school);
   }
 
-  schoolCheck(school: string) {
-    // this.schoolService.setSchool(this.school.name);
-    // this.schoolService.setSchool(this.school.code);
-    // this.schoolService.setSchool(this.school.state);
-    // this.schoolService.setSchool(this.school.city);
-    // this.schoolService.setSchool(this.school.situation);
-    // console.log(this.getSchoolData);
+  schoolCheck() {
     this.schoolService.setSchool(this.schoolData);
-    console.log(this.schoolData);
   }
+
   selectLocation(location) {
     if (location === 1) {
       this.selectOption = 1;
