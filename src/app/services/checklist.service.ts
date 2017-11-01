@@ -1,10 +1,9 @@
-import { SectionCommentaryTwo } from './../models/checklist.model';
+import { SectionCommentaryTwo, SectionCommentary } from './../models/checklist/checklist.model';
 import { Injectable } from '@angular/core';
 import { BinaryForm } from '../models/index';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { CommentBinaryForm, CommentForm, FormsMenu, FormMenuTwo, ChecklistThree} from '../models/index';
-import { SectionCommentary } from '../models/checklist.model';
 
 @Injectable()
 export class ChecklistService {

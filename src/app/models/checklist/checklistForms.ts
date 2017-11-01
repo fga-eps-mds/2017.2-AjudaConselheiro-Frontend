@@ -1,5 +1,5 @@
 import { SectionCommentary, SectionCommentaryTwo } from './checklist.model';
-import { CommentForm, CommentBinaryForm, BinaryForm } from './index';
+import { CommentForm, CommentBinaryForm, BinaryForm } from '../index';
 
 
 
