@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-
 import { AlertService } from '../alert/alert.service';
 import { ServicesUtilitiesService } from '../services-utilities.service';
 
@@ -29,7 +27,7 @@ export class AuthenticationService extends ServicesUtilitiesService {
     this.options = new RequestOptions({ headers: this.headers });
 
     return this.http.get(this.url, this.options)
-      .map(res => this.getToken(res))
+      .map(res => [this.getToken(res), res])
       .catch(this.handleError);
   }
 
@@ -37,6 +35,7 @@ export class AuthenticationService extends ServicesUtilitiesService {
     this.token = null;
     localStorage.removeItem('token');
     localStorage.removeItem('currentUser');
+    localStorage.removeItem('userData');
   }
 
   hasToken(): boolean {
