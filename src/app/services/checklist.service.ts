@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { BinaryForm } from '../models/index';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-import { CommentBinaryForm, CommentForm, FormsMenu, FormMenuTwo, ChecklistThree} from '../models/index';
+import { CommentBinaryForm, CommentForm, FormMenuComment, FormMenuCommentBinary, FormMenuBinary, ChecklistThree} from '../models/index';
 
 @Injectable()
 export class ChecklistService {
