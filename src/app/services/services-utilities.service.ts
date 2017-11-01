@@ -10,7 +10,7 @@ export abstract class ServicesUtilitiesService {
 
   constructor() { }
 
-  protected handleError(error: any) {
+  handleError(error: any) {
     const errMsg = (error.message) ? error.message :
       error.status ? `${error.status} - ${error.statusText}` : 'Server error';
     console.error(errMsg);

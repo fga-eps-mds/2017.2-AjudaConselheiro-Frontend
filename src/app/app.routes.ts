@@ -1,3 +1,4 @@
+import { SidebarComponent } from './layouts/sidebar/sidebar.component';
 import { EditComponent } from './scheduling/edit/edit.component';
 import { CreateSchedulingComponent } from './scheduling/create/create-scheduling.component';
 import { Routes } from '@angular/router';
@@ -12,6 +13,7 @@ import { CreateUserComponent } from './user';
 import { UserEditComponent } from './user';
 import { LoginComponent } from './user';
 import { CreateCouncilGroupComponent } from './council-group/create/create-council-group.component';
+import { SearchCouncilGroupComponent } from './council-group/search/search-council-group.component';
 
 export const ROUTES: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -30,4 +32,6 @@ export const ROUTES: Routes = [
   { path: 'registrar', component: CreateUserComponent },
   { path: 'usuarios/editar/:id', component: UserEditComponent },
   { path: 'conselho/cadastrar', component: CreateCouncilGroupComponent },
+  { path: 'conselho/buscar', component: SearchCouncilGroupComponent},
+  { path: 'side', component: SidebarComponent },
 ];
