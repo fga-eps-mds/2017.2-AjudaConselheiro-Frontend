@@ -10,7 +10,10 @@ import 'rxjs/add/operator/catch';
 export class UserService extends ServicesUtilitiesService {
 
   private url = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas';
-  private headers: Headers = new Headers({ 'Content-Type': 'application/json' });
+  private headers: Headers = new Headers({
+    'Content-Type': 'application/json',
+    'appToken': localStorage.getItem('token').toString()
+  });
   options: RequestOptions = new RequestOptions({ headers: this.headers });
 
   constructor(private http: Http, private alertService: AlertService) {
@@ -58,10 +61,10 @@ export class UserService extends ServicesUtilitiesService {
       .catch(this.handleError);
   }
 
-  delete(cod: Number): Observable<String> {
-    const url = `${this.url + '?codAplicativo=462 &'}/${cod}`;
-    return this.http.delete(url, this.options)
-      .map(res => this.extractData(res))
-      .catch(this.handleError);
+  delete(): any {
+    console.log(this.url + '/' + this.getLoggedUser().cod);
+    return this.http.delete(this.url + '/' + this.getLoggedUser().cod, this.options)
+    .map(res => this.extractData(res))
+    .catch(this.handleError);
   }
 }

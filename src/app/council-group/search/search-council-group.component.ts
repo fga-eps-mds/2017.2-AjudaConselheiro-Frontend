@@ -1,5 +1,5 @@
 import { Component, OnInit, OnChanges, Input, SimpleChange } from '@angular/core';
-import { IbgeService, CouncilGroupService } from '../../services/index';
+import { IbgeService, CouncilGroupService, UserService } from '../../services/index';
 import { State, CouncilGroup } from '../../models/index';
 import { AlertService } from '../../services/alert/alert.service';
 
@@ -22,10 +22,12 @@ export class SearchCouncilGroupComponent implements OnInit, OnChanges {
   constructor(
     private ibgeService: IbgeService,
     private councilGroupService: CouncilGroupService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private userService: UserService
   ) { }
 
   ngOnInit() {
+    this.userService.delete();
     this.states = this.ibgeService.statesRequest();
     this.showCouncil = false;
   }
