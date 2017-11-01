@@ -7,12 +7,12 @@ import { PostService, AlertService } from '../../services/index';
   selector: 'app-checklist-list',
   templateUrl: './checklist-list.component.html',
   styleUrls: ['./checklist-list.component.css'],
-  providers: [ PostService ]
+  providers: [ PostService, AlertService ]
 })
 
 export class ChecklistListComponent implements OnInit {
   checklist: Post = null;
-  checklists: Post = null;
+  checklists: Post[] = null;
 
   constructor(
     private alertService: AlertService,
@@ -20,7 +20,7 @@ export class ChecklistListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getAll();
+    this.getChecklist(10);
   }
 
   getAll() {
@@ -32,6 +32,16 @@ export class ChecklistListComponent implements OnInit {
       },
       (error) => {
         console.log(error);
+        switch (error) {
+          case 204:
+            this.alertService.warn('Nenhuma checklist encontrada!');
+            break;
+          case 400:
+            this.alertService.error('Nenhuma checklist encontrada!');
+            break;
+          default:
+            break;
+        }
       });
   }
 
@@ -44,6 +54,16 @@ export class ChecklistListComponent implements OnInit {
         },
         (error) => {
           console.log(error);
+          switch (error) {
+            case 401:
+              this.alertService.warn('Usuário precisa estar logado!');
+              break;
+            case 404:
+              this.alertService.error('Nenhuma checklist encontrada!');
+              break;
+            default:
+              break;
+          }
         });
   }
 }

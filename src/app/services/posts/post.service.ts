@@ -34,7 +34,8 @@ export class PostService extends ServicesUtilitiesService {
     super();
   }
 
-  getPosts(): Observable<Post> {
+  // Get all posts
+  getPosts() {
     const thereIsToken = localStorage.getItem('token');
 
     if (thereIsToken) {
@@ -47,6 +48,7 @@ export class PostService extends ServicesUtilitiesService {
     }
   }
 
+  // Get single post with post id
   getPost(cod: number): Observable<Post> {
     const appToken = localStorage.getItem('token');
 
