@@ -2,15 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { TextMaskModule } from 'angular2-text-mask';
-
 import { User } from '../../models/index';
-import { UserService, AuthenticationService, AlertService } from '../../services/index';
+import { AuthenticationService, AlertService } from '../../services/index';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers: [ UserService, AuthenticationService ],
+  providers: [ AuthenticationService],
   moduleId: module.id
 })
 
@@ -18,7 +17,7 @@ export class LoginComponent implements OnInit {
 
   user: User;
   token: any = null;
-  emailRegex = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
+  emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
   email: string;
   password: string;
 
@@ -33,25 +32,27 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    if (!this.email.match(this.emailRegex)) {
-      this.alertService.warn('Email invalido');
-    }
-    if (this.email) {
+    const validEmail = this.emailRegex.test(this.email);
+    console.log(validEmail);
+
+    if (validEmail) {
       this.authenticationService.login(this.email, this.password)
-        .subscribe(
+      .subscribe(
         result => {
-          this.token = result;
-          localStorage.setItem('token', this.token);
+          localStorage.setItem('token', result[0]);
+          localStorage.setItem('userData', result[1]._body);
           this.alertService.success('Login efetuado sucesso!');
         },
         error => {
           console.log('error: ', error.status);
           if (error.status === 401) {
-            this.alertService.warn('Erro: email e/ou senha errados!');
+            this.alertService.warn('Aviso: email e/ou senha errados!');
           } else if (error.status > 401) {
             this.alertService.error('Erro: falha na comunicação!');
           }
       });
+    } else {
+      this.alertService.warn('Email invalido');
     }
   }
 }
