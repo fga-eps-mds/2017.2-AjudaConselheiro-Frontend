@@ -1,9 +1,11 @@
-import { Http, HttpModule, ConnectionBackend,
+import {
+  Http, HttpModule, ConnectionBackend,
   ResponseOptions, XHRBackend, Response,
-  BaseRequestOptions, RequestOptions, RequestMethod} from '@angular/http';
+  BaseRequestOptions, RequestOptions, RequestMethod
+} from '@angular/http';
 import { Headers } from '@angular/http';
 
-import { TestBed, inject, async} from '@angular/core/testing';
+import { TestBed, inject, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 
@@ -14,6 +16,13 @@ import { Post } from '../../models/index';
 
 
 describe('PostService', () => {
+  const fakeUser = {
+    nomeUsuario: 'Ziegler',
+    nomeCompleto: 'Ziegler Top',
+    cod: 234,
+    email: 'abc@abc.com'
+  };
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -69,15 +78,9 @@ describe('PostService', () => {
   // For getPosts()
   it('should return a valid user if data are valid',
     inject([AuthenticationService, MockBackend], (authService, mockBackend) => {
-      const fakeUser = {
-        nomeUsuario: 'Ziegler',
-        nomeCompleto: 'Ziegler Top',
-        cod: 234,
-        email: 'abc@abc.com'
-      };
 
       const fakeToken = 'FakeToken';
-      const fakeHeader = new Headers({appToken: fakeToken});
+      const fakeHeader = new Headers({ appToken: fakeToken });
       const fakeData = JSON.stringify(fakeUser);
 
       const validFakeEmail = 'abc@abc.com';
@@ -85,7 +88,7 @@ describe('PostService', () => {
 
       // Mocking HTTP connection for this test
       mockBackend.connections.subscribe((connection: MockConnection) => {
-        const options = new ResponseOptions({ body: fakeData, headers: fakeHeader});
+        const options = new ResponseOptions({ body: fakeData, headers: fakeHeader });
 
         connection.mockRespond(new Response(options));
       });
@@ -101,5 +104,27 @@ describe('PostService', () => {
         expect(userResponse.cod).toEqual(fakeUser.cod);
         expect(userResponse.email).toEqual(validFakeEmail);
       });
+    }));
+
+
+  it('should do logout() if there is userData', inject([AuthenticationService], (service: AuthenticationService) => {
+
+    // Mocking LocalStorage items
+    localStorage.setItem('token', 'appToken');
+    localStorage.setItem('userData', JSON.stringify(fakeUser));
+    localStorage.setItem('isLoggedIn', 'true');
+
+    // Making request for logout
+    service.logout();
+
+    const token = localStorage.getItem('token');
+    const userData = localStorage.getItem('userData');
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+
+    expect(token).toBeNull();
+    expect(userData).toBeNull();
+    expect(isLoggedIn).toEqual('false');
+
   }));
+
 });
