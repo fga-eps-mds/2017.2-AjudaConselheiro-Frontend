@@ -62,6 +62,23 @@ export class PostService extends ServicesUtilitiesService {
       return new Observable<Post>();
     }
 
+    updatePost(data: any): Observable<Post> {
+      const codUser = this.getUserCod();
+
+      if (codUser) {
+        const body = this.formatPostBody(data, codUser, this.testChecklist);
+
+        return this.http.put(this.postURL, body, this.options)
+          .map(this.extractData)
+          .catch(this.handleError);
+      } else {
+        console.error('You cannot update a post without login first!');
+        this.alertService.warn('Você precisa estar logado');
+      }
+
+      return new Observable<Post>();
+    }
+
     // The function below just take any JS Object and transforms it to a valid JSON
     private formatPostBody(jsonData: any, codUser: number, codPost: number) {
       const validBody = {
@@ -94,4 +111,3 @@ export class PostService extends ServicesUtilitiesService {
       return null;
     }
 }
-
