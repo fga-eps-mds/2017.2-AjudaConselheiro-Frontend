@@ -20,7 +20,7 @@ export class ChecklistListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getChecklist(10);
+    this.getAll();
   }
 
   getAll() {
