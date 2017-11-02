@@ -32,7 +32,6 @@ export class ChecklistUpdateComponent extends ChecklistoneComponent {
 
   ngOnInit() {
     console.log('entrou!!');
-    this.getPosts();
   }
 
   onSubmit() {

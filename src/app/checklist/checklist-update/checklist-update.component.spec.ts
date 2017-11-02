@@ -33,4 +33,9 @@ describe('ChecklistoneComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should have back button', () => {
+    const backButton = compiled.querySelector('.backButton');
+    expect(backButton).toBeTruthy();
+  });
+
 });
