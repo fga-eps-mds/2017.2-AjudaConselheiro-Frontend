@@ -4,8 +4,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { CheckOneTopicHeaders, CheckOneCommentaries, CheckOneFirstTopic, CheckOneEighthTopic, CheckOneFifthTopic,
 CheckOneSecondTopic, CheckOneSixthTopic, CheckOneSeventhTopic, CheckOneFourthTopic, SectionCommentary,
-CheckOneThirdTopic, IteratorArray, FormsMenu, FormMenuTwo, CommentBinaryForm, CommentForm,
-BinaryForm, FormBinary, ConfirmComentary, Post} from '../../models/index';
+CheckOneThirdTopic, IteratorArray, CommentBinaryForm, CommentForm, BinaryForm, ConfirmComentary, Post} from '../../models/index';
 import { ChecklistService, AlertService, SchoolService } from '../../services/index';
 import { PostService } from '../../services/posts/post.service';
 
