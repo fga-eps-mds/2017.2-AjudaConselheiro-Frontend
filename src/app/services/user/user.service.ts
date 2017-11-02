@@ -44,12 +44,20 @@ export class UserService extends ServicesUtilitiesService {
 
   getLoggedUser() {
     const localUserValue = localStorage.getItem('userData');
-
     if (localUserValue) {
       return JSON.parse(localUserValue);
     } else {
       console.error('No logged user found!');
     }
+  }
+
+  getLoggedUserCod() {
+    let userValues: Array<String>;
+    const localUser = localStorage.getItem('userData');
+    userValues = localUser.split(',');
+    let codUser = userValues[2];
+    codUser = codUser.substring(6, codUser.length);
+    return codUser;
   }
 
   updateUser(user: User) {
