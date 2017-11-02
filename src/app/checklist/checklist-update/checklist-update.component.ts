@@ -32,7 +32,7 @@ export class ChecklistUpdateComponent extends ChecklistoneComponent {
 
   ngOnInit() {
     console.log('entrou!!');
-    this.postService.getPosts();
+    this.getPosts();
   }
 
   onSubmit() {
@@ -62,6 +62,12 @@ export class ChecklistUpdateComponent extends ChecklistoneComponent {
       });
 
       this.postService.updatePost(jsonChecklistUpdate).subscribe(
+        result => console.log(result)
+      );
+    }
+
+    getPosts() {
+      this.postService.getPosts().subscribe(
         result => console.log(result)
       );
     }
