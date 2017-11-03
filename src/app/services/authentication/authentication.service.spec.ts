@@ -15,13 +15,19 @@ import { AlertService, AuthenticationService } from '../../services/index';
 import { Post } from '../../models/index';
 
 
-describe('PostService', () => {
+describe('AuthenticationService', () => {
+  // Defining some fake data to be used in the unit tests
   const fakeUser = {
     nomeUsuario: 'Ziegler',
     nomeCompleto: 'Ziegler Top',
     cod: 234,
     email: 'abc@abc.com'
   };
+
+  const validFakeEmail = 'abc@abc.com';
+  const validFakePassword = 'superS4f3passw0rd';
+  const fakeToken = 'FakeToken';
+  const fakeNullToken = null;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -75,16 +81,11 @@ describe('PostService', () => {
     expect(service).toBeTruthy();
   }));
 
-  // For getPosts()
-  it('should return a valid user if data are valid',
+  // For login()
+  it('login () should return a valid user if data are valid',
     inject([AuthenticationService, MockBackend], (authService, mockBackend) => {
-
-      const fakeToken = 'FakeToken';
       const fakeHeader = new Headers({ appToken: fakeToken });
       const fakeData = JSON.stringify(fakeUser);
-
-      const validFakeEmail = 'abc@abc.com';
-      const validFakePassword = 'superS4f3passw0rd';
 
       // Mocking HTTP connection for this test
       mockBackend.connections.subscribe((connection: MockConnection) => {
@@ -107,6 +108,7 @@ describe('PostService', () => {
     }));
 
 
+  // For logout()
   it('should do logout() if there is userData', inject([AuthenticationService], (service: AuthenticationService) => {
 
     // Mocking LocalStorage items
@@ -125,6 +127,60 @@ describe('PostService', () => {
     expect(userData).toBeNull();
     expect(isLoggedIn).toEqual('false');
 
+  }));
+
+  // For login()
+  it('login() should return a valid user if data are valid',
+  inject([AuthenticationService, MockBackend], (authService, mockBackend) => {
+    const fakeHeader = new Headers({ appToken: fakeToken });
+    const fakeData = JSON.stringify(fakeUser);
+
+    // Mocking HTTP connection for this test
+    mockBackend.connections.subscribe((connection: MockConnection) => {
+      const options = new ResponseOptions({ body: fakeData, headers: fakeHeader });
+
+      connection.mockRespond(new Response(options));
+    });
+
+    // Making the request
+    authService.login(validFakeEmail, validFakePassword).subscribe((result) => {
+      const responseToken = result[0];
+      const responseBody = result[1];
+
+      const userResponse = JSON.parse(responseBody._body);
+
+      expect(responseToken).toEqual(fakeToken);
+      expect(userResponse.cod).toEqual(fakeUser.cod);
+      expect(userResponse.email).toEqual(validFakeEmail);
+    });
+  }));
+
+  it('getToken() should return { } if there is not a response token',
+  inject([AuthenticationService, MockBackend], (authService, mockBackend) => {
+    const fakeHeader = new Headers({ appToken: fakeNullToken });
+    const fakeData = JSON.stringify(fakeUser);
+
+    // Mocking HTTP connection for this test
+    mockBackend.connections.subscribe((connection: MockConnection) => {
+      const options = new ResponseOptions({ body: fakeData, headers: fakeHeader });
+
+      connection.mockRespond(new Response(options));
+    });
+
+    // Making the request
+    authService.login(validFakeEmail, validFakePassword).subscribe((result) => {
+      const responseToken = result[0];
+      const responseBody = result[1];
+
+      const userResponse = JSON.parse(responseBody._body);
+
+      // { } is the response in case getToken() does not find a token in the
+      // HTTP response
+      expect(responseToken).toEqual({ });
+
+      expect(userResponse.cod).toEqual(fakeUser.cod);
+      expect(userResponse.email).toEqual(validFakeEmail);
+    });
   }));
 
 });
