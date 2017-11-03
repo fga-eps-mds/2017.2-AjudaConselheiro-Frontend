@@ -10,7 +10,7 @@ import { AlertService } from '../../services/alert/alert.service';
   providers: [IbgeService]
 })
 
-export class SearchCouncilGroupComponent implements OnInit, OnChanges {
+export class CouncilGroupSearchComponent implements OnInit, OnChanges {
   @Input() state: any;
   @Input() city: string;
   stateSigla: string;

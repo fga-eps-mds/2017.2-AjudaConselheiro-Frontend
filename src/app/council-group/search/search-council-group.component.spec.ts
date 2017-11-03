@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { SearchCouncilGroupComponent } from './search-council-group.component';
+import { CouncilGroupSearchComponent } from './search-council-group.component';
 import { HttpModule, Headers, RequestOptions, Response, URLSearchParams } from '@angular/http';
 import { AlertService } from '../../services/alert/alert.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { CouncilGroupCreateService } from '../../services/index';
 import { State, CouncilGroupCreate } from '../../models/index';
 
-describe('SearchCouncilGroupComponent', () => {
-  let component: SearchCouncilGroupComponent;
-  let fixture: ComponentFixture<SearchCouncilGroupComponent>;
+describe('CouncilGroupSearchComponent', () => {
+  let component: CouncilGroupSearchComponent;
+  let fixture: ComponentFixture<CouncilGroupSearchComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        SearchCouncilGroupComponent
+        CouncilGroupSearchComponent
       ],
       imports: [
         FormsModule,
@@ -29,7 +29,7 @@ describe('SearchCouncilGroupComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SearchCouncilGroupComponent);
+    fixture = TestBed.createComponent(CouncilGroupSearchComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
