@@ -23,18 +23,38 @@ export class ProfileComponent implements OnInit {
   ) { }
 
   ngOnInit() {   
+    this.data = null;
   }
 
-  savePosts() {
-    this.profileService.savePost(this.data).subscribe(
+  savePosts(strCPF: any) {
+
+    if(this.testCPF(strCPF) === true) {this.profileService.savePost(this.data).subscribe(
       result => console.log(result)
-    );
+    );}
+    if (strCPF === null) {
+      this.alertService.warn('Digite seu CPF');
+    } else if (this.testCPF(strCPF) === false) {
+      this.alertService.error('CPF inválido/Digite um CPF válido');
+    }
+else {
+this.alertService.success('CPF válido');
+}
+
   }
   testCPF(strCPF: string) {
     var Soma;
     var Resto;
     Soma = 0;
   if (strCPF == "00000000000") return false;
+  if (strCPF == "11111111111") return false;
+  if (strCPF == "22222222222") return false;
+  if (strCPF == "33333333333") return false;
+  if (strCPF == "44444444444") return false;
+  if (strCPF == "55555555555") return false;
+  if (strCPF == "66666666666") return false;
+  if (strCPF == "77777777777") return false;
+  if (strCPF == "88888888888") return false;
+  if (strCPF == "99999999999") return false;
   if (strCPF == null) return false;
     
 	for (let i=1; i<=9; i++) Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (11 - i);
