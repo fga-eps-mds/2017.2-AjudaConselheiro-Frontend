@@ -14,7 +14,7 @@ import { Component, OnInit, ViewChild, Input } from '@angular/core';
 export class ProfileComponent implements OnInit {
 
   @ViewChild('formUser') formUser: NgForm;
-  data: any;
+  data: string;
   constructor(
     private UserService: UserService,
     private router: Router,
@@ -22,7 +22,7 @@ export class ProfileComponent implements OnInit {
     private profileService: ProfileService
   ) { }
 
-  ngOnInit() {    
+  ngOnInit() {   
   }
 
   savePosts() {
@@ -30,4 +30,25 @@ export class ProfileComponent implements OnInit {
       result => console.log(result)
     );
   }
+  testCPF(strCPF: string) {
+    var Soma;
+    var Resto;
+    Soma = 0;
+  if (strCPF == "00000000000") return false;
+  if (strCPF == null) return false;
+    
+	for (let i=1; i<=9; i++) Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (11 - i);
+	Resto = (Soma * 10) % 11;
+	
+    if ((Resto == 10) || (Resto == 11))  Resto = 0;
+    if (Resto != parseInt(strCPF.substring(9, 10)) ) return false;
+	
+	Soma = 0;
+    for (let i = 1; i <= 10; i++) Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (12 - i);
+    Resto = (Soma * 10) % 11;
+	
+    if ((Resto == 10) || (Resto == 11))  Resto = 0;
+    if (Resto != parseInt(strCPF.substring(10, 11) ) ) return false;
+    return true;
+}
 }
