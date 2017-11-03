@@ -29,7 +29,6 @@ export class SearchSchoolComponent implements OnInit {
     this.cities = new Array<Object>();
     this.schools = new Array<Object>();
     this.school = new SearchSchool();
-    this.schoolService.schoolData$.subscribe(schoolData => this.schoolData = schoolData);
   }
 
   searchSchool(): void {
@@ -111,10 +110,6 @@ export class SearchSchoolComponent implements OnInit {
   getChosenSchool(school: string) {
     this.schoolService.getSchool(school);
     console.log(school);
-  }
-
-  schoolCheck() {
-    this.schoolService.setSchool(this.schoolData);
   }
 
   selectLocation(location) {
