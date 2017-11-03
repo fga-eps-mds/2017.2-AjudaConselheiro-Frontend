@@ -5,10 +5,11 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-edit',
-  templateUrl: './edit.component.html'
+  moduleId: module.id,
+  selector: 'app-scheduling-edit',
+  templateUrl: './scheduling-edit.component.html'
 })
-export class EditComponent implements OnInit {
+export class SchedulingEditComponent implements OnInit {
 
 
   @ViewChild('formScheduling') formScheduling: NgForm;
