@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { BinaryForm } from '../models/index';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-import { CommentBinaryForm, CommentForm, FormsMenu, FormMenuTwo, ChecklistThree} from '../models/index';
+import { CommentBinaryForm, CommentForm, FormsMenu, FormMenuTwo, ChecklistCafeteria} from '../models/index';
 import { SectionCommentary } from '../models/checklist.model';
 
 @Injectable()
@@ -16,16 +16,16 @@ export class ChecklistService {
     private formOneAnswerUrl = 'app/checklist';
 
     // checklist three services
-    listAllCheck(): ChecklistThree[] {
-        const checklistThree = localStorage['checklistThree'];
-        return checklistThree ? JSON.parse(checklistThree) : [];
+    listAllCheck(): ChecklistCafeteria[] {
+        const ChecklistCafeteria = localStorage['ChecklistCafeteria'];
+        return ChecklistCafeteria ? JSON.parse(ChecklistCafeteria) : [];
     }
 
-    newCheck(checkThree: ChecklistThree): void {
-        const checklistThree = this.listAllCheck();
+    newCheck(checkThree: ChecklistCafeteria): void {
+        const ChecklistCafeteria = this.listAllCheck();
         checkThree.id = new Date().getTime();
-        checklistThree.push(checkThree);
-        localStorage['checklistThree'] = JSON.stringify(checklistThree);
+        ChecklistCafeteria.push(checkThree);
+        localStorage['ChecklistCafeteria'] = JSON.stringify(ChecklistCafeteria);
     }
 
     // checklist 2 services

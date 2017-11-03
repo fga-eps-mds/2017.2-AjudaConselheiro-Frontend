@@ -11,12 +11,12 @@ import { PostService } from '../../services/posts/post.service';
 import { Post } from '../../models/index';
 
 @Component({
-  selector: 'app-checklistone',
-  templateUrl: './checklistone.component.html',
-  styleUrls: ['./checklistone.component.css'],
+  selector: 'app-checklist-production',
+  templateUrl: './checklist-production.component.html',
+  styleUrls: ['./checklist-production.component.css'],
   providers: [ChecklistService, PostService, AlertService],
 })
-export class ChecklistoneComponent implements OnInit {
+export class ChecklistProductionComponent implements OnInit {
 
     iteratorArray: Array<Object>= IteratorArray;
     topicHeaders: Array<string> = CheckOneTopicHeaders;

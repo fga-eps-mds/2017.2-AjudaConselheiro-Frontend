@@ -3,17 +3,17 @@ import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpModule } from '@angular/http';
 
-import { ChecklistoneComponent } from './checklistone.component';
+import { ChecklistProductionComponent } from './checklist-production.component';
 import { UserService, AlertService } from '../../services/index';
 
-describe('ChecklistoneComponent', () => {
-  let component: ChecklistoneComponent;
-  let fixture: ComponentFixture<ChecklistoneComponent>;
+describe('ChecklistProductionComponent', () => {
+  let component: ChecklistProductionComponent;
+  let fixture: ComponentFixture<ChecklistProductionComponent>;
   let compiled: any;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ChecklistoneComponent ],
+      declarations: [ ChecklistProductionComponent ],
       imports: [ FormsModule, RouterTestingModule, HttpModule ],
       providers: [
         UserService, AlertService
@@ -23,7 +23,7 @@ describe('ChecklistoneComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ChecklistoneComponent);
+    fixture = TestBed.createComponent(ChecklistProductionComponent);
     component = fixture.componentInstance;
     compiled = fixture.debugElement.nativeElement;
     fixture.detectChanges();
