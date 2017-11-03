@@ -3,19 +3,19 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { HttpModule, Http, ConnectionBackend, ResponseOptions, XHRBackend, Response, } from '@angular/http';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 
-import { CouncilGroupService } from './council-group.service';
+import { CouncilGroupCreateService } from './council-group.service';
 import { AlertService } from '../alert/alert.service';
-import { CouncilGroup } from '../../models/index';
+import { CouncilGroupCreate } from '../../models/index';
 
 
-describe('CouncilGroupService', () => {
-  let councilGroup: CouncilGroup;
+describe('CouncilGroupCreateService', () => {
+  let councilGroupCreate: CouncilGroupCreate;
 
 
   beforeEach(() => {
-    councilGroup = new CouncilGroup;
+    councilGroupCreate = new CouncilGroupCreate;
     TestBed.configureTestingModule({
-      providers: [CouncilGroupService, AlertService,{ provide: XHRBackend, useClass: MockBackend },],
+      providers: [CouncilGroupCreateService, AlertService, { provide: XHRBackend, useClass: MockBackend }, ],
       imports: [
         HttpModule,
         RouterTestingModule
@@ -23,19 +23,19 @@ describe('CouncilGroupService', () => {
     });
   });
 
-  it('should be created', inject([CouncilGroupService], (service: CouncilGroupService) => {
+  it('should be created', inject([CouncilGroupCreateService], (service: CouncilGroupCreateService) => {
     expect(service).toBeTruthy();
   }));
 
 
-  it('Test array info', inject([CouncilGroupService], (service: CouncilGroupService) => {
-        councilGroup.municipio = 'nada';
-        councilGroup.estado = 'otonda';
-        const temp = service.getFormattedData(councilGroup);
+  it('Test array info', inject([CouncilGroupCreateService], (service: CouncilGroupCreateService) => {
+        councilGroupCreate.municipio = 'nada';
+        councilGroupCreate.estado = 'otonda';
+        const temp = service.getFormattedData(councilGroupCreate);
         const teste = {
           'codAplicativo': 462,
           'codGrupoPai': 1,
-          'codObjeto': councilGroup.codObjeto,
+          'codObjeto': councilGroupCreate.codObjeto,
           'codTipoObjeto': 1,
           'descricao': 'CAE-nada-otonda'
         };

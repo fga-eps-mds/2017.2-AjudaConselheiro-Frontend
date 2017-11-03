@@ -14,7 +14,7 @@ import { CarouselComponent } from './layouts/carousel/carousel.component';
 import { TextMaskModule } from 'angular2-text-mask';
 import { ROUTES } from './app.routes';
 import { BaseRequestOptions } from '@angular/http';
-import { CouncilGroupModule } from './council-group/council-group.module';
+import { CouncilGroupCreateModule } from './council-group/council-group.module';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { AlertComponent } from './layouts/alert/alert.component';
@@ -48,7 +48,7 @@ import { SidebarComponent } from './layouts/sidebar/sidebar.component';
     ChecklistModule,
     SchedulingModule,
     UserModule,
-    CouncilGroupModule,
+    CouncilGroupCreateModule,
     TextMaskModule,
     ReactiveFormsModule,
     TextMaskModule,

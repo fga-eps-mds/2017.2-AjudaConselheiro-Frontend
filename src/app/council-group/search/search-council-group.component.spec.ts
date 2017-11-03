@@ -4,8 +4,8 @@ import { SearchCouncilGroupComponent } from './search-council-group.component';
 import { HttpModule, Headers, RequestOptions, Response, URLSearchParams } from '@angular/http';
 import { AlertService } from '../../services/alert/alert.service';
 import { RouterTestingModule } from '@angular/router/testing';
-import { CouncilGroupService } from '../../services/index';
-import { State, CouncilGroup } from '../../models/index';
+import { CouncilGroupCreateService } from '../../services/index';
+import { State, CouncilGroupCreate } from '../../models/index';
 
 describe('SearchCouncilGroupComponent', () => {
   let component: SearchCouncilGroupComponent;
@@ -22,7 +22,7 @@ describe('SearchCouncilGroupComponent', () => {
         RouterTestingModule ],
       providers: [
         AlertService,
-        CouncilGroupService
+        CouncilGroupCreateService
       ]
     })
     .compileComponents();
@@ -42,7 +42,7 @@ describe('SearchCouncilGroupComponent', () => {
     const expected = 'CAE-DF-Brasília';
 
     component.state = '1';
-    component.city = 'Brasília'
+    component.city = 'Brasília';
     component.states = [{ id: '1', sigla: 'DF'}, {id: '2', sigla: 'GO'}];
 
     expect(component.getCAEName()).toEqual(expected);
@@ -54,7 +54,7 @@ describe('SearchCouncilGroupComponent', () => {
     const description = 'CAE-DF-Brasília';
     const object = { descricao: 'CAE-DF-Brasília'};
 
-    component.council = new CouncilGroup();
+    component.council = new CouncilGroupCreate();
     component.dismemberCouncilAttributes(object);
 
     expect(component.council.descricao).toEqual(description);

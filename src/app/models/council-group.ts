@@ -1,4 +1,4 @@
-export class CouncilGroup {
+export class CouncilGroupCreate {
   municipio = '';
   estado = '';
   codAplicativo = 462;

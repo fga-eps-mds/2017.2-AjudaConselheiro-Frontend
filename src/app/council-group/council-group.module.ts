@@ -3,8 +3,8 @@ import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
-import { CreateCouncilGroupComponent } from '../council-group/create/create-council-group.component';
-import { CouncilGroupService } from '../services/index';
+import { CouncilGroupCreateComponent } from '../council-group/create/create-council-group.component';
+import { CouncilGroupCreateService } from '../services/index';
 
 @NgModule({
   imports: [
@@ -13,11 +13,11 @@ import { CouncilGroupService } from '../services/index';
     FormsModule,
   ],
   declarations: [
-    CreateCouncilGroupComponent
+    CouncilGroupCreateComponent
   ],
   providers: [
-    CouncilGroupService
+    CouncilGroupCreateService
   ]
 })
-export class CouncilGroupModule { }
+export class CouncilGroupCreateModule { }
 

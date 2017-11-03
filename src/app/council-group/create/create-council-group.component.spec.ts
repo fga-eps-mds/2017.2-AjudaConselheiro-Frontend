@@ -3,14 +3,14 @@ import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { CreateCouncilGroupComponent } from './create-council-group.component';
+import { CouncilGroupCreateComponent } from './create-council-group.component';
 import { AlertService } from '../../services/index';
 
-describe('CreateCouncilGroupComponent', () => {
+describe('CouncilGroupCreateComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [CreateCouncilGroupComponent],
+      declarations: [CouncilGroupCreateComponent],
       imports: [
         HttpModule,
         FormsModule,

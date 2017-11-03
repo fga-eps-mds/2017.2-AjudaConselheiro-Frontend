@@ -12,7 +12,7 @@ import { UserListComponent } from './user/list/user-list.component';
 import { UserCreateComponent } from './user/create/user-create.component';
 import { UserEditComponent } from './user/edit/user-edit.component';
 import { LoginComponent } from './user';
-import { CreateCouncilGroupComponent } from './council-group/create/create-council-group.component';
+import { CouncilGroupCreateComponent } from './council-group/create/create-council-group.component';
 import { SearchCouncilGroupComponent } from './council-group/search/search-council-group.component';
 
 export const ROUTES: Routes = [
@@ -31,7 +31,7 @@ export const ROUTES: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'registrar', component: UserCreateComponent },
   { path: 'usuarios/editar/:id', component: UserEditComponent },
-  { path: 'conselho/cadastrar', component: CreateCouncilGroupComponent },
+  { path: 'conselho/cadastrar', component: CouncilGroupCreateComponent },
   { path: 'conselho/buscar', component: SearchCouncilGroupComponent},
   { path: 'side', component: SidebarComponent },
 ];
