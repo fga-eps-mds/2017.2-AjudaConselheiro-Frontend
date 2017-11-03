@@ -1,6 +1,5 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import { LayoutsComponent } from './layouts/layouts.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarHomeComponent } from './layouts/navbar/navbar.component';
 import { ChecklistProductionComponent } from './checklist/checklist-production/checklist-production.component';
@@ -23,7 +22,6 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent,
-        LayoutsComponent,
         HomeComponent,
         NavbarHomeComponent,
         ChecklistProductionComponent,
