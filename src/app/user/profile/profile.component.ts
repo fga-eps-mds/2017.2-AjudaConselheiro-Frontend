@@ -3,7 +3,7 @@ import { AlertService } from './../../services/alert/alert.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { UserService } from './../../services/user/user.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 
 @Component({
   selector: 'app-profile',
@@ -15,7 +15,6 @@ export class ProfileComponent implements OnInit {
 
   @ViewChild('formUser') formUser: NgForm;
   data: any;
-
   constructor(
     private UserService: UserService,
     private router: Router,
@@ -23,7 +22,8 @@ export class ProfileComponent implements OnInit {
     private profileService: ProfileService
   ) { }
 
-  ngOnInit() {}
+  ngOnInit() {    
+  }
 
   savePosts() {
     this.profileService.savePost(this.data).subscribe(
