@@ -2,15 +2,15 @@ import { APP_BASE_HREF, Location } from '@angular/common';
 import { async, ComponentFixture, TestBed, fakeAsync, tick} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { ChecklistthreeComponent } from './checklistthree.component';
+import { ChecklistCafeteriaComponent } from './checklist-cafeteria.component';
 import { ChecklistService } from './../../services/index';
-import { ChecklistThree, SectionCommentaryTwo, FormMenuThree } from './../../models/index';
+import { ChecklistCafeteria, SectionCommentaryTwo, FormMenuThree } from './../../models/index';
 import { AppModule } from './../../app.module';
 
-describe('ChecklistthreeComponent', () => {
-  let component: ChecklistthreeComponent;
-  let fixture: ComponentFixture<ChecklistthreeComponent>;
-  let checklist: ChecklistThree;
+describe('ChecklistCafeteriaComponent', () => {
+  let component: ChecklistCafeteriaComponent;
+  let fixture: ComponentFixture<ChecklistCafeteriaComponent>;
+  let checklist: ChecklistCafeteria;
   let formMenuThree: Array<SectionCommentaryTwo> = FormMenuThree;
   let check: ChecklistService;
   let location: Location;
@@ -24,7 +24,7 @@ describe('ChecklistthreeComponent', () => {
     .compileComponents();
   }));
   beforeEach(() => {
-    fixture = TestBed.createComponent(ChecklistthreeComponent);
+    fixture = TestBed.createComponent(ChecklistCafeteriaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
