@@ -1,6 +1,6 @@
 import { UserService } from './../user/user.service';
 import { AlertService } from './../alert/alert.service';
-import { Http,  Headers ,RequestOptions } from '@angular/http';
+import { Http,  Headers , RequestOptions } from '@angular/http';
 import { Post } from './../../models/posts/post.model';
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
@@ -9,50 +9,35 @@ import { ServicesUtilitiesService } from '../services-utilities.service';
 @Injectable()
 export class ProfileService extends ServicesUtilitiesService{
 
+  private url = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas/' + this.getUserCod() + '/perfil';
+  private headers: Headers = null;
+  private request: RequestOptions = null;
 
-  private userCod =  this.getUserCod();
-  private baseURL = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas/'+ this.userCod +'/perfil';
-  private headers: Headers = new Headers({
-    'Content-Type': 'application/json',
-    'appToken': localStorage.getItem('token'),
-  });
-
-  private testProfile = 243;
-
-  options: RequestOptions = new RequestOptions({ headers: this.headers });
-  
   constructor(private http: Http,
     private alertService: AlertService,
     private userService: UserService) {
     super();
   }
-  savePost(Data: any): Observable<Post> {
-    const codUser = this.getUserCod();
 
-    if (codUser) {
-      const body = this.formatPostBody(Data);
+  createUserProfile(cpf: any): Observable<Post> {
 
-      return this.http.post(this.baseURL, body, this.options)
-        .map(this.extractData)
-        .catch(this.handleError);
-    } else {
-      console.error('You cannot create a post without login first!');
-      this.alertService.warn('Você precisa estar logado');
-    }
+    this.headers = new Headers({
+      'Content-Type': 'application/json',
+      'appToken': localStorage.getItem('token')
+    });
 
-    return new Observable<Post>();
-  }
+    this.request = new RequestOptions({ headers: this.headers });
 
-  // The function below just take any JS Object and transforms it to a valid JSON
-  private formatPostBody(Data: any) {
-    const validBody = {
-      'camposAdicionais': Data,
+    const body = {
+      'camposAdicionais': 'CPF: ' + cpf,
       'tipoPerfil': {
-      'codTipoPerfil': this.testProfile,
-       }
+        'codTipoPerfil': 243,
+      }
     };
 
-    return JSON.stringify(validBody);
+    return this.http.post(this.url, JSON.stringify(body), this.request)
+      .map(response => this.extractData(response))
+      .catch(this.handleError);
   }
 
   // This function checks if there's a logged user and if it has a 'cod'

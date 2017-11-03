@@ -28,7 +28,7 @@ export class ProfileComponent implements OnInit {
 
   savePosts(strCPF: any) {
 
-    if(this.testCPF(strCPF) === true) {this.profileService.savePost(this.data).subscribe(
+    if(this.testCPF(strCPF) === true) {this.profileService.createUserProfile(this.data).subscribe(
       result => console.log(result)
     );}
     if (strCPF === null) {

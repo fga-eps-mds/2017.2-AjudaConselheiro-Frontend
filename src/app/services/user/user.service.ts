@@ -51,15 +51,6 @@ export class UserService extends ServicesUtilitiesService {
     }
   }
 
-  getLoggedUserCod() {
-    let userValues: Array<String>;
-    const localUser = localStorage.getItem('userData');
-    userValues = localUser.split(',');
-    let codUser = userValues[2];
-    codUser = codUser.substring(6, codUser.length);
-    return codUser;
-  }
-
   updateUser(user: User) {
     return this.http.put(this.url + user.cod, user)
       .map((response: Response) => response.json())
