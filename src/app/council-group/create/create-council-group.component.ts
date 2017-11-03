@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-
 import { CouncilGroup } from '../../models/index';
 import { CouncilGroupService, AlertService } from '../../services/index';
 
@@ -26,21 +25,28 @@ export class CreateCouncilGroupComponent implements OnInit {
     this.councilGroup = new CouncilGroup();
   }
 
+  result(result: any) {
+    this.location = result;
+    console.log(this.location);
+    this.alertService.success('Conselho criado com sucesso!');
+  }
+
+  error(status: number) {
+    if (status === 400) {
+      this.alertService.warn('Aviso: este conselho já está cadastrado no sistema!');
+    } else if (status > 400 && status < 500) {
+      this.alertService.error('Erro: falha na comunicação com o sistema!');
+    }
+  }
+
   createCouncilGroup(): void {
     this.councilGroupService.createCouncil(this.councilGroup)
       .subscribe(
       result => {
-        this.location = result;
-        console.log(this.location);
-        this.alertService.success('Conselho criado com sucesso!');
+        this.result(result);
       },
       error => {
-        console.log(error);
-        if (error.status === 400) {
-          this.alertService.error('Erro: este conselho já está cadastrado no sistema!');
-        } else if (error.status > 400 && error.status < 500) {
-          this.alertService.error('Erro: falha na comunicação com o sistema!');
-        }
+        this.error(error.status);
       });
   }
 
