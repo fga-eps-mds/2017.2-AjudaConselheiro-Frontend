@@ -12,7 +12,7 @@ import { UserListComponent } from './user/list/user-list.component';
 import { UserCreateComponent } from './user/create/user-create.component';
 import { UserEditComponent } from './user/edit/user-edit.component';
 import { LoginComponent } from './user';
-import { CouncilGroupCreateComponent } from './council-group/create/create-council-group.component';
+import { CouncilGroupCreateComponent } from './council-group/create/council-group-create.component';
 import { CouncilGroupSearchComponent } from './council-group/search/search-council-group.component';
 
 export const ROUTES: Routes = [

@@ -3,7 +3,7 @@ import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { CouncilGroupCreateComponent } from './create-council-group.component';
+import { CouncilGroupCreateComponent } from './council-group-create.component';
 import { AlertService } from '../../services/index';
 
 describe('CouncilGroupCreateComponent', () => {

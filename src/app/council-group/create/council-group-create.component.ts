@@ -5,9 +5,9 @@ import { CouncilGroupCreate } from '../../models/index';
 import { CouncilGroupCreateService, AlertService } from '../../services/index';
 
 @Component({
-  selector: 'app-create-council-group',
-  templateUrl: './create-council-group.component.html',
-  styleUrls: ['./create-council-group.component.css'],
+  selector: 'app-council-group-create',
+  templateUrl: './council-group-create.component.html',
+  styleUrls: ['./council-group-create.component.css'],
   providers: [CouncilGroupCreateService]
 })
 
