@@ -12,6 +12,7 @@ export class ProfileService extends ServicesUtilitiesService{
   private url = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas/' + this.getUserCod() + '/perfil';
   private headers: Headers = null;
   private request: RequestOptions = null;
+  private ehPresidente = false
 
   constructor(private http: Http,
     private alertService: AlertService,
@@ -29,7 +30,7 @@ export class ProfileService extends ServicesUtilitiesService{
     this.request = new RequestOptions({ headers: this.headers });
 
     const body = {
-      'camposAdicionais': 'CPF: ' + cpf,
+      'camposAdicionais': 'CPF: ' + cpf + ', ' + 'ehPresidente: ' + this.ehPresidente, 
       'tipoPerfil': {
         'codTipoPerfil': 243,
       }
