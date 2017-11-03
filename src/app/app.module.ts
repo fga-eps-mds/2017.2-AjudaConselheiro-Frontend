@@ -8,7 +8,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { ChecklistModule } from './checklist/checklist.module';
 import { AppComponent } from './app.component';
-import { LayoutsComponent } from './layouts/layouts.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarHomeComponent } from './layouts/navbar/navbar.component';
 import { CarouselComponent } from './layouts/carousel/carousel.component';
@@ -33,7 +32,6 @@ import { SidebarComponent } from './layouts/sidebar/sidebar.component';
 
   declarations: [
     AppComponent,
-    LayoutsComponent,
     HomeComponent,
     NavbarHomeComponent,
     CarouselComponent,
