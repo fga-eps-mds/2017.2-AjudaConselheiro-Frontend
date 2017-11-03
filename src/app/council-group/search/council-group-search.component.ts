@@ -4,9 +4,9 @@ import { State, CouncilGroupCreate } from '../../models/index';
 import { AlertService } from '../../services/alert/alert.service';
 
 @Component({
-  selector: 'app-search-council-group',
-  templateUrl: './search-council-group.component.html',
-  styleUrls: ['./search-council-group.component.css'],
+  selector: 'app-council-group-search',
+  templateUrl: './council-group-search.component.html',
+  styleUrls: ['./council-group-search.component.css'],
   providers: [IbgeService]
 })
 

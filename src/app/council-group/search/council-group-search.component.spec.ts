@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { CouncilGroupSearchComponent } from './search-council-group.component';
+import { CouncilGroupSearchComponent } from './council-group-search.component';
 import { HttpModule, Headers, RequestOptions, Response, URLSearchParams } from '@angular/http';
 import { AlertService } from '../../services/alert/alert.service';
 import { RouterTestingModule } from '@angular/router/testing';

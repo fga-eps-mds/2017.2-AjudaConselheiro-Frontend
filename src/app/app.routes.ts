@@ -13,7 +13,7 @@ import { UserCreateComponent } from './user/create/user-create.component';
 import { UserEditComponent } from './user/edit/user-edit.component';
 import { LoginComponent } from './user';
 import { CouncilGroupCreateComponent } from './council-group/create/council-group-create.component';
-import { CouncilGroupSearchComponent } from './council-group/search/search-council-group.component';
+import { CouncilGroupSearchComponent } from './council-group/search/council-group-search.component';
 
 export const ROUTES: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },

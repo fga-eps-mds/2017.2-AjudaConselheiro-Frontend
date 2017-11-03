@@ -19,8 +19,8 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { AlertComponent } from './layouts/alert/alert.component';
 import { AlertService } from './services/alert/alert.service';
-import { CouncilGroupSearchComponent } from './council-group/search/search-council-group.component';
-import {ConfirmationPopoverModule} from 'angular-confirmation-popover';
+import { CouncilGroupSearchComponent } from './council-group/search/council-group-search.component';
+import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { SidebarComponent } from './layouts/sidebar/sidebar.component';
 
