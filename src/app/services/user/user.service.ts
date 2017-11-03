@@ -5,14 +5,15 @@ import { User } from '../../models/index';
 import { ServicesUtilitiesService } from './../services-utilities.service';
 import { AlertService } from './../alert/alert.service';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class UserService extends ServicesUtilitiesService {
 
   private url = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas';
   private headers: Headers = new Headers({
-    'Content-Type': 'application/json',
-    'appToken': localStorage.getItem('token').toString()
+    'Content-Type': 'application/json'
+    // 'appToken': localStorage.getItem('token').toString()
   });
   options: RequestOptions = new RequestOptions({ headers: this.headers });
 
@@ -67,4 +68,17 @@ export class UserService extends ServicesUtilitiesService {
     .map(res => this.extractData(res))
     .catch(this.handleError);
   }
+
+  extractData(res: Response) {
+    const body = res.json();
+    return body || {};
+}
+
+  handleError(error: any) {
+  const errMsg = (error.message) ? error.message :
+      error.status ? `${error.status} - ${error.statusText}` : 'Server error';
+  console.error(errMsg);
+  return Observable.throw(errMsg);
+}
+
 }

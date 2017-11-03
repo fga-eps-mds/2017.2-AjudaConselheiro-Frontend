@@ -19,7 +19,12 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {
     this.user = this.userService.getLoggedUser();
   }
+
   hasToken(): boolean {
     return localStorage.hasOwnProperty('token');
+  }
+
+  deleteUser(): any {
+    this.userService.delete();
   }
 }
