@@ -14,7 +14,7 @@ import { Component, OnInit, ViewChild, Input } from '@angular/core';
 export class ProfileComponent implements OnInit {
 
   @ViewChild('formUser') formUser: NgForm;
-  data: any;
+  cpf: any;
   constructor(
     private UserService: UserService,
     private router: Router,
@@ -22,11 +22,11 @@ export class ProfileComponent implements OnInit {
     private profileService: ProfileService
   ) { }
 
-  ngOnInit() {    
+  ngOnInit() {
   }
 
-  savePosts() {
-    this.profileService.savePost(this.data).subscribe(
+  createProfile() {
+    this.profileService.createUserProfile(this.cpf).subscribe(
       result => console.log(result)
     );
   }
