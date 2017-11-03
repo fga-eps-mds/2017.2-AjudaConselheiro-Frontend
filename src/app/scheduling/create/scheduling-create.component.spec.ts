@@ -4,21 +4,21 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { SchedulingService } from './../../services/scheduling.service';
 import { MockBackend } from '@angular/http/testing';
-import { CreateSchedulingComponent } from './create-scheduling.component';
+import { SchedulingCreateComponent } from './scheduling-create.component';
 import { Scheduling } from './../../models/scheduling.model';
 import { Search } from './../../models/search.model';
 import { FormsModule } from '@angular/forms';
 import { Http, ConnectionBackend } from '@angular/http';
 import { HttpModule } from '@angular/http';
 
-describe('HomeComponent', () => {
-  let component: CreateSchedulingComponent;
-  let fixture: ComponentFixture<CreateSchedulingComponent>;
+describe('SchedulingCreateComponent', () => {
+  let component: SchedulingCreateComponent;
+  let fixture: ComponentFixture<SchedulingCreateComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        CreateSchedulingComponent,
+        SchedulingCreateComponent,
       ],
       schemas: [NO_ERRORS_SCHEMA],
       imports: [
@@ -38,7 +38,7 @@ describe('HomeComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CreateSchedulingComponent);
+    fixture = TestBed.createComponent(SchedulingCreateComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

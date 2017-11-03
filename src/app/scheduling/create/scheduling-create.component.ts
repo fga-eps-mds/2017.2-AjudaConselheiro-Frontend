@@ -7,11 +7,11 @@ import { SchoolService } from '../../services/index';
 import { Search } from './../../models/search.model';
 
 @Component({
-  selector: 'app-create-scheduling',
-  templateUrl: './create-scheduling.component.html',
-  styleUrls: ['./create-scheduling.component.css']
+  selector: 'app-scheduling-create',
+  templateUrl: './scheduling-create.component.html',
+  styleUrls: ['./scheduling-create.component.css']
 })
-export class CreateSchedulingComponent implements OnInit {
+export class SchedulingCreateComponent implements OnInit {
 
   @ViewChild('formScheduling') formScheduling: NgForm;
   scheduling: Scheduling;
