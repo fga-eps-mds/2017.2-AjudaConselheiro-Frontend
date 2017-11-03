@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed, fakeAsync } from '@angular/core/testing';
 import { Http, ConnectionBackend, HttpModule } from '@angular/http';
-import { CreateUserComponent } from './create-user.component';
+import { UserCreateComponent } from './user-create.component';
 import { UserService, AlertService } from '../../services/index';
 import { FormsModule } from '@angular/forms';
 import { User } from '../../models/index';
@@ -11,10 +11,10 @@ import { FakeUser } from './testing/index';
 import { tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-describe('CreateUserComponent', () => {
+describe('UserCreateComponent', () => {
 
-  let fixture: ComponentFixture<CreateUserComponent>;
-  let component: CreateUserComponent;
+  let fixture: ComponentFixture<UserCreateComponent>;
+  let component: UserCreateComponent;
   let user: User;
   const fakeUser: FakeUser = new FakeUser();
   let mockRouter;
@@ -31,10 +31,10 @@ describe('CreateUserComponent', () => {
       error: jasmine.createSpy('error')
     };
     mockService = {
-      createUser: jasmine.createSpy('createUser')
+      UserCreate: jasmine.createSpy('UserCreate')
     };
     TestBed.configureTestingModule({
-      declarations: [ CreateUserComponent ],
+      declarations: [ UserCreateComponent ],
       imports: [
         FormsModule,
         HttpModule
@@ -59,10 +59,10 @@ describe('CreateUserComponent', () => {
       ]
     });
 
-    fixture = TestBed.createComponent(CreateUserComponent);
+    fixture = TestBed.createComponent(UserCreateComponent);
     component = fixture.componentInstance;
 
-    component = fixture.debugElement.injector.get(CreateUserComponent);
+    component = fixture.debugElement.injector.get(UserCreateComponent);
 
   }));
 

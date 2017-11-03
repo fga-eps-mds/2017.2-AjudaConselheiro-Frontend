@@ -5,13 +5,13 @@ import { UserService, AlertService } from '../../services/index';
 import { User } from '../../models/index';
 
 @Component({
-  selector: 'app-create-user',
-  templateUrl: './create-user.component.html',
-  styleUrls: ['./create-user.component.css'],
+  selector: 'app-user-create',
+  templateUrl: './user-create.component.html',
+  styleUrls: ['./user-create.component.css'],
   providers: [UserService],
   moduleId: module.id,
 })
-export class CreateUserComponent implements OnInit {
+export class UserCreateComponent implements OnInit {
 
   @ViewChild('formUser') formUser: NgForm;
   user: User;
