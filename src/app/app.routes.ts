@@ -8,9 +8,9 @@ import { ChecklistoneComponent } from './checklist/checklistone/checklistone.com
 import { ChecklistthreeComponent } from './checklist/checklistthree/checklistthree.component';
 import { ChecklistComponent } from './checklist/checklist.component';
 import { SchedulingHomeComponent } from './scheduling/scheduling-home/scheduling-home.component';
-import { UserListComponent } from './user';
-import { CreateUserComponent } from './user';
-import { UserEditComponent } from './user';
+import { UserListComponent } from './user/list/user-list.component';
+import { CreateUserComponent } from './user/create/create-user.component';
+import { UserEditComponent } from './user/edit/user-edit.component';
 import { LoginComponent } from './user';
 import { CreateCouncilGroupComponent } from './council-group/create/create-council-group.component';
 import { SearchCouncilGroupComponent } from './council-group/search/search-council-group.component';

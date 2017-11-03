@@ -15,7 +15,6 @@ import { CarouselComponent } from './layouts/carousel/carousel.component';
 import { ChecklistoneComponent } from './checklist/checklistone/checklistone.component';
 import { ChecklistMenuComponent } from './checklist/checklistMenu/checklist-menu.component';
 import { ChecklistthreeComponent } from './checklist/checklistthree/checklistthree.component';
-import { LoginComponent } from './user';
 import { TextMaskModule } from 'angular2-text-mask';
 import { ROUTES } from './app.routes';
 import { BaseRequestOptions } from '@angular/http';
@@ -38,7 +37,6 @@ import { SidebarComponent } from './layouts/sidebar/sidebar.component';
     HomeComponent,
     NavbarHomeComponent,
     CarouselComponent,
-    LoginComponent,
     FooterComponent,
     AlertComponent,
     SearchCouncilGroupComponent,
