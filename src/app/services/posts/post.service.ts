@@ -51,13 +51,12 @@ export class PostService extends ServicesUtilitiesService {
   }
 
   // Get single post with post id
-  getPost(): Observable<Post> {
-    const cod = this.getUserCod();
+  getPost(cod: number): Observable<Post> {
     const appToken = localStorage.getItem('token');
 
     if (appToken) {
       return this.http
-        .get(this.baseURL + cod + '/postagens', this.options)
+        .get(this.baseURL + cod, this.options)
         .map(this.extractData)
         .catch(this.handleError);
     } else {

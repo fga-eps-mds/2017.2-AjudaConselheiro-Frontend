@@ -9,12 +9,10 @@
             Checklist {{ post.codPostagem }}
         </td>
         <td class="text-center mb-4">
-            {{ post.dataHoraPostagem }}
+            {{ post.codAutor }}
         </td>
         <td class="text-center" style="width: 200px">
-            <a [routerLink]="['/home']" title="Editar" alt="Editar" class="btn btn-xs btn-info">
-                <i class="fa fa-edit"></i> Editar
-            </a>
+            <button title="Editar" alt="Editar" class="btn btn-xs btn-info fa fa-edit" (click)="getChecklist(post.codPostagem)">Editar</button>
             <br>
             <br>
             <a title="Remover" alt="Remover" class="btn btn-xs btn-danger">
