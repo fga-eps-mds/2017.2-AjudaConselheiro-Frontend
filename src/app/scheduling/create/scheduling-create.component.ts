@@ -19,6 +19,7 @@ export class SchedulingCreateComponent implements OnInit {
   cities: Array<Object>;
   search: Search;
   schools: Array<Object>;
+  collapsed = true;
 
 
   constructor(
@@ -51,13 +52,13 @@ export class SchedulingCreateComponent implements OnInit {
   }
 
   filterSchools(result: Array<Object>): Array<Object> {
-    var res = [];
+    const res = [];
 
     result.forEach(subitem => {
       res.push(subitem);
     });
 
-    console.log("Resultado da busca: ", res[1]);
+    console.log('Resultado da busca: ' , res[1]);
     return res[1];
   }
 
@@ -74,41 +75,37 @@ export class SchedulingCreateComponent implements OnInit {
       });
   }
 
-  cityPush(result: Array<Object>): Array<Object>{
+  cityPush(result: Array<Object>): Array<Object> {
     console.log(result);
 
-    var cities = [];
+    const cities = [];
 
     result.forEach(subitem => {
-      var untreated = JSON.stringify(subitem);
-      var city = this.cityFilter(untreated);
+      const untreated = JSON.stringify(subitem);
+      const city = this.cityFilter(untreated);
       cities.push(city);
     });
 
     return cities;
   }
 
-  cityFilter(untreated: string): Object{
-    var city = {
+  cityFilter(untreated: string): Object {
+    const city = {
       name: <string> null,
       code: <string> null
     };
     city.name = untreated;
-    console.log(city.name)
-    var quote = /\"/g;
-    var colon = /:/;
-    var letters = /[\d:-]+/g;
-    var numbers = /:[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/;
+    console.log(city.name);
 
-    // console.log('antes: '+ this.city.name);
+    const quote = /\"/g;
+    const letters = /[\d:-]+/g;
+    const numbers = /:[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/;
+    const removeQuote = city.name.replace(quote, '');
 
-    var removeQuote = city.name.replace(quote, '');
     city.name = removeQuote.replace(letters, '');
     city.code = removeQuote.replace(numbers, '');
-
-    // console.log('codigo: '+ this.city.code);
-    // console.log('nome: '+ this.city.name);
     console.log(city);
+
     return city;
   }
   newScheduling(): void {
@@ -117,8 +114,6 @@ export class SchedulingCreateComponent implements OnInit {
       this.router.navigate(['/agendamento']);
     }
   }
-
-  collapsed = true;
   toggleCollapsed(): void {
     this.collapsed = !this.collapsed;
   }
