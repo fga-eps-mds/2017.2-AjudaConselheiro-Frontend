@@ -29,6 +29,7 @@ import { ChecklistService } from './services/index';
 import {ConfirmationPopoverModule} from 'angular-confirmation-popover';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { SidebarComponent } from './layouts/sidebar/sidebar.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
 
@@ -62,7 +63,8 @@ import { SidebarComponent } from './layouts/sidebar/sidebar.component';
     TextMaskModule,
     ConfirmationPopoverModule.forRoot({
       confirmButtonType: 'danger', // set defaults here
-    })
+    }),
+    HttpClientModule
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [

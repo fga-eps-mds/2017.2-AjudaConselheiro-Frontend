@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { User } from '../../models/index';
 import { ServicesUtilitiesService } from './../services-utilities.service';
@@ -11,12 +12,15 @@ export class UserService extends ServicesUtilitiesService {
 
   private url = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas';
   private headers: Headers = new Headers({
-    'Content-Type': 'application/json',
-    'appToken': localStorage.getItem('token').toString()
+    'Content-Type': 'application/json'
   });
   options: RequestOptions = new RequestOptions({ headers: this.headers });
 
-  constructor(private http: Http, private alertService: AlertService) {
+  constructor(
+    private http: Http,
+    private httpClient: HttpClient,
+    private alertService: AlertService
+  ) {
     super();
   }
 
@@ -62,9 +66,15 @@ export class UserService extends ServicesUtilitiesService {
   }
 
   delete(): any {
-    console.log(this.url + '/' + this.getLoggedUser().cod);
-    return this.http.delete(this.url + '/' + this.getLoggedUser().cod, this.options)
-    .map(res => this.extractData(res))
-    .catch(this.handleError);
+    const header = new HttpHeaders({'Content-Type': 'application/json',
+                                              'appToken': localStorage.getItem('token')});
+
+    this.httpClient.delete(this.url + '/' + this.getLoggedUser().cod, {headers: header})
+    .subscribe(
+      res => {
+        console.log(res);
+      }
+    );
+    this.headers.delete('appToken');
   }
 }
