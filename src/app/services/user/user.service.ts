@@ -6,6 +6,7 @@ import { User } from '../../models/index';
 import { ServicesUtilitiesService } from './../services-utilities.service';
 import { AlertService } from './../alert/alert.service';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class UserService extends ServicesUtilitiesService {
@@ -13,6 +14,7 @@ export class UserService extends ServicesUtilitiesService {
   private url = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas';
   private headers: Headers = new Headers({
     'Content-Type': 'application/json'
+    // 'appToken': localStorage.getItem('token').toString()
   });
   options: RequestOptions = new RequestOptions({ headers: this.headers });
 
@@ -68,7 +70,7 @@ export class UserService extends ServicesUtilitiesService {
   delete(): any {
     const header = new HttpHeaders({'Content-Type': 'application/json',
                                               'appToken': localStorage.getItem('token')});
-
+    console.log(header.get('appToken'));
     this.httpClient.delete(this.url + '/' + this.getLoggedUser().cod, {headers: header})
     .subscribe(
       res => {
@@ -77,4 +79,5 @@ export class UserService extends ServicesUtilitiesService {
     );
     this.headers.delete('appToken');
   }
+
 }

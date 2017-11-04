@@ -27,7 +27,6 @@ export class SearchCouncilGroupComponent implements OnInit, OnChanges {
   ) { }
 
   ngOnInit() {
-    this.userService.delete();
     this.states = this.ibgeService.statesRequest();
     this.showCouncil = false;
   }

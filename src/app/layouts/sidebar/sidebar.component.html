@@ -17,5 +17,11 @@
         <a class="btn btn-deep-orange" href="/checklist">Novo Relatório</a>
     </li>
 
+    <li class="side-buttons" mwlConfirmationPopover [title]="title" [message]="message" [confirmText]="confirmText"
+      [cancelText]="cancelText" [placement]="placement" (confirm)="deleteUser()" confirmButtonType="danger" cancelButtonType="default"
+      (click)="confirm=false" [appendToBody]="true">
+      <a class="btn btn-deep-orange">DELETAR</a>
+  </li>
+
   </ul>
 </li>
