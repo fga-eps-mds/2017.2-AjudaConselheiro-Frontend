@@ -38,6 +38,12 @@ export const FormMenuCommentBinary: Array<CommentBinaryForm> = [
         {question: 'A escola complementa a alimentação escolar? Como?', answer: false, commentary: ''},
 ];
 
+export const ChecklistMenuIteratorArray: Array<Object> = [
+  FormMenuCommentBinary,
+  FormMenuBinary,
+  FormMenuComment,
+];
+
 export const CheckOneCommentaries: Array<SectionCommentary> = [
   {sectionNumber: 1, commentary: ''},
   {sectionNumber: 2, commentary: ''},

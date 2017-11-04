@@ -11,10 +11,9 @@ import { ChecklistService } from '../../services/index';
 })
 export class ChecklistMenuComponent implements OnInit {
 
-  formsMenu: Array<CommentBinaryForm> = FormMenuCommentBinary ;
-  formMenuTwo: Array<CommentForm> = FormMenuComment;
-  formBinary: Array<BinaryForm> = FormMenuBinary ;
-  textArea = false;
+  formMenuCommentBinary: Array<CommentBinaryForm> = FormMenuCommentBinary;
+  formMenuComment: Array<CommentForm> = FormMenuComment;
+  formMenuBinary: Array<BinaryForm> = FormMenuBinary;
 
   checkComentary: ConfirmComentary[]= [
     new ConfirmComentary(false, 'Comment1'),
@@ -26,12 +25,14 @@ export class ChecklistMenuComponent implements OnInit {
 
   constructor(private menuService: ChecklistService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    //console.warn
+  }
 
   onSubmit(): void {
-    console.log(this.formMenuTwo);
-    console.log(this.formsMenu);
-    console.log(this.formBinary);
+    console.warn(this.formMenuCommentBinary);
+    console.warn(this.formMenuBinary);
+    console.warn(this.formMenuComment);
   }
 
 }
