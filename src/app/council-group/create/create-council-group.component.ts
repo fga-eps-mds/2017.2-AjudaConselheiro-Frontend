@@ -17,7 +17,7 @@ export class CreateCouncilGroupComponent implements OnInit {
   private location: any = null;
 
   constructor(
-    private councilGroupService: CouncilGroupService,
+    public councilGroupService: CouncilGroupService,
     private alertService: AlertService
   ) { }
 

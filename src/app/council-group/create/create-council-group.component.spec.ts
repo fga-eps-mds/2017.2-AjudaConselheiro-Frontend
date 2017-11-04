@@ -1,10 +1,17 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Http, ConnectionBackend, HttpModule } from '@angular/http';
+import {
+  Http, HttpModule, ConnectionBackend,
+  ResponseOptions, Response, BaseRequestOptions,
+  RequestOptions, Headers
+} from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { CreateCouncilGroupComponent } from './create-council-group.component';
 import { AlertService, CouncilGroupService } from '../../services/index';
-import { MockBackend } from '@angular/http/testing';
+import { MockBackend, MockConnection } from '@angular/http/testing';
+import { CouncilGroup } from '../../models/index';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
 
 describe('CreateCouncilGroupComponent', () => {
   let mockAlert;
@@ -12,6 +19,10 @@ describe('CreateCouncilGroupComponent', () => {
   let component: CreateCouncilGroupComponent;
   const fakeToken = 'FakeToken';
   const fakeLocation = 'fakeLocation';
+  let fakeCouncil: CouncilGroup;
+  fakeCouncil = new CouncilGroup;
+  fakeCouncil.municipio = 'taguatinga';
+  fakeCouncil.estado = 'df';
 
   beforeEach(async(() => {
     mockAlert = {
@@ -34,7 +45,7 @@ describe('CreateCouncilGroupComponent', () => {
         {
           provide: AlertService,
           useValue: mockAlert
-        },
+        }
       ]
     });
 
@@ -64,6 +75,14 @@ describe('CreateCouncilGroupComponent', () => {
 
   }));
 
+  it('should result', () => {
+    fixture.detectChanges();
+   // localStorage.setItem('token', 'appToken');
+    spyOn(component.councilGroupService, 'createCouncil').and.
+      returnValue({ subscribe: () => Observable.of({})});
+    component.councilGroup = fakeCouncil;
+    component.createCouncilGroup();
+  });
 
   it('should result', () => {
     fixture.detectChanges();
