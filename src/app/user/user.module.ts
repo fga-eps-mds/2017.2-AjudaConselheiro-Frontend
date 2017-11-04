@@ -10,6 +10,8 @@ import { UserService, AlertService, AuthenticationService } from '../services/in
 import { UserEditComponent } from './edit/user-edit.component';
 import { TextMaskModule } from 'angular2-text-mask';
 
+export { UserCreateComponent, UserEditComponent, UserListComponent, LoginComponent };
+
 @NgModule({
   imports: [
     CommonModule,

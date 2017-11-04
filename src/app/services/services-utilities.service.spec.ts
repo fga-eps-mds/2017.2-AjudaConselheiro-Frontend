@@ -15,7 +15,7 @@ describe('ServicesUtilitiesService', () => {
   beforeEach(() => {
     councilGroup = new CouncilGroup;
     TestBed.configureTestingModule({
-      providers: [ServicesUtilitiesService, AlertService,{ provide: XHRBackend, useClass: MockBackend },],
+      providers: [ServicesUtilitiesService, AlertService, { provide: XHRBackend, useClass: MockBackend }],
       imports: [
         HttpModule,
         RouterTestingModule

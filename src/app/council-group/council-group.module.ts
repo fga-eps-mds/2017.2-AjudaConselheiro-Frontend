@@ -7,6 +7,8 @@ import { CouncilGroupCreateComponent } from '../council-group/create/council-gro
 import { CouncilGroupSearchComponent } from '../council-group/search/council-group-search.component';
 import { CouncilGroupService } from '../services/index';
 
+export { CouncilGroupCreateComponent, CouncilGroupSearchComponent };
+
 @NgModule({
   imports: [
     CommonModule,

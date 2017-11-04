@@ -11,6 +11,14 @@ import { CarouselComponent } from './carousel/carousel.component';
 import { AlertService } from '../services/index';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 
+export {
+  AlertComponent,
+  FooterComponent,
+  NavbarHomeComponent,
+  SidebarComponent,
+  CarouselComponent,
+};
+
 @NgModule({
   imports: [
     CommonModule,
