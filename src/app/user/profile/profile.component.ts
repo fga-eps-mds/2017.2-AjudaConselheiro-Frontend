@@ -52,33 +52,44 @@ export class ProfileComponent implements OnInit {
     return false;
   }
  }
-  testCPF(strCPF: string) {
-    let Soma;
-    let Resto;
-    Soma = 0;
-    if (this.expectedCPF(strCPF) === false) {
-       return false; }
-    for (let i = 1 ; i <= 9 ; i++) {
-      Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (11 - i);
-    }
-    Resto = (Soma * 10) % 11;
-    if ((Resto === 10) || (Resto === 11)) {
-      Resto = 0;
-    }
-    if (Resto !== parseInt(strCPF.substring(9, 10))) {
-     return false;
-    }
-    Soma = 0;
-    for (let i = 1; i <= 10; i++) {
-      Soma = Soma + parseInt(strCPF.substring(i -1, i)) * (12 - i);
-    }
-    Resto = (Soma * 10) % 11;
-    if ((Resto === 10) || (Resto === 11)) {
-      Resto = 0;
-    }
-    if (Resto !== parseInt(strCPF.substring(10, 11))) {
-    return false;
-    }
+ calculateCPF(strCPF: string, sum: any, rest: any) {
+  sum = this.sumStringValues(strCPF, sum, 9);
+  rest = (sum * 10) % 11;
+  if ((rest === 10) || (rest === 11)) {
+    rest = 0;
+  }
+  if (rest !== parseInt(strCPF.substring(9, 10))) {
+  return false;
+  }
+}
+
+calculateTwoCPF(strCPF: string, sum: any, rest: any) {
+  sum = this.sumStringValues(strCPF, sum, 10);
+  rest = (sum * 10) % 11;
+  if ((rest === 10) || (rest === 11)) {
+    rest = 0;
+  }
+  if (rest !== parseInt(strCPF.substring(10, 11))) {
+  return false;
+  }
+}
+
+sumStringValues(strCPF: string, sum: any, limite1: any): any {
+  for (let i = 1; i <= limite1; i++) {
+    sum += parseInt(strCPF.substring(i -1, i)) * (limite1 + 2 - i);
+  }
+  return sum;
+}
+
+testCPF(strCPF: string) {
+    let sum;
+    let rest;
+    sum = 0;
+    rest = 0;
+    if (this.expectedCPF(strCPF) === false || this.calculateCPF(strCPF, sum, rest) === false ||
+     this.calculateTwoCPF(strCPF, sum, rest)) {
+       return false;
+      }
     return true;
   }
 }
