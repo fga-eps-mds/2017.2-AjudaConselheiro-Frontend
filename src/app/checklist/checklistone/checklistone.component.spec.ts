@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpModule } from '@angular/http';
-
+import { HttpClientModule } from '@angular/common/http';
 import { ChecklistoneComponent } from './checklistone.component';
 import { UserService, AlertService } from '../../services/index';
 
@@ -14,7 +14,7 @@ describe('ChecklistoneComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ChecklistoneComponent ],
-      imports: [ FormsModule, RouterTestingModule, HttpModule ],
+      imports: [ FormsModule, RouterTestingModule, HttpModule, HttpClientModule ],
       providers: [
         UserService, AlertService
       ]

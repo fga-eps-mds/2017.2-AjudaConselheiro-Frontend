@@ -2,9 +2,10 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { SearchCouncilGroupComponent } from './search-council-group.component';
 import { HttpModule, Headers, RequestOptions, Response, URLSearchParams } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { AlertService } from '../../services/alert/alert.service';
 import { RouterTestingModule } from '@angular/router/testing';
-import { CouncilGroupService } from '../../services/index';
+import { CouncilGroupService, UserService } from '../../services/index';
 import { State, CouncilGroup } from '../../models/index';
 
 describe('SearchCouncilGroupComponent', () => {
@@ -19,10 +20,13 @@ describe('SearchCouncilGroupComponent', () => {
       imports: [
         FormsModule,
         HttpModule,
-        RouterTestingModule ],
+        RouterTestingModule,
+        HttpClientModule
+      ],
       providers: [
         AlertService,
-        CouncilGroupService
+        CouncilGroupService,
+        UserService
       ]
     })
     .compileComponents();
@@ -42,7 +46,7 @@ describe('SearchCouncilGroupComponent', () => {
     const expected = 'CAE-DF-Brasília';
 
     component.state = '1';
-    component.city = 'Brasília'
+    component.city = 'Brasília';
     component.states = [{ id: '1', sigla: 'DF'}, {id: '2', sigla: 'GO'}];
 
     expect(component.getCAEName()).toEqual(expected);

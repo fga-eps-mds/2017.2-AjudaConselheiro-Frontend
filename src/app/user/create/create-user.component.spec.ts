@@ -10,6 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FakeUser } from './testing/index';
 import { tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('CreateUserComponent', () => {
 
@@ -37,7 +38,8 @@ describe('CreateUserComponent', () => {
       declarations: [ CreateUserComponent ],
       imports: [
         FormsModule,
-        HttpModule
+        HttpModule,
+        HttpClientModule
        ],
        providers: [
          Http,

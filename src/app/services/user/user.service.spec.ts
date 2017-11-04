@@ -4,6 +4,7 @@ import { UserService } from './user.service';
 import { User } from '../../models/index';
 import { HttpModule, Http, ConnectionBackend, ResponseOptions, XHRBackend, Response, } from '@angular/http';
 import { MockBackend, MockConnection } from '@angular/http/testing';
+import { HttpClientModule } from '@angular/common/http';
 import { AlertService } from '../alert/alert.service';
 import { FormsModule } from '@angular/forms';
 import { FakeUser } from '../../user/create/testing/index';
@@ -22,7 +23,8 @@ describe('AlertService', () => {
       ],
       imports: [RouterTestingModule,
         FormsModule,
-        HttpModule]
+        HttpModule,
+        HttpClientModule]
     });
   });
 

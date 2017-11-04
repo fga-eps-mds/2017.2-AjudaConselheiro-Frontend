@@ -4,6 +4,7 @@ import { TextMaskModule } from 'angular2-text-mask';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpModule } from '@angular/http';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { UserEditComponent } from './user-edit.component';
 import { UserService } from '../../services/index';
@@ -27,6 +28,7 @@ describe('UserEditComponent', () => {
         FormsModule,
         TextMaskModule,
         HttpModule,
+        HttpClientModule,
         RouterTestingModule
       ],
       providers: [

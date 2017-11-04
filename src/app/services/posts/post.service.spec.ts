@@ -5,6 +5,7 @@ import { Http, HttpModule, ConnectionBackend,
 import { TestBed, inject, async} from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MockBackend, MockConnection } from '@angular/http/testing';
+import { HttpClientModule } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 
@@ -18,7 +19,8 @@ describe('PostService', () => {
     TestBed.configureTestingModule({
       imports: [
         HttpModule,
-        RouterTestingModule
+        RouterTestingModule,
+        HttpClientModule
       ],
       providers: [
         MockBackend,
