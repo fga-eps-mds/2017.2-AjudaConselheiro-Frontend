@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+
+import { ChecklistMenuIteratorArray } from '../../models/checklist/checklistForms';
 import { FormMenuCommentBinary, FormMenuComment, CommentBinaryForm, CommentForm,
   BinaryForm, FormMenuBinary, ConfirmComentary} from '../../models/index';
 import { ChecklistService } from '../../services/index';
@@ -14,7 +16,7 @@ export class ChecklistMenuComponent implements OnInit {
   formMenuCommentBinary: Array<CommentBinaryForm> = FormMenuCommentBinary;
   formMenuComment: Array<CommentForm> = FormMenuComment;
   formMenuBinary: Array<BinaryForm> = FormMenuBinary;
-
+  iteratorArray: Array<Object> = ChecklistMenuIteratorArray;
   checkComentary: ConfirmComentary[]= [
     new ConfirmComentary(false, 'Comment1'),
     new ConfirmComentary(false, 'Comment2'),
@@ -26,13 +28,14 @@ export class ChecklistMenuComponent implements OnInit {
   constructor(private menuService: ChecklistService) {}
 
   ngOnInit(): void {
-    //console.warn
+    console.warn(this.iteratorArray);
   }
 
   onSubmit(): void {
     console.warn(this.formMenuCommentBinary);
     console.warn(this.formMenuBinary);
     console.warn(this.formMenuComment);
+    console.warn(this.iteratorArray);
   }
 
 }
