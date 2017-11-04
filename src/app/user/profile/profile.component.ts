@@ -22,57 +22,61 @@ export class ProfileComponent implements OnInit {
     private profileService: ProfileService
   ) { }
 
-  ngOnInit() {   
+  ngOnInit() {
     this.data = null;
   }
 
-  savePosts(strCPF: any) {
+  savePosts(strCPF: string) {
 
-    if(this.testCPF(strCPF) === true) {this.profileService.createUserProfile(this.data).subscribe(
+    if (this.testCPF(strCPF) === true) {this.profileService.createUserProfile(this.data).subscribe(
       result => console.log(result)
-    );}
+    );
+  }
     if (strCPF === null) {
       this.alertService.warn('Digite seu CPF');
     } else if (this.testCPF(strCPF) === false) {
       this.alertService.error('CPF inválido/Digite um CPF válido');
+    } else {
+      this.alertService.success('CPF válido');
     }
-else {
-this.alertService.success('CPF válido');
-}
   }
 
   testCPF(strCPF: string) {
-    var Soma;
-    var Resto;
+    let Soma;
+    let Resto;
     Soma = 0;
-  if (strCPF == "00000000000") return false;
-  if (strCPF == "11111111111") return false;
-  if (strCPF == "22222222222") return false;
-  if (strCPF == "33333333333") return false;
-  if (strCPF == "44444444444") return false;
-  if (strCPF == "55555555555") return false;
-  if (strCPF == "66666666666") return false;
-  if (strCPF == "77777777777") return false;
-  if (strCPF == "88888888888") return false;
-  if (strCPF == "99999999999") return false;
-  if (strCPF == null) return false;
-    
-	for (let i=1; i<=9; i++) Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (11 - i);
-	Resto = (Soma * 10) % 11;
-	
-    if ((Resto == 10) || (Resto == 11))  Resto = 0;
-    if (Resto != parseInt(strCPF.substring(9, 10)) ) return false;
-	
-	Soma = 0;
-    for (let i = 1; i <= 10; i++) Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (12 - i);
+    let soma = '00000000000';
+    for (let i = 0 ; i <= 9 ; i++) {
+      if (strCPF === soma) {
+        return false;
+      }
+      soma = String(11111111111 + parseInt( soma, 10));
+    }
+    if (strCPF === null) {
+      return false;
+    }
+    for (let i = 1 ; i <= 9 ; i++) {
+      Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (11 - i);
+    }
     Resto = (Soma * 10) % 11;
-	
-    if ((Resto == 10) || (Resto == 11))  Resto = 0;
-    if (Resto != parseInt(strCPF.substring(10, 11) ) ) return false;
+
+    if ((Resto === 10) || (Resto === 11)) {
+      Resto = 0;
+    }
+    if (Resto != parseInt(strCPF.substring(9, 10))) {
+     return false;
+    }
+    Soma = 0;
+    for (let i = 1; i <= 10; i++) {
+      Soma = Soma + parseInt(strCPF.substring(i -1, i)) * (12 - i);
+    }
+    Resto = (Soma * 10) % 11;
+    if ((Resto === 10) || (Resto === 11)) {
+      Resto = 0;
+    }
+    if (Resto !== parseInt(strCPF.substring(10, 11))) {
+    return false;
+    }
     return true;
-}
-
-
-
- 
+  }
 }

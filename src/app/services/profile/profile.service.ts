@@ -13,7 +13,7 @@ export class ProfileService extends ServicesUtilitiesService{
   private url = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas/' + this.id + '/perfil';
   private headers: Headers = null;
   private request: RequestOptions = null;
-  private ehPresidente = false
+  private ehPresidente = false;
 
   constructor(private http: Http,
     private alertService: AlertService,
@@ -41,17 +41,13 @@ export class ProfileService extends ServicesUtilitiesService{
       .map(response => this.extractData(response))
       .catch(this.handleError);
   }
-  getProfile(){
-    
+  getProfile() {
         this.headers = new Headers({
           'Content-Type': 'application/json',
           'appIdentifier': 462,
         });
-    
         this.request = new RequestOptions({ headers: this.headers });
-    
-    
-        return this.http.get(this.url,this.request)
+        return this.http.get(this.url, this.request)
         .map((response: Response) => response.json())
           .catch(this.handleError);
       }
