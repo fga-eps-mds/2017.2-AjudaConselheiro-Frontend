@@ -4,7 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 import { CouncilGroupCreateComponent } from '../council-group/create/council-group-create.component';
-import { CouncilGroupCreateService } from '../services/index';
+import { CouncilGroupSearchComponent } from '../council-group/search/council-group-search.component';
+import { CouncilGroupService } from '../services/index';
 
 @NgModule({
   imports: [
@@ -13,10 +14,11 @@ import { CouncilGroupCreateService } from '../services/index';
     FormsModule,
   ],
   declarations: [
-    CouncilGroupCreateComponent
+    CouncilGroupCreateComponent,
+    CouncilGroupSearchComponent
   ],
   providers: [
-    CouncilGroupCreateService
+    CouncilGroupService
   ]
 })
 export class CouncilGroupCreateModule { }

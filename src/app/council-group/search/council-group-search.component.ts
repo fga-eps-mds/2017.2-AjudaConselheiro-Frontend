@@ -1,7 +1,7 @@
 import { Component, OnInit, OnChanges, Input, SimpleChange } from '@angular/core';
-import { IbgeService, CouncilGroupCreateService } from '../../services/index';
-import { State, CouncilGroupCreate } from '../../models/index';
-import { AlertService } from '../../services/alert/alert.service';
+
+import { State, CouncilGroup } from '../../models/index';
+import { IbgeService, CouncilGroupService, AlertService } from '../../services/index';
 
 @Component({
   selector: 'app-council-group-search',
@@ -14,14 +14,14 @@ export class CouncilGroupSearchComponent implements OnInit, OnChanges {
   @Input() state: any;
   @Input() city: string;
   stateSigla: string;
-  council: CouncilGroupCreate;
+  council: CouncilGroup;
   states: Array<State>;
   cities: Array<Object>;
   showCouncil: boolean;
 
   constructor(
     private ibgeService: IbgeService,
-    private councilGroupService: CouncilGroupCreateService,
+    private councilGroupService: CouncilGroupService,
     private alertService: AlertService
   ) { }
 
@@ -46,10 +46,10 @@ export class CouncilGroupSearchComponent implements OnInit, OnChanges {
   }
 
   searchCouncils(description: string): void {
-    this.councilGroupService.getAjudaConselheiroCouncilGroupCreates(description)
+    this.councilGroupService.getAjudaConselheiroCouncilGroups(description)
       .subscribe(
           result => {
-            this.council = new CouncilGroupCreate();
+            this.council = new CouncilGroup();
             if (result !== undefined) {
               this.alertService.success('Conselho encontrado com sucesso!');
               this.dismemberCouncilAttributes(result);

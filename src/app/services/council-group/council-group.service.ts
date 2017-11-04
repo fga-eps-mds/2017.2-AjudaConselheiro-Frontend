@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
-import { CouncilGroupCreate } from '../../models/index';
+import { CouncilGroup } from '../../models/index';
 import { AlertService } from '../../services/alert/alert.service';
 import { ServicesUtilitiesService } from '../../services/services-utilities.service';
 
 @Injectable()
-export class CouncilGroupCreateService extends ServicesUtilitiesService {
+export class CouncilGroupService extends ServicesUtilitiesService {
   private headers: Headers = null;
   private request: RequestOptions = null;
   private url = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/grupos';
@@ -16,7 +16,7 @@ export class CouncilGroupCreateService extends ServicesUtilitiesService {
     super();
   }
 
-  createCouncil(councilGroupCreate: CouncilGroupCreate): Observable<any> {
+  createCouncil(councilGroup: CouncilGroup): Observable<any> {
 
     if (!localStorage.getItem('token')) {
       this.alertService.warn('Usuário precisa estar logado para criar um conselho!');
@@ -30,7 +30,7 @@ export class CouncilGroupCreateService extends ServicesUtilitiesService {
     this.request = new RequestOptions({ headers: this.headers });
     console.log('Create Council');
 
-    const formattedCouncil = this.getFormattedData(councilGroupCreate);
+    const formattedCouncil = this.getFormattedData(councilGroup);
     console.log(formattedCouncil);
 
     return this.http.post(this.url, formattedCouncil, this.request)
@@ -38,15 +38,15 @@ export class CouncilGroupCreateService extends ServicesUtilitiesService {
       .catch(this.handleError);
   }
 
-  getFormattedData(councilGroupCreate: CouncilGroupCreate) {
-    councilGroupCreate.descricao = 'CAE-' + councilGroupCreate.municipio + '-' + councilGroupCreate.estado;
+  getFormattedData(councilGroup: CouncilGroup) {
+    councilGroup.descricao = 'CAE-' + councilGroup.municipio + '-' + councilGroup.estado;
 
     const council = {
-      'codAplicativo': councilGroupCreate.codAplicativo,
-      'codGrupoPai': councilGroupCreate.codGrupoPai,
-      'codObjeto': councilGroupCreate.codObjeto,
-      'codTipoObjeto': councilGroupCreate.codTipoObjeto,
-      'descricao': councilGroupCreate.descricao
+      'codAplicativo': councilGroup.codAplicativo,
+      'codGrupoPai': councilGroup.codGrupoPai,
+      'codObjeto': councilGroup.codObjeto,
+      'codTipoObjeto': councilGroup.codTipoObjeto,
+      'descricao': councilGroup.descricao
     };
 
     return JSON.stringify(council);
@@ -60,7 +60,7 @@ export class CouncilGroupCreateService extends ServicesUtilitiesService {
     return location || {};
   }
 
-  getAjudaConselheiroCouncilGroupCreates(description: string):  Observable<Array<Object>> {
+  getAjudaConselheiroCouncilGroups(description: string):  Observable<Array<Object>> {
     return this.http
     .get(this.url + '?codAplicativo=462')
     .map(res => res.json().find(x => x.descricao === description))

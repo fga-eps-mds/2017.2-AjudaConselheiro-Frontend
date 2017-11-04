@@ -1,4 +1,4 @@
-import { CouncilGroupCreate } from './../models/council-group';
+import { CouncilGroup } from './../models/council-group';
 import { AlertService } from './alert/alert.service';
 import { TestBed, inject } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -9,11 +9,11 @@ import { ServicesUtilitiesService } from './services-utilities.service';
 
 
 describe('ServicesUtilitiesService', () => {
-  let councilGroupCreate: CouncilGroupCreate;
+  let councilGroup: CouncilGroup;
 
 
   beforeEach(() => {
-    councilGroupCreate = new CouncilGroupCreate;
+    councilGroup = new CouncilGroup;
     TestBed.configureTestingModule({
       providers: [ServicesUtilitiesService, AlertService,{ provide: XHRBackend, useClass: MockBackend },],
       imports: [

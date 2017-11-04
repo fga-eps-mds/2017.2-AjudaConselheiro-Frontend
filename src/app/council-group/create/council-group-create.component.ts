@@ -1,33 +1,33 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
-import { CouncilGroupCreate } from '../../models/index';
-import { CouncilGroupCreateService, AlertService } from '../../services/index';
+import { CouncilGroup } from '../../models/index';
+import { CouncilGroupService, AlertService } from '../../services/index';
 
 @Component({
   selector: 'app-council-group-create',
   templateUrl: './council-group-create.component.html',
   styleUrls: ['./council-group-create.component.css'],
-  providers: [CouncilGroupCreateService]
+  providers: [CouncilGroupService]
 })
 
 export class CouncilGroupCreateComponent implements OnInit {
 
   @ViewChild('formCouncilGroupCreate') formCouncilGroupCreate: NgForm;
-  councilGroupCreate: CouncilGroupCreate = null;
+  councilGroup: CouncilGroup = null;
   private location: any = null;
 
   constructor(
-    private councilGroupCreateService: CouncilGroupCreateService,
+    private CouncilGroupService: CouncilGroupService,
     private alertService: AlertService
   ) { }
 
   ngOnInit() {
-    this.councilGroupCreate = new CouncilGroupCreate();
+    this.councilGroup = new CouncilGroup();
   }
 
-  createCouncilGroupCreate(): void {
-    this.councilGroupCreateService.createCouncil(this.councilGroupCreate)
+  createCouncilGroup(): void {
+    this.CouncilGroupService.createCouncil(this.councilGroup)
       .subscribe(
       result => {
         this.location = result;

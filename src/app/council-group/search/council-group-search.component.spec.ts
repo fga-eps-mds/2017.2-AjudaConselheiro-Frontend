@@ -4,8 +4,8 @@ import { CouncilGroupSearchComponent } from './council-group-search.component';
 import { HttpModule, Headers, RequestOptions, Response, URLSearchParams } from '@angular/http';
 import { AlertService } from '../../services/alert/alert.service';
 import { RouterTestingModule } from '@angular/router/testing';
-import { CouncilGroupCreateService } from '../../services/index';
-import { State, CouncilGroupCreate } from '../../models/index';
+import { CouncilGroupService } from '../../services/index';
+import { State, CouncilGroup } from '../../models/index';
 
 describe('CouncilGroupSearchComponent', () => {
   let component: CouncilGroupSearchComponent;
@@ -22,7 +22,7 @@ describe('CouncilGroupSearchComponent', () => {
         RouterTestingModule ],
       providers: [
         AlertService,
-        CouncilGroupCreateService
+        CouncilGroupService
       ]
     })
     .compileComponents();
@@ -54,7 +54,7 @@ describe('CouncilGroupSearchComponent', () => {
     const description = 'CAE-DF-Brasília';
     const object = { descricao: 'CAE-DF-Brasília'};
 
-    component.council = new CouncilGroupCreate();
+    component.council = new CouncilGroup();
     component.dismemberCouncilAttributes(object);
 
     expect(component.council.descricao).toEqual(description);
