@@ -1,3 +1,5 @@
+import { NotProfileComponent } from './user/not-profile/not-profile.component';
+import { ProfileComponent } from './user/profile/profile.component';
 import { SidebarComponent } from './layouts/sidebar/sidebar.component';
 import { EditComponent } from './scheduling/edit/edit.component';
 import { CreateSchedulingComponent } from './scheduling/create/create-scheduling.component';
@@ -34,4 +36,6 @@ export const ROUTES: Routes = [
   { path: 'conselho/cadastrar', component: CreateCouncilGroupComponent },
   { path: 'conselho/buscar', component: SearchCouncilGroupComponent},
   { path: 'side', component: SidebarComponent },
+  { path: 'perfil', component: ProfileComponent },
+  { path: 'usuario-sem-perfil', component: NotProfileComponent}
 ];

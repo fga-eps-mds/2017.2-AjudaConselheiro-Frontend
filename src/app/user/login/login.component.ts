@@ -1,3 +1,4 @@
+import { ProfileService } from './../../services/profile/profile.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -23,7 +24,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authenticationService: AuthenticationService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private profileService: ProfileService
   ) { }
 
   ngOnInit() {
@@ -41,7 +43,9 @@ export class LoginComponent implements OnInit {
         result => {
           localStorage.setItem('token', result[0]);
           localStorage.setItem('userData', result[1]._body);
+          this.getProfile();          
           this.alertService.success('Login efetuado sucesso!');
+          
         },
         error => {
           console.log('error: ', error.status);
@@ -55,4 +59,9 @@ export class LoginComponent implements OnInit {
       this.alertService.warn('Email invalido');
     }
   }
+  getProfile() {
+    return this.profileService.getProfile().subscribe(
+           result => localStorage.setItem('Profile',JSON.stringify(result)));
+       
+    }
 }
