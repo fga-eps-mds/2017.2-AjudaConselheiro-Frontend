@@ -1,6 +1,6 @@
 import { UserService } from './../user/user.service';
 import { AlertService } from './../alert/alert.service';
-import { Http,  Headers , RequestOptions } from '@angular/http';
+import { Http,  Headers , RequestOptions, Response } from '@angular/http';
 import { Post } from './../../models/posts/post.model';
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
@@ -9,7 +9,8 @@ import { ServicesUtilitiesService } from '../services-utilities.service';
 @Injectable()
 export class ProfileService extends ServicesUtilitiesService{
 
-  private url = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas/' + this.getUserCod() + '/perfil';
+  private id =  this.getUserCod();
+  private url = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas/' + this.id + '/perfil';
   private headers: Headers = null;
   private request: RequestOptions = null;
   private ehPresidente = false
@@ -20,7 +21,7 @@ export class ProfileService extends ServicesUtilitiesService{
     super();
   }
 
-  createUserProfile(cpf: any): Observable<Post> {
+  createUserProfile(cpf: any){
 
     this.headers = new Headers({
       'Content-Type': 'application/json',
@@ -40,7 +41,20 @@ export class ProfileService extends ServicesUtilitiesService{
       .map(response => this.extractData(response))
       .catch(this.handleError);
   }
-
+  getProfile(){
+    
+        this.headers = new Headers({
+          'Content-Type': 'application/json',
+          'appIdentifier': 462,
+        });
+    
+        this.request = new RequestOptions({ headers: this.headers });
+    
+    
+        return this.http.get(this.url,this.request)
+        .map((response: Response) => response.json())
+          .catch(this.handleError);
+      }
   // This function checks if there's a logged user and if it has a 'cod'
   // Output: The user 'cod' or 'null' if there's no cod
   private getUserCod() {

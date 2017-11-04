@@ -9,6 +9,7 @@ import { UserService, AlertService, AuthenticationService } from '../services/in
 import { UserEditComponent } from './edit/index';
 import { TextMaskModule } from 'angular2-text-mask';
 import { ProfileComponent } from './profile/profile.component';
+import { NotProfileComponent } from './not-profile/not-profile.component';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { ProfileComponent } from './profile/profile.component';
     CreateUserComponent,
     UserEditComponent,
     ProfileComponent,
+    NotProfileComponent,
   ],
   providers: [
     UserService, AlertService, AuthenticationService

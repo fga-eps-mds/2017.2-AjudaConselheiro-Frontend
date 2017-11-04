@@ -43,7 +43,7 @@ import { SidebarComponent } from './layouts/sidebar/sidebar.component';
     FooterComponent,
     AlertComponent,
     SearchCouncilGroupComponent,
-    SidebarComponent
+    SidebarComponent,
   ],
 
   imports: [

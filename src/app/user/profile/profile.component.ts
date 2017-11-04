@@ -39,8 +39,8 @@ export class ProfileComponent implements OnInit {
 else {
 this.alertService.success('CPF válido');
 }
-
   }
+
   testCPF(strCPF: string) {
     var Soma;
     var Resto;
@@ -71,4 +71,8 @@ this.alertService.success('CPF válido');
     if (Resto != parseInt(strCPF.substring(10, 11) ) ) return false;
     return true;
 }
+
+
+
+ 
 }
