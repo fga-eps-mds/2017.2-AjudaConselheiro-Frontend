@@ -12,7 +12,7 @@
             {{ post.codAutor }}
         </td>
         <td class="text-center" style="width: 200px">
-            <button title="Editar" alt="Editar" class="btn btn-xs btn-info fa fa-edit" (click)="getChecklist(post.codPostagem)">Editar</button>
+            <button title="Editar" alt="Editar" class="btn btn-xs btn-info fa fa-edit" (click)="getChecklist(post.codPostagem)" [routerLink]="['/checklist/1/'] + post.codPostagem"> Editar</button>
             <br>
             <br>
             <a title="Remover" alt="Remover" class="btn btn-xs btn-danger">

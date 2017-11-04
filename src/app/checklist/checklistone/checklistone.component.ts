@@ -31,7 +31,6 @@ export class ChecklistoneComponent implements OnInit {
   loading = false;
 
   ngOnInit() {
-    console.log('entrou!!');
     this.postService.getPosts();
   }
 
