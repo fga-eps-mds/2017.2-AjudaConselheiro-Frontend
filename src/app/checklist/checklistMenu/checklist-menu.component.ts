@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsMenu, FormMenuTwo, CommentBinaryForm, CommentForm, BinaryForm, FormBinary, ConfirmComentary} from '../../models/index';
+import { FormMenuCommentBinary, FormMenuComment, CommentBinaryForm, CommentForm,
+  BinaryForm, FormMenuBinary, ConfirmComentary} from '../../models/index';
 import { ChecklistService } from '../../services/index';
 
 @Component({
@@ -10,9 +11,9 @@ import { ChecklistService } from '../../services/index';
 })
 export class ChecklistMenuComponent implements OnInit {
 
-  formsMenu: Array<CommentBinaryForm> = FormsMenu ;
-  formMenuTwo: Array<CommentForm> = FormMenuTwo;
-  formBinary: Array<BinaryForm> = FormBinary ;
+  formsMenu: Array<CommentBinaryForm> = FormMenuCommentBinary ;
+  formMenuTwo: Array<CommentForm> = FormMenuComment;
+  formBinary: Array<BinaryForm> = FormMenuBinary ;
   textArea = false;
 
   checkComentary: ConfirmComentary[]= [

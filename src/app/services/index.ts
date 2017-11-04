@@ -7,3 +7,4 @@ export * from './alert/alert.service';
 export * from './school.service';
 export * from './ibge/ibge.service';
 export * from './services-utilities.service';
+export * from '../services/posts/post.service';
