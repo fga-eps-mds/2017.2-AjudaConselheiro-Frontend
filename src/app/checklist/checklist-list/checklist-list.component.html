@@ -4,21 +4,21 @@
 <br>
 
 <table class="table table-bordered table-hover">
-  <tr *ngFor="let post of checklists">
-    <td class="text-center mb-4">
-      Checklist {{ post.codPostagem }}
-    </td>
-    <td class="text-center mb-4">
-      {{ post.dataHoraPostagem }}
-    </td>
-    <td class="text-center" style="width: 200px">
-      <a [routerLink]="['/home']" title="Editar" alt="Editar" class="btn btn-xs btn-info">
-        <i class="fa fa-edit"></i> Editar
-      </a>
-      <br>
-      <br>
-      <a title="Remover" alt="Remover" class="btn btn-xs btn-danger">
-        <i class="fa fa-trash"></i>
-      </a>
-    </td>
+    <tr *ngFor="let post of checklists">
+        <td class="text-center mb-4">
+            Checklist {{ post.codPostagem }}
+        </td>
+        <td class="text-center mb-4">
+            {{ post.dataHoraPostagem }}
+        </td>
+        <td class="text-center" style="width: 200px">
+            <a [routerLink]="['/home']" title="Editar" alt="Editar" class="btn btn-xs btn-info">
+                <i class="fa fa-edit"></i> Editar
+            </a>
+            <br>
+            <br>
+            <a title="Remover" alt="Remover" class="btn btn-xs btn-danger">
+                <i class="fa fa-trash"></i>
+            </a>
+        </td>
 </table>

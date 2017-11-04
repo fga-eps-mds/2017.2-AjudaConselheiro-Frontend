@@ -11,6 +11,7 @@ import { UserService } from '../../services/user/user.service';
 export class PostService extends ServicesUtilitiesService {
   private baseURL = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/postagens/';
   private postURL = this.baseURL + 'conteudos';
+  private checklistURL = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas/';
 
   // These are 'tipoPostagem' that already been set for this app, in the API
   private incompleteChecklist = 375;
@@ -21,7 +22,7 @@ export class PostService extends ServicesUtilitiesService {
   private headers: Headers = new Headers({
     'Content-Type': 'application/json',
     appToken: localStorage.getItem('token'),
-    appIdentifier: 462
+    appIdentifier: 462,
   });
 
   options: RequestOptions = new RequestOptions({ headers: this.headers });
@@ -37,10 +38,11 @@ export class PostService extends ServicesUtilitiesService {
   // Get all posts
   getPosts() {
     const thereIsToken = localStorage.getItem('token');
+    const cod = this.getUserCod();
 
     if (thereIsToken) {
       return this.http
-        .get(this.baseURL, this.options)
+        .get(this.checklistURL + cod + '/postagens', this.options)
         .map(this.extractData)
         .catch(this.handleError);
     } else {
@@ -49,12 +51,13 @@ export class PostService extends ServicesUtilitiesService {
   }
 
   // Get single post with post id
-  getPost(cod: number): Observable<Post> {
+  getPost(): Observable<Post> {
+    const cod = this.getUserCod();
     const appToken = localStorage.getItem('token');
 
     if (appToken) {
       return this.http
-        .get(this.baseURL + cod, this.options)
+        .get(this.baseURL + cod + '/postagens', this.options)
         .map(this.extractData)
         .catch(this.handleError);
     } else {

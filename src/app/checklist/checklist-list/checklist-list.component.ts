@@ -45,8 +45,8 @@ export class ChecklistListComponent implements OnInit {
       });
   }
 
-  getChecklist(cod: number) {
-    this.postService.getPost(cod)
+  getChecklist() {
+    this.postService.getPost()
       .subscribe(
         (res) => {
           console.log('resultado: ', res);
