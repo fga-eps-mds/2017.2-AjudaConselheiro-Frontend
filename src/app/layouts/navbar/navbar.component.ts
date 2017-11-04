@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {ConfirmationPopoverModule} from 'angular-confirmation-popover';
 import { Router } from '@angular/router';
 
 import { AuthenticationService } from './../../services/authentication/authentication.service';
@@ -7,7 +6,7 @@ import { AuthenticationService } from './../../services/authentication/authentic
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.css'],
 })
 
 export class NavbarHomeComponent implements OnInit {

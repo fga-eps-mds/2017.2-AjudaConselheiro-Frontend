@@ -7,7 +7,7 @@ import { User } from '../../models/index';
 import { MockBackend } from '@angular/http/testing';
 import { DebugElement } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FakeUser } from './testing/index';
+import { FakeUser } from './testing/fake-user';
 import { tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
