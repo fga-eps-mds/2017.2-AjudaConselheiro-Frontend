@@ -17,7 +17,6 @@ export class ProfileComponent implements OnInit {
   data: string;
   constructor(
     private UserService: UserService,
-    private router: Router,
     private alertService: AlertService,
     private profileService: ProfileService
   ) { }
@@ -41,29 +40,32 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+ expectedCPF(strCPF: string) {
+  let soma = '00000000000';
+  for (let i = 0 ; i <= 9 ; i++) {
+    if (strCPF === soma) {
+      return false;
+    }
+    soma = String(11111111111 + parseInt( soma, 10));
+  }
+  if (strCPF === null) {
+    return false;
+  }
+ }
   testCPF(strCPF: string) {
     let Soma;
     let Resto;
     Soma = 0;
-    let soma = '00000000000';
-    for (let i = 0 ; i <= 9 ; i++) {
-      if (strCPF === soma) {
-        return false;
-      }
-      soma = String(11111111111 + parseInt( soma, 10));
-    }
-    if (strCPF === null) {
-      return false;
-    }
+    if (this.expectedCPF(strCPF) === false) {
+       return false; }
     for (let i = 1 ; i <= 9 ; i++) {
       Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (11 - i);
     }
     Resto = (Soma * 10) % 11;
-
     if ((Resto === 10) || (Resto === 11)) {
       Resto = 0;
     }
-    if (Resto != parseInt(strCPF.substring(9, 10))) {
+    if (Resto !== parseInt(strCPF.substring(9, 10))) {
      return false;
     }
     Soma = 0;
