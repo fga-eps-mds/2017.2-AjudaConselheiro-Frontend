@@ -32,7 +32,7 @@ export class SidebarComponent implements OnInit {
   }
 
   deleteUser(): any {
-    console.log("Requesting user deletion");
+    console.log('Requesting user deletion');
     this.userService.delete();
   }
 }
