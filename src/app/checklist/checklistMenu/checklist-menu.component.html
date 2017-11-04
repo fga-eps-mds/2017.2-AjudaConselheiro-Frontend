@@ -30,13 +30,13 @@
                             <div class="col-md-2" align="center">
                               Não
                               <label class="align-middle switch">
-                              <input type="checkbox" name="{{iteratorArray[0][commentQuestionCounter]}}" [(ngModel)]="iteratorArray[0][commentQuestionCounter].answer" [value]="true" >
+                              <input type="checkbox" name="{{iteratorArray[0][commentQuestionCounter]}}" [(ngModel)]="iteratorArray[0][commentQuestionCounter].answer" [value]="true" (change)="!checkComentary[commentQuestionCounter].value">
                               <span class="slider round"></span>
                               </label>
                               Sim
                             </div>
                           </div>
-                          <div class="row" *ngIf="checkComentary[commentQuestionCounter].value ===true">
+                          <div class="row" *ngIf="formMenuCommentBinary[commentQuestionCounter].answer === true">
                             <div class="col-md-8"></div>
                             <div class="col-md-4">
                               <div class="md-form">

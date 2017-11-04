@@ -17,6 +17,7 @@ export class ChecklistMenuComponent implements OnInit {
   formMenuComment: Array<CommentForm> = FormMenuComment;
   formMenuBinary: Array<BinaryForm> = FormMenuBinary;
   iteratorArray: Array<Object> = ChecklistMenuIteratorArray;
+
   checkComentary: ConfirmComentary[]= [
     new ConfirmComentary(false, 'Comment1'),
     new ConfirmComentary(false, 'Comment2'),
