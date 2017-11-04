@@ -4,6 +4,6 @@ export * from './council-group/council-group.service';
 export * from './checklist.service';
 export * from './authentication/authentication.service';
 export * from './alert/alert.service';
-export * from './school.service';
+export * from './school-service/school.service';
 export * from './ibge/ibge.service';
 export * from './services-utilities.service';

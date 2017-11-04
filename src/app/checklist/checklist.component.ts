@@ -1,8 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+
+import { Subscription } from 'rxjs/Subscription';
+
+import { SchoolService } from '../services/index';
 
 @Component({
-    moduleId: module.id,
-    selector: 'app-checklist',
-    templateUrl: 'checklist.component.html'
+  moduleId: module.id,
+  selector: 'app-checklist',
+  templateUrl: 'checklist.component.html',
+  styleUrls: ['./checklist.component.css'],
+  providers: [ SchoolService ]
 })
-export class ChecklistComponent {}
+export class ChecklistComponent implements OnInit {
+  checklistSchool = false;
+  subscription: Subscription;
+  schoolData: string;
+
+  constructor(private schoolService: SchoolService) {}
+
+  ngOnInit() {
+    this.schoolService.schoolData$.subscribe(schoolData => this.schoolData = schoolData);
+    console.log(this.schoolData);
+  }
+}

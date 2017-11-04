@@ -1,0 +1,85 @@
+<div class="card container search">
+  <div class="d-flex justify-content-end">
+    <p class="mr-auto p-2 h5 text-center">Buscar Escolas</p>
+    <button class="btn btn-blue p-2" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+      aria-expanded="false" aria-label="Toggle navigation" (click)="toggleCollapsed()">
+      <span class="fa fa-chevron-down"></span>
+    </button>
+  </div>
+
+  <div [ngClass]="{'collapse': collapsed, 'navbar-collapse': true}">
+
+    <label for="name">
+      <i class="fa fa-globe" aria-hidden="true"></i> Sigla do Estado:</label>
+    <div class="input-group">
+      <input type="text" class="form-control" id="state" name="state" [(ngModel)]="state" #stt="ngModel" minlength="2" maxlength="2">
+      <span class="input-group-btn">
+        <button class="btn btn-primary rounded p-2" type="button" aria-label="Search" (click)="searchCity()">
+          <i class="fa fa-search" aria-hidden="true"></i>
+        </button>
+      </span>
+    </div>
+
+    <div class="school-form">
+      <label>
+        <i class="fa fa-road" aria-hidden="true"></i> Municipio:</label>
+      <div class="container select-style">
+        <select [(ngModel)]="school.city">
+          <option value="" selected disabled>Escolha um Município</option>
+          <option *ngFor="let city of cities" [value]="city.code">{{city.name}}</option>
+        </select>
+      </div>
+      <label for="name">
+        <i class="fa fa-info" aria-hidden="true"></i> Nome da Escola:</label>
+      <input type="text" class="form-control" id="name" name="name" [(ngModel)]="school.name" #name="ngModel">
+
+      <label for="code">
+        <i class="fa fa-pencil" aria-hidden="true"></i> Código da Escola:</label>
+      <input type="text" class="form-control" id="code" name="code" [(ngModel)]="school.code" #code="ngModel">
+    </div>
+    <label><i class="fa fa-road" aria-hidden="true"></i> Região:</label>
+    <div class="container select-style">
+      <select [(ngModel)]="school.location">
+        <option value="" selected disabled>Escolha uma Região</option>
+        <option [ngValue]="1" selected >Urbana</option>
+        <option [ngValue]="2" selected >Rural</option>
+      </select>
+    </div>
+    <div class="text-center">
+      <button type="button" class="btn btn-deep-orange" (click)="searchSchool()"><i class="fa fa-search" aria-hidden="true"></i>Buscar</button>
+    </div>
+    <br>
+    <div class="container">
+      <p class="mr-auto p-2 h5 text-center">Resultados da Busca</p>
+      <table class="table table-hover">
+        <thead class="blue-grey lighten-3">
+          <tr>
+            <th><b>#</b></th>
+            <th><b>Nome</b></th>
+            <th><b>Código</b></th>
+            <th><b>Rede</b></th>
+            <th><b>Cidade</b></th>
+            <th><b>Estado</b></th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+            <ng-container *ngFor="let school of schools; let i = index">
+              <tr *ngIf="school.dependenciaAdministrativaTxt !== 'Privada'">
+                <th scope="row">{{i + 1}} </th>
+                <td>{{school.nome}}</td>
+                <td>{{school.cod}}</td>
+                <td>{{school.dependenciaAdministrativaTxt}}</td>
+                <td>{{school.cidade}}</td>
+                <td>{{school.estado}}</td>
+                <td>
+                  <button type="button" class="btn btn-light-blue rounded p-1" (click)="getChosenSchool(school);schoolCheck()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                </td>
+              </tr>
+            </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

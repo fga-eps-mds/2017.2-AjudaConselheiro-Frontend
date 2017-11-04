@@ -1,12 +1,12 @@
-import {  async, TestBed, ComponentFixture } from '@angular/core/testing';
+import { async, TestBed, ComponentFixture } from '@angular/core/testing';
 import { SchoolService } from '../../services/index';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { SchedulingService } from './../../services/scheduling.service';
+import { SchedulingService, AlertService } from './../../services/index';
 import { MockBackend } from '@angular/http/testing';
 import { CreateSchedulingComponent } from './create-scheduling.component';
 import { Scheduling } from './../../models/scheduling.model';
-import { Search } from './../../models/search.model';
+import { SearchSchool } from './../../models/search-school.model';
 import { FormsModule } from '@angular/forms';
 import { Http, ConnectionBackend } from '@angular/http';
 import { HttpModule } from '@angular/http';
@@ -32,6 +32,7 @@ describe('HomeComponent', () => {
         Http,
         MockBackend,
         ConnectionBackend,
+        AlertService
       ]
     })
     .compileComponents();

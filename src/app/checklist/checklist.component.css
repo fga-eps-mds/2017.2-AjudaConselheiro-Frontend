@@ -1,18 +1,13 @@
-input.placeholder {
-    text-align: center;
+.tab {
+    margin: 0 auto;
+    max-width: 1280px;
+    width: 55%;
 }
-::-webkit-input-placeholder {
-   text-align: center;
+.color-white{
+    color: #FFFFFF;
 }
-
-:-moz-placeholder { /* Firefox 18- */
-   text-align: center;
-}
-
-::-moz-placeholder {  /* Firefox 19+ */
-   text-align: center;
-}
-
-:-ms-input-placeholder {
-   text-align: center;
+th {
+    width: 20px;
+    word-wrap: break-word;
+    border-radius: 5px;
 }

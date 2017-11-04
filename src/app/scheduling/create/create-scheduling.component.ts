@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { SchoolService } from '../../services/index';
-import { Search } from './../../models/search.model';
+import { SearchSchool } from './../../models/search-school.model';
 
 @Component({
   selector: 'app-create-scheduling',
@@ -17,7 +17,7 @@ export class CreateSchedulingComponent implements OnInit {
   scheduling: Scheduling;
   state: string;
   cities: Array<Object>;
-  search: Search;
+  search: SearchSchool;
   schools: Array<Object>;
 
 
@@ -32,7 +32,7 @@ export class CreateSchedulingComponent implements OnInit {
     this.state = '';
     this.cities = new Array<Object>();
     this.schools = new Array<Object>();
-    this.search = new Search();
+    this.search = new SearchSchool();
   }
 
   searchSchool(): void {
