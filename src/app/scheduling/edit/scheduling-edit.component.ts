@@ -1,5 +1,5 @@
 import { Scheduling } from './../../models/scheduling.model';
-import { SchedulingService } from './../../services/scheduling.service';
+import { SchedulingService } from './../../services/scheduling/scheduling.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm, ReactiveFormsModule } from '@angular/forms';

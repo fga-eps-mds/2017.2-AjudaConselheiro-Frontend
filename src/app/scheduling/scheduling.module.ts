@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { SchedulingService } from './../services/scheduling.service';
+import { SchedulingService } from './../services/scheduling/scheduling.service';
 import { SchedulingHomeComponent } from './home/scheduling-home.component';
 import { SchedulingEditComponent } from './edit/scheduling-edit.component';
 import { SchedulingCreateComponent } from './create/scheduling-create.component';

@@ -1,4 +1,4 @@
-import { Scheduling } from './../models/scheduling.model';
+import { Scheduling } from './../../models/scheduling.model';
 import { Injectable } from '@angular/core';
 
 

@@ -1,4 +1,4 @@
-import { SchedulingService } from './../../services/scheduling.service';
+import { SchedulingService } from './../../services/scheduling/scheduling.service';
 import { Scheduling } from './../../models/scheduling.model';
 import { Component, OnInit } from '@angular/core';
 

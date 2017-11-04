@@ -4,9 +4,9 @@ import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/catch';
 
-import { Scheduling } from '../models/index';
-import { ServicesUtilitiesService } from './services-utilities.service';
-import { Search } from '../models/search.model';
+import { Scheduling } from '../../models/index';
+import { ServicesUtilitiesService } from './../services-utilities/services-utilities.service';
+import { Search } from '../../models/search.model';
 
 @Injectable()
 export class SchoolService extends ServicesUtilitiesService {

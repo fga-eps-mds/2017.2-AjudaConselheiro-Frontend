@@ -1,5 +1,5 @@
-import { CouncilGroup } from './../models/council-group';
-import { AlertService } from './alert/alert.service';
+import { CouncilGroup } from './../../models/council-group';
+import { AlertService } from './../alert/alert.service';
 import { TestBed, inject } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpModule, Http, ConnectionBackend, ResponseOptions, XHRBackend, Response, } from '@angular/http';

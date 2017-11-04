@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { AlertService } from '../alert/alert.service';
-import { ServicesUtilitiesService } from '../services-utilities.service';
+import { ServicesUtilitiesService } from '../services-utilities/services-utilities.service';
 
 @Injectable()
 export class AuthenticationService extends ServicesUtilitiesService {

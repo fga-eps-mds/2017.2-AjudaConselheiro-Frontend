@@ -2,7 +2,7 @@ import {  async, TestBed, ComponentFixture } from '@angular/core/testing';
 import { SchoolService } from '../../services/index';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { SchedulingService } from './../../services/scheduling.service';
+import { SchedulingService } from './../../services/scheduling/scheduling.service';
 import { MockBackend } from '@angular/http/testing';
 import { SchedulingCreateComponent } from './scheduling-create.component';
 import { Scheduling } from './../../models/scheduling.model';
