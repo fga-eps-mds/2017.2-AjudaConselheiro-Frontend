@@ -47,9 +47,9 @@ describe('Checklist-menuComponent', () => {
     expect(component.onSubmit).toHaveBeenCalled();
   }));
   it('test onSubmit', function () {
-    spyOn(console, 'log');
+    spyOn(console, 'warn');
     // do your stuff that should log something
     component.onSubmit();
-    expect(console.log).toHaveBeenCalled();
+    expect(console.warn).toHaveBeenCalled();
 });
 });
