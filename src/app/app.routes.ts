@@ -1,3 +1,6 @@
+import { NotProfileComponent } from './user/not-profile/not-profile.component';
+import { ProfileComponent } from './user/profile/profile.component';
+
 import { Routes } from '@angular/router';
 
 import { SidebarComponent } from './layouts/sidebar/sidebar.component';
@@ -24,6 +27,8 @@ import {
   LoginComponent
 } from './user/user.module';
 
+import { ChecklistUpdateComponent } from './checklist/checklist-update/checklist-update.component';
+
 export const ROUTES: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
@@ -41,6 +46,9 @@ export const ROUTES: Routes = [
   { path: 'registrar', component: UserCreateComponent },
   { path: 'usuarios/editar/:id', component: UserEditComponent },
   { path: 'conselho/cadastrar', component: CouncilGroupCreateComponent },
-  { path: 'conselho/buscar', component: CouncilGroupSearchComponent },
-  { path: 'side', component: SidebarComponent }
+  { path: 'conselho/buscar', component: CouncilGroupSearchComponent},
+  { path: 'side', component: SidebarComponent },
+  { path: 'checklist/update', component: ChecklistUpdateComponent},
+  { path: 'perfil', component: ProfileComponent },
+  { path: 'usuario-sem-perfil', component: NotProfileComponent}
 ];

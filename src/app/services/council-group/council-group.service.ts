@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
 import { CouncilGroup } from '../../models/index';
@@ -17,25 +18,28 @@ export class CouncilGroupService extends ServicesUtilitiesService {
   }
 
   createCouncil(councilGroup: CouncilGroup): Observable<any> {
+    const thereIsToken = localStorage.getItem('token');
 
-    if (!localStorage.getItem('token')) {
+    if (thereIsToken) {
+      this.headers = new Headers ({
+        'Content-Type': 'application/json',
+        'appToken': localStorage.getItem('token')
+      });
+
+      this.request = new RequestOptions({ headers: this.headers });
+
+      const formattedCouncil = this.getFormattedData(councilGroup);
+
+      return this.http.post(this.url, formattedCouncil, this.request)
+        .map(response => this.extractLocation(response))
+        .catch(this.handleError);
+
+    } else {
       this.alertService.warn('Usuário precisa estar logado para criar um conselho!');
+      console.error('Você precisa estar logado para executar essa ação!');
+
+      return new Observable<any>();
     }
-
-    this.headers = new Headers ({
-      'Content-Type': 'application/json',
-      'appToken': localStorage.getItem('token')
-    });
-
-    this.request = new RequestOptions({ headers: this.headers });
-    console.log('Create Council');
-
-    const formattedCouncil = this.getFormattedData(councilGroup);
-    console.log(formattedCouncil);
-
-    return this.http.post(this.url, formattedCouncil, this.request)
-      .map(response => this.extractData(response))
-      .catch(this.handleError);
   }
 
   getFormattedData(councilGroup: CouncilGroup) {
@@ -52,18 +56,21 @@ export class CouncilGroupService extends ServicesUtilitiesService {
     return JSON.stringify(council);
   }
 
-  extractData(res: Response) {
-    const body = res.json();
+  extractLocation(res: Response) {
     const location = res.headers.get('location');
-    console.log(body);
-    console.log(location);
     return location || {};
   }
 
   getAjudaConselheiroCouncilGroups(description: string):  Observable<Array<Object>> {
+    const searchParams = {
+      'codAplicativo': 462,
+      'descricao': description
+    };
+    const requestParam = new RequestOptions({ params: searchParams });
+
     return this.http
-    .get(this.url + '?codAplicativo=462')
-    .map(res => res.json().find(x => x.descricao === description))
-    .catch(this.handleError);
+      .get(this.url, requestParam)
+      .map(this.extractData)
+      .catch(this.handleError);
   }
 }

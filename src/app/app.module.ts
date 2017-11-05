@@ -16,12 +16,17 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { CouncilGroupCreateModule } from './council-group/council-group.module';
 import { AlertService } from './services/alert/alert.service';
+import { ProfileService } from './services/profile/profile.service';
+
 import { LayoutsModule } from './layouts/layouts.module';
+import { ChecklistService } from './services/index';
+import { ChecklistUpdateComponent } from './checklist/checklist-update/checklist-update.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    ChecklistUpdateComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +49,8 @@ import { LayoutsModule } from './layouts/layouts.module';
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [
     BaseRequestOptions,
-    AlertService
+    AlertService,
+    ProfileService
   ],
   bootstrap: [AppComponent]
 })

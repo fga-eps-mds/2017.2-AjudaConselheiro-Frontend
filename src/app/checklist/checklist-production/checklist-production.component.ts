@@ -2,13 +2,11 @@ import { Binary } from '@angular/compiler';
 import { Http, HttpModule } from '@angular/http';
 import { Component, OnInit } from '@angular/core';
 
-import { SectionCommentary } from '../../models/checklist.model';
-import { CheckOneTopicHeaders, CheckOneCommentaries, CheckOneFirstTopic, CheckOneEighthTopic, CheckOneFifthTopic, CheckOneFourthTopic,
-CheckOneSecondTopic, CheckOneSixthTopic, CheckOneSeventhTopic, CheckOneThirdTopic, IteratorArray} from './../../models/checklistForms';
-import { FormsMenu, FormMenuTwo, CommentBinaryForm, CommentForm, BinaryForm, FormBinary, ConfirmComentary} from '../../models/index';
-import { ChecklistService, AlertService } from '../../services/index';
-import { PostService } from '../../services/posts/post.service';
-import { Post } from '../../models/index';
+import { CheckOneTopicHeaders, CheckOneCommentaries, CheckOneFirstTopic, CheckOneEighthTopic, CheckOneFifthTopic,
+CheckOneFourthTopic, CheckOneSecondTopic, CheckOneSixthTopic, CheckOneSeventhTopic, CheckOneThirdTopic,
+IteratorArray, SectionCommentary, FormMenuCommentBinary, FormMenuComment, CommentBinaryForm,
+CommentForm, BinaryForm, FormMenuBinary, ConfirmComentary, Post} from '../../models/index';
+import { ChecklistService, AlertService, PostService } from '../../services/index';
 
 @Component({
   selector: 'app-checklist-production',
@@ -23,8 +21,8 @@ export class ChecklistProductionComponent implements OnInit {
     commentaries: Array<SectionCommentary> = CheckOneCommentaries;
 
   constructor(
-    private postService: PostService,
-    private alertService: AlertService
+    protected postService: PostService,
+    protected alertService: AlertService
   ) {}
 
   post: Post;

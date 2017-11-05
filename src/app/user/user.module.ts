@@ -9,6 +9,8 @@ import { LoginComponent } from './login/login.component';
 import { UserService, AlertService, AuthenticationService } from '../services/index';
 import { UserEditComponent } from './edit/user-edit.component';
 import { TextMaskModule } from 'angular2-text-mask';
+import { ProfileComponent } from './profile/profile.component';
+import { NotProfileComponent } from './not-profile/not-profile.component';
 
 export { UserCreateComponent, UserEditComponent, UserListComponent, LoginComponent };
 
@@ -23,7 +25,9 @@ export { UserCreateComponent, UserEditComponent, UserListComponent, LoginCompone
     UserListComponent,
     UserCreateComponent,
     UserEditComponent,
-    LoginComponent
+    LoginComponent,
+    ProfileComponent,
+    NotProfileComponent,
   ],
   providers: [
     UserService, AlertService, AuthenticationService

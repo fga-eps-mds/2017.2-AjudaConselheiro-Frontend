@@ -37,7 +37,7 @@ describe('UserCreateComponent', () => {
       declarations: [ UserCreateComponent ],
       imports: [
         FormsModule,
-        HttpModule
+        HttpModule,
        ],
        providers: [
          Http,
@@ -61,7 +61,6 @@ describe('UserCreateComponent', () => {
 
     fixture = TestBed.createComponent(UserCreateComponent);
     component = fixture.componentInstance;
-
     component = fixture.debugElement.injector.get(UserCreateComponent);
 
   }));
