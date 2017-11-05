@@ -2,14 +2,14 @@ import { Binary } from '@angular/compiler';
 import { Http, HttpModule } from '@angular/http';
 import { Component, OnInit } from '@angular/core';
 
-import { SectionCommentary } from '../../models/checklist.model';
-import { CheckOneTopicHeaders, CheckOneCommentaries, CheckOneFirstTopic, CheckOneEighthTopic, CheckOneFifthTopic, CheckOneFourthTopic,
-CheckOneSecondTopic, CheckOneSixthTopic, CheckOneSeventhTopic, CheckOneThirdTopic, IteratorArray} from './../../models/checklistForms';
-import { FormsMenu, FormMenuTwo, CommentBinaryForm, CommentForm, BinaryForm, FormBinary, ConfirmComentary} from '../../models/index';
-import { ChecklistService, AlertService } from '../../services/index';
-import { PostService } from '../../services/posts/post.service';
-import { Post } from '../../models/index';
-import { ChecklistoneComponent } from '../checklistone/checklistone.component'
+import { Post, SectionCommentary, CheckOneTopicHeaders, CheckOneCommentaries,
+CheckOneFirstTopic, CheckOneEighthTopic, CheckOneFifthTopic, CheckOneFourthTopic,
+CheckOneSecondTopic, CheckOneSixthTopic, CheckOneSeventhTopic, CheckOneThirdTopic,
+IteratorArray, CommentBinaryForm,
+CommentForm, BinaryForm, ConfirmComentary } from '../../models/index';
+
+import { ChecklistService, AlertService, PostService } from '../../services/index';
+import { ChecklistProductionComponent } from '../checklist-production/checklist-production.component';
 
 @Component({
   selector: 'app-checklist-update',
@@ -17,8 +17,10 @@ import { ChecklistoneComponent } from '../checklistone/checklistone.component'
   styleUrls: ['./checklist-update.component.css'],
   providers: [ChecklistService, PostService, AlertService],
 })
-export class ChecklistUpdateComponent extends ChecklistoneComponent {
+export class ChecklistUpdateComponent extends ChecklistProductionComponent implements OnInit {
 
+  post: Post;
+  loading = false;
   iteratorArray: Array<Object>= IteratorArray;
   topicHeaders: Array<string> = CheckOneTopicHeaders;
   commentaries: Array<SectionCommentary> = CheckOneCommentaries;
@@ -26,9 +28,6 @@ export class ChecklistUpdateComponent extends ChecklistoneComponent {
     postService: PostService,
     alertService: AlertService
   ) {}
-
-  post: Post;
-  loading = false;
 
   ngOnInit() {
     console.log('entrou!!');
