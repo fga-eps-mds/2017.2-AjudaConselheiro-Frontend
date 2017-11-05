@@ -155,4 +155,26 @@ describe('PostService', () => {
       expect(result).toEqual(fakeData);
     });
   }));
+
+  it('updatePosts() should return fakeData if there is a valid logged user',
+    inject([PostService, MockBackend], (postService, mockBackend) => {
+
+    // Setting up the data needed for savePosts()
+    const fakeData = { Post: 'Updated!' };
+    const fakeUser = { userName: 'Gustavo', cod: 35 };
+    const saveFakeData = 'Some Data';
+    localStorage.setItem('userData', JSON.stringify(fakeUser));
+
+    // Mocking HTTP connection for this test
+    mockBackend.connections.subscribe((connection: MockConnection) => {
+      const options = new ResponseOptions({ body: fakeData });
+
+      connection.mockRespond(new Response(options));
+    });
+
+    // Makes the request
+    postService.updatePost(saveFakeData).subscribe((result) => {
+      expect(result).toEqual(fakeData);
+    });
+  }));
 });

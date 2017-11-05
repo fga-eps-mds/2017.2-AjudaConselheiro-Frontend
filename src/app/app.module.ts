@@ -30,6 +30,7 @@ import { ChecklistService } from './services/index';
 import {ConfirmationPopoverModule} from 'angular-confirmation-popover';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { SidebarComponent } from './layouts/sidebar/sidebar.component';
+import { ChecklistUpdateComponent } from './checklist/checklist-update/checklist-update.component';
 
 @NgModule({
 
@@ -44,6 +45,7 @@ import { SidebarComponent } from './layouts/sidebar/sidebar.component';
     AlertComponent,
     SearchCouncilGroupComponent,
     SidebarComponent,
+    ChecklistUpdateComponent
   ],
 
   imports: [
