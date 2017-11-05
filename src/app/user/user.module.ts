@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 import { UserCreateComponent } from '../user/create/user-create.component';
 import { UserListComponent } from './list/user-list.component';
 import { LoginComponent } from './login/login.component';
-import { UserService, AlertService, AuthenticationService } from '../services/index';
+import { UserService, AlertService, AuthenticationService, ProfileService } from '../services/index';
 import { UserEditComponent } from './edit/user-edit.component';
 import { TextMaskModule } from 'angular2-text-mask';
 import { ProfileComponent } from './profile/profile.component';
@@ -30,7 +30,10 @@ export { UserCreateComponent, UserEditComponent, UserListComponent, LoginCompone
     NotProfileComponent,
   ],
   providers: [
-    UserService, AlertService, AuthenticationService
+    UserService,
+    AlertService,
+    AuthenticationService,
+    ProfileService
   ]
 })
 export class UserModule { }
