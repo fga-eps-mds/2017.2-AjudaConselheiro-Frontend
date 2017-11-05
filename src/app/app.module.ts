@@ -9,24 +9,18 @@ import { TextMaskModule } from 'angular2-text-mask';
 
 import { ROUTES } from './app.routes';
 
+import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
 import { UserModule } from './user/user.module';
 import { SchedulingModule } from './scheduling/scheduling.module';
 import { ChecklistModule } from './checklist/checklist.module';
-import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { CouncilGroupCreateModule } from './council-group/council-group.module';
-import { AlertService } from './services/alert/alert.service';
-import { ProfileService } from './services/profile/profile.service';
-
+import { CouncilGroupModule } from './council-group/council-group.module';
 import { LayoutsModule } from './layouts/layouts.module';
-import { ChecklistService } from './services/index';
-import { ChecklistUpdateComponent } from './checklist/checklist-update/checklist-update.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    ChecklistUpdateComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +31,7 @@ import { ChecklistUpdateComponent } from './checklist/checklist-update/checklist
     ChecklistModule,
     SchedulingModule,
     UserModule,
-    CouncilGroupCreateModule,
+    CouncilGroupModule,
     TextMaskModule,
     ReactiveFormsModule,
     TextMaskModule,
@@ -49,8 +43,6 @@ import { ChecklistUpdateComponent } from './checklist/checklist-update/checklist
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [
     BaseRequestOptions,
-    AlertService,
-    ProfileService
   ],
   bootstrap: [AppComponent]
 })

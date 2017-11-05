@@ -8,9 +8,10 @@ import { ChecklistComponent} from './checklist.component';
 import { ChecklistProductionComponent } from './checklist-production/checklist-production.component';
 import { ChecklistCafeteriaComponent } from './checklist-cafeteria/checklist-cafeteria.component';
 import { ChecklistMenuComponent } from './checklist-menu/checklist-menu.component';
+import { ChecklistUpdateComponent } from './checklist-update/checklist-update.component';
 import { ChecklistService} from '../services/index';
 
-export { ChecklistComponent, ChecklistCafeteriaComponent, ChecklistMenuComponent, ChecklistProductionComponent };
+export { ChecklistComponent, ChecklistCafeteriaComponent, ChecklistMenuComponent, ChecklistProductionComponent, ChecklistUpdateComponent };
 
 @NgModule({
     imports: [
@@ -23,12 +24,8 @@ export { ChecklistComponent, ChecklistCafeteriaComponent, ChecklistMenuComponent
         ChecklistComponent,
         ChecklistMenuComponent,
         ChecklistCafeteriaComponent,
-        ChecklistProductionComponent
-    ],
-    exports: [
-        ChecklistComponent,
-        ChecklistMenuComponent,
-        ChecklistCafeteriaComponent,
+        ChecklistProductionComponent,
+        ChecklistUpdateComponent
     ],
     providers: [
         ChecklistService

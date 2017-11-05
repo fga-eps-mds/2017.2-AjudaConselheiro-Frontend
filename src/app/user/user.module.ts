@@ -12,7 +12,7 @@ import { TextMaskModule } from 'angular2-text-mask';
 import { ProfileComponent } from './profile/profile.component';
 import { NotProfileComponent } from './not-profile/not-profile.component';
 
-export { UserCreateComponent, UserEditComponent, UserListComponent, LoginComponent };
+export { UserCreateComponent, UserEditComponent, UserListComponent, LoginComponent, ProfileComponent, NotProfileComponent };
 
 @NgModule({
   imports: [

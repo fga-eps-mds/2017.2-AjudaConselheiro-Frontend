@@ -1,6 +1,3 @@
-import { NotProfileComponent } from './user/not-profile/not-profile.component';
-import { ProfileComponent } from './user/profile/profile.component';
-
 import { Routes } from '@angular/router';
 
 import { SidebarComponent } from './layouts/sidebar/sidebar.component';
@@ -11,7 +8,8 @@ import {
   ChecklistComponent,
   ChecklistProductionComponent,
   ChecklistMenuComponent,
-  ChecklistCafeteriaComponent
+  ChecklistCafeteriaComponent,
+  ChecklistUpdateComponent
 } from './checklist/checklist.module';
 
 import {
@@ -24,10 +22,10 @@ import {
   UserCreateComponent,
   UserEditComponent,
   UserListComponent,
+  ProfileComponent,
+  NotProfileComponent,
   LoginComponent
 } from './user/user.module';
-
-import { ChecklistUpdateComponent } from './checklist/checklist-update/checklist-update.component';
 
 export const ROUTES: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },

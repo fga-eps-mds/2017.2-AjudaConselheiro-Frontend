@@ -23,5 +23,5 @@ export { CouncilGroupCreateComponent, CouncilGroupSearchComponent };
     CouncilGroupService
   ]
 })
-export class CouncilGroupCreateModule { }
+export class CouncilGroupModule { }
 
