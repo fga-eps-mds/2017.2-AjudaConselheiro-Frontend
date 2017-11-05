@@ -2,9 +2,8 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
-import { UserService } from '../user/user.service';
-import { AlertService} from '../alert/alert.service';
-import { ServicesUtilitiesService } from '../services-utilities.service';
+import { ServicesUtilitiesService, AlertService, UserService } from '../../services/index';
+
 import { Post, User } from '../../models/index';
 
 

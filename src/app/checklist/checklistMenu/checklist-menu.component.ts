@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
-import { ChecklistMenuIteratorArray } from '../../models/checklist/checklistForms';
-import { FormMenuCommentBinary, FormMenuComment, CommentBinaryForm, CommentForm,
-  BinaryForm, FormMenuBinary, ConfirmComentary} from '../../models/index';
+import { FormsMenu, FormMenuTwo, CommentBinaryForm, CommentForm, BinaryForm, FormBinary, ConfirmComentary} from '../../models/index';
 import { ChecklistService } from '../../services/index';
 
 @Component({
@@ -13,10 +10,10 @@ import { ChecklistService } from '../../services/index';
 })
 export class ChecklistMenuComponent implements OnInit {
 
-  formMenuCommentBinary: Array<CommentBinaryForm> = FormMenuCommentBinary;
-  formMenuComment: Array<CommentForm> = FormMenuComment;
-  formMenuBinary: Array<BinaryForm> = FormMenuBinary;
-  iteratorArray: Array<Object> = ChecklistMenuIteratorArray;
+  formsMenu: Array<CommentBinaryForm> = FormsMenu ;
+  formMenuTwo: Array<CommentForm> = FormMenuTwo;
+  formBinary: Array<BinaryForm> = FormBinary ;
+  textArea = false;
 
   checkComentary: ConfirmComentary[]= [
     new ConfirmComentary(false, 'Comment1'),
@@ -28,15 +25,12 @@ export class ChecklistMenuComponent implements OnInit {
 
   constructor(private menuService: ChecklistService) {}
 
-  ngOnInit(): void {
-    console.warn(this.iteratorArray);
-  }
+  ngOnInit(): void {}
 
   onSubmit(): void {
-    console.warn(this.formMenuCommentBinary);
-    console.warn(this.formMenuBinary);
-    console.warn(this.formMenuComment);
-    console.warn(this.iteratorArray);
+    console.log(this.formMenuTwo);
+    console.log(this.formsMenu);
+    console.log(this.formBinary);
   }
 
 }
