@@ -1,7 +1,7 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { NavbarHomeComponent } from './layouts/navbar/navbar.component';
+import { NavbarComponent } from './layouts/navbar/navbar.component';
 import { ChecklistProductionComponent } from './checklist/checklist-production/checklist-production.component';
 import { ChecklistMenuComponent } from './checklist/checklist-menu/checklist-menu.component';
 import { ChecklistCafeteriaComponent } from './checklist/checklist-cafeteria/checklist-cafeteria.component';
@@ -23,7 +23,7 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent,
         HomeComponent,
-        NavbarHomeComponent,
+        NavbarComponent,
         ChecklistProductionComponent,
         ChecklistMenuComponent,
         ChecklistCafeteriaComponent,

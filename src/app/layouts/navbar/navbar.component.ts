@@ -11,7 +11,7 @@ import { AuthenticationService } from './../../services/authentication/authentic
   moduleId: module.id,
 })
 
-export class NavbarHomeComponent implements OnInit {
+export class NavbarComponent implements OnInit {
   placement = 'left';
   title = 'Deseja sair?';
   message = 'Você realmente deseja sair da aplicação?';

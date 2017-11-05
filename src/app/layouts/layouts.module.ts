@@ -5,16 +5,17 @@ import { CommonModule } from '@angular/common';
 
 import { AlertComponent } from './alert/alert.component';
 import { FooterComponent } from './footer/footer.component';
-import { NavbarHomeComponent } from './navbar/navbar.component';
+import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { AlertService } from '../services/index';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 
 export {
   AlertComponent,
   FooterComponent,
-  NavbarHomeComponent,
+  NavbarComponent,
   SidebarComponent,
   CarouselComponent,
 };
@@ -23,19 +24,20 @@ export {
   imports: [
     CommonModule,
     RouterModule,
-    CarouselModule
+    CarouselModule.forRoot(),
+    ConfirmationPopoverModule.forRoot()
   ],
   declarations: [
     AlertComponent,
     FooterComponent,
-    NavbarHomeComponent,
+    NavbarComponent,
     SidebarComponent,
     CarouselComponent
   ],
   exports: [
     AlertComponent,
     FooterComponent,
-    NavbarHomeComponent,
+    NavbarComponent,
     SidebarComponent,
     CarouselComponent
   ],
