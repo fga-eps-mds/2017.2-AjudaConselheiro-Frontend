@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {ConfirmationPopoverModule} from 'angular-confirmation-popover';
 import { Router } from '@angular/router';
 
 import { AuthenticationService } from './../../services/authentication/authentication.service';
@@ -12,7 +11,7 @@ import { AuthenticationService } from './../../services/authentication/authentic
   moduleId: module.id,
 })
 
-export class NavbarHomeComponent implements OnInit {
+export class NavbarComponent implements OnInit {
   placement = 'left';
   title = 'Deseja sair?';
   message = 'Você realmente deseja sair da aplicação?';

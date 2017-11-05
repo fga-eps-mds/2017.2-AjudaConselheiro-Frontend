@@ -6,7 +6,7 @@ import { State } from '../../models/index';
 
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
-import { ServicesUtilitiesService } from '../services-utilities.service';
+import { ServicesUtilitiesService } from '../services-utilities/services-utilities.service';
 
 @Injectable()
 export class IbgeService extends ServicesUtilitiesService{

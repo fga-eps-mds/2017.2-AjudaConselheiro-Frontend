@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { UserService } from '../user/user.service';
 import { AlertService} from '../alert/alert.service';
-import { ServicesUtilitiesService } from '../services-utilities.service';
+import { ServicesUtilitiesService } from '../services-utilities/services-utilities.service';
 import { Post, User } from '../../models/index';
 
 

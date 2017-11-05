@@ -1,4 +1,4 @@
-export class ChecklistThree {
+export class ChecklistCafeteria {
     constructor(
         public id?: number,
         public obs?: string,

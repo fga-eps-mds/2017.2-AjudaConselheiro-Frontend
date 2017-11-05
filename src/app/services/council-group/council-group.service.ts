@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { CouncilGroup } from '../../models/index';
 import { AlertService } from '../../services/alert/alert.service';
-import { ServicesUtilitiesService } from '../../services/services-utilities.service';
+import { ServicesUtilitiesService } from '../../services/services-utilities/services-utilities.service';
 
 @Injectable()
 export class CouncilGroupService extends ServicesUtilitiesService {

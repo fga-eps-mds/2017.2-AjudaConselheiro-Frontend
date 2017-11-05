@@ -1,21 +1,21 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpModule } from '@angular/http';
 
-import { NavbarHomeComponent } from './navbar.component';
+import { NavbarComponent } from './navbar.component';
 import { AuthenticationService } from './../../services/authentication/authentication.service';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AlertService } from '../../services/index';
 
-describe('NavbarHomeComponent', () => {
-  let component: NavbarHomeComponent;
-  let fixture: ComponentFixture<NavbarHomeComponent>;
+describe('NavbarComponent', () => {
+  let component: NavbarComponent;
+  let fixture: ComponentFixture<NavbarComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        NavbarHomeComponent
+        NavbarComponent
       ],
       schemas: [
         CUSTOM_ELEMENTS_SCHEMA,
@@ -34,7 +34,7 @@ describe('NavbarHomeComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NavbarHomeComponent);
+    fixture = TestBed.createComponent(NavbarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

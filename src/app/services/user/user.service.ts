@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { User } from '../../models/index';
-import { ServicesUtilitiesService } from './../services-utilities.service';
+import { ServicesUtilitiesService } from './../services-utilities/services-utilities.service';
 import { AlertService } from './../alert/alert.service';
 import 'rxjs/add/operator/catch';
 import { Router } from '@angular/router';

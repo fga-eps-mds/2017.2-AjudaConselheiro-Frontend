@@ -1,12 +1,11 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import { LayoutsComponent } from './layouts/layouts.component';
 import { HomeComponent } from './home/home.component';
-import { NavbarHomeComponent } from './layouts/navbar/navbar.component';
-import { ChecklistoneComponent } from './checklist/checklistone/checklistone.component';
-import { ChecklistMenuComponent } from './checklist/checklistMenu/checklist-menu.component';
-import { ChecklistthreeComponent } from './checklist/checklistthree/checklistthree.component';
-import { LoginComponent } from './user';
+import { NavbarComponent } from './layouts/navbar/navbar.component';
+import { ChecklistProductionComponent } from './checklist/checklist-production/checklist-production.component';
+import { ChecklistMenuComponent } from './checklist/checklist-menu/checklist-menu.component';
+import { ChecklistCafeteriaComponent } from './checklist/checklist-cafeteria/checklist-cafeteria.component';
+import { LoginComponent } from './user/user.module';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
@@ -23,12 +22,11 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent,
-        LayoutsComponent,
         HomeComponent,
-        NavbarHomeComponent,
-        ChecklistoneComponent,
+        NavbarComponent,
+        ChecklistProductionComponent,
         ChecklistMenuComponent,
-        ChecklistthreeComponent,
+        ChecklistCafeteriaComponent,
         LoginComponent,
         FooterComponent
       ],

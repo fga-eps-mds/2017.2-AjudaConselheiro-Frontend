@@ -4,7 +4,7 @@ import { Http,  Headers , RequestOptions, Response } from '@angular/http';
 import { Post } from './../../models/posts/post.model';
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
-import { ServicesUtilitiesService } from '../services-utilities.service';
+import { ServicesUtilitiesService } from '../services-utilities/services-utilities.service';
 
 @Injectable()
 export class ProfileService extends ServicesUtilitiesService{
@@ -31,7 +31,7 @@ export class ProfileService extends ServicesUtilitiesService{
     this.request = new RequestOptions({ headers: this.headers });
 
     const body = {
-      'camposAdicionais': 'CPF: ' + cpf + ', ' + 'ehPresidente: ' + this.ehPresidente, 
+      'camposAdicionais': 'CPF: ' + cpf + ', ' + 'ehPresidente: ' + this.ehPresidente,
       'tipoPerfil': {
         'codTipoPerfil': 243,
       }
