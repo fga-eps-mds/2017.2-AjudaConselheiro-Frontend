@@ -1,3 +1,4 @@
+import { ProfileService } from './services/profile/profile.service';
 import { UserModule } from './user/user.module';
 import { SchedulingModule } from './scheduling/scheduling.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -69,7 +70,8 @@ import { ChecklistUpdateComponent } from './checklist/checklist-update/checklist
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [
     BaseRequestOptions,
-    AlertService
+    AlertService,
+    ProfileService
   ],
   bootstrap: [AppComponent]
 })

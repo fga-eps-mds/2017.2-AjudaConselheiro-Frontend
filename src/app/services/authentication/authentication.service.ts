@@ -36,6 +36,7 @@ export class AuthenticationService extends ServicesUtilitiesService {
     localStorage.removeItem('token');
     localStorage.removeItem('currentUser');
     localStorage.removeItem('userData');
+    localStorage.removeItem('Profile')
   }
 
   hasToken(): boolean {
