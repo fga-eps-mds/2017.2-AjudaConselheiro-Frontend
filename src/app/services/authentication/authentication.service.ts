@@ -34,19 +34,13 @@ export class AuthenticationService extends ServicesUtilitiesService {
   logout() {
     this.token = null;
     localStorage.removeItem('token');
-    localStorage.removeItem('currentUser');
+    localStorage.setItem('isLoggedIn', 'false');
     localStorage.removeItem('userData');
     localStorage.removeItem('Profile')
   }
 
-  hasToken(): boolean {
-    return localStorage.hasOwnProperty('token');
-  }
-
   getToken(res: Response) {
     this.token = res.headers.get('apptoken');
-
     return this.token || {};
   }
-
 }

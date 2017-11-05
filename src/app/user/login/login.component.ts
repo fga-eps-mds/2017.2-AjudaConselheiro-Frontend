@@ -29,8 +29,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // Reset status login
-    this.authenticationService.logout();
+    // do nothing
   }
 
   login() {
@@ -43,7 +42,8 @@ export class LoginComponent implements OnInit {
         result => {
           localStorage.setItem('token', result[0]);
           localStorage.setItem('userData', result[1]._body);
-          this.getProfile();          
+          localStorage.setItem('isLoggedIn', 'true');
+          this.getProfile();       
           this.alertService.success('Login efetuado sucesso!');
           
         },
