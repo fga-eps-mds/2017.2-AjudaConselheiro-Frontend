@@ -1,3 +1,4 @@
+import { ProfileService } from './services/profile/profile.service';
 import { UserModule } from './user/user.module';
 import { SchedulingModule } from './scheduling/scheduling.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -29,6 +30,7 @@ import { ChecklistService } from './services/index';
 import {ConfirmationPopoverModule} from 'angular-confirmation-popover';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { SidebarComponent } from './layouts/sidebar/sidebar.component';
+import { ChecklistUpdateComponent } from './checklist/checklist-update/checklist-update.component';
 
 @NgModule({
 
@@ -42,7 +44,8 @@ import { SidebarComponent } from './layouts/sidebar/sidebar.component';
     FooterComponent,
     AlertComponent,
     SearchCouncilGroupComponent,
-    SidebarComponent
+    SidebarComponent,
+    ChecklistUpdateComponent
   ],
 
   imports: [
@@ -67,7 +70,8 @@ import { SidebarComponent } from './layouts/sidebar/sidebar.component';
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [
     BaseRequestOptions,
-    AlertService
+    AlertService,
+    ProfileService
   ],
   bootstrap: [AppComponent]
 })

@@ -8,6 +8,8 @@ import { UserListComponent } from './list/index';
 import { UserService, AlertService, AuthenticationService } from '../services/index';
 import { UserEditComponent } from './edit/index';
 import { TextMaskModule } from 'angular2-text-mask';
+import { ProfileComponent } from './profile/profile.component';
+import { NotProfileComponent } from './not-profile/not-profile.component';
 
 @NgModule({
   imports: [
@@ -20,6 +22,8 @@ import { TextMaskModule } from 'angular2-text-mask';
     UserListComponent,
     CreateUserComponent,
     UserEditComponent,
+    ProfileComponent,
+    NotProfileComponent,
   ],
   providers: [
     UserService, AlertService, AuthenticationService

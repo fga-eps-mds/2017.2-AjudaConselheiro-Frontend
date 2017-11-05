@@ -9,22 +9,22 @@ import { FormsMenu, FormMenuTwo, CommentBinaryForm, CommentForm, BinaryForm, For
 import { ChecklistService, AlertService } from '../../services/index';
 import { PostService } from '../../services/posts/post.service';
 import { Post } from '../../models/index';
+import { ChecklistoneComponent } from '../checklistone/checklistone.component'
 
 @Component({
-  selector: 'app-checklistone',
-  templateUrl: './checklistone.component.html',
-  styleUrls: ['./checklistone.component.css'],
+  selector: 'app-checklist-update',
+  templateUrl: './checklist-update.component.html',
+  styleUrls: ['./checklist-update.component.css'],
   providers: [ChecklistService, PostService, AlertService],
 })
-export class ChecklistoneComponent implements OnInit {
+export class ChecklistUpdateComponent extends ChecklistoneComponent {
 
-    iteratorArray: Array<Object>= IteratorArray;
-    topicHeaders: Array<string> = CheckOneTopicHeaders;
-    commentaries: Array<SectionCommentary> = CheckOneCommentaries;
-
-  constructor(
-    protected postService: PostService,
-    protected alertService: AlertService
+  iteratorArray: Array<Object>= IteratorArray;
+  topicHeaders: Array<string> = CheckOneTopicHeaders;
+  commentaries: Array<SectionCommentary> = CheckOneCommentaries;
+  super(
+    postService: PostService,
+    alertService: AlertService
   ) {}
 
   post: Post;
@@ -32,7 +32,6 @@ export class ChecklistoneComponent implements OnInit {
 
   ngOnInit() {
     console.log('entrou!!');
-    this.postService.getPosts();
   }
 
   onSubmit() {
@@ -55,13 +54,19 @@ export class ChecklistoneComponent implements OnInit {
     return (topic === 6 && ( question >= 0 && question <= 3));
   }
 
-  savePost() {
-      const jsonChecklistOne = JSON.stringify({
+  updatePost() {
+      const jsonChecklistUpdate = JSON.stringify({
         'interatorArray': this.iteratorArray,
         'commentaries': this.commentaries
       });
 
-      this.postService.savePost(jsonChecklistOne).subscribe(
+      this.postService.updatePost(jsonChecklistUpdate).subscribe(
+        result => console.log(result)
+      );
+    }
+
+    getPosts() {
+      this.postService.getPosts().subscribe(
         result => console.log(result)
       );
     }

@@ -1,3 +1,5 @@
+import { NotProfileComponent } from './user/not-profile/not-profile.component';
+import { ProfileComponent } from './user/profile/profile.component';
 import { SidebarComponent } from './layouts/sidebar/sidebar.component';
 import { EditComponent } from './scheduling/edit/edit.component';
 import { CreateSchedulingComponent } from './scheduling/create/create-scheduling.component';
@@ -14,6 +16,7 @@ import { UserEditComponent } from './user';
 import { LoginComponent } from './user';
 import { CreateCouncilGroupComponent } from './council-group/create/create-council-group.component';
 import { SearchCouncilGroupComponent } from './council-group/search/search-council-group.component';
+import { ChecklistUpdateComponent } from './checklist/checklist-update/checklist-update.component';
 
 export const ROUTES: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -34,4 +37,7 @@ export const ROUTES: Routes = [
   { path: 'conselho/cadastrar', component: CreateCouncilGroupComponent },
   { path: 'conselho/buscar', component: SearchCouncilGroupComponent},
   { path: 'side', component: SidebarComponent },
+  { path: 'checklist/update', component: ChecklistUpdateComponent},
+  { path: 'perfil', component: ProfileComponent },
+  { path: 'usuario-sem-perfil', component: NotProfileComponent}
 ];
