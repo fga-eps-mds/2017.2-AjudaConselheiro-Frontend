@@ -1,9 +1,9 @@
 import { SectionCommentary, SectionCommentaryTwo } from './checklist.model';
-import { CommentForm, CommentBinaryForm, BinaryForm } from '../index';
+import { CommentForm, CommentBinaryForm, BinaryForm } from './index';
 
 
 
-export const FormMenuComment: Array<CommentForm> = [
+export const FormMenuTwo: Array<CommentForm> = [
         {question: `Qual a quantidade de frutas e hortaliças que estão sendo oferecidas por aluno,
          durante o período de uma semana?`, answer: ''},
         {question: 'Qual a preparação mais aceita?', answer: ''},
@@ -20,7 +20,7 @@ export const FormMenuThree: Array<SectionCommentaryTwo> = [
   {question: 'Os atestados de saúde ocupacional estão em dia e de fácil acesso?', obs: '', answer: false},
 ];
 
-export const FormMenuBinary: Array<BinaryForm> = [
+export const FormBinary: Array<BinaryForm> = [
   {question: 'De maneira geral, os cardápios são bem elaborados?', answer: false},
   {question: 'De maneira geral, os cardápios são bem aceitos pelos alunos?', answer: false },
   {question: 'De maneira geral, os cardápios são bem elaborados?', answer: false },
@@ -28,7 +28,7 @@ export const FormMenuBinary: Array<BinaryForm> = [
   {question: 'A escola recebe doação de alimentos?', answer: false},
 ];
 
-export const FormMenuCommentBinary: Array<CommentBinaryForm> = [
+export const FormsMenu: Array<CommentBinaryForm> = [
         {question: `Houve falta de alimentação escolar durante o período letivo?
            Caso positivo informe o(s) períodos e os produtos?`, answer: false, commentary: ''},
         {question: `A quantidade de gêneros entregues nas escolas foi suficiente para ofertar refeições para todos os alunos
@@ -36,12 +36,6 @@ export const FormMenuCommentBinary: Array<CommentBinaryForm> = [
         {question: 'Há excesso de algum gênero alimentício no cardápio? Qual(ais)?', answer: false, commentary: ''},
         {question: 'A escola complementa a alimentação escolar? Como?', answer: false, commentary: ''},
         {question: 'A escola complementa a alimentação escolar? Como?', answer: false, commentary: ''},
-];
-
-export const ChecklistMenuIteratorArray: Array<Object> = [
-  FormMenuCommentBinary,
-  FormMenuBinary,
-  FormMenuComment,
 ];
 
 export const CheckOneCommentaries: Array<SectionCommentary> = [
