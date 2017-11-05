@@ -2,14 +2,15 @@ import { Binary } from '@angular/compiler';
 import { Http, HttpModule } from '@angular/http';
 import { Component, OnInit } from '@angular/core';
 
-import { SectionCommentary } from '../../models/checklist.model';
-import { CheckOneTopicHeaders, CheckOneCommentaries, CheckOneFirstTopic, CheckOneEighthTopic, CheckOneFifthTopic, CheckOneFourthTopic,
-CheckOneSecondTopic, CheckOneSixthTopic, CheckOneSeventhTopic, CheckOneThirdTopic, IteratorArray} from './../../models/checklistForms';
-import { FormsMenu, FormMenuTwo, CommentBinaryForm, CommentForm, BinaryForm, FormBinary, ConfirmComentary} from '../../models/index';
+import { SectionCommentary } from '../../models/checklist/checklist.model';
+import { CheckOneTopicHeaders, CheckOneCommentaries, CheckOneFirstTopic, CheckOneEighthTopic,
+         CheckOneFifthTopic, CheckOneFourthTopic,CheckOneSecondTopic, CheckOneSixthTopic,
+         CheckOneSeventhTopic, CheckOneThirdTopic, IteratorArray} from './../../models/checklist/checklistForms';
+import { CommentBinaryForm, CommentForm, BinaryForm, ConfirmComentary} from '../../models/index';
 import { ChecklistService, AlertService } from '../../services/index';
 import { PostService } from '../../services/posts/post.service';
 import { Post } from '../../models/index';
-import { ChecklistoneComponent } from '../checklistone/checklistone.component'
+import { ChecklistoneComponent } from '../checklistone/checklistone.component';
 
 @Component({
   selector: 'app-checklist-update',
