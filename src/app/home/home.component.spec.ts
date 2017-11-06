@@ -7,7 +7,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { AuthenticationService } from './../services/authentication/authentication.service';
 import { HomeComponent } from './home.component';
-import { NavbarHomeComponent } from '../layouts/navbar/navbar.component';
+import { NavbarComponent } from '../layouts/navbar/navbar.component';
 import { AlertService } from '../services/index';
 
 describe('HomeComponent', () => {
@@ -18,7 +18,7 @@ describe('HomeComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         HomeComponent,
-        NavbarHomeComponent
+        NavbarComponent
       ],
       schemas: [
         CUSTOM_ELEMENTS_SCHEMA,

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { AlertService } from '../alert/alert.service';
-import { ServicesUtilitiesService } from '../services-utilities.service';
+import { ServicesUtilitiesService } from '../services-utilities/services-utilities.service';
 
 @Injectable()
 export class AuthenticationService extends ServicesUtilitiesService {
@@ -34,18 +34,13 @@ export class AuthenticationService extends ServicesUtilitiesService {
   logout() {
     this.token = null;
     localStorage.removeItem('token');
-    localStorage.removeItem('currentUser');
+    localStorage.setItem('isLoggedIn', 'false');
     localStorage.removeItem('userData');
-  }
-
-  hasToken(): boolean {
-    return localStorage.hasOwnProperty('token');
+    localStorage.removeItem('Profile')
   }
 
   getToken(res: Response) {
     this.token = res.headers.get('apptoken');
-
     return this.token || {};
   }
-
 }

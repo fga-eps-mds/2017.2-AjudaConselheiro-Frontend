@@ -5,7 +5,11 @@ import { AlertService } from '../../services/alert/alert.service';
 @Component({
   moduleId: module.id,
   selector: 'app-alert',
-  templateUrl: 'alert.component.html',
+  template: `
+  <div *ngFor="let alert of alerts" class="alert" [style.background]="getAlertColor(alert)" [style.color]="getFontColor(alert)">
+      {{alert.message}}
+    <a class="close" (click)="removeAlert(alert)">&times;</a>
+  </div>`,
   styleUrls: ['./alert.component.css']
 })
 

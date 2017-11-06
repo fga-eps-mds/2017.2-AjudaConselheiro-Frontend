@@ -1,3 +1,5 @@
+import { UserService } from './../../services/user/user.service';
+import { ProfileService } from './../../services/profile/profile.service';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TextMaskModule } from 'angular2-text-mask';
@@ -21,7 +23,9 @@ describe('LoginComponent', () => {
           RouterTestingModule,
           FormsModule
         ],
-        providers: [ AlertService ]
+        providers: [ AlertService,
+        ProfileService,
+      UserService ]
       })
       .compileComponents();
     })

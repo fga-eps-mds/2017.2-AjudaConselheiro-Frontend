@@ -16,3 +16,7 @@ input.placeholder {
 :-ms-input-placeholder {
    text-align: center;
 }
+.row{
+    margin-top: 12px;
+    margin-bottom: 12px;
+  }
