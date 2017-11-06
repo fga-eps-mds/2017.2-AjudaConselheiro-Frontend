@@ -4,19 +4,19 @@ body {
 
 .sidebar-nav {
   height: 100%;
-  position: absolute;
+  position: fixed;
   top: 0;
   width: 250px;
   margin: 0;
   padding: 0;
   list-style: none;
-  border-right: 2px solid #9e9e9e;
+  background-color: #192433;
 }
 .sidebar-user-content img{
   display: block;
   margin-left: auto;
   margin-right: auto;
-  border: 2px solid #9e9e9e;
+  border: 2px solid #B3A394;
   border-radius: 50%;
   height: 200px;
   width: 200px;
@@ -24,7 +24,6 @@ body {
 
 .sidebar-user-content {
   min-height: 250px;
-  border-bottom: 2px solid #9e9e9e;
 }
 .sidebar-user-content p{
   padding-top: 15px;
@@ -40,7 +39,6 @@ body {
 .sidebar-nav li a:hover {
   text-decoration: none;
   color: #fff;
-  background: rgba(255, 255, 255, 0.2);
 }
 
 .sidebar-nav li a:active, .sidebar-nav li a:focus {
