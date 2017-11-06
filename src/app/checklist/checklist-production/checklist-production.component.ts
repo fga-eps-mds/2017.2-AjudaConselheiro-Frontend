@@ -16,6 +16,8 @@ import { ChecklistService, AlertService, PostService } from '../../services/inde
 })
 export class ChecklistProductionComponent implements OnInit {
 
+    base64Array: String[] = [];
+    public base64Image: String;
     iteratorArray: Array<Object>= IteratorArray;
     topicHeaders: Array<string> = CheckOneTopicHeaders;
     commentaries: Array<SectionCommentary> = CheckOneCommentaries;
@@ -63,4 +65,21 @@ export class ChecklistProductionComponent implements OnInit {
         result => console.log(result)
       );
     }
+
+    changeListener($event): void {
+      this.readThis($event.target);
+    }
+
+    readThis(inputValue: any): void {
+      const file: File = inputValue.files[0];
+      const myReader: FileReader = new FileReader();
+
+      myReader.onloadend = (e) => {
+        this.base64Image = myReader.result;
+        this.base64Array.push(this.base64Image);
+        console.log(this.base64Image);
+      };
+      myReader.readAsDataURL(file);
+    }
+
 }

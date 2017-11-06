@@ -83,6 +83,28 @@
                 </div>
                 <br>
             </div>
+
+            <div class="col-md-12 center" align="center">
+                <h4>Adicionar Imagem</h4>
+                <div *ngIf="base64Array.length == 0">
+                    <label for="files" class="btn btn-warning btn-rounded waves-light">Selecione a imagem</label>
+                    <input id="files" style="visibility:hidden;" type="file" accept="image/jpg, image/jpeg, image/png" (change)="changeListener($event)" />
+                </div>
+                <div *ngIf="base64Array.length > 0 ">
+                    <label for="files" class="btn btn-warning btn-rounded waves-light">Selecione outra imagem</label>
+                    <input id="files" style="visibility:hidden;" type="file" accept="image/jpg, image/jpeg, image/png" (change)="changeListener($event)" />
+                    <div *ngFor="let base of base64Array">
+                        <div *ngIf="base != undefined">
+                            <img src={{base}} style="height: auto; max-width: 550px; width: auto;" />
+                            <br>
+                            <br>
+                        </div>
+
+                    </div>
+                    <br>
+                </div>
+            </div>
+
             <div class="row">
                 <div class="col-md-1"></div>
                 <!-- Back button -->
