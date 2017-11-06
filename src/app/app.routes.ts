@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 
 import { SidebarComponent } from './layouts/sidebar/sidebar.component';
+import { LoadingComponent } from './layouts/loading/loading.component';
 import { HomeComponent } from './home/home.component';
 import { CouncilGroupCreateComponent, CouncilGroupSearchComponent } from './council-group/council-group.module';
 
@@ -48,5 +49,6 @@ export const ROUTES: Routes = [
   { path: 'side', component: SidebarComponent },
   { path: 'checklist/update', component: ChecklistUpdateComponent},
   { path: 'perfil', component: ProfileComponent },
-  { path: 'usuario-sem-perfil', component: NotProfileComponent}
+  { path: 'usuario-sem-perfil', component: NotProfileComponent},
+  { path: 'loading', component: LoadingComponent }
 ];

@@ -11,6 +11,7 @@ import { CarouselComponent } from './carousel/carousel.component';
 import { AlertService } from '../services/index';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
+import { LoadingComponent } from './loading/loading.component';
 
 export {
   AlertComponent,
@@ -32,7 +33,8 @@ export {
     FooterComponent,
     NavbarComponent,
     SidebarComponent,
-    CarouselComponent
+    CarouselComponent,
+    LoadingComponent
   ],
   exports: [
     AlertComponent,
