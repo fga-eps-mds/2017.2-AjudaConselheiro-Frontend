@@ -32,3 +32,23 @@ h1 {
     width: 14%;
     float: right;
 }
+
+.color-orange {
+    background-color: #FF6100;
+}
+
+.color-grey {
+    background-color: #CDD7D6;
+}
+
+.new-button {
+    background-color: #192433;
+}
+
+.edit-button {
+    background-color: #B3A394;
+}
+
+.delete-button {
+    background-color: #192433;
+}
