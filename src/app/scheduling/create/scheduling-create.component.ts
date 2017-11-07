@@ -3,7 +3,7 @@ import { SchedulingService } from './../../services/scheduling/scheduling.servic
 import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { SchoolService } from '../../services/index';
+import { SchoolService, AlertService } from '../../services/index';
 import { Search } from './../../models/search.model';
 
 @Component({
@@ -21,11 +21,11 @@ export class SchedulingCreateComponent implements OnInit {
   schools: Array<Object>;
   collapsed = true;
 
-
   constructor(
     private schedulingService: SchedulingService,
     private router: Router,
     private schoolService: SchoolService,
+    private alertService: AlertService
   ) {}
 
   ngOnInit() {
@@ -116,5 +116,38 @@ export class SchedulingCreateComponent implements OnInit {
   }
   toggleCollapsed(): void {
     this.collapsed = !this.collapsed;
+  }
+
+  getSchedulings() {
+    const schedulings = this.schedulingService.getSchedulings();
+    console.log(schedulings);
+  }
+
+  navigate() {
+    this.router.navigate(['/agendamento']);
+  }
+
+  result() {
+    this.alertService.success('Postagem cadastrada com sucesso.');
+    this.navigate();
+  }
+
+  error(status: any) {
+    if (status === 400) {
+      this.alertService.warn('Erro!');
+    } else {
+      this.alertService.error('Erro: falha na comunicação com o sistema!');
+    }
+  }
+
+  register(): void {
+      this.schedulingService.newScheduling(this.scheduling)
+        .subscribe(
+        result => {
+          this.result();
+        },
+        error => {
+          this.error(error.status);
+        });
   }
 }
