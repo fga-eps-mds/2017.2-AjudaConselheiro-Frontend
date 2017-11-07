@@ -1,42 +1,53 @@
 import { Scheduling } from './../../models/scheduling.model';
 import { Injectable } from '@angular/core';
+import { Http, Headers, RequestOptions, Response } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+
+import { UserService } from '../user/user.service';
+import { AlertService } from '../alert/alert.service';
+import { ServicesUtilitiesService } from '../services-utilities/services-utilities.service';
+import { Post, User } from '../../models/index';
+
 
 
 @Injectable()
-export class SchedulingService {
+export class SchedulingService extends ServicesUtilitiesService {
 
-  constructor() { }
+  private headers: Headers = new Headers({
+    'Content-Type': 'application/json',
+    'appToken': localStorage.getItem('token'),
+    'appIdentifier': 462
+  });
 
-  listAllScheculings(): Scheduling[] {
-    const schedulings = localStorage['schedulings'];
-    return schedulings ? JSON.parse(schedulings) : [];
+  options: RequestOptions = new RequestOptions({ headers: this.headers });
+
+  private baseURL = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/postagens?codAplicativo=462&codTiposPostagem=137';
+
+  constructor(private http: Http,
+    private alertService: AlertService,
+    private userService: UserService
+  ) {
+    super();
+  }
+
+  getSchedulings(): Observable<Post> {
+    const thereIsToken = localStorage.getItem('token');
+    if (thereIsToken) {
+      return this.http.get(this.baseURL, this.options)
+        .map(this.extractData)
+        .catch(this.handleError);
+    } else {
+      this.alertService.warn('Você precisa estar logado');
+    }
   }
 
   newScheduling(scheduling: Scheduling): void {
-    const schedulings = this.listAllScheculings();
+    const schedulings = this.getSchedulings();
     scheduling.id = new Date().getTime();
-    schedulings.push(scheduling);
     localStorage['schedulings'] = JSON.stringify(schedulings);
   }
 
-  updateScheduling(scheduling: Scheduling): void {
-    const schedulings: Scheduling[] = this.listAllScheculings();
-    schedulings.forEach((obj, index, objs) => {
-      if (scheduling.id === obj.id) {
-        objs[index] = scheduling;
-      }
-    });
-    localStorage['schedulings'] = JSON.stringify(schedulings);
-  }
 
-  searchSchedulingId(id: number): Scheduling {
-    const schedulings: Scheduling[] = this.listAllScheculings();
-    return schedulings.find(scheduling => scheduling.id === id);
-}
 
-  deleteScheduling(id: number): void {
-    let schedulings: Scheduling[] = this.listAllScheculings();
-    schedulings = schedulings.filter(scheduling => scheduling.id !== id);
-    localStorage['schedulings'] = JSON.stringify(schedulings);
-  }
+
 }

@@ -1,15 +1,16 @@
-import {  async, TestBed, ComponentFixture } from '@angular/core/testing';
+import { async, TestBed, ComponentFixture } from '@angular/core/testing';
 import { SchoolService } from '../../services/index';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { SchedulingService } from './../../services/scheduling/scheduling.service';
 import { MockBackend } from '@angular/http/testing';
-import { SchedulingCreateComponent } from './scheduling-create.component';
-import { Scheduling } from './../../models/scheduling.model';
-import { Search } from './../../models/search.model';
 import { FormsModule } from '@angular/forms';
 import { Http, ConnectionBackend } from '@angular/http';
 import { HttpModule } from '@angular/http';
+
+import { SchedulingService, AlertService, UserService } from './../../services/index';
+import { SchedulingCreateComponent } from './scheduling-create.component';
+import { Scheduling } from './../../models/scheduling.model';
+import { Search } from './../../models/search.model';
 
 describe('SchedulingCreateComponent', () => {
   let component: SchedulingCreateComponent;
@@ -32,6 +33,8 @@ describe('SchedulingCreateComponent', () => {
         Http,
         MockBackend,
         ConnectionBackend,
+        AlertService,
+        UserService
       ]
     })
     .compileComponents();
@@ -51,7 +54,7 @@ describe('SchedulingCreateComponent', () => {
     const city = {
       name: <string> 'BRASILIA',
       code: <string> '5300108'
-    }
+    };
     const dataFromAPI = '"5300108:BRASILIA"';
     expect(component.cityFilter(dataFromAPI)).toEqual(city);
   });

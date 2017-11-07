@@ -8,6 +8,7 @@ import { SchedulingHomeComponent } from './home/scheduling-home.component';
 import { SchedulingEditComponent } from './edit/scheduling-edit.component';
 import { SchedulingCreateComponent } from './create/scheduling-create.component';
 import { SchoolService } from '../services/index';
+import { AlertService } from '../services/index';
 
 export { SchedulingCreateComponent, SchedulingEditComponent, SchedulingHomeComponent };
 
@@ -24,7 +25,8 @@ export { SchedulingCreateComponent, SchedulingEditComponent, SchedulingHomeCompo
   ],
   providers: [
     SchedulingService,
-    SchoolService
+    SchoolService,
+    AlertService
   ]
 })
 export class SchedulingModule { }
