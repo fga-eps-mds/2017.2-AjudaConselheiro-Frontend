@@ -52,8 +52,7 @@
 
             </div>
             <div class="form-group text-center">
-                <!-- COLOCAR O METODO UPDATE NO CLICK DO BOTÃO ABAIXO -->
-                <input type="button" class="btn btn-deep-orange" value="Atualizar" [disabled]="!formScheduling.form.valid">
+                <input type="button" class="btn btn-deep-orange" (click)="update()" value="Atualizar" [disabled]="!formScheduling.form.valid">
                 <a href="/agendamento" class="btn btn-outline-warning waves-effect">
                     <span class="glyphicon glyphicon-chevron-left" aria-hidden="false"></span>Voltar
                 </a>

@@ -21,8 +21,7 @@
                 <p style="color:#FFFFFF;" class="h4 text-right mb-6">
                     <button type="button" class="btn btn-primary btn-rounded" [routerLink]="['/agendamento/editar/',scheduling.id]">
                             <i class="fa fa-edit"></i>Editar</button>
-                    <!-- COLOCAR O METODO DELETE NO CLICK DO BOTÃO ABAIXO -->
-                    <button type="button" class="btn btn-danger btn-rounded">
+                    <button type="button" class="btn btn-danger btn-rounded" (click)="deleteScheduling($event, scheduling)">
                             <i class="fa fa-trash"></i></button>
                 </p>
             </th>

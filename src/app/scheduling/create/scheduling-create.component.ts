@@ -109,10 +109,10 @@ export class SchedulingCreateComponent implements OnInit {
     return city;
   }
   newScheduling(): void {
-    // if (this.formScheduling.form.valid) {
-    //   this.schedulingService.newScheduling(this.scheduling);
-    //   this.router.navigate(['/agendamento']);
-    // }
+    if (this.formScheduling.form.valid) {
+      this.schedulingService.newScheduling(this.scheduling);
+      this.router.navigate(['/agendamento']);
+    }
   }
   toggleCollapsed(): void {
     this.collapsed = !this.collapsed;
