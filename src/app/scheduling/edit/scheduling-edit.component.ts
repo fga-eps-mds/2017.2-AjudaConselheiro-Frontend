@@ -7,7 +7,8 @@ import { NgForm, ReactiveFormsModule } from '@angular/forms';
 @Component({
   moduleId: module.id,
   selector: 'app-scheduling-edit',
-  templateUrl: './scheduling-edit.component.html'
+  templateUrl: './scheduling-edit.component.html',
+  styleUrls: ['./scheduling-edit.component.css']
 })
 export class SchedulingEditComponent implements OnInit {
 
