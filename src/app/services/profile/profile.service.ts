@@ -21,7 +21,7 @@ export class ProfileService extends ServicesUtilitiesService{
     super();
   }
 
-  createUserProfile(cpf: any){
+  createUserProfile(cpf: any) {
 
     this.headers = new Headers({
       'Content-Type': 'application/json',
@@ -53,7 +53,7 @@ export class ProfileService extends ServicesUtilitiesService{
       }
   // This function checks if there's a logged user and if it has a 'cod'
   // Output: The user 'cod' or 'null' if there's no cod
-  private getUserCod() {
+  getUserCod() {
     const user = this.userService.getLoggedUser();
 
     // Checks if there's a user and if this user has a 'cod' attribute.
