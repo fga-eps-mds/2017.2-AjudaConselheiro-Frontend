@@ -1,4 +1,7 @@
-import { async, TestBed, ComponentFixture } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { AppModule } from './../../app.module';
+import { APP_BASE_HREF, Location } from '@angular/common';
+import { async, TestBed, ComponentFixture, fakeAsync, tick, inject } from '@angular/core/testing';
 import { SchoolService } from '../../services/index';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
@@ -15,26 +18,17 @@ import { Search } from './../../models/search.model';
 describe('SchedulingCreateComponent', () => {
   let component: SchedulingCreateComponent;
   let fixture: ComponentFixture<SchedulingCreateComponent>;
+  let location: Location;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        SchedulingCreateComponent,
       ],
       schemas: [NO_ERRORS_SCHEMA],
-      imports: [
-        FormsModule,
-        RouterTestingModule,
-        HttpModule
+      imports: [AppModule
       ],
       providers: [
-        SchedulingService,
-        SchoolService,
-        Http,
-        MockBackend,
-        ConnectionBackend,
-        AlertService,
-        UserService
+        {provide: APP_BASE_HREF, useValue : '/' }
       ]
     })
     .compileComponents();
@@ -100,5 +94,31 @@ describe('SchedulingCreateComponent', () => {
     expect(component.filterSchools(schools)).toEqual(afterTreatment[0]);
 
   });
+  it('navigate to "agendamento"', fakeAsync(() => {
+    location = TestBed.get(Location);
+    component.navigate();
+    tick();
+    expect(location.path()).toBe('/agendamento');
+    location = TestBed.get(Location);
+    component.newScheduling();
+    tick();
+    expect(location.path()).toBe('/agendamento');
+    location = TestBed.get(Location);
+    component.result();
+    tick();
+    expect(location.path()).toBe('/agendamento');
+  }));
 
+
+  it('should clear on click', () => {
+
+    component.register();
+    expect(location.path()).toBe('/agendamento');
+
+  });
+  it('should clear on click', () => {
+    component.searchSchool();
+    expect(component.search.situation).toEqual('1');
+
+      });
 });

@@ -117,12 +117,6 @@ export class SchedulingCreateComponent implements OnInit {
   toggleCollapsed(): void {
     this.collapsed = !this.collapsed;
   }
-
-  getSchedulings() {
-    const schedulings = this.schedulingService.getSchedulings();
-    console.log(schedulings);
-  }
-
   navigate() {
     this.router.navigate(['/agendamento']);
   }
