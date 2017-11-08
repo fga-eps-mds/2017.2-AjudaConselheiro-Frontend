@@ -48,7 +48,9 @@
                 <div class="col-md-4">
                     <div class="md-form textAreaTrue">
                         <i class="fa fa-pencil prefix"></i>
-                        <textarea mdbActive align="center" type="text" class="basic-textarea commentaryThree" placeholder="Observações" name="formBinary_{{g}}" [(ngModel)]="formMenuThree[g].obs"></textarea>
+                        <textarea mdbActive align="center" type="text" class="basic-textarea commentaryThree" 
+                            placeholder="Observações" name="formBinary_{{g}}" [(ngModel)]="formMenuThree[g].obs">
+                        </textarea>
                     </div>
                 </div>
             </div>
@@ -71,7 +73,9 @@
                 <div class="col-md-8">
 
                     <div class="form-group basic-textarea rounded-corners shadow-textarea">
-                        <textarea mdbActive align="center" type="text" id="obs" class="form-control z-depth-1" name="obs" [(ngModel)]="checklist.obs" rows="3" placeholder="Resposta"></textarea>
+                        <textarea mdbActive align="center" type="text" id="obs"
+                            class="form-control z-depth-1" name="obs" [(ngModel)]="checklist.obs" rows="3" placeholder="Resposta">
+                        </textarea>
                         <label for="checkthreetext"></label>
                     </div>
                 </div>
@@ -79,11 +83,15 @@
             </div>
             <div class="row">
                 <div class="col-md-1"></div>
-                <div class="col-md-2"><a href="/checklist" class="btn btn-outline-warning waves-effect"><span class="glyphicon glyphicon-chevron-left " aria-hidden="false"></span><i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>  Voltar</a></div>
+                <div class="col-md-2"><a href="/checklist" class="btn btn-deep-orange back-button">
+                    <span class="glyphicon glyphicon-chevron-left " aria-hidden="false"></span>
+                    <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>  Voltar</a></div>
                 <div class="col-md-3"></div>
                 <div class="col-md-4"></div>
-                <div class="col-md-2"><button type="submit" class="btn btn-warning btn-rounded waves-light" mdbRippleRadius (click)="copy(formMenuThree);newFormulario()" [disabled]="!formChecklist.form.valid">Enviar <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></button></div>
-            </div>
+                <div class="col-md-2"><button type="submit" class="btn btn-blue-grey conclude-butto" mdbRippleRadius 
+                    (click)="copy(formMenuThree);newFormulario()" [disabled]="!formChecklist.form.valid">
+                    Concluir</button></div>
+                </div>
             <div class="row">
                 <div class="col-md-12"><br></div>
             </div>
