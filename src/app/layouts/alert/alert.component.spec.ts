@@ -9,10 +9,10 @@ import { Alert, AlertType } from '../../models/index';
 describe('AlertComponent', () => {
   let component: AlertComponent;
   let fixture: ComponentFixture<AlertComponent>;
-  const fakeAlert = {
-    typeAlert: AlertType.Success,
-    message: 'message'
-  };
+  let fakeAlert: Alert;
+  fakeAlert = new Alert();
+  fakeAlert.type = AlertType.Success;
+  fakeAlert.message = 'message';
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -46,6 +46,37 @@ describe('AlertComponent', () => {
   it('should remove alert', () => {
     localStorage.setItem('token', 'fakeToken');
     component.removeAlert(this.fakeAlert);
+  });
+
+  it('should get alert color', () => {
+
+    localStorage.setItem('token', 'fakeToken');
+
+    let res;
+
+    // Testing getAlertColor when success alert is passed
+    res = component.getAlertColor(fakeAlert);
+    expect(res).toBe('#DCECDB');
+
+    // Testing getAlertColor when error alert is passed
+    fakeAlert.type = AlertType.Error;
+    res = component.getAlertColor(fakeAlert);
+    expect(res).toBe('#FE9A9A');
+
+    // Testing getAlertColor when info alert is passed
+    fakeAlert.type = AlertType.Info;
+    res = component.getAlertColor(fakeAlert);
+    expect(res).toBe('#33B5E5');
+
+    // Testing getAlertColor when warning alert is passed
+    fakeAlert.type = AlertType.Warning;
+    res = component.getAlertColor(fakeAlert);
+    expect(res).toBe('#FFBB33');
+
+    // Testing getAlertColor when invalid alert is passed
+    res = component.getAlertColor(null);
+    expect(res).toBeUndefined();
+
   });
 
 });
