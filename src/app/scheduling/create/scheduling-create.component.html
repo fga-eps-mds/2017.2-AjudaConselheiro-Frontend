@@ -91,7 +91,7 @@
                 </div>
 
                 <label for="time"><i class="fa fa-clock-o" aria-hidden="true"></i> Hora:</label>
-                <input placeholder="Horário" type="text" onfocus="(this.type='time')" onblur="(this.type='text')" class="form-control" id="time" name="time" [(ngModel)]="scheduling.time" #time="ngModel" required>
+                <input placeholder="Horário" step="1800" type="time" onfocus="(this.type='time')" onblur="(this.type='text')" class="form-control" id="time" name="time" [(ngModel)]="scheduling.time" #time="ngModel" required>
                 <div *ngIf="time.errors && (time.dirty || time.touched)" class="alert alert-danger">
                     <div [hidden]="!time.errors.required">
                         Informe a hora do agendamento!
