@@ -78,5 +78,36 @@ describe('AlertComponent', () => {
     expect(res).toBeUndefined();
 
   });
+  it('should get alert font color', () => {
+
+            localStorage.setItem('token', 'fakeToken');
+
+            let res;
+
+            // Testing getFonttColor when success alert is passed
+            fakeAlert.type = AlertType.Success;
+            res = component.getFontColor(fakeAlert);
+            expect(res).toBe('#007E33');
+
+            // Testing getFontColor when error alert is passed
+            fakeAlert.type = AlertType.Error;
+            res = component.getFontColor(fakeAlert);
+            expect(res).toBe('#B71C1C');
+
+            // Testing getFontColor when info alert is passed
+            fakeAlert.type = AlertType.Info;
+            res = component.getFontColor(fakeAlert);
+            expect(res).toBe('#FFFFFF');
+
+            // Testing getFontColor when warning alert is passed
+            fakeAlert.type = AlertType.Warning;
+            res = component.getFontColor(fakeAlert);
+            expect(res).toBe('#FFFFFF');
+
+            // Testing getFontColor when invalid alert is passed
+            res = component.getFontColor(null);
+            expect(res).toBeUndefined();
+
+    });
 
 });
