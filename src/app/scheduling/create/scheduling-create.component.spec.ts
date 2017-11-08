@@ -1,4 +1,4 @@
-import {  async, TestBed, ComponentFixture } from '@angular/core/testing';
+import { async, TestBed, ComponentFixture } from '@angular/core/testing';
 import { SchoolService } from '../../services/index';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
@@ -10,6 +10,7 @@ import { Search } from './../../models/search.model';
 import { FormsModule } from '@angular/forms';
 import { Http, ConnectionBackend } from '@angular/http';
 import { HttpModule } from '@angular/http';
+import { AlertService } from './../../services/alert/alert.service';
 
 describe('SchedulingCreateComponent', () => {
   let component: SchedulingCreateComponent;
@@ -32,9 +33,10 @@ describe('SchedulingCreateComponent', () => {
         Http,
         MockBackend,
         ConnectionBackend,
+        AlertService
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
