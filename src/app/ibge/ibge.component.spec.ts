@@ -1,4 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { HttpModule, Headers, RequestOptions, Response, URLSearchParams } from '@angular/http';
+import { RouterTestingModule } from '@angular/router/testing';
+
+import { AlertService } from '../services/alert/alert.service';
+import { State } from '../models/index';
 
 import { IbgeComponent } from './ibge.component';
 
@@ -8,7 +14,14 @@ describe('IbgeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ IbgeComponent ]
+      declarations: [ IbgeComponent ],
+      imports: [
+        FormsModule,
+        HttpModule,
+        RouterTestingModule ],
+      providers: [
+        AlertService,
+      ]
     })
     .compileComponents();
   }));
