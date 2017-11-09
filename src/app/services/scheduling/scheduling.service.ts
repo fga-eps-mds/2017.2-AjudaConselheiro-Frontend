@@ -1,97 +1,79 @@
-import { Scheduling } from './../../models/scheduling.model';
 import { Injectable } from '@angular/core';
-import { AlertService } from './../alert/alert.service';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
-import { Post } from './../../models/posts/post.model';
 import { Observable } from 'rxjs/Observable';
-import { ServicesUtilitiesService } from '../services-utilities/services-utilities.service';
-import { ProfileService } from './../profile/profile.service';
 
+
+import { UserService } from '../user/user.service';
+import { AlertService } from '../alert/alert.service';
+import { ServicesUtilitiesService } from '../services-utilities/services-utilities.service';
+import { Post, User, Scheduling } from '../../models/index';
 
 @Injectable()
 export class SchedulingService extends ServicesUtilitiesService {
 
-  private profileService: ProfileService;
-  private codPost = null;
-  private url = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/postagens';
-  private url2 = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS//rest/postagens/' + this.codPost + '/conteudos';
-  private headers: Headers = null;
-  private request: RequestOptions = null;
+  private headers: Headers = new Headers({
+    'Content-Type': 'application/json',
+    'appIdentifier': 462,
+    'appToken': localStorage.getItem('token')
+  });
 
-  constructor(private http: Http, private alertService: AlertService) {
+  options: RequestOptions = new RequestOptions({ headers: this.headers });
+
+  private baseURL = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/postagens/conteudos';
+
+  constructor(private http: Http,
+    private alertService: AlertService,
+    private userService: UserService,
+  ) {
     super();
   }
 
-  createScheduling() {
-    this.headers = new Headers({
-      'Content-Type': 'application/json',
-      'appToken': localStorage.getItem('token')
-    });
 
-    this.request = new RequestOptions({ headers: this.headers });
+  getSchedulings(): Observable<Scheduling> {
+    const thereIsToken = localStorage.getItem('token');
+    if (thereIsToken) {
+      return this.http.get(this.baseURL, this.options)
+        .map(this.extractData)
+        .catch(this.handleError);
+    } else {
+      this.alertService.warn('Você precisa estar logado');
+    }
+  }
 
+  newScheduling(scheduling: Scheduling): Observable<Scheduling> {
+    const cod = this.getUserCod();
+    const sched = JSON.stringify(scheduling);
     const body = {
-      'autor': {
-        'codPessoa': this.profileService.getUserCod()
+      'conteudo': {
+        'JSON': sched,
+        'texto': 'Agendamento',
+        'valor': 0
       },
-      'codTipoObjetoDestino': 143,
-      'tipo': {
-        'codTipoPostagem': 385
+      'postagem': {
+        'autor': {
+          'codPessoa': cod
+        },
+        'tipo': {
+          'codTipoPostagem': 137
+        }
       }
     };
-    return this.http.post(this.url, JSON.stringify(body), this.request)
-      .map(response => this.extractData(response))
-      .catch(this.handleError);
+
+    return this.http.post(this.baseURL, JSON.stringify(body), this.options)
+    .map(result => this.extractData(result))
+    .catch(this.handleError);
   }
 
-  schedulingData(scheduling: Scheduling): Observable<any> {
-    this.headers = new Headers({
-      'Content-Type': 'application/json',
-      'appToken': localStorage.getItem('token')
-    });
+  // This function checks if there's a logged user and if it has a 'cod'
+    // Output: The user 'cod' or 'null' if there's no cod
+    private getUserCod() {
+      const user = this.userService.getLoggedUser();
 
-    this.request = new RequestOptions({ headers: this.headers });
-
-    const body = {
-      'JSON': 'DADOSAQUI!',
-      'texto': '',
-      'valor': 0
-    };
-    return this.http.post(this.url2, JSON.stringify(body), this.request)
-      .map(response => this.extractData(response))
-      .catch(this.handleError);
-  }
-
-  listAllScheculings(): Scheduling[] {
-    const schedulings = localStorage['schedulings'];
-    return schedulings ? JSON.parse(schedulings) : [];
-  }
-
-  newScheduling(scheduling: Scheduling): void {
-    const schedulings = this.listAllScheculings();
-    scheduling.id = new Date().getTime();
-    schedulings.push(scheduling);
-    localStorage['schedulings'] = JSON.stringify(schedulings);
-  }
-
-  updateScheduling(scheduling: Scheduling): void {
-    const schedulings: Scheduling[] = this.listAllScheculings();
-    schedulings.forEach((obj, index, objs) => {
-      if (scheduling.id === obj.id) {
-        objs[index] = scheduling;
+      // Checks if there's a user and if this user has a 'cod' attribute.
+      if (user && 'cod' in user) {
+        return user.cod;
       }
-    });
-    localStorage['schedulings'] = JSON.stringify(schedulings);
-  }
 
-  searchSchedulingId(id: number): Scheduling {
-    const schedulings: Scheduling[] = this.listAllScheculings();
-    return schedulings.find(scheduling => scheduling.id === id);
-  }
-
-  deleteScheduling(id: number): void {
-    let schedulings: Scheduling[] = this.listAllScheculings();
-    schedulings = schedulings.filter(scheduling => scheduling.id !== id);
-    localStorage['schedulings'] = JSON.stringify(schedulings);
-  }
+      return null;
+    }
 }

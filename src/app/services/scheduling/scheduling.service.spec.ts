@@ -1,24 +1,33 @@
-import { Http, HttpModule } from '@angular/http';
+import { Http, HttpModule, ConnectionBackend, RequestOptions  } from '@angular/http';
 import { TestBed, inject } from '@angular/core/testing';
-
-import { SchedulingService } from './scheduling.service';
-import { AlertService } from './../alert/alert.service';
 import { RouterTestingModule } from '@angular/router/testing';
+
+
+import { SchedulingService, AlertService, UserService } from '../../services/index';
+
 
 describe('SchedulingService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [
-        SchedulingService,
-        AlertService],
       imports: [
         HttpModule,
-        RouterTestingModule
+        RouterTestingModule,
+      ],
+      providers: [
+        SchedulingService,
+        AlertService,
+        Http,
+        ConnectionBackend,
+        UserService
       ]
     });
   });
 
   it('should be created', inject([SchedulingService], (service: SchedulingService) => {
+    expect(service).toBeTruthy();
+  }));
+
+  it('should be created', inject([AlertService], (service: AlertService) => {
     expect(service).toBeTruthy();
   }));
 });
