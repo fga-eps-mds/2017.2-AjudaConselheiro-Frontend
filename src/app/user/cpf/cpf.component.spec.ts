@@ -4,7 +4,7 @@ import { AlertService } from './../../services/alert/alert.service';
 import { FormsModule } from '@angular/forms';
 import { HttpModule, ConnectionBackend } from '@angular/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { ProfileComponent } from './profile.component';
+import { UserCpfComponent } from './cpf.component';
 import { ProfileService } from './../../services/profile/profile.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
@@ -13,15 +13,15 @@ import { Component, OnInit, ViewChild, Input, NO_ERRORS_SCHEMA } from '@angular/
 import { Http } from '@angular/http';
 
 
-describe('ProfileComponent', () => {
-  let component: ProfileComponent;
-  let fixture: ComponentFixture<ProfileComponent>;
+describe('UserCpfComponent', () => {
+  let component: UserCpfComponent;
+  let fixture: ComponentFixture<UserCpfComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule(
       {
         declarations: [
-          ProfileComponent,
+          UserCpfComponent,
         ],
         schemas: [NO_ERRORS_SCHEMA],
         imports: [
@@ -42,7 +42,7 @@ describe('ProfileComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProfileComponent);
+    fixture = TestBed.createComponent(UserCpfComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
