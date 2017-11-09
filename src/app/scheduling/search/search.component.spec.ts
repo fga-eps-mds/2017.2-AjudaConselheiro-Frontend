@@ -56,16 +56,16 @@ describe('SearchComponent', () => {
   });
 
   it('cityPush should push a filtered city into a array', () => {
-    var dataFromAPI:string[];
+    let dataFromAPI: String[];
     dataFromAPI = ['5300108:BRASILIA'];
 
 
     const city = {
       name: 'BRASILIA',
       code: <string> '5300108'
-    }
+    };
 
-    var cities = Array<Object>();
+    const cities = Array<Object>();
     cities.push(city);
     expect(component.cityPush(dataFromAPI)).toEqual(cities);
   });
@@ -88,8 +88,8 @@ describe('SearchComponent', () => {
       situacaoFuncionamentoTxt: 'Em atividade'
     };
 
-    var schools = [];
-    var afterTreatment = [];
+    const schools = [];
+    const afterTreatment = [];
     afterTreatment.push(school);
     schools.push(1);
     schools.push(school);

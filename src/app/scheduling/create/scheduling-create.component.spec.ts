@@ -44,8 +44,8 @@ describe('SchedulingCreateComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should navigate to "agendamento"', fakeAsync(() => {
-    location = TestBed.get(Location);
+  it('newScheduling should navigate to "agendamento" when finished', fakeAsync(() => {
+  location = TestBed.get(Location);
     component.navigate();
     tick();
     expect(location.path()).toBe('/agendamento');
@@ -60,7 +60,7 @@ describe('SchedulingCreateComponent', () => {
   }));
 
 
-  it('should clear on click', () => {
+  it('should navigate to "agendamento"', () => {
 
     component.register();
     expect(location.path()).toBe('/agendamento');
