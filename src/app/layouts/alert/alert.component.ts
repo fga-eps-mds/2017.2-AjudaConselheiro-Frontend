@@ -14,8 +14,11 @@ import { AlertService } from '../../services/alert/alert.service';
 
 export class AlertComponent implements OnInit {
   alerts: Alert[] = [];
+  public alertService: AlertService;
 
-  constructor(private alertService: AlertService) { }
+  constructor(alertService: AlertService) {
+    this.alertService = alertService;
+   }
 
   ngOnInit() {
     this.hasAlert();
@@ -24,16 +27,26 @@ export class AlertComponent implements OnInit {
   hasAlert(): void {
     this.alertService.getAlert()
     .subscribe((alert: Alert) => {
-      if (!alert) {
-        // clear alerts when an empty alert is received
-        this.alerts = [];
+      if (this.checkAlert(alert)) {
         return;
       }
-      if (this.alerts.length !== 0) {
-        this.removeAlert(alert);
-      }
-      this.alerts.push(alert);
+      this.otherOptions(alert);
     });
+  }
+
+  checkAlert(alert: Alert): boolean {
+    if (!alert) {
+      // clear alerts when an empty alert is received
+      this.alerts = [];
+      return true;
+    }
+  }
+
+  otherOptions(alert: Alert) {
+    if (this.alerts.length !== 0) {
+      this.removeAlert(alert);
+    }else {}
+    this.alerts.push(alert);
   }
 
   removeAlert(alert: Alert) {
@@ -42,7 +55,7 @@ export class AlertComponent implements OnInit {
 
   getAlertColor(alert: Alert): string {
     // check if alert exists
-    if (!alert) {
+    if (this.checkAlert(alert)) {
       return;
     }
     switch (alert.type) {
@@ -63,7 +76,7 @@ export class AlertComponent implements OnInit {
 
   getFontColor(alert: Alert) {
     // check if alert exists
-    if (!alert) {
+    if (this.checkAlert(alert)) {
       return;
     }
     switch (alert.type) {

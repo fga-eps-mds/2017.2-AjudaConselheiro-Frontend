@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MockBackend } from '@angular/http/testing';
+import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs/Observable';
 
 import { AlertComponent } from './alert.component';
 import { AlertService } from '../../services/alert/alert.service';
@@ -13,12 +15,16 @@ describe('AlertComponent', () => {
   fakeAlert = new Alert();
   fakeAlert.type = AlertType.Success;
   fakeAlert.message = 'message';
+  const subject = new Subject<Alert>();
+  const mockAlert = {
+    getAlert: jasmine.createSpy('getAlert')
+  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ AlertComponent ],
       imports: [ RouterTestingModule ],
-      providers: [ AlertService, MockBackend ]
+      providers: [AlertService, MockBackend ]
     })
     .compileComponents();
 
@@ -39,16 +45,18 @@ describe('AlertComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  fit('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should remove alert', () => {
+ fit('should remove alert', () => {
     localStorage.setItem('token', 'fakeToken');
+    component.alerts = [fakeAlert];
     component.removeAlert(this.fakeAlert);
+    expect(component.alerts.length).toEqual(0);
   });
 
-  it('should get alert color', () => {
+  fit('should get alert color', () => {
 
     localStorage.setItem('token', 'fakeToken');
 
@@ -78,36 +86,57 @@ describe('AlertComponent', () => {
     expect(res).toBeUndefined();
 
   });
-  it('should get alert font color', () => {
 
-            localStorage.setItem('token', 'fakeToken');
+  fit('should get alert font color', () => {
 
-            let res;
+  localStorage.setItem('token', 'fakeToken');
 
-            // Testing getFonttColor when success alert is passed
-            fakeAlert.type = AlertType.Success;
-            res = component.getFontColor(fakeAlert);
-            expect(res).toBe('#007E33');
+    let res;
 
-            // Testing getFontColor when error alert is passed
-            fakeAlert.type = AlertType.Error;
-            res = component.getFontColor(fakeAlert);
-            expect(res).toBe('#B71C1C');
+    // Testing getFonttColor when success alert is passed
+    fakeAlert.type = AlertType.Success;
+    res = component.getFontColor(fakeAlert);
+    expect(res).toBe('#007E33');
 
-            // Testing getFontColor when info alert is passed
-            fakeAlert.type = AlertType.Info;
-            res = component.getFontColor(fakeAlert);
-            expect(res).toBe('#FFFFFF');
+    // Testing getFontColor when error alert is passed
+    fakeAlert.type = AlertType.Error;
+    res = component.getFontColor(fakeAlert);
+    expect(res).toBe('#B71C1C');
 
-            // Testing getFontColor when warning alert is passed
-            fakeAlert.type = AlertType.Warning;
-            res = component.getFontColor(fakeAlert);
-            expect(res).toBe('#FFFFFF');
+    // Testing getFontColor when info alert is passed
+    fakeAlert.type = AlertType.Info;
+    res = component.getFontColor(fakeAlert);
+    expect(res).toBe('#FFFFFF');
 
-            // Testing getFontColor when invalid alert is passed
-            res = component.getFontColor(null);
-            expect(res).toBeUndefined();
+    // Testing getFontColor when warning alert is passed
+    fakeAlert.type = AlertType.Warning;
+    res = component.getFontColor(fakeAlert);
+    expect(res).toBe('#FFFFFF');
+
+    // Testing getFontColor when invalid alert is passed
+    res = component.getFontColor(null);
+    expect(res).toBeUndefined();
 
     });
+
+    fit('should check other options', () => {
+      localStorage.setItem('token', 'appToken');
+      component.alerts = [fakeAlert];
+
+      // Testing when have alert
+      component.otherOptions(fakeAlert);
+      component.removeAlert(fakeAlert);
+
+       // Testing when haven't alert
+      component.otherOptions(fakeAlert);
+
+    });
+
+
+    fit('should check other options', () => {
+      localStorage.setItem('token', 'appToken');
+      component.checkAlert(fakeAlert);
+    });
+
 
 });
