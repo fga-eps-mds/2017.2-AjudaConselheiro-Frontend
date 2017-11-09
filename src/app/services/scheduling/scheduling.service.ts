@@ -59,7 +59,7 @@ export class SchedulingService extends ServicesUtilitiesService {
     };
 
     return this.http.post(this.baseURL, JSON.stringify(body), this.options)
-    .map(res => this.extractData(res))
+    .map(result => this.extractData(result))
     .catch(this.handleError);
   }
 

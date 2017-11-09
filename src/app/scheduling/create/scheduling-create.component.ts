@@ -23,10 +23,12 @@ export class SchedulingCreateComponent implements OnInit {
 
   constructor(
     private schedulingService: SchedulingService,
-    private router: Router,
     private schoolService: SchoolService,
+    private router: Router,
     private alertService: AlertService
   ) {}
+
+
 
   ngOnInit() {
     this.scheduling = new Scheduling();

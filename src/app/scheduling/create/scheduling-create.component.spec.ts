@@ -70,21 +70,21 @@ describe('SchedulingCreateComponent', () => {
 
   it('filterSchools should return a Array<Object>', () => {
     const school = {
-      anoCenso:'2013',
-      cidade:"BRASILIA",
-      cod:'53012097',
-      codCidade:'5300108',
-      dependenciaAdministrativa:'2',
-      dependenciaAdministrativaTxt:"Estadual",
-      enemMediaGeral:'472.6940002441406',
-      estado:"DF",
-      idebAF:'2.9000000953674316',
-      idebAI:'0',
-      nome: "CED 123 DE SAMAMBAIA",
-      regiao:"Centro-Oeste",
-      situacaoFuncionamento:'1',
-      situacaoFuncionamentoTxt:"Em atividade"
-    }
+      anoCenso: '2013',
+      cidade: 'BRASILIA',
+      cod: '53012097',
+      codCidade: '5300108',
+      dependenciaAdministrativa: '2',
+      dependenciaAdministrativaTxt: 'Estadual',
+      enemMediaGeral: '472.6940002441406',
+      estado: 'DF',
+      idebAF: '2.9000000953674316',
+      idebAI: '0',
+      nome:  'CED 123 DE SAMAMBAIA',
+      regiao: 'Centro-Oeste',
+      situacaoFuncionamento: '1',
+      situacaoFuncionamentoTxt: 'Em atividade'
+    };
 
     var schools = [];
     var afterTreatment = [];
@@ -94,7 +94,7 @@ describe('SchedulingCreateComponent', () => {
     expect(component.filterSchools(schools)).toEqual(afterTreatment[0]);
 
   });
-  it('navigate to "agendamento"', fakeAsync(() => {
+  it('should navigate to "agendamento"', fakeAsync(() => {
     location = TestBed.get(Location);
     component.navigate();
     tick();
