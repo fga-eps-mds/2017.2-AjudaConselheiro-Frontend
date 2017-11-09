@@ -9,6 +9,7 @@ import { SchedulingEditComponent } from './edit/scheduling-edit.component';
 import { SchedulingCreateComponent } from './create/scheduling-create.component';
 import { SchoolService } from '../services/index';
 import { AlertService } from '../services/index';
+import { SearchComponent } from './search/search.component';
 
 export { SchedulingCreateComponent, SchedulingEditComponent, SchedulingHomeComponent };
 
@@ -21,7 +22,8 @@ export { SchedulingCreateComponent, SchedulingEditComponent, SchedulingHomeCompo
   declarations: [
     SchedulingHomeComponent,
     SchedulingEditComponent,
-    SchedulingCreateComponent
+    SchedulingCreateComponent,
+    SearchComponent
   ],
   providers: [
     SchedulingService,
