@@ -58,7 +58,7 @@ export class ProfileComponent implements OnInit {
   if ((rest === 10) || (rest === 11)) {
     rest = 0;
   }
-  if (rest !== parseInt(strCPF.substring(9, 10))) {
+  if (rest !== Number(strCPF.substring(9, 10))) {
   return false;
   }
 }
@@ -69,14 +69,14 @@ calculateTwoCPF(strCPF: string, sum: any, rest: any) {
   if ((rest === 10) || (rest === 11)) {
     rest = 0;
   }
-  if (rest !== parseInt(strCPF.substring(10, 11))) {
+  if (rest !== Number(strCPF.substring(10, 11))) {
   return false;
   }
 }
 
 sumStringValues(strCPF: string, sum: any, limite1: any): any {
   for (let i = 1; i <= limite1; i++) {
-    sum += parseInt(strCPF.substring(i -1, i)) * (limite1 + 2 - i);
+    sum += Number(strCPF.substring(i - 1, i)) * (limite1 + 2 - i);
   }
   return sum;
 }

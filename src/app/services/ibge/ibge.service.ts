@@ -9,7 +9,7 @@ import 'rxjs/add/operator/catch';
 import { ServicesUtilitiesService } from '../services-utilities/services-utilities.service';
 
 @Injectable()
-export class IbgeService extends ServicesUtilitiesService{
+export class IbgeService extends ServicesUtilitiesService {
   states = new Array<State>();
   cities = new Array<String>();
 

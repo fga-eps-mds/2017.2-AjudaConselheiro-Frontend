@@ -10,9 +10,9 @@ import { AppModule } from './../../app.module';
 describe('ChecklistCafeteriaComponent', () => {
   let component: ChecklistCafeteriaComponent;
   let fixture: ComponentFixture<ChecklistCafeteriaComponent>;
-  let checklist: ChecklistCafeteria;
-  let formMenuThree: Array<SectionCommentaryTwo> = FormMenuThree;
-  let check: ChecklistService;
+  const checklist: ChecklistCafeteria = new ChecklistCafeteria();
+  const formMenuThree: Array<SectionCommentaryTwo> = FormMenuThree;
+  const check = ChecklistService;
   let location: Location;
 
   beforeEach(async(() => {
@@ -43,10 +43,9 @@ describe('ChecklistCafeteriaComponent', () => {
       for ( let _i = 0; _i < FormMenuThree.length; _i++ ) {
         fixture.detectChanges();
         const compiled = fixture.debugElement.nativeElement;
-      if(component.formMenuThree[_i].answer != true){
+      if (component.formMenuThree[_i].answer !== true) {
         expect(compiled.querySelector('.commentaryThree')).toBe(null);
-      }
-      else{
+      } else {
         expect(compiled.querySelector('.commentaryThree')).not.toBe(null);
       }
     }

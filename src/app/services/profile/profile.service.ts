@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 import { ServicesUtilitiesService } from '../services-utilities/services-utilities.service';
 
 @Injectable()
-export class ProfileService extends ServicesUtilitiesService{
+export class ProfileService extends ServicesUtilitiesService {
 
   private id =  this.getUserCod();
   private url = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas/' + this.id + '/perfil';
@@ -21,7 +21,7 @@ export class ProfileService extends ServicesUtilitiesService{
     super();
   }
 
-  createUserProfile(cpf: any){
+  createUserProfile(cpf: any) {
 
     this.headers = new Headers({
       'Content-Type': 'application/json',

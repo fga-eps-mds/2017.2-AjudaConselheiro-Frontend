@@ -43,9 +43,9 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('token', result[0]);
           localStorage.setItem('userData', result[1]._body);
           localStorage.setItem('isLoggedIn', 'true');
-          this.getProfile();       
+          this.getProfile();
           this.alertService.success('Login efetuado sucesso!');
-          
+
         },
         error => {
           console.log('error: ', error.status);
@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
   }
   getProfile() {
     return this.profileService.getProfile().subscribe(
-           result => localStorage.setItem('Profile',JSON.stringify(result)));
-       
+           result => localStorage.setItem('Profile', JSON.stringify(result)));
+
     }
 }
