@@ -1,11 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import { User } from '../../models/index';
-import { ServicesUtilitiesService } from './../services-utilities/services-utilities.service';
-import { AlertService } from './../alert/alert.service';
-import 'rxjs/add/operator/catch';
 import { Router } from '@angular/router';
+
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/catch';
+
+import { User } from '../../models/index';
+
+import { AlertService } from './../alert/alert.service';
+import { ProfileService } from '../profile/profile.service';
+import { AuthenticationService } from '../authentication/authentication.service';
+import { ServicesUtilitiesService } from './../services-utilities/services-utilities.service';
 
 @Injectable()
 export class UserService extends ServicesUtilitiesService {
@@ -15,7 +20,8 @@ export class UserService extends ServicesUtilitiesService {
   options: RequestOptions = new RequestOptions({ headers: this.headers });
 
   constructor(private http: Http, private alertService: AlertService,
-    private router: Router) {
+    private router: Router, private profileService: ProfileService,
+    private authService: AuthenticationService) {
     super();
   }
 
@@ -39,8 +45,24 @@ export class UserService extends ServicesUtilitiesService {
       'CEP': user.CEP,
       'senha': user.senha
     };
+
     return this.http.post(this.url, JSON.stringify(body), this.options)
-    .map(res => this.extractData(res))
+    .map((res: Response) => {
+      // Parsing the user cod found in response headers
+      const headers = new Headers(res.headers);
+      const locationResponse = headers.get('location');
+      const userCod = this.extractResponseUserCod(locationResponse);
+
+      // Login is needed for creating a profile
+      this.authService.login(body.email, body.senha).subscribe((loginData) => {
+        localStorage.setItem('token', loginData[0]);
+
+        // Creating the user profile
+        this.profileService.setUserProfile({}, userCod).subscribe();
+      });
+
+      return this.extractData(res);
+    })
     .catch(this.handleError);
 }
 
@@ -69,5 +91,17 @@ export class UserService extends ServicesUtilitiesService {
     return this.http.delete(url, this.options)
       .map(res => this.extractData(res))
       .catch(this.handleError);
+  }
+
+  private extractResponseUserCod(locationString: string) {
+    const userCodRegex = /http:\/\/mobile-aceite\.tcu\.gov\.br\/appCivicoRS\/rest\/pessoas\/(\d+)/i;
+    const regexMatch = userCodRegex.exec(locationString);
+    const userCod = regexMatch[1];
+
+    if (userCod) {
+      return userCod;
+    } else {
+      return '';
+    }
   }
 }
