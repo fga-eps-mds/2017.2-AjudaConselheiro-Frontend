@@ -45,18 +45,18 @@ describe('AlertComponent', () => {
     fixture.detectChanges();
   });
 
-  fit('should create', () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 
- fit('should remove alert', () => {
+ it('should remove alert', () => {
     localStorage.setItem('token', 'fakeToken');
     component.alerts = [fakeAlert];
     component.removeAlert(this.fakeAlert);
     expect(component.alerts.length).toEqual(0);
   });
 
-  fit('should get alert color', () => {
+  it('should get alert color', () => {
 
     localStorage.setItem('token', 'fakeToken');
 
@@ -87,7 +87,7 @@ describe('AlertComponent', () => {
 
   });
 
-  fit('should get alert font color', () => {
+  it('should get alert font color', () => {
 
   localStorage.setItem('token', 'fakeToken');
 
@@ -119,7 +119,7 @@ describe('AlertComponent', () => {
 
     });
 
-    fit('should check other options', () => {
+    it('should check other options', () => {
       localStorage.setItem('token', 'appToken');
       component.alerts = [fakeAlert];
 
@@ -132,11 +132,8 @@ describe('AlertComponent', () => {
 
     });
 
-
-    fit('should check other options', () => {
+    it('should check invalid alert', () => {
       localStorage.setItem('token', 'appToken');
       component.checkAlert(fakeAlert);
     });
-
-
 });
