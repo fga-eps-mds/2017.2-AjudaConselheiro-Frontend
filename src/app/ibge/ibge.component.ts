@@ -1,4 +1,11 @@
-import { Component, OnInit, OnChanges, Input, SimpleChange } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  EventEmitter,
+  OnChanges,
+  Output,
+  Input
+} from '@angular/core';
 
 import { State } from '../models/index';
 import { IbgeService, AlertService } from '../services/index';
@@ -11,8 +18,10 @@ import { IbgeService, AlertService } from '../services/index';
 })
 
 export class IbgeComponent implements OnInit, OnChanges {
-  @Input() state: any;
-  @Input() city: string;
+  @Output() stateEmitter = new EventEmitter<string>();
+  @Output() cityEmitter = new EventEmitter<string>();
+  @Input() city;
+  @Input() state;
   stateSigla: string;
   states: any = [];
   cities: any = [];
@@ -31,9 +40,11 @@ export class IbgeComponent implements OnInit, OnChanges {
     if (change === this.state) {
       this.city = '';
       this.cities = this.getCities(this.state);
+      this.stateEmitter.emit(this.state);
     }
-    if (this.city !== undefined) {
+    if (change === this.city) {
       console.log('Cidade: ', this.city);
+      this.cityEmitter.emit(this.city);
     }
   }
 

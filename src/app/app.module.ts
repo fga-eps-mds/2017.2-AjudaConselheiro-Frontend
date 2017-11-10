@@ -16,13 +16,11 @@ import { SchedulingModule } from './scheduling/scheduling.module';
 import { ChecklistModule } from './checklist/checklist.module';
 import { CouncilGroupModule } from './council-group/council-group.module';
 import { LayoutsModule } from './layouts/layouts.module';
-import { IbgeComponent } from './ibge/ibge.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    IbgeComponent,
   ],
   imports: [
     BrowserModule,
