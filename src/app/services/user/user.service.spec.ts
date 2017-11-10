@@ -1,7 +1,9 @@
 import { TestBed, inject } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { User } from '../../models/index';
-import { HttpModule, Http, ConnectionBackend, ResponseOptions, XHRBackend, Response, } from '@angular/http';
+import { HttpModule, Http, ConnectionBackend,
+  ResponseOptions, RequestOptions, Response,
+  BaseRequestOptions, Headers } from '@angular/http';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 import { AlertService } from '../alert/alert.service';
 import { FormsModule } from '@angular/forms';
@@ -10,46 +12,191 @@ import { FakeUser } from '../../user/create/testing/fake-user';
 import { UserService, AuthenticationService, ProfileService } from '../index';
 
 describe('UserService', () => {
-
-  let user: User;
-  const fakeUser: FakeUser = new FakeUser();
-
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [
-        UserService,
-        AlertService,
-        AuthenticationService,
-        ProfileService,
-        MockBackend,
-        ConnectionBackend,
-        { provide: XHRBackend, useClass: MockBackend }
+      imports: [
+        HttpModule,
+        RouterTestingModule
       ],
-      imports: [RouterTestingModule,
-        FormsModule,
-        HttpModule]
+      providers: [
+        MockBackend,
+        BaseRequestOptions,
+        {
+          provide: Http,
+          useFactory: (mockBackend: MockBackend, defaultOptions: RequestOptions) => {
+            return new Http(mockBackend, defaultOptions);
+          },
+          deps: [MockBackend, BaseRequestOptions]
+        },
+        ConnectionBackend,
+        AlertService,
+        UserService,
+        ProfileService,
+        AuthenticationService
+      ]
     });
+
+    // This section till the end of the function is responsible for mocking
+    // the needed localstorage functions, since the service uses them.
+    let store = {};
+    const mockLocalStorage = {
+      getItem: (key: string): string => {
+        return key in store ? store[key] : null;
+      },
+      setItem: (key: string, value: string) => {
+        store[key] = `${value}`;
+      },
+      removeItem: (key: string) => {
+        delete store[key];
+      },
+      clear: () => {
+        store = {};
+      }
+    };
+    spyOn(localStorage, 'getItem')
+      .and.callFake(mockLocalStorage.getItem);
+    spyOn(localStorage, 'setItem')
+      .and.callFake(mockLocalStorage.setItem);
+    spyOn(localStorage, 'removeItem')
+      .and.callFake(mockLocalStorage.removeItem);
+    spyOn(localStorage, 'clear')
+      .and.callFake(mockLocalStorage.clear);
   });
 
+  // Testing inject instantiation
   it('should be created', inject([UserService], (service: UserService) => {
     expect(service).toBeTruthy();
   }));
 
-  it('should create user', () => {
-    user = fakeUser.generateFakeUser();
-    inject([UserService, XHRBackend], (service: UserService, mockBacked: MockBackend) => {
-      mockBacked.connections.subscribe((connection: MockConnection) => {
-        connection.mockRespond(new Response(
-          new ResponseOptions({
-            body: JSON.stringify(user)
-          })
-        ));
+
+  // For getUsers()
+  it('should return data from getUsers()',
+    inject([UserService, MockBackend], (service, mockBackend) => {
+    const fakeUsers = [
+      { name: 'Um', cod: 1},
+      { name: 'Dois', cod: 2},
+      { name: 'Três', cod: 3},
+    ];
+
+    // Mocking HTTP connection for this test
+    mockBackend.connections.subscribe((connection: MockConnection) => {
+      const options = new ResponseOptions({ body: fakeUsers });
+        connection.mockRespond(new Response(options));
       });
-         service
-        .createUser(user)
-        .subscribe(res => {
-          expect(res.json()).toBe('Usuário cadastrado com sucesso');
-        });
+
+      service.getUsers().subscribe((response) => {
+        expect(response).toEqual(fakeUsers);
     });
-  });
+  }));
+
+
+  // For getUser(id)
+  it('should return data from getUser(id)',
+    inject([UserService, MockBackend], (service, mockBackend) => {
+
+    const fakeUser = [
+      { name: 'Um', cod: 1}
+    ];
+
+    // Mocking HTTP connection for this test
+    mockBackend.connections.subscribe((connection: MockConnection) => {
+      const options = new ResponseOptions({ body: fakeUser });
+        connection.mockRespond(new Response(options));
+    });
+
+    // Making the request and testing its response
+    service.getUser(fakeUser[0].cod).subscribe((response) => {
+      expect(response).toEqual(fakeUser);
+    });
+  }));
+
+
+  // For createUser()
+  it('should create a user with profile in createUser()',
+    inject([UserService, MockBackend], (service, mockBackend) => {
+
+    const fakeUserParam = new FakeUser();
+
+    const resHeader = new Headers();
+    resHeader.append('location', 'http://mobile-aceite.tcu.gov.br/appCivicoRS/rest/pessoas/123');
+    resHeader.append('appToken', 'FakeToken');
+
+    // Mocking HTTP connection for this test
+    mockBackend.connections.subscribe((connection: MockConnection) => {
+      const options = new ResponseOptions({ body: fakeUserParam, headers: resHeader});
+        connection.mockRespond(new Response(options));
+    });
+
+    // Making the request and testing its response
+    service.createUser(fakeUserParam).subscribe((response) => {
+      expect(response).toEqual(fakeUserParam);
+    });
+  }));
+
+  it('createUser() should fail if location cod is wrong',
+    inject([UserService, MockBackend], (service, mockBackend) => {
+
+    const fakeUserParam = new FakeUser();
+
+    const resHeader = new Headers();
+    resHeader.append('location', 'http://mobile-aceite.tcu.gov.br/appCivicoRS/rest/pessoas/ERROR');
+    resHeader.append('appToken', 'FakeToken');
+
+    // Mocking HTTP connection for this test
+    mockBackend.connections.subscribe((connection: MockConnection) => {
+      const options = new ResponseOptions({ body: fakeUserParam, headers: resHeader});
+        connection.mockRespond(new Response(options));
+    });
+
+    // Making the request and testing its response
+    service.createUser(fakeUserParam).subscribe((response) => {
+      expect(response).toBeNull();
+    });
+  }));
+
+
+  // For getLoggedUser()
+  it('getLoggedUser() should return a valid user object',
+    inject([UserService], (service) => {
+
+    // This sets a fake user that will be used
+    const fakeUser = { name: 'Um', cod: 1};
+    localStorage.setItem('userData', JSON.stringify(fakeUser));
+
+    const returnUser = service.getLoggedUser();
+
+    expect(returnUser).toBeTruthy();
+    expect(returnUser).toEqual(fakeUser);
+  }));
+
+  it('getLoggedUser() should return nothing there isn\'t a logged user',
+    inject([UserService], (service) => {
+    const returnUser = service.getLoggedUser();
+
+    expect(returnUser).toBeFalsy();
+    expect(returnUser).toBeUndefined();
+  }));
+
+
+  // For getPerfilUser() - Should be getProfileUser()
+  it('getPerfilUser() should return a valid user object',
+    inject([UserService], (service) => {
+
+    // This sets a fake user that will be used
+    const fakeProfile = { CPF: '000.000.000-00' };
+    localStorage.setItem('Profile', JSON.stringify(fakeProfile));
+
+    const returnUser = service.getPerfilUser();
+
+    expect(returnUser).toBeTruthy();
+    expect(returnUser).toEqual(fakeProfile);
+  }));
+
+  it('getPerfilUser() should return nothing there isn\'t a profile',
+    inject([UserService], (service) => {
+    const returnUser = service.getPerfilUser();
+
+    expect(returnUser).toBeFalsy();
+    expect(returnUser).toBeUndefined();
+  }));
 });

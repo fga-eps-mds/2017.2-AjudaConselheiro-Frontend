@@ -47,21 +47,23 @@ export class UserService extends ServicesUtilitiesService {
     };
 
     return this.http.post(this.url, JSON.stringify(body), this.options)
-    .map((res: Response) => {
+    .map((response: Response) => {
       // Parsing the user cod found in response headers
-      const headers = new Headers(res.headers);
-      const locationResponse = headers.get('location');
+      const parsedHeaders = new Headers(response.headers);
+      const locationResponse = parsedHeaders.get('location');
       const userCod = this.extractResponseUserCod(locationResponse);
 
       // Login is needed for creating a profile
-      this.authService.login(body.email, body.senha).subscribe((loginData) => {
-        localStorage.setItem('token', loginData[0]);
+      if (userCod) {
+        this.authService.login(body.email, body.senha).subscribe((loginData) => {
+          this.setInitialProfile(userCod, loginData[0]);
+        });
 
-        // Creating the user profile
-        this.profileService.setUserProfile({}, userCod).subscribe();
-      });
-
-      return this.extractData(res);
+        return this.extractData(response);
+      } else {
+        console.error('User created but we could not extract location (id) cod!');
+        return null;
+      }
     })
     .catch(this.handleError);
 }
@@ -93,15 +95,26 @@ export class UserService extends ServicesUtilitiesService {
       .catch(this.handleError);
   }
 
+  private setInitialProfile(userCod: string, token: any) {
+    // Sets the needed userToken from authentication, necessary for profiles POST
+    localStorage.setItem('token', token);
+
+    // Creating the user profile
+    this.profileService.setUserProfile({}, userCod).subscribe();
+
+    // Removing the login data - For sucess and fail
+    localStorage.removeItem('token');
+  }
+
   private extractResponseUserCod(locationString: string) {
     const userCodRegex = /http:\/\/mobile-aceite\.tcu\.gov\.br\/appCivicoRS\/rest\/pessoas\/(\d+)/i;
     const regexMatch = userCodRegex.exec(locationString);
-    const userCod = regexMatch[1];
 
-    if (userCod) {
+    if (regexMatch) {
+      const userCod = regexMatch[1];
       return userCod;
     } else {
-      return '';
+      return null;
     }
   }
 }
