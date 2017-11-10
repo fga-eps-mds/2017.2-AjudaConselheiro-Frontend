@@ -20,14 +20,13 @@ export class SchedulingEditComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
-    const id = +this.route.snapshot.params['id'];
-    this.scheduling = this.schedulingService.searchSchedulingId(id);
+
   }
-  update(): void {
-    if (this.formScheduling.form.valid) {
-      this.schedulingService.updateScheduling(this.scheduling);
-      this.router.navigate(['/agendamento']);
-       }
-  }
+  // update(): void {
+  //   if (this.formScheduling.form.valid) {
+  //     this.schedulingService.updateScheduling(this.scheduling);
+  //     this.router.navigate(['/agendamento']);
+  //      }
+  // }
 
 }
