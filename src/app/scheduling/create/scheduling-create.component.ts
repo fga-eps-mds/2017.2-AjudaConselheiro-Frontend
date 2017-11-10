@@ -3,7 +3,7 @@ import { SchedulingService } from './../../services/scheduling/scheduling.servic
 import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { SchoolService, AlertService } from '../../services/index';
+import { AlertService } from '../../services/index';
 import { Search } from './../../models/search.model';
 
 @Component({
@@ -15,11 +15,6 @@ export class SchedulingCreateComponent implements OnInit {
 
   @ViewChild('formScheduling') formScheduling: NgForm;
   scheduling: Scheduling;
-  state: string;
-  cities: Array<Object>;
-  search: Search;
-  schools: Array<Object>;
-  collapsed = true;
 
   constructor(
     private schedulingService: SchedulingService,
@@ -27,17 +22,10 @@ export class SchedulingCreateComponent implements OnInit {
     private alertService: AlertService
   ) {}
 
-
-
   ngOnInit() {
     this.scheduling = new Scheduling();
-    this.state = '';
-    this.cities = new Array<Object>();
-    this.schools = new Array<Object>();
-    this.search = new Search();
   }
 
- 
   newScheduling(): void {
     if (this.formScheduling.form.valid) {
       this.schedulingService.newScheduling(this.scheduling);

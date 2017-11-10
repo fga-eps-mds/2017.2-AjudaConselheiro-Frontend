@@ -5,13 +5,14 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { SchoolService, AlertService } from '../../services/index';
 import { Search } from './../../models/search.model';
+import { SchedulingCreateComponent } from './../create/scheduling-create.component';
 
 @Component({
-  selector: 'app-search',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.css']
+  selector: 'school-visit',
+  templateUrl: './school-visit.component.html',
+  styleUrls: ['./school-visit.component.css']
 })
-export class SearchComponent implements OnInit {
+export class SchoolVisitComponent extends SchedulingCreateComponent implements OnInit {
 
   @ViewChild('formScheduling') formScheduling: NgForm;
   scheduling: Scheduling;
@@ -22,12 +23,13 @@ export class SearchComponent implements OnInit {
   collapsed = true;
 
   constructor(
-    private schedulingService: SchedulingService,
     private schoolService: SchoolService,
-    private router: Router,
-  ) {}
-
-
+    schedulingService: SchedulingService,
+    router: Router,
+    alertService: AlertService
+  ){
+    super(schedulingService, router, alertService);
+  }
 
   ngOnInit() {
     this.state = '';

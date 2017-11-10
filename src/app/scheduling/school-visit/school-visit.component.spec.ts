@@ -1,4 +1,4 @@
-import { SearchComponent } from './search.component';
+import { SchoolVisitComponent } from './school-visit.component';
 import { By } from '@angular/platform-browser';
 import { AppModule } from './../../app.module';
 import { APP_BASE_HREF, Location } from '@angular/common';
@@ -15,8 +15,8 @@ import { SchedulingService, AlertService, UserService } from './../../services/i
 import { Search } from './../../models/search.model';
 
 describe('SearchComponent', () => {
-  let component: SearchComponent;
-  let fixture: ComponentFixture<SearchComponent>;
+  let component: SchoolVisitComponent;
+  let fixture: ComponentFixture<SchoolVisitComponent>;
 
     beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -33,7 +33,7 @@ describe('SearchComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SearchComponent);
+    fixture = TestBed.createComponent(SchoolVisitComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

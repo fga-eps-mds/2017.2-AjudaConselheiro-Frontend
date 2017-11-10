@@ -15,7 +15,8 @@ import {
 import {
   SchedulingHomeComponent,
   SchedulingCreateComponent,
-  SchedulingEditComponent
+  SchedulingEditComponent,
+  SchoolVisitComponent
 } from './scheduling/scheduling.module';
 
 import {
@@ -37,6 +38,7 @@ export const ROUTES: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'agendamento', component: SchedulingHomeComponent },
   { path: 'agendamento/criar', component: SchedulingCreateComponent },
+  { path: 'agendamento/criar/visita-escolar', component: SchoolVisitComponent },
   { path: 'agendamento/editar/:id', component: SchedulingEditComponent },
   { path: 'usuarios', component: UserListComponent },
   { path: 'usuarios/todos', component: UserListComponent },

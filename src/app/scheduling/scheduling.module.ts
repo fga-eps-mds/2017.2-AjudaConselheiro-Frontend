@@ -9,9 +9,9 @@ import { SchedulingEditComponent } from './edit/scheduling-edit.component';
 import { SchedulingCreateComponent } from './create/scheduling-create.component';
 import { SchoolService } from '../services/index';
 import { AlertService } from '../services/index';
-import { SearchComponent } from './search/search.component';
+import { SchoolVisitComponent } from './school-visit/school-visit.component';
 
-export { SchedulingCreateComponent, SchedulingEditComponent, SchedulingHomeComponent };
+export { SchedulingCreateComponent, SchedulingEditComponent, SchedulingHomeComponent, SchoolVisitComponent };
 
 @NgModule({
   imports: [
@@ -23,7 +23,7 @@ export { SchedulingCreateComponent, SchedulingEditComponent, SchedulingHomeCompo
     SchedulingHomeComponent,
     SchedulingEditComponent,
     SchedulingCreateComponent,
-    SearchComponent
+    SchoolVisitComponent
   ],
   providers: [
     SchedulingService,
