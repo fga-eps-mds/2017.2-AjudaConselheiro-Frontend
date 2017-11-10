@@ -28,7 +28,6 @@ export class SchedulingService extends ServicesUtilitiesService {
     super();
   }
 
-
   getSchedulings(): Observable<Scheduling> {
     const thereIsToken = localStorage.getItem('token');
     if (thereIsToken) {
