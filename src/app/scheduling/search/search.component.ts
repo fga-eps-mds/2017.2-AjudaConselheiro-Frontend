@@ -1,5 +1,3 @@
-import { Scheduling } from './../../models/scheduling.model';
-import { SchedulingService } from './../../services/scheduling/scheduling.service';
 import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
@@ -14,7 +12,6 @@ import { Search } from './../../models/search.model';
 export class SearchComponent implements OnInit {
 
   @ViewChild('formScheduling') formScheduling: NgForm;
-  scheduling: Scheduling;
   state: string;
   cities: Array<Object>;
   search: Search;
@@ -22,9 +19,7 @@ export class SearchComponent implements OnInit {
   collapsed = true;
 
   constructor(
-    private schedulingService: SchedulingService,
     private schoolService: SchoolService,
-    private router: Router,
   ) {}
 
 

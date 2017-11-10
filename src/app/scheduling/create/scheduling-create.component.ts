@@ -15,11 +15,6 @@ export class SchedulingCreateComponent implements OnInit {
 
   @ViewChild('formScheduling') formScheduling: NgForm;
   scheduling: Scheduling;
-  state: string;
-  cities: Array<Object>;
-  search: Search;
-  schools: Array<Object>;
-  collapsed = true;
 
   constructor(
     private schedulingService: SchedulingService,
@@ -31,13 +26,9 @@ export class SchedulingCreateComponent implements OnInit {
 
   ngOnInit() {
     this.scheduling = new Scheduling();
-    this.state = '';
-    this.cities = new Array<Object>();
-    this.schools = new Array<Object>();
-    this.search = new Search();
   }
 
- 
+
   newScheduling(): void {
     if (this.formScheduling.form.valid) {
       this.schedulingService.newScheduling(this.scheduling);
