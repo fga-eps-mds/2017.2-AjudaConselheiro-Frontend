@@ -1,12 +1,11 @@
-import { AlertService } from './../../services/alert/alert.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpModule } from '@angular/http';
 import { APP_BASE_HREF } from '@angular/common';
-import { UserService } from './../../services/user/user.service';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppModule } from './../../app.module';
 
 import { SidebarComponent } from './sidebar.component';
+import { UserService, AlertService, ProfileService, AuthenticationService} from './../../services/index';
 
 describe('SidebarComponent', () => {
   let component: SidebarComponent;
@@ -19,7 +18,9 @@ describe('SidebarComponent', () => {
       ],
       providers: [
         UserService,
-        AlertService
+        AlertService,
+        ProfileService,
+        AuthenticationService
       ],
       imports: [
         HttpModule,

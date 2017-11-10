@@ -1,6 +1,5 @@
 import { TestBed, inject } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { UserService } from './user.service';
 import { User } from '../../models/index';
 import { HttpModule, Http, ConnectionBackend, ResponseOptions, XHRBackend, Response, } from '@angular/http';
 import { MockBackend, MockConnection } from '@angular/http/testing';
@@ -8,17 +7,23 @@ import { AlertService } from '../alert/alert.service';
 import { FormsModule } from '@angular/forms';
 import { FakeUser } from '../../user/create/testing/fake-user';
 
-describe('AlertService', () => {
+import { UserService, AuthenticationService, ProfileService } from '../index';
+
+describe('UserService', () => {
 
   let user: User;
   const fakeUser: FakeUser = new FakeUser();
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [UserService, AlertService, Http,
-        { provide: XHRBackend, useClass: MockBackend },
+      providers: [
+        UserService,
+        AlertService,
+        AuthenticationService,
+        ProfileService,
         MockBackend,
-        ConnectionBackend
+        ConnectionBackend,
+        { provide: XHRBackend, useClass: MockBackend }
       ],
       imports: [RouterTestingModule,
         FormsModule,
