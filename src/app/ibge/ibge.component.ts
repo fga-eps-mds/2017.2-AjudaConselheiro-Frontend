@@ -14,8 +14,8 @@ export class IbgeComponent implements OnInit, OnChanges {
   @Input() state: any;
   @Input() city: string;
   stateSigla: string;
-  states: Array<State>;
-  cities: Array<Object>;
+  states: any = [];
+  cities: any = [];
 
   constructor(
     private ibgeService: IbgeService,
@@ -23,20 +23,45 @@ export class IbgeComponent implements OnInit, OnChanges {
   ) { }
 
   ngOnInit() {
-    this.states = this.ibgeService.statesRequest();
+    this.states = this.getStates();
   }
 
   ngOnChanges(change) {
+    // When state changes, the list os cities is updated
     if (change === this.state) {
-      // When state changes, the list os cities is updated
-      this.cities = this.ibgeService.citiesRequest(this.state);
-      console.log(this.state);
+      this.city = '';
+      this.cities = this.getCities(this.state);
     }
     if (this.city !== undefined) {
-      // When a city is selected, we get the CAE
-      // this.council = undefined;
-      // this.searchCouncils(this.getCAEName());
+      console.log('Cidade: ', this.city);
     }
   }
 
+  // Get all states
+  getStates() {
+    this.ibgeService.getStates()
+      .subscribe(
+        (result) => {
+          result.sort(this.ibgeService.sortArray);
+          this.states = this.ibgeService.filterState(result);
+          console.log(this.states);
+        },
+        (error) => {
+          this.alertService.error(error);
+        });
+  }
+
+  // Get all cities given a state
+  getCities(state: string) {
+    this.ibgeService.getCities(state)
+      .subscribe(
+        (result) => {
+          result.sort(this.ibgeService.sortArray);
+          this.cities = this.ibgeService.filterCityName(result);
+          console.log(this.cities);
+        },
+        (error) => {
+          this.alertService.error(error);
+        });
+  }
 }
