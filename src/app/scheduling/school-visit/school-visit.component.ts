@@ -5,14 +5,14 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { SchoolService, AlertService } from '../../services/index';
 import { Search } from './../../models/search.model';
-import { SchedulingCreateComponent } from './../create/scheduling-create.component';
+import { SchedulingCreateInterface } from './../scheduling-create-interface.component';
 
 @Component({
   selector: 'school-visit',
   templateUrl: './school-visit.component.html',
   styleUrls: ['./school-visit.component.css']
 })
-export class SchoolVisitComponent extends SchedulingCreateComponent implements OnInit {
+export class SchoolVisitComponent implements SchedulingCreateInterface, OnInit {
 
   @ViewChild('formScheduling') formScheduling: NgForm;
   scheduling: Scheduling;
@@ -21,21 +21,54 @@ export class SchoolVisitComponent extends SchedulingCreateComponent implements O
   search: Search;
   schools: Array<Object>;
   collapsed = true;
+  postType = 138;
+  postText = 'Visita Escolar';
 
   constructor(
     private schoolService: SchoolService,
-    schedulingService: SchedulingService,
-    router: Router,
-    alertService: AlertService
-  ){
-    super(schedulingService, router, alertService);
-  }
+    private schedulingService: SchedulingService,
+    private router: Router,
+    private alertService: AlertService
+  ){}
 
   ngOnInit() {
     this.state = '';
     this.cities = new Array<Object>();
     this.schools = new Array<Object>();
     this.search = new Search();
+  }
+
+  newScheduling(): void {
+    if (this.formScheduling.form.valid) {
+      this.schedulingService.newScheduling(this.scheduling, this.postType, this.postText);
+    }
+  }
+
+  navigate() {
+    this.router.navigate(['/agendamento']);
+  }
+
+  result() {
+    this.alertService.success('Visita escolar cadastrada com sucesso.');
+  }
+
+  error(status: any) {
+    if (status === 400) {
+      this.alertService.warn('Erro!');
+    } else {
+      this.alertService.error('Erro: falha na comunicação com o sistema!');
+    }
+  }
+
+  register(): void {
+    this.schedulingService.newScheduling(this.scheduling, this.postType, this.postText)
+      .subscribe(
+      result => {
+        this.result();
+      },
+      error => {
+        this.error(error.status);
+      });
   }
 
   searchSchool(): void {
