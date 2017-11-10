@@ -35,14 +35,14 @@ describe('IbgeService', () => {
     const withQuotes = 'a\"Normal\"String\"With\"Quotes?';
     const withoutQuotes = 'aNormalStringWithQuotes?';
 
-    expect(service.takeQuoteOff(withQuotes)).toEqual(withoutQuotes);
+    expect(service.removeQuotes(withQuotes)).toEqual(withoutQuotes);
   });
 
   it('should return a sorted array with states', () => {
     const state1 = { sigla: 'DF' }, state2 = { sigla: 'GO' };
     const sorted = [state1, state2, state2], unsorted = [state2, state2, state1];
 
-    unsorted.sort(service.sortingStates);
+    unsorted.sort(service.sortArray);
 
     expect(unsorted).toEqual(sorted);
   });

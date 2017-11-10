@@ -26,7 +26,7 @@ export class CouncilGroupSearchComponent implements OnInit, OnChanges {
   ) { }
 
   ngOnInit() {
-    this.states = this.ibgeService.statesRequest();
+    // this.states = this.ibgeService.statesRequest();
     this.showCouncil = false;
   }
 
@@ -34,7 +34,7 @@ export class CouncilGroupSearchComponent implements OnInit, OnChanges {
     this.showCouncil = false;
     if (change === this.state) {
       // When state changes, the list os cities is updated
-      this.cities = this.ibgeService.citiesRequest(this.state);
+      // this.cities = this.ibgeService.citiesRequest(this.state);
       this.council = this.stateSigla = this.city = undefined;
       console.log(this.state);
     }
