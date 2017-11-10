@@ -7,6 +7,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  public name;
+  public biography;
+  public email;
 
   constructor(private router: Router) { }
 
@@ -14,6 +17,25 @@ export class ProfileComponent implements OnInit {
     if (localStorage.getItem('token') === null) {
       this.router.navigate(['/home']);
     }
+    this.formatUserData();
+  }
+
+  formatUserData() {
+    const userInfo = localStorage.getItem('userData').split(',');
+    console.log(userInfo);
+
+    this.name = userInfo[0];
+    this.name = this.name.split(':')[1];
+    this.name = this.name.replace(/"|{|}/g, '');
+
+    this.biography = userInfo[1];
+    this.biography = this.biography.split(':')[1];
+    this.biography = this.biography.replace(/"|{|}/g, '');
+
+    this.email = userInfo[3];
+    this.email = this.email.split(':')[1];
+    this.email = this.email.replace(/"|{|}/g, '');
+
   }
 
 }
