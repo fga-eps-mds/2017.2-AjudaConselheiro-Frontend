@@ -1,4 +1,4 @@
-<br>
+<br><br><br><br>
 
 <div class="create-form">
     <div>
@@ -11,6 +11,14 @@
                 <div *ngIf="members.errors && (members.dirty || members.touched)" class="alert alert-danger">
                     <div [hidden]="!members.errors.required">
                         Digite o nome dos conselheiros participantes!
+                    </div>
+                </div>
+
+                <label for="local"><i class="fa fa-group" aria-hidden="true"></i> Local:</label>
+                <input placeholder="Insira o local da Reunião" type="text" class="form-control" id="local" name="local" [(ngModel)]="scheduling.local" #local="ngModel" required>
+                <div *ngIf="local.errors && (local.dirty || local.touched)" class="alert alert-danger">
+                    <div [hidden]="!local.errors.required">
+                        Digite o local da reunião!
                     </div>
                 </div>
 

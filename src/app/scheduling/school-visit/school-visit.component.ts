@@ -6,9 +6,10 @@ import { NgForm } from '@angular/forms';
 import { SchoolService, AlertService } from '../../services/index';
 import { School } from './../../models/school.model';
 import { SchedulingCreateInterface } from './../scheduling-create-interface.component';
+import { AlertComponent } from './../../layouts/alert/alert.component';
 
 @Component({
-  selector: 'school-visit',
+  selector: 'app-school-visit',
   templateUrl: './school-visit.component.html',
   styleUrls: ['./school-visit.component.css']
 })
