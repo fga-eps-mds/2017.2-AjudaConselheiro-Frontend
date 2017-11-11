@@ -21,9 +21,10 @@ import {
   UserCreateComponent,
   UserEditComponent,
   UserListComponent,
-  ProfileComponent,
+  UserCpfComponent,
   NotProfileComponent,
-  LoginComponent
+  LoginComponent,
+  ProfileComponent
 } from './user/user.module';
 
 export const ROUTES: Routes = [
@@ -45,6 +46,7 @@ export const ROUTES: Routes = [
   { path: 'conselho/cadastrar', component: CouncilGroupCreateComponent },
   { path: 'conselho/buscar', component: CouncilGroupSearchComponent},
   { path: 'checklist/update', component: ChecklistUpdateComponent},
-  { path: 'perfil', component: ProfileComponent },
-  { path: 'usuario-sem-perfil', component: NotProfileComponent}
+  { path: 'adicionar-cpf', component: UserCpfComponent },
+  { path: 'usuario-sem-perfil', component: NotProfileComponent},
+  { path: 'perfil', component: ProfileComponent}
 ];
