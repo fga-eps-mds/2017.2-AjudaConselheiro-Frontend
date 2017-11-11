@@ -1,3 +1,4 @@
+import { School } from './school.model';
 export class Scheduling {
   constructor(
       public id?: number,
@@ -5,6 +6,7 @@ export class Scheduling {
       public members?: string,
       public date?: number,
       public time?: number,
-      public type?: string
+      public type?: string,
+      public school?: School
   ) {}
 }

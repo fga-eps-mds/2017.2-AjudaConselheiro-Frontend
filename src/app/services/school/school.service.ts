@@ -6,7 +6,7 @@ import 'rxjs/add/operator/catch';
 
 import { Scheduling } from '../../models/index';
 import { ServicesUtilitiesService } from './../services-utilities/services-utilities.service';
-import { Search } from '../../models/search.model';
+import { School } from '../../models/school.model';
 
 @Injectable()
 export class SchoolService extends ServicesUtilitiesService {
@@ -17,13 +17,13 @@ export class SchoolService extends ServicesUtilitiesService {
     super();
   }
 
-  searchSchool(search: Search): Observable<Array<Object>> {
+  searchSchool(school: School): Observable<Array<Object>> {
     const searchParams = new URLSearchParams();
-    searchParams.append('codigo', search.code);
-    searchParams.append('estado', search.state);
-    searchParams.append('nome', search.name);
-    searchParams.append('cidade', search.city);
-    searchParams.append('situacaoFuncionamento', search.situation);
+    searchParams.append('codigo', school.code);
+    searchParams.append('estado', school.state);
+    searchParams.append('nome', school.name);
+    searchParams.append('cidade', school.city);
+    searchParams.append('situacaoFuncionamento', school.situation);
 
     this.options.params = searchParams;
     console.log(this.options);

@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AlertService } from '../../services/index';
-import { Search } from './../../models/search.model';
+import { School } from './../../models/school.model';
 import { SchedulingCreateInterface } from './../scheduling-create-interface.component';
 
 @Component({

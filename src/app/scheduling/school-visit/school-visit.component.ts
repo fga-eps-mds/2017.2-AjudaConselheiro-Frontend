@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { SchoolService, AlertService } from '../../services/index';
-import { Search } from './../../models/search.model';
+import { School } from './../../models/school.model';
 import { SchedulingCreateInterface } from './../scheduling-create-interface.component';
 
 @Component({
@@ -16,9 +16,9 @@ export class SchoolVisitComponent implements SchedulingCreateInterface, OnInit {
 
   @ViewChild('formScheduling') formScheduling: NgForm;
   scheduling: Scheduling;
-  state: string;
+  state = '';
   cities: Array<Object>;
-  search: Search;
+  school = new School;
   schools: Array<Object>;
   collapsed = true;
   postType = 138;
@@ -32,10 +32,10 @@ export class SchoolVisitComponent implements SchedulingCreateInterface, OnInit {
   ){}
 
   ngOnInit() {
-    this.state = '';
+    this.scheduling = new Scheduling();
+    this.scheduling.school = new School();
     this.cities = new Array<Object>();
     this.schools = new Array<Object>();
-    this.search = new Search();
   }
 
   newScheduling(): void {
@@ -72,10 +72,10 @@ export class SchoolVisitComponent implements SchedulingCreateInterface, OnInit {
   }
 
   searchSchool(): void {
-    this.search.state = this.state;
-    this.search.situation = '1';
+    this.school.state = this.state;
+    this.school.situation = '1';
 
-    this.schoolService.searchSchool(this.search)
+    this.schoolService.searchSchool(this.school)
       .subscribe(
           result => {
             this.schools = this.filterSchools(result);
@@ -145,5 +145,12 @@ export class SchoolVisitComponent implements SchedulingCreateInterface, OnInit {
   }
   toggleCollapsed(): void {
     this.collapsed = !this.collapsed;
+  }
+  setSelectedSchool(school: any){
+    console.log(school);
+    this.scheduling.school.city = school.cidade;
+    this.scheduling.school.code = school.cod;
+    this.scheduling.school.name = school.nome;
+    this.scheduling.school.state = school.estado;
   }
 }

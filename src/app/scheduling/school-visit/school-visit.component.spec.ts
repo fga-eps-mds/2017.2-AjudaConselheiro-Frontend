@@ -12,7 +12,7 @@ import { Http, ConnectionBackend } from '@angular/http';
 import { HttpModule } from '@angular/http';
 
 import { SchedulingService, AlertService, UserService } from './../../services/index';
-import { Search } from './../../models/search.model';
+import { School } from './../../models/school.model';
 
 describe('SearchComponent', () => {
   let component: SchoolVisitComponent;
@@ -43,7 +43,7 @@ describe('SearchComponent', () => {
   });
   it('should clear on click', () => {
     component.searchSchool();
-    expect(component.search.situation).toEqual('1');
+    expect(component.school.situation).toEqual('1');
 
       });
       it('cityFilter should apply a regex on untreated string', () => {

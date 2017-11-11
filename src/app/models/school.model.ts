@@ -1,4 +1,4 @@
-export class Search {
+export class School {
   constructor(
       public code?: string,
       public city?: string,
