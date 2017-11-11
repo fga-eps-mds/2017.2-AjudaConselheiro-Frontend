@@ -16,13 +16,13 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     if (localStorage.getItem('token') === null) {
       this.router.navigate(['/home']);
+    } else {
+      this.formatUserData();
     }
-    this.formatUserData();
   }
 
   formatUserData() {
     const userInfo = localStorage.getItem('userData').split(',');
-    console.log(userInfo);
 
     this.name = userInfo[0];
     this.name = this.name.split(':')[1];

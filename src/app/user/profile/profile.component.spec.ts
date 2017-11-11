@@ -16,6 +16,8 @@ describe('ProfileComponent', () => {
   }));
 
   beforeEach(() => {
+    localStorage.setItem('token', 'aToken');
+    localStorage.setItem('userData', '{\"name\":\"name\",\"bio\":\"bio\",\"cod\":\"cod\",\"email\":\"email\"}');
     fixture = TestBed.createComponent(ProfileComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -23,5 +25,12 @@ describe('ProfileComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should get formated user data', () => {
+    fixture.detectChanges();
+    expect(fixture.componentInstance.biography).toEqual('bio');
+    expect(fixture.componentInstance.name).toEqual('name');
+    expect(fixture.componentInstance.email).toEqual('email');
   });
 });
