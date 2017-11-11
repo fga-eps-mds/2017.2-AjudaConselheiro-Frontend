@@ -3,14 +3,14 @@
 <link href="https://fonts.googleapis.com/css?family=Muli|Oxygen" rel="stylesheet">
 
 <h1>Agendamentos
-    <div class="sidebar"><button [routerLink]="['/agendamento/criar'] " class="btn btn-success">Novo <i class="fa fa-pencil" aria-hidden="true"></i> Agendamento</button>
+    <div class="sidebar"><button [routerLink]="['/agendamento/criar'] " class="btn btn-blue-grey new-button">Novo <i class="fa fa-pencil" aria-hidden="true"></i> Agendamento</button>
     </div>
 </h1>
 
 <br><br>
 <!--
 <table *ngFor="let scheduling of schedulings" class="table">
-    <thead class="orange accent-4">
+    <thead class="color-orange">
         <tr>
             <th colspan="2">
                 <p style="color:#FFFFFF;" class="h4 text-left mb-6">{{scheduling.type}}
@@ -19,15 +19,15 @@
             </th>
             <th>
                 <p style="color:#FFFFFF;" class="h4 text-right mb-6">
-                    <button type="button" class="btn btn-primary btn-rounded" [routerLink]="['/agendamento/editar/',scheduling.id]">
+                    <button type="button" class="btn btn-blue-grey btn-rounded edit-button" [routerLink]="['/agendamento/editar/',scheduling.id]">
                             <i class="fa fa-edit"></i>Editar</button>
-                    <button type="button" class="btn btn-danger btn-rounded" (click)="deleteScheduling($event, scheduling)">
+                    <button type="button" class="btn btn-blue-grey btn-rounded delete-button" (click)="deleteScheduling($event, scheduling)">
                             <i class="fa fa-trash"></i></button>
                 </p>
             </th>
         </tr>
     </thead>
-    <tr class="grey lighten-2">
+    <tr class="color-grey">
         <td colspan="2">
             <p class="h6 text-left mb-6"><i class="fa fa-map-marker" aria-hidden="true"></i> Local:</p>{{scheduling.local}}
         </td>
@@ -36,7 +36,7 @@
         </td>
     </tr>
 
-    <tr class="grey lighten-2">
+    <tr class="color-grey">
         <td colspan="2">
             <p class="h6 text-left mb-6"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i> Data:</p>{{scheduling.date}}
         </td>
