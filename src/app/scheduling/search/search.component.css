@@ -61,23 +61,3 @@
   .select-style select:focus {
       outline: none;
   }
-
-  .collapse-button {
-    background-color: #192433;
-  }
-
-  .search-button {
-    background-color: #FF6100;
-  }
-
-  .search-school-button {
-    background-color: #192433;
-  }
-
-  .schedule-button {
-    background-color: #192433;
-  }
-
-  .return-button {
-    background-color: #FF6100;
-}

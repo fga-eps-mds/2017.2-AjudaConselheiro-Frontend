@@ -7,7 +7,8 @@ import { NgForm, ReactiveFormsModule } from '@angular/forms';
 @Component({
   moduleId: module.id,
   selector: 'app-scheduling-edit',
-  templateUrl: './scheduling-edit.component.html'
+  templateUrl: './scheduling-edit.component.html',
+  styleUrls: ['./scheduling-edit.component.css']
 })
 export class SchedulingEditComponent implements OnInit {
 
@@ -20,14 +21,13 @@ export class SchedulingEditComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
-    const id = +this.route.snapshot.params['id'];
-    this.scheduling = this.schedulingService.searchSchedulingId(id);
+
   }
-  update(): void {
-    if (this.formScheduling.form.valid) {
-      this.schedulingService.updateScheduling(this.scheduling);
-      this.router.navigate(['/agendamento']);
-       }
-  }
+  // update(): void {
+  //   if (this.formScheduling.form.valid) {
+  //     this.schedulingService.updateScheduling(this.scheduling);
+  //     this.router.navigate(['/agendamento']);
+  //      }
+  // }
 
 }
