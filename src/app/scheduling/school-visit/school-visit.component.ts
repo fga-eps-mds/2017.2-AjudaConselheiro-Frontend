@@ -16,7 +16,7 @@ export class SchoolVisitComponent implements SchedulingCreateInterface, OnInit {
 
   @ViewChild('formScheduling') formScheduling: NgForm;
   scheduling: Scheduling;
-  state = '';
+  state: string;
   cities: Array<Object>;
   school = new School;
   schools: Array<Object>;
@@ -32,6 +32,7 @@ export class SchoolVisitComponent implements SchedulingCreateInterface, OnInit {
   ){}
 
   ngOnInit() {
+    this.state = '';
     this.scheduling = new Scheduling();
     this.scheduling.school = new School();
     this.cities = new Array<Object>();
