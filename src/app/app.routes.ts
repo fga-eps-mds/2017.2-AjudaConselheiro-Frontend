@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 
 import { SidebarComponent } from './layouts/sidebar/sidebar.component';
 import { HomeComponent } from './home/home.component';
-import { CouncilGroupCreateComponent, CouncilGroupSearchComponent } from './council-group/council-group.module';
+import { CouncilGroupCreateComponent, CouncilGroupSearchComponent, CouncilGroupComponent } from './council-group/council-group.module';
 
 import {
   ChecklistComponent,
@@ -28,8 +28,7 @@ import {
 } from './user/user.module';
 
 export const ROUTES: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
+  { path: '', component: HomeComponent },
   { path: 'checklist', component: ChecklistComponent },
   { path: 'checklist/producao', component: ChecklistProductionComponent },
   { path: 'checklist/menu', component: ChecklistMenuComponent },
@@ -43,6 +42,7 @@ export const ROUTES: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'registrar', component: UserCreateComponent },
   { path: 'usuarios/editar/:id', component: UserEditComponent },
+  { path: 'conselho', component: CouncilGroupComponent },
   { path: 'conselho/cadastrar', component: CouncilGroupCreateComponent },
   { path: 'conselho/buscar', component: CouncilGroupSearchComponent},
   { path: 'side', component: SidebarComponent },
