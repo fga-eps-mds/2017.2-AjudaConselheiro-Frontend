@@ -6,7 +6,6 @@ import { CommonModule } from '@angular/common';
 import { AlertComponent } from './alert/alert.component';
 import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { AlertService } from '../services/index';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
@@ -16,7 +15,6 @@ export {
   AlertComponent,
   FooterComponent,
   NavbarComponent,
-  SidebarComponent,
   CarouselComponent,
 };
 
@@ -31,14 +29,12 @@ export {
     AlertComponent,
     FooterComponent,
     NavbarComponent,
-    SidebarComponent,
     CarouselComponent
   ],
   exports: [
     AlertComponent,
     FooterComponent,
     NavbarComponent,
-    SidebarComponent,
     CarouselComponent
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
