@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ChecklistMenuIteratorArray } from '../../models/checklist/checklistForms';
-import { FormMenuCommentBinary, FormMenuComment, CommentBinaryForm, CommentForm,
-  BinaryForm, FormMenuBinary, ConfirmComentary} from '../../models/index';
+import { ChecklistMenuQuestionIteratorArray, ChecklistMenuAnswerIteratorArray } from '../../models/checklist/checklistForms';
+import { CommentBinaryForm, CommentForm, BinaryForm, ConfirmComentary} from '../../models/index';
 import { ChecklistService } from '../../services/index';
 
 @Component({
@@ -13,30 +12,22 @@ import { ChecklistService } from '../../services/index';
 })
 export class ChecklistMenuComponent implements OnInit {
 
-  formMenuCommentBinary: Array<CommentBinaryForm> = FormMenuCommentBinary;
-  formMenuComment: Array<CommentForm> = FormMenuComment;
-  formMenuBinary: Array<BinaryForm> = FormMenuBinary;
-  iteratorArray: Array<Object> = ChecklistMenuIteratorArray;
-
-  checkComentary: ConfirmComentary[]= [
-    new ConfirmComentary(false, 'Comment1'),
-    new ConfirmComentary(false, 'Comment2'),
-    new ConfirmComentary(null, 'Comment3'),
-    new ConfirmComentary(null, 'Comment4'),
-    new ConfirmComentary(null, 'Comment5'),
-  ];
+  iteratorArrayQuestions: Array<String[]> = ChecklistMenuQuestionIteratorArray;
+  iteratorArrayAnswers: Array<Object> = ChecklistMenuAnswerIteratorArray;
 
   constructor(private menuService: ChecklistService) {}
 
   ngOnInit(): void {
-    console.warn(this.iteratorArray);
+    console.warn(this.iteratorArrayAnswers);
   }
 
   onSubmit(): void {
-    console.warn(this.formMenuCommentBinary);
-    console.warn(this.formMenuBinary);
-    console.warn(this.formMenuComment);
-    console.warn(this.iteratorArray);
+    console.warn(this.iteratorArrayAnswers);
   }
-
+  // newFormulario(): void {
+  //   if (this.f.form.valid) {
+  //     this.checklistThree.newCheck(this.checklist);
+  //     this.router.navigate(['/checklist']);
+  //   }
+  // }
 }
