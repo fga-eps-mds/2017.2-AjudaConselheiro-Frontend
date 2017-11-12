@@ -2,45 +2,83 @@ import { SectionCommentary, SectionCommentaryTwo } from './checklist.model';
 import { CommentForm, CommentBinaryForm, BinaryForm } from '../index';
 
 
-export const FormMenuComment: Array<CommentForm> = [
-        {question: `Qual a quantidade de frutas e hortaliças que estão sendo oferecidas por aluno,
-         durante o período de uma semana?`, answer: ''},
-        {question: 'Qual a preparação mais aceita?', answer: ''},
-        {question: 'Qual a preparação menos aceita?', answer: ''},
-        {question: 'Qual produto é mais aceito?', answer: ''},
-        {question: 'Qual produto é menos aceito?', answer: ''},
+// cafeteria checklist questions
+export const ChecklistCafeteriaQuestions: Array<String> = [
+  'O cantineiro tem conhecimento da Lei n.º5.146/2013?',
+  'O cantineiro tem conhecimento do Decreto n.º36.900/2015?',
+  'O cantineiro já recebeu a visita da vigilância sanitária para a fiscalização?',
+  'Os funcionários possuem curso de boas práticas de manipulação de alimentos?',
+  'Os atestados de saúde ocupacional estão em dia e de fácil acesso?',
+];
+// cafeteria checklist answers
+export const ChecklistCafeteriaAnswers: Array<SectionCommentaryTwo> = [
+  {question: 1, obs: '', answer: false},
+  {question: 2, obs: '', answer: false},
+  {question: 3, obs: '', answer: false},
+  {question: 4, obs: '', answer: false},
+  {question: 5, obs: '', answer: false},
+];
+// checklist menu questions with only commentary answers
+export const ChecklistMenuCommentQuestions: Array<String> = [
+  `Qual a quantidade de frutas e hortaliças que estão sendo oferecidas por aluno,
+  durante o período de uma semana?`,
+  'Qual a preparação mais aceita?',
+  'Qual a preparação menos aceita?',
+  'Qual produto é mais aceito?',
+  'Qual produto é menos aceito?'
+];
+// checklist menu questions with only binary answers
+export const ChecklistMenuBinaryQuestions: Array<String> = [
+  'De maneira geral, os cardápios são bem elaborados?',
+  'De maneira geral, os cardápios são bem aceitos pelos alunos?',
+  'De maneira geral, os cardápios são bem elaborados?',
+  'O cardápio fica exposto para os alunos e comunidade',
+  'A escola recebe doação de alimentos?',
+];
+// checklist menu questions with both commentary and binary answers
+export const ChecklistMenuCommentBinaryQuestions: Array<String> = [
+  'Houve falta de alimentação escolar durante o período letivo? Caso positivo informe o(s) períodos e os produtos?',
+  `A quantidade de gêneros entregues nas escolas foi suficiente para ofertar refeições para todos os alunos
+  até que se proceda à próxima distribuição?`,
+  'Há excesso de algum gênero alimentício no cardápio? Qual(ais)?',
+  'A escola complementa a alimentação escolar? Como?',
+  'A escola complementa a alimentação escolar? Como?',
 ];
 
-export const FormMenuThree: Array<SectionCommentaryTwo> = [
-  {question: 'O cantineiro tem conhecimento da Lei n.º5.146/2013?', obs: '', answer: false},
-  {question: 'O cantineiro tem conhecimento do Decreto n.º36.900/2015?', obs: '', answer: false},
-  {question: 'O cantineiro já recebeu a visita da vigilância sanitária para a fiscalização?', obs: '', answer: false},
-  {question: 'Os funcionários possuem curso de boas práticas de manipulação de alimentos?', obs: '', answer: false},
-  {question: 'Os atestados de saúde ocupacional estão em dia e de fácil acesso?', obs: '', answer: false},
+// checklist menu answers with only commentary answers
+export const ChecklistMenuCommentAnswers: Array<CommentForm> = [
+  {question: 1, answer: ''},
+  {question: 2, answer: ''},
+  {question: 3, answer: ''},
+  {question: 4, answer: ''},
+  {question: 5, answer: ''},
+];
+// checklist menu answers with only binary answers
+export const ChecklistMenuBinaryAnswers: Array<BinaryForm> = [
+  {question: 1, answer: false},
+  {question: 2, answer: false },
+  {question: 3, answer: false },
+  {question: 4, answer: false},
+  {question: 5, answer: false},
+];
+// checklist menu answers with both commentaries and answers
+export const ChecklistMenuCommentBinaryAnswers: Array<CommentBinaryForm> = [
+  {question: 1, answer: false, commentary: ''},
+  {question: 2, answer: false, commentary: ''},
+  {question: 3, answer: false, commentary: ''},
+  {question: 4, answer: false, commentary: ''},
+  {question: 5, answer: false, commentary: ''},
 ];
 
-export const FormMenuBinary: Array<BinaryForm> = [
-  {question: 'De maneira geral, os cardápios são bem elaborados?', answer: false},
-  {question: 'De maneira geral, os cardápios são bem aceitos pelos alunos?', answer: false },
-  {question: 'De maneira geral, os cardápios são bem elaborados?', answer: false },
-  {question: 'O cardápio fica exposto para os alunos e comunidade', answer: false},
-  {question: 'A escola recebe doação de alimentos?', answer: false},
+export const ChecklistMenuQuestionIteratorArray: Array<String[]> = [
+  ChecklistMenuCommentBinaryQuestions,
+  ChecklistMenuBinaryQuestions,
+  ChecklistMenuCommentQuestions,
 ];
-
-export const FormMenuCommentBinary: Array<CommentBinaryForm> = [
-        {question: `Houve falta de alimentação escolar durante o período letivo?
-           Caso positivo informe o(s) períodos e os produtos?`, answer: false, commentary: ''},
-        {question: `A quantidade de gêneros entregues nas escolas foi suficiente para ofertar refeições para todos os alunos
-           até que se proceda à próxima distribuição?`, answer: false, commentary: ''},
-        {question: 'Há excesso de algum gênero alimentício no cardápio? Qual(ais)?', answer: false, commentary: ''},
-        {question: 'A escola complementa a alimentação escolar? Como?', answer: false, commentary: ''},
-        {question: 'A escola complementa a alimentação escolar? Como?', answer: false, commentary: ''},
-];
-
-export const ChecklistMenuIteratorArray: Array<Object> = [
-  FormMenuCommentBinary,
-  FormMenuBinary,
-  FormMenuComment,
+export const ChecklistMenuAnswerIteratorArray: Array<Object> = [
+  ChecklistMenuCommentBinaryAnswers,
+  ChecklistMenuBinaryAnswers,
+  ChecklistMenuCommentAnswers,
 ];
 // production checklist section commentaries
 export const CheckProdCommentaries: Array<SectionCommentary> = [

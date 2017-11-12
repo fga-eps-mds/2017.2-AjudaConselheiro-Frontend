@@ -1,8 +1,9 @@
+import { ChecklistCafeteriaAnswers } from './checklistForms';
 export class ChecklistCafeteria {
     constructor(
         public id?: number,
         public obs?: string,
-        public FormMenuThree?: Array<SectionCommentaryTwo>,
+        public ChecklistCafeteriaAnswers?: Array<SectionCommentaryTwo>,
     ) {}
   }
 
