@@ -103,3 +103,11 @@ label {
     margin-left: .5rem;
     margin-right: .5rem;
 }
+
+.back-button {
+    background-color: #FF6100;
+  }
+
+  .conclude-button {
+    background-color: #192433;
+  }
