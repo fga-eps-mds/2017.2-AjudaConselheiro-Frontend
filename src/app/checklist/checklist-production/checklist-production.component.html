@@ -23,7 +23,7 @@
       that are stored inside the determined object array-->
 
         <form #f="ngForm" (ngSubmit)="onSubmit()">
-            <div *ngFor="let topic of iteratorArray ;let topicNum=index">
+            <div *ngFor="let topic of iteratorArray;let topicNum=index">
                 <div class="row">
                     <div class="col-md-9 " align="center">
                         <h5>{{topicHeaders[topicNum]}}</h5>
@@ -37,7 +37,7 @@
                 </div>
                 <div class="row" *ngFor="let question of topic;let questNum=index;">
                     <!-- Section header -->
-                    <div class="col-md-9" align="left">{{iteratorArray[topicNum][questNum].question}}</div>
+                    <div class="col-md-9" align="left">{{questionsProduction[topicNum][questNum]}}</div>
 
                     <!-- Questions -->
                     <div class="col-md-2" align="center" valign="center" *ngIf="isOtherQuestions(topicNum, questNum)">
