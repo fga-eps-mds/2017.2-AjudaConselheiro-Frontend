@@ -41,6 +41,8 @@ describe('ProfileComponent', () => {
   }));
 
   beforeEach(() => {
+    localStorage.setItem('token', 'aToken');
+    localStorage.setItem('userData', '{\"name\":\"name\",\"bio\":\"bio\",\"cod\":\"cod\",\"email\":\"email\"}');
     fixture = TestBed.createComponent(ProfileComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -49,21 +51,11 @@ describe('ProfileComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  it('Teste CPF', () => {
-    let soma = '00000000000';
-    for (let i = 0 ; i <= 9 ; i++) {
-      expect(component.testCPF( soma )).toEqual( false );
-      soma = String(11111111111 + parseInt( soma, 10));
-    }
-    expect(component.testCPF( null )).toEqual( false );
-    expect(component.testCPF( '21536586469' )).toEqual( false );
-    expect(component.testCPF( '24499898978' )).toEqual( true );
-  });
-  it('should create', () => {
-    spyOn(component, 'testCPF');
-    component.savePosts( '215365,6469' );
-    expect(component.testCPF).toHaveBeenCalled();
-    component.savePosts( null );
-    expect(component.testCPF).toHaveBeenCalled();
+
+  it('should get formated user data', () => {
+    fixture.detectChanges();
+    expect(fixture.componentInstance.biography).toEqual('bio');
+    expect(fixture.componentInstance.name).toEqual('name');
+    expect(fixture.componentInstance.email).toEqual('email');
   });
 });
