@@ -2,10 +2,10 @@ import { Binary } from '@angular/compiler';
 import { Http, HttpModule } from '@angular/http';
 import { Component, OnInit } from '@angular/core';
 
-import { CheckOneTopicHeaders, CheckOneCommentaries, CheckOneFirstTopic, CheckOneEighthTopic, CheckOneFifthTopic,
-CheckOneFourthTopic, CheckOneSecondTopic, CheckOneSixthTopic, CheckOneSeventhTopic, CheckOneThirdTopic,
-IteratorArray, SectionCommentary, FormMenuCommentBinary, FormMenuComment, CommentBinaryForm,
-CommentForm, BinaryForm, FormMenuBinary, ConfirmComentary, Post} from '../../models/index';
+import { CheckProdTopicHeaders, CheckProdCommentaries, CheckProdFirstTopic, CheckProdEighthTopic, CheckProdFifthTopic,
+CheckProdFourthTopic, CheckProdSecondTopic, CheckProdSixthTopic, CheckProdSeventhTopic, CheckProdThirdTopic,
+ChecklistProductionQuestionsIteratorArray, IteratorArray, SectionCommentary, FormMenuCommentBinary, FormMenuComment,
+CommentBinaryForm, CommentForm, BinaryForm, FormMenuBinary, ConfirmComentary, Post} from '../../models/index';
 import { ChecklistService, AlertService, PostService } from '../../services/index';
 
 @Component({
@@ -16,9 +16,10 @@ import { ChecklistService, AlertService, PostService } from '../../services/inde
 })
 export class ChecklistProductionComponent implements OnInit {
 
+    questionsProduction: Array<String[]>= ChecklistProductionQuestionsIteratorArray;
     iteratorArray: Array<Object>= IteratorArray;
-    topicHeaders: Array<string> = CheckOneTopicHeaders;
-    commentaries: Array<SectionCommentary> = CheckOneCommentaries;
+    topicHeaders: Array<string> = CheckProdTopicHeaders;
+    commentaries: Array<SectionCommentary> = CheckProdCommentaries;
 
   constructor(
     protected postService: PostService,
