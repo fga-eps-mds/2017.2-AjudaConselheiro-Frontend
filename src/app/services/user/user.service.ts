@@ -39,6 +39,7 @@ export class UserService extends ServicesUtilitiesService {
   createUser (user: User): any {
     const body = {
       'email': user.email,
+      'biografia': user.biografia,
       'nomeCompleto': user.nomeCompleto,
       'nomeUsuario': user.nomeUsuario,
       'CEP': user.CEP,
@@ -93,6 +94,24 @@ export class UserService extends ServicesUtilitiesService {
       .catch(this.handleError);
   }
 
+  updatePassword(currentPassword: string, newPassword: string) {
+    const cod = this.getUserCod();
+    const passURL = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas/' + cod + '/definirNovaSenha';
+
+    const passwordHeaders: Headers = new Headers({
+      'Content-Type': 'application/json',
+      'appToken': localStorage.getItem('token'),
+      'email': this.getUserEmail(),
+      'senhaAtual': currentPassword,
+      'novaSenha': newPassword
+     });
+    const passwordOptions: RequestOptions = new RequestOptions({ headers: passwordHeaders });
+
+    return this.http.post(passURL, '', passwordOptions)
+    .map((response: Response) => response.json())
+    .catch(this.handleError);
+  }
+
   delete(cod: Number): Observable<String> {
     const url = `${this.url + '?codAplicativo=462 &'}/${cod}`;
     return this.http.delete(url, this.options)
@@ -108,6 +127,17 @@ export class UserService extends ServicesUtilitiesService {
       // Checks if there's a user and if this user has a 'cod' attribute.
       if (user && 'cod' in user) {
         return user.cod;
+      }
+
+      return null;
+    }
+
+    getUserEmail() {
+      const user = this.getLoggedUser();
+
+      // Checks if there's a user and if this user has a 'cod' attribute.
+      if (user && 'email' in user) {
+        return user.email;
       }
 
       return null;

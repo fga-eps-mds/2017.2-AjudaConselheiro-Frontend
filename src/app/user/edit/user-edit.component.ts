@@ -34,7 +34,7 @@ export class UserEditComponent implements OnInit {
   }
 
   result() {
-    this.alertService.success('Cadastro efetuado com sucesso! Faça seu login.');
+    this.alertService.success('Usuário atualizado com sucesso! Faça seu login.');
   }
 
   error(status: any) {
@@ -58,6 +58,17 @@ export class UserEditComponent implements OnInit {
           this.error(error.status);
         });
     }
+  }
+
+  updatePassword(currentPassword: string, newPassword: string): void {
+    this.userService.updatePassword(currentPassword, newPassword)
+    .subscribe(
+      result => {
+        this.result();
+      },
+      error => {
+        this.error(error.status);
+      });
   }
 
   deleteUser(): void {
