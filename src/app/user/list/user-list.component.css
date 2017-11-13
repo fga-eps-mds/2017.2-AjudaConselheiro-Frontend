@@ -34,3 +34,7 @@ select {
   border-color: transparent;
   color: white;
 }
+
+.register-button {
+    background-color: #192433;
+}

@@ -1,25 +1,40 @@
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
-  <a class="navbar-brand" href="home">
-    <strong>Ajuda Conselheiro</strong>
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar" style="height: 63px !important; width: 100% !important">
+  <a *ngIf="hasToken()" class="close" (click)="openSlideMenu()">
+      <svg width="30" heigth="100" style="padding-top: 120px !important; display: block !important;">
+          <path d="M0,8 21,8" stroke="#fff"
+              stroke-width="3" />
+          <path d="M0,15 21,15" stroke="#fff"
+              stroke-width="3" />
+          <path d="M0,22 21,22" stroke="#fff"
+              stroke-width="3" />
+      </svg>
   </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-    aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav ml-auto">
-      <li *ngIf="!hasToken()" class="nav-item">
-        <a class="nav-link" href="/login">Entrar</a>
-      </li>
-      <li *ngIf="!hasToken()" class="nav-item">
-        <a class="nav-link" href="/registrar">Cadastrar</a>
-      </li>
-      <li *ngIf="hasToken()" class="nav-item" mwlConfirmationPopover [title]="title" [message]="message" [confirmText]="confirmText"
-        [cancelText]="cancelText" [placement]="placement" (confirm)="logout()" confirmButtonType="danger" cancelButtonType="default"
-        (click)="confirm=false" [appendToBody]="true">
-        <a class="nav-link" href="/home">Sair</a>
-      </li>
-    </ul>
-  </div>
+<a class="navbar-brand" href="home" style="padding-left: 14px !important;">
+  <strong>Ajuda Conselheiro</strong>
+</a>
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <ul class="navbar-nav ml-auto">
+    <li *ngIf="!hasToken()" class="nav-item">
+      <a class="nav-link" href="/login">Entrar</a>
+    </li>
+    <li *ngIf="!hasToken()" class="nav-item">
+      <a class="nav-link" href="/registrar">Cadastrar</a>
+    </li>
+    <li *ngIf="hasToken()" class="nav-item" mwlConfirmationPopover [title]="title" [message]="message" [confirmText]="confirmText"
+      [cancelText]="cancelText" [placement]="placement" (confirm)="logout()" confirmButtonType="danger" cancelButtonType="default"
+      (click)="confirm=false" [appendToBody]="true">
+      <a class="nav-link" href="/home">Sair</a>
+    </li>
+  </ul>
+</div>
+<div *ngIf="hasToken()" id="side-menu" class="side-nav">
+  <a  class="btn-close" (click)="closeSlideMenu()">&times;</a>
+  <a class="image">
+      <img src="https://mdbootstrap.com/wp-content/uploads/2017/10/mdb-shadow-38px.png" alt="Ajuda Conselheiro">
+  </a>
+  <a href="#" class="search">Pesquisa</a>
+  <a href="#">Home</a>
+  <a href="#">Agendamento</a>
+  <a href="#">Check list</a>
+</div>
 </nav>
-
