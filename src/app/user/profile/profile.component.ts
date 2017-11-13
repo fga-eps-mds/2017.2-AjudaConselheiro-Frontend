@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { User } from '../../models/index';
+import { UserService } from '../../services/index';
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -10,14 +13,20 @@ export class ProfileComponent implements OnInit {
   public name;
   public biography;
   public email;
+  public user: User;
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private userService: UserService
+  ) { }
 
   ngOnInit() {
     if (localStorage.getItem('token') === null) {
       this.router.navigate(['/home']);
     } else {
       this.formatUserData();
+      this.user = new User();
+      this.user.cod = this.userService.getUserCod();
     }
   }
 
@@ -37,5 +46,4 @@ export class ProfileComponent implements OnInit {
     this.email = this.email.replace(/"|{|}/g, '');
 
   }
-
 }

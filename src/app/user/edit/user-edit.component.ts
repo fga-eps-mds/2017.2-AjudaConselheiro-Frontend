@@ -16,6 +16,7 @@ export class UserEditComponent implements OnInit {
 
   @ViewChild('formUser') formUser: NgForm;
   user: User;
+  userName = String;
 
   maskcpf = UserMasks.MASK_CPF;
   maskphone = UserMasks.MASK_PHONE;
@@ -28,13 +29,34 @@ export class UserEditComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.userService.getUser(this.user.cod);
+    this.user = this.userService.getLoggedUser();
+    this.userName = this.getUserName();
+  }
+
+  result() {
+    this.alertService.success('Cadastro efetuado com sucesso! Faça seu login.');
+  }
+
+  error(status: any) {
+    if (status === 400) {
+      this.alertService.warn('Aviso: Usuário já cadastrado ou desativado!');
+    } else {
+      this.alertService.error('Erro: falha na comunicação com o sistema!');
+    }
   }
 
   updateUser(): void {
-    if (this.formUser.form.valid ) {
-      this.userService.updateUser(this.user);
-      this.router.navigate(['/usuarios']);
+    if(!localStorage.getItem('token')) {
+      this.alertService.error('Você precisa estar logado!');
+    } else {
+      this.userService.updateUser(this.user)
+      .subscribe(
+        result => {
+          this.result();
+        },
+        error => {
+          this.error(error.status);
+        });
     }
   }
 
@@ -44,4 +66,17 @@ export class UserEditComponent implements OnInit {
     subscribe(result => console.log(result),
               error => console.log(error));
   }
+
+   // This function checks if there's a logged user and if it has a 'cod'
+    // Output: The user 'cod' or 'null' if there's no cod
+    private getUserName() {
+      const user = this.userService.getLoggedUser();
+
+      // Checks if there's a user and if this user has a 'cod' attribute.
+      if (user && 'nomeCompleto' in user) {
+        return user.nomeCompleto;
+      }
+
+      return null;
+    }
 }

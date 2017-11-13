@@ -2,10 +2,12 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { User } from '../../models/index';
-import { ServicesUtilitiesService } from './../services-utilities/services-utilities.service';
-import { AlertService } from './../alert/alert.service';
 import 'rxjs/add/operator/catch';
 import { Router } from '@angular/router';
+
+import { ServicesUtilitiesService } from './../services-utilities/services-utilities.service';
+import { AlertService } from './../alert/alert.service';
+
 
 @Injectable()
 export class UserService extends ServicesUtilitiesService {
@@ -14,9 +16,12 @@ export class UserService extends ServicesUtilitiesService {
   private headers: Headers = new Headers({ 'Content-Type': 'application/json' });
   options: RequestOptions = new RequestOptions({ headers: this.headers });
 
-  constructor(private http: Http, private alertService: AlertService,
+  constructor(
+    private http: Http,
+    private alertService: AlertService,
     private router: Router) {
-    super();
+
+      super();
   }
 
   getUsers(): Observable<User[]> {
@@ -59,7 +64,31 @@ export class UserService extends ServicesUtilitiesService {
     }
 }
   updateUser(user: User) {
-    return this.http.put(this.url + user.cod, user)
+    const cod = this.getUserCod();
+    const href = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas/' + cod;
+
+    const body = {
+      'CEP': user.CEP,
+      'biografia': user.biografia,
+      'links': [
+        {
+          'href': href,
+          'rel': 'string',
+          'templated': true
+        }
+      ],
+      'nomeCompleto': user.nomeCompleto,
+      'nomeUsuario': user.nomeUsuario,
+      'sexo': user.sexo
+    }
+
+    const updateHeaders: Headers = new Headers({
+      'Content-Type': 'application/json',
+      'appToken': localStorage.getItem('token')
+     });
+    const updateOptions: RequestOptions = new RequestOptions({ headers: updateHeaders });
+
+    return this.http.put(this.url + '/' + cod, JSON.stringify(body), updateOptions)
       .map((response: Response) => response.json())
       .catch(this.handleError);
   }
@@ -70,4 +99,17 @@ export class UserService extends ServicesUtilitiesService {
       .map(res => this.extractData(res))
       .catch(this.handleError);
   }
+
+  // This function checks if there's a logged user and if it has a 'cod'
+    // Output: The user 'cod' or 'null' if there's no cod
+    getUserCod() {
+      const user = this.getLoggedUser();
+
+      // Checks if there's a user and if this user has a 'cod' attribute.
+      if (user && 'cod' in user) {
+        return user.cod;
+      }
+
+      return null;
+    }
 }

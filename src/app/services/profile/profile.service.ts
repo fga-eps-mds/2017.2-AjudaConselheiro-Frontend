@@ -9,7 +9,7 @@ import { ServicesUtilitiesService } from '../services-utilities/services-utiliti
 @Injectable()
 export class ProfileService extends ServicesUtilitiesService{
 
-  private id =  this.getUserCod();
+  private id =  this.userService.getUserCod();
   private url = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas/' + this.id + '/perfil';
   private headers: Headers = null;
   private request: RequestOptions = null;
@@ -41,26 +41,17 @@ export class ProfileService extends ServicesUtilitiesService{
       .map(response => this.extractData(response))
       .catch(this.handleError);
   }
+
   getProfile() {
         this.headers = new Headers({
           'Content-Type': 'application/json',
           'appIdentifier': 462,
         });
+
         this.request = new RequestOptions({ headers: this.headers });
         return this.http.get(this.url, this.request)
         .map((response: Response) => response.json())
           .catch(this.handleError);
       }
-  // This function checks if there's a logged user and if it has a 'cod'
-  // Output: The user 'cod' or 'null' if there's no cod
-  private getUserCod() {
-    const user = this.userService.getLoggedUser();
 
-    // Checks if there's a user and if this user has a 'cod' attribute.
-    if (user && 'cod' in user) {
-      return user.cod;
-    }
-
-    return null;
-  }
 }
