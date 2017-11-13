@@ -59,13 +59,9 @@
   .navbar-nav{display: none}
 }
 
-@media(min-width: 568px){
-  /*.
-{display: none}*/
-}
-
 @media only screen and (max-width: 768px) {
   .navbar {
       background-color: #fb8c00 ;
   }
 }
+
