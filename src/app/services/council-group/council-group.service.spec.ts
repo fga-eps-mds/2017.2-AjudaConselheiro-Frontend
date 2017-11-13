@@ -24,7 +24,7 @@ describe('CouncilGroupService', () => {
     'codGrupoPai': 1,
     'codObjeto': fakeCouncil.codObjeto,
     'codTipoObjeto': 1,
-    'descricao': 'CAE-municipio-estado'
+    'descricao': 'CAE-estado-municipio'
   };
 
   beforeEach(() => {

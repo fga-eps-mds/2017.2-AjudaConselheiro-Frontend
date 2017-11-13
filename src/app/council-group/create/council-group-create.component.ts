@@ -21,12 +21,12 @@ export class CouncilGroupCreateComponent implements OnInit, OnDestroy {
   @ViewChild('formCouncilGroupCreate') formCouncilGroupCreate: NgForm;
   private stateSubs: Subscription;
   private createSubs: Subscription;
-  private councilGroup: CouncilGroup;
+  public councilGroup: CouncilGroup;
   private state = '';
   private city = '';
 
   constructor(
-    private councilGroupService: CouncilGroupService,
+    public councilGroupService: CouncilGroupService,
     private alertService: AlertService,
     private router: Router,
     private ibgeService: IbgeService
