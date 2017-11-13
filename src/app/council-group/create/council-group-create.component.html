@@ -5,37 +5,10 @@
 <br>
 <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
 <div class="well" *ngIf="isLoggedIn()">
-  <!-- <form #formCouncilGroup="ngForm"> -->
   <br>
   <p class="h2 text-center mb-4"> Cadastro de Conselho </p>
 
   <app-ibge (stateEmitter)="chosenState($event)" (cityEmitter)="chosenCity($event)"></app-ibge>
-    <div class="form-group">
-      <input type="text" id="orangeForm-name" class="form-control" name="state" placeholder="Estado" [(ngModel)]="councilGroup.estado"
-        #state="ngModel" required>
-      <div *ngIf="state.errors && (state.dirty)" class="alert alert-danger">
-        <div [hidden]="!state.errors.required">
-          Digite o estado do conselho.
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <input type="text" id="orangeForm-name" class="form-control" name="county" placeholder="Município" [(ngModel)]="councilGroup.municipio"
-        #state="ngModel" required>
-      <div *ngIf="state.errors && (state.dirty)" class="alert alert-danger">
-        <div [hidden]="!state.errors.required">
-          Digite o município do conselho.
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group text-center">
-      <input type="button" class="btn btn-blue-grey register-button" (click)="createCouncilGroup()" value="Cadastrar" [disabled]="!formCouncilGroup.form.valid">
-      <a href="/home" class="btn btn-deep-orange back-button">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="false"></span>Voltar
-      </a>
-    </div>
 
   <div align="center" *ngIf="hasLocation()">
     <input type="button" class="btn btn-deep-orange" (click)="createCouncilGroup()" value="Cadastrar">
@@ -46,14 +19,12 @@
 </div>
 
 <div align="center" *ngIf="!isLoggedIn()">
-    <br>
-    <p class="h2 text-center mb-4">Você precisa estar logado para acessar esta função.</p>
-    <br>
-    <a href="/login"
-      class="btn btn-blue-grey login-button">
-      <span class="glyphicon glyphicon-chevron-left"
-        aria-hidden="false"></span>Entrar
-    </a>
+  <br>
+  <p class="h2 text-center mb-4">Você precisa estar logado para acessar esta função.</p>
+  <br>
+  <a href="/login" class="btn btn-deep-orange">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="false"></span>Entrar
+  </a>
 </div>
 
 <br>

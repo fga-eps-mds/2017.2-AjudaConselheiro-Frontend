@@ -83,14 +83,14 @@ describe('CouncilGroupCreateComponent', () => {
 
   }));
 
-  it('should result', () => {
-    fixture.detectChanges();
-   // localStorage.setItem('token', 'appToken');
-    spyOn(component.councilGroupService, 'createCouncil').and.
-      returnValue({ subscribe: () => Observable.of({})});
-    component.councilGroup = fakeCouncil;
-    component.createCouncilGroup();
-  });
+  // it('should result', () => {
+  //   fixture.detectChanges();
+  //  // localStorage.setItem('token', 'appToken');
+  //   spyOn(component.councilGroupService, 'createCouncil').and.
+  //     returnValue({ subscribe: () => Observable.of({})});
+  //   component.councilGroup = fakeCouncil;
+  //   component.createCouncilGroup();
+  // });
 
   // it('should result', () => {
   //   fixture.detectChanges();
