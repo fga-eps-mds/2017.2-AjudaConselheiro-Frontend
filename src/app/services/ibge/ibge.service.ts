@@ -25,6 +25,12 @@ export class IbgeService extends ServicesUtilitiesService {
       .catch(this.handleError);
   }
 
+  getState(id: string) {
+    return this.http.get(this.url + id)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
   getCities(state: string): Observable<Array<Object>> {
     return this.http.get(this.url + state + '/municipios')
       .map(this.extractData)
