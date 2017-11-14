@@ -2,9 +2,9 @@ import { Binary } from '@angular/compiler';
 import { Http, HttpModule } from '@angular/http';
 import { Component, OnInit } from '@angular/core';
 
-import { Post, SectionCommentary, CheckOneTopicHeaders, CheckOneCommentaries,
-CheckOneFirstTopic, CheckOneEighthTopic, CheckOneFifthTopic, CheckOneFourthTopic,
-CheckOneSecondTopic, CheckOneSixthTopic, CheckOneSeventhTopic, CheckOneThirdTopic,
+import { Post, SectionCommentary, CheckProdTopicHeaders, CheckProdCommentaries,
+CheckProdFirstTopic, CheckProdEighthTopic, CheckProdFifthTopic, CheckProdFourthTopic,
+CheckProdSecondTopic, CheckProdSixthTopic, CheckProdSeventhTopic, CheckProdThirdTopic,
 IteratorArray, CommentBinaryForm,
 CommentForm, BinaryForm, ConfirmComentary } from '../../models/index';
 
@@ -22,8 +22,8 @@ export class ChecklistUpdateComponent extends ChecklistProductionComponent imple
   post: Post;
   loading = false;
   iteratorArray: Array<Object>= IteratorArray;
-  topicHeaders: Array<string> = CheckOneTopicHeaders;
-  commentaries: Array<SectionCommentary> = CheckOneCommentaries;
+  topicHeaders: Array<string> = CheckProdTopicHeaders;
+  commentaries: Array<SectionCommentary> = CheckProdCommentaries;
   super(
     postService: PostService,
     alertService: AlertService
