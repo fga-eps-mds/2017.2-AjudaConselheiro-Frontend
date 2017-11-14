@@ -7,7 +7,7 @@ import { MockBackend, MockConnection } from '@angular/http/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { AlertService } from '../alert/alert.service';
 import { FormsModule } from '@angular/forms';
-import { FakeUser } from '../../user/create/testing/index';
+import { FakeUser } from '../../user/create/testing/fake-user';
 
 describe('AlertService', () => {
 

@@ -3,8 +3,11 @@ import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
-import { CreateCouncilGroupComponent } from '../council-group/create/create-council-group.component';
+import { CouncilGroupCreateComponent } from '../council-group/create/council-group-create.component';
+import { CouncilGroupSearchComponent } from '../council-group/search/council-group-search.component';
 import { CouncilGroupService } from '../services/index';
+
+export { CouncilGroupCreateComponent, CouncilGroupSearchComponent };
 
 @NgModule({
   imports: [
@@ -13,7 +16,8 @@ import { CouncilGroupService } from '../services/index';
     FormsModule,
   ],
   declarations: [
-    CreateCouncilGroupComponent
+    CouncilGroupCreateComponent,
+    CouncilGroupSearchComponent
   ],
   providers: [
     CouncilGroupService

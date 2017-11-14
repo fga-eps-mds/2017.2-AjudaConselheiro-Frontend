@@ -40,7 +40,7 @@ export class UserEditComponent implements OnInit {
 
   deleteUser(): void {
     console.log('deletando contato...');
-    this.userService.delete().
+    this.userService.delete(this.user.cod).
     subscribe(result => console.log(result),
               error => console.log(error));
   }

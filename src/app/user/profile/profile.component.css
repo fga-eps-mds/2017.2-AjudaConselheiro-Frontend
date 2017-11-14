@@ -1,0 +1,10 @@
+.profile{
+    width: 50%;
+    height: 50%;
+}
+
+.centering{
+    margin: auto;
+    align-self: auto;
+    text-align: center;
+}

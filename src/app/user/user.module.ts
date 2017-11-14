@@ -3,11 +3,17 @@ import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
-import { CreateUserComponent } from '../user/create/create-user.component';
-import { UserListComponent } from './list/index';
-import { UserService, AlertService, AuthenticationService } from '../services/index';
-import { UserEditComponent } from './edit/index';
+import { UserCreateComponent } from '../user/create/user-create.component';
+import { UserListComponent } from './list/user-list.component';
+import { LoginComponent } from './login/login.component';
+import { UserService, AlertService, AuthenticationService, ProfileService } from '../services/index';
+import { UserEditComponent } from './edit/user-edit.component';
 import { TextMaskModule } from 'angular2-text-mask';
+import { UserCpfComponent } from './cpf/cpf.component';
+import { NotProfileComponent } from './not-profile/not-profile.component';
+import { ProfileComponent } from './profile/profile.component';
+
+export { UserCreateComponent, UserEditComponent, UserListComponent, LoginComponent, UserCpfComponent, NotProfileComponent, ProfileComponent };
 
 @NgModule({
   imports: [
@@ -18,12 +24,18 @@ import { TextMaskModule } from 'angular2-text-mask';
   ],
   declarations: [
     UserListComponent,
-    CreateUserComponent,
+    UserCreateComponent,
     UserEditComponent,
+    LoginComponent,
+    UserCpfComponent,
+    NotProfileComponent,
+    ProfileComponent
   ],
   providers: [
-    UserService, AlertService, AuthenticationService
+    UserService,
+    AlertService,
+    AuthenticationService,
+    ProfileService
   ]
 })
 export class UserModule { }
-

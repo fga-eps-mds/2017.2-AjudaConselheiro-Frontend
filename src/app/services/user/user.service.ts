@@ -3,10 +3,10 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { User } from '../../models/index';
-import { ServicesUtilitiesService } from './../services-utilities.service';
+import { ServicesUtilitiesService } from './../services-utilities/services-utilities.service';
 import { AlertService } from './../alert/alert.service';
 import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class UserService extends ServicesUtilitiesService {
@@ -18,11 +18,8 @@ export class UserService extends ServicesUtilitiesService {
   });
   options: RequestOptions = new RequestOptions({ headers: this.headers });
 
-  constructor(
-    private http: Http,
-    private httpClient: HttpClient,
-    private alertService: AlertService
-  ) {
+  constructor(private http: Http, private alertService: AlertService,
+    private router: Router) {
     super();
   }
 
@@ -53,31 +50,29 @@ export class UserService extends ServicesUtilitiesService {
 
   getLoggedUser() {
     const localUserValue = localStorage.getItem('userData');
-
     if (localUserValue) {
       return JSON.parse(localUserValue);
     } else {
       console.error('No logged user found!');
     }
   }
-
+  getPerfilUser() {
+    const localUserValue = localStorage.getItem('Profile');
+    if (localUserValue) {
+      return JSON.parse(localUserValue);
+    }
+}
   updateUser(user: User) {
     return this.http.put(this.url + user.cod, user)
       .map((response: Response) => response.json())
       .catch(this.handleError);
   }
 
-  delete(): any {
-    const header = new HttpHeaders({'Content-Type': 'application/json',
-                                              'appToken': localStorage.getItem('token')});
-    console.log(header.get('appToken'));
-    this.httpClient.delete(this.url + '/' + this.getLoggedUser().cod, {headers: header})
-    .subscribe(
-      res => {
-        console.log(res);
-      }
-    );
-    this.headers.delete('appToken');
+  delete(cod: Number): Observable<String> {
+    const url = `${this.url + '?codAplicativo=462 &'}/${cod}`;
+    return this.http.delete(url, this.options)
+      .map(res => this.extractData(res))
+      .catch(this.handleError);
   }
 
 }

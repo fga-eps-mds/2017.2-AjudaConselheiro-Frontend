@@ -1,15 +1,17 @@
-import { CreateSchedulingComponent } from './create/create-scheduling.component';
-
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { SchedulingService } from './../services/scheduling.service';
-import { SchedulingHomeComponent } from './scheduling-home/scheduling-home.component';
-import { EditComponent } from './edit/edit.component';
+import { SchedulingService } from './../services/scheduling/scheduling.service';
+import { SchedulingHomeComponent } from './home/scheduling-home.component';
+import { SchedulingEditComponent } from './edit/scheduling-edit.component';
+import { SchedulingCreateComponent } from './create/scheduling-create.component';
 import { SchoolService } from '../services/index';
+import { AlertService } from '../services/index';
+import { SearchComponent } from './search/search.component';
 
+export { SchedulingCreateComponent, SchedulingEditComponent, SchedulingHomeComponent };
 
 @NgModule({
   imports: [
@@ -19,12 +21,14 @@ import { SchoolService } from '../services/index';
   ],
   declarations: [
     SchedulingHomeComponent,
-    EditComponent,
-    CreateSchedulingComponent
+    SchedulingEditComponent,
+    SchedulingCreateComponent,
+    SearchComponent
   ],
   providers: [
     SchedulingService,
-    SchoolService
+    SchoolService,
+    AlertService
   ]
 })
 export class SchedulingModule { }

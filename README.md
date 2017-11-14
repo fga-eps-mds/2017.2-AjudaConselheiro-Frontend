@@ -43,6 +43,22 @@ Para rodar a build antes de subir sua branch no projeto basta inserir no termina
 ```
 ng build --prod
 ```
+### Cobertura de código
+
+Para verificar a cobertura de código entre na brach "development", certifique-se que ela estaja atualizada utilizando o seguinte comando:
+
+```
+git pull origin development
+```
+
+Agora que sua branch development está atualizada, insira no terminal:
+
+```
+ng test --code-coverage
+ ```
+
+Na pasta do projeto haverá uma sub-pasta chamada "coverage", dentro dela os dados estarão em "index.html".
+
 
 ## Navigation
 
@@ -55,7 +71,8 @@ Navigate to the app in http://localhost:8080
 
 ## Contribuição
 
-Para contribuir com o projeto Ajuda Conselheiro, atente-se a <a href="https://github.com/fga-gpp-mds/2017.2-AjudaConselheiro-Backend/wiki/Plano-de-Gerenciamento-de-Configura%C3%A7%C3%A3o#3-github" > politica de branches e commits. </a>
+Para contribuir com o projeto Ajuda Conselheiro em sua manutenção e evolução, atente-se a <a href="https://github.com/fga-gpp-mds/2017.2-AjudaConselheiro-Backend/wiki/Plano-de-Gerenciamento-de-Configura%C3%A7%C3%A3o#3-github" > politica de branches e commits. </a> Acesse a página com as <a href="https://github.com/fga-gpp-mds/2017.2-AjudaConselheiro-Frontend/issues"> issues abertas </a> para ficar a par desenvolvimento.
+Também é possivel ter acesso a toda documentação na <a href="https://github.com/fga-gpp-mds/2017.2-AjudaConselheiro-Frontend/wiki#boards?repos=102744721"> Wiki</a> do projeto.
 
 ## Licença
 ![GNU General Public License v3.0](https://github.com/fga-gpp-mds/2017.2-AjudaConselheiro-Frontend/blob/development/LICENSE)
