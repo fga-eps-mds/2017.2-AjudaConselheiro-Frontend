@@ -58,10 +58,9 @@ export class CouncilGroupCreateComponent implements OnInit, OnDestroy {
           this.createSubs = this.councilGroupService.createCouncil(this.councilGroup)
             .subscribe(
               (result) => {
-                this.councilGroup = result;
                 console.log(this.councilGroup);
                 // Navigate to url that show details about the created council group
-                this.router.navigate(['/home']);
+                // this.router.navigate(['/home']);
                 this.alertService.success('Conselho de ' + this.councilGroup.municipio + ' criado com sucesso!');
               },
               (error) => {
@@ -83,6 +82,7 @@ export class CouncilGroupCreateComponent implements OnInit, OnDestroy {
 
   // Listen IBGE state EventEmitter()
   chosenState(state: string) {
+    this.city = '';
     state ? this.state = this.councilGroup.estado = state : this.alertService.warn('Nenhum estado selecionado');
   }
 
@@ -94,6 +94,6 @@ export class CouncilGroupCreateComponent implements OnInit, OnDestroy {
   // Has (state + city) assigned?
   hasLocation(): boolean {
     console.log('State: ', this.state, '\n\nCity: ', this.city);
-    return !(!this.city || 0 === this.city.length);
+    return (this.state  && 0 !== this.city.length);
   }
 }

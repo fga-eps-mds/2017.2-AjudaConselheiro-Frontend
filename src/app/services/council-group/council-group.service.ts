@@ -26,7 +26,7 @@ export class CouncilGroupService extends ServicesUtilitiesService {
     if (thereIsToken) {
       this.headers = new Headers ({
         'Content-Type': 'application/json',
-        'appToken': localStorage.getItem('token')
+        'appToken': thereIsToken
       });
 
       this.request = new RequestOptions({ headers: this.headers });
@@ -68,15 +68,13 @@ export class CouncilGroupService extends ServicesUtilitiesService {
     return location || {};
   }
 
-  getAjudaConselheiroCouncilGroups(description: string):  Observable<Array<Object>> {
-    const searchParams = {
-      'codAplicativo': 462,
-      'descricao': description
-    };
-    const requestParam = new RequestOptions({ params: searchParams });
-
+  getAjudaConselheiroCouncilGroups():  Observable<any> {
+    this.headers = new Headers ({
+      'Content-Type': 'application/json'
+    });
+    this.request = new RequestOptions({ headers: this.headers });
     return this.http
-      .get(this.url, requestParam)
+      .get(this.url + '?codAplicativo=462', this.request)
       .map(this.extractData)
       .catch(this.handleError);
   }

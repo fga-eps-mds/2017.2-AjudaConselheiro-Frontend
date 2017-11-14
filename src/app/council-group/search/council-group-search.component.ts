@@ -1,86 +1,104 @@
-import { Component, OnInit, OnChanges, Input, SimpleChange } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
-import { State, CouncilGroup } from '../../models/index';
-import { IbgeService, CouncilGroupService, AlertService } from '../../services/index';
+import { CouncilGroup } from '../../models/index';
+import {
+  CouncilGroupService,
+  AlertService,
+  IbgeService
+} from '../../services/index';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-council-group-search',
   templateUrl: './council-group-search.component.html',
   styleUrls: ['./council-group-search.component.css'],
-  providers: [IbgeService]
+  providers: [CouncilGroupService, IbgeService]
 })
-
-export class CouncilGroupSearchComponent implements OnInit, OnChanges {
-  @Input() state: any;
-  @Input() city: string;
-  stateSigla: string;
-  council: CouncilGroup;
-  states: Array<State>;
-  cities: Array<Object>;
-  showCouncil: boolean;
+export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
+  @ViewChild('formCouncilGroupsearch') formCouncilGroupSearch: NgForm;
+  private stateSubs: Subscription;
+  private searchSubs: Subscription;
+  public councilGroup: CouncilGroup;
+  public arrayCouncil: CouncilGroup[];
+  private state = '';
+  private city = '';
 
   constructor(
-    private ibgeService: IbgeService,
-    private councilGroupService: CouncilGroupService,
-    private alertService: AlertService
-  ) { }
+    public councilGroupService: CouncilGroupService,
+    private alertService: AlertService,
+    private router: Router,
+    private ibgeService: IbgeService
+  ) {}
 
-  ngOnInit() {
-    // this.states = this.ibgeService.statesRequest();
-    this.showCouncil = false;
+  ngOnInit() {}
+
+  ngOnDestroy() {
+    this.stateSubs.unsubscribe();
+    this.searchSubs.unsubscribe();
   }
 
-  ngOnChanges(change) {
-    this.showCouncil = false;
-    if (change === this.state) {
-      // When state changes, the list os cities is updated
-      // this.cities = this.ibgeService.citiesRequest(this.state);
-      this.council = this.stateSigla = this.city = undefined;
-      console.log(this.state);
-    }
-    if (this.city !== undefined) {
-      // When a city is selected, we get the CAE
-      this.council = undefined;
-      this.searchCouncils(this.getCAEName());
-    }
-  }
-
-  searchCouncils(description: string): void {
-    this.councilGroupService.getAjudaConselheiroCouncilGroups(description)
+  searchCouncilGroup(): void {
+    this.stateSubs = this.ibgeService
+      .getState(this.councilGroup.estado)
       .subscribe(
-          result => {
-            this.council = new CouncilGroup();
-            if (result !== undefined) {
-              this.alertService.success('Conselho encontrado com sucesso!');
-              this.dismemberCouncilAttributes(result);
-              this.showCouncil = true;
-            } else {
-              this.alertService.error('Conselho não encontrado');
-              this.showCouncil = false;
-            }
-          },
-          error => {
-            alert(error);
-            console.error(error);
-      });
+        result => {
+          console.log('Resultado Estado', result);
+          this.councilGroup.estado = result['sigla'];
+          console.log(this.councilGroup.estado);
+        },
+        error => {
+          this.alertService.error('Erro ao selecionar estado');
+        },
+        () => {
+          this.searchSubs = this.councilGroupService
+            .getAjudaConselheiroCouncilGroups()
+            .subscribe(
+              result => {
+              },
+              error => {
+                console.error(error);
+              }
+            );
+        }
+      );
   }
 
-  getCAEName(): string {
-    return 'CAE-' + this.getStateNameById() + '-' + this.city;
+  isLoggedIn(): boolean {
+    if (localStorage.getItem('token')) {
+      return true;
+    }
+    return false;
   }
 
-  getStateNameById(): string {
-    const stateSigla = this.states.filter(x => x.id === this.state)[0];
-    this.stateSigla = stateSigla.sigla;
-    return this.stateSigla;
+  // Listen IBGE state EventEmitter()
+  chosenState(state: string) {
+    this.city = '';
+    state
+      ? (this.state = this.councilGroup.estado = state)
+      : this.alertService.warn('Nenhum estado selecionado');
+  }
+
+  // Listen IBGE city EventEmitter()
+  chosenCity(city: string) {
+    city
+      ? (this.city = this.councilGroup.municipio = city)
+      : this.alertService.warn('Nenhuma cidade selecionada');
+  }
+
+  // Has (state + city) assigned?
+  hasLocation(): boolean {
+    console.log('State: ', this.state, '\n\nCity: ', this.city);
+    return this.state && 0 !== this.city.length;
   }
 
   dismemberCouncilAttributes(result: any): void {
     const description = result.descricao;
     const attributes = description.split('-');
 
-    this.council.descricao = description;
-    this.council.estado = attributes[1];
-    this.council.municipio = attributes[2];
+    this.councilGroup.descricao = description;
+    this.councilGroup.estado = attributes[1];
+    this.councilGroup.municipio = attributes[2];
   }
 }
