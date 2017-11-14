@@ -21,9 +21,10 @@ export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
   private stateSubs: Subscription;
   private searchSubs: Subscription;
   public councilGroup: CouncilGroup;
-  public arrayCouncil: CouncilGroup[];
   private state = '';
   private city = '';
+  private description = '';
+  public found;
 
   constructor(
     public councilGroupService: CouncilGroupService,
@@ -32,7 +33,9 @@ export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
     private ibgeService: IbgeService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.councilGroup = new CouncilGroup();
+  }
 
   ngOnDestroy() {
     this.stateSubs.unsubscribe();
@@ -45,8 +48,13 @@ export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
       .subscribe(
         result => {
           console.log('Resultado Estado', result);
-          this.councilGroup.estado = result['sigla'];
+          this.councilGroup.estado = result.sigla;
           console.log(this.councilGroup.estado);
+          this.description =
+            'CAE-' +
+            this.councilGroup.estado +
+            '-' +
+            this.councilGroup.municipio;
         },
         error => {
           this.alertService.error('Erro ao selecionar estado');
@@ -56,6 +64,13 @@ export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
             .getAjudaConselheiroCouncilGroups()
             .subscribe(
               result => {
+                this.found = false;
+                this.filterCouncil(result);
+                if (this.found) {
+                  this.alertService.success('Conselho ' + this.description + ' encontrado!');
+                }else {
+                  this.alertService.warn('Conselho não cadastrado!');
+                }
               },
               error => {
                 console.error(error);
@@ -63,6 +78,14 @@ export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
             );
         }
       );
+  }
+
+  filterCouncil(result: any) {
+    result.forEach(element => {
+      if (element.descricao === this.description) {
+        this.found = true;
+      }
+    });
   }
 
   isLoggedIn(): boolean {
