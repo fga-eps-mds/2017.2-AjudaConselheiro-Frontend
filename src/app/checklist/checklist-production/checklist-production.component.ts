@@ -4,8 +4,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { CheckProdTopicHeaders, CheckProdCommentaries, CheckProdFirstTopic, CheckProdEighthTopic, CheckProdFifthTopic,
 CheckProdFourthTopic, CheckProdSecondTopic, CheckProdSixthTopic, CheckProdSeventhTopic, CheckProdThirdTopic,
-ChecklistProductionQuestionsIteratorArray, IteratorArray, SectionCommentary, FormMenuCommentBinary, FormMenuComment,
-CommentBinaryForm, CommentForm, BinaryForm, FormMenuBinary, ConfirmComentary, Post} from '../../models/index';
+ChecklistProductionQuestionsIteratorArray, IteratorArray, SectionCommentary,
+CommentBinaryForm, CommentForm, BinaryForm, ConfirmComentary, Post} from '../../models/index';
 import { ChecklistService, AlertService, PostService } from '../../services/index';
 
 @Component({
@@ -19,7 +19,6 @@ export class ChecklistProductionComponent implements OnInit {
     questionsProduction: Array<String[]>= ChecklistProductionQuestionsIteratorArray;
     iteratorArray: Array<Object>= IteratorArray;
     topicHeaders: Array<string> = CheckProdTopicHeaders;
-    commentaries: Array<SectionCommentary> = CheckProdCommentaries;
 
   constructor(
     protected postService: PostService,
@@ -39,7 +38,6 @@ export class ChecklistProductionComponent implements OnInit {
       console.warn(this.iteratorArray);
 
       // Show commentaries for each section
-      console.warn(this.commentaries);
   }
 
   isOtherQuestions (topic: number, question: number) {
@@ -56,8 +54,7 @@ export class ChecklistProductionComponent implements OnInit {
 
   savePost() {
       const jsonChecklistOne = JSON.stringify({
-        'interatorArray': this.iteratorArray,
-        'commentaries': this.commentaries
+        'iteratorArray': this.iteratorArray,
       });
 
       this.postService.savePost(jsonChecklistOne).subscribe(

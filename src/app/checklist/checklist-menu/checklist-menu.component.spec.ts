@@ -31,7 +31,7 @@ describe('Checklist-menuComponent', () => {
   it('should have2 a text area for the fourth commentary', () => {
     for ( let _i = 0; _i < 4; _i++ ) {
     fixture.detectChanges();
-    component.checkComentary[_i].value = true;
+    component.iteratorArrayAnswers[0][_i].answer = true;
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('.textAreaTrue')).not.toBe('');
     }

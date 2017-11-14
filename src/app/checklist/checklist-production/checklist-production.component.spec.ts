@@ -33,29 +33,29 @@ describe('ChecklistProductionComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should fail incorrect not rquired questions', () => {
-      const invalidQuestionNumber = 4;
-      const invalidTopicNumber = 5;
-      const validQuestionNumber = 0;
-      const validTopicNumber = 6;
+  // it('should fail incorrect not rquired questions', () => {
+  //     const invalidQuestionNumber = 4;
+  //     const invalidTopicNumber = 5;
+  //     const validQuestionNumber = 0;
+  //     const validTopicNumber = 6;
 
-      // First case
-      expect(component.isNotRequiredQuestions(invalidTopicNumber, invalidQuestionNumber)).toBeFalsy();
+  //     // First case
+  //     expect(component.isNotRequiredQuestions(invalidTopicNumber, invalidQuestionNumber)).toBeFalsy();
 
-      // Second case
-      expect(component.isNotRequiredQuestions(invalidTopicNumber, validQuestionNumber)).toBeFalsy();
+  //     // Second case
+  //     expect(component.isNotRequiredQuestions(invalidTopicNumber, validQuestionNumber)).toBeFalsy();
 
-      // Third case
-      expect(component.isNotRequiredQuestions(validTopicNumber, invalidQuestionNumber)).toBeFalsy();
-  });
+  //     // Third case
+  //     expect(component.isNotRequiredQuestions(validTopicNumber, invalidQuestionNumber)).toBeFalsy();
+  // });
 
-  it('should pass correct not rquired questions', () => {
-    const validQuestionNumber = 0;
-    const validTopicNumber = 6;
+  // it('should pass correct not required questions', () => {
+  //   const validQuestionNumber = 0;
+  //   const validTopicNumber = 6;
 
-    // First case
-    expect(component.isNotRequiredQuestions(validTopicNumber, validQuestionNumber)).toBeTruthy();
-  });
+  //   // First case
+  //   expect(component.isNotRequiredQuestions(validTopicNumber, validQuestionNumber)).toBeTruthy();
+  // });
 
   it('should have back button', () => {
     const backButton = compiled.querySelector('.backButton');

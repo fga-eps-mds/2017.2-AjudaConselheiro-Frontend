@@ -4,8 +4,7 @@ import { Http } from '@angular/http';
 import { SectionCommentaryTwo } from '../../models/index';
 import { BinaryForm } from '../../models/index';
 import 'rxjs/add/operator/toPromise';
-import { SectionCommentary, CommentBinaryForm, CommentForm, FormMenuCommentBinary,
-    FormMenuComment, ChecklistCafeteria} from '../../models/index';
+import { SectionCommentary, CommentBinaryForm, CommentForm, ChecklistCafeteria} from '../../models/index';
 
 
 @Injectable()
