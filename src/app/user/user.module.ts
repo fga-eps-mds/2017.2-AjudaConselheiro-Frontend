@@ -12,8 +12,10 @@ import { TextMaskModule } from 'angular2-text-mask';
 import { UserCpfComponent } from './cpf/cpf.component';
 import { NotProfileComponent } from './not-profile/not-profile.component';
 import { ProfileComponent } from './profile/profile.component';
+import {RecoverPasswordComponent } from './recover-password/recover-password.component';
 
-export { UserCreateComponent, UserEditComponent, UserListComponent, LoginComponent, UserCpfComponent, NotProfileComponent, ProfileComponent };
+export { UserCreateComponent, UserEditComponent, UserListComponent, LoginComponent,
+         UserCpfComponent, NotProfileComponent, ProfileComponent, RecoverPasswordComponent };
 
 @NgModule({
   imports: [

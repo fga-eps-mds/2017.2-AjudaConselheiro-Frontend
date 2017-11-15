@@ -24,7 +24,8 @@ import {
   UserCpfComponent,
   NotProfileComponent,
   LoginComponent,
-  ProfileComponent
+  ProfileComponent,
+  RecoverPasswordComponent
 } from './user/user.module';
 
 export const ROUTES: Routes = [
@@ -48,5 +49,6 @@ export const ROUTES: Routes = [
   { path: 'checklist/update', component: ChecklistUpdateComponent},
   { path: 'adicionar-cpf', component: UserCpfComponent },
   { path: 'usuario-sem-perfil', component: NotProfileComponent},
-  { path: 'perfil', component: ProfileComponent}
+  { path: 'perfil', component: ProfileComponent},
+  { path: 'recuperar-senha', component: RecoverPasswordComponent}
 ];
