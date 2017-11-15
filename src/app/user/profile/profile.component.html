@@ -2,27 +2,28 @@
 
 <!--Card-->
 <div class="card centering profile">
-  
-      <!--Card image-->
-      <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%282%29.jpg" alt="Card image cap">
-  
-      <!--Card content-->
-      <div class="card-body centering">
-          <!--Title-->
-          <h4 class="card-title centering">{{name}}</h4>
-          <!--Text-->
-          <p class="card-text centering"> {{biography}}</p>
-          <p class="card-text centering"> {{email}}</p>
-          
-          <div class="form-group text-center">
+
+    <!--Card image-->
+    <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%282%29.jpg" alt="Card image cap">
+
+    <!--Card content-->
+    <div class="card-body centering">
+        <!--Title-->
+        <h4 class="card-title centering">{{name}}</h4>
+        <!--Text-->
+        <p class="card-text centering"> {{biography}}</p>
+        <p class="card-text centering"> {{email}}</p>
+
+        <div class="form-group text-center">
+            <button type="button" class="btn btn-danger" (click)="delete()"><i class="fa fa-times" aria-hidden="true"></i>Deletar Conta</button>
             <input type="button" class="btn btn-deep-orange" value="Editar">
             <br>
             <br>
-          </div>
-      </div>
-  
-  </div>
-  <!--/.Card-->
+        </div>
+    </div>
+
+</div>
+<!--/.Card-->
 
 
 <br><br><br><br><br><br><br>

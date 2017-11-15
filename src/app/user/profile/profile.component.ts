@@ -1,3 +1,5 @@
+import { User } from './../../models/user';
+import { UserService } from './../../services/user/user.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -10,15 +12,25 @@ export class ProfileComponent implements OnInit {
   public name;
   public biography;
   public email;
-
-  constructor(private router: Router) { }
+  user: User;
+  constructor(
+    private router: Router,
+    private UserService: UserService
+  ) { }
 
   ngOnInit() {
     if (localStorage.getItem('token') === null) {
       this.router.navigate(['/home']);
     } else {
       this.formatUserData();
-    }
+    };
+    this.user = this.UserService.getLoggedUser();
+  }
+
+  delete() {
+    this.UserService.delete(this.user.cod) .subscribe(
+      result => console.log(result)
+    );
   }
 
   formatUserData() {

@@ -92,9 +92,13 @@ export class UserService extends ServicesUtilitiesService {
   }
 
   delete(cod: Number): Observable<String> {
-    const url = `${this.url + '?codAplicativo=462 &'}/${cod}`;
-    return this.http.delete(url, this.options)
-      .map(res => this.extractData(res))
+    const headers: Headers = new Headers({
+      'appIdentifier': 462,
+      'appToken': localStorage.getItem('token').toString()
+    });
+    const options: RequestOptions = new RequestOptions({ headers: headers });
+    const url = this.url +'/' + cod +'/perfil';
+    return this.http.delete(url, options)
       .catch(this.handleError);
   }
 
