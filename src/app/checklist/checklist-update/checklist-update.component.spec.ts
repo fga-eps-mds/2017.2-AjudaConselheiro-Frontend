@@ -4,7 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { HttpModule } from '@angular/http';
 
 import { ChecklistUpdateComponent } from './checklist-update.component';
-import { UserService, AlertService } from '../../services/index';
+import { UserService, AlertService, ProfileService, AuthenticationService} from '../../services/index';
 
 describe('ChecklistoneComponent', () => {
   let component: ChecklistUpdateComponent;
@@ -16,7 +16,10 @@ describe('ChecklistoneComponent', () => {
       declarations: [ ChecklistUpdateComponent ],
       imports: [ FormsModule, RouterTestingModule, HttpModule ],
       providers: [
-        UserService, AlertService
+        UserService,
+        AlertService,
+        ProfileService,
+        AuthenticationService
       ]
     })
     .compileComponents();

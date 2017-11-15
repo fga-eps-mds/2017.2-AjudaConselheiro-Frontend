@@ -4,6 +4,7 @@ import { AppModule } from './../../app.module';
 import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 
 import { ChecklistMenuComponent } from './checklist-menu.component';
+import { ProfileService, AuthenticationService } from '../../services/index';
 
 describe('Checklist-menuComponent', () => {
   let component: ChecklistMenuComponent;
@@ -12,7 +13,10 @@ describe('Checklist-menuComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [  ],
-      providers: [{provide: APP_BASE_HREF, useValue : '/' }],
+      providers: [
+        ProfileService,
+        AuthenticationService,
+        {provide: APP_BASE_HREF, useValue : '/' }],
       imports: [ AppModule ],
     })
     .compileComponents();
