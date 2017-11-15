@@ -68,13 +68,13 @@ export class CouncilGroupService extends ServicesUtilitiesService {
     return location || {};
   }
 
-  getAjudaConselheiroCouncilGroups():  Observable<any> {
+  getCouncilGroups():  Observable<any> {
     this.headers = new Headers ({
       'Content-Type': 'application/json'
     });
     this.request = new RequestOptions({ headers: this.headers });
-    return this.http
-      .get(this.url + '?codAplicativo=462', this.request)
+
+    return this.http.get(this.url + '?codAplicativo=462', this.request)
       .map(this.extractData)
       .catch(this.handleError);
   }

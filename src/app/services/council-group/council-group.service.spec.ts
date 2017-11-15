@@ -153,8 +153,8 @@ describe('CouncilGroupService', () => {
   }));
 
 
-  // For getAjudaConselheiroCouncilGroups()
-  it('getAjudaConselheiroCouncilGroups() should return a array of groups',
+  // For getCouncilGroups()
+  it('getCouncilGroups() should return a array of groups',
     inject([CouncilGroupService, MockBackend], (service, mockBackend) => {
 
     // Needed fake data
@@ -171,7 +171,7 @@ describe('CouncilGroupService', () => {
     });
 
     // Calling and testing the function
-    service.getAjudaConselheiroCouncilGroups('teste').subscribe((result) => {
+    service.getCouncilGroups('teste').subscribe((result) => {
       expect(result.length).toEqual(2);
 
       expect(result[0].group).toEqual(1);
