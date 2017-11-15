@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import { User } from '../../models/index';
-import { ServicesUtilitiesService } from './../services-utilities/services-utilities.service';
-import { AlertService } from './../alert/alert.service';
-import 'rxjs/add/operator/catch';
 import { Router } from '@angular/router';
+
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/catch';
+
+import { User } from '../../models/index';
+
+import { AlertService } from './../alert/alert.service';
+import { ProfileService } from '../profile/profile.service';
+import { AuthenticationService } from '../authentication/authentication.service';
+import { ServicesUtilitiesService } from './../services-utilities/services-utilities.service';
 
 @Injectable()
 export class UserService extends ServicesUtilitiesService {
@@ -19,7 +23,8 @@ export class UserService extends ServicesUtilitiesService {
   options: RequestOptions = new RequestOptions({ headers: this.headers });
 
   constructor(private http: Http, private alertService: AlertService,
-    private router: Router) {
+    private router: Router, private profileService: ProfileService,
+    private authService: AuthenticationService) {
     super();
   }
 
@@ -43,8 +48,26 @@ export class UserService extends ServicesUtilitiesService {
       'CEP': user.CEP,
       'senha': user.senha
     };
+
     return this.http.post(this.url, JSON.stringify(body), this.options)
-    .map(res => this.extractData(res))
+    .map((response: Response) => {
+      // Parsing the user cod found in response headers
+      const parsedHeaders = new Headers(response.headers);
+      const locationResponse = parsedHeaders.get('location');
+      const userCod = this.extractResponseUserCod(locationResponse);
+
+      // Login is needed for creating a profile
+      if (userCod) {
+        this.authService.login(body.email, body.senha).subscribe((loginData) => {
+          this.setInitialProfile(userCod, loginData[0]);
+        });
+
+        return this.extractData(response);
+      } else {
+        console.error('User created but we could not extract location (id) cod!');
+        return null;
+      }
+    })
     .catch(this.handleError);
 }
 
@@ -75,4 +98,26 @@ export class UserService extends ServicesUtilitiesService {
       .catch(this.handleError);
   }
 
+  private setInitialProfile(userCod: string, token: any) {
+    // Sets the needed userToken from authentication, necessary for profiles POST
+    localStorage.setItem('token', token);
+
+    // Creating the user profile
+    this.profileService.setUserProfile({}, userCod).subscribe();
+
+    // Removing the login data - For sucess and fail
+    localStorage.removeItem('token');
+  }
+
+  private extractResponseUserCod(locationString: string) {
+    const userCodRegex = /http:\/\/mobile-aceite\.tcu\.gov\.br\/appCivicoRS\/rest\/pessoas\/(\d+)/i;
+    const regexMatch = userCodRegex.exec(locationString);
+
+    if (regexMatch) {
+      const userCod = regexMatch[1];
+      return userCod;
+    } else {
+      return null;
+    }
+  }
 }

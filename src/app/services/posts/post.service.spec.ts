@@ -9,8 +9,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 
-import { AlertService, UserService } from '../../services/index';
-import { PostService } from './post.service';
+import { UserService, AlertService, ProfileService,
+  AuthenticationService, PostService} from './../../services/index';
 import { Post } from '../../models/index';
 
 
@@ -35,7 +35,9 @@ describe('PostService', () => {
         PostService,
         ConnectionBackend,
         AlertService,
-        UserService
+        UserService,
+        ProfileService,
+        AuthenticationService
       ]
     });
 

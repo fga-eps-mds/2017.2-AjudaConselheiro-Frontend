@@ -7,7 +7,8 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 import { UserEditComponent } from './user-edit.component';
-import { UserService } from '../../services/index';
+import { UserService, ProfileService, AuthenticationService, 
+  AlertService } from '../../services/index';
 
 // import { ComponentFixtureAutoDetect } from '@angular/core/testing';
 
@@ -32,6 +33,9 @@ describe('UserEditComponent', () => {
         RouterTestingModule
       ],
       providers: [
+        AlertService,
+        AuthenticationService,
+        ProfileService,
         { provide: UserService, useValue: userServiceStub },
         // { provide: ComponentFixtureAutoDetect, useValue: true }
       ]
