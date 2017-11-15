@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { FakeUser } from '../../user/create/testing/fake-user';
 
 import { UserService, AuthenticationService, ProfileService } from '../index';
+import { Observable } from 'rxjs/Observable';
 
 describe('UserService', () => {
   beforeEach(() => {
@@ -198,5 +199,46 @@ describe('UserService', () => {
 
     expect(returnUser).toBeFalsy();
     expect(returnUser).toBeUndefined();
+  }));
+
+
+  // For sendNewPassword()
+  it('sendNewPassword() should redefine password if logged user is present',
+    inject([UserService, MockBackend], (service, mockBackend) => {
+
+    const fakeResponse = 'Senha redefinida!';
+    const fakeUser = { name: 'Um', cod: 1, email: 'fakeEmail@abc.com'};
+    localStorage.setItem('userData', JSON.stringify(fakeUser));
+
+    // Mocking HTTP connection for this test
+    mockBackend.connections.subscribe((connection: MockConnection) => {
+      const options = new ResponseOptions({
+        body: JSON.stringify(fakeResponse)
+      });
+      connection.mockRespond(new Response(options));
+    });
+
+    // Making the request and testing its response
+    service.sendNewPassword().subscribe((response) => {
+      console.log(response);
+      expect(response).toEqual(fakeResponse);
+    });
+  }));
+
+  it('sendNewPassword() should not redefine password if there isn\'t a logged user',
+    inject([UserService, MockBackend], (service, mockBackend) => {
+
+    const fakeResponse = 'Senha redefinida!';
+
+    // Mocking HTTP connection for this test
+    mockBackend.connections.subscribe((connection: MockConnection) => {
+      const options = new ResponseOptions({ body: fakeResponse });
+      connection.mockRespond(new Response(options));
+    });
+
+    // Making the request and testing its response
+    const result = service.sendNewPassword();
+    const emptyObservable = new Observable<string>();
+    expect(result).toEqual(emptyObservable);
   }));
 });

@@ -88,6 +88,26 @@ export class UserService extends ServicesUtilitiesService {
       .catch(this.handleError);
   }
 
+  sendNewPassword(): Observable <string> {
+    const loggedUser = this.getLoggedUser();
+
+    if (loggedUser) {
+      const recoverURL = `${this.url + '/redefinirSenha'
+        + '?email=' + loggedUser.email}`;
+
+      // Needed for filling POST() params
+      const emptyBody = JSON.stringify({});
+
+      return this.http.post(recoverURL, {body: emptyBody})
+        .map(res => this.extractData(res))
+        .catch(this.handleError);
+
+    } else {
+      console.error('You must be logged to ask for a new password!');
+      return new Observable <string>();
+    }
+  }
+
   delete(cod: Number): Observable<String> {
     const url = `${this.url + '?codAplicativo=462 &'}/${cod}`;
     return this.http.delete(url, this.options)
