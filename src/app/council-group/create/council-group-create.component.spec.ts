@@ -26,8 +26,8 @@ describe('CouncilGroupCreateComponent', () => {
   const fakeLocation = 'fakeLocation';
   let fakeCouncil: CouncilGroup;
   fakeCouncil = new CouncilGroup;
-  fakeCouncil.municipio = 'taguatinga';
-  fakeCouncil.estado = 'df';
+  fakeCouncil.municipio = 'Brasília';
+  fakeCouncil.estado = 'Df';
 
   beforeEach(async(() => {
     mockAlert = {
@@ -83,6 +83,10 @@ describe('CouncilGroupCreateComponent', () => {
 
   }));
 
+  it('should be created', () => {
+    expect(component).toBeTruthy();
+  });
+
   // it('should result', () => {
   //   fixture.detectChanges();
   //  // localStorage.setItem('token', 'appToken');
@@ -113,13 +117,31 @@ describe('CouncilGroupCreateComponent', () => {
   it('Should know if user is logged in', () => {
     localStorage.setItem('token', 'appToken');
 
-    const result = component.isLoggedIn();
-    let token = false;
+    let result;
+    result = component.isLoggedIn();
+    expect(result).toEqual(true);
 
-    if (localStorage.getItem('token')) {
-      token = true;
-    }
-    expect(result).toEqual(token);
+    localStorage.clear();
+    result = component.isLoggedIn();
+    expect(result).toEqual(false);
+
   });
+
+  it('should has location', () => {
+    let result;
+    // Testing the method has location when exists valid state and valid city
+    result = component.hasLocation();
+    expect(result).toEqual(false);
+    component.state = 'DF';
+    component.city = 'Brasília';
+    // Testing the method has location when not exists valid state and valid city
+    result = component.hasLocation();
+    expect(result).toEqual(true);
+
+  });
+
+  // fit('should chosen state', () => {
+  //   component.chosenState('52');
+  // });
 
 });

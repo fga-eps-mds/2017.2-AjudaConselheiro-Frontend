@@ -115,13 +115,4 @@ export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
     console.log('State: ', this.state, '\n\nCity: ', this.city);
     return this.state && 0 !== this.city.length;
   }
-
-  dismemberCouncilAttributes(result: any): void {
-    const description = result.descricao;
-    const attributes = description.split('-');
-
-    this.councilGroup.descricao = description;
-    this.councilGroup.estado = attributes[1];
-    this.councilGroup.municipio = attributes[2];
-  }
 }

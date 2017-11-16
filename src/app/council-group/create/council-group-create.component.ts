@@ -22,8 +22,8 @@ export class CouncilGroupCreateComponent implements OnInit, OnDestroy {
   private stateSubs: Subscription;
   private createSubs: Subscription;
   public councilGroup: CouncilGroup;
-  private state = '';
-  private city = '';
+  public state = '';
+  public city = '';
 
   constructor(
     public councilGroupService: CouncilGroupService,
@@ -94,6 +94,9 @@ export class CouncilGroupCreateComponent implements OnInit, OnDestroy {
   // Has (state + city) assigned?
   hasLocation(): boolean {
     console.log('State: ', this.state, '\n\nCity: ', this.city);
-    return (this.state  && 0 !== this.city.length);
+    if (this.state  && 0 !== this.city.length) {
+      return true;
+    }
+    return false;
   }
 }
