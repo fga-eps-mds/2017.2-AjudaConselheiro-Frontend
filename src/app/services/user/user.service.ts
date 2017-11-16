@@ -88,22 +88,21 @@ export class UserService extends ServicesUtilitiesService {
       .catch(this.handleError);
   }
 
-  sendNewPassword(): Observable <string> {
-    const loggedUser = this.getLoggedUser();
+  sendNewPassword(email: string): Observable <string> {
+    /* tslint:disable:max-line-length */
+    const regexEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
+    const validEmail = regexEmail.test(email);
 
-    if (loggedUser) {
+    if (validEmail) {
       const recoverURL = `${this.url + '/redefinirSenha'
-        + '?email=' + loggedUser.email}`;
+        + '?email=' + email}`;
 
-      // Needed for filling POST() params
-      const emptyBody = JSON.stringify({});
-
-      return this.http.post(recoverURL, {body: emptyBody})
+      return this.http.post(recoverURL, {body: ''})
         .map(res => this.extractData(res))
         .catch(this.handleError);
 
     } else {
-      console.error('You must be logged to ask for a new password!');
+      console.error('Email digitado é inválido!');
       return new Observable <string>();
     }
   }

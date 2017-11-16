@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { HttpModule } from '@angular/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { RecoverPasswordComponent } from './recover-password.component';
 
@@ -17,6 +18,8 @@ describe('RecoverPasswordComponent', () => {
       imports: [
         HttpModule,
         RouterTestingModule,
+        FormsModule,
+        ReactiveFormsModule
       ],
       declarations: [
         RecoverPasswordComponent

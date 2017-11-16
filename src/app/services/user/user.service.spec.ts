@@ -17,7 +17,7 @@ describe('UserService', () => {
     TestBed.configureTestingModule({
       imports: [
         HttpModule,
-        RouterTestingModule
+        RouterTestingModule,
       ],
       providers: [
         MockBackend,
@@ -207,8 +207,7 @@ describe('UserService', () => {
     inject([UserService, MockBackend], (service, mockBackend) => {
 
     const fakeResponse = 'Senha redefinida!';
-    const fakeUser = { name: 'Um', cod: 1, email: 'fakeEmail@abc.com'};
-    localStorage.setItem('userData', JSON.stringify(fakeUser));
+    const fakeValidEmail = 'abc@abc.com';
 
     // Mocking HTTP connection for this test
     mockBackend.connections.subscribe((connection: MockConnection) => {
@@ -219,16 +218,17 @@ describe('UserService', () => {
     });
 
     // Making the request and testing its response
-    service.sendNewPassword().subscribe((response) => {
+    service.sendNewPassword(fakeValidEmail).subscribe((response) => {
       console.log(response);
       expect(response).toEqual(fakeResponse);
     });
   }));
 
-  it('sendNewPassword() should not redefine password if there isn\'t a logged user',
+  it('sendNewPassword() should not redefine password if there isn\'t a valid email',
     inject([UserService, MockBackend], (service, mockBackend) => {
 
     const fakeResponse = 'Senha redefinida!';
+    const invalidEmail = 'emailInválido';
 
     // Mocking HTTP connection for this test
     mockBackend.connections.subscribe((connection: MockConnection) => {
@@ -237,7 +237,7 @@ describe('UserService', () => {
     });
 
     // Making the request and testing its response
-    const result = service.sendNewPassword();
+    const result = service.sendNewPassword(invalidEmail);
     const emptyObservable = new Observable<string>();
     expect(result).toEqual(emptyObservable);
   }));
