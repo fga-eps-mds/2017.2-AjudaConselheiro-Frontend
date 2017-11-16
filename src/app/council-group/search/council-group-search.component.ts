@@ -47,39 +47,46 @@ export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
 
   searchCouncilGroup(): void {
     this.found = false;
+    // Creates new councilGroup to allow multiple searches
     if (this.councilGroup.municipio === undefined) {
       console.log('Novo conselho criado!');
       this.councilGroup = new CouncilGroup();
     }
-    this.stateSubs = this.ibgeService
-      .getState(this.stateId)
-        .subscribe(
-          result => {
-            this.state = result.sigla;
-            console.log(this.state);
-            this.description = 'CAE-' + this.state + '-' + this.city;
-          },
-          error => {
-            this.alertService.error('Erro ao selecionar estado');
-          },
-          () => {
-            this.searchSubs = this.councilGroupService
-              .getCouncilGroups()
-                .subscribe(
-                  result => {
-                    this.filterCouncil(result);
-                    if (this.found) {
-                      this.alertService.success('Conselho ' + this.city + ' encontrado!');
-                    } else {
-                      this.alertService.warn('Conselho de ' + this.city + ' não cadastrado!');
-                    }
-                  },
-                  error => {
-                    this.alertService.error(error);
-                  });
-          });
+    this.getStateAbbr();
   }
 
+  // Get state sigla with state id and after that register the council group with the state sigla
+  getStateAbbr() {
+    this.stateSubs = this.ibgeService.getState(this.stateId)
+      .subscribe(
+        (result) => this.getStateAbbrResult(result),
+        (error) => this.alertService.error('Erro ao selecionar estado'),
+        () => this.getCouncilGroups());
+  }
+
+  getStateAbbrResult(result: any): void {
+    this.state = result.sigla;
+    this.description = 'CAE-' + this.state + '-' + this.city;
+    console.log(this.state);
+  }
+
+  getCouncilGroups() {
+    this.searchSubs = this.councilGroupService.getCouncilGroups()
+      .subscribe(
+        (result) => this.getCouncilGroupsResult(result),
+        (error) => this.alertService.error('Erro no servidor, tente novamente!'));
+  }
+
+  getCouncilGroupsResult(result: any): void {
+    this.filterCouncil(result);
+    if (this.found) {
+      this.alertService.success('Conselho ' + this.city + ' encontrado!');
+    } else {
+      this.alertService.warn('Conselho de ' + this.city + ' não cadastrado!');
+    }
+  }
+
+  // Find council with the state and city that were informed by user
   filterCouncil(result: any) {
     result.forEach(element => {
       if (element.descricao === this.description) {
