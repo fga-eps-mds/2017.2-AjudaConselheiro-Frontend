@@ -1,6 +1,14 @@
+import { FormsModule, NgForm } from '@angular/forms';
+import { Http, HttpModule, ConnectionBackend } from '@angular/http';
+import { Router } from '@angular/router';
+import { Component, OnInit, ViewChild, Input, NO_ERRORS_SCHEMA } from '@angular/core';
+
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { MockBackend } from '@angular/http/testing';
 
+import { AlertService, AuthenticationService, ProfileService,
+  UserService } from '../../services/index';
 import { ProfileComponent } from './profile.component';
 
 describe('ProfileComponent', () => {
@@ -8,10 +16,27 @@ describe('ProfileComponent', () => {
   let fixture: ComponentFixture<ProfileComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ProfileComponent ],
-      imports: [ RouterTestingModule ]
-    })
+    TestBed.configureTestingModule(
+      {
+        declarations: [
+          ProfileComponent,
+        ],
+        schemas: [NO_ERRORS_SCHEMA],
+        imports: [
+          FormsModule,
+          RouterTestingModule,
+          HttpModule
+        ],
+        providers: [
+          Http,
+          MockBackend,
+          ConnectionBackend,
+          AlertService,
+          ProfileService,
+          UserService,
+          AuthenticationService
+        ]
+      })
     .compileComponents();
   }));
 

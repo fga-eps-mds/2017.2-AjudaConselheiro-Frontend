@@ -2,13 +2,14 @@ import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
+import { Subscription } from 'rxjs/Subscription';
+
 import { CouncilGroup } from '../../models/index';
 import {
   CouncilGroupService,
   AlertService,
   IbgeService
 } from '../../services/index';
-import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-council-group-search',
@@ -16,15 +17,17 @@ import { Subscription } from 'rxjs/Subscription';
   styleUrls: ['./council-group-search.component.css'],
   providers: [CouncilGroupService, IbgeService]
 })
+
 export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
   @ViewChild('formCouncilGroupsearch') formCouncilGroupSearch: NgForm;
   private stateSubs: Subscription;
   private searchSubs: Subscription;
   public councilGroup: CouncilGroup;
   private state = '';
+  private stateId = '0';
   private city = '';
   private description = '';
-  public found;
+  public found = false;
 
   constructor(
     public councilGroupService: CouncilGroupService,
@@ -43,46 +46,45 @@ export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
   }
 
   searchCouncilGroup(): void {
+    this.found = false;
+    if (this.councilGroup.municipio === undefined) {
+      console.log('Novo conselho criado!');
+      this.councilGroup = new CouncilGroup();
+    }
     this.stateSubs = this.ibgeService
-      .getState(this.councilGroup.estado)
-      .subscribe(
-        result => {
-          console.log('Resultado Estado', result);
-          this.councilGroup.estado = result.sigla;
-          console.log(this.councilGroup.estado);
-          this.description =
-            'CAE-' +
-            this.councilGroup.estado +
-            '-' +
-            this.councilGroup.municipio;
-        },
-        error => {
-          this.alertService.error('Erro ao selecionar estado');
-        },
-        () => {
-          this.searchSubs = this.councilGroupService
-            .getAjudaConselheiroCouncilGroups()
-            .subscribe(
-              result => {
-                this.found = false;
-                this.filterCouncil(result);
-                if (this.found) {
-                  this.alertService.success('Conselho ' + this.description + ' encontrado!');
-                }else {
-                  this.alertService.warn('Conselho não cadastrado!');
-                }
-              },
-              error => {
-                console.error(error);
-              }
-            );
-        }
-      );
+      .getState(this.stateId)
+        .subscribe(
+          result => {
+            this.state = result.sigla;
+            console.log(this.state);
+            this.description = 'CAE-' + this.state + '-' + this.city;
+          },
+          error => {
+            this.alertService.error('Erro ao selecionar estado');
+          },
+          () => {
+            this.searchSubs = this.councilGroupService
+              .getCouncilGroups()
+                .subscribe(
+                  result => {
+                    this.filterCouncil(result);
+                    if (this.found) {
+                      this.alertService.success('Conselho ' + this.city + ' encontrado!');
+                    } else {
+                      this.alertService.warn('Conselho de ' + this.city + ' não cadastrado!');
+                    }
+                  },
+                  error => {
+                    this.alertService.error(error);
+                  });
+          });
   }
 
   filterCouncil(result: any) {
     result.forEach(element => {
       if (element.descricao === this.description) {
+        this.councilGroup = element;
+        console.log(this.councilGroup);
         this.found = true;
       }
     });
@@ -98,21 +100,17 @@ export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
   // Listen IBGE state EventEmitter()
   chosenState(state: string) {
     this.city = '';
-    state
-      ? (this.state = this.councilGroup.estado = state)
-      : this.alertService.warn('Nenhum estado selecionado');
+    state ? (this.stateId = state) : this.alertService.warn('Nenhum estado selecionado');
   }
 
   // Listen IBGE city EventEmitter()
   chosenCity(city: string) {
-    city
-      ? (this.city = this.councilGroup.municipio = city)
-      : this.alertService.warn('Nenhuma cidade selecionada');
+    city ? (this.city = city) : this.alertService.warn('Nenhuma cidade selecionada');
   }
 
   // Has (state + city) assigned?
   hasLocation(): boolean {
-    console.log('State: ', this.state, '\n\nCity: ', this.city);
-    return this.state && 0 !== this.city.length;
+    console.log('State id: ', this.stateId, '\n\nState: ', this.state, '\n\nCity: ', this.city);
+    return this.stateId && 0 !== this.city.length;
   }
 }

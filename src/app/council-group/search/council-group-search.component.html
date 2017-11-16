@@ -14,6 +14,20 @@
   </div>
 </div>
 
+<table *ngIf="found" class="table table-hover" [(ngModel)]="councilGroup.municipio" #council="ngModel" ngDefaultControl>
+  <thead class="deep-orange lighten-4">
+      <tr>
+          <th>Conselho</th>
+      </tr>
+  </thead>
+
+  <tbody>
+      <tr>
+          <td>{{this.councilGroup.descricao}}</td>
+      </tr>
+  </tbody>
+</table>
+
 <div align="center" *ngIf="!isLoggedIn()">
   <br>
   <p class="h2 text-center mb-4">Você precisa estar logado para acessar esta função.</p>
