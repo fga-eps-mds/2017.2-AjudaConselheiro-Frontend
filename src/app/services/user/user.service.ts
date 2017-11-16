@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 
 import { ServicesUtilitiesService } from './../services-utilities/services-utilities.service';
 import { AlertService } from './../alert/alert.service';
+import { AuthenticationService } from './../../services/index';
 
 
 @Injectable()
@@ -23,6 +24,8 @@ export class UserService extends ServicesUtilitiesService {
 
       super();
   }
+
+  authenticationService: AuthenticationService;
 
   getUsers(): Observable<User[]> {
     return this.http.get(this.url + '?codAplicativo=462')
@@ -96,7 +99,6 @@ export class UserService extends ServicesUtilitiesService {
 
   updatePassword(currentPassword: string, newPassword: string) {
     const cod = this.getUserCod();
-    const passURL = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas/' + cod + '/definirNovaSenha';
 
     const passwordHeaders: Headers = new Headers({
       'Content-Type': 'application/json',
@@ -107,10 +109,12 @@ export class UserService extends ServicesUtilitiesService {
      });
     const passwordOptions: RequestOptions = new RequestOptions({ headers: passwordHeaders });
 
-    return this.http.post(passURL, '', passwordOptions)
+    return this.http.post(this.url + '/' + cod + '/definirNovaSenha', '' , passwordOptions)
     .map((response: Response) => response.json())
     .catch(this.handleError);
+
   }
+
 
   delete(cod: Number): Observable<String> {
     const url = `${this.url + '?codAplicativo=462 &'}/${cod}`;

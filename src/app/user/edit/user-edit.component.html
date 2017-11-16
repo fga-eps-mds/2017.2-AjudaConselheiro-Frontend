@@ -19,13 +19,13 @@
 
         <div class="form-group">
             <i class="fa fa-user prefix grey-text"></i>
-            <input type="text" id="orangeForm-name" class="form-control" name="username" minlength="10" placeholder="{{ user.nomeUsuario }}" [(ngModel)]="user.nomeUsuario" #nomeUsuario="ngModel" required>
+            <input type="text" id="orangeForm-name" class="form-control" name="username" minlength="7" placeholder="{{ user.nomeUsuario }}" [(ngModel)]="user.nomeUsuario" #nomeUsuario="ngModel" required>
             <div *ngIf="nomeUsuario.errors && (nomeUsuario.dirty)" class="alert alert-danger">
                 <div [hidden]="!nomeUsuario.errors.required">
                     Digite o nome de usuário.
                 </div>
                 <div [hidden]="!nomeUsuario.errors.minlength">
-                    O username deve ter ao menos 10 caracteres.
+                    O username deve ter ao menos 7 caracteres.
                 </div>
             </div>
         </div>
@@ -57,7 +57,12 @@
             <a [routerLink]="['/perfil']" class="btn btn-deep-orange back-button">
                 <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Voltar
             </a>
-            <br><br>
+        </div>
+
+        <div class="form-group text-center">
+            Deseja mudar a Senha? <a [routerLink]="['/usuarios/editar/'] + user.cod + '/senha'" value="Editar Senha">Alterar Senha</a>
+            <br>
+            <br>
         </div>
 
     </form>
