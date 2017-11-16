@@ -1,14 +1,9 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 import { FormsModule } from '@angular/forms';
 
-import {
-  Http, HttpModule, ConnectionBackend,
-  ResponseOptions, Response, BaseRequestOptions,
-  RequestOptions, Headers
-} from '@angular/http';
-
+import {Http, HttpModule, ConnectionBackend } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 
@@ -19,15 +14,14 @@ import { CouncilGroup } from '../../models/index';
 
 
 describe('CouncilGroupCreateComponent', () => {
-  let mockAlert;
   let fixture: ComponentFixture<CouncilGroupCreateComponent>;
   let component: CouncilGroupCreateComponent;
   const fakeToken = 'FakeToken';
-  const fakeLocation = 'fakeLocation';
   let fakeCouncil: CouncilGroup;
   fakeCouncil = new CouncilGroup;
   fakeCouncil.municipio = 'Brasília';
   fakeCouncil.estado = 'Df';
+  let mockAlert;
 
   beforeEach(async(() => {
     mockAlert = {
@@ -87,34 +81,13 @@ describe('CouncilGroupCreateComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  // it('should result', () => {
-  //   fixture.detectChanges();
-  //  // localStorage.setItem('token', 'appToken');
-  //   spyOn(component.councilGroupService, 'createCouncil').and.
-  //     returnValue({ subscribe: () => Observable.of({})});
-  //   component.councilGroup = fakeCouncil;
-  //   component.createCouncilGroup();
-  // });
+  fit('should on init', () => {
+    component.councilGroup = fakeCouncil;
+    component.ngOnInit();
+    expect(component.councilGroup).toBeDefined();
+  });
 
-  // it('should result', () => {
-  //   fixture.detectChanges();
-  //   component.result(this.fakeLocation);
-  //   expect(mockAlert.success).toHaveBeenCalledWith('Conselho criado com sucesso!');
-  // });
-
-  // it('should warn alert', () => {
-  //   fixture.detectChanges();
-  //   component.error(400);
-  //   expect(mockAlert.warn).toHaveBeenCalledWith('Aviso: este conselho já está cadastrado no sistema!');
-  // });
-
-  // it('should error alert', () => {
-  //   fixture.detectChanges();
-  //   component.error(401);
-  //   expect(mockAlert.error).toHaveBeenCalledWith('Erro: falha na comunicação com o sistema!');
-  // });
-
-  it('Should know if user is logged in', () => {
+  fit('Should know if user is logged in', () => {
     localStorage.setItem('token', 'appToken');
 
     let result;
@@ -127,7 +100,7 @@ describe('CouncilGroupCreateComponent', () => {
 
   });
 
-  it('should has location', () => {
+  fit('should has location', () => {
     let result;
     // Testing the method has location when exists valid state and valid city
     result = component.hasLocation();
@@ -140,8 +113,36 @@ describe('CouncilGroupCreateComponent', () => {
 
   });
 
-  // fit('should chosen state', () => {
-  //   component.chosenState('52');
-  // });
+  fit('should chosen state', () => {
+    component.councilGroup = fakeCouncil;
+    // Testing the method when is passed valid state
+    component.chosenState('52');
+     // Testing the method when is passed invalid state
+    component.chosenState(null);
+    expect(mockAlert.warn).toHaveBeenCalledWith('Nenhum estado selecionado');
+
+  });
+
+  fit('should chosen city', () => {
+    component.councilGroup = fakeCouncil;
+    // Testing the method when is passed valid city
+    component.chosenCity('Brasília');
+     // Testing the method when is passed invalid city
+    component.chosenCity(null);
+    expect(mockAlert.warn).toHaveBeenCalledWith('Nenhuma cidade selecionada');
+
+  });
+
+  fit('should do create council', inject([CouncilGroupService], (service: CouncilGroupService) => {
+    component.councilGroup = fakeCouncil;
+  }));
+
+  fit('should get sigla of result', () => {
+    const result = {
+      'sigla': 'DF'
+    };
+    component.councilGroup = fakeCouncil;
+    component.resultGetState(result);
+  });
 
 });

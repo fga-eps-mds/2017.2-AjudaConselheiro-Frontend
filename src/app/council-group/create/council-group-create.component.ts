@@ -45,14 +45,9 @@ export class CouncilGroupCreateComponent implements OnInit, OnDestroy {
     // Use state abbreviation instead of state id
     this.stateSubs = this.ibgeService.getState(this.councilGroup.estado)
       .subscribe(
-        (result) => {
-          console.log('Resultado Estado', result);
-          this.councilGroup.estado = result['sigla'];
-          console.log(this.councilGroup.estado);
-        },
-        (error) => {
-          this.alertService.error('Erro ao selecionar estado');
-        },
+        (result) => this.resultGetState(result),
+        (error) =>
+          this.alertService.error('Erro ao selecionar estado'),
         () => {
           // Create council after getting right state
           this.createSubs = this.councilGroupService.createCouncil(this.councilGroup)
@@ -72,6 +67,12 @@ export class CouncilGroupCreateComponent implements OnInit, OnDestroy {
               });
           });
    }
+
+  resultGetState(result: any) {
+    console.log('Resultado Estado', result);
+    this.councilGroup.estado = result['sigla'];
+    console.log(this.councilGroup.estado);
+  }
 
   isLoggedIn(): boolean {
     if (localStorage.getItem('token')) {
