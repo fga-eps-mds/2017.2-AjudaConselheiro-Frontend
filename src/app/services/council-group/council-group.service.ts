@@ -20,22 +20,22 @@ export class CouncilGroupService extends ServicesUtilitiesService {
     super();
   }
 
-  createCouncil(councilGroup: CouncilGroup): Observable<any> {
-    const thereIsToken = localStorage.getItem('token');
+createCouncil(councilGroup: CouncilGroup): Observable<any> {
+  const thereIsToken = localStorage.getItem('token');
 
-    if (thereIsToken) {
-      this.headers = new Headers ({
-        'Content-Type': 'application/json',
-        'appToken': thereIsToken
-      });
+  if (thereIsToken) {
+    this.headers = new Headers ({
+      'Content-Type': 'application/json',
+      'appToken': thereIsToken
+    });
 
-      this.request = new RequestOptions({ headers: this.headers });
+    this.request = new RequestOptions({ headers: this.headers });
 
-      const formattedCouncil = this.getFormattedData(councilGroup);
+    const formattedCouncil = this.getFormattedData(councilGroup);
 
-      return this.http.post(this.url, formattedCouncil, this.request)
-        .map(response => this.extractLocation(response))
-        .catch(this.handleError);
+    return this.http.post(this.url, formattedCouncil, this.request)
+      .map(response => this.extractLocation(response))
+      .catch(this.handleError);
 
     } else {
       this.alertService.warn('Usuário precisa estar logado para criar um conselho!');
