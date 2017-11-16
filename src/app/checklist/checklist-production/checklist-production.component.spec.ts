@@ -4,7 +4,12 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { HttpModule, Http, RequestOptions, ConnectionBackend } from '@angular/http';
 
 import { ChecklistProductionComponent } from './checklist-production.component';
-import { UserService, AlertService } from '../../services/index';
+import {
+  UserService,
+  AlertService,
+  ProfileService,
+  AuthenticationService
+} from '../../services/index';
 
 describe('ChecklistProductionComponent', () => {
   let component: ChecklistProductionComponent;
@@ -16,7 +21,12 @@ describe('ChecklistProductionComponent', () => {
       declarations: [ ChecklistProductionComponent ],
       imports: [ FormsModule, RouterTestingModule, HttpModule ],
       providers: [
-        UserService, AlertService, Http, ConnectionBackend
+        Http,
+        ConnectionBackend,
+        UserService,
+        AlertService,
+        ProfileService,
+        AuthenticationService
       ]
     })
     .compileComponents();

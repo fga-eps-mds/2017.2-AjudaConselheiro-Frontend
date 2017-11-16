@@ -3,7 +3,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Http, ConnectionBackend, RequestOptions } from '@angular/http';
 import { HttpModule } from '@angular/http';
 
-import { SchedulingService, AlertService, UserService } from '../../services/index';
+import { SchedulingService, AlertService, UserService,
+  ProfileService, AuthenticationService } from '../../services/index';
 
 
 describe('SchedulingService', () => {
@@ -18,7 +19,9 @@ describe('SchedulingService', () => {
         AlertService,
         Http,
         ConnectionBackend,
-        UserService
+        UserService,
+        ProfileService,
+        AuthenticationService
       ]
     });
   });
