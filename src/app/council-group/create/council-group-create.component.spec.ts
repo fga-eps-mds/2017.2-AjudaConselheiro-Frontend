@@ -74,6 +74,7 @@ describe('CouncilGroupCreateComponent', () => {
 
     fixture = TestBed.createComponent(CouncilGroupCreateComponent);
     component = fixture.componentInstance;
+    fixture.detectChanges();
 
   }));
 
@@ -81,13 +82,7 @@ describe('CouncilGroupCreateComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  fit('should on init', () => {
-    component.councilGroup = fakeCouncil;
-    component.ngOnInit();
-    expect(component.councilGroup).toBeDefined();
-  });
-
-  fit('Should know if user is logged in', () => {
+  it('Should know if user is logged in', () => {
     localStorage.setItem('token', 'appToken');
 
     let result;
@@ -100,7 +95,7 @@ describe('CouncilGroupCreateComponent', () => {
 
   });
 
-  fit('should has location', () => {
+  it('should has location', () => {
     let result;
     // Testing the method has location when exists valid state and valid city
     result = component.hasLocation();
@@ -113,7 +108,7 @@ describe('CouncilGroupCreateComponent', () => {
 
   });
 
-  fit('should chosen state', () => {
+  it('should chosen state', () => {
     component.councilGroup = fakeCouncil;
     // Testing the method when is passed valid state
     component.chosenState('52');
@@ -123,7 +118,7 @@ describe('CouncilGroupCreateComponent', () => {
 
   });
 
-  fit('should chosen city', () => {
+  it('should chosen city', () => {
     component.councilGroup = fakeCouncil;
     // Testing the method when is passed valid city
     component.chosenCity('Brasília');
@@ -133,11 +128,11 @@ describe('CouncilGroupCreateComponent', () => {
 
   });
 
-  fit('should do create council', inject([CouncilGroupService], (service: CouncilGroupService) => {
+  it('should do create council', inject([CouncilGroupService], (service: CouncilGroupService) => {
     component.councilGroup = fakeCouncil;
   }));
 
-  fit('should get sigla of result', () => {
+  it('should get sigla of result', () => {
     const result = {
       'sigla': 'DF'
     };

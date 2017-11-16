@@ -23,10 +23,10 @@ export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
   private stateSubs: Subscription;
   private searchSubs: Subscription;
   public councilGroup: CouncilGroup;
-  private state = '';
-  private stateId = '0';
-  private city = '';
-  private description = '';
+  public state = '';
+  public stateId = '0';
+  public city = '';
+  public description = '';
   public found = false;
 
   constructor(
