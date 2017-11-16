@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { ChecklistMenuIteratorArray } from '../../models/checklist/checklistForms';
 import { FormMenuCommentBinary, FormMenuComment, CommentBinaryForm, CommentForm,
@@ -26,7 +27,10 @@ export class ChecklistMenuComponent implements OnInit {
     new ConfirmComentary(null, 'Comment5'),
   ];
 
-  constructor(private menuService: ChecklistService) {}
+  constructor(
+    private menuService: ChecklistService,
+    private router: Router,
+  ) {}
 
   ngOnInit(): void {
     console.warn(this.iteratorArray);
@@ -37,6 +41,7 @@ export class ChecklistMenuComponent implements OnInit {
     console.warn(this.formMenuBinary);
     console.warn(this.formMenuComment);
     console.warn(this.iteratorArray);
+    this.router.navigate(['/checklist']);
   }
 
 }

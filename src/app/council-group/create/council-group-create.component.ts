@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { CouncilGroup } from '../../models/index';
 import { CouncilGroupService, AlertService } from '../../services/index';
@@ -20,7 +21,8 @@ export class CouncilGroupCreateComponent implements OnInit {
 
   constructor(
     public councilGroupService: CouncilGroupService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -33,9 +35,11 @@ export class CouncilGroupCreateComponent implements OnInit {
         result => {
           this.councilGroup = result;
           this.alertService.success('SUCESSO');
+          this.router.navigate(['/conselho/buscar']);
         },
         error => {
-          this.alertService.error(error);
+          this.alertService.error('Conselho já existente, redirecionando para seleção de conselhos');
+          this.router.navigate(['/conselho/buscar']);
         });
   }
 

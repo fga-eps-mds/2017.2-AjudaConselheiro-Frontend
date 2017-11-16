@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private alertService: AlertService,
     private profileService: ProfileService,
-    private router: Router
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('token', result[0]);
           localStorage.setItem('userData', result[1]._body);
           localStorage.setItem('isLoggedIn', 'true');
-          this.getProfile();       
+          this.getProfile();
           this.alertService.success('Login efetuado sucesso!');
           this.router.navigate(['/perfil']);
         },
@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit {
   }
   getProfile() {
     return this.profileService.getProfile().subscribe(
-           result => localStorage.setItem('Profile',JSON.stringify(result)));
-       
+           result => localStorage.setItem('Profile', JSON.stringify(result)));
+
     }
 }
