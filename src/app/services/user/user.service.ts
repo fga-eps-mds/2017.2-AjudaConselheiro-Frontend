@@ -97,7 +97,7 @@ export class UserService extends ServicesUtilitiesService {
       'appToken': localStorage.getItem('token').toString()
     });
     const options: RequestOptions = new RequestOptions({ headers: headers });
-    const url = this.url +'/' + cod +'/perfil';
+    const url = this.url + '/' + cod + '/perfil';
     return this.http.delete(url, options)
       .catch(this.handleError);
   }

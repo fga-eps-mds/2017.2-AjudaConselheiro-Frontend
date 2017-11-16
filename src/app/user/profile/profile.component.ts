@@ -1,3 +1,5 @@
+import { AlertService } from './../../services/alert/alert.service';
+import { AuthenticationService } from './../../services/authentication/authentication.service';
 import { User } from './../../models/user';
 import { UserService } from './../../services/user/user.service';
 import { Component, OnInit } from '@angular/core';
@@ -13,9 +15,12 @@ export class ProfileComponent implements OnInit {
   public biography;
   public email;
   user: User;
+  public password;
   constructor(
     private router: Router,
-    private UserService: UserService
+    private UserService: UserService,
+    private authenticationService: AuthenticationService,
+    private alertService: AlertService
   ) { }
 
   ngOnInit() {
@@ -23,13 +28,30 @@ export class ProfileComponent implements OnInit {
       this.router.navigate(['/home']);
     } else {
       this.formatUserData();
-    };
-    this.user = this.UserService.getLoggedUser();
+      this.user = this.UserService.getLoggedUser();
+    }
+  }
+
+  validatePassword() {
+      this.authenticationService.login(this.user.email, this.password)
+      .subscribe(
+        result => {
+          this.delete();
+        },
+        error => {
+          console.log('error: ', error.status);
+          if (error.status === 401) {
+            this.alertService.warn('Aviso: senha errada!');
+          }
+      });
   }
 
   delete() {
     this.UserService.delete(this.user.cod) .subscribe(
-      result => console.log(result)
+      result => {
+        this.authenticationService.logout();
+        this.router.navigate(['/home']);
+      }
     );
   }
 
