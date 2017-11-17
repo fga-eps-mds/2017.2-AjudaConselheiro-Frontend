@@ -3,7 +3,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 import { FormsModule } from '@angular/forms';
 
-import {Http, HttpModule, ConnectionBackend } from '@angular/http';
+import { Http, HttpModule, ConnectionBackend } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 
@@ -137,7 +137,7 @@ describe('CouncilGroupCreateComponent', () => {
       'sigla': 'DF'
     };
     component.councilGroup = fakeCouncil;
-    component.resultGetState(result);
+    component.getStateAbbrResult(result);
   });
 
 });

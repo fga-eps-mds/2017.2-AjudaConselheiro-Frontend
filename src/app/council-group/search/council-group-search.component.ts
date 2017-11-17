@@ -49,7 +49,6 @@ export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
     this.found = false;
     // Creates new councilGroup to allow multiple searches
     if (this.councilGroup.municipio === undefined) {
-      console.log('Novo conselho criado!');
       this.councilGroup = new CouncilGroup();
     }
     this.getStateAbbr();
