@@ -1,14 +1,16 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { CouncilGroupSearchComponent } from './council-group-search.component';
 import { HttpModule, Headers, RequestOptions, Response, URLSearchParams } from '@angular/http';
 import { AlertService } from '../../services/alert/alert.service';
 import { RouterTestingModule } from '@angular/router/testing';
-import { CouncilGroupService } from '../../services/index';
+import { CouncilGroupService, IbgeService  } from '../../services/index';
 import { State, CouncilGroup } from '../../models/index';
 import { IbgeComponent } from '../../ibge/ibge.component';
+import 'rxjs/add/observable/throw';
+import { Observable } from 'rxjs/Observable';
 
-describe('CouncilGroupSearchComponent', () => {
+describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
   let component: CouncilGroupSearchComponent;
   let fixture: ComponentFixture<CouncilGroupSearchComponent>;
   let fakeCouncil: CouncilGroup;
@@ -16,6 +18,11 @@ describe('CouncilGroupSearchComponent', () => {
   fakeCouncil.municipio = 'Brasília';
   fakeCouncil.estado = 'Df';
   let mockAlert;
+  const council = {
+    'descricao': 'CAE-27-Barra de Santo Antônio',
+    'codGrupo': 1059,
+    'codObjeto': 1510426954450
+  };
 
   beforeEach(async(() => {
     mockAlert = {
@@ -23,6 +30,7 @@ describe('CouncilGroupSearchComponent', () => {
       warn: jasmine.createSpy('warn'),
       error: jasmine.createSpy('error')
     };
+
     TestBed.configureTestingModule({
       declarations: [
         CouncilGroupSearchComponent,
@@ -34,6 +42,7 @@ describe('CouncilGroupSearchComponent', () => {
         RouterTestingModule ],
       providers: [
         CouncilGroupService,
+        IbgeService,
         {
           provide: AlertService,
           useValue: mockAlert
@@ -51,6 +60,14 @@ describe('CouncilGroupSearchComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should search council group', () => {
+    component.councilGroup.municipio = undefined;
+    component.searchCouncilGroup();
+
+    component.councilGroup.municipio = 'Brasília';
+    component.searchCouncilGroup();
   });
 
   it('should has location', () => {
@@ -101,11 +118,6 @@ describe('CouncilGroupSearchComponent', () => {
 
 
   it('should filter council', () => {
-    const council = {
-    'descricao': 'CAE-27-Barra de Santo Antônio',
-    'codGrupo': 1059,
-    'codObjeto': 1510426954450
-    };
     const result = [council];
 
     // Testing case where advice is found
@@ -121,4 +133,41 @@ describe('CouncilGroupSearchComponent', () => {
 
   });
 
+  it('should get state abbreviated', () => {
+    const estado = {
+      'id': 52,
+      'sigla': 'GO',
+      'nome': 'Goiás',
+      'regiao': {
+          'id': 5,
+          'sigla': 'CO',
+          'nome': 'Centro-Oeste'
+      }
+    };
+    component.city = 'Goiânia';
+    component.getStateAbbrResult(estado);
+    expect(component.description).toEqual('CAE-GO-Goiânia');
+  });
+
+  it('should get council groups', () => {
+    const result = [council];
+
+    component.description = 'CAE-27-Barra de Santo Antônio';
+    component.getCouncilGroupsResult(result);
+
+    component.found = false;
+    component.description = 'CAE-DF-Brasília';
+    component.getCouncilGroupsResult(result);
+
+  });
+
+
+  it('should get state abbreviated', () => {
+    component.getStateAbbr();
+  });
+
+
+  it('should get council grups', inject([CouncilGroupService], (service: CouncilGroupService) => {
+    component.getCouncilGroups();
+  }));
 });
