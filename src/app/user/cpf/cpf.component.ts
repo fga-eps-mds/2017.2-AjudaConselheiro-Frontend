@@ -27,9 +27,14 @@ export class UserCpfComponent implements OnInit {
 
   savePosts(strCPF: string) {
 
-    if (this.testCPF(strCPF) === true) {this.profileService.createUserProfile(this.data).subscribe(
-      result => console.log(result)
-    );
+    if (this.testCPF(strCPF) === true) {
+      const userData = this.UserService.getLoggedUser();
+      const userCod = userData.cod;
+
+      this.profileService.setUserProfile(this.data, userCod)
+        .subscribe(
+          result => console.log(result)
+        );
   }
     if (strCPF === null) {
       this.alertService.warn('Digite seu CPF');

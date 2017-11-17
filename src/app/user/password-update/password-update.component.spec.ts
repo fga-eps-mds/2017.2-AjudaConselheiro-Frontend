@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { AlertService, UserService } from '../../services/index';
+import { AlertService, UserService, ProfileService, AuthenticationService } from '../../services/index';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpModule, Http, ConnectionBackend } from '@angular/http';
 
@@ -25,7 +25,9 @@ describe('PasswordUpdateComponent', () => {
         AlertService,
         UserService,
         Http,
-        ConnectionBackend
+        ConnectionBackend,
+        ProfileService,
+        AuthenticationService
       ]
 
     })

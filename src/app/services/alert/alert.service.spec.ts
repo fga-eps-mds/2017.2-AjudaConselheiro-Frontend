@@ -1,6 +1,7 @@
 import { TestBed, inject } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AlertService } from './alert.service';
+import { AlertService, AuthenticationService, UserService,
+  ProfileService } from '../index';
 import { Alert, AlertType } from '../../models/index';
 import { MockBackend } from '@angular/http/testing';
 import { Observable } from 'rxjs/Observable';
@@ -17,8 +18,13 @@ describe('AlertService', () => {
   beforeEach(() => {
 
     TestBed.configureTestingModule({
-      providers: [AlertService,
-                  MockBackend],
+      providers: [
+        AlertService,
+        UserService,
+        ProfileService,
+        AuthenticationService,
+        MockBackend
+      ],
       imports: [RouterTestingModule]
     });
   });
