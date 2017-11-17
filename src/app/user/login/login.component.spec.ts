@@ -1,5 +1,3 @@
-import { UserService } from './../../services/user/user.service';
-import { ProfileService } from './../../services/profile/profile.service';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TextMaskModule } from 'angular2-text-mask';
@@ -7,7 +5,8 @@ import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 
 import { LoginComponent } from './login.component';
-import { AlertService } from '../../services/alert/alert.service';
+import { AlertService, AuthenticationService, UserService,
+  ProfileService } from '../../services/index';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -23,9 +22,12 @@ describe('LoginComponent', () => {
           RouterTestingModule,
           FormsModule
         ],
-        providers: [ AlertService,
-        ProfileService,
-      UserService ]
+        providers: [
+          AlertService,
+          AuthenticationService,
+          ProfileService,
+          UserService
+        ]
       })
       .compileComponents();
     })
