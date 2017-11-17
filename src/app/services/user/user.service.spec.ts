@@ -200,4 +200,24 @@ describe('UserService', () => {
     expect(returnUser).toBeFalsy();
     expect(returnUser).toBeUndefined();
   }));
+
+  it('should return data from delete(id)',
+  inject([UserService, MockBackend], (service, mockBackend) => {
+
+  const fakeUser = [
+    { name: 'Um', cod: 1}
+  ];
+  const resHeader = new Headers();
+  localStorage.setItem('token','asdas');
+  // Mocking HTTP connection for this test
+  mockBackend.connections.subscribe((connection: MockConnection) => {
+    const options = new ResponseOptions({ body: fakeUser});
+      connection.mockRespond(new Response(options));
+  });
+
+  // Making the request and testing its response
+  service.delete(fakeUser[0].cod).subscribe((response) => {
+    expect(response.status).toEqual(null);
+  });
+}));
 });
