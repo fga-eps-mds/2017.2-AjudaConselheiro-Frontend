@@ -11,4 +11,5 @@ export class User {
     public nomeUsuario: string;
     public confirmaSenha: string;
     public sexo: CharacterData;
+    public telefone?: number;
 }

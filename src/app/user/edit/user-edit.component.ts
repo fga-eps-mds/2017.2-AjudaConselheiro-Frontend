@@ -51,10 +51,22 @@ export class UserEditComponent implements OnInit {
         result => {
           this.result();
           this.router.navigate(['/perfil']);
+          this.alertService.success('Seu perfil será atualizado no seu próximo login');
         },
         error => {
           this.error(error.status);
         });
+  }
+
+  updateAdditionalFields(telefone: number) {
+    this.userService.updateAdditionalFields(telefone)
+    .subscribe(
+      result => {
+        this.result();
+      },
+      error => {
+        this.error(error.status);
+      });
   }
 
   deleteUser(): void {

@@ -115,6 +115,36 @@ export class UserService extends ServicesUtilitiesService {
 
   }
 
+  updateAdditionalFields(telefone: number) {
+    const cod = this.getUserCod();
+
+    const headers: Headers = new Headers ({
+      'Content-Type': 'application/json',
+      'appToken': localStorage.getItem('token')
+     });
+
+    const options: RequestOptions = new RequestOptions({ headers: headers });
+
+    const body = {
+      'camposAdicionais': 'Telefone ' + telefone + '\n',
+      'tipoPerfil': {
+        'codTipoPerfil': 243
+      }
+    };
+
+    return this.http.put(this.url + '/' + cod + '/perfil', JSON.stringify(body), options)
+    .map((response: Response) => response.json())
+    .catch(this.handleError);
+
+  }
+
+  getProfilePhoto() {
+    const cod = this.getUserCod();
+
+    return this.http.get(this.url + '/' + cod + '/fotoPerfil')
+    .map((response: Response) => response.json())
+    .catch(this.handleError);
+  }
 
   delete(cod: Number): Observable<String> {
     const url = `${this.url + '?codAplicativo=462 &'}/${cod}`;
