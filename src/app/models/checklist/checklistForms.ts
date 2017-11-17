@@ -279,12 +279,12 @@ export const CheckProdSixthTopic: Array<BinaryForm> = [
 ];
 // production checklist seventh section answers
 export const CheckProdSeventhTopic: Array<CommentBinaryForm> = [
-  {question: 1, answer: false, commentary: ''},
-  {question: 2, answer: false, commentary: ''},
-  {question: 3, answer: false, commentary: ''},
-  {question: 4, answer: false, commentary: ''},
-  {question: 5, answer: false, commentary: ''},
-  {question: 6, answer: false, commentary: ''},
+  {question: 1, answer: false, commentary: null},
+  {question: 2, answer: false, commentary: null},
+  {question: 3, answer: false, commentary: null},
+  {question: 4, answer: false, commentary: null},
+  {question: 5, answer: false, commentary: null},
+  {question: 6, answer: false, commentary: null},
 ];
 // production checklist eighth section answers
 export const CheckProdEighthTopic: Array<BinaryForm> = [

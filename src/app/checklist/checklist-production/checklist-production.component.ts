@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Binary } from '@angular/compiler';
 import { Http, HttpModule } from '@angular/http';
 import { Component, OnInit } from '@angular/core';
@@ -22,7 +23,8 @@ export class ChecklistProductionComponent implements OnInit {
 
   constructor(
     protected postService: PostService,
-    protected alertService: AlertService
+    protected alertService: AlertService,
+    private router: Router,
   ) {}
 
   post: Post;
@@ -41,7 +43,7 @@ export class ChecklistProductionComponent implements OnInit {
   }
 
   isOtherQuestions (topic: number, question: number) {
-    return (topic !== 6 && ( question !== 4 && question !== 5));
+    return (topic !== 6 && ( question !== (4 || 5)));
   }
 
   isRequiredQuestions(topic: number, question: number) {
@@ -56,6 +58,7 @@ export class ChecklistProductionComponent implements OnInit {
       const jsonChecklistOne = JSON.stringify({
         'iteratorArray': this.iteratorArray,
       });
+      this.router.navigate(['/checklist']);
 
       this.postService.savePost(jsonChecklistOne).subscribe(
         result => console.log(result)

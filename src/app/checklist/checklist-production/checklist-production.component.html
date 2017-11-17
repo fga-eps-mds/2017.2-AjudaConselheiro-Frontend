@@ -25,7 +25,7 @@
         <form #f="ngForm" (ngSubmit)="onSubmit()">
             <div *ngFor="let topic of iteratorArray;let topicNum=index">
                 <div class="row">
-                    <div class="col-md-9 " align="center">
+                    <div class="col-md-9 " align="center" *ngIf="topicNum<8">
                         <h5>{{topicHeaders[topicNum]}}</h5>
                     </div>
                     <div class="col-md-1 " align="center">
@@ -37,10 +37,10 @@
                 </div>
                 <div class="row" *ngFor="let question of topic;let questNum=index;">
                     <!-- Section header -->
-                    <div class="col-md-9" align="left">{{questionsProduction[topicNum][questNum]}}</div>
+                    <div class="col-md-9" align="left" *ngIf="topicNum<8">{{questionsProduction[topicNum][questNum]}}</div>
 
                     <!-- Questions -->
-                    <div class="col-md-2" align="center" valign="center" *ngIf="isOtherQuestions(topicNum, questNum)">
+                    <div class="col-md-2" align="center" valign="center" *ngIf="topicNum !== 6 && ( questNum !== 4 || questNum !== 5) && topicNum<8">
                         Não
                         <!-- Rounded switch -->
                         <label class=" align-middle switch">
@@ -53,7 +53,7 @@
                     </div>
 
                     <!-- Other questions -->
-                    <div class="col-md-2" align="center" *ngIf="isNotRequiredQuestions(topicNum, questNum)">
+                    <div class="col-md-2" align="center" *ngIf="topicNum === 6 && ( questNum >= 0 && questNum <= 3) && topicNum<8">
                         Não
                         <label class=" align-middle switch">
                 <input type="checkbox"
@@ -66,11 +66,11 @@
 
                     <!-- Commentary options for 2nd half of questions -->
                     <div class="col-md-2">
-                        <input required type="text" placeholder="Resposta" *ngIf="isRequiredQuestions(topicNum,questNum)" [(ngModel)]="iteratorArray[topicNum][questNum].commentary" name="{{iteratorArray[topicNum][questNum].question}}">
+                        <input required type="text" placeholder="Resposta" *ngIf="topicNum === 6 && ( questNum === 4 || questNum === 5)" [(ngModel)]="iteratorArray[topicNum][questNum].commentary" name="Text_input_question{{iteratorArray[topicNum][questNum]}}">
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="row" *ngIf="topicNum<8">
                     <!-- Topics observation -->
                     <div class="col-md-8" align="left">Observações?</div>
                     <div class="col-md-4">
