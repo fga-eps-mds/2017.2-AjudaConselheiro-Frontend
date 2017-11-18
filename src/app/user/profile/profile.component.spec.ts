@@ -1,11 +1,10 @@
 import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { MockBackend, MockConnection } from '@angular/http/testing';
 import { FormsModule } from '@angular/forms';
-
-import { Http, HttpModule, ConnectionBackend } from '@angular/http';
+import { HttpModule, Headers, RequestOptions, Response, URLSearchParams } from '@angular/http';
+import { RouterTestingModule } from '@angular/router/testing';
+import 'rxjs/add/observable/throw';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
+
 import { AlertService, AuthenticationService, ProfileService,
   UserService } from '../../services/index';
 import { ProfileComponent } from './profile.component';
@@ -35,12 +34,9 @@ describe('ProfileComponent', () => {
           RouterTestingModule
         ],
         providers: [
-          Http,
-          MockBackend,
-          ConnectionBackend,
           AlertService,
-          ProfileService,
           UserService,
+          ProfileService,
           AuthenticationService,
           {
             provide: AlertService,
@@ -67,18 +63,18 @@ describe('ProfileComponent', () => {
     component.ngOnInit();
   });
 
-  it('should get formated user data', () => {
+ it('should get formated user data', () => {
     fixture.detectChanges();
     expect(fixture.componentInstance.biography).toEqual('bio');
     expect(fixture.componentInstance.name).toEqual('name');
     expect(fixture.componentInstance.email).toEqual('email');
   });
 
-  // it('should validate password',  inject([AuthenticationService], (service: AuthenticationService) => {
-  //   component.user = fakeUser.generateFakeUser();
-  //   component.password = '1234567';
-  //   component.validatePassword();
-  // }));
+  it('should validate password',  inject([AuthenticationService], (service: AuthenticationService) => {
+    component.user = fakeUser.generateFakeUser();
+    component.password = '1234567';
+    component.validatePassword();
+  }));
 
   it('should error status', () => {
     component.errorStatus(401);
@@ -86,10 +82,10 @@ describe('ProfileComponent', () => {
     component.errorStatus(400);
   });
 
-  // fit('should delete', inject([UserService], (service: UserService)  => {
-  //   component.user.cod = 48;
-  //   component.delete();
-  // }));
+  it('should delete', inject([UserService], (service: UserService)  => {
+    component.user.cod = 48;
+    component.delete();
+  }));
 
   it('should delete', ()  => {
     component.resultDelete();
