@@ -16,9 +16,10 @@ export class ProfileComponent implements OnInit {
   public email;
   user: User;
   public password;
+
   constructor(
     private router: Router,
-    private UserService: UserService,
+    private userService: UserService,
     private authenticationService: AuthenticationService,
     private alertService: AlertService
   ) { }
@@ -28,30 +29,32 @@ export class ProfileComponent implements OnInit {
       this.router.navigate(['/home']);
     } else {
       this.formatUserData();
-      this.user = this.UserService.getLoggedUser();
+      this.user = this.userService.getLoggedUser();
+    }
+  }
+
+  errorStatus (errorStatus: number) {
+    console.log('error: ', errorStatus);
+    if (errorStatus === 401) {
+      this.alertService.warn('Aviso: senha errada!');
     }
   }
 
   validatePassword() {
-      this.authenticationService.login(this.user.email, this.password)
-      .subscribe(
-        result => {
-          this.delete();
-        },
-        error => {
-          console.log('error: ', error.status);
-          if (error.status === 401) {
-            this.alertService.warn('Aviso: senha errada!');
-          }
-      });
+    this.authenticationService.login(this.user.email, this.password)
+    .subscribe(
+      result => this.delete(),
+      error => this.errorStatus(error.status));
+  }
+
+  resultDelete() {
+    this.authenticationService.logout();
+    this.router.navigate(['/home']);
   }
 
   delete() {
-    this.UserService.delete(this.user.cod) .subscribe(
-      result => {
-        this.authenticationService.logout();
-        this.router.navigate(['/home']);
-      }
+    this.userService.delete(this.user.cod) .subscribe(
+      result => this.resultDelete()
     );
   }
 
