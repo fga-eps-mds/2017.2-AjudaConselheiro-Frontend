@@ -58,8 +58,8 @@ export class UserEditComponent implements OnInit {
         });
   }
 
-  updateAdditionalFields(telefone: number) {
-    this.userService.updateAdditionalFields(telefone)
+  updateAdditionalFields(telefone: number, segmento: string) {
+    this.userService.updateAdditionalFields(telefone, segmento)
     .subscribe(
       result => {
         this.result();

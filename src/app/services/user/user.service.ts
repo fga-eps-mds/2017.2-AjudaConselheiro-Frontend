@@ -133,7 +133,7 @@ export class UserService extends ServicesUtilitiesService {
 
   }
 
-  updateAdditionalFields(telefone: number) {
+  updateAdditionalFields(telefone: number, segmento: string) {
     const cod = this.getUserCod();
 
     const headers: Headers = new Headers ({
@@ -144,7 +144,7 @@ export class UserService extends ServicesUtilitiesService {
     const options: RequestOptions = new RequestOptions({ headers: headers });
 
     const body = {
-      'camposAdicionais': 'Telefone ' + telefone + '\n',
+      'camposAdicionais': 'Telefone ' + telefone + '\n' + 'Segmento' + segmento + '\n',
       'tipoPerfil': {
         'codTipoPerfil': 243
       }
