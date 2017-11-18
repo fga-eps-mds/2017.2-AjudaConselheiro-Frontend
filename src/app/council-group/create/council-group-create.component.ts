@@ -65,21 +65,21 @@ export class CouncilGroupCreateComponent implements OnInit, OnDestroy {
   createCouncil(): void {
     this.createSubs = this.councilGroupService.createCouncil(this.councilGroup)
       .subscribe(
-        (result) => this.createCouncilResult(result),
-        (error) => this.createCouncilError(error));
+        (result) => this.createCouncilResult(),
+        (error) => this.createCouncilError(error.status));
   }
 
-  createCouncilResult(result: any): void {
+  createCouncilResult(): void {
     console.log(this.councilGroup);
     // Navigate to url that show details about the created council group
     // this.router.navigate(['/home']);
     this.alertService.success('Conselho de ' + this.councilGroup.municipio + ' criado com sucesso!');
   }
 
-  createCouncilError(error: any): void {
-    if (error.status === 400) {
+  createCouncilError(status: number): void {
+    if (status === 400) {
       this.alertService.error('O conselho de ' + this.councilGroup.municipio + ' já se encontra cadastrado!');
-    } else if (error.status > 400) {
+    } else {
       this.alertService.error('Erro no servidor, tente novamente!');
     }
   }
