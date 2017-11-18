@@ -19,6 +19,12 @@ export class UserService extends ServicesUtilitiesService {
   private headers: Headers = new Headers({ 'Content-Type': 'application/json' });
   options: RequestOptions = new RequestOptions({ headers: this.headers });
 
+  updateHeaders: Headers = new Headers({
+    'Content-Type': 'application/json',
+    'appToken': localStorage.getItem('token')
+   });
+     updateOptions: RequestOptions = new RequestOptions({ headers: this.updateHeaders });
+
   constructor(private http: Http, private alertService: AlertService,
     private router: Router, private profileService: ProfileService,
     private authService: AuthenticationService) {
@@ -85,6 +91,7 @@ export class UserService extends ServicesUtilitiesService {
       return JSON.parse(localUserValue);
     }
 }
+
   updateUser(user: User) {
     const cod = this.getUserCod();
     const href = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas/' + cod;
@@ -104,13 +111,7 @@ export class UserService extends ServicesUtilitiesService {
       'sexo': user.sexo
     };
 
-    const updateHeaders: Headers = new Headers({
-      'Content-Type': 'application/json',
-      'appToken': localStorage.getItem('token')
-     });
-    const updateOptions: RequestOptions = new RequestOptions({ headers: updateHeaders });
-
-    return this.http.put(this.url + '/' + cod, JSON.stringify(body), updateOptions)
+    return this.http.put(this.url + '/' + cod, JSON.stringify(body), this.updateOptions)
       .map((response: Response) => response.json())
       .catch(this.handleError);
   }
