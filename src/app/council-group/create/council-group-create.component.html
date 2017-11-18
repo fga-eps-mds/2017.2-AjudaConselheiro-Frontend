@@ -9,6 +9,9 @@
   <br>
   <p class="h2 text-center mb-4"> Cadastro de Conselho </p>
 
+<<<<<<< HEAD
+  <app-ibge (stateEmitter)="chosenState($event)" (cityEmitter)="chosenCity($event)"></app-ibge>
+=======
     <div class="form-group">
       <input type="text" id="orangeForm-name" class="form-control" name="state" placeholder="Estado" [(ngModel)]="councilGroup.estado"
         #state="ngModel" required>
@@ -37,6 +40,7 @@
     </div>
 
   </form>
+>>>>>>> 6839470933f4b1a10ed1f06d4b4413d962aac9a9
 
   <div align="center" *ngIf="hasLocation()">
     <input type="button" class="btn btn-deep-orange" (click)="createCouncilGroup()" value="Cadastrar">
@@ -47,6 +51,14 @@
 </div>
 
 <div align="center" *ngIf="!isLoggedIn()">
+<<<<<<< HEAD
+  <br>
+  <p class="h2 text-center mb-4">Você precisa estar logado para acessar esta função.</p>
+  <br>
+  <a href="/login" class="btn btn-deep-orange">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="false"></span>Entrar
+  </a>
+=======
     <br>
     <p class="h2 text-center mb-4">Você precisa estar logado para acessar esta função.</p>
     <br>
@@ -55,6 +67,7 @@
       <span class="glyphicon glyphicon-chevron-left"
         aria-hidden="false"></span>Entrar
     </a>
+>>>>>>> 6839470933f4b1a10ed1f06d4b4413d962aac9a9
 </div>
 
 <br>

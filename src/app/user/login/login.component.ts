@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { TextMaskModule } from 'angular2-text-mask';
 import { User } from '../../models/index';
-import { AuthenticationService, AlertService } from '../../services/index';
+import { AuthenticationService, AlertService, UserService} from '../../services/index';
 
 @Component({
   selector: 'app-login',
@@ -26,7 +26,8 @@ export class LoginComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private alertService: AlertService,
     private profileService: ProfileService,
-    private router: Router,
+    private userService: UserService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -61,8 +62,8 @@ export class LoginComponent implements OnInit {
     }
   }
   getProfile() {
-    return this.profileService.getProfile().subscribe(
+    const user = this.userService.getLoggedUser();
+    return this.profileService.getProfile((user.cod as any)).subscribe(
            result => localStorage.setItem('Profile', JSON.stringify(result)));
-
     }
 }

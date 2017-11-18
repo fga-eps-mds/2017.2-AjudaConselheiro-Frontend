@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed, fakeAsync, tick} from '@angular/core/
 import { By } from '@angular/platform-browser';
 
 import { ChecklistCafeteriaComponent } from './checklist-cafeteria.component';
-import { ChecklistService } from './../../services/index';
+import { ChecklistService, ProfileService, AuthenticationService} from './../../services/index';
 import { ChecklistCafeteria, SectionCommentaryTwo, FormMenuThree } from './../../models/index';
 import { AppModule } from './../../app.module';
 
@@ -18,7 +18,11 @@ describe('ChecklistCafeteriaComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [  ],
-      providers: [{provide: APP_BASE_HREF, useValue : '/' }],
+      providers: [
+        ProfileService,
+        AuthenticationService,
+        {provide: APP_BASE_HREF, useValue : '/' },
+      ],
       imports: [ AppModule ],
     })
     .compileComponents();
