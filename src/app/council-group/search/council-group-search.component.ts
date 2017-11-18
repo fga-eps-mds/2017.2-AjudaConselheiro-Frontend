@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
 
 import { Subscription } from 'rxjs/Subscription';
 
@@ -32,7 +31,6 @@ export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
   constructor(
     public councilGroupService: CouncilGroupService,
     private alertService: AlertService,
-    private router: Router,
     private ibgeService: IbgeService
   ) {}
 
@@ -79,7 +77,7 @@ export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
   getCouncilGroupsResult(result: any): void {
     this.filterCouncil(result);
     if (this.found) {
-      this.alertService.success('Conselho ' + this.city + ' encontrado!');
+      this.alertService.success('Conselho de ' + this.city + ' encontrado!');
     } else {
       this.alertService.warn('Conselho de ' + this.city + ' não cadastrado!');
     }
@@ -106,6 +104,7 @@ export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
   // Listen IBGE state EventEmitter()
   chosenState(state: string) {
     this.city = '';
+    this.found = false;
     state ? (this.stateId = state) : this.alertService.warn('Nenhum estado selecionado');
   }
 

@@ -1,0 +1,17 @@
+.custom-select {
+  width: 70%;
+  height: 35%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.card {
+  margin: 0 auto;
+  float: none;
+  width: 100%;
+}
+
+.select-style {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}

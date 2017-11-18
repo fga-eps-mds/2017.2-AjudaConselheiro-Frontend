@@ -1,33 +1,24 @@
-<br>
-<br>
-<br>
-<br>
-<br>
-<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
-<div class="well" *ngIf="isLoggedIn()">
-  <br>
-  <p class="h2 text-center mb-4"> Cadastro de Conselho </p>
+<body>
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+  <div class="well" *ngIf="isLoggedIn()">
+    <p class="h2 text-center mb-4"> Cadastro de Conselho </p>
 
-  <app-ibge (stateEmitter)="chosenState($event)" (cityEmitter)="chosenCity($event)"></app-ibge>
+    <app-ibge (stateEmitter)="chosenState($event)" (cityEmitter)="chosenCity($event)"></app-ibge>
 
-  <div align="center" *ngIf="hasLocation()">
-    <input type="button" class="btn btn-deep-orange" (click)="createCouncilGroup()" value="Cadastrar">
-    <a href="/home" class="btn btn-outline-warning waves-effect">
-      <span class="glyphicon glyphicon-chevron-left" aria-hidden="false"></span>Voltar
+    <div align="center" *ngIf="hasLocation()">
+      <input type="button" class="btn btn-primary" (click)="createCouncilGroup()" value="Cadastrar">
+      <a href="/home" class="btn btn-secondary">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="false"></span>Voltar
+      </a>
+    </div>
+  </div>
+
+  <div align="center" *ngIf="!isLoggedIn()">
+    <br>
+    <p class="h2 text-center mb-4">Você precisa estar logado para acessar esta função.</p>
+    <br>
+    <a href="/login" class="btn btn-deep-orange">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="false"></span>Entrar
     </a>
   </div>
-</div>
-
-<div align="center" *ngIf="!isLoggedIn()">
-  <br>
-  <p class="h2 text-center mb-4">Você precisa estar logado para acessar esta função.</p>
-  <br>
-  <a href="/login" class="btn btn-deep-orange">
-    <span class="glyphicon glyphicon-chevron-left" aria-hidden="false"></span>Entrar
-  </a>
-</div>
-
-<br>
-<br>
-<br>
-<br>
+</body>
