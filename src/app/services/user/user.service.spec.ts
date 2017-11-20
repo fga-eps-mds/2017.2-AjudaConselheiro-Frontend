@@ -220,4 +220,74 @@ describe('UserService', () => {
     expect(response.status).toEqual(null);
   });
 }));
+
+  it('has to return an updated user data',
+    inject([UserService, MockBackend], (service, mockBackend) => {
+      const userParams = new FakeUser();
+
+      const resHeader = new Headers();
+      resHeader.append('location', 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas/0');
+      resHeader.append('appToken', 'FakeToken');
+
+      mockBackend.connections.subscribe((connection: MockConnection) => {
+        const options = new ResponseOptions({ body: userParams, headers: resHeader});
+        connection.mockRespond(new Response(options));
+      });
+
+      service.updateUser(userParams).subscribe((response) => {
+        expect(response).toEqual(userParams);
+      });
+  }));
+
+  it('has to update user password',
+    inject([UserService, MockBackend], (service, mockBackend) => {
+      const userParams = new FakeUser();
+
+      const resHeader = new Headers();
+      resHeader.append('location', 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas/0/definirNovaSenha');
+      resHeader.append('appToken', 'FakeToken');
+      resHeader.append('email', 'fakeMail');
+      resHeader.append('senhaAtual', 'fakePass');
+      resHeader.append('novaSenha', 'fakeNewPass');
+
+      mockBackend.connections.subscribe((connection: MockConnection) => {
+        const options = new ResponseOptions({ headers: resHeader });
+        connection.mockRespond(new Response(options));
+      });
+
+      service.updatePassword('fakePass', 'fakeNewPass').subscribe((response) => {
+        expect(response).toBeDefined();
+      });
+  }));
+
+  it('update user aditional fields ',
+    inject([UserService, MockBackend], (service, mockBackend) => {
+      const userParams = new FakeUser();
+      const userPhone = 'phone';
+
+      const resHeader = new Headers();
+      resHeader.append('location', 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas/0/perfil');
+      resHeader.append('appToken', 'FakeToken');
+
+      mockBackend.connections.subscribe((connection: MockConnection) => {
+        const options = new ResponseOptions({ headers: resHeader });
+        connection.mockRespond(new Response(options));
+      });
+
+      service.updateAdditionalFields(userPhone).subscribe((response) => {
+        expect(response).toBeDefined();
+      });
+  }));
+
+  it(' ',
+    inject([UserService, MockBackend], (service, mockBackend) => {
+      mockBackend.connections.subscribe((connection: MockConnection) => {
+        const options = new ResponseOptions({ });
+        connection.mockRespond(new Response(options));
+      });
+
+      service.getProfilePhoto().subscribe((response) => {
+        expect(response).toBeDefined();
+      });
+  }));
 });

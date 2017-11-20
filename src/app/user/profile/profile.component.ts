@@ -14,6 +14,7 @@ export class ProfileComponent implements OnInit {
   public name;
   public biography;
   public email;
+
   user: User;
   public password;
 
@@ -22,6 +23,7 @@ export class ProfileComponent implements OnInit {
     private userService: UserService,
     private authenticationService: AuthenticationService,
     private alertService: AlertService
+
   ) { }
 
   ngOnInit() {
@@ -74,5 +76,4 @@ export class ProfileComponent implements OnInit {
     this.email = this.email.replace(/"|{|}/g, '');
 
   }
-
 }

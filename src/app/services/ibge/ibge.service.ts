@@ -1,105 +1,75 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions, Response, URLSearchParams } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import { AlertService } from '../../services/alert/alert.service';
-import { State } from '../../models/index';
+import { Http } from '@angular/http';
 
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
+
+import { State } from '../../models/index';
+import { AlertService } from '../../services/alert/alert.service';
 import { ServicesUtilitiesService } from '../services-utilities/services-utilities.service';
 
 @Injectable()
-export class IbgeService extends ServicesUtilitiesService{
+export class IbgeService extends ServicesUtilitiesService {
   states = new Array<State>();
   cities = new Array<String>();
+  private url = 'http://servicodados.ibge.gov.br/api/v1/localidades/estados/';
 
-  constructor(
-    private http: Http,
-    private alertService: AlertService
-  ) {super();
- }
-
-
-  statesRequest(): any {
-    this.searchStates();
-    return this.states;
+  constructor(private http: Http, private alertService: AlertService) {
+    super();
   }
 
-  citiesRequest(state: string): any {
-    this.cities = new Array<string>();
-    this.searchCities(state);
-    return this.cities;
+  getStates(): Observable<Array<Object>> {
+    return this.http.get(this.url)
+      .map(this.extractData)
+      .catch(this.handleError);
   }
 
-  getStates():  Observable<Array<Object>> {
-    return this.http
-    .get('http://servicodados.ibge.gov.br/api/v1/localidades/estados')
-    .map(res => res.json())
-    .catch(this.handleError);
+  getState(id: string) {
+    return this.http.get(this.url + id)
+      .map(this.extractData)
+      .catch(this.handleError);
   }
 
-  getCities(state: string):  Observable<Array<Object>> {
-    return this.http
-    .get('http://servicodados.ibge.gov.br/api/v1/localidades/estados/' + state + '/municipios')
-    .map(res => res.json())
-    .catch(this.handleError);
+  getCities(state: string): Observable<Array<Object>> {
+    return this.http.get(this.url + state + '/municipios')
+      .map(this.extractData)
+      .catch(this.handleError);
   }
 
-  searchStates(): void {
-    this.getStates()
-      .subscribe(
-          result => {
-            result.sort(this.sortingStates);
-            this.filterState(result);
-          },
-          error => {
-            alert(error);
-            console.error(error);
-      });
-  }
-
-  searchCities(state: string): void {
-    this.getCities(state)
-      .subscribe(
-          result => {
-            this.filterCityName(result);
-          },
-          error => {
-            alert(error);
-            console.error(error);
-      });
-  }
-
-  filterState(result: Array<Object>): void {
+  filterState(result: Array<Object>) {
+    this.states = [];
     result.forEach(subitem => {
       const siglaUntreated = JSON.stringify(subitem['sigla']);
       const codigoUntreated = JSON.stringify(subitem['id']);
 
-      const state = new State(codigoUntreated, this.takeQuoteOff(siglaUntreated));
+      const state = new State(codigoUntreated, this.removeQuotes(siglaUntreated));
 
       this.states.push(state);
     });
+    return this.states;
   }
 
-  filterCityName(result: Array<Object>): void {
+  filterCityName(result: Array<Object>) {
+    this.cities = [];
     result.forEach(city => {
       const nameUntreated = JSON.stringify(city['nome']);
-      const cityName =  this.takeQuoteOff(nameUntreated);
+      const cityName = this.removeQuotes(nameUntreated);
 
       this.cities.push(cityName);
     });
+    return this.cities;
   }
 
-  takeQuoteOff(untreated: string): string {
-    let name = untreated;
+  removeQuotes(untreated: string): string {
     const quote = /\"/g;
+    untreated = untreated.replace(quote, '');
 
-    name = name.replace(quote, '');
-
-    return name;
+    return untreated;
   }
 
-  sortingStates(firstState: State, secondState: State) {
+  // Sort states array alphabetical A-Z
+  sortArray(firstState: State, secondState: State) {
     if (firstState.sigla < secondState.sigla) {
       return -1;
     }
