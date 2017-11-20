@@ -8,14 +8,17 @@ import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { AlertService } from '../services/index';
+import { PasswordUpdateComponent } from '../user/password-update/password-update.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
+
 
 export {
   AlertComponent,
   FooterComponent,
   NavbarComponent,
   CarouselComponent,
+  PasswordUpdateComponent
 };
 
 @NgModule({
@@ -23,7 +26,7 @@ export {
     CommonModule,
     RouterModule,
     CarouselModule.forRoot(),
-    ConfirmationPopoverModule.forRoot()
+    ConfirmationPopoverModule.forRoot(),
   ],
   declarations: [
     AlertComponent,
@@ -35,7 +38,7 @@ export {
     AlertComponent,
     FooterComponent,
     NavbarComponent,
-    CarouselComponent
+    CarouselComponent,
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [

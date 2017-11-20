@@ -1,28 +1,26 @@
-<br><br><br><br><br>
+<br><br><br>
 <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
 <div class="well">
-  <form (ngSubmit)="login()">
-    <br>
-    <p class="h3 text-center mb-4"> Entrar </p>
+    <form (ngSubmit)="login()">
+        <br>
+        <p class="h3 text-center mb-4"> Entrar </p>
 
-    <div class="form-group">
-      <i class="fa fa-envelope prefix grey-text"></i>
-      <input type="text" id="orangeForm-name" class="form-control" name="email" [(ngModel)]="email" placeholder="Email" required
-        email>
-    </div>
-    <div class="form-group">
-      <i class="fa fa-lock prefix grey-text"></i>
-      <input type="password" id="orangeForm-name" class="form-control" name="password" [(ngModel)]="password" minlength="5" placeholder="Senha"
-        required password>
-    </div>
-    <div class="form-group text-center">
-      <input type="button" class="btn btn-blue-grey conclude-button" (click)="login()" value="Entrar">
-      <a href="/home" class="btn btn-deep-orange back-button">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="false"></span>Voltar
-      </a>
-      <br>
-      <br>
-      <a align="center" href="/home">Esqueci minha senha</a>
-    </div>
-  </form>
+        <div class="form-group">
+            <i class="fa fa-envelope prefix grey-text"></i>
+            <input type="text" id="orangeForm-name" class="form-control" name="email" [(ngModel)]="email" placeholder="Email" required email>
+        </div>
+        <div class="form-group">
+            <i class="fa fa-lock prefix grey-text"></i>
+            <input type="password" id="orangeForm-name" class="form-control" name="password" [(ngModel)]="password" minlength="5" placeholder="Senha" required password>
+        </div>
+        <div class="form-group text-center">
+            <input type="button" class="btn btn-blue-grey conclude-button" (click)="login()" value="Entrar">
+            <a href="/home" class="btn btn-deep-orange back-button">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="false"></span>Voltar
+            </a>
+            <br>
+            <br>
+            <a align="center" href="/home">Esqueci minha senha</a>
+        </div>
+    </form>
 </div>

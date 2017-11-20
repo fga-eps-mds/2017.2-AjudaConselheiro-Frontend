@@ -12,8 +12,8 @@ import { TextMaskModule } from 'angular2-text-mask';
 import { UserCpfComponent } from './cpf/cpf.component';
 import { NotProfileComponent } from './not-profile/not-profile.component';
 import { ProfileComponent } from './profile/profile.component';
-
-export { UserCreateComponent, UserEditComponent, UserListComponent, LoginComponent, UserCpfComponent, NotProfileComponent, ProfileComponent };
+import { PasswordUpdateComponent } from './password-update/password-update.component';
+export { UserCreateComponent, UserEditComponent, UserListComponent, LoginComponent, UserCpfComponent, NotProfileComponent, ProfileComponent, PasswordUpdateComponent };
 
 @NgModule({
   imports: [
@@ -29,7 +29,8 @@ export { UserCreateComponent, UserEditComponent, UserListComponent, LoginCompone
     LoginComponent,
     UserCpfComponent,
     NotProfileComponent,
-    ProfileComponent
+    ProfileComponent,
+    PasswordUpdateComponent
   ],
   providers: [
     UserService,

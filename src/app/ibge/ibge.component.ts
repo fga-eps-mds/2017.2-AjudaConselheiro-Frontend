@@ -52,27 +52,28 @@ export class IbgeComponent implements OnInit, OnChanges {
   getStates() {
     this.ibgeService.getStates()
       .subscribe(
-        (result) => {
-          result.sort(this.ibgeService.sortArray);
-          this.states = this.ibgeService.filterState(result);
-          console.log(this.states);
-        },
-        (error) => {
-          this.alertService.error(error);
-        });
+        (result) => this.getStatesResult(result),
+        (error) => this.alertService.error(error));
+  }
+
+
+  getStatesResult(result: any) {
+    result.sort(this.ibgeService.sortArray);
+    this.states = this.ibgeService.filterState(result);
+    console.log(this.states);
   }
 
   // Get all cities given a state
   getCities(state: string) {
     this.ibgeService.getCities(state)
       .subscribe(
-        (result) => {
-          result.sort(this.ibgeService.sortArray);
-          this.cities = this.ibgeService.filterCityName(result);
-          console.log(this.cities);
-        },
-        (error) => {
-          this.alertService.error(error);
-        });
+        (result) => this.getCitiesResult(result),
+        (error) => this.alertService.error(error));
+  }
+
+  getCitiesResult(result: any) {
+    result.sort(this.ibgeService.sortArray);
+    this.cities = this.ibgeService.filterCityName(result);
+    console.log(this.cities);
   }
 }

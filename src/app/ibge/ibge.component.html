@@ -1,35 +1,20 @@
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<div  class="row col-md-12">
-  <div class="col-md-4"></div>
-  <div class="col-md-8"><h5><b>Deseja criar um conselho?</b></h5></div>
-</div>
-<div class="row">
-  <div></div>
-</div>
-<div class="create-form">
-  <div class="card container search">
-    <br>
+<body>
+  <div class="card">
     <div class="container select-style">
       <label>
         <i class="fa fa-map-marker" aria-hidden="true"></i>Estados:</label>
       <select select class="custom-select" [(ngModel)]="state" (change)="ngOnChanges(state)">
-        <option value="" selected disabled>Escolha um Estado</option>
-        <option *ngFor="let st of states" [value]="st.id">{{st.sigla}}</option>
+        <option class="option" value="" selected disabled>Escolha um Estado</option>
+        <option class="option" *ngFor="let st of states" [value]="st.id">{{st.sigla}}</option>
       </select>
     </div>
     <div class="container select-style" *ngIf="state!=null">
       <label>
         <i class="fa fa-street-view" aria-hidden="true"></i>Municipio:</label>
       <select select class="custom-select" [(ngModel)]="city" (change)="ngOnChanges(city)">
-        <option value="" selected disabled>Escolha um Município</option>
-        <option *ngFor="let ct of cities" [value]="ct">{{ct}}</option>
+        <option class="option" value="" selected disabled>Escolha um Município</option>
+        <option class="option" *ngFor="let ct of cities" [value]="ct">{{ct}}</option>
       </select>
     </div>
   </div>
-</div>
+</body>
