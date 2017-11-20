@@ -1,26 +1,43 @@
-<p class="h1 text-center mb-6"> Buscar Conselho </p>
-<br>
-<div class="create-form">
-  <div class="card container search">
-    <br>
-        <div class="container select-style">
-            <label><i class="fa fa-map-marker" aria-hidden="true"></i>Estados:</label>
-          <select [(ngModel)]="state" (change)="ngOnChanges(state)">
-            <option value="" selected disabled>Escolha um Estado</option>
-            <option *ngFor="let st of states" [value]="st.id">{{st.sigla}}</option>
-          </select>
-        </div>
-        <div class="container select-style" *ngIf="state!=null">
-            <label><i class="fa fa-street-view" aria-hidden="true"></i>Municipio:</label>
-          <select [(ngModel)]="city" (change)="ngOnChanges(city)">
-            <option value="" selected disabled>Escolha um Município</option>
-            <option *ngFor="let ct of cities" [value]="ct">{{ct}}</option>
-          </select>
-        </div>
-    <br>
-    <div class="container select-style" *ngIf="showCouncil">
-        <p class="h6 text-left mb-6">Conselho de Alimentação Escolar</p>
-        <p> {{stateSigla}} {{city}}
+<body>
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+  <div class="well" *ngIf="isLoggedIn()">
+    <p class="h2 text-center mb-4"> Busca de Conselho </p>
+
+    <app-ibge (stateEmitter)="chosenState($event)" (cityEmitter)="chosenCity($event)"></app-ibge>
+
+    <div align="center" *ngIf="hasLocation()">
+      <input type="button" class="btn btn-primary" (click)="searchCouncilGroup()" value="Pesquisar">
+      <a href="/home" class="btn btn-secondary">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="false"></span>Voltar
+      </a>
     </div>
   </div>
-</div>
+
+  <table *ngIf="found" class="table table-hover" [(ngModel)]="councilGroup.municipio" #council="ngModel" ngDefaultControl>
+    <thead>
+        <tr>
+            <th>Conselho</th>
+            <th>Estado</th>
+            <th>Município</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td>{{this.councilGroup.descricao}}</td>
+            <td>{{this.state}}</td>
+            <td>{{this.city}}</td>
+        </tr>
+    </tbody>
+  </table>
+
+  <div align="center" *ngIf="!isLoggedIn()">
+    <br>
+    <p class="h2 text-center mb-4">Você precisa estar logado para acessar esta função.</p>
+    <br>
+    <a href="/login" class="btn btn-deep-orange">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="false"></span>Entrar
+    </a>
+  </div>
+</body>
+

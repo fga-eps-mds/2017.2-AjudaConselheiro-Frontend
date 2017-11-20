@@ -11,6 +11,7 @@ import { RecoverPasswordComponent } from './recover-password.component';
 import { UserService, AlertService, ProfileService,
   AuthenticationService } from '../../services/index';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
 
 describe('RecoverPasswordComponent', () => {
   let component: RecoverPasswordComponent;

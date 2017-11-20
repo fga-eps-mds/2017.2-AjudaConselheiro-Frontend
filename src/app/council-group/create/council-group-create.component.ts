@@ -1,53 +1,82 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+
 import { CouncilGroup } from '../../models/index';
-import { CouncilGroupService, AlertService } from '../../services/index';
+import { CouncilGroupService, AlertService, IbgeService } from '../../services/index';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-council-group-create',
   templateUrl: './council-group-create.component.html',
   styleUrls: ['./council-group-create.component.css'],
-  providers: [CouncilGroupService]
+  providers: [CouncilGroupService, IbgeService]
 })
 
-export class CouncilGroupCreateComponent implements OnInit {
+export class CouncilGroupCreateComponent implements OnInit, OnDestroy {
 
   @ViewChild('formCouncilGroupCreate') formCouncilGroupCreate: NgForm;
-  councilGroup: CouncilGroup = null;
-  private location: any = null;
+  private getStateSubs: Subscription;
+  private createSubs: Subscription;
+  public councilGroup: CouncilGroup;
+  public state = '';
+  public stateId = '0';
+  public city = '';
 
   constructor(
     public councilGroupService: CouncilGroupService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private ibgeService: IbgeService
   ) { }
 
   ngOnInit() {
     this.councilGroup = new CouncilGroup();
   }
 
-  result(result: any) {
-    this.location = result;
-    console.log(this.location);
-    this.alertService.success('Conselho criado com sucesso!');
-  }
-
-  error(status: number) {
-    if (status === 400) {
-      this.alertService.warn('Aviso: este conselho já está cadastrado no sistema!');
-    } else if (status > 400 && status < 500) {
-      this.alertService.error('Erro: falha na comunicação com o sistema!');
-    }
+  ngOnDestroy() {
+    this.getStateSubs.unsubscribe();
+    this.createSubs.unsubscribe();
   }
 
   createCouncilGroup(): void {
-    this.councilGroupService.createCouncil(this.councilGroup)
+    if (this.councilGroup.municipio === undefined) {
+      this.councilGroup = new CouncilGroup();
+    }
+    // Use state abbreviation instead of state id
+    this.getStateAbbr();
+  }
+
+  getStateAbbr(): void {
+    this.getStateSubs = this.ibgeService.getState(this.stateId)
       .subscribe(
-      result => {
-        this.result(result);
-      },
-      error => {
-        this.error(error.status);
-      });
+        (value) => this.getStateAbbrResult(value),
+        // Create council after getting right state
+        () => this.createCouncil());
+  }
+
+  getStateAbbrResult(result: any): void {
+    this.state = result['sigla'];
+    this.councilGroup.estado = this.state;
+    console.log(this.councilGroup.estado);
+  }
+
+  createCouncil(): void {
+    this.createSubs = this.councilGroupService.createCouncil(this.councilGroup)
+      .subscribe(
+        (result) => this.createCouncilResult(),
+        (error) => this.createCouncilError(error.status));
+  }
+
+  createCouncilResult(): void {
+    console.log(this.councilGroup);
+    this.alertService.success('Conselho de ' + this.councilGroup.municipio + ' criado com sucesso!');
+  }
+
+  createCouncilError(status: number): void {
+    if (status === 400) {
+      this.alertService.error('O conselho de ' + this.councilGroup.municipio + ' já se encontra cadastrado!');
+    } else {
+      this.alertService.error('Erro no servidor, tente novamente!');
+    }
   }
 
   isLoggedIn(): boolean {
@@ -56,5 +85,24 @@ export class CouncilGroupCreateComponent implements OnInit {
     }
     return false;
   }
-}
 
+  // Listen IBGE state EventEmitter()
+  chosenState(state: string): void {
+    this.city = '';
+    state ? this.stateId = this.councilGroup.estado = state : this.alertService.warn('Nenhum estado selecionado');
+  }
+
+  // Listen IBGE city EventEmitter()
+  chosenCity(city: string): void {
+    city ? this.city = this.councilGroup.municipio = city : this.alertService.warn('Nenhuma cidade selecionada');
+  }
+
+  // Has (state + city) assigned?
+  hasLocation(): boolean {
+    console.log('State id: ', this.stateId, '\n\nState: ', this.state, '\n\nCity: ', this.city);
+    if (this.stateId  && 0 !== this.city.length) {
+      return true;
+    }
+    return false;
+  }
+}

@@ -25,7 +25,8 @@ import {
   NotProfileComponent,
   LoginComponent,
   ProfileComponent,
-  RecoverPasswordComponent
+  RecoverPasswordComponent,
+  PasswordUpdateComponent
 } from './user/user.module';
 
 export const ROUTES: Routes = [
@@ -44,6 +45,7 @@ export const ROUTES: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'registrar', component: UserCreateComponent },
   { path: 'usuarios/editar/:id', component: UserEditComponent },
+  { path: 'usuarios/editar/:id/senha', component: PasswordUpdateComponent},
   { path: 'conselho/cadastrar', component: CouncilGroupCreateComponent },
   { path: 'conselho/buscar', component: CouncilGroupSearchComponent},
   { path: 'checklist/update', component: ChecklistUpdateComponent},

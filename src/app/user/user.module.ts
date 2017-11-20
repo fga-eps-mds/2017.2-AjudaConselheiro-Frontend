@@ -13,9 +13,12 @@ import { UserCpfComponent } from './cpf/cpf.component';
 import { NotProfileComponent } from './not-profile/not-profile.component';
 import { ProfileComponent } from './profile/profile.component';
 import {RecoverPasswordComponent } from './recover-password/recover-password.component';
+import { PasswordUpdateComponent } from './password-update/password-update.component';
 
 export { UserCreateComponent, UserEditComponent, UserListComponent, LoginComponent,
-         UserCpfComponent, NotProfileComponent, ProfileComponent, RecoverPasswordComponent };
+         UserCpfComponent, NotProfileComponent, ProfileComponent,
+         RecoverPasswordComponent, PasswordUpdateComponent };
+
 
 @NgModule({
   imports: [
@@ -31,7 +34,8 @@ export { UserCreateComponent, UserEditComponent, UserListComponent, LoginCompone
     LoginComponent,
     UserCpfComponent,
     NotProfileComponent,
-    ProfileComponent
+    ProfileComponent,
+    PasswordUpdateComponent
   ],
   providers: [
     UserService,
