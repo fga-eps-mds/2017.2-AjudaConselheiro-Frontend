@@ -27,16 +27,16 @@ export class RecoverPasswordComponent implements OnInit {
 
   recoverPassword() {
     const emailInput = (this.form.get('email') as any)._value;
+    const defaultMsg = 'Se o e-mail digitado estiver ativo, '
+    + 'você receberá um e-mail em breve com a nova senha!';
 
     this.userService.sendNewPassword(emailInput).subscribe((result) => {
       this.form.reset();
-      this.alertService.success('Se o e-mail digitado estiver ativo, '
-        + 'você receberá um e-mail em breve com a nova senha!');
+      this.alertService.success(defaultMsg);
     },
     (error) => {
       this.form.reset();
-      this.alertService.error('Me desculpe, aconteceu um erro! Tente novamente mais tarde.');
-      console.error(error);
+      this.alertService.success(defaultMsg);
     });
   }
 }
