@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
 
 import { CouncilGroup } from '../../models/index';
 import { CouncilGroupService, AlertService, IbgeService } from '../../services/index';
@@ -16,7 +15,7 @@ import { Subscription } from 'rxjs/Subscription';
 export class CouncilGroupCreateComponent implements OnInit, OnDestroy {
 
   @ViewChild('formCouncilGroupCreate') formCouncilGroupCreate: NgForm;
-  private stateSubs: Subscription;
+  private getStateSubs: Subscription;
   private createSubs: Subscription;
   public councilGroup: CouncilGroup;
   public state = '';
@@ -26,7 +25,6 @@ export class CouncilGroupCreateComponent implements OnInit, OnDestroy {
   constructor(
     public councilGroupService: CouncilGroupService,
     private alertService: AlertService,
-    private router: Router,
     private ibgeService: IbgeService
   ) { }
 
@@ -35,23 +33,22 @@ export class CouncilGroupCreateComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.stateSubs.unsubscribe();
+    this.getStateSubs.unsubscribe();
     this.createSubs.unsubscribe();
   }
 
   createCouncilGroup(): void {
-    // Use state abbreviation instead of state id
     if (this.councilGroup.municipio === undefined) {
       this.councilGroup = new CouncilGroup();
     }
+    // Use state abbreviation instead of state id
     this.getStateAbbr();
   }
 
   getStateAbbr(): void {
-    this.stateSubs = this.ibgeService.getState(this.stateId)
+    this.getStateSubs = this.ibgeService.getState(this.stateId)
       .subscribe(
-        (result) => this.getStateAbbrResult(result),
-        (error) => this.alertService.error('Erro ao selecionar estado'),
+        (value) => this.getStateAbbrResult(value),
         // Create council after getting right state
         () => this.createCouncil());
   }
@@ -65,21 +62,19 @@ export class CouncilGroupCreateComponent implements OnInit, OnDestroy {
   createCouncil(): void {
     this.createSubs = this.councilGroupService.createCouncil(this.councilGroup)
       .subscribe(
-        (result) => this.createCouncilResult(result),
-        (error) => this.createCouncilError(error));
+        (result) => this.createCouncilResult(),
+        (error) => this.createCouncilError(error.status));
   }
 
-  createCouncilResult(result: any): void {
+  createCouncilResult(): void {
     console.log(this.councilGroup);
-    // Navigate to url that show details about the created council group
-    // this.router.navigate(['/home']);
     this.alertService.success('Conselho de ' + this.councilGroup.municipio + ' criado com sucesso!');
   }
 
-  createCouncilError(error: any): void {
-    if (error.status === 400) {
+  createCouncilError(status: number): void {
+    if (status === 400) {
       this.alertService.error('O conselho de ' + this.councilGroup.municipio + ' já se encontra cadastrado!');
-    } else if (error.status > 400) {
+    } else {
       this.alertService.error('Erro no servidor, tente novamente!');
     }
   }

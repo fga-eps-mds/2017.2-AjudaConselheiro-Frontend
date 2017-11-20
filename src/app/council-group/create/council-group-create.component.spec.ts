@@ -1,11 +1,9 @@
 import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { MockBackend, MockConnection } from '@angular/http/testing';
 import { FormsModule } from '@angular/forms';
-
-import { Http, HttpModule, ConnectionBackend } from '@angular/http';
+import { HttpModule, Headers, RequestOptions, Response, URLSearchParams } from '@angular/http';
+import { RouterTestingModule } from '@angular/router/testing';
+import 'rxjs/add/observable/throw';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
 
 import { IbgeComponent } from '../../ibge/ibge.component';
 import { CouncilGroupCreateComponent } from './council-group-create.component';
@@ -40,10 +38,7 @@ describe('CouncilGroupCreateComponent', () => {
         RouterTestingModule
       ],
       providers: [AlertService,
-        Http,
         CouncilGroupService,
-        MockBackend,
-        ConnectionBackend,
         {
           provide: AlertService,
           useValue: mockAlert
@@ -72,6 +67,7 @@ describe('CouncilGroupCreateComponent', () => {
     spyOn(localStorage, 'clear')
       .and.callFake(mockLocalStorage.clear);
 
+    localStorage.setItem('token', 'fakeToken');
     fixture = TestBed.createComponent(CouncilGroupCreateComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -80,6 +76,14 @@ describe('CouncilGroupCreateComponent', () => {
 
   it('should be created', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should do create council group', () => {
+    component.councilGroup.municipio = undefined;
+    component.createCouncilGroup();
+
+    component.councilGroup.municipio = 'Brasília';
+    component.createCouncilGroup();
   });
 
   it('Should know if user is logged in', () => {
@@ -130,6 +134,7 @@ describe('CouncilGroupCreateComponent', () => {
 
   it('should do create council', inject([CouncilGroupService], (service: CouncilGroupService) => {
     component.councilGroup = fakeCouncil;
+    component.createCouncil();
   }));
 
   it('should get sigla of result', () => {
@@ -138,6 +143,18 @@ describe('CouncilGroupCreateComponent', () => {
     };
     component.councilGroup = fakeCouncil;
     component.getStateAbbrResult(result);
+  });
+
+  it('should create council error', () => {
+    component.councilGroup = fakeCouncil;
+    component.createCouncilError(400);
+    expect(mockAlert.error).toHaveBeenCalledWith('O conselho de Brasília já se encontra cadastrado!');
+    component.createCouncilError(401);
+  });
+
+  it('should do create council result', () => {
+    component.councilGroup = fakeCouncil;
+    component.createCouncilResult();
   });
 
 });
