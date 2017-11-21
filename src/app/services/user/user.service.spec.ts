@@ -5,6 +5,7 @@ import { HttpModule, Http, ConnectionBackend,
   ResponseOptions, RequestOptions, Response,
   BaseRequestOptions, Headers } from '@angular/http';
 import { MockBackend, MockConnection } from '@angular/http/testing';
+import { HttpClientModule } from '@angular/common/http';
 import { AlertService } from '../alert/alert.service';
 import { FormsModule } from '@angular/forms';
 import { FakeUser } from '../../user/create/testing/fake-user';
@@ -201,6 +202,25 @@ describe('UserService', () => {
     expect(returnUser).toBeUndefined();
   }));
 
+  it('should return data from delete(id)',
+  inject([UserService, MockBackend], (service, mockBackend) => {
+
+  const fakeUser = [
+    { name: 'Um', cod: 1}
+  ];
+  const resHeader = new Headers();
+  localStorage.setItem('token','asdas');
+  // Mocking HTTP connection for this test
+  mockBackend.connections.subscribe((connection: MockConnection) => {
+    const options = new ResponseOptions({ body: fakeUser});
+      connection.mockRespond(new Response(options));
+  });
+
+  // Making the request and testing its response
+  service.delete(fakeUser[0].cod).subscribe((response) => {
+    expect(response.status).toEqual(null);
+  });
+}));
 
   // For sendNewPassword()
   it('sendNewPassword() should redefine password if logged user is present',

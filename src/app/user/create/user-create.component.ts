@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { Http } from '@angular/http';
 import { NgForm } from '@angular/forms';
 import { UserService, AlertService } from '../../services/index';
 import { User } from '../../models/index';
@@ -65,4 +66,3 @@ export class UserCreateComponent implements OnInit {
     }
   }
 }
-
