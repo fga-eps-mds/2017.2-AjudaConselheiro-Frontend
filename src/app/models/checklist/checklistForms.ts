@@ -2,49 +2,86 @@ import { SectionCommentary, SectionCommentaryTwo } from './checklist.model';
 import { CommentForm, CommentBinaryForm, BinaryForm } from '../index';
 
 
-
-export const FormMenuComment: Array<CommentForm> = [
-        {question: `Qual a quantidade de frutas e hortaliças que estão sendo oferecidas por aluno,
-         durante o período de uma semana?`, answer: ''},
-        {question: 'Qual a preparação mais aceita?', answer: ''},
-        {question: 'Qual a preparação menos aceita?', answer: ''},
-        {question: 'Qual produto é mais aceito?', answer: ''},
-        {question: 'Qual produto é menos aceito?', answer: ''},
+// cafeteria checklist questions
+export const ChecklistCafeteriaQuestions: Array<String> = [
+  'O cantineiro tem conhecimento da Lei n.º5.146/2013?',
+  'O cantineiro tem conhecimento do Decreto n.º36.900/2015?',
+  'O cantineiro já recebeu a visita da vigilância sanitária para a fiscalização?',
+  'Os funcionários possuem curso de boas práticas de manipulação de alimentos?',
+  'Os atestados de saúde ocupacional estão em dia e de fácil acesso?',
+];
+// cafeteria checklist answers
+export const ChecklistCafeteriaAnswers: Array<SectionCommentaryTwo> = [
+  {question: 1, obs: '', answer: false},
+  {question: 2, obs: '', answer: false},
+  {question: 3, obs: '', answer: false},
+  {question: 4, obs: '', answer: false},
+  {question: 5, obs: '', answer: false},
+];
+// checklist menu questions with only commentary answers
+export const ChecklistMenuCommentQuestions: Array<String> = [
+  `Qual a quantidade de frutas e hortaliças que estão sendo oferecidas por aluno,
+  durante o período de uma semana?`,
+  'Qual a preparação mais aceita?',
+  'Qual a preparação menos aceita?',
+  'Qual produto é mais aceito?',
+  'Qual produto é menos aceito?'
+];
+// checklist menu questions with only binary answers
+export const ChecklistMenuBinaryQuestions: Array<String> = [
+  'De maneira geral, os cardápios são bem elaborados?',
+  'De maneira geral, os cardápios são bem aceitos pelos alunos?',
+  'De maneira geral, os cardápios são bem elaborados?',
+  'O cardápio fica exposto para os alunos e comunidade',
+  'A escola recebe doação de alimentos?',
+];
+// checklist menu questions with both commentary and binary answers
+export const ChecklistMenuCommentBinaryQuestions: Array<String> = [
+  'Houve falta de alimentação escolar durante o período letivo? Caso positivo informe o(s) períodos e os produtos?',
+  `A quantidade de gêneros entregues nas escolas foi suficiente para ofertar refeições para todos os alunos
+  até que se proceda à próxima distribuição?`,
+  'Há excesso de algum gênero alimentício no cardápio? Qual(ais)?',
+  'A escola complementa a alimentação escolar? Como?',
+  'A escola complementa a alimentação escolar? Como?',
 ];
 
-export const FormMenuThree: Array<SectionCommentaryTwo> = [
-  {question: 'O cantineiro tem conhecimento da Lei n.º5.146/2013?', obs: '', answer: false},
-  {question: 'O cantineiro tem conhecimento do Decreto n.º36.900/2015?', obs: '', answer: false},
-  {question: 'O cantineiro já recebeu a visita da vigilância sanitária para a fiscalização?', obs: '', answer: false},
-  {question: 'Os funcionários possuem curso de boas práticas de manipulação de alimentos?', obs: '', answer: false},
-  {question: 'Os atestados de saúde ocupacional estão em dia e de fácil acesso?', obs: '', answer: false},
+// checklist menu answers with only commentary answers
+export const ChecklistMenuCommentAnswers: Array<CommentForm> = [
+  {question: 1, answer: ''},
+  {question: 2, answer: ''},
+  {question: 3, answer: ''},
+  {question: 4, answer: ''},
+  {question: 5, answer: ''},
+];
+// checklist menu answers with only binary answers
+export const ChecklistMenuBinaryAnswers: Array<BinaryForm> = [
+  {question: 1, answer: false},
+  {question: 2, answer: false },
+  {question: 3, answer: false },
+  {question: 4, answer: false},
+  {question: 5, answer: false},
+];
+// checklist menu answers with both commentaries and answers
+export const ChecklistMenuCommentBinaryAnswers: Array<CommentBinaryForm> = [
+  {question: 1, answer: false, commentary: ''},
+  {question: 2, answer: false, commentary: ''},
+  {question: 3, answer: false, commentary: ''},
+  {question: 4, answer: false, commentary: ''},
+  {question: 5, answer: false, commentary: ''},
 ];
 
-export const FormMenuBinary: Array<BinaryForm> = [
-  {question: 'De maneira geral, os cardápios são bem elaborados?', answer: false},
-  {question: 'De maneira geral, os cardápios são bem aceitos pelos alunos?', answer: false },
-  {question: 'De maneira geral, os cardápios são bem elaborados?', answer: false },
-  {question: 'O cardápio fica exposto para os alunos e comunidade', answer: false},
-  {question: 'A escola recebe doação de alimentos?', answer: false},
+export const ChecklistMenuQuestionIteratorArray: Array<String[]> = [
+  ChecklistMenuCommentBinaryQuestions,
+  ChecklistMenuBinaryQuestions,
+  ChecklistMenuCommentQuestions,
 ];
-
-export const FormMenuCommentBinary: Array<CommentBinaryForm> = [
-        {question: `Houve falta de alimentação escolar durante o período letivo?
-           Caso positivo informe o(s) períodos e os produtos?`, answer: false, commentary: ''},
-        {question: `A quantidade de gêneros entregues nas escolas foi suficiente para ofertar refeições para todos os alunos
-           até que se proceda à próxima distribuição?`, answer: false, commentary: ''},
-        {question: 'Há excesso de algum gênero alimentício no cardápio? Qual(ais)?', answer: false, commentary: ''},
-        {question: 'A escola complementa a alimentação escolar? Como?', answer: false, commentary: ''},
-        {question: 'A escola complementa a alimentação escolar? Como?', answer: false, commentary: ''},
+export const ChecklistMenuAnswerIteratorArray: Array<Object> = [
+  ChecklistMenuCommentBinaryAnswers,
+  ChecklistMenuBinaryAnswers,
+  ChecklistMenuCommentAnswers,
 ];
-
-export const ChecklistMenuIteratorArray: Array<Object> = [
-  FormMenuCommentBinary,
-  FormMenuBinary,
-  FormMenuComment,
-];
-
-export const CheckOneCommentaries: Array<SectionCommentary> = [
+// production checklist section commentaries
+export const CheckProdCommentaries: Array<SectionCommentary> = [
   {sectionNumber: 1, commentary: ''},
   {sectionNumber: 2, commentary: ''},
   {sectionNumber: 3, commentary: ''},
@@ -54,9 +91,8 @@ export const CheckOneCommentaries: Array<SectionCommentary> = [
   {sectionNumber: 7, commentary: ''},
   {sectionNumber: 8, commentary: ''},
 ];
-
-
-export const CheckOneTopicHeaders: Array<string> = [
+// production checklist topic headers
+export const CheckProdTopicHeaders: Array<string> = [
   ('Higienização e organização dos ambientes área externa, cozinha e depósito'),
   ('Estrutura física da cozinha e do depósito'),
   ('Abastecimento de água e esgoto sanitário'),
@@ -66,105 +102,209 @@ export const CheckOneTopicHeaders: Array<string> = [
   ('Qualidade da alimentação escolar'),
   ('Documentação'),
 ];
-
-export const CheckOneFirstTopic: Array<BinaryForm> = [
-  {question: 'Área externa livre de sujeiras, objetos em desuso, acúmulo de lixo', answer: false},
-  {question: 'Área da cozinha limpa e organizada', answer: false},
-  {question: 'Área do deposito limpa e organizada', answer: false},
-  {question: 'Os alimentos armazenados no depósito estão em conformidade', answer: false},
-  {question: 'Presença de alimentos vencidos ou impróprios para o consumo', answer: false},
-  {question: 'Presença de planilha de rotina de higienização das instalações', answer: false},
-  {question: 'Produtos de higienização regularizados pelo Ministério da Saúde', answer: false},
-  {question: 'Presença da lixeira com tampa e pedal funcionando', answer: false},
-  {question: 'Sacos de lixo fora da lixeira', answer: false}
+// production checklist first section questions
+export const ChecklistProductionQuestionsOne: Array<String> = [
+  'Área externa livre de sujeiras, objetos em desuso, acúmulo de lixo',
+  'Área da cozinha limpa e organizada',
+  'Área do deposito limpa e organizada',
+  'Os alimentos armazenados no depósito estão em conformidade',
+  'Presença de alimentos vencidos ou impróprios para o consumo',
+  'Presença de alimentos vencidos ou impróprios para o consumo',
+  'Presença de planilha de rotina de higienização das instalações',
+  'Produtos de higienização regularizados pelo Ministério da Saúde',
+  'Presença da lixeira com tampa e pedal funcionando',
+  'Sacos de lixo fora da lixeira'
 ];
-
-export const CheckOneSecondTopic: Array<BinaryForm> = [
-  {question: 'Tamanho da cozinha é adequado e em bom estado de conservação', answer: false},
-  {question: 'Tamanho do depósito é adeequado e em bom estado de conservação', answer: false },
-  {question: 'Existe mais de um depósito de alimentos', answer: false },
-  {question: 'Piso é adequado e em bom estado de conservação', answer: false},
-  {question: 'Presença de ralo sifonado com o sistema abre e fecha', answer: false},
-  {question: 'Parede é adequada e em bom estado de conservação', answer: false},
-  {question: 'Teto é adequado e em bom estado de conservação', answer: false },
-  {question: 'Portas são adequadas e em bom estado de conservação', answer: false },
-  {question: 'Todas as portas possuem rodinho de proteção contra a entrada de insetos e vetores', answer: false},
-  {question: 'As portas possuem telas milimétricas de proteção contra entrada de insetos e vetores', answer: false},
-  {question: 'Todas as janelas são adequadas e em bom estado de conservação', answer: false},
-  {question: 'A iluminação é adequada', answer: false},
-  {question: `A ventilação e circulação de ar são adequadas e capazes de garantir o conforto térmico
-   e o ambiente livre de sujidades`, answer: false },
-  {question: 'Existe a presença de equipamentos de ventilação artificial', answer: false },
-  {question: 'Os equipamentos de ventilação artificial são higienizados regularmente e com a manutenção adequada', answer: false},
-  {question: 'Instalações elétricas adequadas', answer: false },
-  {question: `Lavatórios em condições de higiene, dotados de sabonete líquido inodoro antiséptico,toalhas de papel não reciclado
-   ou outro sistema higiênico e seguro de secagem e coletorde papel acionados sem contato manual`, answer: false},
-  {question: `Existência de lavatórios na área de manipulação com água corrente, em posições adequadas em relação ao fluxo de produção
-   e serviço e em número suficiente de modo a atender toda a área de produção`, answer: false }
+// production checklist second section questions
+export const ChecklistProductionQuestionsTwo: Array<String> = [
+  'Tamanho da cozinha é adequado e em bom estado de conservação',
+  'Tamanho do depósito é adeequado e em bom estado de conservação',
+  'Existe mais de um depósito de alimentos',
+  'Piso é adequado e em bom estado de conservação',
+  'Presença de ralo sifonado com o sistema abre e fecha',
+  'Parede é adequada e em bom estado de conservação',
+  'Teto é adequado e em bom estado de conservação',
+  'Portas são adequadas e em bom estado de conservação',
+  'Todas as portas possuem rodinho de proteção contra a entrada de insetos e vetores',
+  'As portas possuem telas milimétricas de proteção contra entrada de insetos e vetores',
+  'Todas as janelas são adequadas e em bom estado de conservação',
+  'A iluminação é adequada',
+  `A ventilação e circulação de ar são adequadas e capazes de garantir o conforto térmico
+  e o ambiente livre de sujidades`,
+  'Existe a presença de equipamentos de ventilação artificial',
+  'Os equipamentos de ventilação artificial são higienizados regularmente e com a manutenção adequada',
+  'Instalações elétricas adequadas',
+  `Lavatórios em condições de higiene, dotados de sabonete líquido inodoro antiséptico,toalhas de papel não reciclado
+  ou outro sistema higiênico e seguro de secagem e coletorde papel acionados sem contato manual`,
+  `Existência de lavatórios na área de manipulação com água corrente, em posições adequadas em relação ao fluxo de produção
+  e serviço e em número suficiente de modo a atender toda a área de produção`,
 ];
-export const CheckOneThirdTopic: Array<BinaryForm> = [
-  {question: `Reservatório de água e encanamentos acessíveis, dotados de tampas, em satifatória condição de uso,
-   livre de vazamentos, infiltrações e descasccamentos`, answer: false},
-  {question: 'Fossas e esgotos conectados à rede pública', answer: false },
-  {question: 'Caixas de gordura em adequado estado de conservação e funcionamento', answer: false },
+// production checklist third section questions
+export const ChecklistProductionQuestionsThree: Array<String> = [
+  `Reservatório de água e encanamentos acessíveis, dotados de tampas, em satifatória condição de uso,
+  livre de vazamentos, infiltrações e descasccamentos`,
+  'Fossas e esgotos conectados à rede pública',
+  'Caixas de gordura em adequado estado de conservação e funcionamento',
 ];
-export const CheckOneFourthTopic: Array<BinaryForm> = [
-  {question: 'A quantidade de equipamentos é suficiente (geladeira, freezer, fogão, liquidificador,etc.', answer: false},
-  {question: 'Presença de termômetro no freezer', answer: false },
-  {question: 'A quantidade de utensílios é suficiente(pratos, copos, talheres, etc)', answer: false },
-  {question: 'Existência de registro da higienização dos equipamentos', answer: false},
-  {question: 'A higienização é adequada', answer: false},
-  {question: 'Produtos de higienização identificados e guardados em local adequado, afastados dos alimentos', answer: false},
-  {question: 'Produtos de higienização regularizados pelo Ministério da Saúde', answer: false },
+// production checklist fourth section questions
+export const ChecklistProductionQuestionsFour:Array<String> = [
+  'A quantidade de equipamentos é suficiente (geladeira, freezer, fogão, liquidificador,etc.)',
+  'Presença de termômetro no freezer',
+  'A quantidade de utensílios é suficiente(pratos, copos, talheres, etc)',
+  'Existência de registro da higienização dos equipamentos',
+  'A higienização é adequada',
+  'Produtos de higienização identificados e guardados em local adequado, afastados dos alimentos',
+  'Produtos de higienização regularizados pelo Ministério da Saúde',
 ];
-
-export const CheckOneFifthTopic: Array<BinaryForm> = [
-  {question: 'Uniforme Completo', answer: false},
-  {question: 'Manipuladores com esmaltes e/ou unhas compridas', answer: false},
-  {question: 'Manipuladores usando adornos (brincos, anéis,pulseiras, relógio, etc.)', answer: false},
-  {question: 'Manipuladores com maquiagem (batom, sombra, lápis de olho,etc)', answer: false},
-  {question: 'Manipuladores doentes e/ou com cortes feridas nas mãos', answer: false},
+// production checklist fifth section questions
+export const ChecklistProductionQuestionsFive: Array<String> = [
+  'Uniforme Completo',
+  'Manipuladores com esmaltes e/ou unhas compridas',
+  'Manipuladores usando adornos (brincos, anéis,pulseiras, relógio, etc.)',
+  'Manipuladores com maquiagem (batom, sombra, lápis de olho,etc)',
+  'Manipuladores doentes e/ou com cortes feridas nas mãos',
 ];
-
-export const CheckOneSixthTopic: Array<BinaryForm> = [
-  {question: 'Higienização de frutas e verduras é realizada de maneira adequada', answer: false},
-  {question: 'A água sanitária utilizada é própria para alimentos', answer: false},
-  {question: 'O descongelamento dos alimentos é feito na geladeira', answer: false},
-  {question: 'Uso de água potável no preparo de gelo e alimentos', answer: false},
-  {question: `Os alimentos preparados, que serão congelados ou refrigerados, são adequadamente acondicionados e identificados com:
-   nome da preparação, data de preparo e prazo de validade após a abertura ou retirada da embalagem original`, answer: false},
-  {question: 'A escola possui refeitório', answer: false},
-  {question: 'O refeitório encontra-se em boas condições (piso, teto, parede, mesas e bancos/cadeiras)', answer: false},
-  {question: 'Caso as refeições aconteçam em sala de aula, a escola possui carrinho para transportar os alimentos?', answer: false},
-  {question: 'Os carrinhos estão em boas condições e em quantidades suficientes', answer: false},
+// production checklist Sixth section questions
+export const ChecklistProductionQuestionsSix: Array<String> = [
+  'Higienização de frutas e verduras é realizada de maneira adequada',
+  'A água sanitária utilizada é própria para alimentos',
+  'O descongelamento dos alimentos é feito na geladeira',
+  'Uso de água potável no preparo de gelo e alimentos',
+  `Os alimentos preparados, que serão congelados ou refrigerados, são adequadamente acondicionados e identificados com:
+  nome da preparação, data de preparo e prazo de validade após a abertura ou retirada da embalagem original`,
+  'A escola possui refeitório',
+  'O refeitório encontra-se em boas condições (piso, teto, parede, mesas e bancos/cadeiras)',
+  'Caso as refeições aconteçam em sala de aula, a escola possui carrinho para transportar os alimentos?',
+  'Os carrinhos estão em boas condições e em quantidades suficientes',
 ];
-
-export const CheckOneSeventhTopic: Array<CommentBinaryForm> = [
-  {question: 'A alimentação escolar tem paladar saboroso e gostoso', answer: false, commentary: ''},
-  {question: 'Os alimentos fornecidos pelo orgão de distribuição do estado são de qualidade', answer: false, commentary: ''},
-  {question: 'Os cardápios são variados', answer: false, commentary: ''},
-  {question: 'Os cardápios estão afixados para visualização dos alunos e comunidade escolar', answer: false, commentary: ''},
-  {question: 'Qual o cardápio mais aceito?', answer: false, commentary: ''},
-  {question: 'Qual o cardápio menos aceito?', answer: false, commentary: ''},
+// production checklist Seventh section questions
+export const ChecklistProductionQuestionsSeven: Array<String> = [
+  'A alimentação escolar tem paladar saboroso e gostoso',
+  'Os alimentos fornecidos pelo orgão de distribuição do estado são de qualidade',
+  'Os cardápios são variados',
+  'Os cardápios estão afixados para visualização dos alunos e comunidade escolar',
+  'Qual o cardápio mais aceito?',
+  'Qual o cardápio menos aceito?',
 ];
-
-export const CheckOneEighthTopic: Array<BinaryForm> = [
-  {question: 'Presença de comprovante de limpeza da caixa dagua(semestral)', answer: false},
-  {question: 'Presença de comprovante de limpeza do reservatório de água subterrâneo(semestral)', answer: false},
-  {question: 'Presença de registro de potabilidade da água (RDC 275/2002 - ANVISA e RDC 216/2004 - ANVISA)', answer: false},
-  {question: 'Presença de comprovante de limpeza da caixa de gordura(quinzenal)', answer: false},
-  {question: 'Presença de comprovante de desinsetização e desratização (semestral)', answer: false},
-  {question: 'Atestado de Saúde Ocupacional (ASO) em dia e de fácil visualização (anual)', answer: false},
-  {question: 'Os manipuladores de alimentos são, comprovadamente, capacitados em cursos sobre higiene alimentar', answer: false},
-  {question: 'A prestação de contas (controle diário) está em dia', answer: false},
+// production checklist Eighth section questions
+export const ChecklistProductionQuestionsEight: Array<String> = [
+  'Presença de comprovante de limpeza da caixa dagua(semestral)',
+  'Presença de comprovante de limpeza do reservatório de água subterrâneo(semestral)',
+  'Presença de registro de potabilidade da água (RDC 275/2002 - ANVISA e RDC 216/2004 - ANVISA)',
+  'Presença de comprovante de limpeza da caixa de gordura(quinzenal)',
+  'Presença de comprovante de desinsetização e desratização (semestral)',
+  'Atestado de Saúde Ocupacional (ASO) em dia e de fácil visualização (anual)',
+  'Os manipuladores de alimentos são, comprovadamente, capacitados em cursos sobre higiene alimentar',
+  'A prestação de contas (controle diário) está em dia',
+];
+// Questions Array Iterator
+export const ChecklistProductionQuestionsIteratorArray: Array<String[]> = [
+  ChecklistProductionQuestionsOne,
+  ChecklistProductionQuestionsTwo,
+  ChecklistProductionQuestionsThree,
+  ChecklistProductionQuestionsFour,
+  ChecklistProductionQuestionsFive,
+  ChecklistProductionQuestionsSix,
+  ChecklistProductionQuestionsSeven,
+  ChecklistProductionQuestionsEight,
+];
+// production checklist first section answers
+export const CheckProdFirstTopic: Array<BinaryForm> = [
+  {question: 1, answer: false},
+  {question: 2, answer: false},
+  {question: 3, answer: false},
+  {question: 4, answer: false},
+  {question: 5, answer: false},
+  {question: 6, answer: false},
+  {question: 7, answer: false},
+  {question: 8, answer: false},
+  {question: 9, answer: false}
+];
+// production checklist second section answers
+export const CheckProdSecondTopic: Array<BinaryForm> = [
+  {question: 1, answer: false},
+  {question: 2, answer: false },
+  {question: 3, answer: false },
+  {question: 4, answer: false},
+  {question: 5, answer: false},
+  {question: 6, answer: false},
+  {question: 7, answer: false },
+  {question: 8, answer: false },
+  {question: 9, answer: false},
+  {question: 10, answer: false},
+  {question: 11, answer: false},
+  {question: 12, answer: false},
+  {question: 13, answer: false },
+  {question: 14, answer: false },
+  {question: 15, answer: false},
+  {question: 16, answer: false },
+  {question: 17, answer: false},
+  {question: 18, answer: false }
+];
+// production checklist third section answers
+export const CheckProdThirdTopic: Array<BinaryForm> = [
+  {question: 1, answer: false},
+  {question: 2, answer: false },
+  {question: 3, answer: false },
+];
+// production checklist fourth section answers
+export const CheckProdFourthTopic: Array<BinaryForm> = [
+  {question: 1, answer: false},
+  {question: 2, answer: false },
+  {question: 3, answer: false },
+  {question: 4, answer: false},
+  {question: 5, answer: false},
+  {question: 6, answer: false},
+  {question: 7, answer: false },
+];
+// production checklist fifth section answers
+export const CheckProdFifthTopic: Array<BinaryForm> = [
+  {question: 1, answer: false},
+  {question: 2, answer: false},
+  {question: 3, answer: false},
+  {question: 4, answer: false},
+  {question: 5, answer: false},
+];
+// production checklist sixth section answers
+export const CheckProdSixthTopic: Array<BinaryForm> = [
+  {question: 1, answer: false},
+  {question: 2, answer: false},
+  {question: 3, answer: false},
+  {question: 4, answer: false},
+  {question: 5, answer: false},
+  {question: 6, answer: false},
+  {question: 7, answer: false},
+  {question: 8, answer: false},
+  {question: 9, answer: false},
+];
+// production checklist seventh section answers
+export const CheckProdSeventhTopic: Array<CommentBinaryForm> = [
+  {question: 1, answer: false, commentary: null},
+  {question: 2, answer: false, commentary: null},
+  {question: 3, answer: false, commentary: null},
+  {question: 4, answer: false, commentary: null},
+  {question: 5, answer: false, commentary: null},
+  {question: 6, answer: false, commentary: null},
+];
+// production checklist eighth section answers
+export const CheckProdEighthTopic: Array<BinaryForm> = [
+  {question: 1, answer: false},
+  {question: 2, answer: false},
+  {question: 3, answer: false},
+  {question: 4, answer: false},
+  {question: 5, answer: false},
+  {question: 6, answer: false},
+  {question: 7, answer: false},
+  {question: 8, answer: false},
 ];
 export const IteratorArray: Array<Object> = [
-  CheckOneFirstTopic,
-  CheckOneSecondTopic,
-  CheckOneThirdTopic,
-  CheckOneFourthTopic,
-  CheckOneFifthTopic,
-  CheckOneSixthTopic,
-  CheckOneSeventhTopic,
-  CheckOneEighthTopic,
+  CheckProdFirstTopic,
+  CheckProdSecondTopic,
+  CheckProdThirdTopic,
+  CheckProdFourthTopic,
+  CheckProdFifthTopic,
+  CheckProdSixthTopic,
+  CheckProdSeventhTopic,
+  CheckProdEighthTopic,
+  CheckProdCommentaries,
 ];

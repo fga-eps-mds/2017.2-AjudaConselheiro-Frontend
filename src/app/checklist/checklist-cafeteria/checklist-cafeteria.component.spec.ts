@@ -3,15 +3,15 @@ import { async, ComponentFixture, TestBed, fakeAsync, tick} from '@angular/core/
 import { By } from '@angular/platform-browser';
 
 import { ChecklistCafeteriaComponent } from './checklist-cafeteria.component';
+import { ChecklistCafeteriaAnswers, ChecklistCafeteriaQuestions, ChecklistCafeteria, SectionCommentaryTwo} from './../../models/index';
 import { ChecklistService, ProfileService, AuthenticationService} from './../../services/index';
-import { ChecklistCafeteria, SectionCommentaryTwo, FormMenuThree } from './../../models/index';
 import { AppModule } from './../../app.module';
 
 describe('ChecklistCafeteriaComponent', () => {
   let component: ChecklistCafeteriaComponent;
   let fixture: ComponentFixture<ChecklistCafeteriaComponent>;
   let checklist: ChecklistCafeteria;
-  let formMenuThree: Array<SectionCommentaryTwo> = FormMenuThree;
+  let cafeteriaAnswers: Array<SectionCommentaryTwo> = ChecklistCafeteriaAnswers;
   let check: ChecklistService;
   let location: Location;
 
@@ -38,19 +38,18 @@ describe('ChecklistCafeteriaComponent', () => {
         {question: 'A lei n.º36.900/2015?', obs: '*-*:D', answer: false},
         {question: 'O cantineiro já recebeu a visita da vigilância sanitária para a fiscalização?', obs: '', answer: true},
       ];
-      component.copy(formMenuThree);
-      expect(component.checklist.FormMenuThree).toEqual( formMenuThree);
+      component.copy(cafeteriaAnswers);
+      expect(component.checklist.ChecklistCafeteriaAnswers).toEqual( cafeteriaAnswers);
     });
 
 
     it('should have not a text area for the commentary', () => {
-      for ( let _i = 0; _i < FormMenuThree.length; _i++ ) {
+      for ( let _i = 0; _i < ChecklistCafeteriaAnswers.length; _i++ ) {
         fixture.detectChanges();
         const compiled = fixture.debugElement.nativeElement;
-      if(component.formMenuThree[_i].answer != true){
+      if (component.cafeteriaAnswers[_i].answer !== true) {
         expect(compiled.querySelector('.commentaryThree')).toBe(null);
-      }
-      else{
+      }else {
         expect(compiled.querySelector('.commentaryThree')).not.toBe(null);
       }
     }

@@ -3,7 +3,8 @@ import {NgForm} from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { ChecklistService } from './../../services/index';
-import { ChecklistCafeteria, SectionCommentaryTwo, ConfirmComentary, FormMenuThree } from './../../models/index';
+import { ChecklistCafeteria, SectionCommentaryTwo, ConfirmComentary, ChecklistCafeteriaAnswers,
+   ChecklistCafeteriaQuestions } from './../../models/index';
 
 @Component({
   selector: 'app-checklist-cafeteria',
@@ -14,7 +15,8 @@ import { ChecklistCafeteria, SectionCommentaryTwo, ConfirmComentary, FormMenuThr
 
 export class ChecklistCafeteriaComponent implements OnInit {
   checklist: ChecklistCafeteria;
-  formMenuThree: Array<SectionCommentaryTwo> = FormMenuThree;
+  cafeteriaAnswers: Array<SectionCommentaryTwo> = ChecklistCafeteriaAnswers;
+  cafeteriaQuestions: Array<String> = ChecklistCafeteriaQuestions;
   @ViewChild('formChecklist') formChecklist: NgForm;
 
   constructor(
@@ -26,8 +28,8 @@ export class ChecklistCafeteriaComponent implements OnInit {
     this.checklist = new ChecklistCafeteria();
   }
 
-  copy(formMenuThree): void {
-    this.checklist.FormMenuThree = formMenuThree;
+  copy(cafeteriaAnswers): void {
+    this.checklist.ChecklistCafeteriaAnswers = cafeteriaAnswers;
   }
 
   newFormulario(): void {

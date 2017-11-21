@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
-import { HttpModule } from '@angular/http';
+import { HttpModule, Http, RequestOptions, ConnectionBackend } from '@angular/http';
 
 import { ChecklistProductionComponent } from './checklist-production.component';
 import {
@@ -21,6 +21,8 @@ describe('ChecklistProductionComponent', () => {
       declarations: [ ChecklistProductionComponent ],
       imports: [ FormsModule, RouterTestingModule, HttpModule ],
       providers: [
+        Http,
+        ConnectionBackend,
         UserService,
         AlertService,
         ProfileService,
@@ -57,7 +59,7 @@ describe('ChecklistProductionComponent', () => {
       expect(component.isNotRequiredQuestions(validTopicNumber, invalidQuestionNumber)).toBeFalsy();
   });
 
-  it('should pass correct not rquired questions', () => {
+  it('should pass correct not required questions', () => {
     const validQuestionNumber = 0;
     const validTopicNumber = 6;
 
@@ -68,5 +70,5 @@ describe('ChecklistProductionComponent', () => {
   it('should have back button', () => {
     const backButton = compiled.querySelector('.backButton');
     expect(backButton).toBeTruthy();
-  });
+   });
 });

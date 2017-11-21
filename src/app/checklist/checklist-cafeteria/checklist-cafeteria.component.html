@@ -29,13 +29,13 @@
         </div>
         <br><br>
 
-        <div *ngFor="let i of formMenuThree;let g = index">
+        <div *ngFor="let question of cafeteriaQuestions;let cafeteriaQuestionCounter=index">
             <div class="row">
-                <div class="col-md-8 question11 h5  "> {{i.question}}</div>
+                <div class="col-md-8 question11 h5  "> {{cafeteriaQuestions[cafeteriaQuestionCounter]}}</div>
                 <div class="col-md-1 question11"></div>
                 <h5> Não</h5>
                 <label class="switch">
-                <input type="checkbox" name="formBinary_{{g}}" [(ngModel)]="formMenuThree[g].answer" [value]="true" required>
+                <input type="checkbox" name="formBinary_{{cafeteriaQuestionCounter}}" [(ngModel)]="cafeteriaQuestions[cafeteriaQuestionCounter].answer" [value]="true" required>
                 <span class="slider round"></span>
                 </label>
                 <h5>Sim</h5>
@@ -43,13 +43,13 @@
                 <div class="col-md-2"></div>
             </div>
 
-            <div class="row" *ngIf="formMenuThree[g].answer === true">
+            <div class="row" *ngIf="cafeteriaAnswers[cafeteriaQuestionCounter].answer === true">
                 <div class="col-md-8"></div>
                 <div class="col-md-4">
                     <div class="md-form textAreaTrue">
                         <i class="fa fa-pencil prefix"></i>
                         <textarea mdbActive align="center" type="text" class="basic-textarea commentaryThree" 
-                            placeholder="Observações" name="formBinary_{{g}}" [(ngModel)]="formMenuThree[g].obs">
+                            placeholder="Observações" name="formBinary_{{cafeteriaQuestionCounter}}" [(ngModel)]="cafeteriaAnswers[cafeteriaQuestionCounter].obs">
                         </textarea>
                     </div>
                 </div>
@@ -89,7 +89,7 @@
                 <div class="col-md-3"></div>
                 <div class="col-md-4"></div>
                 <div class="col-md-2"><button type="submit" class="btn btn-blue-grey conclude-button" mdbRippleRadius 
-                    (click)="copy(formMenuThree);newFormulario()" [disabled]="!formChecklist.form.valid">
+                    (click)="copy(cafeteriaAnswers);newFormulario()" [disabled]="!formChecklist.form.valid">
                     Concluir</button></div>
                 </div>
             <div class="row">

@@ -1,12 +1,13 @@
+import { Router } from '@angular/router';
 import { Binary } from '@angular/compiler';
 import { Http, HttpModule } from '@angular/http';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { CheckOneTopicHeaders, CheckOneCommentaries, CheckOneFirstTopic, CheckOneEighthTopic, CheckOneFifthTopic,
-CheckOneFourthTopic, CheckOneSecondTopic, CheckOneSixthTopic, CheckOneSeventhTopic, CheckOneThirdTopic,
-IteratorArray, SectionCommentary, FormMenuCommentBinary, FormMenuComment, CommentBinaryForm,
-CommentForm, BinaryForm, FormMenuBinary, ConfirmComentary, Post} from '../../models/index';
+import { CheckProdTopicHeaders, CheckProdCommentaries, CheckProdFirstTopic, CheckProdEighthTopic, CheckProdFifthTopic,
+CheckProdFourthTopic, CheckProdSecondTopic, CheckProdSixthTopic, CheckProdSeventhTopic, CheckProdThirdTopic,
+ChecklistProductionQuestionsIteratorArray, IteratorArray, SectionCommentary,
+CommentBinaryForm, CommentForm, BinaryForm, ConfirmComentary, Post} from '../../models/index';
 import { ChecklistService, AlertService, PostService } from '../../services/index';
 
 @Component({
@@ -17,13 +18,14 @@ import { ChecklistService, AlertService, PostService } from '../../services/inde
 })
 export class ChecklistProductionComponent implements OnInit {
 
+    questionsProduction: Array<String[]>= ChecklistProductionQuestionsIteratorArray;
     iteratorArray: Array<Object>= IteratorArray;
-    topicHeaders: Array<string> = CheckOneTopicHeaders;
-    commentaries: Array<SectionCommentary> = CheckOneCommentaries;
+    topicHeaders: Array<string> = CheckProdTopicHeaders;
 
   constructor(
     protected postService: PostService,
-    protected alertService: AlertService
+    protected alertService: AlertService,
+    private router: Router,
   ) {}
 
   post: Post;
@@ -39,11 +41,10 @@ export class ChecklistProductionComponent implements OnInit {
       console.warn(this.iteratorArray);
 
       // Show commentaries for each section
-      console.warn(this.commentaries);
   }
 
   isOtherQuestions (topic: number, question: number) {
-    return (topic !== 6 && ( question !== 4 && question !== 5));
+    return (topic !== 6 && ( question !== (4 || 5)));
   }
 
   isRequiredQuestions(topic: number, question: number) {
@@ -56,9 +57,9 @@ export class ChecklistProductionComponent implements OnInit {
 
   savePost() {
       const jsonChecklistOne = JSON.stringify({
-        'interatorArray': this.iteratorArray,
-        'commentaries': this.commentaries
+        'iteratorArray': this.iteratorArray,
       });
+      this.router.navigate(['/checklist']);
 
       this.postService.savePost(jsonChecklistOne).subscribe(
         result => console.log(result)
