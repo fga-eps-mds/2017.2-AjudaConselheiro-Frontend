@@ -116,6 +116,25 @@ export class UserService extends ServicesUtilitiesService {
       .catch(this.handleError);
   }
 
+  sendNewPassword(email: string): Observable <string> {
+    /* tslint:disable:max-line-length */
+    const regexEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
+    const validEmail = regexEmail.test(email);
+
+    if (validEmail) {
+      const recoverURL = `${this.url + '/redefinirSenha'
+        + '?email=' + email}`;
+
+      return this.http.post(recoverURL, {body: ''})
+        .map(res => this.extractData(res))
+        .catch(this.handleError);
+
+    } else {
+      console.error('Email digitado é inválido!');
+      return new Observable <string>();
+    }
+  }
+
   updatePassword(currentPassword: string, newPassword: string) {
     const cod = this.getUserCod();
 

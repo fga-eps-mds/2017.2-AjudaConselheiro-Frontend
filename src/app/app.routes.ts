@@ -25,6 +25,7 @@ import {
   NotProfileComponent,
   LoginComponent,
   ProfileComponent,
+  RecoverPasswordComponent,
   PasswordUpdateComponent
 } from './user/user.module';
 
@@ -51,4 +52,5 @@ export const ROUTES: Routes = [
   { path: 'adicionar-cpf', component: UserCpfComponent },
   { path: 'usuario-sem-perfil', component: NotProfileComponent},
   { path: 'perfil', component: ProfileComponent},
+  { path: 'recuperar-senha', component: RecoverPasswordComponent}
 ];
