@@ -1,18 +1,29 @@
-<br><br><br><br>
-<link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
-<div class="well">
-    <form #formUser="ngForm" (ngSubmit)="savePosts(data)">
+<br><br><br><br><br>
+
+<!--Card-->
+<div class="card centering profile">
+
+    <!--Card image-->
+    <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%282%29.jpg" alt="Card image cap">
+
+    <!--Card content-->
+    <div class="card-body centering">
+        <!--Title-->
+        <h4 class="card-title centering">{{name}}</h4>
         <br>
-        <p class="h3 text-center mb-4"> Inserir CPF </p>
-        <div class="form-group">
-            <i class="fa fa-address-card prefix grey-text"></i>
-            <input type="text" id="orangeForm-name" class="form-control" name="cpf" minlength="11" maxlength="11" placeholder="CPF" [(ngModel)]="data"  required />    
-        </div>
+        <!--Text-->
+        <p class="card-text centering"> {{biography}}</p>
+        <p class="card-text centering"> {{email}}</p>
+
         <div class="form-group text-center">
-            <input type="button" class="btn btn-deep-orange" (click)="savePosts(data)" value="Atualizar">
-            <a [routerLink]="['/usuarios']" class="btn btn-outline-warning waves-effect">
-                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Voltar
-            </a>
+            <input type="button" class="btn btn-deep-orange" [routerLink]="['/usuarios/editar/'] + user.cod" value="Editar">
+            <br>
+            <br>
         </div>
-    </form>
+    </div>
+
 </div>
+<!--/.Card-->
+
+
+<br><br><br><br><br><br><br>

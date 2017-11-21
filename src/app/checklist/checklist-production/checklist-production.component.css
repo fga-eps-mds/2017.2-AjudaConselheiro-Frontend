@@ -90,3 +90,11 @@ label{
   margin-top: 12px;
   margin-bottom: 12px;
 }
+
+.backButton {
+  background-color: #FF6100;
+}
+
+.conclude-button {
+  background-color: #192433;
+}

@@ -2,7 +2,8 @@ import { Http, HttpModule, ConnectionBackend, RequestOptions  } from '@angular/h
 import { TestBed, inject } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { SchedulingService, AlertService, UserService } from '../../services/index';
+import { SchedulingService, AlertService, UserService,
+  ProfileService, AuthenticationService } from '../../services/index';
 
 
 describe('SchedulingService', () => {
@@ -17,7 +18,9 @@ describe('SchedulingService', () => {
         AlertService,
         Http,
         ConnectionBackend,
-        UserService
+        UserService,
+        ProfileService,
+        AuthenticationService
       ]
     });
   });

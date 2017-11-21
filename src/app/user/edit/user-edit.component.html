@@ -3,10 +3,10 @@
 <div class="well">
     <form #formUser="ngForm">
         <br>
-        <p class="h3 text-center mb-4"> Editar Perfil </p>
+        <p class="h3 text-center mb-4"> {{ userName }} </p>
         <div class="form-group">
             <i class="fa fa-user prefix grey-text"></i>
-            <input type="text" id="orangeForm-name" class="form-control" name="fullname" minlength="10" placeholder="Nome Completo" [(ngModel)]="user.nomeCompleto" #nomeCompleto="ngModel" required>
+            <input type="text" id="orangeForm-name" class="form-control" name="fullname" placeholder="{{ user.nomeCompleto }}" [(ngModel)]="user.nomeCompleto" #nomeCompleto="ngModel" required>
             <div *ngIf="nomeCompleto.errors && (nomeCompleto.dirty)" class="alert alert-danger">
                 <div [hidden]="!nomeCompleto.errors.required">
                     Digite o nome completo.
@@ -16,24 +16,77 @@
                 </div>
             </div>
         </div>
+
         <div class="form-group">
-            <i class="fa fa-address-card prefix grey-text"></i>
-            <input type="text" id="orangeForm-name" class="form-control" name="cpf" minlength="11" placeholder="CPF" [(ngModel)]="user.CEP" #CEP="ngModel" required [textMask]="{mask: maskcpf}" />
-            <div *ngIf="CEP.errors && (CEP.dirty)" class="alert alert-danger">
-                <div [hidden]="!CEP.errors.required">
-                    Digite um CPF válido
+            <i class="fa fa-user prefix grey-text"></i>
+            <input type="text" id="orangeForm-name" class="form-control" name="username" minlength="7" placeholder="{{ user.nomeUsuario }}" [(ngModel)]="user.nomeUsuario" #nomeUsuario="ngModel" required>
+            <div *ngIf="nomeUsuario.errors && (nomeUsuario.dirty)" class="alert alert-danger">
+                <div [hidden]="!nomeUsuario.errors.required">
+                    Digite o nome de usuário.
                 </div>
-                <div [hidden]="!CEP.errors.minlength">
-                    O CPF deve ter ao menos 11 caracteres.
+                <div [hidden]="!nomeUsuario.errors.minlength">
+                    O username deve ter ao menos 7 caracteres.
                 </div>
             </div>
         </div>
+
+        <div class="form-group">
+            <i class="fa fa-address-card prefix grey-text"></i>
+            <input type="text" id="orangeForm-name" class="form-control" name="CEP" minlength="8" maxlength="8" placeholder="{{ user.CEP }}" [(ngModel)]="user.CEP" #CEP="ngModel" required>
+            <div *ngIf="CEP.errors && (CEP.dirty)" class="alert alert-danger">
+                <div [hidden]="!CEP.errors.required">
+                    Digite um CEP válido
+                </div>
+                <div [hidden]="!CEP.errors.minlength">
+                    O CEP deve ter ao menos 11 caracteres.
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <i class="fa fa-venus-mars prefix grey-text"></i>
+            <input type="text" name="sexo" list="gender" placeholder="Sexo (opcional)" [(ngModel)]="user.sexo" #sexo="ngModel">
+            <datalist id="gender">
+                  <option value="F">Feminino</option>
+                  <option value="M">Masculino</option>
+                </datalist>
+        </div>
+
+        <div class="form-group">
+            <i class="fa fa-envelope prefix grey-text"></i>
+            <input type="email" id="email" class="form-control" name="email" placeholder="email" [(ngModel)]="user.email" #email="ngModel" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+            <div *ngIf="email.errors && (email.dirty)" class="alert alert-danger">
+                <div [hidden]="!email.errors.required">
+                    Email é obrigatório.
+                </div>
+                <div [hidden]="!email.errors.pattern">
+                    O formato deve ser
+                    <small><b>joao@abc.com</b></small>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <i class="fa fa-map prefix grey-text"></i>
+            <input type="text" id="county" class="form-control" name="county" placeholder="Segmento" [(ngModel)]="user.segmento" #segmento="ngModel">
+        </div>
+
+        <div class="form-group">
+            <i class="fa fa-phone prefix grey-text"></i>
+            <input type="text" id="phone" class="form-control" name="phone" placeholder="Telefone" [(ngModel)]="user.telefone" #telefone="ngModel" [textMask]="{mask: maskphone}">
+        </div>
+
         <div class="form-group text-center">
-            <input type="button" class="btn btn-deep-orange" (click)="updateUser()" value="Atualizar" [disabled]="!formUser.form.valid">
-            <a [routerLink]="['/usuarios']" class="btn btn-outline-warning waves-effect">
+            <input type="button" class="btn btn-blue-grey update-button" (click)="updateUser(); updateAdditionalFields(telefone.model, segmento.model)" value="Atualizar" [disabled]="!formUser.form.valid">
+            <a [routerLink]="['/perfil']" class="btn btn-deep-orange back-button">
                 <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Voltar
             </a>
-            <input type="button" class="btn btn-danger" (click)="deleteUser()" value="Deletar conta">
+        </div>
+
+        <div class="form-group text-center">
+            Deseja mudar a Senha? <a [routerLink]="['/usuarios/editar/'] + user.cod + '/senha'" value="Editar Senha">Alterar Senha</a>
+            <br>
+            <br>
         </div>
 
     </form>

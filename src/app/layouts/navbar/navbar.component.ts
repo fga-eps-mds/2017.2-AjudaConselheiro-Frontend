@@ -17,6 +17,7 @@ export class NavbarComponent implements OnInit {
   message = 'Você realmente deseja sair da aplicação?';
   confirmText = 'Sim';
   cancelText = 'Não';
+  slideOpen = false;
   confirm;
 
   constructor(
@@ -29,6 +30,15 @@ export class NavbarComponent implements OnInit {
   logout() {
    this.authenticationService.logout();
    this.router.navigate(['/home']);
+  }
+
+  openSlideMenu() {
+    return document.getElementById('side-menu').style.width = '250px';
+  }
+
+
+  closeSlideMenu() {
+    return document.getElementById('side-menu').style.width = '0px';
   }
 
   hasToken(): boolean {

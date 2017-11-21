@@ -2,8 +2,23 @@
   margin: 0 auto;
   max-width: 1280px;
   width: 40%;
+  margin-bottom: 15%;
 }
 
 p {
   font-family: 'Roboto Condensed', sans-serif;
+}
+
+.text-center {
+  margin-top: 20%;
+}
+
+.btn-primary {
+  background-color: #192433 !important;
+  margin-top: 5%;
+}
+
+.btn-secondary {
+  background-color: #FF6100 !important;
+  margin-top: 5%;
 }

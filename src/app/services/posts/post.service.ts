@@ -54,7 +54,7 @@ export class PostService extends ServicesUtilitiesService {
   }
 
     savePost(data: any): Observable<Post> {
-      const codUser = this.getUserCod();
+      const codUser = this.userService.getUserCod();
 
       if (codUser) {
         const body = this.formatPostBody(data, codUser, this.testChecklist);
@@ -71,7 +71,7 @@ export class PostService extends ServicesUtilitiesService {
     }
 
     updatePost(data: any): Observable<Post> {
-      const codUser = this.getUserCod();
+      const codUser = this.userService.getUserCod();
 
       if (codUser) {
         const body = this.formatUpdateBody(data);
@@ -116,16 +116,5 @@ export class PostService extends ServicesUtilitiesService {
       return JSON.stringify(validBody);
     }
 
-    // This function checks if there's a logged user and if it has a 'cod'
-    // Output: The user 'cod' or 'null' if there's no cod
-    private getUserCod() {
-      const user = this.userService.getLoggedUser();
 
-      // Checks if there's a user and if this user has a 'cod' attribute.
-      if (user && 'cod' in user) {
-        return user.cod;
-      }
-
-      return null;
-    }
 }
