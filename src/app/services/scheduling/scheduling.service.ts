@@ -39,13 +39,14 @@ export class SchedulingService extends ServicesUtilitiesService {
     }
   }
 
-  newScheduling(scheduling: Scheduling): Observable<Scheduling> {
+  newScheduling(scheduling: Scheduling, postType: number, postText: string): Observable<Scheduling> {
+
     const cod = this.userService.getUserCod();
     const sched = JSON.stringify(scheduling);
     const body = {
       'conteudo': {
         'JSON': sched,
-        'texto': 'Agendamento',
+        'texto': postText,
         'valor': 0
       },
       'postagem': {
@@ -53,7 +54,7 @@ export class SchedulingService extends ServicesUtilitiesService {
           'codPessoa': cod
         },
         'tipo': {
-          'codTipoPostagem': 137
+          'codTipoPostagem': postType
         }
       }
     };
@@ -62,6 +63,5 @@ export class SchedulingService extends ServicesUtilitiesService {
     .map(result => this.extractData(result))
     .catch(this.handleError);
   }
-
 
 }
