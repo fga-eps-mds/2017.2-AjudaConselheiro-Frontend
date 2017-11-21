@@ -1,10 +1,24 @@
-import { ChecklistCafeteriaAnswers } from './checklistForms';
+import { ChecklistCafeteriaAnswers, ChecklistMenuAnswerIteratorArray, IteratorArray } from './checklistForms';
 export class ChecklistCafeteria {
     constructor(
         public id?: number,
         public obs?: string,
         public ChecklistCafeteriaAnswers?: Array<SectionCommentaryTwo>,
     ) {}
+  }
+  export class ChecklistMenu {
+      constructor(
+          public id?: number,
+          public obs?: string,
+          public ChecklistMenuAnswerIteratorArray?: Array<CommentBinaryForm>,
+      ) {}
+  }
+  export class ChecklistProduction {
+      constructor(
+          public id?: number,
+          public obs?: string,
+          public IteratorArray?: Array<CommentBinaryForm>,
+      ) {}
   }
 
   export class ConfirmComentary {

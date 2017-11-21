@@ -55,12 +55,12 @@ export class ChecklistProductionComponent implements OnInit {
   }
 
   savePost() {
-      const jsonChecklistOne = JSON.stringify({
+      const jsonChecklistProduction = JSON.stringify({
         'iteratorArray': this.iteratorArray,
       });
       this.router.navigate(['/checklist']);
 
-      this.postService.savePost(jsonChecklistOne).subscribe(
+      this.postService.savePost(jsonChecklistProduction).subscribe(
         result => console.log(result)
       );
     }

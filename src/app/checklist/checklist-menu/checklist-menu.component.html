@@ -10,14 +10,13 @@
     <br><br><br><br>
     <div class="container col-md-10 border border-dark">
       <div class="row"><br><br><br><br></div>
-        <form (ngSubmit)="onSubmit()" #f="ngForm">
+        <form (ngSubmit)="onSubmit()" #menuChecklist="ngForm">
             <div class="row">
                 <div class="col-md-10">
                     <div class="col-md-10"><br><br></div>
                     <p class="h3 text-center mb-4 question15" align="center">Avaliação dos cardápios das escolas parque e escolas classes da CRE/PPC</p>
                     </div>
                     </div>
-                    <form ng-submit="">
                         <div class="row" >
                           <div class="col-md-10" align="center"><h5><b>Avaliação dos cardápios</b></h5></div>
                         </div>
@@ -93,8 +92,6 @@
                         <!--Fim da secção de perguntas com apenas comentários e fim das perguntas  -->
                       <br>
                       
-
-                  </form>
                   <div class="row">
                       <div class="col-md-1"></div>
                       <div class="col-md-2"><a href="/checklist" class="btn btn-deep-orange back-button">
@@ -104,7 +101,7 @@
                       <div class="col-md-3"></div>
                       <div class="col-md-4"></div>
                       <div class="col-md-2">
-                        <button type="submit" class="btn btn-blue-grey conclude-button" (ngSubmit)="onSubmit()" [disabled]="!f.form.valid" href="/checklist">
+                        <button type="submit" class="btn btn-blue-grey conclude-button" (ngSubmit)="onSubmit()" [disabled]="!menuChecklist.form.valid" href="/checklist" (click) = "savePost()">
                           Concluir
                        </button>
                       </div>

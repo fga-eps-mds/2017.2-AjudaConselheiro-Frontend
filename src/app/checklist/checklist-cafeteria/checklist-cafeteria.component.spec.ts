@@ -11,7 +11,7 @@ describe('ChecklistCafeteriaComponent', () => {
   let component: ChecklistCafeteriaComponent;
   let fixture: ComponentFixture<ChecklistCafeteriaComponent>;
   let checklist: ChecklistCafeteria;
-  let cafeteriaAnswers: Array<SectionCommentaryTwo> = ChecklistCafeteriaAnswers;
+  const cafeteriaAnswers: Array<SectionCommentaryTwo> = ChecklistCafeteriaAnswers;
   let check: ChecklistService;
   let location: Location;
 
@@ -32,17 +32,6 @@ describe('ChecklistCafeteriaComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-  it('Test checklist Copy ', () => {
-    const formMenuThree =  [
-        {question: 'O cantineiro tem conhecimento da Lei n.º5.146/2013?', obs: '', answer: false},
-        {question: 'A lei n.º36.900/2015?', obs: '*-*:D', answer: false},
-        {question: 'O cantineiro já recebeu a visita da vigilância sanitária para a fiscalização?', obs: '', answer: true},
-      ];
-      component.copy(cafeteriaAnswers);
-      expect(component.checklist.ChecklistCafeteriaAnswers).toEqual( cafeteriaAnswers);
-    });
-
-
     it('should have not a text area for the commentary', () => {
       for ( let _i = 0; _i < ChecklistCafeteriaAnswers.length; _i++ ) {
         fixture.detectChanges();
@@ -62,30 +51,4 @@ describe('ChecklistCafeteriaComponent', () => {
     it('should create', () => {
       expect(component).toBeTruthy();
     });
-    it('should copy', fakeAsync( () => {
-      fixture.detectChanges();
-      spyOn(component , 'copy');
-      // tslint:disable-next-line:prefer-const
-      let btn = fixture.debugElement.query( By.css('button') );
-      btn.triggerEventHandler('click', null);
-      tick();
-      fixture.detectChanges();
-      expect(component.copy).toHaveBeenCalled();
-    }));
-    it('should newFormulario', fakeAsync( () => {
-      fixture.detectChanges();
-      spyOn(component , 'newFormulario');
-      // tslint:disable-next-line:prefer-const
-      let btn = fixture.debugElement.query( By.css('button') );
-      btn.triggerEventHandler('click', null);
-      tick();
-      fixture.detectChanges();
-      expect(component.newFormulario).toHaveBeenCalled();
-    }));
-    it('navigate to "checklist" before call to newFormulario', fakeAsync(() => {
-      location = TestBed.get(Location);
-      component.newFormulario();
-      tick();
-      expect(location.path()).toBe('/checklist');
-    }));
   });
