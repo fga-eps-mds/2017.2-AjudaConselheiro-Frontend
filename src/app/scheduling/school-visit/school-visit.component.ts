@@ -5,7 +5,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { SchoolService, AlertService } from '../../services/index';
 import { School } from './../../models/school.model';
-import { SchedulingCreateInterface } from './../scheduling-create-interface.component';
+import { SchedulingCreateAbstract } from './../scheduling-create-abstract.component';
 import { AlertComponent } from './../../layouts/alert/alert.component';
 
 @Component({
@@ -13,7 +13,7 @@ import { AlertComponent } from './../../layouts/alert/alert.component';
   templateUrl: './school-visit.component.html',
   styleUrls: ['./school-visit.component.css']
 })
-export class SchoolVisitComponent implements SchedulingCreateInterface, OnInit {
+export class SchoolVisitComponent extends SchedulingCreateAbstract implements OnInit {
 
   @ViewChild('formScheduling') formScheduling: NgForm;
   scheduling: Scheduling;
@@ -25,12 +25,21 @@ export class SchoolVisitComponent implements SchedulingCreateInterface, OnInit {
   postType = 138;
   postText = 'Visita Escolar';
 
+
   constructor(
     private schoolService: SchoolService,
-    private schedulingService: SchedulingService,
-    private router: Router,
-    private alertService: AlertService
-  ){}
+    schedulingService: SchedulingService,
+    router: Router,
+    alertService: AlertService,
+    scheduling: Scheduling,
+  ){
+    super(
+      schedulingService,
+      router,
+      alertService,
+      scheduling
+    );
+  }
 
   ngOnInit() {
     this.state = '';
@@ -38,39 +47,6 @@ export class SchoolVisitComponent implements SchedulingCreateInterface, OnInit {
     this.scheduling.school = new School();
     this.cities = new Array<Object>();
     this.schools = new Array<Object>();
-  }
-
-  newScheduling(): void {
-    if (this.formScheduling.form.valid) {
-      this.schedulingService.newScheduling(this.scheduling, this.postType, this.postText);
-    }
-  }
-
-  navigate() {
-    this.router.navigate(['/agendamento']);
-  }
-
-  result() {
-    this.alertService.success('Visita escolar cadastrada com sucesso.');
-  }
-
-  error(status: any) {
-    if (status === 400) {
-      this.alertService.warn('Erro!');
-    } else {
-      this.alertService.error('Erro: falha na comunicação com o sistema!');
-    }
-  }
-
-  register(): void {
-    this.schedulingService.newScheduling(this.scheduling, this.postType, this.postText)
-      .subscribe(
-      result => {
-        this.result();
-      },
-      error => {
-        this.error(error.status);
-      });
   }
 
   searchSchool(): void {

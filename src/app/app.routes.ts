@@ -15,6 +15,7 @@ import {
 import {
   SchedulingHomeComponent,
   SchedulingCreateComponent,
+  SchedulingCreateAbstract,
   SchedulingEditComponent,
   SchoolVisitComponent
 } from './scheduling/scheduling.module';

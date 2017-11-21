@@ -6,12 +6,15 @@ import { CommonModule } from '@angular/common';
 import { SchedulingService } from './../services/scheduling/scheduling.service';
 import { SchedulingHomeComponent } from './home/scheduling-home.component';
 import { SchedulingEditComponent } from './edit/scheduling-edit.component';
+import { SchedulingCreateAbstract } from './scheduling-create-abstract.component';
 import { SchedulingCreateComponent } from './create/scheduling-create.component';
 import { SchoolService } from '../services/index';
 import { AlertService } from '../services/index';
 import { SchoolVisitComponent } from './school-visit/school-visit.component';
+import { Scheduling } from './../models/scheduling.model';
 
-export { SchedulingCreateComponent, SchedulingEditComponent, SchedulingHomeComponent, SchoolVisitComponent };
+export { SchedulingCreateComponent, SchedulingEditComponent,
+  SchedulingHomeComponent, SchoolVisitComponent, SchedulingCreateAbstract };
 
 @NgModule({
   imports: [
@@ -28,7 +31,8 @@ export { SchedulingCreateComponent, SchedulingEditComponent, SchedulingHomeCompo
   providers: [
     SchedulingService,
     SchoolService,
-    AlertService
+    AlertService,
+    Scheduling
   ]
 })
 export class SchedulingModule { }

@@ -78,9 +78,14 @@
 </div>
 </div>
 </div>
-
 <form #formScheduling="ngForm">
     <div class="form-group">
+      <div *ngIf="scheduling.school">
+        <h4>
+          Escola Selecionada:
+        </h4>
+        <p>{{scheduling.school.name}}</p>
+      </div>
 
         <label for="date"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i> Data:</label>
         <input placeholder="Data" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control" id="date" name="date" [(ngModel)]="scheduling.date" #date="ngModel" required>
