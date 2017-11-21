@@ -23,7 +23,6 @@ import {
   UserCreateComponent,
   UserEditComponent,
   UserListComponent,
-  UserCpfComponent,
   NotProfileComponent,
   LoginComponent,
   ProfileComponent,
@@ -52,7 +51,6 @@ export const ROUTES: Routes = [
   { path: 'conselho/cadastrar', component: CouncilGroupCreateComponent },
   { path: 'conselho/buscar', component: CouncilGroupSearchComponent},
   { path: 'checklist/update', component: ChecklistUpdateComponent},
-  { path: 'adicionar-cpf', component: UserCpfComponent },
   { path: 'usuario-sem-perfil', component: NotProfileComponent},
   { path: 'perfil', component: ProfileComponent},
   { path: 'recuperar-senha', component: RecoverPasswordComponent}
