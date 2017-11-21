@@ -165,4 +165,22 @@ describe('UserCreateComponent', () => {
     expect(component.matchPassword(user.senha, '123456789')).toEqual(false);
   });
 
+  it('Teste CPF', () => {
+    let soma = '00000000000';
+    for (let i = 0 ; i <= 9 ; i++) {
+      expect(component.testCPF( soma )).toEqual( false );
+      soma = String(11111111111 + parseInt( soma, 10));
+    }
+    expect(component.testCPF( null )).toEqual( false );
+    expect(component.testCPF( '21536586469' )).toEqual( false );
+    expect(component.testCPF( '24499898978' )).toEqual( true );
+  });
+  it('should create', () => {
+    spyOn(component, 'testCPF');
+    component.savePosts( '215365,6469' );
+    expect(component.testCPF).toHaveBeenCalled();
+    component.savePosts( null );
+    expect(component.testCPF).toHaveBeenCalled();
+  });
+
 });
