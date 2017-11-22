@@ -63,5 +63,14 @@ export class SchedulingService extends ServicesUtilitiesService {
     .catch(this.handleError);
   }
 
+  getScheduling(): Observable<Scheduling[]> {
 
+    const userCod = this.userService.getUserCod();
+    const url = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/postagens';
+    const query = '?codAutor=' + userCod + '&codTiposPostagem=137';
+
+    return this.http.get(url + query, this.options)
+    .map(this.extractData)
+    .catch(this.handleError);
+  }
 }
