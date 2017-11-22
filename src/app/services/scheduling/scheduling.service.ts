@@ -20,6 +20,7 @@ export class SchedulingService extends ServicesUtilitiesService {
   options: RequestOptions = new RequestOptions({ headers: this.headers });
 
   private baseURL = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/postagens/conteudos';
+  private url = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/postagens';
 
   constructor(private http: Http,
     private alertService: AlertService,
@@ -63,5 +64,11 @@ export class SchedulingService extends ServicesUtilitiesService {
     .catch(this.handleError);
   }
 
+  delete(codPost: Number, codContent: Number): Observable<String> {
+    const options: RequestOptions = new RequestOptions({ headers: this.headers });
+    const url = this.url + '/' + codPost + '/conteudos/' + codContent;
+    return this.http.delete(url, this.options)
+      .catch(this.handleError);
+  }
 
 }

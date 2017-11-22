@@ -8,3 +8,10 @@ export class Scheduling {
       public type?: string
   ) {}
 }
+
+export class SchedulingDelete {
+  constructor(
+    public codPost?: number,
+    public codContent?: number
+  ) {}
+}

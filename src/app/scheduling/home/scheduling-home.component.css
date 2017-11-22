@@ -52,3 +52,9 @@ h1 {
 .delete-button {
     background-color: #192433;
 }
+
+.container {
+    width: 300px;
+    height: 200px;
+    position: relative;
+}
