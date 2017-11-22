@@ -93,17 +93,80 @@ export const CheckProdCommentaries: Array<SectionCommentary> = [
 ];
 // production checklist topic headers
 export const CheckProdTopicHeaders: Array<string> = [
-  ('Higienização e organização dos ambientes área externa, cozinha e depósito'),
-  ('Estrutura física da cozinha e do depósito'),
+  ('Arredores da Escola'),
+  ('Estoque de Alimentos'),
+  ('Cozinha'),
+  ('Refeitório'),
   ('Abastecimento de água e esgoto sanitário'),
-  ('Equipamentos e utensílios'),
   ('Manipuladores de alimentos'),
   ('Pré-preparo, preparo dos alimentos e distruibuição dos alimentos'),
   ('Qualidade da alimentação escolar'),
   ('Documentação'),
 ];
-// production checklist first section questions
-export const ChecklistProductionQuestionsOne: Array<String> = [
+// production checklist first section questions arredores da escola
+export const ChecklistProductionQuestionsOne: Array<String> = [// 7
+  ('Lixo a céu aberto'),
+  ('Água parada'),
+  ('Lixeiras destampadas'),
+  ('Sacos de lixo fora da lixeira'),
+  ('Animais próximos à escola'),
+  ('Local sujo'),
+  ('Objetos abandonados'),
+];
+// production checklist second section questions estoque de alimentos
+export const ChecklistProductionQuestionsTwo: Array<String> = [// 32
+  ('Escola não possui Estoque de Alimentos'),
+  ('Alimentos vencidos'),
+  ('Embalagens roídas'),
+  ('Insetos dentro das embalagens'),
+  ('Alimentos desorganizados'),
+  ('Alimentos em contato com o chão'),
+  ('Alimentos dentro de caixas'),
+  ('Produtos de limpeza junto aos alimentos'),
+  ('Embalagens abertas'),
+  ('Prateleiras enferrujadas'),
+  ('Prateleiras encostadas na parede'),
+  ('Local abafado'),
+  ('Contato direto dos raios de sol com as embalagens'),
+  ('Falta de controle de entrada de alimentos'),
+  ('Falta de controle de saída de alimentos'),
+  ('Telhado sem forro'),
+  ('Telhado com furos'),
+  ('Congelador sem termômetro'),
+  ('Lixeiras destampadas'),
+  ('Chão difícil de limpar'),
+  ('Parede difícil de limpar'),
+  ('Janelas sem tela de proteção'),
+  ('Portas sem tela de proteção'),
+  ('Portas sem rodapé'),
+  ('Insetos sobrevoando o local'),
+  ('Animais com livre circulação'),
+  ('Ventilador de teto empoeirado'),
+  ('Equipamentos sujos'),
+  ('Local mal iluminado'),
+  ('Local sujo'),
+  ('Objetos que não sejam alimentos'),
+  ('Lixo não é armazenado em local fechado'),
+];
+// production checklist third sections questions cozinha
+export const ChecklistProductionQuestionsThree: Array<String> = [// 27
+  'Escola não possui Cozinha',
+  'Telhado sem forro',
+  'Telhado com furos',
+  'Congelador sem termômetro',
+  'Lixeiras destampadas',
+  'Chão difícil de limpar',
+  'Parede difícil de limpar',
+  'Janelas sem tela de proteção',
+  'Portas sem tela de proteção',
+  'Portas sem rodapé',
+  'Insetos sobrevoando o local',
+  'Animais',
+  'Ventilador de teto empoeirado',
+  'Equipamentos sujos',
+  'Local mal iluminado',
+  'Local sujo',
+  'Lixo não é armazenado em local fechado',
   'Área externa livre de sujeiras, objetos em desuso, acúmulo de lixo',
   'Área da cozinha limpa e organizada',
   'Área do deposito limpa e organizada',
@@ -115,57 +178,47 @@ export const ChecklistProductionQuestionsOne: Array<String> = [
   'Presença da lixeira com tampa e pedal funcionando',
   'Sacos de lixo fora da lixeira'
 ];
-// production checklist second section questions
-export const ChecklistProductionQuestionsTwo: Array<String> = [
-  'Tamanho da cozinha é adequado e em bom estado de conservação',
-  'Tamanho do depósito é adeequado e em bom estado de conservação',
-  'Existe mais de um depósito de alimentos',
-  'Piso é adequado e em bom estado de conservação',
-  'Presença de ralo sifonado com o sistema abre e fecha',
-  'Parede é adequada e em bom estado de conservação',
-  'Teto é adequado e em bom estado de conservação',
-  'Portas são adequadas e em bom estado de conservação',
-  'Todas as portas possuem rodinho de proteção contra a entrada de insetos e vetores',
-  'As portas possuem telas milimétricas de proteção contra entrada de insetos e vetores',
-  'Todas as janelas são adequadas e em bom estado de conservação',
-  'A iluminação é adequada',
-  `A ventilação e circulação de ar são adequadas e capazes de garantir o conforto térmico
-  e o ambiente livre de sujidades`,
-  'Existe a presença de equipamentos de ventilação artificial',
-  'Os equipamentos de ventilação artificial são higienizados regularmente e com a manutenção adequada',
-  'Instalações elétricas adequadas',
-  `Lavatórios em condições de higiene, dotados de sabonete líquido inodoro antiséptico,toalhas de papel não reciclado
-  ou outro sistema higiênico e seguro de secagem e coletorde papel acionados sem contato manual`,
-  `Existência de lavatórios na área de manipulação com água corrente, em posições adequadas em relação ao fluxo de produção
-  e serviço e em número suficiente de modo a atender toda a área de produção`,
+// production checklist fourth sections questions refeitório
+export const ChecklistProductionQuestionsFour: Array<String> = [// 18
+  'Escola não possui Refeitório',
+  'Alimentos prontos sem proteção',
+  'Refeição sendo servida sem talheres',
+  'Alunos compartilhando os copos no bebedouro',
+  'Pia sem sabonete e papel toalha para lavar as mãos',
+  'Não vi pia',
+  'Telhado sem forro',
+  'Telhado com furos',
+  'Lixeiras destampadas',
+  'Chão difícil de limpar',
+  'Parede difícil de limpar',
+  'Janelas sem tela de proteção',
+  'Portas sem tela de proteção',
+  'Portas sem rodapé',
+  'Insetos sobrevoando o local',
+  'Ventilador de teto empoeirado',
+  'Local mal iluminado',
+  'Local sujo',
 ];
-// production checklist third section questions
-export const ChecklistProductionQuestionsThree: Array<String> = [
+// production checklist fifth section questions Abastecimento de água e esgoto sanitário
+export const ChecklistProductionQuestionsFive: Array<String> = [ // 3
   `Reservatório de água e encanamentos acessíveis, dotados de tampas, em satifatória condição de uso,
-  livre de vazamentos, infiltrações e descasccamentos`,
+  livre de vazamentos, infiltrações e descascamentos`,
   'Fossas e esgotos conectados à rede pública',
   'Caixas de gordura em adequado estado de conservação e funcionamento',
 ];
-// production checklist fourth section questions
-export const ChecklistProductionQuestionsFour:Array<String> = [
-  'A quantidade de equipamentos é suficiente (geladeira, freezer, fogão, liquidificador,etc.)',
-  'Presença de termômetro no freezer',
-  'A quantidade de utensílios é suficiente(pratos, copos, talheres, etc)',
-  'Existência de registro da higienização dos equipamentos',
-  'A higienização é adequada',
-  'Produtos de higienização identificados e guardados em local adequado, afastados dos alimentos',
-  'Produtos de higienização regularizados pelo Ministério da Saúde',
-];
-// production checklist fifth section questions
-export const ChecklistProductionQuestionsFive: Array<String> = [
+// production checklist sixth section questions manipuladores de alimentos
+export const ChecklistProductionQuestionsSix: Array<String> = [// 8
   'Uniforme Completo',
-  'Manipuladores com esmaltes e/ou unhas compridas',
+  'Manipuladores com esmaltes',
+  'Manipuladores com unhas compridas',
+  'Manipuladores sem touca',
+  'Visitantes sem touca',
   'Manipuladores usando adornos (brincos, anéis,pulseiras, relógio, etc.)',
   'Manipuladores com maquiagem (batom, sombra, lápis de olho,etc)',
   'Manipuladores doentes e/ou com cortes feridas nas mãos',
 ];
-// production checklist Sixth section questions
-export const ChecklistProductionQuestionsSix: Array<String> = [
+// production checklist Seventh section questions Pré-preparo, preparo dos alimentos e distruibuição dos alimentos
+export const ChecklistProductionQuestionsSeven: Array<String> = [ // 9
   'Higienização de frutas e verduras é realizada de maneira adequada',
   'A água sanitária utilizada é própria para alimentos',
   'O descongelamento dos alimentos é feito na geladeira',
@@ -177,25 +230,25 @@ export const ChecklistProductionQuestionsSix: Array<String> = [
   'Caso as refeições aconteçam em sala de aula, a escola possui carrinho para transportar os alimentos?',
   'Os carrinhos estão em boas condições e em quantidades suficientes',
 ];
-// production checklist Seventh section questions
-export const ChecklistProductionQuestionsSeven: Array<String> = [
+// production checklist eighth section questions Qualidade da alimentação escolar
+export const ChecklistProductionQuestionsEight: Array<String> = [// 5
   'A alimentação escolar tem paladar saboroso e gostoso',
-  'Os alimentos fornecidos pelo orgão de distribuição do estado são de qualidade',
   'Os cardápios são variados',
   'Os cardápios estão afixados para visualização dos alunos e comunidade escolar',
-  'Qual o cardápio mais aceito?',
-  'Qual o cardápio menos aceito?',
+  'Qual o cardápio mais aceito?', // commentary question
+  'Qual o cardápio menos aceito?', // commentary question
 ];
-// production checklist Eighth section questions
-export const ChecklistProductionQuestionsEight: Array<String> = [
-  'Presença de comprovante de limpeza da caixa dagua(semestral)',
+// production checklist Ninth section questions documentação
+export const ChecklistProductionQuestionsNine: Array<String> = [// 9
+  'Ausência de registro de imunização',
+  'Ausência de registro de higienização dos utensílios',
+  'Ausência de registro de capacitação ou treinamento de merendeiras',
+  'Ausência de registro de potabilidade da água',
+  'Ausência de registro de exames periódicos dos manipuladores',
+  'Presença de comprovante de limpeza da caixa d´água potavel(semestral)',
   'Presença de comprovante de limpeza do reservatório de água subterrâneo(semestral)',
-  'Presença de registro de potabilidade da água (RDC 275/2002 - ANVISA e RDC 216/2004 - ANVISA)',
   'Presença de comprovante de limpeza da caixa de gordura(quinzenal)',
   'Presença de comprovante de desinsetização e desratização (semestral)',
-  'Atestado de Saúde Ocupacional (ASO) em dia e de fácil visualização (anual)',
-  'Os manipuladores de alimentos são, comprovadamente, capacitados em cursos sobre higiene alimentar',
-  'A prestação de contas (controle diário) está em dia',
 ];
 // Questions Array Iterator
 export const ChecklistProductionQuestionsIteratorArray: Array<String[]> = [
@@ -207,6 +260,7 @@ export const ChecklistProductionQuestionsIteratorArray: Array<String[]> = [
   ChecklistProductionQuestionsSix,
   ChecklistProductionQuestionsSeven,
   ChecklistProductionQuestionsEight,
+  ChecklistProductionQuestionsNine,
 ];
 // production checklist first section answers
 export const CheckProdFirstTopic: Array<BinaryForm> = [
@@ -217,56 +271,112 @@ export const CheckProdFirstTopic: Array<BinaryForm> = [
   {question: 5, answer: false},
   {question: 6, answer: false},
   {question: 7, answer: false},
-  {question: 8, answer: false},
-  {question: 9, answer: false}
 ];
 // production checklist second section answers
 export const CheckProdSecondTopic: Array<BinaryForm> = [
-  {question: 1, answer: false},
-  {question: 2, answer: false },
-  {question: 3, answer: false },
-  {question: 4, answer: false},
-  {question: 5, answer: false},
-  {question: 6, answer: false},
-  {question: 7, answer: false },
-  {question: 8, answer: false },
+  {question: 8, answer: false},
   {question: 9, answer: false},
   {question: 10, answer: false},
   {question: 11, answer: false},
   {question: 12, answer: false},
-  {question: 13, answer: false },
-  {question: 14, answer: false },
+  {question: 13, answer: false},
+  {question: 14, answer: false},
   {question: 15, answer: false},
-  {question: 16, answer: false },
+  {question: 16, answer: false},
   {question: 17, answer: false},
-  {question: 18, answer: false }
+  {question: 18, answer: false},
+  {question: 19, answer: false},
+  {question: 20, answer: false},
+  {question: 21, answer: false},
+  {question: 22, answer: false},
+  {question: 23, answer: false},
+  {question: 24, answer: false},
+  {question: 25, answer: false},
+  {question: 26, answer: false},
+  {question: 27, answer: false},
+  {question: 28, answer: false},
+  {question: 29, answer: false},
+  {question: 30, answer: false},
+  {question: 31, answer: false},
+  {question: 32, answer: false},
+  {question: 33, answer: false},
+  {question: 34, answer: false},
+  {question: 35, answer: false},
+  {question: 36, answer: false},
+  {question: 37, answer: false},
+  {question: 38, answer: false},
+  {question: 39, answer: false},
 ];
 // production checklist third section answers
 export const CheckProdThirdTopic: Array<BinaryForm> = [
-  {question: 1, answer: false},
-  {question: 2, answer: false },
-  {question: 3, answer: false },
+  {question: 40, answer: false},
+  {question: 41, answer: false },
+  {question: 42, answer: false },
+  {question: 43, answer: false},
+  {question: 44, answer: false},
+  {question: 45, answer: false},
+  {question: 46, answer: false },
+  {question: 47, answer: false },
+  {question: 48, answer: false},
+  {question: 49, answer: false},
+  {question: 50, answer: false},
+  {question: 51, answer: false},
+  {question: 52, answer: false },
+  {question: 53, answer: false },
+  {question: 54, answer: false},
+  {question: 55, answer: false },
+  {question: 56, answer: false},
+  {question: 57, answer: false},
+  {question: 58, answer: false},
+  {question: 59, answer: false},
+  {question: 60, answer: false },
+  {question: 61, answer: false},
+  {question: 62, answer: false },
+  {question: 63, answer: false},
+  {question: 64, answer: false},
+  {question: 65, answer: false},
+  {question: 66, answer: false},
 ];
 // production checklist fourth section answers
 export const CheckProdFourthTopic: Array<BinaryForm> = [
-  {question: 1, answer: false},
-  {question: 2, answer: false },
-  {question: 3, answer: false },
-  {question: 4, answer: false},
-  {question: 5, answer: false},
-  {question: 6, answer: false},
-  {question: 7, answer: false },
+  {question: 67, answer: false},
+  {question: 68, answer: false},
+  {question: 69, answer: false},
+  {question: 70, answer: false},
+  {question: 71, answer: false},
+  {question: 72, answer: false},
+  {question: 73, answer: false},
+  {question: 74, answer: false},
+  {question: 75, answer: false},
+  {question: 76, answer: false},
+  {question: 77, answer: false},
+  {question: 78, answer: false},
+  {question: 79, answer: false},
+  {question: 80, answer: false},
+  {question: 81, answer: false},
+  {question: 82, answer: false},
+  {question: 83, answer: false},
+  {question: 84, answer: false},
 ];
 // production checklist fifth section answers
 export const CheckProdFifthTopic: Array<BinaryForm> = [
-  {question: 1, answer: false},
-  {question: 2, answer: false},
-  {question: 3, answer: false},
-  {question: 4, answer: false},
-  {question: 5, answer: false},
+  {question: 85, answer: false},
+  {question: 86, answer: false},
+  {question: 87, answer: false},
 ];
 // production checklist sixth section answers
 export const CheckProdSixthTopic: Array<BinaryForm> = [
+  {question: 88, answer: false},
+  {question: 89, answer: false},
+  {question: 90, answer: false},
+  {question: 91, answer: false},
+  {question: 92, answer: false},
+  {question: 93, answer: false},
+  {question: 94, answer: false},
+  {question: 95, answer: false},
+];
+// production checklist seventh section answers
+export const CheckProdSeventhTopic: Array<BinaryForm> = [
   {question: 1, answer: false},
   {question: 2, answer: false},
   {question: 3, answer: false},
@@ -277,17 +387,15 @@ export const CheckProdSixthTopic: Array<BinaryForm> = [
   {question: 8, answer: false},
   {question: 9, answer: false},
 ];
-// production checklist seventh section answers
-export const CheckProdSeventhTopic: Array<CommentBinaryForm> = [
+// production checklist eighth section answers
+export const CheckProdEighthTopic: Array<CommentBinaryForm> = [
   {question: 1, answer: false, commentary: null},
   {question: 2, answer: false, commentary: null},
   {question: 3, answer: false, commentary: null},
   {question: 4, answer: false, commentary: null},
   {question: 5, answer: false, commentary: null},
-  {question: 6, answer: false, commentary: null},
 ];
-// production checklist eighth section answers
-export const CheckProdEighthTopic: Array<BinaryForm> = [
+export const CheckProdNinthTopic: Array<BinaryForm> = [
   {question: 1, answer: false},
   {question: 2, answer: false},
   {question: 3, answer: false},
@@ -296,6 +404,7 @@ export const CheckProdEighthTopic: Array<BinaryForm> = [
   {question: 6, answer: false},
   {question: 7, answer: false},
   {question: 8, answer: false},
+  {question: 9, answer: false}
 ];
 export const IteratorArray: Array<Object> = [
   CheckProdFirstTopic,
@@ -306,5 +415,6 @@ export const IteratorArray: Array<Object> = [
   CheckProdSixthTopic,
   CheckProdSeventhTopic,
   CheckProdEighthTopic,
+  CheckProdNinthTopic,
   CheckProdCommentaries,
 ];
