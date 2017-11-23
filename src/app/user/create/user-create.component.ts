@@ -1,10 +1,11 @@
-import { ProfileService } from './../../services/profile/profile.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Http } from '@angular/http';
 import { NgForm } from '@angular/forms';
-import { UserService, AlertService } from '../../services/index';
+
+import { UserService, AlertService, ProfileService } from '../../services/index';
 import { User } from '../../models/index';
+import { UserMasks } from '../userMasks';
 
 @Component({
   selector: 'app-user-create',
@@ -18,6 +19,9 @@ export class UserCreateComponent implements OnInit {
   @ViewChild('formUser') formUser: NgForm;
   user: User;
   data: string;
+
+  maskcpf = UserMasks.MASK_CPF;
+
   constructor(
     private userService: UserService,
     private router: Router,
@@ -54,9 +58,9 @@ export class UserCreateComponent implements OnInit {
     }
   }
 
-  register(): void {
+  register(cpf: string): void {
     if (this.matchPassword(this.user.confirmaSenha, this.user.senha)) {
-      this.userService.createUser(this.user)
+      this.userService.createUser(this.user, cpf)
         .subscribe(
         result => {
           this.result();
@@ -70,11 +74,11 @@ export class UserCreateComponent implements OnInit {
     }
   }
   savePosts(strCPF: string) {
-    
+
         if (this.testCPF(strCPF) === true) {
           const userData = this.userService.getLoggedUser();
           const userCod = userData.cod;
-    
+
           this.profileService.setUserProfile(this.data, userCod)
             .subscribe(
               result => console.log(result)
@@ -88,7 +92,7 @@ export class UserCreateComponent implements OnInit {
           this.alertService.success('CPF válido');
         }
       }
-    
+
      expectedCPF(strCPF: string) {
       let soma = '00000000000';
       for (let i = 0 ; i <= 9 ; i++) {
@@ -107,29 +111,29 @@ export class UserCreateComponent implements OnInit {
       if ((rest === 10) || (rest === 11)) {
         rest = 0;
       }
-      if (rest !== parseInt(strCPF.substring(9, 10))) {
+      if (rest !== Number(strCPF.substring(9, 10))) {
       return false;
       }
     }
-    
+
     calculateTwoCPF(strCPF: string, sum: any, rest: any) {
       sum = this.sumStringValues(strCPF, sum, 10);
       rest = (sum * 10) % 11;
       if ((rest === 10) || (rest === 11)) {
         rest = 0;
       }
-      if (rest !== parseInt(strCPF.substring(10, 11))) {
+      if (rest !== Number(strCPF.substring(10, 11))) {
       return false;
       }
     }
-    
+
     sumStringValues(strCPF: string, sum: any, limite1: any): any {
       for (let i = 1; i <= limite1; i++) {
-        sum += parseInt(strCPF.substring(i -1, i)) * (limite1 + 2 - i);
+        sum += Number(strCPF.substring(i - 1, i)) * (limite1 + 2 - i);
       }
       return sum;
     }
-    
+
     testCPF(strCPF: string) {
         let sum;
         let rest;
