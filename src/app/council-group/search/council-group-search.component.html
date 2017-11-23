@@ -6,32 +6,31 @@
     <app-ibge (stateEmitter)="chosenState($event)" (cityEmitter)="chosenCity($event)"></app-ibge>
 
     <div align="center" *ngIf="hasLocation()">
-      <input type="button" class="btn btn-primary" (click)="searchCouncilGroup()" value="Pesquisar">
       <a href="" class="btn btn-secondary">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="false"></span>Voltar
-      </a>
+          <span class="glyphicon glyphicon-chevron-left" aria-hidden="false"></span>Voltar
+        </a>
+      <input type="button" class="btn btn-primary" (click)="searchCouncilGroup()" value="Pesquisar">
     </div>
   </div>
 
   <table *ngIf="found" class="table table-hover" [(ngModel)]="councilGroup.municipio" #council="ngModel" ngDefaultControl>
     <thead>
-        <tr>
-            <th>Conselho</th>
-            <th>Estado</th>
-            <th>Município</th>
-            <th></th>
-        </tr>
+      <tr>
+        <th>Conselho</th>
+        <th>Estado</th>
+        <th>Município</th>
+        <th></th>
+      </tr>
     </thead>
-
     <tbody>
-        <tr>
-            <td>{{this.councilGroup.descricao}}</td>
-            <td>{{this.state}}</td>
-            <td>{{this.city}}</td>
-            <td>
-              <a type="button" style="margin-top:-8px !important; -webkit-appearance: none !important" class="btn btn-primary"  (click)="openDialog()">Solicitar Participação </a>
-            </td>
-        </tr>
+      <tr>
+        <td>{{this.councilGroup.descricao}}</td>
+        <td>{{this.state}}</td>
+        <td>{{this.city}}</td>
+        <td>
+          <a type="button" style="margin-top:-8px !important; -webkit-appearance: none !important" class="btn btn-primary" (click)="openDialog()">Solicitar Participação </a>
+        </td>
+      </tr>
     </tbody>
   </table>
 
@@ -41,23 +40,18 @@
       <hr _ngcontent-c3="" class="orange darken-4 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
       <a class="close" (click)="closeDialog()">&times;</a>
       <div class="content" style="margin-top: 0px;">
-        Ao confirmar a solicitação, seu pedido de ingresso será enviado ao presidente do conselho.
-        Deseja continuar?
+        Ao confirmar a solicitação, seu pedido de ingresso será enviado ao presidente do conselho. Deseja continuar?
+      </div>
+      <div class="buttons">
+        <input type="button" class="btn btn-secondary" (click)="closeDialog()" value="Não">
+        <input type="button" class="btn btn-primary" (click)="sendNotification()" value="Sim">
       </div>
     </div>
   </div>
-
-  <div align="center" *ngIf="!isLoggedIn()">
-    <br>
+  <div align="center" style="margin-bottom: 10%;" *ngIf="!isLoggedIn()">
     <p class="h2 text-center mb-4">Você precisa estar logado para acessar esta função.</p>
-    <br>
     <a href="/login" class="btn btn-deep-orange">
-      <span class="glyphicon glyphicon-chevron-left" aria-hidden="false"></span>Entrar
-    </a>
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="false"></span>Entrar
+      </a>
   </div>
-<div>
-  <a href="/conselho" class="btn btn-deep-orange backButton" align="left">
-    <span class="glyphicon glyphicon-chevron-left " aria-hidden="false"></span>
-    <i class="fa fa-arrow-circle-o-left" aria-hidden="true">
-</i>Voltar</a>
-</div>
+</body>

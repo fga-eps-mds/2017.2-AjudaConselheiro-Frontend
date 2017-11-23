@@ -129,4 +129,8 @@ export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
     document.getElementById('overlay').style.visibility = 'hidden';
     document.getElementById('overlay').style.opacity = '0';
   }
+
+  sendNotification() {
+
+  }
 }

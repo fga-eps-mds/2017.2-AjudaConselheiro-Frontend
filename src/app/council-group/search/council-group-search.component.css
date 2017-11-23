@@ -31,46 +31,6 @@ p {
   width: 50%;
 }
 
-#bg {
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, .8);
-  position: fixed;
-  display: none;
-}
-
-/*#bg:target {
-  display: block;
-}*/
-
-.box {
-  width: 720px;
-  height: 405px;
-  position: absolute;
-  /*margin-left: -360px;*/
-  left: 50%;
-  top: -410px;
-}
-
-#close {
-  color: #fff;
-  font-family: 'Arial';
-  text-decoration: none;
-  font-size: 35px;
-  position: absolute;
-  /*background-color: #57A02D;*/
-  width: 40px;
-  height: 40px;
-  text-align: center;
-  /*right: 0;*/
-}
-
-#close:hover{
-  opacity: .6;
-}
-
 .overlay {
   position: fixed;
   top: 0;
@@ -84,7 +44,7 @@ p {
 }
 
 .popup {
-  top: 25%;
+  top: 20%;
   margin: 70px auto;
   padding: 20px;
   background: #fff;
@@ -102,17 +62,9 @@ p {
 
 }
 
-.popup hr{
-  margin-bottom: 1.5rem !important;
-  width: 60px;
-  background-color: #e65100 !important;
-  margin-top: 0 !important;
-  margin-right: auto !important;
-}
-
 .popup .close {
   position: absolute;
-  top: 16%;
+  top: 12%;
   right: 30px;
   transition: all 200ms;
   font-size: 30px;
@@ -126,6 +78,10 @@ p {
 .popup .content {
   max-height: 30%;
   overflow: auto;
+}
+
+.buttons {
+  text-align: center;
 }
 
 @media screen and (max-width: 700px){
