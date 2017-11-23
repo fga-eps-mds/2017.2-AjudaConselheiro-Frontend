@@ -66,9 +66,13 @@ export class SchedulingService extends ServicesUtilitiesService {
   }
 
   delete(codPost: Number, codContent: Number): Observable<String> {
-    const options: RequestOptions = new RequestOptions({ headers: this.headers });
+    const headers: Headers = new Headers({
+      'Content-Type': 'application/json',
+      'appToken': localStorage.getItem('token')
+    });
+    const options: RequestOptions = new RequestOptions({ headers: headers });
     const url = this.url + '/' + codPost + '/conteudos/' + codContent;
-    return this.http.delete(url, this.options)
+    return this.http.delete(url, options)
       .catch(this.handleError);
   }
 

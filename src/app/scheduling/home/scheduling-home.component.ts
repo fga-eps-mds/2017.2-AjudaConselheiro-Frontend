@@ -1,7 +1,7 @@
 import { NgForm } from '@angular/forms';
 import { AlertService } from './../../services/alert/alert.service';
 import { SchedulingService } from './../../services/scheduling/scheduling.service';
-import { Scheduling, SchedulingDelete } from './../../models/scheduling.model';
+import { Scheduling } from './../../models/scheduling.model';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
@@ -14,16 +14,20 @@ export class SchedulingHomeComponent implements OnInit {
 
   @ViewChild('formScheduling') formScheduling: NgForm;
   schedulings: Scheduling[];
-  codPost = 7188;
-  codContent = 5581;
+  codPost;
+  codContent;
 
   constructor(
     private schedulingService: SchedulingService,
     private alertService: AlertService
   ) {}
+
   ngOnInit() {
-    this.schedulingService.delete(this.codPost, this.codContent);
-    console.log(this.schedulingService.delete(this.codPost, this.codContent));
+  }
+  delete() {
+    this.schedulingService.delete(this.codPost, this.codContent) .subscribe(
+      result => console.log(result)
+    );
   }
 
 }

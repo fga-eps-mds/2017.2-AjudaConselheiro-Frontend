@@ -9,10 +9,3 @@ export class Scheduling {
   public type?: string;
   public school?: School;
 }
-
-export class SchedulingDelete {
-  constructor(
-    public codPost?: number,
-    public codContent?: number
-  ) {}
-}

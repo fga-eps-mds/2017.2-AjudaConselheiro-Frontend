@@ -11,16 +11,13 @@
         <div class="card container">
             <label for="name"><i class="fa fa-globe" aria-hidden="true"></i> Código de Postágem:</label>
             <div class="input-group">
-                <input type="text" class="form-control">
-                    <button class="btn btn-deep-orange rounded" type="button" aria-label="Search">
-                    <i class="fa fa-search" aria-hidden="true"></i>
-                    </button>
+                <input type="text" class="form-control"  placeholder="cod" [(ngModel)]="codPost">
             </div>
             <label for="name"><i class="fa fa-globe" aria-hidden="true"></i> Código de Postágem:</label>
             <div class="input-group">
-                 <input type="text" class="form-control">
-                    <button class="btn btn-deep-orange rounded" type="button" aria-label="Search">
-                        <i class="fa fa-search" aria-hidden="true"></i>
+                <input type="text" class="form-control"  placeholder="cod2" [(ngModel)]="codContent">
+                <button class="btn btn-deep-orange rounded" type="button" (click)="delete()" aria-label="Search">
+                        Deletar
                     </button>
             </div>
         </div>
