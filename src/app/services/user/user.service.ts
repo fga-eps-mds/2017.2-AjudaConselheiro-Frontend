@@ -16,7 +16,10 @@ import { ServicesUtilitiesService } from './../services-utilities/services-utili
 export class UserService extends ServicesUtilitiesService {
 
   private url = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas';
-  private headers: Headers = new Headers({ 'Content-Type': 'application/json' });
+  private headers: Headers = new Headers({
+    'Content-Type': 'application/json'
+    // 'appToken': localStorage.getItem('token').toString()
+  });
   options: RequestOptions = new RequestOptions({ headers: this.headers });
 
   updateHeaders: Headers = new Headers({
@@ -116,6 +119,25 @@ export class UserService extends ServicesUtilitiesService {
       .catch(this.handleError);
   }
 
+  sendNewPassword(email: string): Observable <string> {
+    /* tslint:disable:max-line-length */
+    const regexEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
+    const validEmail = regexEmail.test(email);
+
+    if (validEmail) {
+      const recoverURL = `${this.url + '/redefinirSenha'
+        + '?email=' + email}`;
+
+      return this.http.post(recoverURL, {body: ''})
+        .map(res => this.extractData(res))
+        .catch(this.handleError);
+
+    } else {
+      console.error('Email digitado é inválido!');
+      return new Observable <string>();
+    }
+  }
+
   updatePassword(currentPassword: string, newPassword: string) {
     const cod = this.getUserCod();
 
@@ -166,9 +188,13 @@ export class UserService extends ServicesUtilitiesService {
   }
 
   delete(cod: Number): Observable<String> {
-    const url = `${this.url + '?codAplicativo=462 &'}/${cod}`;
-    return this.http.delete(url, this.options)
-      .map(res => this.extractData(res))
+    const headers: Headers = new Headers({
+      'appIdentifier': 462,
+      'appToken': localStorage.getItem('token').toString()
+    });
+    const options: RequestOptions = new RequestOptions({ headers: headers });
+    const url = this.url + '/' + cod + '/perfil';
+    return this.http.delete(url, options)
       .catch(this.handleError);
   }
 

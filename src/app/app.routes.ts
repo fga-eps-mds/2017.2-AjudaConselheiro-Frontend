@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
-import { CouncilGroupCreateComponent, CouncilGroupSearchComponent } from './council-group/council-group.module';
+import { CouncilGroupCreateComponent, CouncilGroupSearchComponent, CouncilGroupComponent } from './council-group/council-group.module';
 
 import {
   ChecklistComponent,
@@ -14,7 +14,9 @@ import {
 import {
   SchedulingHomeComponent,
   SchedulingCreateComponent,
-  SchedulingEditComponent
+  SchedulingCreateAbstract,
+  SchedulingEditComponent,
+  SchoolVisitComponent
 } from './scheduling/scheduling.module';
 
 import {
@@ -25,12 +27,12 @@ import {
   NotProfileComponent,
   LoginComponent,
   ProfileComponent,
+  RecoverPasswordComponent,
   PasswordUpdateComponent
 } from './user/user.module';
 
 export const ROUTES: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
+  { path: '', component: HomeComponent },
   { path: 'checklist', component: ChecklistComponent },
   { path: 'checklist/producao', component: ChecklistProductionComponent },
   { path: 'checklist/menu', component: ChecklistMenuComponent },
@@ -38,12 +40,14 @@ export const ROUTES: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'agendamento', component: SchedulingHomeComponent },
   { path: 'agendamento/criar', component: SchedulingCreateComponent },
+  { path: 'agendamento/criar/visita-escolar', component: SchoolVisitComponent },
   { path: 'agendamento/editar/:id', component: SchedulingEditComponent },
   { path: 'usuarios', component: UserListComponent },
   { path: 'usuarios/todos', component: UserListComponent },
   { path: 'login', component: LoginComponent },
   { path: 'registrar', component: UserCreateComponent },
   { path: 'usuarios/editar/:id', component: UserEditComponent },
+  { path: 'conselho', component: CouncilGroupComponent },
   { path: 'usuarios/editar/:id/senha', component: PasswordUpdateComponent},
   { path: 'conselho/cadastrar', component: CouncilGroupCreateComponent },
   { path: 'conselho/buscar', component: CouncilGroupSearchComponent},
@@ -51,4 +55,5 @@ export const ROUTES: Routes = [
   { path: 'adicionar-cpf', component: UserCpfComponent },
   { path: 'usuario-sem-perfil', component: NotProfileComponent},
   { path: 'perfil', component: ProfileComponent},
+  { path: 'recuperar-senha', component: RecoverPasswordComponent}
 ];

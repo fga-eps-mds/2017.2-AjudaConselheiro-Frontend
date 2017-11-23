@@ -29,10 +29,10 @@ export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
   public found = false;
 
   constructor(
-    public councilGroupService: CouncilGroupService,
+    private ibgeService: IbgeService,
+    private councilGroupService: CouncilGroupService,
     private alertService: AlertService,
-    private ibgeService: IbgeService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.councilGroup = new CouncilGroup();

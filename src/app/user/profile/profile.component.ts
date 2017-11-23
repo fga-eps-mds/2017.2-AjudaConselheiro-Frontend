@@ -1,8 +1,9 @@
+import { AlertService } from './../../services/alert/alert.service';
+import { AuthenticationService } from './../../services/authentication/authentication.service';
+import { User } from './../../models/user';
+import { UserService } from './../../services/user/user.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
-import { User } from '../../models/index';
-import { UserService } from '../../services/index';
 
 @Component({
   selector: 'app-profile',
@@ -13,11 +14,16 @@ export class ProfileComponent implements OnInit {
   public name;
   public biography;
   public email;
-  public user: User;
+
+  user: User;
+  public password;
 
   constructor(
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private authenticationService: AuthenticationService,
+    private alertService: AlertService
+
   ) { }
 
   ngOnInit() {
@@ -25,9 +31,33 @@ export class ProfileComponent implements OnInit {
       this.router.navigate(['/home']);
     } else {
       this.formatUserData();
-      this.user = new User();
-      this.user.cod = this.userService.getUserCod();
+      this.user = this.userService.getLoggedUser();
     }
+  }
+
+  errorStatus (errorStatus: number) {
+    console.log('error: ', errorStatus);
+    if (errorStatus === 401) {
+      this.alertService.warn('Aviso: senha errada!');
+    }
+  }
+
+  validatePassword() {
+    this.authenticationService.login(this.user.email, this.password)
+    .subscribe(
+      result => this.delete(),
+      error => this.errorStatus(error.status));
+  }
+
+  resultDelete() {
+    this.authenticationService.logout();
+    this.router.navigate(['/home']);
+  }
+
+  delete() {
+    this.userService.delete(this.user.cod) .subscribe(
+      result => this.resultDelete()
+    );
   }
 
   formatUserData() {

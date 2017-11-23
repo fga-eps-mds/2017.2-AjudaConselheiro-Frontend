@@ -3,64 +3,36 @@ import { SchedulingService } from './../../services/scheduling/scheduling.servic
 import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { SchoolService, AlertService } from '../../services/index';
-import { Search } from './../../models/search.model';
+import { AlertService } from '../../services/index';
+import { School } from './../../models/school.model';
+import { SchedulingCreateAbstract } from './../scheduling-create-abstract.component';
 
 @Component({
   selector: 'app-scheduling-create',
   templateUrl: './scheduling-create.component.html',
   styleUrls: ['./scheduling-create.component.css']
 })
-export class SchedulingCreateComponent implements OnInit {
+export class SchedulingCreateComponent extends SchedulingCreateAbstract implements OnInit {
 
   @ViewChild('formScheduling') formScheduling: NgForm;
-  scheduling: Scheduling;
+  postType = 137;
+  postText = "Reuniao";
 
   constructor(
-    private schedulingService: SchedulingService,
-    private router: Router,
-    private alertService: AlertService
-  ) {}
-
-
+    schedulingService: SchedulingService,
+    router: Router,
+    alertService: AlertService,
+    scheduling: Scheduling,
+  ){
+    super(
+      schedulingService,
+      router,
+      alertService,
+      scheduling
+    );
+  }
 
   ngOnInit() {
     this.scheduling = new Scheduling();
-  }
-
-
-  newScheduling(): void {
-    if (this.formScheduling.form.valid) {
-      this.schedulingService.newScheduling(this.scheduling);
-      this.router.navigate(['/agendamento']);
-    }
-  }
-
-  navigate() {
-    this.router.navigate(['/agendamento']);
-  }
-
-  result() {
-    this.alertService.success('Postagem cadastrada com sucesso.');
-    this.navigate();
-  }
-
-  error(status: any) {
-    if (status === 400) {
-      this.alertService.warn('Erro!');
-    } else {
-      this.alertService.error('Erro: falha na comunicação com o sistema!');
-    }
-  }
-
-  register(): void {
-      this.schedulingService.newScheduling(this.scheduling)
-        .subscribe(
-        result => {
-          this.result();
-        },
-        error => {
-          this.error(error.status);
-        });
   }
 }

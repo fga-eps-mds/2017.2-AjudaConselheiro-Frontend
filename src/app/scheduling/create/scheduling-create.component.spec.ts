@@ -13,7 +13,7 @@ import { HttpModule } from '@angular/http';
 import { SchedulingService, AlertService, UserService } from './../../services/index';
 import { SchedulingCreateComponent } from './scheduling-create.component';
 import { Scheduling } from './../../models/scheduling.model';
-import { Search } from './../../models/search.model';
+import { School } from './../../models/school.model';
 
 describe('SchedulingCreateComponent', () => {
   let component: SchedulingCreateComponent;
@@ -31,7 +31,7 @@ describe('SchedulingCreateComponent', () => {
         {provide: APP_BASE_HREF, useValue : '/' }
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

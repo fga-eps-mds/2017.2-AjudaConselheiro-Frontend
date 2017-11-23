@@ -2,8 +2,10 @@ import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing'
 import { FormsModule } from '@angular/forms';
 import { CouncilGroupSearchComponent } from './council-group-search.component';
 import { HttpModule, Headers, RequestOptions, Response, URLSearchParams } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { AlertService } from '../../services/alert/alert.service';
 import { RouterTestingModule } from '@angular/router/testing';
+import { UserService } from '../../services/index';
 import { CouncilGroupService, IbgeService  } from '../../services/index';
 import { State, CouncilGroup } from '../../models/index';
 import { IbgeComponent } from '../../ibge/ibge.component';
@@ -39,7 +41,9 @@ describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
       imports: [
         FormsModule,
         HttpModule,
-        RouterTestingModule ],
+        RouterTestingModule,
+        HttpClientModule
+      ],
       providers: [
         CouncilGroupService,
         IbgeService,
