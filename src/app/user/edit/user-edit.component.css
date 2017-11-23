@@ -24,3 +24,7 @@ label {
 .delete-button {
     background-color: #B97D45;
 }
+
+a {
+    align-content: right;
+}

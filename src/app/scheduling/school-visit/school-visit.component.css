@@ -4,6 +4,12 @@
     width: 50%;
 }
 
+.form-group {
+  margin: 0 auto;
+  max-width: 1280px;
+  width: 50%;
+}
+
 .form-simple .font-small {
     font-size: 0.8rem; }
 

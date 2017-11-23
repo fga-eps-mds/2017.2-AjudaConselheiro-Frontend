@@ -39,13 +39,14 @@ export class SchedulingService extends ServicesUtilitiesService {
     }
   }
 
-  newScheduling(scheduling: Scheduling): Observable<Scheduling> {
-    const cod = this.getUserCod();
+  newScheduling(scheduling: Scheduling, postType: number, postText: string): Observable<Scheduling> {
+
+    const cod = this.userService.getUserCod();
     const sched = JSON.stringify(scheduling);
     const body = {
       'conteudo': {
         'JSON': sched,
-        'texto': 'Agendamento',
+        'texto': postText,
         'valor': 0
       },
       'postagem': {
@@ -53,7 +54,7 @@ export class SchedulingService extends ServicesUtilitiesService {
           'codPessoa': cod
         },
         'tipo': {
-          'codTipoPostagem': 137
+          'codTipoPostagem': postType
         }
       }
     };
@@ -63,16 +64,4 @@ export class SchedulingService extends ServicesUtilitiesService {
     .catch(this.handleError);
   }
 
-  // This function checks if there's a logged user and if it has a 'cod'
-    // Output: The user 'cod' or 'null' if there's no cod
-    private getUserCod() {
-      const user = this.userService.getLoggedUser();
-
-      // Checks if there's a user and if this user has a 'cod' attribute.
-      if (user && 'cod' in user) {
-        return user.cod;
-      }
-
-      return null;
-    }
 }
