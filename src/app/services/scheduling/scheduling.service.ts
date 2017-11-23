@@ -63,7 +63,7 @@ export class SchedulingService extends ServicesUtilitiesService {
     .catch(this.handleError);
   }
 
-  getScheduling(): Observable<Scheduling[]> {
+  getUserScheduling() {
 
     const userCod = this.userService.getUserCod();
     const url = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/postagens';
@@ -73,4 +73,30 @@ export class SchedulingService extends ServicesUtilitiesService {
     .map(this.extractData)
     .catch(this.handleError);
   }
+
+
+  getCodPostContent(schedulingData: any) {
+    const userCod = this.userService.getUserCod();
+
+    // tslint:disable-next-line:prefer-const
+    let codPostContent: any[] = [0];
+
+    for (let index = 0; index < schedulingData.length; index++) {
+      codPostContent[index] = schedulingData[index].conteudos[0].codConteudoPostagem;
+    }
+    console.log(codPostContent);
+    // const url = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/postagens/' + 'codPostagem' + '/conteudos/' + 'codConteudo';
+  }
+
+  getCodPost(schedulingData: any) {
+
+    // tslint:disable-next-line:prefer-const
+    let codPost: any[] = [0];
+
+    for (let index = 0; index < schedulingData.length; index++) {
+      codPost[index] = schedulingData[index].codPostagem;
+    }
+    console.log(codPost);
+  }
+
 }

@@ -10,7 +10,8 @@ import { Scheduling } from './../../models/scheduling.model';
 })
 export class SchedulingHomeComponent implements OnInit {
 
-  schedulings: Scheduling[];
+  public schedulingData;
+  public schedulingContent;
 
   constructor(
     private schedulingService: SchedulingService,
@@ -18,15 +19,15 @@ export class SchedulingHomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getUserScheduling();
+    this.UserScheduling();
   }
 
-  getUserScheduling() {
-    this.schedulingService.getScheduling()
+  UserScheduling() {
+    this.schedulingService.getUserScheduling()
       .subscribe(
-      (res) => {
-        this.schedulings = res;
-        console.log(this.schedulings);
+      (response) => {
+      // this.schedulings = res;
+      this.SchedulingContent(response);
       },
       (error) => {
         console.log(error);
@@ -46,5 +47,9 @@ export class SchedulingHomeComponent implements OnInit {
       });
   }
 
-
+  SchedulingContent(response: any) {
+    this.schedulingData = response;
+    this.schedulingService.getCodPost(this.schedulingData);
+    this.schedulingService.getCodPostContent(this.schedulingData);
+  }
 }
