@@ -19,6 +19,7 @@
             <th>Conselho</th>
             <th>Estado</th>
             <th>Município</th>
+            <th></th>
         </tr>
     </thead>
 
@@ -27,9 +28,24 @@
             <td>{{this.councilGroup.descricao}}</td>
             <td>{{this.state}}</td>
             <td>{{this.city}}</td>
+            <td>
+              <a type="button" style="margin-top:-8px !important; -webkit-appearance: none !important" class="btn btn-primary"  (click)="openDialog()">Solicitar Participação </a>
+            </td>
         </tr>
     </tbody>
   </table>
+
+  <div id="overlay" class="overlay">
+    <div class="popup">
+      <h2 style="margin-bottom: 5px;">Solicitar Participação</h2>
+      <hr _ngcontent-c3="" class="orange darken-4 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+      <a class="close" (click)="closeDialog()">&times;</a>
+      <div class="content" style="margin-top: 0px;">
+        Ao confirmar a solicitação, seu pedido de ingresso será enviado ao presidente do conselho.
+        Deseja continuar?
+      </div>
+    </div>
+  </div>
 
   <div align="center" *ngIf="!isLoggedIn()">
     <br>

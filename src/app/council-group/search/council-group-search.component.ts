@@ -27,6 +27,7 @@ export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
   public city = '';
   public description = '';
   public found = false;
+  public open = false;
 
   constructor(
     private ibgeService: IbgeService,
@@ -117,5 +118,15 @@ export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
   hasLocation(): boolean {
     console.log('State id: ', this.stateId, '\n\nState: ', this.state, '\n\nCity: ', this.city);
     return this.stateId && 0 !== this.city.length;
+  }
+
+  openDialog() {
+    document.getElementById('overlay').style.visibility = 'visible';
+    document.getElementById('overlay').style.opacity = '1';
+  }
+
+  closeDialog() {
+    document.getElementById('overlay').style.visibility = 'hidden';
+    document.getElementById('overlay').style.opacity = '0';
   }
 }
