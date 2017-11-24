@@ -179,8 +179,6 @@ describe('UserCreateComponent', () => {
     spyOn(component, 'testCPF');
     component.savePosts( '215365,6469' );
     expect(component.testCPF).toHaveBeenCalled();
-    component.savePosts( null );
-    expect(component.testCPF).toHaveBeenCalled();
   });
 
 });

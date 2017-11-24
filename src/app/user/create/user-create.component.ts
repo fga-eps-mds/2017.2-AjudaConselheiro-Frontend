@@ -59,7 +59,7 @@ export class UserCreateComponent implements OnInit {
   }
 
   register(cpf: string): void {
-    if (this.matchPassword(this.user.confirmaSenha, this.user.senha)) {
+    if (this.matchPassword(this.user.confirmaSenha, this.user.senha) && this.testCPF(this.data) === true && this.data !== null) {
       this.userService.createUser(this.user, cpf)
         .subscribe(
         result => {
@@ -69,7 +69,9 @@ export class UserCreateComponent implements OnInit {
         error => {
           this.error(error.status);
         });
-    }else {
+    }else if (( this.testCPF(this.data) === false || this.data === null)) {
+      this.alertService.warn('CPF inválido/Digite um CPF válido')
+    } else{
       this.alertService.warn('Senhas não conferem!');
     }
   }
@@ -84,13 +86,6 @@ export class UserCreateComponent implements OnInit {
               result => console.log(result)
             );
       }
-        if (strCPF === null) {
-          this.alertService.warn('Digite seu CPF');
-        } else if (this.testCPF(strCPF) === false) {
-          this.alertService.error('CPF inválido/Digite um CPF válido');
-        } else {
-          this.alertService.success('CPF válido');
-        }
       }
 
      expectedCPF(strCPF: string) {
