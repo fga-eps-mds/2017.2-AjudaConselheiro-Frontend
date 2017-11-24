@@ -13,4 +13,5 @@ export class User {
     public sexo: CharacterData;
     public telefone?: number;
     public segmento?: string;
+    public CPF: string;
 }
