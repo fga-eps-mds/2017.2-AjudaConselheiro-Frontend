@@ -4,35 +4,36 @@ import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 
 import { CouncilGroup } from '../../models/index';
-import {
-  CouncilGroupService,
-  AlertService,
-  IbgeService
-} from '../../services/index';
+import { CouncilGroupService, AlertService,
+        IbgeService, UserService } from '../../services/index';
 
 @Component({
   selector: 'app-council-group-search',
   templateUrl: './council-group-search.component.html',
   styleUrls: ['./council-group-search.component.css'],
-  providers: [CouncilGroupService, IbgeService]
+  providers: [CouncilGroupService, IbgeService, UserService]
 })
 
 export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
   @ViewChild('formCouncilGroupsearch') formCouncilGroupSearch: NgForm;
-  private stateSubs: Subscription;
-  private searchSubs: Subscription;
   public councilGroup: CouncilGroup;
-  public state = '';
-  public stateId = '0';
-  public city = '';
+  private searchSubs: Subscription;
+  private stateSubs: Subscription;
+  private usersSubs: Subscription;
+  public codPresident: number;
   public description = '';
-  public found = false;
+  public biography = '';
+  public stateId = '0';
+  public foundCouncil = false;
   public open = false;
+  public state = '';
+  public city = '';
 
   constructor(
-    private ibgeService: IbgeService,
     private councilGroupService: CouncilGroupService,
     private alertService: AlertService,
+    private ibgeService: IbgeService,
+    private userSerive: UserService
   ) { }
 
   ngOnInit() {
@@ -42,10 +43,11 @@ export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.stateSubs.unsubscribe();
     this.searchSubs.unsubscribe();
+    this.usersSubs.unsubscribe();
   }
 
   searchCouncilGroup(): void {
-    this.found = false;
+    this.foundCouncil = false;
     // Creates new councilGroup to allow multiple searches
     if (this.councilGroup.municipio === undefined) {
       this.councilGroup = new CouncilGroup();
@@ -77,7 +79,7 @@ export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
 
   getCouncilGroupsResult(result: any): void {
     this.filterCouncil(result);
-    if (this.found) {
+    if (this.foundCouncil) {
       this.alertService.success('Conselho de ' + this.city + ' encontrado!');
     } else {
       this.alertService.warn('Conselho de ' + this.city + ' não cadastrado!');
@@ -90,7 +92,7 @@ export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
       if (element.descricao === this.description) {
         this.councilGroup = element;
         console.log(this.councilGroup);
-        this.found = true;
+        this.foundCouncil = true;
       }
     });
   }
@@ -105,7 +107,7 @@ export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
   // Listen IBGE state EventEmitter()
   chosenState(state: string) {
     this.city = '';
-    this.found = false;
+    this.foundCouncil = false;
     state ? (this.stateId = state) : this.alertService.warn('Nenhum estado selecionado');
   }
 
@@ -131,6 +133,22 @@ export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
   }
 
   sendNotification() {
+    // I get all the application's advisors
+    this.usersSubs = this.userSerive.getUsers()
+      .subscribe(
+        result => this.getPresidente(result),
+        error => this.alertService.error('Erro no servidor, tente novamente!')
+      );
+  }
 
+  getPresidente(result: any) {
+    this.biography = 'Estado: ' + this.state + '; Municipio: ' + this.city;
+    result.forEach(element => {
+      if (element.biografia === this.biography
+          && element.emailVerificado === true) {
+        this.codPresident = element.cod;
+        console.log(this.codPresident);
+      }
+    });
   }
 }

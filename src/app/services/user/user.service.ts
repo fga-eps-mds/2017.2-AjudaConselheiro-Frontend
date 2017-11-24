@@ -18,7 +18,6 @@ export class UserService extends ServicesUtilitiesService {
   private url = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas';
   private headers: Headers = new Headers({
     'Content-Type': 'application/json'
-    // 'appToken': localStorage.getItem('token').toString()
   });
   options: RequestOptions = new RequestOptions({ headers: this.headers });
 
@@ -26,7 +25,8 @@ export class UserService extends ServicesUtilitiesService {
     'Content-Type': 'application/json',
     'appToken': localStorage.getItem('token')
    });
-     updateOptions: RequestOptions = new RequestOptions({ headers: this.updateHeaders });
+  updateOptions: RequestOptions = new RequestOptions({ headers: this.updateHeaders });
+  codApplicativo = 'codAplicativo=462';
 
   constructor(private http: Http, private alertService: AlertService,
     private router: Router, private profileService: ProfileService,
@@ -36,15 +36,15 @@ export class UserService extends ServicesUtilitiesService {
 
   authenticationService: AuthenticationService;
 
-  getUsers(): Observable<User[]> {
-    return this.http.get(this.url + '?codAplicativo=462')
-      .map((response: Response) => response.json())
+  getUsers(): any {
+    return this.http.get(this.url + '?' + this.codApplicativo, this.options)
+      .map((response: Response) => this.extractData(response))
       .catch(this.handleError);
   }
 
   getUser(id: number) {
     return this.http.get(this.url + id)
-      .map((response: Response) => response.json())
+      .map((response: Response) => this.extractData(response))
       .catch(this.handleError);
   }
 

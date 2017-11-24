@@ -3,10 +3,10 @@ import { FormsModule } from '@angular/forms';
 import { CouncilGroupSearchComponent } from './council-group-search.component';
 import { HttpModule, Headers, RequestOptions, Response, URLSearchParams } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
-import { AlertService } from '../../services/alert/alert.service';
 import { RouterTestingModule } from '@angular/router/testing';
-import { UserService } from '../../services/index';
-import { CouncilGroupService, IbgeService  } from '../../services/index';
+import { CouncilGroupService, IbgeService, AlertService,
+       UserService, ProfileService,
+       AuthenticationService  } from '../../services/index';
 import { State, CouncilGroup } from '../../models/index';
 import { IbgeComponent } from '../../ibge/ibge.component';
 import 'rxjs/add/observable/throw';
@@ -47,6 +47,9 @@ describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
       providers: [
         CouncilGroupService,
         IbgeService,
+        UserService,
+        ProfileService,
+        AuthenticationService,
         {
           provide: AlertService,
           useValue: mockAlert
@@ -124,16 +127,16 @@ describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
   it('should filter council', () => {
     const result = [council];
 
-    // Testing case where advice is found
+    // Testing case where advice is foundCouncil
     component.description = 'CAE-27-Barra de Santo Antônio';
     component.filterCouncil(result);
-    expect(component.found).toBe(true);
+    expect(component.foundCouncil).toBe(true);
 
-    // Testing case where advice is not found
-    component.found = false;
+    // Testing case where advice is not foundCouncil
+    component.foundCouncil = false;
     component.description = 'CAE-DF-Brasília';
     component.filterCouncil(result);
-    expect(component.found).toBe(false);
+    expect(component.foundCouncil).toBe(false);
 
   });
 
@@ -159,7 +162,7 @@ describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
     component.description = 'CAE-27-Barra de Santo Antônio';
     component.getCouncilGroupsResult(result);
 
-    component.found = false;
+    component.foundCouncil = false;
     component.description = 'CAE-DF-Brasília';
     component.getCouncilGroupsResult(result);
 
