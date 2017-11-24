@@ -63,11 +63,11 @@ export class SchedulingService extends ServicesUtilitiesService {
     .catch(this.handleError);
   }
 
-  getUserScheduling() {
+  getUserSchedulingData() {
 
     const userCod = this.userService.getUserCod();
     const url = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/postagens';
-    const query = '?codAutor=' + userCod + '&codTiposPostagem=137';
+    const query = '?codAutor=' + userCod + '&codTiposPostagem=137&quantidadeDeItens=1000';
 
     return this.http.get(url + query, this.options)
     .map(this.extractData)
@@ -85,7 +85,7 @@ export class SchedulingService extends ServicesUtilitiesService {
       codPostContent[index] = schedulingData[index].conteudos[0].codConteudoPostagem;
     }
     console.log(codPostContent);
-    // const url = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/postagens/' + 'codPostagem' + '/conteudos/' + 'codConteudo';
+    return codPostContent;
   }
 
   getCodPost(schedulingData: any) {
@@ -97,6 +97,14 @@ export class SchedulingService extends ServicesUtilitiesService {
       codPost[index] = schedulingData[index].codPostagem;
     }
     console.log(codPost);
+    return codPost;
   }
 
+  getSchedulingPostContent(codPost: any, codPostContent: any) {
+    const url = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/postagens/' + codPost + '/conteudos/' + codPostContent;
+
+    return this.http.get(url, this.options)
+    .map(this.extractData)
+    .catch(this.handleError);
+  }
 }

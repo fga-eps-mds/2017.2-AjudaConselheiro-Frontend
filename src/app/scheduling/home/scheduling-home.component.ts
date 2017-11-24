@@ -12,6 +12,7 @@ export class SchedulingHomeComponent implements OnInit {
 
   public schedulingData;
   public schedulingContent;
+  public schedulings: any[] = [0];
 
   constructor(
     private schedulingService: SchedulingService,
@@ -23,11 +24,11 @@ export class SchedulingHomeComponent implements OnInit {
   }
 
   UserScheduling() {
-    this.schedulingService.getUserScheduling()
+    this.schedulingService.getUserSchedulingData()
       .subscribe(
       (response) => {
-      // this.schedulings = res;
-      this.SchedulingContent(response);
+        // this.schedulings = res;
+        this.SchedulingContent(response);
       },
       (error) => {
         console.log(error);
@@ -48,8 +49,41 @@ export class SchedulingHomeComponent implements OnInit {
   }
 
   SchedulingContent(response: any) {
+    let codPost;
+    let codPostContent;
     this.schedulingData = response;
-    this.schedulingService.getCodPost(this.schedulingData);
-    this.schedulingService.getCodPostContent(this.schedulingData);
+
+    codPost = this.schedulingService.getCodPost(this.schedulingData);
+    codPostContent = this.schedulingService.getCodPostContent(this.schedulingData);
+
+    for (let index = 0; index < codPost.length; index++) {
+      this.schedulingService.getSchedulingPostContent(codPost[index], codPostContent[index])
+        .subscribe(
+        (res) => {
+          this.schedulings[index] = res;
+          if (typeof this.schedulings[index].JSON === 'string') {
+            this.schedulings[index] = JSON.parse(this.schedulings[index].JSON);
+          } else {
+            this.schedulings[index] = null;
+          }
+          console.log(this.schedulings[index]);
+        },
+        (error) => {
+          console.log(error);
+          switch (error) {
+            case 404:
+              this.alertService.warn('Nenhum agendamento encontrada!');
+              break;
+            case 400:
+              this.alertService.error('Erro de requisição!');
+              break;
+            case 500:
+              this.alertService.error('Erro no servidor!');
+              break;
+            default:
+              break;
+          }
+        });
+    }
   }
 }
