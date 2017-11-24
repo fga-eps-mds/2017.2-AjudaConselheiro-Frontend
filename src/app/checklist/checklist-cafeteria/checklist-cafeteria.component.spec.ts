@@ -51,4 +51,7 @@ describe('ChecklistCafeteriaComponent', () => {
     it('should create', () => {
       expect(component).toBeTruthy();
     });
+    it('should ngOnInit', () => {
+      component.ngOnInit();
+    });
   });

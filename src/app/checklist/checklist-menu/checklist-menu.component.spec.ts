@@ -56,4 +56,10 @@ describe('Checklist-menuComponent', () => {
     component.onSubmit();
     expect(console.warn).toHaveBeenCalled();
 });
+  it('should ngOnInit', () => {
+    component.ngOnInit();
+  });
+  it('should onSubmit', () => {
+    component.onSubmit();
+  });
 });
