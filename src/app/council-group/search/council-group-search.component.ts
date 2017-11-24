@@ -20,11 +20,12 @@ export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
   private searchSubs: Subscription;
   private stateSubs: Subscription;
   private usersSubs: Subscription;
+  public foundPresident = false;
+  public foundCouncil = false;
   public codPresident: number;
   public description = '';
   public biography = '';
   public stateId = '0';
-  public foundCouncil = false;
   public open = false;
   public state = '';
   public city = '';
@@ -133,12 +134,24 @@ export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
   }
 
   sendNotification() {
+    this.foundPresident = false;
+
     // I get all the application's advisors
     this.usersSubs = this.userSerive.getUsers()
       .subscribe(
-        result => this.getPresidente(result),
+        result => this.sendNotificationResult(result),
         error => this.alertService.error('Erro no servidor, tente novamente!')
       );
+  }
+
+  sendNotificationResult(result: any) {
+    this.getPresidente(result);
+    if (this.foundPresident) {
+      // If the president is found I'll send the notification
+      this.send();
+    }else {
+      this.alertService.error('Não existe um presidente para o conselho escolhido');
+    }
   }
 
   getPresidente(result: any) {
@@ -146,9 +159,14 @@ export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
     result.forEach(element => {
       if (element.biografia === this.biography
           && element.emailVerificado === true) {
+        this.foundPresident = true;
         this.codPresident = element.cod;
         console.log(this.codPresident);
       }
     });
+  }
+
+  send() {
+
   }
 }
