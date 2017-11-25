@@ -28,6 +28,17 @@ export class SchedulingHomeComponent implements OnInit {
     this.schedulingService.delete(this.codPost, this.codContent) .subscribe(
       result => console.log(result)
     );
+    this.closeDialog();
+  }
+
+  openDialog() {
+    document.getElementById('popupMessage').style.visibility = 'visible';
+    document.getElementById('popupMessage').style.opacity = '1';
+  }
+
+  closeDialog() {
+    document.getElementById('popupMessage').style.visibility = 'hidden';
+    document.getElementById('popupMessage').style.opacity = '0';
   }
 
 }

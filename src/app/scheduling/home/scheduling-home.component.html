@@ -7,20 +7,47 @@
         </div>
     </h1>
 
-<br><br>
-        <div class="card container">
-            <label for="name"><i class="fa fa-globe" aria-hidden="true"></i> Código de Postágem:</label>
-            <div class="input-group">
-                <input type="text" class="form-control"  placeholder="cod" [(ngModel)]="codPost">
+    <br><br>
+    <div class="create-form">
+
+        <div>
+            <br>
+                <div class="form-group">
+                    <div class="card container">
+                        <label for="code"><i class="fa fa-globe" aria-hidden="true"></i> Código de Postágem:</label>
+                        <input type="text" class="form-control" placeholder="Digite o código" [(ngModel)]="codPost">
+
+
+
+                        <label for="code"><i class="fa fa-globe" aria-hidden="true"></i> Código de Conteúdo:</label>
+                        <input type="text" class="form-control" placeholder="Digite o código" [(ngModel)]="codContent">
+
+                        <button class="delete-button" type="button" style="margin-top:-8px !important; -webkit-appearance: none !important"
+                            class="btn btn-primary" (click)="openDialog()">
+                                Deletar
+                        </button>
+                    </div>
+
+                </div>
+        </div>
+    </div>
+
+
+    <div id="popupMessage" class="popupMessage">
+        <div class="popup">
+            <h2 style="margin-bottom: 5px;">Deletar Agendamento</h2>
+            <hr _ngcontent-c3="" class="orange darken-4 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+            <a class="close" (click)="closeDialog()">&times;</a>
+            <div class="content" style="margin-top: 0px;">
+                Tem certeza que deseja apagar o Agendamento?
             </div>
-            <label for="name"><i class="fa fa-globe" aria-hidden="true"></i> Código de Postágem:</label>
-            <div class="input-group">
-                <input type="text" class="form-control"  placeholder="cod2" [(ngModel)]="codContent">
-                <button class="btn btn-deep-orange rounded" type="button" (click)="delete()" aria-label="Search">
-                        Deletar
-                    </button>
+            <div class="buttons">
+                <input type="button" class="btn btn-secondary" (click)="closeDialog()" value="Não">
+                <input type="button" class="btn btn-primary" (click)="delete()" value="Sim">
             </div>
         </div>
+    </div>
+
 </div>
 
 <br><br>
