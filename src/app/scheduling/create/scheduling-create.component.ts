@@ -16,14 +16,14 @@ export class SchedulingCreateComponent extends SchedulingCreateAbstract implemen
 
   @ViewChild('formScheduling') formScheduling: NgForm;
   postType = 137;
-  postText = "Reuniao";
+  postText = 'Reuniao';
 
   constructor(
     schedulingService: SchedulingService,
     router: Router,
     alertService: AlertService,
     scheduling: Scheduling,
-  ){
+  ) {
     super(
       schedulingService,
       router,

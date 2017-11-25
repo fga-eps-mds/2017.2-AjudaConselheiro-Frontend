@@ -20,6 +20,7 @@ export class SchedulingService extends ServicesUtilitiesService {
   options: RequestOptions = new RequestOptions({ headers: this.headers });
 
   private baseURL = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/postagens/conteudos';
+  private updateURL = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/postagens/';
 
   constructor(private http: Http,
     private alertService: AlertService,
@@ -61,6 +62,26 @@ export class SchedulingService extends ServicesUtilitiesService {
 
     return this.http.post(this.baseURL, JSON.stringify(body), this.options)
     .map(result => this.extractData(result))
+    .catch(this.handleError);
+  }
+
+  updateScheduling(scheduling: Scheduling, postText: string) {
+    const sched = JSON.stringify(scheduling);
+
+    const updateBody = {
+      'JSON': sched,
+      'texto': postText
+    };
+
+    const headers: Headers = new Headers({
+        'Content-Type': 'application/json',
+        'appToken': localStorage.getItem('token'),
+        });
+
+    const updateOptions: RequestOptions = new RequestOptions({ headers: headers });
+
+    return this.http.put(this.updateURL + '7216/conteudos/5607', updateBody, updateOptions)
+    .map(this.extractData)
     .catch(this.handleError);
   }
 
