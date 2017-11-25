@@ -4,6 +4,7 @@ import { NgForm, ReactiveFormsModule } from '@angular/forms';
 
 import { Scheduling } from './../../models/scheduling.model';
 import { SchedulingService, AlertService } from './../../services/index';
+import { Scheduler } from 'rxjs/Scheduler';
 
 @Component({
   moduleId: module.id,
@@ -24,7 +25,7 @@ export class SchedulingEditComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    this.scheduling = new Scheduling();
+    this.scheduling = this.getScheduling();
   }
 
   result() {
@@ -50,5 +51,31 @@ export class SchedulingEditComponent implements OnInit {
         this.error(error.status);
       });
 }
+
+  getScheduling(): Scheduling {
+    this.schedulingService.getScheduling()
+    .subscribe(
+      result => {
+        this.scheduling = result;
+        const sched = JSON.stringify(this.scheduling);
+        localStorage.setItem('Actual Scheduling', sched);
+
+        const getSched = localStorage.getItem('Actual Scheduling');
+        const getSched2 = JSON.parse(getSched);
+        const actualSched = JSON.parse(getSched2.JSON);
+
+        this.scheduling.members = actualSched.members;
+        this.scheduling.date = actualSched.date;
+        this.scheduling.local = actualSched.local;
+        this.scheduling.time = actualSched.time;
+        this.scheduling.type = actualSched.type;
+
+      },
+      error => {
+        this.error(error.status);
+      });
+
+    return this.scheduling;
+  }
 
 }

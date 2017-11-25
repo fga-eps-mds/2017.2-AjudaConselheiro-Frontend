@@ -65,6 +65,21 @@ export class SchedulingService extends ServicesUtilitiesService {
     .catch(this.handleError);
   }
 
+  getScheduling() {
+    const url = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/postagens/7216/conteudos/5607';
+
+    const headers: Headers = new Headers({
+      'Content-Type': 'application/json',
+      'appToken': localStorage.getItem('token'),
+      });
+
+  const getOptions: RequestOptions = new RequestOptions({ headers: headers });
+
+    return this.http.get(url, getOptions)
+    .map(this.extractData)
+    .catch(this.handleError);
+  }
+
   updateScheduling(scheduling: Scheduling, postText: string) {
     const sched = JSON.stringify(scheduling);
 
