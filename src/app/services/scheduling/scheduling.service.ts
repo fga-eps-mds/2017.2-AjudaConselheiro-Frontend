@@ -66,25 +66,23 @@ export class SchedulingService extends ServicesUtilitiesService {
   }
 
   getScheduling() {
-    const url = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/postagens/7216/conteudos/5607';
+    const url = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/postagens/7220/conteudos/5611';
 
     const headers: Headers = new Headers({
       'Content-Type': 'application/json',
       'appToken': localStorage.getItem('token'),
       });
 
-  const getOptions: RequestOptions = new RequestOptions({ headers: headers });
+    const getOptions: RequestOptions = new RequestOptions({ headers: headers });
 
     return this.http.get(url, getOptions)
     .map(this.extractData)
     .catch(this.handleError);
   }
 
-  updateScheduling(scheduling: Scheduling, postText: string) {
-    const sched = JSON.stringify(scheduling);
-
+  updateScheduling(scheduling: Scheduling, postText: string)  {
     const updateBody = {
-      'JSON': sched,
+      'JSON': JSON.stringify(scheduling),
       'texto': postText
     };
 
@@ -95,7 +93,7 @@ export class SchedulingService extends ServicesUtilitiesService {
 
     const updateOptions: RequestOptions = new RequestOptions({ headers: headers });
 
-    return this.http.put(this.updateURL + '7216/conteudos/5607', updateBody, updateOptions)
+    return this.http.put(this.updateURL + '7220/conteudos/5611', JSON.stringify(updateBody), updateOptions)
     .map(this.extractData)
     .catch(this.handleError);
   }

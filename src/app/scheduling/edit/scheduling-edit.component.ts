@@ -30,7 +30,6 @@ export class SchedulingEditComponent implements OnInit {
 
   result() {
     this.alertService.success('Postagem atualizada com sucesso.');
-    this.router.navigate(['/agendamentos']);
   }
 
   error(status: any) {
@@ -46,6 +45,7 @@ export class SchedulingEditComponent implements OnInit {
     .subscribe(
       result => {
         this.result();
+        this.router.navigate(['agendamento']);
       },
       error => {
         this.error(error.status);
