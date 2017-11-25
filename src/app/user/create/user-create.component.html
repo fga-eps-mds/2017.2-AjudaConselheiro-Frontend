@@ -1,7 +1,7 @@
 <br><br><br>
 <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
 <div class="well">
-    <form (ngSubmit)="formUser.form.valid && register()" #formUser="ngForm">
+    <form (ngSubmit)="formUser.form.valid && register(data)" #formUser="ngForm">
         <br>
         <p class="h2 text-center mb-4"> Cadastro </p>
         <div class="form-group">
@@ -37,6 +37,18 @@
                 </div>
                 <div [hidden]="!CEP.errors.minlength">
                     O CEP deve ter 8 caracteres.
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <i class="fa fa-address-card prefix grey-text"></i>
+            <input type="text" id="orangeForm-name" class="form-control" name="cpf" minlength="11" maxlength="11" placeholder="CPF" [(ngModel)]="data" #cpf="ngModel" required />
+            <div *ngIf="cpf.errors && (cpf.dirty)" class="alert alert-danger">
+                <div [hidden]="!cpf.errors.required">
+                    CPF é obrigatório.
+                </div>
+                <div [hidden]="!cpf.errors.minlength">
+                    O CPF deve ter 11 caracteres.
                 </div>
             </div>
         </div>

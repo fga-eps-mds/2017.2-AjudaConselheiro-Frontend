@@ -1,4 +1,4 @@
-import { SearchComponent } from './search.component';
+import { SchoolVisitComponent } from './school-visit.component';
 import { By } from '@angular/platform-browser';
 import { AppModule } from './../../app.module';
 import { APP_BASE_HREF, Location } from '@angular/common';
@@ -12,11 +12,11 @@ import { Http, ConnectionBackend } from '@angular/http';
 import { HttpModule } from '@angular/http';
 
 import { SchedulingService, AlertService, UserService } from './../../services/index';
-import { Search } from './../../models/search.model';
+import { School } from './../../models/school.model';
 
 describe('SearchComponent', () => {
-  let component: SearchComponent;
-  let fixture: ComponentFixture<SearchComponent>;
+  let component: SchoolVisitComponent;
+  let fixture: ComponentFixture<SchoolVisitComponent>;
 
     beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -33,7 +33,7 @@ describe('SearchComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SearchComponent);
+    fixture = TestBed.createComponent(SchoolVisitComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -43,7 +43,7 @@ describe('SearchComponent', () => {
   });
   it('should clear on click', () => {
     component.searchSchool();
-    expect(component.search.situation).toEqual('1');
+    expect(component.school.situation).toEqual('1');
 
       });
       it('cityFilter should apply a regex on untreated string', () => {

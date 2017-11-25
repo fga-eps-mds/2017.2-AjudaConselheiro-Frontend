@@ -1,9 +1,8 @@
-<br>
+<br><br><br><br>
 
 <div class="create-form">
 
     <div>
-        <app-search></app-search>
         <br>
         <form #formScheduling="ngForm">
             <div class="form-group">
@@ -15,6 +14,14 @@
                         Digite o nome dos conselheiros participantes!
                     </div>
 
+                </div>
+
+                <label for="local"><i class="fa fa-group" aria-hidden="true"></i> Local:</label>
+                <input placeholder="Insira o local da Reunião" type="text" class="form-control" id="local" name="local" [(ngModel)]="scheduling.local" #local="ngModel" required>
+                <div *ngIf="local.errors && (local.dirty || local.touched)" class="alert alert-danger">
+                    <div [hidden]="!local.errors.required">
+                        Digite o local da reunião!
+                    </div>
                 </div>
 
                 <label for="date"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i> Data:</label>

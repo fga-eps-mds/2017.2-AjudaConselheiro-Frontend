@@ -9,11 +9,15 @@ import { LoginComponent } from './login/login.component';
 import { UserService, AlertService, AuthenticationService, ProfileService } from '../services/index';
 import { UserEditComponent } from './edit/user-edit.component';
 import { TextMaskModule } from 'angular2-text-mask';
-import { UserCpfComponent } from './cpf/cpf.component';
 import { NotProfileComponent } from './not-profile/not-profile.component';
 import { ProfileComponent } from './profile/profile.component';
+import {RecoverPasswordComponent } from './recover-password/recover-password.component';
 import { PasswordUpdateComponent } from './password-update/password-update.component';
-export { UserCreateComponent, UserEditComponent, UserListComponent, LoginComponent, UserCpfComponent, NotProfileComponent, ProfileComponent, PasswordUpdateComponent };
+
+export { UserCreateComponent, UserEditComponent, UserListComponent, LoginComponent,
+          NotProfileComponent, ProfileComponent,
+         RecoverPasswordComponent, PasswordUpdateComponent };
+
 
 @NgModule({
   imports: [
@@ -27,7 +31,6 @@ export { UserCreateComponent, UserEditComponent, UserListComponent, LoginCompone
     UserCreateComponent,
     UserEditComponent,
     LoginComponent,
-    UserCpfComponent,
     NotProfileComponent,
     ProfileComponent,
     PasswordUpdateComponent

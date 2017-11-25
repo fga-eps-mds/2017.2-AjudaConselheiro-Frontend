@@ -16,7 +16,10 @@ import { ServicesUtilitiesService } from './../services-utilities/services-utili
 export class UserService extends ServicesUtilitiesService {
 
   private url = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas';
-  private headers: Headers = new Headers({ 'Content-Type': 'application/json' });
+  private headers: Headers = new Headers({
+    'Content-Type': 'application/json'
+    // 'appToken': localStorage.getItem('token').toString()
+  });
   options: RequestOptions = new RequestOptions({ headers: this.headers });
 
   updateHeaders: Headers = new Headers({
@@ -45,7 +48,7 @@ export class UserService extends ServicesUtilitiesService {
       .catch(this.handleError);
   }
 
-  createUser (user: User): any {
+  createUser (user: User, cpf: string): any {
     const body = {
       'email': user.email,
       'biografia': user.biografia,
@@ -65,7 +68,7 @@ export class UserService extends ServicesUtilitiesService {
       // Login is needed for creating a profile
       if (userCod) {
         this.authService.login(body.email, body.senha).subscribe((loginData) => {
-          this.setInitialProfile(userCod, loginData[0]);
+          this.setInitialProfile(userCod, cpf, loginData[0]);
         });
 
         return this.extractData(response);
@@ -114,6 +117,25 @@ export class UserService extends ServicesUtilitiesService {
     return this.http.put(this.url + '/' + cod, JSON.stringify(body), this.updateOptions)
       .map((response: Response) => response.json())
       .catch(this.handleError);
+  }
+
+  sendNewPassword(email: string): Observable <string> {
+    /* tslint:disable:max-line-length */
+    const regexEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
+    const validEmail = regexEmail.test(email);
+
+    if (validEmail) {
+      const recoverURL = `${this.url + '/redefinirSenha'
+        + '?email=' + email}`;
+
+      return this.http.post(recoverURL, {body: ''})
+        .map(res => this.extractData(res))
+        .catch(this.handleError);
+
+    } else {
+      console.error('Email digitado é inválido!');
+      return new Observable <string>();
+    }
   }
 
   updatePassword(currentPassword: string, newPassword: string) {
@@ -166,9 +188,13 @@ export class UserService extends ServicesUtilitiesService {
   }
 
   delete(cod: Number): Observable<String> {
-    const url = `${this.url + '?codAplicativo=462 &'}/${cod}`;
-    return this.http.delete(url, this.options)
-      .map(res => this.extractData(res))
+    const headers: Headers = new Headers({
+      'appIdentifier': 462,
+      'appToken': localStorage.getItem('token').toString()
+    });
+    const options: RequestOptions = new RequestOptions({ headers: headers });
+    const url = this.url + '/' + cod + '/perfil';
+    return this.http.delete(url, options)
       .catch(this.handleError);
   }
 
@@ -196,12 +222,12 @@ export class UserService extends ServicesUtilitiesService {
       return null;
     }
 
-  private setInitialProfile(userCod: string, token: any) {
+  private setInitialProfile(userCod: string, cpf: string, token: any) {
     // Sets the needed userToken from authentication, necessary for profiles POST
     localStorage.setItem('token', token);
 
     // Creating the user profile
-    this.profileService.setUserProfile({}, userCod).subscribe();
+    this.profileService.setUserProfile('CPF: ' + cpf, userCod).subscribe();
 
     // Removing the login data - For sucess and fail
     localStorage.removeItem('token');

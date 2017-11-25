@@ -5,18 +5,20 @@ import { HttpModule, Http, ConnectionBackend,
   ResponseOptions, RequestOptions, Response,
   BaseRequestOptions, Headers } from '@angular/http';
 import { MockBackend, MockConnection } from '@angular/http/testing';
+import { HttpClientModule } from '@angular/common/http';
 import { AlertService } from '../alert/alert.service';
 import { FormsModule } from '@angular/forms';
 import { FakeUser } from '../../user/create/testing/fake-user';
 
 import { UserService, AuthenticationService, ProfileService } from '../index';
+import { Observable } from 'rxjs/Observable';
 
 describe('UserService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         HttpModule,
-        RouterTestingModule
+        RouterTestingModule,
       ],
       providers: [
         MockBackend,
@@ -200,74 +202,133 @@ describe('UserService', () => {
     expect(returnUser).toBeUndefined();
   }));
 
+  it('should return data from delete(id)',
+  inject([UserService, MockBackend], (service, mockBackend) => {
+
+  const fakeUser = [
+    { name: 'Um', cod: 1}
+  ];
+  const resHeader = new Headers();
+  localStorage.setItem('token','asdas');
+  // Mocking HTTP connection for this test
+  mockBackend.connections.subscribe((connection: MockConnection) => {
+    const options = new ResponseOptions({ body: fakeUser});
+      connection.mockRespond(new Response(options));
+  });
+
+  // Making the request and testing its response
+  service.delete(fakeUser[0].cod).subscribe((response) => {
+    expect(response.status).toEqual(null);
+  });
+}));
+
+  // For sendNewPassword()
+  it('sendNewPassword() should redefine password if logged user is present',
+    inject([UserService, MockBackend], (service, mockBackend) => {
+
+    const fakeResponse = 'Senha redefinida!';
+    const fakeValidEmail = 'abc@abc.com';
+
+    // Mocking HTTP connection for this test
+    mockBackend.connections.subscribe((connection: MockConnection) => {
+      const options = new ResponseOptions({
+        body: JSON.stringify(fakeResponse)
+      });
+      connection.mockRespond(new Response(options));
+    });
+
+    // Making the request and testing its response
+    service.sendNewPassword(fakeValidEmail).subscribe((response) => {
+      console.log(response);
+      expect(response).toEqual(fakeResponse);
+    });
+  }));
+
+  it('sendNewPassword() should not redefine password if there isn\'t a valid email',
+    inject([UserService, MockBackend], (service, mockBackend) => {
+
+    const fakeResponse = 'Senha redefinida!';
+    const invalidEmail = 'emailInválido';
+
+    // Mocking HTTP connection for this test
+    mockBackend.connections.subscribe((connection: MockConnection) => {
+      const options = new ResponseOptions({ body: fakeResponse });
+      connection.mockRespond(new Response(options));
+    });
+
+    // Making the request and testing its response
+    const result = service.sendNewPassword(invalidEmail);
+    const emptyObservable = new Observable<string>();
+    expect(result).toEqual(emptyObservable);
+  }));
 
   it('has to return an updated user data',
-    inject([UserService, MockBackend], (service, mockBackend) => {
-      const userParams = new FakeUser();
+  inject([UserService, MockBackend], (service, mockBackend) => {
+    const userParams = new FakeUser();
 
-      const resHeader = new Headers();
-      resHeader.append('location', 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas/0');
-      resHeader.append('appToken', 'FakeToken');
+    const resHeader = new Headers();
+    resHeader.append('location', 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas/0');
+    resHeader.append('appToken', 'FakeToken');
 
-      mockBackend.connections.subscribe((connection: MockConnection) => {
-        const options = new ResponseOptions({ body: userParams, headers: resHeader});
-        connection.mockRespond(new Response(options));
-      });
+    mockBackend.connections.subscribe((connection: MockConnection) => {
+      const options = new ResponseOptions({ body: userParams, headers: resHeader});
+      connection.mockRespond(new Response(options));
+    });
 
-      service.updateUser(userParams).subscribe((response) => {
-        expect(response).toEqual(userParams);
-      });
-  }));
+    service.updateUser(userParams).subscribe((response) => {
+      expect(response).toEqual(userParams);
+    });
+}));
 
-  it('has to update user password',
-    inject([UserService, MockBackend], (service, mockBackend) => {
-      const userParams = new FakeUser();
+it('has to update user password',
+  inject([UserService, MockBackend], (service, mockBackend) => {
+    const userParams = new FakeUser();
 
-      const resHeader = new Headers();
-      resHeader.append('location', 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas/0/definirNovaSenha');
-      resHeader.append('appToken', 'FakeToken');
-      resHeader.append('email', 'fakeMail');
-      resHeader.append('senhaAtual', 'fakePass');
-      resHeader.append('novaSenha', 'fakeNewPass');
+    const resHeader = new Headers();
+    resHeader.append('location', 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas/0/definirNovaSenha');
+    resHeader.append('appToken', 'FakeToken');
+    resHeader.append('email', 'fakeMail');
+    resHeader.append('senhaAtual', 'fakePass');
+    resHeader.append('novaSenha', 'fakeNewPass');
 
-      mockBackend.connections.subscribe((connection: MockConnection) => {
-        const options = new ResponseOptions({ headers: resHeader });
-        connection.mockRespond(new Response(options));
-      });
+    mockBackend.connections.subscribe((connection: MockConnection) => {
+      const options = new ResponseOptions({ headers: resHeader });
+      connection.mockRespond(new Response(options));
+    });
 
-      service.updatePassword('fakePass', 'fakeNewPass').subscribe((response) => {
-        expect(response).toBeDefined();
-      });
-  }));
+    service.updatePassword('fakePass', 'fakeNewPass').subscribe((response) => {
+      expect(response).toBeDefined();
+    });
+}));
 
-  it('update user aditional fields ',
-    inject([UserService, MockBackend], (service, mockBackend) => {
-      const userParams = new FakeUser();
-      const userPhone = 'phone';
+it('update user aditional fields ',
+  inject([UserService, MockBackend], (service, mockBackend) => {
+    const userParams = new FakeUser();
+    const userPhone = 'phone';
 
-      const resHeader = new Headers();
-      resHeader.append('location', 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas/0/perfil');
-      resHeader.append('appToken', 'FakeToken');
+    const resHeader = new Headers();
+    resHeader.append('location', 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas/0/perfil');
+    resHeader.append('appToken', 'FakeToken');
 
-      mockBackend.connections.subscribe((connection: MockConnection) => {
-        const options = new ResponseOptions({ headers: resHeader });
-        connection.mockRespond(new Response(options));
-      });
+    mockBackend.connections.subscribe((connection: MockConnection) => {
+      const options = new ResponseOptions({ headers: resHeader });
+      connection.mockRespond(new Response(options));
+    });
 
-      service.updateAdditionalFields(userPhone).subscribe((response) => {
-        expect(response).toBeDefined();
-      });
-  }));
+    service.updateAdditionalFields(userPhone).subscribe((response) => {
+      expect(response).toBeDefined();
+    });
+}));
 
-  it(' ',
-    inject([UserService, MockBackend], (service, mockBackend) => {
-      mockBackend.connections.subscribe((connection: MockConnection) => {
-        const options = new ResponseOptions({ });
-        connection.mockRespond(new Response(options));
-      });
+it('should get profile photo',
+  inject([UserService, MockBackend], (service, mockBackend) => {
+    mockBackend.connections.subscribe((connection: MockConnection) => {
+      const options = new ResponseOptions({ });
+      connection.mockRespond(new Response(options));
+    });
 
-      service.getProfilePhoto().subscribe((response) => {
-        expect(response).toBeDefined();
-      });
-  }));
+    service.getProfilePhoto().subscribe((response) => {
+      expect(response).toBeDefined();
+    });
+}));
 });
