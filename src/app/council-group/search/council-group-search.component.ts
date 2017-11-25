@@ -4,19 +4,23 @@ import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 
 import { CouncilGroup } from '../../models/index';
+import { Notification } from '../../models/notification';
 import { CouncilGroupService, AlertService,
-        IbgeService, UserService } from '../../services/index';
+        IbgeService, UserService,
+        NotificationService } from '../../services/index';
 
 @Component({
   selector: 'app-council-group-search',
   templateUrl: './council-group-search.component.html',
   styleUrls: ['./council-group-search.component.css'],
-  providers: [CouncilGroupService, IbgeService, UserService]
+  providers: [CouncilGroupService, IbgeService, UserService, NotificationService]
 })
 
 export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
   @ViewChild('formCouncilGroupsearch') formCouncilGroupSearch: NgForm;
+  private notificationSubs: Subscription;
   public councilGroup: CouncilGroup;
+  public notification: Notification;
   private searchSubs: Subscription;
   private stateSubs: Subscription;
   private usersSubs: Subscription;
@@ -34,7 +38,8 @@ export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
     private councilGroupService: CouncilGroupService,
     private alertService: AlertService,
     private ibgeService: IbgeService,
-    private userSerive: UserService
+    private userService: UserService,
+    private notificationService: NotificationService
   ) { }
 
   ngOnInit() {
@@ -45,6 +50,7 @@ export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
     this.stateSubs.unsubscribe();
     this.searchSubs.unsubscribe();
     this.usersSubs.unsubscribe();
+    this.notificationSubs.unsubscribe();
   }
 
   searchCouncilGroup(): void {
@@ -134,10 +140,11 @@ export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
   }
 
   sendNotification() {
+    this.closeDialog();
     this.foundPresident = false;
 
     // I get all the application's advisors
-    this.usersSubs = this.userSerive.getUsers()
+    this.usersSubs = this.userService.getUsers()
       .subscribe(
         result => this.sendNotificationResult(result),
         error => this.alertService.error('Erro no servidor, tente novamente!')
@@ -149,7 +156,7 @@ export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
     if (this.foundPresident) {
       // If the president is found I'll send the notification
       this.send();
-    }else {
+    } else {
       this.alertService.error('Não existe um presidente para o conselho escolhido');
     }
   }
@@ -167,6 +174,20 @@ export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
   }
 
   send() {
+    this.notificationSubs = this.notificationService.createNotification(this.createNotification())
+      .subscribe(
+        result => this.alertService.success('Solicitação enviada ao presidente do conselho com sucesso!'),
+        error => this.alertService.error('Erro ao enviar solicitação ao presidente do conselho!')
+      );
+  }
 
+  createNotification() {
+    this.notification = new Notification();
+    this.notification.author =  this.userService.getUserCod();
+    this.notification.recipient = this.codPresident;
+    this.notification.type = 'Participar de um conselho';
+    this.notification.description = 'Eu, ' +
+      this.userService.getUserName() + ', posso participar do seu Conselho?';
+    return this.notification;
   }
 }

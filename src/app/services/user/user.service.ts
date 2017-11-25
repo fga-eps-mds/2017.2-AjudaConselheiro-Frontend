@@ -214,7 +214,7 @@ export class UserService extends ServicesUtilitiesService {
     getUserEmail() {
       const user = this.getLoggedUser();
 
-      // Checks if there's a user and if this user has a 'cod' attribute.
+      // Checks if there's a user and if this user has a 'email' attribute.
       if (user && 'email' in user) {
         return user.email;
       }
@@ -222,15 +222,27 @@ export class UserService extends ServicesUtilitiesService {
       return null;
     }
 
-  private setInitialProfile(userCod: string, token: any) {
-    // Sets the needed userToken from authentication, necessary for profiles POST
-    localStorage.setItem('token', token);
+    getUserName() {
+      const user = this.getLoggedUser();
 
-    // Creating the user profile
-    this.profileService.setUserProfile({}, userCod).subscribe();
 
-    // Removing the login data - For sucess and fail
-    localStorage.removeItem('token');
+      // Checks if there's a user and if this user has a 'nomeCompleto' attribute.
+      if (user && 'nomeCompleto' in user) {
+        return user.nomeCompleto;
+      }
+
+      return null;
+    }
+
+    private setInitialProfile(userCod: string, token: any) {
+      // Sets the needed userToken from authentication, necessary for profiles POST
+      localStorage.setItem('token', token);
+
+      // Creating the user profile
+      this.profileService.setUserProfile({}, userCod).subscribe();
+
+      // Removing the login data - For sucess and fail
+      localStorage.removeItem('token');
   }
 
   private extractResponseUserCod(locationString: string) {
