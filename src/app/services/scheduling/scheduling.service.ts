@@ -65,14 +65,16 @@ export class SchedulingService extends ServicesUtilitiesService {
     .catch(this.handleError);
   }
 
-  delete(codPost: Number, codContent: Number): Observable<String> {
+  delete(codPost: Number, codContent: Number): any {
+    const token = localStorage.getItem('token');
     const headers: Headers = new Headers({
       'Content-Type': 'application/json',
-      'appToken': localStorage.getItem('token')
+      'appToken': token
     });
     const options: RequestOptions = new RequestOptions({ headers: headers });
     const url = this.url + '/' + codPost + '/conteudos/' + codContent;
     return this.http.delete(url, options)
+      .map(result => this.extractData(result))
       .catch(this.handleError);
   }
 
