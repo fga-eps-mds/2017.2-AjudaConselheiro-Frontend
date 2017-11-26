@@ -25,10 +25,11 @@ export class SchedulingHomeComponent implements OnInit {
   ngOnInit() {
   }
   delete() {
-    this.schedulingService.delete(this.codPost, this.codContent) .subscribe(
-      result => console.log(result)
-    );
     this.closeDialog();
+    this.schedulingService.delete(this.codPost, this.codContent) .subscribe(
+      result => this.alertService.success('Agendamento deletado com sucesso'),
+      error => this.alertService.error('Erro ao deletar agendamento')
+    );
   }
 
   openDialog() {
