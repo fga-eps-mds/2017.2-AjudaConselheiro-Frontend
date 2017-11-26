@@ -7,13 +7,13 @@ import { CouncilGroup } from '../../models/index';
 import { Notification } from '../../models/notification';
 import { CouncilGroupService, AlertService,
         IbgeService, UserService,
-        NotificationService } from '../../services/index';
+        NotificationService, ProfileService } from '../../services/index';
 
 @Component({
   selector: 'app-council-group-search',
   templateUrl: './council-group-search.component.html',
   styleUrls: ['./council-group-search.component.css'],
-  providers: [CouncilGroupService, IbgeService, UserService, NotificationService]
+  providers: [CouncilGroupService, IbgeService, UserService, NotificationService, ProfileService]
 })
 
 export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
@@ -23,10 +23,12 @@ export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
   public notification: Notification;
   private searchSubs: Subscription;
   private stateSubs: Subscription;
-  private usersSubs: Subscription;
+  private councilSubs: Subscription;
   public foundPresident = false;
   public foundCouncil = false;
-  public codPresident: number;
+  public members: Array<String>;
+  public codPresident: string;
+  public codGrupo: number;
   public description = '';
   public biography = '';
   public stateId = '0';
@@ -36,10 +38,12 @@ export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
 
   constructor(
     private councilGroupService: CouncilGroupService,
+    private notificationService: NotificationService,
     private alertService: AlertService,
     private ibgeService: IbgeService,
     private userService: UserService,
-    private notificationService: NotificationService
+    private profileService: ProfileService
+
   ) { }
 
   ngOnInit() {
@@ -49,7 +53,7 @@ export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.stateSubs.unsubscribe();
     this.searchSubs.unsubscribe();
-    this.usersSubs.unsubscribe();
+    this.councilSubs.unsubscribe();
     this.notificationSubs.unsubscribe();
   }
 
@@ -98,6 +102,7 @@ export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
     result.forEach(element => {
       if (element.descricao === this.description) {
         this.councilGroup = element;
+        this.codGrupo = element.codGrupo;
         console.log(this.councilGroup);
         this.foundCouncil = true;
       }
@@ -144,33 +149,36 @@ export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
     this.foundPresident = false;
 
     // I get all the application's advisors
-    this.usersSubs = this.userService.getUsers()
+    this.councilSubs = this.councilGroupService.getMembersCouncilGroup(this.codGrupo)
       .subscribe(
-        result => this.sendNotificationResult(result),
+        result => this.getCodMembers(result),
         error => this.alertService.error('Erro no servidor, tente novamente!')
       );
   }
 
-  sendNotificationResult(result: any) {
-    this.getPresidente(result);
-    if (this.foundPresident) {
-      // If the president is found I'll send the notification
-      this.send();
-    } else {
-      this.alertService.error('Não existe um presidente para o conselho escolhido');
-    }
+  getCodMembers(result: any) {
+    this.members = new Array<String>();
+    result.forEach(element => {
+      console.log(element.links[1].href);
+      this.members.push(element.links[1].href);
+    });
+    this.getPresidente();
   }
 
-  getPresidente(result: any) {
-    this.biography = 'Estado: ' + this.state + '; Municipio: ' + this.city;
-    result.forEach(element => {
-      if (element.biografia === this.biography
-          && element.emailVerificado === true) {
-        this.foundPresident = true;
-        this.codPresident = element.cod;
-        console.log(this.codPresident);
-      }
-    });
+  getPresidente() {
+    let codUser: string;
+    this.members.forEach(element => {
+      codUser = element.substring(element.length - 4, element.length);
+      this.profileService.getProfile(codUser).
+        subscribe(
+          result => {
+            if (result.tipoPerfil.codTipoPerfil === 238) {
+              this.codPresident = codUser;
+              this.send();
+            }
+          },
+          error => this.alertService.error('Erro ao buscar presidente do conselho'));
+      });
   }
 
   send() {
@@ -182,12 +190,13 @@ export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
   }
 
   createNotification() {
-    this.notification = new Notification();
-    this.notification.author =  this.userService.getUserCod();
-    this.notification.recipient = this.codPresident;
-    this.notification.type = 'Participar de um conselho';
-    this.notification.description = 'Eu, ' +
-      this.userService.getUserName() + ', posso participar do seu Conselho?';
+    this.notification = new Notification(
+      'Eu, ' +
+      this.userService.getUserName() + ', posso participar do seu Conselho?',
+      this.codPresident,
+      this.userService.getUserCod(),
+      'Participar de um conselho'
+    );
     return this.notification;
   }
 }
