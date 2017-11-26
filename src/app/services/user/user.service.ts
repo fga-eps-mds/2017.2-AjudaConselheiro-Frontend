@@ -48,7 +48,7 @@ export class UserService extends ServicesUtilitiesService {
       .catch(this.handleError);
   }
 
-  createUser (user: User): any {
+  createUser (user: User, cpf: string): any {
     const body = {
       'email': user.email,
       'biografia': user.biografia,
@@ -68,7 +68,7 @@ export class UserService extends ServicesUtilitiesService {
       // Login is needed for creating a profile
       if (userCod) {
         this.authService.login(body.email, body.senha).subscribe((loginData) => {
-          this.setInitialProfile(userCod, loginData[0]);
+          this.setInitialProfile(userCod, cpf, loginData[0]);
         });
 
         return this.extractData(response);
@@ -222,12 +222,12 @@ export class UserService extends ServicesUtilitiesService {
       return null;
     }
 
-  private setInitialProfile(userCod: string, token: any) {
+  private setInitialProfile(userCod: string, cpf: string, token: any) {
     // Sets the needed userToken from authentication, necessary for profiles POST
     localStorage.setItem('token', token);
 
     // Creating the user profile
-    this.profileService.setUserProfile({}, userCod).subscribe();
+    this.profileService.setUserProfile('CPF: ' + cpf, userCod).subscribe();
 
     // Removing the login data - For sucess and fail
     localStorage.removeItem('token');

@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
-import { CouncilGroupCreateComponent, CouncilGroupSearchComponent } from './council-group/council-group.module';
+import { CouncilGroupCreateComponent, CouncilGroupSearchComponent, CouncilGroupComponent } from './council-group/council-group.module';
 
 import {
   ChecklistComponent,
@@ -23,7 +23,6 @@ import {
   UserCreateComponent,
   UserEditComponent,
   UserListComponent,
-  UserCpfComponent,
   NotProfileComponent,
   LoginComponent,
   ProfileComponent,
@@ -32,8 +31,7 @@ import {
 } from './user/user.module';
 
 export const ROUTES: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
+  { path: '', component: HomeComponent },
   { path: 'checklist', component: ChecklistComponent },
   { path: 'checklist/producao', component: ChecklistProductionComponent },
   { path: 'checklist/menu', component: ChecklistMenuComponent },
@@ -48,11 +46,11 @@ export const ROUTES: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'registrar', component: UserCreateComponent },
   { path: 'usuarios/editar/:id', component: UserEditComponent },
+  { path: 'conselho', component: CouncilGroupComponent },
   { path: 'usuarios/editar/:id/senha', component: PasswordUpdateComponent},
   { path: 'conselho/cadastrar', component: CouncilGroupCreateComponent },
   { path: 'conselho/buscar', component: CouncilGroupSearchComponent},
   { path: 'checklist/update', component: ChecklistUpdateComponent},
-  { path: 'adicionar-cpf', component: UserCpfComponent },
   { path: 'usuario-sem-perfil', component: NotProfileComponent},
   { path: 'perfil', component: ProfileComponent},
   { path: 'recuperar-senha', component: RecoverPasswordComponent}

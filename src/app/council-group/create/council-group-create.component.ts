@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { CouncilGroup } from '../../models/index';
 import { CouncilGroupService, AlertService, IbgeService } from '../../services/index';
@@ -25,6 +26,7 @@ export class CouncilGroupCreateComponent implements OnInit, OnDestroy {
   constructor(
     public councilGroupService: CouncilGroupService,
     private alertService: AlertService,
+    private router: Router,
     private ibgeService: IbgeService
   ) { }
 
@@ -43,6 +45,7 @@ export class CouncilGroupCreateComponent implements OnInit, OnDestroy {
     }
     // Use state abbreviation instead of state id
     this.getStateAbbr();
+    // this.router.navigate(['/conselho']);
   }
 
   getStateAbbr(): void {

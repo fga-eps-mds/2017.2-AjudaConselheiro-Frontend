@@ -14,7 +14,7 @@ export class ProfileComponent implements OnInit {
   public name;
   public biography;
   public email;
-
+  cod: number;
   user: User;
   public password;
 
@@ -33,6 +33,8 @@ export class ProfileComponent implements OnInit {
       this.formatUserData();
       this.user = this.userService.getLoggedUser();
     }
+
+    this.cod = this.userService.getUserCod();
   }
 
   errorStatus (errorStatus: number) {
