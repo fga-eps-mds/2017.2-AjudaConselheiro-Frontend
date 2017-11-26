@@ -97,5 +97,4 @@ export class SchedulingService extends ServicesUtilitiesService {
     .map(this.extractData)
     .catch(this.handleError);
   }
-
 }
