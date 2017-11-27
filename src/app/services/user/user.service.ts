@@ -200,27 +200,37 @@ export class UserService extends ServicesUtilitiesService {
 
   // This function checks if there's a logged user and if it has a 'cod'
     // Output: The user 'cod' or 'null' if there's no cod
-    getUserCod() {
-      const user = this.getLoggedUser();
+  getUserCod() {
+    const user = this.getLoggedUser();
 
-      // Checks if there's a user and if this user has a 'cod' attribute.
-      if (user && 'cod' in user) {
-        return user.cod;
-      }
-
-      return null;
+    // Checks if there's a user and if this user has a 'cod' attribute.
+    if (user && 'cod' in user) {
+      return user.cod;
     }
 
-    getUserEmail() {
-      const user = this.getLoggedUser();
+    return null;
+  }
 
-      // Checks if there's a user and if this user has a 'cod' attribute.
-      if (user && 'email' in user) {
-        return user.email;
-      }
+  getUserName() {
+    const user = this.getLoggedUser();
 
-      return null;
+    if (user && 'cod' in user) {
+      return user.nomeUsuario;
     }
+
+    return null;
+  }
+
+  getUserEmail() {
+    const user = this.getLoggedUser();
+
+    // Checks if there's a user and if this user has a 'cod' attribute.
+    if (user && 'email' in user) {
+      return user.email;
+    }
+
+    return null;
+  }
 
   private setInitialProfile(userCod: string, cpf: string, token: any) {
     // Sets the needed userToken from authentication, necessary for profiles POST

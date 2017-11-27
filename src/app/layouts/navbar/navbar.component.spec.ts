@@ -1,12 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpModule } from '@angular/http';
+import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { NavbarComponent } from './navbar.component';
-import { AuthenticationService } from './../../services/authentication/authentication.service';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { RouterTestingModule } from '@angular/router/testing';
-import { AlertService } from '../../services/index';
+import { ProfileService, AuthenticationService, UserService, AlertService } from '../../services/index';
 
 describe('NavbarComponent', () => {
   let component: NavbarComponent;
@@ -23,6 +21,8 @@ describe('NavbarComponent', () => {
       ],
       providers: [
         AuthenticationService,
+        ProfileService,
+        UserService,
         AlertService
       ],
       imports: [
