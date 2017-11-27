@@ -80,11 +80,11 @@ describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
     fixture.detectChanges();
   });
 
- fit('should create', () => {
+ it('should create', () => {
     expect(component).toBeTruthy();
   });
 
- fit('should search council group', () => {
+ it('should search council group', () => {
     component.councilGroup.municipio = undefined;
     component.searchCouncilGroup();
 
@@ -92,7 +92,7 @@ describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
     component.searchCouncilGroup();
   });
 
- fit('should has location', () => {
+ it('should has location', () => {
     let result;
     // Testing the method has location when exists valid state and valid city
     result = component.hasLocation();
@@ -105,7 +105,7 @@ describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
 
   });
 
- fit('should chosen state', () => {
+ it('should chosen state', () => {
     component.councilGroup = fakeCouncil;
     // Testing the method when is passed valid state
     component.chosenState('52');
@@ -115,7 +115,7 @@ describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
 
   });
 
- fit('should chosen city', () => {
+ it('should chosen city', () => {
     component.councilGroup = fakeCouncil;
     // Testing the method when is passed valid city
     component.chosenCity('Brasília');
@@ -125,7 +125,7 @@ describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
 
   });
 
- fit('Should know if user is logged in', () => {
+ it('Should know if user is logged in', () => {
     localStorage.setItem('token', 'appToken');
 
     let result;
@@ -139,7 +139,7 @@ describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
   });
 
 
- fit('should filter council', () => {
+ it('should filter council', () => {
     const result = [council];
 
     // Testing case where advice is foundCouncil
@@ -155,7 +155,7 @@ describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
 
   });
 
- fit('should get state abbreviated', () => {
+ it('should get state abbreviated', () => {
     const estado = {
       'id': 52,
       'sigla': 'GO',
@@ -171,7 +171,7 @@ describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
     expect(component.description).toEqual('CAE-GO-Goiânia');
   });
 
- fit('should get council groups', () => {
+ it('should get council groups', () => {
     const result = [council];
 
     component.description = 'CAE-27-Barra de Santo Antônio';
@@ -184,35 +184,35 @@ describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
   });
 
 
- fit('should get state abbreviated', () => {
+ it('should get state abbreviated', () => {
     component.getStateAbbr();
   });
 
 
- fit('should get council grups', inject([CouncilGroupService], (service: CouncilGroupService) => {
+ it('should get council grups', inject([CouncilGroupService], (service: CouncilGroupService) => {
     component.getCouncilGroups();
   }));
 
-  fit('should open dialog', () => {
+  it('should open dialog', () => {
     component.openDialog();
   });
 
-  fit('should close dialog', () => {
+  it('should close dialog', () => {
     component.closeDialog();
   });
 
-  fit('should close dialog', () => {
+  it('should close dialog', () => {
     component.closeDialog();
   });
 
-  fit('should get cod members', () => {
+  it('should get cod members', () => {
 
     component.getCodMembers(members);
     members = [];
     component.getCodMembers(members);
   });
 
-  fit('should get presidente result', () => {
+  it('should get presidente result', () => {
     const profile = {
       'camposAdicionais': 'Nada',
       'tipoPerfil': {
@@ -223,7 +223,7 @@ describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
     component.getPresResult(profile, '6417');
   });
 
-  fit('should get cod members', () => {
+  it('should get cod members', () => {
     component.codGrupo = 643;
     component.go = true;
     component.sendNotification();
@@ -231,7 +231,7 @@ describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
     component.sendNotification();
   });
 
-  fit('should get presidente', () => {
+  it('should get presidente', () => {
     component.notification = null;
     component.send();
   });
