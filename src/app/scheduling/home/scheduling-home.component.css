@@ -51,4 +51,94 @@ h1 {
 
 .delete-button {
     background-color: #192433;
+    border-radius: 10px;
 }
+
+.container {
+    width: 300px;
+    height: 300px;
+    position: relative;
+}
+  
+  .text-center {
+    margin-top: 20%;
+  }
+  
+  .btn-primary {
+    background-color: #192433 !important;
+    margin-top: 5%;
+  }
+  
+  .btn-secondary {
+    background-color: #FF6100 !important;
+    margin-top: 5%;
+  }
+  
+  .table-hover {
+    margin: 0 auto;
+    margin-top: -10%;
+    margin-bottom: 5%;
+    width: 50%;
+  }
+  
+  .popupMessage {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+  }
+  
+  .popup {
+    top: 20%;
+    margin: 70px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    width: 30%;
+    position: relative;
+    transition: all 5s ease-in-out;
+  }
+  
+  .popup h2 {
+    margin-top: 0;
+    color: #333;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 22px;
+  
+  }
+  
+  .popup .close {
+    position: absolute;
+    top: 12%;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+  }
+  .popup .close:hover {
+    opacity: .6;
+  }
+  .popup .content {
+    max-height: 30%;
+    overflow: auto;
+  }
+  
+  .buttons {
+    text-align: center;
+  }
+  
+  @media screen and (max-width: 700px){
+    .box{
+      width: 70%;
+    }
+    .popup{
+      width: 70%;
+    }
+  }
