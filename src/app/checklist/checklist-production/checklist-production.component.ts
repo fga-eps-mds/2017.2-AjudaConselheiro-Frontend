@@ -43,18 +43,6 @@ export class ChecklistProductionComponent implements OnInit {
       // Show commentaries for each section
   }
 
-  isOtherQuestions (topic: number, question: number) {
-    return (topic !== 6 && ( question !== (4 || 5)));
-  }
-
-  isRequiredQuestions(topic: number, question: number) {
-    return (topic === 6 && ( question === 4 || question === 5));
-  }
-
-  isNotRequiredQuestions(topic: number, question: number) {
-    return (topic === 6 && ( question >= 0 && question <= 3));
-  }
-
   savePost() {
       const jsonChecklistProduction = JSON.stringify({
         'iteratorArray': this.iteratorArray,

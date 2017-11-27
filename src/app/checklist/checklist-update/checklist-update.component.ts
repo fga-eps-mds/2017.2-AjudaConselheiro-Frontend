@@ -41,18 +41,6 @@ export class ChecklistUpdateComponent extends ChecklistProductionComponent imple
       console.warn(this.commentaries);
   }
 
-  isOtherQuestions (topic: number, question: number) {
-    return (topic !== 6 && ( question !== 4 && question !== 5));
-  }
-
-  isRequiredQuestions(topic: number, question: number) {
-    return (topic === 6 && ( question === 4 || question === 5));
-  }
-
-  isNotRequiredQuestions(topic: number, question: number) {
-    return (topic === 6 && ( question >= 0 && question <= 3));
-  }
-
   updatePost() {
       const jsonChecklistUpdate = JSON.stringify({
         'interatorArray': this.iteratorArray,

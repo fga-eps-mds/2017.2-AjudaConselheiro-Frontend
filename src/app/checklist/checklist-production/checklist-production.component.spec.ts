@@ -49,17 +49,6 @@ describe('ChecklistProductionComponent', () => {
     component.onSubmit();
   });
 
-
-  it('should fail incorrect not rquired questions', () => {
-    const teste = component.isNotRequiredQuestions(5,6)
-    expect(teste).toBe(false);
-    const teste2 = component. isRequiredQuestions(3,3)
-    expect(teste2).toBe(false);
-    const teste3 = component.isOtherQuestions(6,4)
-    expect(teste3).toBe(false);
-
-});
-
   it('should have back button', () => {
     const backButton = compiled.querySelector('.backButton');
     expect(backButton).toBeTruthy();
