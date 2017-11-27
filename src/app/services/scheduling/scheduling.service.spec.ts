@@ -1,23 +1,34 @@
-import { Http, HttpModule, ConnectionBackend, RequestOptions  } from '@angular/http';
+import {
+  Http,
+  HttpModule,
+  ConnectionBackend,
+  ResponseOptions,
+  Response,
+  BaseRequestOptions,
+  RequestOptions,
+  Headers
+} from '@angular/http';
+import { MockBackend, MockConnection } from '@angular/http/testing';
 import { TestBed, inject } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { Observable } from 'rxjs/Observable';
+import { Scheduling } from '../../models/scheduling.model';
 
-import { SchedulingService, AlertService, UserService,
-  ProfileService, AuthenticationService } from '../../services/index';
-
+import {
+  SchedulingService,
+  AlertService,
+  UserService,
+  ProfileService,
+  AuthenticationService
+} from '../../services/index';
 
 describe('SchedulingService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        HttpModule,
-        RouterTestingModule,
-      ],
+      imports: [HttpModule, RouterTestingModule],
       providers: [
         SchedulingService,
         AlertService,
-        Http,
-        ConnectionBackend,
         UserService,
         ProfileService,
         AuthenticationService
@@ -25,11 +36,124 @@ describe('SchedulingService', () => {
     });
   });
 
-  it('should be created', inject([SchedulingService], (service: SchedulingService) => {
-    expect(service).toBeTruthy();
-  }));
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [
+        SchedulingService,
+        AlertService,
+        UserService,
+        ProfileService,
+        AuthenticationService,
+        MockBackend,
+        BaseRequestOptions,
+        {
+          provide: Http,
+          useFactory: (
+            mockBackend: MockBackend,
+            defaultOptions: RequestOptions
+          ) => {
+            return new Http(mockBackend, defaultOptions);
+          },
+          deps: [MockBackend, BaseRequestOptions]
+        }
+      ],
+      imports: [HttpModule, RouterTestingModule]
+    });
 
-  it('should be created', inject([AlertService], (service: AlertService) => {
-    expect(service).toBeTruthy();
-  }));
+    // This section till the end of the function is responsible for mocking
+    // the needed localstorage functions, since the service uses them.
+    let store = {};
+    const mockLocalStorage = {
+      getItem: (key: string): string => {
+        return key in store ? store[key] : null;
+      },
+      setItem: (key: string, value: string) => {
+        store[key] = `${value}`;
+      },
+      removeItem: (key: string) => {
+        delete store[key];
+      },
+      clear: () => {
+        store = {};
+      }
+    };
+    spyOn(localStorage, 'getItem').and.callFake(mockLocalStorage.getItem);
+    spyOn(localStorage, 'setItem').and.callFake(mockLocalStorage.setItem);
+    spyOn(localStorage, 'removeItem').and.callFake(mockLocalStorage.removeItem);
+    spyOn(localStorage, 'clear').and.callFake(mockLocalStorage.clear);
+  });
+
+  it(
+    'should be created',
+    inject([SchedulingService], (service: SchedulingService) => {
+      expect(service).toBeTruthy();
+    })
+  );
+
+  it(
+    'should be created',
+    inject([AlertService], (service: AlertService) => {
+      expect(service).toBeTruthy();
+    })
+  );
+
+  it(
+    'should do delete',
+    inject([SchedulingService, MockBackend], (service, mockBackend) => {
+      localStorage.setItem('token', 'appToken');
+      const token = localStorage.getItem('token');
+      const fakeHeader = new Headers({
+        'Content-Type': 'application/json',
+        appToken: token
+      });
+
+      // Mocking HTTP connection for this test
+      mockBackend.connections.subscribe((connection: MockConnection) => {
+        const options = new ResponseOptions({ headers: fakeHeader });
+        connection.mockRespond(new Response(options));
+      });
+
+      // Calling and testing the function
+      service.delete(123, 123).subscribe(result => {
+        expect(result).toBeDefined();
+      });
+    })
+  );
+
+  it(
+    'should do get Schedulings',
+    inject([SchedulingService, MockBackend], (service, mockBackend) => {
+      localStorage.setItem('token', 'appToken');
+
+      // Mocking HTTP connection for this test
+      mockBackend.connections.subscribe((connection: MockConnection) => {
+        const options = new ResponseOptions();
+        connection.mockRespond(new Response(options));
+      });
+
+      // Calling and testing the function
+      service.getSchedulings().subscribe(result => {
+        expect(result).toBeDefined();
+      });
+      localStorage.clear();
+      service.getSchedulings();
+    })
+  );
+
+  it(
+    'should be new Scheduling',
+    inject([SchedulingService, MockBackend], (service, mockBackend) => {
+
+      // Mocking HTTP connection for this test
+      mockBackend.connections.subscribe((connection: MockConnection) => {
+        const options = new ResponseOptions();
+        connection.mockRespond(new Response(options));
+      });
+
+      // Calling and testing the function
+      service.newScheduling(new Scheduling(), 123, 'scheluding').subscribe(result => {
+        expect(result).toBeDefined();
+      });
+    })
+  );
 });
