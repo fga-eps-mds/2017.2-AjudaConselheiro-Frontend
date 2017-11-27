@@ -236,14 +236,13 @@ export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
   }
 
   createNotification() {
-    this.notification = new Notification(
-      'Eu, ' +
-        this.userService.getUserName() +
-        ', posso participar do seu Conselho?',
-      this.codPresident,
-      this.userService.getUserCod(),
-      'Participar de um conselho'
-    );
+    this.notification = new Notification();
+
+    this.notification.description = 'Eu, ' + this.userService.getUserName() +
+    ', posso participar do seu Conselho?';
+    this.notification.recipient = this.codPresident;
+    this.notification.author = this.userService.getUserCod();
+    this.notification.type =  'Participar de um conselho';
     return this.notification;
   }
 }

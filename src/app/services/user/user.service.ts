@@ -234,13 +234,6 @@ export class UserService extends ServicesUtilitiesService {
       return null;
     }
 
-    private setInitialProfile(userCod: string, token: any) {
-      // Sets the needed userToken from authentication, necessary for profiles POST
-      localStorage.setItem('token', token);
-
-      // Creating the user profile
-      this.profileService.setUserProfile({}, userCod).subscribe();
-
     private setInitialProfile(userCod: string, cpf: string, token: any) {
     // Sets the needed userToken from authentication, necessary for profiles POST
     localStorage.setItem('token', token);
