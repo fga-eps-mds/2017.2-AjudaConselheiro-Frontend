@@ -15,13 +15,11 @@
         <p class="card-text centering"> {{email}}</p>
 
         <div class="form-group text-center">
-                <div class="form-group">
-                    
-                        <input type="password" id="orangeForm-name" class="form-control" name="password" [(ngModel)]="password" minlength="5" placeholder="Senha"
-                          required password>
-                      </div>
+            <div class="form-group">
+                <input type="password" id="orangeForm-name" class="form-control" name="password" [(ngModel)]="password" minlength="5" placeholder="Senha" required password>
+            </div>
             <button type="button" class="btn btn-danger" (click)="validatePassword()"><i class="fa fa-times" aria-hidden="true"></i>Deletar Conta</button>
-            <input type="button" class="btn btn-deep-orange" value="Editar">
+            <input [routerLink]="['/usuarios/editar/'] + cod" type="button" class="btn btn-deep-orange" value="Editar">
             <br>
             <br>
         </div>

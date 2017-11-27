@@ -42,7 +42,6 @@ describe('UserCreateComponent', () => {
         HttpModule,
        ],
        providers: [
-         Http,
          UserService,
          MockBackend,
          ConnectionBackend,
@@ -68,6 +67,13 @@ describe('UserCreateComponent', () => {
     component = fixture.debugElement.injector.get(UserCreateComponent);
 
   }));
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+  it('should ngOnInit', () => {
+    component.ngOnInit();
+  });
 
   it('shoul create new user', fakeAsync(() => {
     const result = 'Cadastrado com sucesso.';
@@ -165,4 +171,31 @@ describe('UserCreateComponent', () => {
     expect(component.matchPassword(user.senha, '123456789')).toEqual(false);
   });
 
+  it('Teste CPF', () => {
+    let soma = '00000000000';
+    for (let i = 0 ; i <= 9 ; i++) {
+      expect(component.testCPF( soma )).toEqual( false );
+      soma = String(11111111111 + parseInt( soma, 10));
+    }
+    expect(component.testCPF( null )).toEqual( false );
+    expect(component.testCPF( '21536586469' )).toEqual( false );
+    expect(component.testCPF( '24499898978' )).toEqual( true );
+  });
+  it('should test register', () => {
+    component.user = new User();
+    component.user.senha = '123'
+    component.user.confirmaSenha = '123'
+    component.data = '24499898978';
+    component.register( '24499898978' );
+  });
+
+  it('should test register2', () => {
+    component.user = new User();
+    component.user.senha = '123'
+    component.user.confirmaSenha = '123'
+    component.data = null;
+    component.register( null );
+    expect(mockAlert.warn).toHaveBeenCalledWith('CPF inválido/Digite um CPF válido');
+
+  });
 });
