@@ -45,9 +45,9 @@
                         <!-- Rounded switch -->
                         <label class=" align-middle switch">
                 <input type="checkbox"
-                  name="{{iteratorArray[topicNum][questNum].question}}"
+                  name="{{iteratorArray[topicNum][questNum].Q}}"
                   [value]="true"
-                  [(ngModel)]= "iteratorArray[topicNum][questNum].answer">
+                  [(ngModel)]= "iteratorArray[topicNum][questNum].A">
                 <span class="slider round"></span>
               </label> Sim
                     </div>
@@ -57,16 +57,16 @@
                         Não
                         <label class=" align-middle switch">
                 <input type="checkbox"
-                  name="{{iteratorArray[topicNum][questNum].question}}"
+                  name="{{iteratorArray[topicNum][questNum].Q}}"
                   [value]="true"
-                  [(ngModel)]= "iteratorArray[topicNum][questNum].answer">
+                  [(ngModel)]= "iteratorArray[topicNum][questNum].A">
                 <span class="slider round"></span>
               </label> Sim
                     </div>
 
                     <!-- Commentary options for 2nd half of questions -->
                     <div class="col-md-2">
-                        <input required type="text" placeholder="Resposta" *ngIf="topicNum === 7 && ( questNum === 3 || questNum === 4)" [(ngModel)]="iteratorArray[topicNum][questNum].commentary" name="Text_input_question{{iteratorArray[topicNum][questNum]}}">
+                        <input required type="text" placeholder="Resposta" *ngIf="topicNum === 7 && ( questNum === 3 || questNum === 4)" [(ngModel)]="iteratorArray[topicNum][questNum].com" name="Text_input_question{{iteratorArray[topicNum][questNum]}}">
                     </div>
                 </div>
 
@@ -75,7 +75,7 @@
                     <div class="col-md-8" align="left">Observações?</div>
                     <div class="col-md-4">
                         <div class="md-form">
-                            <textarea align="center" type="text" id="form7" class="md-textarea" placeholder="Observações" name="{{iteratorArray[8][topicNum]}}" [(ngModel)]="iteratorArray[8][topicNum].commentary">
+                            <textarea align="center" type="text" id="form7" class="md-textarea" placeholder="Observações" (ngModel)="iteratorArray[9][topicNum].obs" name="iteratorArray[9]{{[topicNum].secNum}}" >
                 </textarea>
                             <label for="form7"></label>
                         </div>

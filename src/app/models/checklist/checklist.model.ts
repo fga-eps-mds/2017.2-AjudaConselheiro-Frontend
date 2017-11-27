@@ -27,28 +27,28 @@ export class ChecklistCafeteria {
 
   // This interface represents the form with question, answer and yes/no.
   export interface CommentBinaryForm {
-      question?: number;
-      answer?: boolean;
-      commentary?: string;
+      Q?: number;
+      A?: boolean;
+      com?: string;
   }
 
   export interface CommentForm {
-      question?: number;
-      answer?: string;
+      Q?: number;
+      A?: string;
   }
 
   export interface BinaryForm {
-    question?: number;
-    answer?: boolean;
+    Q?: number;
+    A?: boolean;
   }
 
   export interface SectionCommentary {
-      sectionNumber?: number;
-      commentary?: string;
+      secNum?: number;
+      obs?: string;
   }
 
   export interface SectionCommentaryTwo {
-    question?: number;
+    Q?: number;
     obs?: string;
-    answer?: boolean;
+    A?: boolean;
   }
