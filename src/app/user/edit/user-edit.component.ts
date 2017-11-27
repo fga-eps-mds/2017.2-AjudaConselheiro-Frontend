@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
+
 import { UserService, AlertService, AuthenticationService } from '../../services/index';
 import { User } from '../../models/index';
 import { UserMasks } from '../userMasks';
@@ -16,16 +17,16 @@ export class UserEditComponent implements OnInit {
 
   @ViewChild('formUser') formUser: NgForm;
   user: User;
-  userName = String;
-
+  userName = '';
+  password = '';
   maskcpf = UserMasks.MASK_CPF;
   maskphone = UserMasks.MASK_PHONE;
 
   constructor(
     private userService: UserService,
-    private route: ActivatedRoute,
     private alertService: AlertService,
-    private router: Router
+    private router: Router,
+    private authenticationService: AuthenticationService
   ) { }
 
   ngOnInit() {
@@ -58,7 +59,33 @@ export class UserEditComponent implements OnInit {
         });
   }
 
-  updateAdditionalFields(telefone: number, segmento: string) {
+  validatePassword() {
+    this.authenticationService.login(this.user.email, this.password)
+      .subscribe(
+        (result) => this.delete(),
+        (error) => this.validateError(error.status));
+  }
+
+  validateError(errorStatus: number) {
+    console.log('error: ', errorStatus);
+    if (errorStatus === 401) {
+      this.alertService.warn('Aviso: senha incorreta!');
+    }
+  }
+
+  resultDelete() {
+    this.authenticationService.logout();
+    this.router.navigate(['/home']);
+  }
+
+  delete() {
+    this.userService.delete(this.user.cod)
+      .subscribe(
+        result => this.resultDelete()
+    );
+  }
+
+  updateAdditionalFields(telefone: number, segmento?: string) {
     this.userService.updateAdditionalFields(telefone, segmento)
     .subscribe(
       result => {
@@ -78,14 +105,14 @@ export class UserEditComponent implements OnInit {
 
    // This function checks if there's a logged user and if it has a 'nomeCompleto'
     // Output: The user 'cod' or 'null' if there's no cod
-    private getUserName() {
-      const user = this.userService.getLoggedUser();
+  private getUserName() {
+    const user = this.userService.getLoggedUser();
 
-      // Checks if there's a user and if this user has a 'cod' attribute.
-      if (user && 'nomeCompleto' in user) {
-        return user.nomeCompleto;
-      }
-
-      return null;
+    // Checks if there's a user and if this user has a 'cod' attribute.
+    if (user && 'nomeCompleto' in user) {
+      return user.nomeCompleto;
     }
+
+    return null;
+  }
 }
