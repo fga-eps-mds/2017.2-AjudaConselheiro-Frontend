@@ -11,6 +11,7 @@ import { State, CouncilGroup } from '../../models/index';
 import { IbgeComponent } from '../../ibge/ibge.component';
 import 'rxjs/add/observable/throw';
 import { Observable } from 'rxjs/Observable';
+import { Notification } from '../../models/notification';
 
 describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
   let component: CouncilGroupSearchComponent;
@@ -25,6 +26,20 @@ describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
     'codGrupo': 1059,
     'codObjeto': 1510426954450
   };
+  let members = [
+    {
+      'dataHoraAtivo': '2017-11-26T14:29:39BRST',
+      'links': [
+          {
+              'rel': 'self',
+              'href': 'http://mobile-aceite.tcu.gov.br/appCivicoRS/rest/grupos/953/membros/1061'
+          },
+          {
+              'rel': 'pessoa',
+              'href': 'http://mobile-aceite.tcu.gov.br/appCivicoRS/rest/pessoas/5676'
+          }
+      ]
+  }];
 
   beforeEach(async(() => {
     mockAlert = {
@@ -65,11 +80,11 @@ describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+ fit('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should search council group', () => {
+ fit('should search council group', () => {
     component.councilGroup.municipio = undefined;
     component.searchCouncilGroup();
 
@@ -77,7 +92,7 @@ describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
     component.searchCouncilGroup();
   });
 
-  it('should has location', () => {
+ fit('should has location', () => {
     let result;
     // Testing the method has location when exists valid state and valid city
     result = component.hasLocation();
@@ -90,7 +105,7 @@ describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
 
   });
 
-  it('should chosen state', () => {
+ fit('should chosen state', () => {
     component.councilGroup = fakeCouncil;
     // Testing the method when is passed valid state
     component.chosenState('52');
@@ -100,7 +115,7 @@ describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
 
   });
 
-  it('should chosen city', () => {
+ fit('should chosen city', () => {
     component.councilGroup = fakeCouncil;
     // Testing the method when is passed valid city
     component.chosenCity('Brasília');
@@ -110,7 +125,7 @@ describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
 
   });
 
-  it('Should know if user is logged in', () => {
+ fit('Should know if user is logged in', () => {
     localStorage.setItem('token', 'appToken');
 
     let result;
@@ -124,7 +139,7 @@ describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
   });
 
 
-  it('should filter council', () => {
+ fit('should filter council', () => {
     const result = [council];
 
     // Testing case where advice is foundCouncil
@@ -140,7 +155,7 @@ describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
 
   });
 
-  it('should get state abbreviated', () => {
+ fit('should get state abbreviated', () => {
     const estado = {
       'id': 52,
       'sigla': 'GO',
@@ -156,7 +171,7 @@ describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
     expect(component.description).toEqual('CAE-GO-Goiânia');
   });
 
-  it('should get council groups', () => {
+ fit('should get council groups', () => {
     const result = [council];
 
     component.description = 'CAE-27-Barra de Santo Antônio';
@@ -169,12 +184,56 @@ describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
   });
 
 
-  it('should get state abbreviated', () => {
+ fit('should get state abbreviated', () => {
     component.getStateAbbr();
   });
 
 
-  it('should get council grups', inject([CouncilGroupService], (service: CouncilGroupService) => {
+ fit('should get council grups', inject([CouncilGroupService], (service: CouncilGroupService) => {
     component.getCouncilGroups();
   }));
+
+  fit('should open dialog', () => {
+    component.openDialog();
+  });
+
+  fit('should close dialog', () => {
+    component.closeDialog();
+  });
+
+  fit('should close dialog', () => {
+    component.closeDialog();
+  });
+
+  fit('should get cod members', () => {
+
+    component.getCodMembers(members);
+    members = [];
+    component.getCodMembers(members);
+  });
+
+  fit('should get presidente result', () => {
+    const profile = {
+      'camposAdicionais': 'Nada',
+      'tipoPerfil': {
+          'codTipoPerfil': 238,
+          'descricao': 'Conselheiro'
+      }
+  };
+    component.getPresResult(profile, '6417');
+  });
+
+  fit('should get cod members', () => {
+    component.codGrupo = 643;
+    component.go = true;
+    component.sendNotification();
+    component.codGrupo = null;
+    component.sendNotification();
+  });
+
+  fit('should get presidente', () => {
+    component.notification = null;
+    component.send();
+  });
+
 });
