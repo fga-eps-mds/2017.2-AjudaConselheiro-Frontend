@@ -1,9 +1,24 @@
+import { ChecklistCafeteriaAnswers, ChecklistMenuAnswerIteratorArray, IteratorArray } from './checklistForms';
 export class ChecklistCafeteria {
     constructor(
         public id?: number,
         public obs?: string,
-        public FormMenuThree?: Array<SectionCommentaryTwo>,
+        public ChecklistCafeteriaAnswers?: Array<SectionCommentaryTwo>,
     ) {}
+  }
+  export class ChecklistMenu {
+      constructor(
+          public id?: number,
+          public obs?: string,
+          public ChecklistMenuAnswerIteratorArray?: Array<CommentBinaryForm>,
+      ) {}
+  }
+  export class ChecklistProduction {
+      constructor(
+          public id?: number,
+          public obs?: string,
+          public IteratorArray?: Array<CommentBinaryForm>,
+      ) {}
   }
 
   export class ConfirmComentary {
@@ -12,28 +27,28 @@ export class ChecklistCafeteria {
 
   // This interface represents the form with question, answer and yes/no.
   export interface CommentBinaryForm {
-      question: string;
-      answer: boolean;
-      commentary: string;
+      Q?: number;
+      A?: boolean;
+      com?: string;
   }
 
   export interface CommentForm {
-      question: string;
-      answer: string;
+      Q?: number;
+      A?: string;
   }
 
   export interface BinaryForm {
-    question: string;
-    answer: boolean;
+    Q?: number;
+    A?: boolean;
   }
 
   export interface SectionCommentary {
-      sectionNumber: number;
-      commentary: string;
+      secNum?: number;
+      obs?: string;
   }
 
   export interface SectionCommentaryTwo {
-    question: string;
-    obs: string;
-    answer: boolean;
+    Q?: number;
+    obs?: string;
+    A?: boolean;
   }
