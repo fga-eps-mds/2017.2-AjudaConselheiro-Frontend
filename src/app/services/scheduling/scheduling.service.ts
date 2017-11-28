@@ -20,6 +20,7 @@ export class SchedulingService extends ServicesUtilitiesService {
   options: RequestOptions = new RequestOptions({ headers: this.headers });
 
   private baseURL = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/postagens/conteudos';
+  private updateURL = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/postagens/';
   private url = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/postagens';
 
   constructor(private http: Http,
@@ -65,17 +66,49 @@ export class SchedulingService extends ServicesUtilitiesService {
     .catch(this.handleError);
   }
 
-  delete(codPost: Number, codContent: Number): any {
-    const token = localStorage.getItem('token');
+  getScheduling() {
+    const url = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/postagens/7220/conteudos/5611';
+
     const headers: Headers = new Headers({
       'Content-Type': 'application/json',
-      'appToken': token
-    });
-    const options: RequestOptions = new RequestOptions({ headers: headers });
-    const url = this.url + '/' + codPost + '/conteudos/' + codContent;
-    return this.http.delete(url, options)
-      .map(result => this.extractData(result))
-      .catch(this.handleError);
+      'appToken': localStorage.getItem('token'),
+      });
+
+    const getOptions: RequestOptions = new RequestOptions({ headers: headers });
+
+    return this.http.get(url, getOptions)
+    .map(this.extractData)
+    .catch(this.handleError);
   }
 
+  updateScheduling(scheduling: Scheduling, postText: string)  {
+    const updateBody = {
+      'JSON': JSON.stringify(scheduling),
+      'texto': postText
+    };
+
+    const headers: Headers = new Headers({
+        'Content-Type': 'application/json',
+        'appToken': localStorage.getItem('token'),
+        });
+
+    const updateOptions: RequestOptions = new RequestOptions({ headers: headers });
+
+    return this.http.put(this.updateURL + '7220/conteudos/5611', JSON.stringify(updateBody), updateOptions)
+    .map(this.extractData)
+    .catch(this.handleError);
+  }
+
+  delete(codPost: Number, codContent: Number): any {
+  const token = localStorage.getItem('token');
+  const headers: Headers = new Headers({
+    'Content-Type': 'application/json',
+    'appToken': token
+  });
+  const options: RequestOptions = new RequestOptions({ headers: headers });
+  const url = this.url + '/' + codPost + '/conteudos/' + codContent;
+  return this.http.delete(url, options)
+    .map(result => this.extractData(result))
+    .catch(this.handleError);
+  }
 }

@@ -10,7 +10,7 @@ import { AlertComponent } from './../layouts/alert/alert.component';
 export abstract class SchedulingCreateAbstract {
   @ViewChild('formScheduling') formScheduling: NgForm;
   postType = 0;
-  postText = "";
+  postText = '';
 
   constructor(
     public schedulingService: SchedulingService,
