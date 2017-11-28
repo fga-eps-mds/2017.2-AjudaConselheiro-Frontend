@@ -16,15 +16,17 @@ export class SchedulingEditComponent implements OnInit {
 
   @ViewChild('formScheduling') formScheduling: NgForm;
 
+  public scheduling: Scheduling;
+
   postText = 'Agendamento';
 
   constructor(
     private schedulingService: SchedulingService,
     private alertService: AlertService,
-    public scheduling: Scheduling,
     private router: Router) { }
 
   ngOnInit() {
+    this.scheduling = new Scheduling();
     this.scheduling = this.getScheduling();
   }
 
