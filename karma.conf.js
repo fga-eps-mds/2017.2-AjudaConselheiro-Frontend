@@ -25,7 +25,7 @@ module.exports = function (config) {
     customLaunchers: {
         Chrome_travis_ci: {
             base: 'Chrome',
-            flags: ['--no-sandbox']
+            flags: ['--disable-gpu']
         }
     },
     reporters: ['coverage-istanbul', 'progress', 'kjhtml'],
@@ -34,6 +34,7 @@ module.exports = function (config) {
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ['Chrome_travis_ci'],
+    browserNoActivityTimeout: 30000,
     singleRun: false
   });
 };
