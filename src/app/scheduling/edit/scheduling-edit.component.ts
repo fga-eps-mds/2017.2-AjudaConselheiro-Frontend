@@ -30,6 +30,7 @@ export class SchedulingEditComponent implements OnInit {
 
   result() {
     this.alertService.success('Postagem atualizada com sucesso.');
+    this.router.navigate(['agendamento']);
   }
 
   error(status: any) {
@@ -43,39 +44,31 @@ export class SchedulingEditComponent implements OnInit {
   updateScheduling(): void {
     this.schedulingService.updateScheduling(this.scheduling, this.postText)
     .subscribe(
-      result => {
-        this.result();
-        this.router.navigate(['agendamento']);
-      },
-      error => {
-        this.error(error.status);
-      });
-}
+      result => this.result(),
+      error => this.error(error.status));
+  }
 
   getScheduling(): Scheduling {
     this.schedulingService.getScheduling()
     .subscribe(
-      result => {
-        this.scheduling = result;
-        const sched = JSON.stringify(this.scheduling);
-        localStorage.setItem('Actual Scheduling', sched);
-
-        const getSched = localStorage.getItem('Actual Scheduling');
-        const getSched2 = JSON.parse(getSched);
-        const actualSched = JSON.parse(getSched2.JSON);
-
-        this.scheduling.members = actualSched.members;
-        this.scheduling.date = actualSched.date;
-        this.scheduling.local = actualSched.local;
-        this.scheduling.time = actualSched.time;
-        this.scheduling.type = actualSched.type;
-
+      result => { this.resultGetScheduling(result);
       },
       error => {
         this.error(error.status);
       });
 
     return this.scheduling;
+  }
+
+  resultGetScheduling(result: any) {
+
+    const actualSched = JSON.parse(JSON.stringify(result));
+
+    this.scheduling.members = actualSched.members;
+    this.scheduling.date = actualSched.date;
+    this.scheduling.local = actualSched.local;
+    this.scheduling.time = actualSched.time;
+    this.scheduling.type = actualSched.type;
   }
 
 }
