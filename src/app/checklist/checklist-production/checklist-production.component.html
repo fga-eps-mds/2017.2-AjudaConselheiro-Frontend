@@ -23,9 +23,9 @@
       that are stored inside the determined object array-->
 
         <form #f="ngForm" (ngSubmit)="onSubmit()">
-            <div *ngFor="let topic of iteratorArray ;let topicNum=index">
+            <div *ngFor="let topic of iteratorArray;let topicNum=index">
                 <div class="row">
-                    <div class="col-md-9 " align="center">
+                    <div class="col-md-9 " align="center" *ngIf="topicNum<9">
                         <h5>{{topicHeaders[topicNum]}}</h5>
                     </div>
                     <div class="col-md-1 " align="center">
@@ -37,51 +37,50 @@
                 </div>
                 <div class="row" *ngFor="let question of topic;let questNum=index;">
                     <!-- Section header -->
-                    <div class="col-md-9" align="left">{{iteratorArray[topicNum][questNum].question}}</div>
+                    <div class="col-md-9" align="left" *ngIf="topicNum<9">{{questionsProduction[topicNum][questNum]}}</div>
 
                     <!-- Questions -->
-                    <div class="col-md-2" align="center" valign="center" *ngIf="isOtherQuestions(topicNum, questNum)">
+                    <div class="col-md-2" align="center" valign="center" *ngIf="topicNum !== 7 && ( questNum !== 3 || questNum !== 4) && topicNum<9">
                         Não
                         <!-- Rounded switch -->
                         <label class=" align-middle switch">
                 <input type="checkbox"
-                  name="{{iteratorArray[topicNum][questNum].question}}"
+                  name="{{iteratorArray[topicNum][questNum].Q}}"
                   [value]="true"
-                  [(ngModel)]= "iteratorArray[topicNum][questNum].answer">
+                  [(ngModel)]= "iteratorArray[topicNum][questNum].A">
                 <span class="slider round"></span>
               </label> Sim
                     </div>
 
                     <!-- Other questions -->
-                    <div class="col-md-2" align="center" *ngIf="isNotRequiredQuestions(topicNum, questNum)">
+                    <div class="col-md-2" align="center" *ngIf="topicNum === 7 && ( questNum >= 0 && questNum <= 2) && topicNum<9">
                         Não
                         <label class=" align-middle switch">
                 <input type="checkbox"
-                  name="{{iteratorArray[topicNum][questNum].question}}"
+                  name="{{iteratorArray[topicNum][questNum].Q}}"
                   [value]="true"
-                  [(ngModel)]= "iteratorArray[topicNum][questNum].answer">
+                  [(ngModel)]= "iteratorArray[topicNum][questNum].A">
                 <span class="slider round"></span>
               </label> Sim
                     </div>
 
                     <!-- Commentary options for 2nd half of questions -->
                     <div class="col-md-2">
-                        <input required type="text" placeholder="Resposta" *ngIf="isRequiredQuestions(topicNum,questNum)" [(ngModel)]="iteratorArray[topicNum][questNum].commentary" name="{{iteratorArray[topicNum][questNum].question}}">
+                        <input required type="text" placeholder="Resposta" *ngIf="topicNum === 7 && ( questNum === 3 || questNum === 4)" [(ngModel)]="iteratorArray[topicNum][questNum].com" name="Text_input_question{{iteratorArray[topicNum][questNum]}}">
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="row" *ngIf="topicNum<9">
                     <!-- Topics observation -->
                     <div class="col-md-8" align="left">Observações?</div>
                     <div class="col-md-4">
                         <div class="md-form">
-                            <textarea align="center" type="text" id="form7" class="md-textarea" placeholder="Observações" name="{{commentaries[topicNum]}}" [(ngModel)]="commentaries[topicNum].commentary">
+                            <textarea align="center" type="text" id="form7" class="md-textarea" placeholder="Observações" (ngModel)="iteratorArray[9][topicNum].obs" name="iteratorArray[9]{{[topicNum].secNum}}" >
                 </textarea>
                             <label for="form7"></label>
                         </div>
                     </div>
                 </div>
-                <br>
             </div>
             <div class="row">
                 <div class="col-md-1"></div>
