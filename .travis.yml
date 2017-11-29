@@ -14,6 +14,9 @@ env:
     - CODECLIMATE_REPO_TOKEN=4368e3d4-20fc-4d27-ae50-fe3492ca6200
 
 before_install:
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - sleep 5 # Giving time for xvfb to start
   - google-chrome-stable --headless --disable-gpu
 
 before_script:
@@ -26,15 +29,15 @@ cache:
   directories:
     - "node_modules"
 
-script:
-  - ng build --prod
-
-after_script:
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-  - sleep 5 # Giving time for xvfb to start
-  - ng test --watch=false --code-coverage
-  - codeclimate-test-reporter < coverage/lcov.info
+# Travis-CI beta feature - "Build Stages"
+# More info: https://docs.travis-ci.com/user/build-stages/
+jobs:
+  include:
+    - stage: Testing
+      script: ng build --prod
+      script: ng test --watch=false --code-coverage
+    - stage: Information and deploy
+      script: codeclimate-test-reporter < coverage/lcov.info
 
 notifications:
   email:
