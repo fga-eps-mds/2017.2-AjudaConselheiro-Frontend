@@ -45,6 +45,24 @@ createCouncil(councilGroup: CouncilGroup): Observable<any> {
     }
   }
 
+  deleteCouncil(cod: number) {
+    const thereIsToken = localStorage.getItem('token');
+    const deleteUrl = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/grupos/';
+
+    if (thereIsToken) {
+      this.headers = new Headers ({
+        'Content-Type': 'application/json',
+        'appToken': thereIsToken
+      });
+
+      this.request = new RequestOptions({ headers: this.headers });
+
+      return this.http.delete(this.url + 'cod', this.request)
+      .map(response => this.extractLocation(response))
+      .catch(this.handleError);
+    }
+  }
+
   getFormattedData(councilGroup: CouncilGroup) {
     console.log('Estado: ', councilGroup.estado, '\n\nMunicipio: ', councilGroup.municipio);
 

@@ -1,0 +1,51 @@
+<br><br><br><br>
+
+<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+<script src="script.component.js"></script>
+
+<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+<div class="well" *ngIf="councils.length>0">
+    <p class="h3 text-center mb-4"> Conselhos
+    </p>
+
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th class="orange accent-4 h5 text-center mb-4">Descrição</th>
+            <th class="orange accent-4 text-center">Codigo do Grupo</th>
+            <th class="orange accent-4 text-center">Codigo do Objeto</th>
+            <th class="orange accent-4 text-center">
+                <a class="btn btn-blue-grey register-button" href="/registrar">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Novo
+                </a>
+            </th>
+        </tr>
+        <tr *ngFor="let council of councils">
+            <td class="text-center mb-4">
+                {{ council.descricao }}
+            </td>
+            <td class="text-center mb-4">
+                {{ council.codGrupo }}
+            </td>
+            <td class="text-center mb-4">
+                {{ council.codObjeto }}
+            </td>
+            <td class="text-center" style="width: 200px">
+                <a title="Remover" alt="Remover" class="btn btn-xs btn-danger">
+                    <i class="fa fa-trash"></i>
+                    <!-- <button class="fa fa-trash" type="submit" (click)="deleteCouncil(council.codGrupo)"></button> -->
+                </a>
+            </td>
+        </tr>
+    </table>
+
+</div>
+<div *ngIf="councils.length==0">
+    <img class="displayed" src="https://www.heypoorplayer.com/wp-content/uploads/2017/04/30-xin-loi.png">
+    <br>
+    <p class="h4 text-center mb-4">Nenhum conselho cadastrado.</p>
+    <p class="h3 text-center mb-4">
+        <a class="btn btn-blue-grey register-button" href="/conselho/cadastrar">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Novo
+        </a>
+    </p>
+</div>

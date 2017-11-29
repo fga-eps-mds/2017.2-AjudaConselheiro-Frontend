@@ -8,8 +8,9 @@ import { CouncilGroupCreateComponent } from '../council-group/create/council-gro
 import { CouncilGroupSearchComponent } from '../council-group/search/council-group-search.component';
 import { CouncilGroupService } from '../services/index';
 import { IbgeComponent } from '../ibge/ibge.component';
+import { CouncilGroupDeleteComponent } from './delete/delete.component';
 
-export { CouncilGroupCreateComponent, CouncilGroupSearchComponent, IbgeComponent, CouncilGroupComponent };
+export { CouncilGroupCreateComponent, CouncilGroupSearchComponent, IbgeComponent, CouncilGroupComponent, CouncilGroupDeleteComponent };
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ export { CouncilGroupCreateComponent, CouncilGroupSearchComponent, IbgeComponent
     CouncilGroupSearchComponent,
     IbgeComponent,
     CouncilGroupComponent,
+    CouncilGroupDeleteComponent,
   ],
   providers: [
     CouncilGroupService
