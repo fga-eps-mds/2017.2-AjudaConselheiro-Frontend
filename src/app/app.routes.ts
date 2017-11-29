@@ -6,8 +6,6 @@ import { CouncilGroupCreateComponent, CouncilGroupSearchComponent, CouncilGroupC
 import {
   ChecklistComponent,
   ChecklistProductionComponent,
-  ChecklistMenuComponent,
-  ChecklistCafeteriaComponent,
   ChecklistUpdateComponent
 } from './checklist/checklist.module';
 
@@ -34,8 +32,6 @@ export const ROUTES: Routes = [
   { path: '', component: HomeComponent },
   { path: 'checklist', component: ChecklistComponent },
   { path: 'checklist/producao', component: ChecklistProductionComponent },
-  { path: 'checklist/menu', component: ChecklistMenuComponent },
-  { path: 'checklist/cantina', component: ChecklistCafeteriaComponent },
   { path: 'login', component: LoginComponent },
   { path: 'agendamento', component: SchedulingHomeComponent },
   { path: 'agendamento/criar', component: SchedulingCreateComponent },

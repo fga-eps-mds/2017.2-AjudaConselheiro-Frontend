@@ -1,4 +1,86 @@
-.update-button {
+.create-form {
+    margin: 0 auto;
+    max-width: 1280px;
+    width: 50%;
+}
+
+.form-simple .font-small {
+    font-size: 0.8rem;
+}
+
+.form-simple .header {
+    border-top-left-radius: .3rem;
+    border-top-right-radius: .3rem;
+}
+
+.form-simple input[type=text]:focus:not([readonly]) {
+    border-bottom: 1px solid #ff3547;
+    -webkit-box-shadow: 0 1px 0 0 #ff3547;
+    box-shadow: 0 1px 0 0 #ff3547;
+}
+
+.form-simple input[type=text]:focus:not([readonly])+label {
+    color: #4f4f4f;
+}
+
+.form-simple input[type=password]:focus:not([readonly]) {
+    border-bottom: 1px solid #ff3547;
+    -webkit-box-shadow: 0 1px 0 0 #ff3547;
+    box-shadow: 0 1px 0 0 #ff3547;
+}
+
+.form-simple input[type=password]:focus:not([readonly])+label {
+    color: #4f4f4f;
+}
+
+.search {
+    margin-bottom: 20px;
+}
+
+.search>div {
+    margin: 5px;
+}
+
+.school-form {
+    margin: 15px;
+}
+
+.select-style {
+    border: 1px solid #ccc;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    overflow: hidden;
+    background: #fafafa;
+}
+
+.select-style select {
+    width: 100%;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding: 2px 2px 2px 2px;
+    border: none;
+    background: transparent url("http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png") no-repeat 100% center;
+}
+
+.select-style select:focus {
+    outline: none;
+}
+
+.collapse-button {
+    background-color: #192433;
+}
+
+.search-button {
+    background-color: #FF6100;
+}
+
+.search-school-button {
+    background-color: #192433;
+}
+
+.schedule-button {
     background-color: #192433;
 }
 
