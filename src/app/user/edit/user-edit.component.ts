@@ -1,6 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
+
+import { Subscription } from 'rxjs/Subscription';
 
 import { UserService, AlertService, AuthenticationService } from '../../services/index';
 import { User } from '../../models/index';
@@ -13,7 +15,7 @@ import { UserMasks } from '../userMasks';
   providers: [UserService, AlertService],
 })
 
-export class UserEditComponent implements OnInit {
+export class UserEditComponent implements OnInit, OnDestroy {
 
   @ViewChild('formUser') formUser: NgForm;
   user: User;
@@ -22,6 +24,10 @@ export class UserEditComponent implements OnInit {
   maskcpf = UserMasks.MASK_CPF;
   maskphone = UserMasks.MASK_PHONE;
   selDelete = false;
+  updateSubs: Subscription;
+  deleteSubs: Subscription;
+  authenticateSubs: Subscription;
+  updateAddSubs: Subscription;
 
   constructor(
     private userService: UserService,
@@ -33,6 +39,13 @@ export class UserEditComponent implements OnInit {
   ngOnInit() {
     this.user = this.userService.getLoggedUser();
     this.userName = this.getUserName();
+  }
+
+  ngOnDestroy() {
+    this.authenticateSubs.unsubscribe();
+    this.deleteSubs.unsubscribe();
+    this.updateAddSubs.unsubscribe();
+    this.updateSubs.unsubscribe();
   }
 
   pressDelete() {
@@ -52,7 +65,7 @@ export class UserEditComponent implements OnInit {
   }
 
   updateUser(): void {
-    this.userService.updateUser(this.user)
+    this.updateSubs = this.userService.updateUser(this.user)
       .subscribe(
         result => {
           this.result();
@@ -65,7 +78,7 @@ export class UserEditComponent implements OnInit {
   }
 
   validatePassword() {
-    this.authenticationService.login(this.user.email, this.password)
+    this.authenticateSubs = this.authenticationService.login(this.user.email, this.password)
       .subscribe(
         (result) => this.delete(),
         (error) => this.validateError(error.status));
@@ -84,14 +97,14 @@ export class UserEditComponent implements OnInit {
   }
 
   delete() {
-    this.userService.delete(this.user.cod)
+    this.deleteSubs = this.userService.delete(this.user.cod)
       .subscribe(
         result => this.resultDelete()
     );
   }
 
   updateAdditionalFields(telefone: number, segmento?: string) {
-    this.userService.updateAdditionalFields(telefone, segmento)
+    this.updateAddSubs = this.userService.updateAdditionalFields(telefone, segmento)
       .subscribe(
         result => {
           this.result();

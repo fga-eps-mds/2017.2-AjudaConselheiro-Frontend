@@ -45,11 +45,10 @@
 
     <div class="form-group">
       <i class="fa fa-venus-mars prefix grey-text"></i> Sexo
-      <input type="text" name="sexo" list="gender" placeholder="Sexo (opcional)" [(ngModel)]="user.sexo" #sexo="ngModel">
-      <datalist id="gender">
+      <select class="custom-select" [(ngModel)]="user.sexo" #sexo="ngModel" [ngModelOptions]="{standalone: true}">
         <option value="F">Feminino</option>
         <option value="M">Masculino</option>
-      </datalist>
+      </select>
     </div>
 
     <div class="form-group">

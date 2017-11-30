@@ -16,17 +16,11 @@ import { ServicesUtilitiesService } from './../services-utilities/services-utili
 export class UserService extends ServicesUtilitiesService {
 
   private url = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas';
-  private headers: Headers = new Headers({
-    'Content-Type': 'application/json'
-    // 'appToken': localStorage.getItem('token').toString()
-  });
-  options: RequestOptions = new RequestOptions({ headers: this.headers });
-
-  updateHeaders: Headers = new Headers({
+  headers: Headers = new Headers({
     'Content-Type': 'application/json',
     'appToken': localStorage.getItem('token')
    });
-     updateOptions: RequestOptions = new RequestOptions({ headers: this.updateHeaders });
+  options: RequestOptions = new RequestOptions({ headers: this.headers });
 
   constructor(
     private http: Http,
@@ -92,6 +86,7 @@ export class UserService extends ServicesUtilitiesService {
       console.error('No logged user found!');
     }
   }
+
   getPerfilUser() {
     const localUserValue = localStorage.getItem('Profile');
     if (localUserValue) {
@@ -101,7 +96,7 @@ export class UserService extends ServicesUtilitiesService {
 
   updateUser(user: User) {
     const cod = this.getUserCod();
-    const href = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas/' + cod;
+    const href = this.url + '/' + cod;
 
     const body = {
       'CEP': user.CEP,
@@ -118,7 +113,7 @@ export class UserService extends ServicesUtilitiesService {
       'sexo': user.sexo
     };
 
-    return this.http.put(this.url + '/' + cod, JSON.stringify(body), this.updateOptions)
+    return this.http.put(href, JSON.stringify(body), this.options)
       .map((response: Response) => response.json())
       .catch(this.handleError);
   }
