@@ -45,7 +45,7 @@ export class ProfileComponent implements OnInit {
   }
 
   validatePassword() {
-    this.authenticationService.login(this.user.email, this.password)
+    this.authenticationService.loginWithoutProfile(this.user.email, this.password)
     .subscribe(
       result => this.delete(),
       error => this.errorStatus(error.status));

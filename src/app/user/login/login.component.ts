@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
     console.log(validEmail);
 
     if (validEmail) {
-      this.authenticationService.login(this.email, this.password)
+      this.authenticationService.loginWithProfile(this.email, this.password)
       .subscribe(
         result => {
           localStorage.setItem('token', result[0]);

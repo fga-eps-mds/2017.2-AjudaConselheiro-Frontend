@@ -26,6 +26,18 @@ export class AuthenticationService extends ServicesUtilitiesService {
       .catch(this.handleError);
   }
 
+  loginWithProfile(email: string, password: string): Observable<any> {
+    this.headers = new Headers({
+      'Content-Type': 'application/json',
+      'email': email,
+      'senha': password,
+      'appIdentifier': 462
+    });
+
+    return this.login(email, password);
+
+  }
+
   loginWithoutProfile(email: string, password: string): Observable<any> {
     // Header without 'appIdentifier'
     this.headers = new Headers({
