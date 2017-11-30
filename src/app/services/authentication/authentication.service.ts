@@ -36,7 +36,7 @@ export class AuthenticationService extends ServicesUtilitiesService {
     localStorage.removeItem('token');
     localStorage.setItem('isLoggedIn', 'false');
     localStorage.removeItem('userData');
-    localStorage.removeItem('Profile')
+    localStorage.removeItem('Profile');
   }
 
   getToken(res: Response) {

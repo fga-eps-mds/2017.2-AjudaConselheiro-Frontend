@@ -28,9 +28,13 @@ export class UserService extends ServicesUtilitiesService {
    });
      updateOptions: RequestOptions = new RequestOptions({ headers: this.updateHeaders });
 
-  constructor(private http: Http, private alertService: AlertService,
-    private router: Router, private profileService: ProfileService,
-    private authService: AuthenticationService) {
+  constructor(
+    private http: Http,
+    private alertService: AlertService,
+    private router: Router,
+    private profileService: ProfileService,
+    private authService: AuthenticationService
+  ) {
     super();
   }
 
@@ -78,7 +82,7 @@ export class UserService extends ServicesUtilitiesService {
       }
     })
     .catch(this.handleError);
-}
+  }
 
   getLoggedUser() {
     const localUserValue = localStorage.getItem('userData');
@@ -93,7 +97,7 @@ export class UserService extends ServicesUtilitiesService {
     if (localUserValue) {
       return JSON.parse(localUserValue);
     }
-}
+  }
 
   updateUser(user: User) {
     const cod = this.getUserCod();
@@ -187,10 +191,10 @@ export class UserService extends ServicesUtilitiesService {
     .catch(this.handleError);
   }
 
-  delete(cod: Number): Observable<String> {
+  delete(cod: Number) {
     const headers: Headers = new Headers({
       'appIdentifier': 462,
-      'appToken': localStorage.getItem('token').toString()
+      'appToken': localStorage.getItem('token')
     });
     const options: RequestOptions = new RequestOptions({ headers: headers });
     const url = this.url + '/' + cod + '/perfil';
@@ -199,7 +203,7 @@ export class UserService extends ServicesUtilitiesService {
   }
 
   // This function checks if there's a logged user and if it has a 'cod'
-    // Output: The user 'cod' or 'null' if there's no cod
+  // Output: The user 'cod' or 'null' if there's no cod
   getUserCod() {
     const user = this.getLoggedUser();
 

@@ -21,6 +21,7 @@ export class UserEditComponent implements OnInit {
   password = '';
   maskcpf = UserMasks.MASK_CPF;
   maskphone = UserMasks.MASK_PHONE;
+  selDelete = false;
 
   constructor(
     private userService: UserService,
@@ -32,6 +33,10 @@ export class UserEditComponent implements OnInit {
   ngOnInit() {
     this.user = this.userService.getLoggedUser();
     this.userName = this.getUserName();
+  }
+
+  pressDelete() {
+    this.selDelete = true;
   }
 
   result() {
@@ -75,7 +80,7 @@ export class UserEditComponent implements OnInit {
 
   resultDelete() {
     this.authenticationService.logout();
-    this.router.navigate(['/home']);
+    this.router.navigate(['/']);
   }
 
   delete() {
@@ -87,24 +92,15 @@ export class UserEditComponent implements OnInit {
 
   updateAdditionalFields(telefone: number, segmento?: string) {
     this.userService.updateAdditionalFields(telefone, segmento)
-    .subscribe(
-      result => {
-        this.result();
-      },
-      error => {
-        this.error(error.status);
-      });
+      .subscribe(
+        result => {
+          this.result();
+        },
+        error => {
+          this.error(error.status);
+        });
   }
 
-  deleteUser(): void {
-    console.log('deletando contato...');
-    this.userService.delete(this.user.cod).
-    subscribe(result => console.log(result),
-              error => console.log(error));
-  }
-
-   // This function checks if there's a logged user and if it has a 'nomeCompleto'
-    // Output: The user 'cod' or 'null' if there's no cod
   private getUserName() {
     const user = this.userService.getLoggedUser();
 
