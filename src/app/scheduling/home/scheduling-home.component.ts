@@ -61,12 +61,13 @@ export class SchedulingHomeComponent implements OnInit {
         .subscribe(
         (res) => {
           this.schedulings[index] = res;
+          console.log(this.schedulings[index]);
           if (typeof this.schedulings[index].JSON === 'string') {
             this.schedulings[index] = JSON.parse(this.schedulings[index].JSON);
           } else {
             this.schedulings[index] = null;
           }
-          console.log(this.schedulings[index]);
+          // console.log(this.schedulings[index]);
         },
         (error) => {
           console.log(error);

@@ -1,3 +1,4 @@
+import { User } from './../../models/user';
 import { Scheduling } from './../../models/scheduling.model';
 import { SchedulingService } from './../../services/scheduling/scheduling.service';
 import { Router } from '@angular/router';
@@ -15,15 +16,14 @@ import { SchedulingCreateAbstract } from './../scheduling-create-abstract.compon
 export class SchedulingCreateComponent extends SchedulingCreateAbstract implements OnInit {
 
   @ViewChild('formScheduling') formScheduling: NgForm;
-  postType = 137;
-  postText = "Reuniao";
+  postText = 'Reunião';
 
   constructor(
     schedulingService: SchedulingService,
     router: Router,
     alertService: AlertService,
     scheduling: Scheduling,
-  ){
+  ) {
     super(
       schedulingService,
       router,
@@ -34,5 +34,6 @@ export class SchedulingCreateComponent extends SchedulingCreateAbstract implemen
 
   ngOnInit() {
     this.scheduling = new Scheduling();
+    this.scheduling.type = this.postText;
   }
 }

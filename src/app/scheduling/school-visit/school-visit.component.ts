@@ -1,3 +1,4 @@
+import { User } from './../../models/user';
 import { Scheduling } from './../../models/scheduling.model';
 import { SchedulingService } from './../../services/scheduling/scheduling.service';
 import { Router } from '@angular/router';
@@ -17,7 +18,7 @@ export class SchoolVisitComponent extends SchedulingCreateAbstract implements On
 
   @ViewChild('formScheduling') formScheduling: NgForm;
   scheduling: Scheduling;
-  state: string;
+  state = '';
   cities: Array<Object>;
   school = new School;
   schools: Array<Object>;
@@ -32,7 +33,7 @@ export class SchoolVisitComponent extends SchedulingCreateAbstract implements On
     router: Router,
     alertService: AlertService,
     scheduling: Scheduling,
-  ){
+  ) {
     super(
       schedulingService,
       router,
@@ -42,11 +43,12 @@ export class SchoolVisitComponent extends SchedulingCreateAbstract implements On
   }
 
   ngOnInit() {
-    this.state = '';
     this.scheduling = new Scheduling();
     this.scheduling.school = new School();
+    this.scheduling.type = this.postText;
     this.cities = new Array<Object>();
     this.schools = new Array<Object>();
+    this.setCounselor();
   }
 
   searchSchool(): void {
@@ -55,12 +57,12 @@ export class SchoolVisitComponent extends SchedulingCreateAbstract implements On
 
     this.schoolService.searchSchool(this.school)
       .subscribe(
-          result => {
-            this.schools = this.filterSchools(result);
-          },
-          error => {
-            alert(error);
-            console.error(error);
+      result => {
+        this.schools = this.filterSchools(result);
+      },
+      error => {
+        alert(error);
+        console.error(error);
       });
   }
 
@@ -71,20 +73,20 @@ export class SchoolVisitComponent extends SchedulingCreateAbstract implements On
       res.push(subitem);
     });
 
-    console.log('Resultado da busca: ' , res[1]);
+    console.log('Resultado da busca: ', res[1]);
     return res[1];
   }
 
   searchCity(): void {
     this.schoolService.searchCity(this.state)
       .subscribe(
-          result => {
-            this.cities = this.cityPush(result);
-            console.log(this.cities);
-          },
-          error => {
-            alert(error);
-            console.error(error);
+      result => {
+        this.cities = this.cityPush(result);
+        console.log(this.cities);
+      },
+      error => {
+        alert(error);
+        console.error(error);
       });
   }
 
@@ -104,8 +106,8 @@ export class SchoolVisitComponent extends SchedulingCreateAbstract implements On
 
   cityFilter(untreated: string): Object {
     const city = {
-      name: <string> null,
-      code: <string> null
+      name: <string>null,
+      code: <string>null
     };
     city.name = untreated;
     console.log(city.name);
@@ -124,11 +126,19 @@ export class SchoolVisitComponent extends SchedulingCreateAbstract implements On
   toggleCollapsed(): void {
     this.collapsed = !this.collapsed;
   }
-  setSelectedSchool(school: any){
+  setSelectedSchool(school: any) {
     console.log(school);
     this.scheduling.school.city = school.cidade;
     this.scheduling.school.code = school.cod;
     this.scheduling.school.name = school.nome;
     this.scheduling.school.state = school.estado;
+  }
+  setCounselor() {
+    this.scheduling.members = new Array<User>();
+    const userData = JSON.parse(localStorage.getItem('userData'));
+    this.scheduling.members[0] = new User;
+    this.scheduling.members[0].nomeCompleto = userData.nomeCompleto;
+    this.scheduling.members[0].cod = userData.cod;
+    this.scheduling.members[0].email = userData.email;
   }
 }

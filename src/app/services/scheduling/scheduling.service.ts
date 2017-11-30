@@ -68,7 +68,7 @@ export class SchedulingService extends ServicesUtilitiesService {
 
     const userCod = this.userService.getUserCod();
     const url = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/postagens';
-    const query = '?codAutor=' + userCod + '&codTiposPostagem=137&quantidadeDeItens=1000';
+    const query = '?codAutor=' + userCod + '&codTiposPostagem=138&quantidadeDeItens=1000';
 
     return this.http.get(url + query, this.options)
     .map(this.extractData)
