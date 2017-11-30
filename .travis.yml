@@ -14,10 +14,10 @@ env:
     - CODECLIMATE_REPO_TOKEN=4368e3d4-20fc-4d27-ae50-fe3492ca6200
 
 before_script:
-  - set -e
   - npm install -g @angular/cli
   - npm install -g codeclimate-test-reporter
   - npm install
+  - set -e
 
 cache:
   directories:
