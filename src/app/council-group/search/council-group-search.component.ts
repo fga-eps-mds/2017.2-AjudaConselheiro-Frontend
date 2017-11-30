@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 
 import { Subscription } from 'rxjs/Subscription';
 
+import { CouncilGroupSearchAbstract } from './council-group-search-abstract.component';
 import { CouncilGroup } from '../../models/index';
 import { Notification } from '../../models/notification';
 import {
@@ -26,18 +27,13 @@ import {
     ProfileService
   ]
 })
-export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
+export class CouncilGroupSearchComponent extends CouncilGroupSearchAbstract implements OnInit, OnDestroy {
   @ViewChild('formCouncilGroupsearch') formCouncilGroupSearch: NgForm;
-  private notificationSubs: Subscription;
   public councilGroup: CouncilGroup;
-  public notification: Notification;
+  private councilSubs: Subscription;
   private searchSubs: Subscription;
   private stateSubs: Subscription;
-  private councilSubs: Subscription;
-  public foundPresident = false;
   public foundCouncil = false;
-  public members: Array<String>;
-  public codPresident: string;
   public codGrupo: number;
   public description = '';
   public biography = '';
@@ -45,16 +41,18 @@ export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
   public open = false;
   public state = '';
   public city = '';
-  public go;
+
 
   constructor(
-    private councilGroupService: CouncilGroupService,
-    private notificationService: NotificationService,
-    private alertService: AlertService,
-    private ibgeService: IbgeService,
-    private userService: UserService,
-    private profileService: ProfileService
-  ) {}
+    public councilGroupService: CouncilGroupService,
+    public notificationService: NotificationService,
+    public profileService: ProfileService,
+    public alertService: AlertService,
+    public ibgeService: IbgeService,
+    public userService: UserService,
+  ) {
+    super(notificationService, alertService, profileService, userService);
+  }
 
   ngOnInit() {
     this.councilGroup = new CouncilGroup();
@@ -157,16 +155,6 @@ export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
     return this.stateId && 0 !== this.city.length;
   }
 
-  openDialog() {
-    document.getElementById('overlay').style.visibility = 'visible';
-    document.getElementById('overlay').style.opacity = '1';
-  }
-
-  closeDialog() {
-    document.getElementById('overlay').style.visibility = 'hidden';
-    document.getElementById('overlay').style.opacity = '0';
-  }
-
   sendNotification() {
     this.closeDialog();
     this.foundPresident = false;
@@ -185,64 +173,5 @@ export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
           }
         }
       );
-  }
-
-  getCodMembers(result: any) {
-    this.members = new Array<String>();
-    result.forEach(element => {
-      this.members.push(element.links[1].href);
-    });
-    if (this.members.length > 0) {
-      this.getPresidente();
-    } else {
-      this.alertService.error('Não há membros vinculados ao conselho escolhido!');
-    }
-  }
-
-  getPresidente() {
-    let codUser: string;
-    this.members.forEach(element => {
-      codUser = element.substring(element.length - 4, element.length);
-      this.go = false;
-      this.profileService.getProfile(codUser).subscribe(
-        result => this.getPresResult(result, codUser),
-        error => this.alertService.error('Erro ao buscar presidente do conselho')
-      );
-    });
-  }
-
-  getPresResult(result: any, codUser: string) {
-    this.go = true;
-    if (result.tipoPerfil.codTipoPerfil === 238) {
-      this.foundPresident = true;
-      this.codPresident = codUser;
-      this.send();
-    }
-  }
-
-  send() {
-    this.notificationSubs = this.notificationService
-      .createNotification(this.createNotification())
-      .subscribe(
-        result =>
-          this.alertService.success(
-            'Solicitação enviada ao presidente do conselho com sucesso!'
-          ),
-        error =>
-          this.alertService.error(
-            'Erro ao enviar solicitação ao presidente do conselho!'
-          )
-      );
-  }
-
-  createNotification() {
-    this.notification = new Notification();
-
-    this.notification.description = 'Eu, ' + this.userService.getUserName() +
-    ', posso participar do seu Conselho?';
-    this.notification.recipient = this.codPresident;
-    this.notification.author = this.userService.getUserCod();
-    this.notification.type =  'Participar de um conselho';
-    return this.notification;
   }
 }
