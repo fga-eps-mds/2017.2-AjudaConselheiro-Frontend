@@ -25,7 +25,7 @@ module.exports = function (config) {
     customLaunchers: {
         Chrome_travis_ci: {
             base: 'Chrome',
-            flags: ['--disable-gpu']
+            flags: ['--headless', '--disable-gpu']
         }
     },
     reporters: ['coverage-istanbul', 'progress', 'kjhtml'],
@@ -33,8 +33,12 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome_travis_ci'],
+    browsers: ['Chrome'],
     browserNoActivityTimeout: 30000,
     singleRun: false
   });
+
+  if(process.env.TRAVIS){
+    config.browsers = ['Chrome_travis_ci'];
+  }
 };
