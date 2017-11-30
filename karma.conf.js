@@ -25,7 +25,7 @@ module.exports = function (config) {
     customLaunchers: {
         Chrome_travis_ci: {
             base: 'Chrome',
-            flags: ['--headless', '--disable-gpu']
+            flags: ['--headless', '--disable-gpu', '--no-sandbox']
         }
     },
     reporters: ['coverage-istanbul', 'progress', 'kjhtml'],
