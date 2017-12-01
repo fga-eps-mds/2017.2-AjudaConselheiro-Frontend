@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
 
           if (error.status === 401) {
             this.alertService.warn('Aviso: email e/ou senha errados!');
-          } else if (error.status > 401) {
+          } else {
             this.alertService.error('Erro: falha na comunicação!');
           }
       });

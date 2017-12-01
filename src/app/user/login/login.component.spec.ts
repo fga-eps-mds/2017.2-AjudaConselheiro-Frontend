@@ -131,4 +131,57 @@ describe('LoginComponent', () => {
 
       expect(service.warn).toHaveBeenCalled();
   }));
+
+  it('login() should warn if error 401',
+    inject([MockBackend], (mockBackend) => {
+
+      const authService = fixture.debugElement.injector.get(AuthenticationService);
+      const alertService = fixture.debugElement.injector.get(AlertService);
+
+    // Setting form value and update new changes
+    component.email = 'email@abc.com';
+    component.password = '1234567';
+    fixture.detectChanges();
+
+    // Prepare Observable error
+    const longinSpy = spyOn(authService, 'login').and.returnValue(
+      Observable.throw({status: 401})
+    );
+
+    // Preparing spys
+    const spyAuth = spyOn(authService, 'loginWithProfile').and.callThrough();
+    const spyAlert = spyOn(alertService, 'warn').and.callThrough();
+
+    // Call method and observe result
+    component.login();
+    expect(authService.loginWithProfile).toHaveBeenCalled();
+    expect(alertService.warn).toHaveBeenCalled();
+  }));
+
+  it('login() should alert error if error different than 401',
+    inject([MockBackend], (mockBackend) => {
+
+      const authService = fixture.debugElement.injector.get(AuthenticationService);
+      const alertService = fixture.debugElement.injector.get(AlertService);
+
+    // Setting form value and update new changes
+    component.email = 'email@abc.com';
+    component.password = '1234567';
+    fixture.detectChanges();
+
+    // Prepare Observable error
+    const longinSpy = spyOn(authService, 'login').and.returnValue(
+      Observable.throw({status: 402})
+    );
+
+    // Preparing spys
+    const spyAuth = spyOn(authService, 'loginWithProfile').and.callThrough();
+    const spyAlert = spyOn(alertService, 'error').and.callThrough();
+
+    // Call method and observe result
+    component.login();
+    expect(authService.loginWithProfile).toHaveBeenCalled();
+    expect(alertService.error).toHaveBeenCalled();
+  }));
+
 });
