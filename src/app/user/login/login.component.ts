@@ -50,7 +50,8 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/perfil']);
         },
         error => {
-          console.log('error: ', error.status);
+          console.error('Error status for login:', error.status);
+
           if (error.status === 401) {
             this.alertService.warn('Aviso: email e/ou senha errados!');
           } else if (error.status > 401) {
