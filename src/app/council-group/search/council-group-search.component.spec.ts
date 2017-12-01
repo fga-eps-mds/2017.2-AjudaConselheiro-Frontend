@@ -3,14 +3,15 @@ import { FormsModule } from '@angular/forms';
 import { CouncilGroupSearchComponent } from './council-group-search.component';
 import { HttpModule, Headers, RequestOptions, Response, URLSearchParams } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
-import { AlertService } from '../../services/alert/alert.service';
 import { RouterTestingModule } from '@angular/router/testing';
-import { UserService } from '../../services/index';
-import { CouncilGroupService, IbgeService  } from '../../services/index';
+import { CouncilGroupService, IbgeService, AlertService,
+       UserService, ProfileService,
+       AuthenticationService  } from '../../services/index';
 import { State, CouncilGroup } from '../../models/index';
 import { IbgeComponent } from '../../ibge/ibge.component';
 import 'rxjs/add/observable/throw';
 import { Observable } from 'rxjs/Observable';
+import { Notification } from '../../models/notification';
 
 describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
   let component: CouncilGroupSearchComponent;
@@ -25,6 +26,20 @@ describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
     'codGrupo': 1059,
     'codObjeto': 1510426954450
   };
+  let members = [
+    {
+      'dataHoraAtivo': '2017-11-26T14:29:39BRST',
+      'links': [
+          {
+              'rel': 'self',
+              'href': 'http://mobile-aceite.tcu.gov.br/appCivicoRS/rest/grupos/953/membros/1061'
+          },
+          {
+              'rel': 'pessoa',
+              'href': 'http://mobile-aceite.tcu.gov.br/appCivicoRS/rest/pessoas/5676'
+          }
+      ]
+  }];
 
   beforeEach(async(() => {
     mockAlert = {
@@ -47,6 +62,9 @@ describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
       providers: [
         CouncilGroupService,
         IbgeService,
+        UserService,
+        ProfileService,
+        AuthenticationService,
         {
           provide: AlertService,
           useValue: mockAlert
@@ -62,11 +80,11 @@ describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+ it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should search council group', () => {
+ it('should search council group', () => {
     component.councilGroup.municipio = undefined;
     component.searchCouncilGroup();
 
@@ -74,7 +92,7 @@ describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
     component.searchCouncilGroup();
   });
 
-  it('should has location', () => {
+ it('should has location', () => {
     let result;
     // Testing the method has location when exists valid state and valid city
     result = component.hasLocation();
@@ -87,7 +105,7 @@ describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
 
   });
 
-  it('should chosen state', () => {
+ it('should chosen state', () => {
     component.councilGroup = fakeCouncil;
     // Testing the method when is passed valid state
     component.chosenState('52');
@@ -97,7 +115,7 @@ describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
 
   });
 
-  it('should chosen city', () => {
+ it('should chosen city', () => {
     component.councilGroup = fakeCouncil;
     // Testing the method when is passed valid city
     component.chosenCity('Brasília');
@@ -107,7 +125,7 @@ describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
 
   });
 
-  it('Should know if user is logged in', () => {
+ it('Should know if user is logged in', () => {
     localStorage.setItem('token', 'appToken');
 
     let result;
@@ -121,23 +139,23 @@ describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
   });
 
 
-  it('should filter council', () => {
+ it('should filter council', () => {
     const result = [council];
 
-    // Testing case where advice is found
+    // Testing case where advice is foundCouncil
     component.description = 'CAE-27-Barra de Santo Antônio';
     component.filterCouncil(result);
-    expect(component.found).toBe(true);
+    expect(component.foundCouncil).toBe(true);
 
-    // Testing case where advice is not found
-    component.found = false;
+    // Testing case where advice is not foundCouncil
+    component.foundCouncil = false;
     component.description = 'CAE-DF-Brasília';
     component.filterCouncil(result);
-    expect(component.found).toBe(false);
+    expect(component.foundCouncil).toBe(false);
 
   });
 
-  it('should get state abbreviated', () => {
+ it('should get state abbreviated', () => {
     const estado = {
       'id': 52,
       'sigla': 'GO',
@@ -153,25 +171,69 @@ describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
     expect(component.description).toEqual('CAE-GO-Goiânia');
   });
 
-  it('should get council groups', () => {
+ it('should get council groups', () => {
     const result = [council];
 
     component.description = 'CAE-27-Barra de Santo Antônio';
     component.getCouncilGroupsResult(result);
 
-    component.found = false;
+    component.foundCouncil = false;
     component.description = 'CAE-DF-Brasília';
     component.getCouncilGroupsResult(result);
 
   });
 
 
-  it('should get state abbreviated', () => {
+ it('should get state abbreviated', () => {
     component.getStateAbbr();
   });
 
 
-  it('should get council grups', inject([CouncilGroupService], (service: CouncilGroupService) => {
+ it('should get council grups', inject([CouncilGroupService], (service: CouncilGroupService) => {
     component.getCouncilGroups();
   }));
+
+  it('should open dialog', () => {
+    component.openDialog();
+  });
+
+  it('should close dialog', () => {
+    component.closeDialog();
+  });
+
+  it('should close dialog', () => {
+    component.closeDialog();
+  });
+
+  it('should get cod members', () => {
+
+    component.getCodMembers(members);
+    members = [];
+    component.getCodMembers(members);
+  });
+
+  it('should get presidente result', () => {
+    const profile = {
+      'camposAdicionais': 'Nada',
+      'tipoPerfil': {
+          'codTipoPerfil': 238,
+          'descricao': 'Conselheiro'
+      }
+  };
+    component.getPresResult(profile, '6417');
+  });
+
+  it('should get cod members', () => {
+    component.codGrupo = 643;
+    component.go = true;
+    component.sendNotification();
+    component.codGrupo = null;
+    component.sendNotification();
+  });
+
+  it('should get presidente', () => {
+    component.notification = null;
+    component.send();
+  });
+
 });
