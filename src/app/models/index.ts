@@ -7,3 +7,4 @@ export * from './school.model';
 export * from './state.model';
 export * from './checklist/checklist.model';
 export * from './posts/post.model';
+export * from './notification';

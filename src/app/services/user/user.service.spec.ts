@@ -209,7 +209,7 @@ describe('UserService', () => {
     { name: 'Um', cod: 1}
   ];
   const resHeader = new Headers();
-  localStorage.setItem('token','asdas');
+  localStorage.setItem('token', 'asdas');
   // Mocking HTTP connection for this test
   mockBackend.connections.subscribe((connection: MockConnection) => {
     const options = new ResponseOptions({ body: fakeUser});
