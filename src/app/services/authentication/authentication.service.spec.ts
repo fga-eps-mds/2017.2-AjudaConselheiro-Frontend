@@ -105,7 +105,97 @@ describe('AuthenticationService', () => {
         expect(userResponse.cod).toEqual(fakeUser.cod);
         expect(userResponse.email).toEqual(validFakeEmail);
       });
-    }));
+  }));
+
+  // For loginWithoutProfile()
+  it('loginWithoutProfile() should return a valid user if data are valid',
+    inject([AuthenticationService, MockBackend], (authService, mockBackend) => {
+      const fakeHeader = new Headers({ appToken: fakeToken });
+      const fakeData = JSON.stringify(fakeUser);
+
+      // Mocking HTTP connection for this test
+      mockBackend.connections.subscribe((connection: MockConnection) => {
+        const options = new ResponseOptions({ body: fakeData, headers: fakeHeader });
+
+        connection.mockRespond(new Response(options));
+      });
+
+      // Making the request
+      authService.loginWithoutProfile(validFakeEmail, validFakePassword).subscribe((result) => {
+        const responseToken = result[0];
+        const responseBody = result[1];
+
+        const userResponse = JSON.parse(responseBody._body);
+
+        expect(responseToken).toEqual(fakeToken);
+        expect(userResponse.cod).toEqual(fakeUser.cod);
+        expect(userResponse.email).toEqual(validFakeEmail);
+      });
+  }));
+
+  it('loginWithoutProfile() should call login()',
+    inject([AuthenticationService, MockBackend], (authService, mockBackend) => {
+      // The mocking below is needed for making the request
+      const fakeHeader = new Headers({ appToken: fakeToken });
+      const fakeData = JSON.stringify(fakeUser);
+      mockBackend.connections.subscribe((connection: MockConnection) => {
+        const options = new ResponseOptions({ body: fakeData, headers: fakeHeader });
+
+        connection.mockRespond(new Response(options));
+      });
+
+      const loginSpy = spyOn(authService, 'login').and.callThrough();
+
+      // Making request and expect calling
+      authService.loginWithoutProfile(validFakeEmail, validFakePassword).subscribe();
+      expect(authService.login).toHaveBeenCalled();
+
+  }));
+
+  // For loginWithProfile()
+  it('loginWithProfile() should return a valid user if data are valid',
+    inject([AuthenticationService, MockBackend], (authService, mockBackend) => {
+      const fakeHeader = new Headers({ appToken: fakeToken });
+      const fakeData = JSON.stringify(fakeUser);
+
+      // Mocking HTTP connection for this test
+      mockBackend.connections.subscribe((connection: MockConnection) => {
+        const options = new ResponseOptions({ body: fakeData, headers: fakeHeader });
+
+        connection.mockRespond(new Response(options));
+      });
+
+      // Making the request
+      authService.loginWithProfile(validFakeEmail, validFakePassword).subscribe((result) => {
+        const responseToken = result[0];
+        const responseBody = result[1];
+
+        const userResponse = JSON.parse(responseBody._body);
+
+        expect(responseToken).toEqual(fakeToken);
+        expect(userResponse.cod).toEqual(fakeUser.cod);
+        expect(userResponse.email).toEqual(validFakeEmail);
+      });
+  }));
+
+  it('loginWithProfile() should call login()',
+    inject([AuthenticationService, MockBackend], (authService, mockBackend) => {
+      // The mocking below is needed for making the request
+      const fakeHeader = new Headers({ appToken: fakeToken });
+      const fakeData = JSON.stringify(fakeUser);
+      mockBackend.connections.subscribe((connection: MockConnection) => {
+        const options = new ResponseOptions({ body: fakeData, headers: fakeHeader });
+
+        connection.mockRespond(new Response(options));
+      });
+
+      const loginSpy = spyOn(authService, 'login').and.callThrough();
+
+      // Making request and expect calling
+      authService.loginWithProfile(validFakeEmail, validFakePassword).subscribe();
+      expect(authService.login).toHaveBeenCalled();
+
+  }));
 
 
   // For logout()
