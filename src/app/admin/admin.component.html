@@ -3,7 +3,7 @@
 <div class="well">
     <form (ngSubmit)="formUser.form.valid && register()" #formUser="ngForm">
         <br>
-        <p class="h2 text-center mb-4"> Cadastro </p>
+        <p class="h2 text-center mb-4"> Cadastro novo presidente</p>
         <div class="form-group">
             <i class="fa fa-user prefix grey-text"></i>
             <input type="text" class="form-control" name="nomeCompleto" id="nomeCompleto" placeholder="Nome Completo" [(ngModel)]="user.nomeCompleto" #nomeCompleto="ngModel" minlength="10" pattern="^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$" required>

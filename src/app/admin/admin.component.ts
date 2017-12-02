@@ -59,7 +59,7 @@ export class AdminComponent implements OnInit {
   createProfile() {
   this.authenticationService.login(this.user.email, this.user.senha).subscribe(
     result => {
-      this.profileService.setUserProfilePresident('', JSON.parse(result[1]._body).cod , 238, result[0])
+      this.profileService.setUserProfile('', JSON.parse(result[1]._body).cod , 238, result[0])
       .subscribe(
         profile => console.log(profile)
       );

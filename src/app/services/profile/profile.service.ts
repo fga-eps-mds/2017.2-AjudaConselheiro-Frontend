@@ -20,31 +20,8 @@ export class ProfileService extends ServicesUtilitiesService {
     super();
   }
 
-  setUserProfile(additionalData: any, userCod: string, codProfile: number) {
-    const url = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas/'
-      + userCod + '/perfil';
 
-    this.headers = new Headers({
-      'Content-Type': 'application/json',
-      'appToken': localStorage.getItem('token')
-    });
-
-    this.request = new RequestOptions({ headers: this.headers });
-
-    const body = {
-      'camposAdicionais': JSON.stringify(additionalData),
-      'tipoPerfil': {
-        // In production, change to this.codNotAuthorized
-        'codTipoPerfil': codProfile,
-      }
-    };
-
-    return this.http.post(url, JSON.stringify(body), this.request)
-      .map(response => this.extractData(response))
-      .catch(this.handleError);
-  }
-
-  setUserProfilePresident(additionalData: any, userCod: string, codProfile: number, token: any) {
+  setUserProfile(additionalData: any, userCod: string, codProfile: number, token: any) {
     const url = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas/'
       + userCod + '/perfil';
 
