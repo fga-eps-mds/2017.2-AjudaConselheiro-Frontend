@@ -17,7 +17,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 export class AdminComponent implements OnInit {
   @ViewChild('formUser') formUser: NgForm;
   user: User;
-
+  private token: any;
   constructor(private userService: UserService,
               private router: Router,
               private alertService: AlertService,
@@ -26,13 +26,19 @@ export class AdminComponent implements OnInit {
 
   ngOnInit() {
     this.user = new User();
-    if ( !this.isAdmin()) {
+    this.token = localStorage.getItem('token');
+    if ( !this.isAdmin() ) {
       return  this.router.navigate(['']);
     }
   }
   isAdmin() {
-   const profile = this.userService.getPerfilUser();
-   return profile.tipoPerfil.codTipoPerfil === 249;
+   const isLoggedIn = localStorage.getItem('isLoggedIn');
+   if ( isLoggedIn === 'true' ) {
+    const profile = this.userService.getPerfilUser();
+    return profile.tipoPerfil.codTipoPerfil === 249;
+   }else {
+     return false;
+    }
   }
   result() {
     this.alertService.success('Cadastro efetuado com sucesso!');
@@ -61,7 +67,7 @@ export class AdminComponent implements OnInit {
     result => {
       this.profileService.setUserProfile('', JSON.parse(result[1]._body).cod , 238, result[0])
       .subscribe(
-        profile => console.log(profile)
+        profile => localStorage.setItem('token', this.token )
       );
     }
   );
