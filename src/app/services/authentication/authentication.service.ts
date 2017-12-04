@@ -19,16 +19,34 @@ export class AuthenticationService extends ServicesUtilitiesService {
   }
 
   login(email: string, password: string): Observable<any> {
-    this.headers = new Headers({
-      'Content-Type': 'application/json',
-      'email': email, 'senha': password
-    });
-
     this.options = new RequestOptions({ headers: this.headers });
 
     return this.http.get(this.url, this.options)
       .map(res => [this.getToken(res), res])
       .catch(this.handleError);
+  }
+
+  loginWithProfile(email: string, password: string): Observable<any> {
+    this.headers = new Headers({
+      'Content-Type': 'application/json',
+      'email': email,
+      'senha': password,
+      'appIdentifier': 462
+    });
+
+    return this.login(email, password);
+
+  }
+
+  loginWithoutProfile(email: string, password: string): Observable<any> {
+    // Header without 'appIdentifier'
+    this.headers = new Headers({
+      'Content-Type': 'application/json',
+      'email': email,
+      'senha': password
+    });
+
+    return this.login(email, password);
   }
 
   logout() {
