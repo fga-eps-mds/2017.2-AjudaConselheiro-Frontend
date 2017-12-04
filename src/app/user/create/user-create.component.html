@@ -6,7 +6,7 @@
         <p class="h2 text-center mb-4"> Cadastro </p>
         <div class="form-group">
             <i class="fa fa-user prefix grey-text"></i>
-            <input type="text" class="form-control" name="nomeCompleto" id="nomeCompleto" placeholder="Nome Completo" [(ngModel)]="user.nomeCompleto" #nomeCompleto="ngModel" required pattern="^[a-zA-Z]+(?:[\s.]+[a-zA-Z]+)*$">
+            <input type="text" class="form-control" name="nomeCompleto" id="nomeCompleto" placeholder="Nome Completo" [(ngModel)]="user.nomeCompleto" #nomeCompleto="ngModel" required pattern="^[a-zA-ZÀ-ÿ]+(?:[\s.]+[a-zA-ZÀ-ÿ]+)*$">
             <div *ngIf="nomeCompleto.errors && (nomeCompleto.dirty)" class="alert alert-danger">
                 <div [hidden]="!nomeCompleto.errors.required">
                     Nome Completo é obrigatório.

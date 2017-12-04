@@ -82,10 +82,10 @@ describe('ProfileComponent', () => {
     component.errorStatus(400);
   });
 
-  // it('should delete', inject([UserService], (service: UserService)  => {
-  //   component.user.cod = 48;
-  //   component.delete();
-  // }));
+  it('should delete', inject([UserService], (service: UserService)  => {
+    component.user.cod = 48;
+    component.delete();
+  }));
 
   it('should delete', ()  => {
     component.resultDelete();
