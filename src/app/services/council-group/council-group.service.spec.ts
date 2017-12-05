@@ -182,4 +182,27 @@ describe('CouncilGroupService', () => {
     });
   }));
 
+
+  // For createCouncil()
+  it('should get members',
+  inject([CouncilGroupService, MockBackend], (service, mockBackend) => {
+    localStorage.setItem('token', 'appToken');
+    const token = localStorage.getItem('token');
+    const fakeHeader = new Headers({
+      'Content-Type': 'application/json',
+      appToken: token
+    });
+
+    // Mocking HTTP connection for this test
+    mockBackend.connections.subscribe((connection: MockConnection) => {
+      const options = new ResponseOptions({ headers: fakeHeader });
+      connection.mockRespond(new Response(options));
+    });
+
+    // Calling and testing the function
+    service.getMembersCouncilGroup(6417).subscribe(result => {
+      expect(result).toBeDefined();
+    });
+}));
+
 });

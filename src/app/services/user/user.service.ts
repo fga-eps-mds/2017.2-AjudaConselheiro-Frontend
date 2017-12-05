@@ -18,7 +18,6 @@ export class UserService extends ServicesUtilitiesService {
   private url = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas';
   private headers: Headers = new Headers({
     'Content-Type': 'application/json'
-    // 'appToken': localStorage.getItem('token').toString()
   });
   options: RequestOptions = new RequestOptions({ headers: this.headers });
 
@@ -26,7 +25,8 @@ export class UserService extends ServicesUtilitiesService {
     'Content-Type': 'application/json',
     'appToken': localStorage.getItem('token')
    });
-     updateOptions: RequestOptions = new RequestOptions({ headers: this.updateHeaders });
+  updateOptions: RequestOptions = new RequestOptions({ headers: this.updateHeaders });
+  codApplicativo = 'codAplicativo=462';
 
   constructor(private http: Http, private alertService: AlertService,
     private router: Router, private profileService: ProfileService,
@@ -36,15 +36,15 @@ export class UserService extends ServicesUtilitiesService {
 
   authenticationService: AuthenticationService;
 
-  getUsers(): Observable<User[]> {
-    return this.http.get(this.url + '?codAplicativo=462')
-      .map((response: Response) => response.json())
+  getUsers(): any {
+    return this.http.get(this.url + '?' + this.codApplicativo, this.options)
+      .map((response: Response) => this.extractData(response))
       .catch(this.handleError);
   }
 
   getUser(id: number) {
     return this.http.get(this.url + id)
-      .map((response: Response) => response.json())
+      .map((response: Response) => this.extractData(response))
       .catch(this.handleError);
   }
 
@@ -67,7 +67,7 @@ export class UserService extends ServicesUtilitiesService {
 
       // Login is needed for creating a profile
       if (userCod) {
-        this.authService.login(body.email, body.senha).subscribe((loginData) => {
+        this.authService.loginWithoutProfile(body.email, body.senha).subscribe((loginData) => {
           this.setInitialProfile(userCod, cpf, loginData[0]);
         });
 
@@ -214,7 +214,7 @@ export class UserService extends ServicesUtilitiesService {
     getUserEmail() {
       const user = this.getLoggedUser();
 
-      // Checks if there's a user and if this user has a 'cod' attribute.
+      // Checks if there's a user and if this user has a 'email' attribute.
       if (user && 'email' in user) {
         return user.email;
       }
@@ -222,15 +222,27 @@ export class UserService extends ServicesUtilitiesService {
       return null;
     }
 
-  private setInitialProfile(userCod: string, cpf: string, token: any) {
+    getUserName() {
+      const user = this.getLoggedUser();
+
+
+      // Checks if there's a user and if this user has a 'nomeCompleto' attribute.
+      if (user && 'nomeCompleto' in user) {
+        return user.nomeCompleto;
+      }
+
+      return null;
+    }
+
+    private setInitialProfile(userCod: string, cpf: string, token: any) {
     // Sets the needed userToken from authentication, necessary for profiles POST
     localStorage.setItem('token', token);
 
     // Creating the user profile
     this.profileService.setUserProfile('CPF: ' + cpf, userCod).subscribe();
 
-    // Removing the login data - For sucess and fail
-    localStorage.removeItem('token');
+      // Removing the login data - For sucess and fail
+      localStorage.removeItem('token');
   }
 
   private extractResponseUserCod(locationString: string) {
