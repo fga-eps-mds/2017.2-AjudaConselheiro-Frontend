@@ -119,8 +119,8 @@ export class UserService extends ServicesUtilitiesService {
       'sexo': user.sexo
     };
 
-    return this.http.put(href, JSON.stringify(body), this.options)
-      .map((response: Response) => response.json())
+    return this.http.put(href, JSON.stringify(body), this.updateOptions)
+      .map(this.extractData)
       .catch(this.handleError);
   }
 
@@ -161,27 +161,27 @@ export class UserService extends ServicesUtilitiesService {
 
   }
 
-  updateAdditionalFields(telefone: number, segmento: string) {
+  updateAdditionalFields(telefone: number, segmento?: string) {
     const cod = this.getUserCod();
 
-    const headers: Headers = new Headers ({
-      'Content-Type': 'application/json',
-      'appToken': localStorage.getItem('token')
-     });
+    // const headers: Headers = new Headers ({
+    //   'Content-Type': 'application/json',
+    //   'appToken': localStorage.getItem('token')
+    //  });
 
-    const options: RequestOptions = new RequestOptions({ headers: headers });
+    // const options: RequestOptions = new RequestOptions({ headers: headers });
 
     const body = {
-      'camposAdicionais': 'Telefone ' + telefone + '\n' + 'Segmento' + segmento + '\n',
+      'camposAdicionais': 'Telefone ' + telefone,
       'tipoPerfil': {
         'codTipoPerfil': 243
-      }
+      },
+      'verificado': true
     };
 
-    return this.http.put(this.url + '/' + cod + '/perfil', JSON.stringify(body), options)
-    .map((response: Response) => response.json())
+    return this.http.put(this.url + '/' + cod + '/perfil', JSON.stringify(body), this.updateOptions)
+    .map(this.extractData)
     .catch(this.handleError);
-
   }
 
   getProfilePhoto() {

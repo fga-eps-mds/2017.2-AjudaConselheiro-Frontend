@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
@@ -15,7 +15,7 @@ import { UserMasks } from '../userMasks';
   providers: [UserService, AlertService],
 })
 
-export class UserEditComponent implements OnInit, OnDestroy {
+export class UserEditComponent implements OnInit {
 
   @ViewChild('formUser') formUser: NgForm;
   user: User;
@@ -24,10 +24,10 @@ export class UserEditComponent implements OnInit, OnDestroy {
   maskcpf = UserMasks.MASK_CPF;
   maskphone = UserMasks.MASK_PHONE;
   selDelete = false;
-  updateSubs: Subscription;
-  deleteSubs: Subscription;
-  authenticateSubs: Subscription;
-  updateAddSubs: Subscription;
+  public name;
+  public biography;
+  public email;
+  cod: number;
 
   constructor(
     private userService: UserService,
@@ -39,21 +39,11 @@ export class UserEditComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.user = this.userService.getLoggedUser();
     this.userName = this.getUserName();
-  }
-
-  ngOnDestroy() {
-    this.authenticateSubs.unsubscribe();
-    this.deleteSubs.unsubscribe();
-    this.updateAddSubs.unsubscribe();
-    this.updateSubs.unsubscribe();
+    console.log(this.user);
   }
 
   pressDelete() {
     this.selDelete = true;
-  }
-
-  result() {
-    this.alertService.success('Usuário atualizado com sucesso! Faça seu login.');
   }
 
   error(status: any) {
@@ -65,22 +55,17 @@ export class UserEditComponent implements OnInit, OnDestroy {
   }
 
   updateUser(): void {
-    this.updateSubs = this.userService.updateUser(this.user)
+    this.userService.updateUser(this.user)
       .subscribe(
-        result => {
-          this.result();
-          this.router.navigate(['/perfil']);
-          this.alertService.success('Seu perfil será atualizado no seu próximo login');
-        },
-        error => {
-          this.error(error.status);
-        });
+        result => this.alertService.success('Seu perfil será atualizado no seu próximo login'),
+        error => this.error(error)
+      );
   }
 
   validatePassword() {
-    this.authenticateSubs = this.authenticationService.login(this.user.email, this.password)
+    this.authenticationService.login(this.user.email, this.password)
       .subscribe(
-        (result) => this.delete(),
+        (result) => this.deleteUser(),
         (error) => this.validateError(error.status));
   }
 
@@ -96,22 +81,18 @@ export class UserEditComponent implements OnInit, OnDestroy {
     this.router.navigate(['/']);
   }
 
-  delete() {
-    this.deleteSubs = this.userService.delete(this.user.cod)
+  deleteUser() {
+    this.userService.delete(this.user.cod)
       .subscribe(
         result => this.resultDelete()
-    );
+      );
   }
 
   updateAdditionalFields(telefone: number, segmento?: string) {
-    this.updateAddSubs = this.userService.updateAdditionalFields(telefone, segmento)
+    this.userService.updateAdditionalFields(telefone)
       .subscribe(
-        result => {
-          this.result();
-        },
-        error => {
-          this.error(error.status);
-        });
+        error => this.alertService.error(error)
+        );
   }
 
   private getUserName() {
