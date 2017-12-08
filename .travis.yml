@@ -26,6 +26,10 @@ after_script:
   - codeclimate-test-reporter < coverage/lcov.info
   - npm install -g --silent firebase-tools
 
+after_success:
+  - test $TRAVIS_BRANCH = "master" && test $TRAVIS_PULL_REQUEST = "false" && firebase deploy --token $FIREBASE_DEPLOY --non-interactive
+
+
 notifications:
   email:
     on_failure: change
