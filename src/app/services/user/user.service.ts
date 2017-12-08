@@ -67,7 +67,7 @@ export class UserService extends ServicesUtilitiesService {
 
       // Login is needed for creating a profile
       if (userCod) {
-        this.authService.login(body.email, body.senha).subscribe((loginData) => {
+        this.authService.loginWithoutProfile(body.email, body.senha).subscribe((loginData) => {
           this.setInitialProfile(userCod, cpf, loginData[0]);
         });
 

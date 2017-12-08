@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
     console.log(validEmail);
 
     if (validEmail) {
-      this.authenticationService.login(this.email, this.password)
+      this.authenticationService.loginWithProfile(this.email, this.password)
       .subscribe(
         result => {
           localStorage.setItem('token', result[0]);
@@ -50,10 +50,11 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/perfil']);
         },
         error => {
-          console.log('error: ', error.status);
+          console.error('Error status for login:', error.status);
+
           if (error.status === 401) {
             this.alertService.warn('Aviso: email e/ou senha errados!');
-          } else if (error.status > 401) {
+          } else {
             this.alertService.error('Erro: falha na comunicação!');
           }
       });
