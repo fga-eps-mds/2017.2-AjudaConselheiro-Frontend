@@ -9,11 +9,10 @@ addons:
   chrome: stable
 
 before_script:
+  - set -e
   - npm install -g @angular/cli
-  - npm install -g --silent firebase-tools
   - npm install -g codeclimate-test-reporter
   - npm install
-  - set -e
 
 cache:
   directories:
@@ -25,7 +24,7 @@ script:
 after_script:
   - ng test --watch=false --code-coverage
   - codeclimate-test-reporter < coverage/lcov.info
-  - test $TRAVIS_BRANCH = "master" && test $TRAVIS_PULL_REQUEST = "false" && firebase deploy --token $FIREBASE_DEPLOY --non-interactive
+  - npm install -g --silent firebase-tools
 
 notifications:
   email:
