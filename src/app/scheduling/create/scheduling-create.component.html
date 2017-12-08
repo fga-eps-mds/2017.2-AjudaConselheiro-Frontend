@@ -8,7 +8,8 @@
             <div class="form-group">
 
                 <label for="members"><i class="fa fa-group" aria-hidden="true"></i> Membros:</label>
-                <input placeholder="Insira o nome dos membros" type="text" class="form-control" id="members" name="members" [(ngModel)]="scheduling.members" #members="ngModel" required>
+                <input placeholder="Insira o nome dos membros" type="text" class="form-control" id="members" name="members" [(ngModel)]="scheduling.members"
+                    #members="ngModel" required>
                 <div *ngIf="members.errors && (members.dirty || members.touched)" class="alert alert-danger">
                     <div [hidden]="!members.errors.required">
                         Digite o nome dos conselheiros participantes!
@@ -17,7 +18,8 @@
                 </div>
 
                 <label for="local"><i class="fa fa-group" aria-hidden="true"></i> Local:</label>
-                <input placeholder="Insira o local da Reunião" type="text" class="form-control" id="local" name="local" [(ngModel)]="scheduling.local" #local="ngModel" required>
+                <input placeholder="Insira o local da Reunião" type="text" class="form-control" id="local" name="local" [(ngModel)]="scheduling.local"
+                    #local="ngModel" required>
                 <div *ngIf="local.errors && (local.dirty || local.touched)" class="alert alert-danger">
                     <div [hidden]="!local.errors.required">
                         Digite o local da reunião!
@@ -25,7 +27,8 @@
                 </div>
 
                 <label for="date"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i> Data:</label>
-                <input placeholder="Data" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control" id="date" name="date" [(ngModel)]="scheduling.date" #date="ngModel" required>
+                <input placeholder="Data" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control" id="date"
+                    name="date" [(ngModel)]="scheduling.date" #date="ngModel" required>
                 <div *ngIf="date.errors && (date.dirty || date.touched)" class="alert alert-danger">
                     <div [hidden]="!date.errors.required">
                         Informe a data do agendamento!
@@ -33,7 +36,8 @@
                 </div>
 
                 <label for="time"><i class="fa fa-clock-o" aria-hidden="true"></i> Hora:</label>
-                <input placeholder="Horário" step="1800" type="time" onfocus="(this.type='time')" onblur="(this.type='text')" class="form-control" id="time" name="time" [(ngModel)]="scheduling.time" #time="ngModel" required>
+                <input placeholder="Horário" step="1800" type="time" onfocus="(this.type='time')" onblur="(this.type='text')" class="form-control"
+                    id="time" name="time" [(ngModel)]="scheduling.time" #time="ngModel" required>
                 <div *ngIf="time.errors && (time.dirty || time.touched)" class="alert alert-danger">
                     <div [hidden]="!time.errors.required">
                         Informe a hora do agendamento!
@@ -55,10 +59,10 @@
             </div>
 
             <div class="form-group text-center">
-                <input type="button" class="btn btn-blue-grey schedule-button" (click)="register()" value="Agendar" [disabled]="!formScheduling.form.valid">
                 <a href="/agendamento" class="btn btn-blue-grey return-button">
-                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="false"></span>Voltar
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="false"></span>Voltar
                 </a>
+                <input type="button" class="btn btn-blue-grey schedule-button" (click)="register()" value="Agendar" [disabled]="!formScheduling.form.valid">
             </div>
         </form>
     </div>
