@@ -16,11 +16,13 @@ import { SchedulingModule } from './scheduling/scheduling.module';
 import { ChecklistModule } from './checklist/checklist.module';
 import { CouncilGroupModule } from './council-group/council-group.module';
 import { LayoutsModule } from './layouts/layouts.module';
+import { RecoverPasswordComponent } from './user/recover-password/recover-password.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    RecoverPasswordComponent,
   ],
   imports: [
     BrowserModule,

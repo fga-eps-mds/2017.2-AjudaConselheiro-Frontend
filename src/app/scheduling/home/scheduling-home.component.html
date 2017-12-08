@@ -1,54 +1,53 @@
 <br><br><br>
+<div>
+    <link href="https://fonts.googleapis.com/css?family=Muli|Oxygen" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css?family=Muli|Oxygen" rel="stylesheet">
+    <h1>Agendamentos
+        <div class="sidebar"><button [routerLink]="['/agendamento/criar'] " class="btn btn-blue-grey new-button">Novo <i class="fa fa-pencil" aria-hidden="true"></i> Agendamento</button>
+        </div>
+    </h1>
 
-<h1>Agendamentos
-    <div class="sidebar"><button [routerLink]="['/agendamento/criar'] " class="btn btn-success">Novo <i class="fa fa-pencil" aria-hidden="true"></i> Agendamento</button>
+    <br><br>
+    <div class="create-form">
+
+        <div>
+            <br>
+                <div class="form-group">
+                    <div class="card container">
+                        <label for="code"><i class="fa fa-globe" aria-hidden="true"></i> Código de Postágem:</label>
+                        <input type="text" class="form-control" placeholder="Digite o código" [(ngModel)]="codPost">
+
+
+
+                        <label for="code"><i class="fa fa-globe" aria-hidden="true"></i> Código de Conteúdo:</label>
+                        <input type="text" class="form-control" placeholder="Digite o código" [(ngModel)]="codContent">
+
+                        <button class="delete-button" type="button" style="margin-top:-8px !important; -webkit-appearance: none !important"
+                            class="btn btn-primary" (click)="openDialog()">
+                                Deletar
+                        </button>
+                    </div>
+
+                </div>
+        </div>
     </div>
-</h1>
+
+
+    <div id="popupMessage" class="popupMessage">
+        <div class="popup">
+            <h2 style="margin-bottom: 5px;">Deletar Agendamento</h2>
+            <hr _ngcontent-c3="" class="orange darken-4 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+            <a class="close" (click)="closeDialog()">&times;</a>
+            <div class="content" style="margin-top: 0px;">
+                Tem certeza que deseja apagar o Agendamento?
+            </div>
+            <div class="buttons">
+                <input type="button" class="btn btn-secondary" (click)="closeDialog()" value="Não">
+                <input type="button" class="btn btn-primary" (click)="delete()" value="Sim">
+            </div>
+        </div>
+    </div>
+
+</div>
 
 <br><br>
-
-<table *ngFor="let scheduling of schedulings" class="table">
-    <thead class="orange accent-4">
-        <tr>
-            <th colspan="2">
-                <p style="color:#FFFFFF;" class="h4 text-left mb-6">{{scheduling.type}}
-
-                </p>
-            </th>
-            <th>
-                <p style="color:#FFFFFF;" class="h4 text-right mb-6">
-                    <button type="button" class="btn btn-primary btn-rounded" [routerLink]="['/agendamento/editar/',scheduling.id]">
-                            <i class="fa fa-edit"></i>Editar</button>
-                    <button type="button" class="btn btn-danger btn-rounded" (click)="deleteScheduling($event, scheduling)">
-                            <i class="fa fa-trash"></i></button>
-                </p>
-            </th>
-        </tr>
-    </thead>
-    <tr class="grey lighten-2">
-        <td colspan="2">
-            <p class="h6 text-left mb-6"><i class="fa fa-map-marker" aria-hidden="true"></i> Local:</p>{{scheduling.local}}
-        </td>
-        <td>
-            <p class="h6 text-left mb-6"><i class="fa fa-group" aria-hidden="true"></i> Membros:</p>{{scheduling.members}}
-        </td>
-    </tr>
-
-    <tr class="grey lighten-2">
-        <td colspan="2">
-            <p class="h6 text-left mb-6"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i> Data:</p>{{scheduling.date}}
-        </td>
-        <td>
-            <p class="h6 text-left mb-6"><i class="fa fa-clock-o" aria-hidden="true"></i> Hora:</p>{{scheduling.time}}
-        </td>
-    </tr>
-    <br><br>
-</table>
-
-
-<div *ngIf="schedulings.length==0">
-    <br><br><br>
-    <p class="text-center">AGENDAMENTO VAZIO!</p>
-</div>

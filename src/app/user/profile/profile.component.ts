@@ -1,95 +1,81 @@
-import { ProfileService } from './../../services/profile/profile.service';
 import { AlertService } from './../../services/alert/alert.service';
-import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
+import { AuthenticationService } from './../../services/authentication/authentication.service';
+import { User } from './../../models/user';
 import { UserService } from './../../services/user/user.service';
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css'],
-  providers: [UserService]
+  styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  public name;
+  public biography;
+  public email;
+  cod: number;
+  user: User;
+  public password;
 
-  @ViewChild('formUser') formUser: NgForm;
-  data: string;
   constructor(
-    private UserService: UserService,
-    private alertService: AlertService,
-    private profileService: ProfileService
+    private router: Router,
+    private userService: UserService,
+    private authenticationService: AuthenticationService,
+    private alertService: AlertService
+
   ) { }
 
   ngOnInit() {
-    this.data = null;
+    if (localStorage.getItem('token') === null) {
+      this.router.navigate(['/home']);
+    } else {
+      this.formatUserData();
+      this.user = this.userService.getLoggedUser();
+    }
+
+    this.cod = this.userService.getUserCod();
   }
 
-  savePosts(strCPF: string) {
+  errorStatus (errorStatus: number) {
+    console.log('error: ', errorStatus);
+    if (errorStatus === 401) {
+      this.alertService.warn('Aviso: senha errada!');
+    }
+  }
 
-    if (this.testCPF(strCPF) === true) {this.profileService.createUserProfile(this.data).subscribe(
-      result => console.log(result)
+  validatePassword() {
+    this.authenticationService.loginWithoutProfile(this.user.email, this.password)
+    .subscribe(
+      result => this.delete(),
+      error => this.errorStatus(error.status));
+  }
+
+  resultDelete() {
+    this.authenticationService.logout();
+    this.router.navigate(['/home']);
+  }
+
+  delete() {
+    this.userService.delete(this.user.cod) .subscribe(
+      result => this.resultDelete()
     );
   }
-    if (strCPF === null) {
-      this.alertService.warn('Digite seu CPF');
-    } else if (this.testCPF(strCPF) === false) {
-      this.alertService.error('CPF inválido/Digite um CPF válido');
-    } else {
-      this.alertService.success('CPF válido');
-    }
-  }
 
- expectedCPF(strCPF: string) {
-  let soma = '00000000000';
-  for (let i = 0 ; i <= 9 ; i++) {
-    if (strCPF === soma) {
-      return false;
-    }
-    soma = String(11111111111 + parseInt( soma, 10));
-  }
-  if (strCPF === null) {
-    return false;
-  }
- }
- calculateCPF(strCPF: string, sum: any, rest: any) {
-  sum = this.sumStringValues(strCPF, sum, 9);
-  rest = (sum * 10) % 11;
-  if ((rest === 10) || (rest === 11)) {
-    rest = 0;
-  }
-  if (rest !== parseInt(strCPF.substring(9, 10))) {
-  return false;
-  }
-}
+  formatUserData() {
+    const userInfo = localStorage.getItem('userData').split(',');
 
-calculateTwoCPF(strCPF: string, sum: any, rest: any) {
-  sum = this.sumStringValues(strCPF, sum, 10);
-  rest = (sum * 10) % 11;
-  if ((rest === 10) || (rest === 11)) {
-    rest = 0;
-  }
-  if (rest !== parseInt(strCPF.substring(10, 11))) {
-  return false;
-  }
-}
+    this.name = userInfo[0];
+    this.name = this.name.split(':')[1];
+    this.name = this.name.replace(/"|{|}/g, '');
 
-sumStringValues(strCPF: string, sum: any, limite1: any): any {
-  for (let i = 1; i <= limite1; i++) {
-    sum += parseInt(strCPF.substring(i -1, i)) * (limite1 + 2 - i);
-  }
-  return sum;
-}
+    this.biography = userInfo[1];
+    this.biography = this.biography.split(':')[1];
+    this.biography = this.biography.replace(/"|{|}/g, '');
 
-testCPF(strCPF: string) {
-    let sum;
-    let rest;
-    sum = 0;
-    rest = 0;
-    if (this.expectedCPF(strCPF) === false || this.calculateCPF(strCPF, sum, rest) === false ||
-     this.calculateTwoCPF(strCPF, sum, rest)) {
-       return false;
-      }
-    return true;
+    this.email = userInfo[3];
+    this.email = this.email.split(':')[1];
+    this.email = this.email.replace(/"|{|}/g, '');
+
   }
 }

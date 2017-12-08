@@ -12,3 +12,19 @@ label {
     font-family: 'Roboto Condensed', sans-serif;
     color: grey;
 }
+
+.update-button {
+    background-color: #192433;
+}
+
+.back-button {
+    background-color: #FF6100;
+}
+
+.delete-button {
+    background-color: #B97D45;
+}
+
+a {
+    align-content: right;
+}

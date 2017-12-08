@@ -24,7 +24,7 @@ describe('CouncilGroupService', () => {
     'codGrupoPai': 1,
     'codObjeto': fakeCouncil.codObjeto,
     'codTipoObjeto': 1,
-    'descricao': 'CAE-municipio-estado'
+    'descricao': 'CAE-estado-municipio'
   };
 
   beforeEach(() => {
@@ -153,8 +153,8 @@ describe('CouncilGroupService', () => {
   }));
 
 
-  // For getAjudaConselheiroCouncilGroups()
-  it('getAjudaConselheiroCouncilGroups() should return a array of groups',
+  // For getCouncilGroups()
+  it('getCouncilGroups() should return a array of groups',
     inject([CouncilGroupService, MockBackend], (service, mockBackend) => {
 
     // Needed fake data
@@ -171,7 +171,7 @@ describe('CouncilGroupService', () => {
     });
 
     // Calling and testing the function
-    service.getAjudaConselheiroCouncilGroups('teste').subscribe((result) => {
+    service.getCouncilGroups('teste').subscribe((result) => {
       expect(result.length).toEqual(2);
 
       expect(result[0].group).toEqual(1);
@@ -181,5 +181,28 @@ describe('CouncilGroupService', () => {
       expect(result[1].name).toEqual('cae-municipio-uf2');
     });
   }));
+
+
+  // For createCouncil()
+  it('should get members',
+  inject([CouncilGroupService, MockBackend], (service, mockBackend) => {
+    localStorage.setItem('token', 'appToken');
+    const token = localStorage.getItem('token');
+    const fakeHeader = new Headers({
+      'Content-Type': 'application/json',
+      appToken: token
+    });
+
+    // Mocking HTTP connection for this test
+    mockBackend.connections.subscribe((connection: MockConnection) => {
+      const options = new ResponseOptions({ headers: fakeHeader });
+      connection.mockRespond(new Response(options));
+    });
+
+    // Calling and testing the function
+    service.getMembersCouncilGroup(6417).subscribe(result => {
+      expect(result).toBeDefined();
+    });
+}));
 
 });

@@ -5,11 +5,12 @@ import { Http, HttpModule, ConnectionBackend,
 import { TestBed, inject, async} from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MockBackend, MockConnection } from '@angular/http/testing';
+import { HttpClientModule } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 
-import { AlertService, UserService } from '../../services/index';
-import { PostService } from './post.service';
+import { UserService, AlertService, ProfileService,
+  AuthenticationService, PostService} from './../../services/index';
 import { Post } from '../../models/index';
 
 
@@ -18,7 +19,8 @@ describe('PostService', () => {
     TestBed.configureTestingModule({
       imports: [
         HttpModule,
-        RouterTestingModule
+        RouterTestingModule,
+        HttpClientModule
       ],
       providers: [
         MockBackend,
@@ -33,7 +35,9 @@ describe('PostService', () => {
         PostService,
         ConnectionBackend,
         AlertService,
-        UserService
+        UserService,
+        ProfileService,
+        AuthenticationService
       ]
     });
 

@@ -1,70 +1,94 @@
-import { MockBackend } from '@angular/http/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { AlertService } from './../../services/alert/alert.service';
+import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { HttpModule, ConnectionBackend } from '@angular/http';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { ProfileComponent } from './profile.component';
-import { ProfileService } from './../../services/profile/profile.service';
-import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
-import { UserService } from './../../services/user/user.service';
-import { Component, OnInit, ViewChild, Input, NO_ERRORS_SCHEMA } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpModule, Headers, RequestOptions, Response, URLSearchParams } from '@angular/http';
+import { RouterTestingModule } from '@angular/router/testing';
+import 'rxjs/add/observable/throw';
+import { Observable } from 'rxjs/Observable';
 
+import { AlertService, AuthenticationService, ProfileService,
+  UserService } from '../../services/index';
+import { ProfileComponent } from './profile.component';
+import { FakeUser } from '../create/testing/fake-user';
+import { User } from '../../models/index';
 
 describe('ProfileComponent', () => {
   let component: ProfileComponent;
   let fixture: ComponentFixture<ProfileComponent>;
+  let mockAlert;
+  const fakeUser: FakeUser = new FakeUser();
 
   beforeEach(async(() => {
+    mockAlert = {
+      success: jasmine.createSpy('success'),
+      warn: jasmine.createSpy('warn'),
+      error: jasmine.createSpy('error')
+  };
     TestBed.configureTestingModule(
       {
         declarations: [
           ProfileComponent,
         ],
-        schemas: [NO_ERRORS_SCHEMA],
         imports: [
+          HttpModule,
           FormsModule,
-          RouterTestingModule,
-          HttpModule
+          RouterTestingModule
         ],
         providers: [
-          Http,
-          MockBackend,
-          ConnectionBackend,
           AlertService,
+          UserService,
           ProfileService,
-          UserService
+          AuthenticationService,
+          {
+            provide: AlertService,
+            useValue: mockAlert
+         }
         ]
       })
     .compileComponents();
-  }));
 
-  beforeEach(() => {
+    localStorage.setItem('token', 'aToken');
+    localStorage.setItem('userData', '{\"name\":\"name\",\"bio\":\"bio\",\"cod\":\"cod\",\"email\":\"email\"}');
     fixture = TestBed.createComponent(ProfileComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
+
+  }));
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  it('Teste CPF', () => {
-    let soma = '00000000000';
-    for (let i = 0 ; i <= 9 ; i++) {
-      expect(component.testCPF( soma )).toEqual( false );
-      soma = String(11111111111 + parseInt( soma, 10));
-    }
-    expect(component.testCPF( null )).toEqual( false );
-    expect(component.testCPF( '21536586469' )).toEqual( false );
-    expect(component.testCPF( '24499898978' )).toEqual( true );
+
+  it('should ngOnInit', () => {
+    localStorage.clear();
+    component.ngOnInit();
   });
-  it('should create', () => {
-    spyOn(component, 'testCPF');
-    component.savePosts( '215365,6469' );
-    expect(component.testCPF).toHaveBeenCalled();
-    component.savePosts( null );
-    expect(component.testCPF).toHaveBeenCalled();
+
+ it('should get formated user data', () => {
+    fixture.detectChanges();
+    expect(fixture.componentInstance.biography).toEqual('bio');
+    expect(fixture.componentInstance.name).toEqual('name');
+    expect(fixture.componentInstance.email).toEqual('email');
   });
+
+  it('should validate password',  inject([AuthenticationService], (service: AuthenticationService) => {
+    component.user = fakeUser.generateFakeUser();
+    component.password = '1234567';
+    component.validatePassword();
+  }));
+
+  it('should error status', () => {
+    component.errorStatus(401);
+    expect(mockAlert.warn).toHaveBeenCalledWith('Aviso: senha errada!');
+    component.errorStatus(400);
+  });
+
+  // it('should delete', inject([UserService], (service: UserService)  => {
+  //   component.user.cod = 48;
+  //   component.delete();
+  // }));
+
+  it('should delete', ()  => {
+    component.resultDelete();
+  });
+
 });

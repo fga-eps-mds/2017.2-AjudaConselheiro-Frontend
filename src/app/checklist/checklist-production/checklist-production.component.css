@@ -93,24 +93,20 @@ input:checked+.slider:before {
 
 
 /* Override margins in label for centering slider */
-
-label {
-    margin-top: .5rem;
-    margin-left: .5rem;
-    margin-right: .5rem;
+label{
+  margin-top: .5rem;
+  margin-left: .5rem;
+  margin-right: .5rem;
+}
+.row{
+  margin-top: 12px;
+  margin-bottom: 12px;
 }
 
-.row {
-    margin-top: 12px;
-    margin-bottom: 12px;
+.backButton {
+  background-color: #FF6100;
 }
 
-button {
-    float: center;
-}
-
-input[type=file] {
-    float: center;
-    display: block;
-    max-width: 100px;
+.conclude-button {
+  background-color: #192433;
 }

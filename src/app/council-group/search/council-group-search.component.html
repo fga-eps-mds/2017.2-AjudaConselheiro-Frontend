@@ -1,26 +1,57 @@
-<p class="h1 text-center mb-6"> Buscar Conselho </p>
-<br>
-<div class="create-form">
-  <div class="card container search">
-    <br>
-        <div class="container select-style">
-            <label><i class="fa fa-map-marker" aria-hidden="true"></i>Estados:</label>
-          <select [(ngModel)]="state" (change)="ngOnChanges(state)">
-            <option value="" selected disabled>Escolha um Estado</option>
-            <option *ngFor="let st of states" [value]="st.id">{{st.sigla}}</option>
-          </select>
-        </div>
-        <div class="container select-style" *ngIf="state!=null">
-            <label><i class="fa fa-street-view" aria-hidden="true"></i>Municipio:</label>
-          <select [(ngModel)]="city" (change)="ngOnChanges(city)">
-            <option value="" selected disabled>Escolha um Município</option>
-            <option *ngFor="let ct of cities" [value]="ct">{{ct}}</option>
-          </select>
-        </div>
-    <br>
-    <div class="container select-style" *ngIf="showCouncil">
-        <p class="h6 text-left mb-6">Conselho de Alimentação Escolar</p>
-        <p> {{stateSigla}} {{city}}
+<body>
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+  <div class="well" *ngIf="isLoggedIn()">
+    <p class="h2 text-center mb-4"> Busca de Conselho </p>
+
+    <app-ibge (stateEmitter)="chosenState($event)" (cityEmitter)="chosenCity($event)"></app-ibge>
+
+    <div align="center" *ngIf="hasLocation()">
+      <a href="" class="btn btn-secondary">
+          <span class="glyphicon glyphicon-chevron-left" aria-hidden="false"></span>Voltar
+        </a>
+      <input type="button" class="btn btn-primary" (click)="searchCouncilGroup()" value="Pesquisar">
     </div>
   </div>
-</div>
+
+  <table *ngIf="foundCouncil" class="table table-hover" [(ngModel)]="councilGroup.municipio" #council="ngModel" ngDefaultControl>
+    <thead>
+      <tr>
+        <th>Conselho</th>
+        <th>Estado</th>
+        <th>Município</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{this.councilGroup.descricao}}</td>
+        <td>{{this.state}}</td>
+        <td>{{this.city}}</td>
+        <td>
+          <a type="button" style="margin-top:-8px !important; -webkit-appearance: none !important" class="btn btn-primary" (click)="openDialog()">Solicitar Participação </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div id="overlay" class="overlay">
+    <div class="popup">
+      <h2 style="margin-bottom: 5px;">Solicitar Participação</h2>
+      <hr _ngcontent-c3="" class="orange darken-4 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+      <a class="close" (click)="closeDialog()">&times;</a>
+      <div class="content" style="margin-top: 0px;">
+        Ao confirmar a solicitação, seu pedido de ingresso será enviado ao presidente do conselho. Deseja continuar?
+      </div>
+      <div class="buttons">
+        <input type="button" class="btn btn-secondary" (click)="closeDialog()" value="Não">
+        <input type="button" class="btn btn-primary" (click)="sendNotification()" value="Sim">
+      </div>
+    </div>
+  </div>
+  <div align="center" style="margin-bottom: 10%;" *ngIf="!isLoggedIn()">
+    <p class="h2 text-center mb-4">Você precisa estar logado para acessar esta função.</p>
+    <a href="/login" class="btn btn-deep-orange">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="false"></span>Entrar
+      </a>
+  </div>
+</body>

@@ -1,15 +1,10 @@
-.well {
-    margin: 0 auto;
-    max-width: 1280px;
-    width: 30%;
-    height: 400px;
+.profile {
+    width: 50%;
+    height: 50%;
 }
 
-p {
-    font-family: 'Roboto Condensed', sans-serif;
-}
-
-label {
-    font-family: 'Roboto Condensed', sans-serif;
-    color: grey;
+.centering {
+    margin: auto;
+    align-self: auto;
+    text-align: center;
 }

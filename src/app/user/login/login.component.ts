@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { TextMaskModule } from 'angular2-text-mask';
 import { User } from '../../models/index';
-import { AuthenticationService, AlertService } from '../../services/index';
+import { AuthenticationService, AlertService, UserService} from '../../services/index';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +25,9 @@ export class LoginComponent implements OnInit {
   constructor(
     private authenticationService: AuthenticationService,
     private alertService: AlertService,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private userService: UserService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -37,21 +39,22 @@ export class LoginComponent implements OnInit {
     console.log(validEmail);
 
     if (validEmail) {
-      this.authenticationService.login(this.email, this.password)
+      this.authenticationService.loginWithProfile(this.email, this.password)
       .subscribe(
         result => {
           localStorage.setItem('token', result[0]);
           localStorage.setItem('userData', result[1]._body);
           localStorage.setItem('isLoggedIn', 'true');
-          this.getProfile();       
+          this.getProfile();
           this.alertService.success('Login efetuado sucesso!');
-          
+          this.router.navigate(['/perfil']);
         },
         error => {
-          console.log('error: ', error.status);
+          console.error('Error status for login:', error.status);
+
           if (error.status === 401) {
             this.alertService.warn('Aviso: email e/ou senha errados!');
-          } else if (error.status > 401) {
+          } else {
             this.alertService.error('Erro: falha na comunicação!');
           }
       });
@@ -60,8 +63,8 @@ export class LoginComponent implements OnInit {
     }
   }
   getProfile() {
-    return this.profileService.getProfile().subscribe(
-           result => localStorage.setItem('Profile',JSON.stringify(result)));
-       
+    const user = this.userService.getLoggedUser();
+    return this.profileService.getProfile((user.cod as any)).subscribe(
+           result => localStorage.setItem('Profile', JSON.stringify(result)));
     }
 }
