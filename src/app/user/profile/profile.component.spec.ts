@@ -150,4 +150,30 @@ describe('ProfileComponent', () => {
 
     expect(component.errorStatus).toHaveBeenCalled();
   });
+
+
+  // errorStatus()
+  it('errorStatus() should call warn() if error is 401', () => {
+    const service = fixture.debugElement.injector.get(AlertService);
+
+    // Mocking errorStatus
+    const deletSpy = spyOn(service, 'warn');
+
+    // Calling the method
+    component.errorStatus(401);
+
+    expect(service.warn).toHaveBeenCalledWith('Aviso: senha errada!');
+  });
+
+  it('errorStatus() should call warn() if error different than 401', () => {
+    const service = fixture.debugElement.injector.get(AlertService);
+
+    // Mocking errorStatus
+    const deletSpy = spyOn(service, 'error');
+
+    // Calling the method
+    component.errorStatus(402);
+
+    expect(service.error).toHaveBeenCalledWith('Erro: Não foi possível deletar!');
+  });
 });
