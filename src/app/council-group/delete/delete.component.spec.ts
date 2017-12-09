@@ -67,7 +67,7 @@ describe('CouncilGroupDeleteComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('test array councils toBeDefined', () => {
+  it('should get a value from getCouncilGroups', () => {
     const service = fixture.debugElement.injector.get(CouncilGroupService);
     const fakeResOptions = new ResponseOptions({ body: { 'nada': 'teste' } });
     const fakeRes = new Response(fakeResOptions);
@@ -80,7 +80,7 @@ describe('CouncilGroupDeleteComponent', () => {
     expect(component.councils).toBeDefined();
   });
 
-  it('test array councils toBeDefined', () => {
+  it('should throw 204 in getCouncilGroups service', () => {
     const alertService = fixture.debugElement.injector.get(AlertService);
     const service = fixture.debugElement.injector.get(CouncilGroupService);
     const fakeResOptions = new ResponseOptions({ status: 204 });
@@ -96,7 +96,7 @@ describe('CouncilGroupDeleteComponent', () => {
     expect(alertService.warn).toHaveBeenCalledWith('Nenhum agendamento encontrada!');
   });
 
-  it('test array councils toBeDefined', () => {
+  it('should throw 400 in getCouncilGroups service', () => {
     const alertService = fixture.debugElement.injector.get(AlertService);
     const service = fixture.debugElement.injector.get(CouncilGroupService);
     const fakeResOptions = new ResponseOptions({ status: 204 });
@@ -110,7 +110,8 @@ describe('CouncilGroupDeleteComponent', () => {
     component.getAll();
     expect(alertService.error).toHaveBeenCalledWith('Erro de requisição!');
   });
-  it('test array councils toBeDefined', () => {
+
+  it('should throw 500 in getCouncilGroups service', () => {
     const alertService = fixture.debugElement.injector.get(AlertService);
     const service = fixture.debugElement.injector.get(CouncilGroupService);
     const fakeResOptions = new ResponseOptions({ status: 204 });
@@ -124,7 +125,8 @@ describe('CouncilGroupDeleteComponent', () => {
     component.getAll();
     expect(alertService.error).toHaveBeenCalledWith('Erro no servidor!');
   });
-  it('test array councils toBeDefined', () => {
+
+  it('should set token item in localStorage', () => {
     localStorage.clear();
     const alertService = fixture.debugElement.injector.get(AlertService);
     const alertSpy = spyOn(alertService, 'warn');
@@ -133,7 +135,8 @@ describe('CouncilGroupDeleteComponent', () => {
     expect(alertService.warn).toHaveBeenCalledWith('Você precisa estar logado');
     localStorage.setItem('token', 'sdas');
   });
-  it('test array councils toBeDefined', () => {
+
+  it('should delete a council', () => {
     const service = fixture.debugElement.injector.get(CouncilGroupService);
     const fakeResOptions = new ResponseOptions({ body: { 'nada': 'teste' } });
     const fakeRes = new Response(fakeResOptions);
@@ -146,7 +149,7 @@ describe('CouncilGroupDeleteComponent', () => {
     expect(component.councils).toBeDefined();
   });
 
-  it('test array councils toBeDefined', () => {
+  it('should throw 204 in deleteCouncil service', () => {
     const alertService = fixture.debugElement.injector.get(AlertService);
     const service = fixture.debugElement.injector.get(CouncilGroupService);
     const fakeResOptions = new ResponseOptions({ status: 204 });
@@ -158,11 +161,11 @@ describe('CouncilGroupDeleteComponent', () => {
     const alertSpy = spyOn(alertService, 'warn');
     fixture.detectChanges();
     component.deleteCouncil(10);
-    
+
     expect(alertService.warn).toHaveBeenCalledWith('Nenhum agendamento encontrada!');
   });
 
-  it('test array councils toBeDefined', () => {
+  it('should throw 400 in deleteCouncil service', () => {
     const alertService = fixture.debugElement.injector.get(AlertService);
     const service = fixture.debugElement.injector.get(CouncilGroupService);
     const fakeResOptions = new ResponseOptions({ status: 204 });
@@ -176,7 +179,7 @@ describe('CouncilGroupDeleteComponent', () => {
     component.deleteCouncil(10);
     expect(alertService.error).toHaveBeenCalledWith('Erro de requisição!');
   });
-  it('test array councils toBeDefined', () => {
+  it('should throw 500 in deleteCouncil service', () => {
     const alertService = fixture.debugElement.injector.get(AlertService);
     const service = fixture.debugElement.injector.get(CouncilGroupService);
     const fakeResOptions = new ResponseOptions({ status: 204 });
