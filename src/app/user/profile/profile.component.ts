@@ -11,12 +11,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  public name;
-  public biography;
-  public email;
-  cod: number;
-  user: User;
-  public password;
+  public user: User;
+  public passwordForm;
 
   constructor(
     private router: Router,
@@ -27,25 +23,23 @@ export class ProfileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if (localStorage.getItem('token') === null) {
-      this.router.navigate(['/home']);
+    if (!localStorage.getItem('token')) {
+      this.router.navigate(['']);
     } else {
-      this.formatUserData();
       this.user = this.userService.getLoggedUser();
     }
-
-    this.cod = this.userService.getUserCod();
   }
 
   errorStatus (errorStatus: number) {
-    console.log('error: ', errorStatus);
     if (errorStatus === 401) {
       this.alertService.warn('Aviso: senha errada!');
+    } else {
+      this.alertService.error('Erro: Não foi possível deletar!');
     }
   }
 
   validatePassword() {
-    this.authenticationService.loginWithoutProfile(this.user.email, this.password)
+    this.authenticationService.loginWithoutProfile(this.user.email, this.passwordForm)
     .subscribe(
       result => this.delete(),
       error => this.errorStatus(error.status));
@@ -53,29 +47,13 @@ export class ProfileComponent implements OnInit {
 
   resultDelete() {
     this.authenticationService.logout();
-    this.router.navigate(['/home']);
+    this.router.navigate(['']);
   }
 
   delete() {
-    this.userService.delete(this.user.cod) .subscribe(
-      result => this.resultDelete()
+    this.userService.delete(this.user.cod).subscribe(
+      result => this.resultDelete(),
+      error => this.errorStatus(error.status)
     );
-  }
-
-  formatUserData() {
-    const userInfo = localStorage.getItem('userData').split(',');
-
-    this.name = userInfo[0];
-    this.name = this.name.split(':')[1];
-    this.name = this.name.replace(/"|{|}/g, '');
-
-    this.biography = userInfo[1];
-    this.biography = this.biography.split(':')[1];
-    this.biography = this.biography.replace(/"|{|}/g, '');
-
-    this.email = userInfo[3];
-    this.email = this.email.split(':')[1];
-    this.email = this.email.replace(/"|{|}/g, '');
-
   }
 }

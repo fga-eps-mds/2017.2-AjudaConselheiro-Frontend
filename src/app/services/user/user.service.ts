@@ -190,10 +190,12 @@ export class UserService extends ServicesUtilitiesService {
   delete(cod: Number): Observable<String> {
     const headers: Headers = new Headers({
       'appIdentifier': 462,
-      'appToken': localStorage.getItem('token').toString()
+      'appToken': localStorage.getItem('token')
     });
+
     const options: RequestOptions = new RequestOptions({ headers: headers });
     const url = this.url + '/' + cod + '/perfil';
+
     return this.http.delete(url, options)
       .catch(this.handleError);
   }
