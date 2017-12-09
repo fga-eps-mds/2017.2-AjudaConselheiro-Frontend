@@ -241,7 +241,7 @@ export class UserService extends ServicesUtilitiesService {
     localStorage.setItem('token', token);
 
     // Creating the user profile
-    this.profileService.setUserProfile('CPF: ' + cpf, userCod).subscribe();
+    this.profileService.setUserProfile('CPF: ' + cpf, userCod, 243, localStorage.getItem('token')).subscribe();
 
       // Removing the login data - For sucess and fail
       localStorage.removeItem('token');
