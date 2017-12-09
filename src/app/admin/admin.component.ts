@@ -17,7 +17,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 export class AdminComponent implements OnInit {
   @ViewChild('formUser') formUser: NgForm;
   user: User;
-  private token: any;
+  token: any;
   constructor(private userService: UserService,
               private router: Router,
               private alertService: AlertService,
