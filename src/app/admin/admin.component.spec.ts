@@ -1,14 +1,20 @@
-import { Observable } from 'rxjs/Observable';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ProfileService } from './../services/profile/profile.service';
 import { Router, RouterModule } from '@angular/router';
 import { AlertService } from './../services/alert/alert.service';
 import { AuthenticationService } from './../services/authentication/authentication.service';
-import { MockBackend } from '@angular/http/testing';
+import { MockBackend, MockConnection } from '@angular/http/testing';
 import { UserService } from './../services/user/user.service';
-import { Http, ConnectionBackend, RequestOptions, HttpModule, ResponseOptions } from '@angular/http';
+import {
+  Http, HttpModule, ConnectionBackend,
+  ResponseOptions, Response, BaseRequestOptions,
+  RequestOptions, Headers
+} from '@angular/http';
 import { NgForm, FormsModule } from '@angular/forms';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, inject} from '@angular/core/testing';
+
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
 
 import { AdminComponent } from './admin.component';
 
@@ -27,9 +33,17 @@ describe('AdminComponent', () => {
       declarations: [ AdminComponent ],
       imports: [FormsModule, HttpModule, RouterTestingModule],
       providers: [
-        UserService,
         MockBackend,
+        BaseRequestOptions,
+        {
+          provide: Http,
+          useFactory: (mockBackend: MockBackend, defaultOptions: RequestOptions) => {
+            return new Http(mockBackend, defaultOptions);
+          },
+          deps: [MockBackend, BaseRequestOptions]
+        },
         ConnectionBackend,
+        UserService,
         AuthenticationService,
         ProfileService,
         AlertService,
@@ -39,6 +53,30 @@ describe('AdminComponent', () => {
        }  ]
     })
     .compileComponents();
+
+    let store = {};
+    const mockLocalStorage = {
+      getItem: (key: string): string => {
+        return key in store ? store[key] : null;
+      },
+      setItem: (key: string, value: string) => {
+        store[key] = `${value}`;
+      },
+      removeItem: (key: string) => {
+        delete store[key];
+      },
+      clear: () => {
+        store = {};
+      }
+    };
+    spyOn(localStorage, 'getItem')
+      .and.callFake(mockLocalStorage.getItem);
+    spyOn(localStorage, 'setItem')
+      .and.callFake(mockLocalStorage.setItem);
+    spyOn(localStorage, 'removeItem')
+      .and.callFake(mockLocalStorage.removeItem);
+    spyOn(localStorage, 'clear')
+      .and.callFake(mockLocalStorage.clear);
   }));
 
   beforeEach(() => {
@@ -59,8 +97,9 @@ describe('AdminComponent', () => {
       'tipoPerfil': {
         'codTipoPerfil': 249,
       }
-    }
-    localStorage.setItem('Profile',JSON.stringify(body));
+    };
+
+    localStorage.setItem('Profile', JSON.stringify(body));
     expect(component.isAdmin()).toBeTruthy();
   });
 
@@ -68,6 +107,7 @@ describe('AdminComponent', () => {
     component.result();
     expect(mockAlert.success).toHaveBeenCalledWith('Cadastro efetuado com sucesso!');
   });
+
   it('error() should call alertService.warn()and alertService.error', () => {
     component.error(400);
     expect(mockAlert.warn).toHaveBeenCalledWith('Aviso: Usuário já cadastrado ou desativado!');
@@ -107,6 +147,33 @@ describe('AdminComponent', () => {
     component.register();
     expect(component.error).toHaveBeenCalled();
     });
+
+    it('creteProfile() should call profileService and set token in localStorage',
+      inject([AuthenticationService, MockBackend], (authService, mockBackend) => {
+        const fakeToken = 'fakeToken';
+        const fakeHeader = new Headers({appToken: fakeToken});
+        const fakeData = JSON.stringify({name: 123});
+
+        // Mocking HTTP connection for this test
+        mockBackend.connections.subscribe((connection: MockConnection) => {
+          const options = new ResponseOptions({ body: fakeData, headers: fakeHeader});
+
+          connection.mockRespond(new Response(options));
+        });
+
+        const pService = fixture.debugElement.injector.get(ProfileService);
+        const pSpy = spyOn(pService, 'setUserProfile').and.returnValue(
+          Observable.of({})
+        );
+
+        component.token = fakeToken;
+        fixture.detectChanges();
+        component.createProfile();
+
+        const localToken = localStorage.getItem('token');
+        expect(pService.setUserProfile).toHaveBeenCalled();
+        expect(localToken).toEqual(fakeToken);
+    }));
 
 
 });
