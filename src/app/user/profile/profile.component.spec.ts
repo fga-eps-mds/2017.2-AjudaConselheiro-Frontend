@@ -1,9 +1,13 @@
 import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { HttpModule, Headers, RequestOptions, Response, URLSearchParams } from '@angular/http';
-import { RouterTestingModule } from '@angular/router/testing';
+import { HttpModule, Http, ConnectionBackend,
+  ResponseOptions, RequestOptions, Response,
+  BaseRequestOptions, Headers } from '@angular/http';
 import 'rxjs/add/observable/throw';
 import { Observable } from 'rxjs/Observable';
+
+import { RouterTestingModule } from '@angular/router/testing';
+import { MockBackend, MockConnection } from '@angular/http/testing';
 
 import { AlertService, AuthenticationService, ProfileService,
   UserService } from '../../services/index';
@@ -22,7 +26,8 @@ describe('ProfileComponent', () => {
       success: jasmine.createSpy('success'),
       warn: jasmine.createSpy('warn'),
       error: jasmine.createSpy('error')
-  };
+     };
+
     TestBed.configureTestingModule(
       {
         declarations: [
@@ -46,49 +51,43 @@ describe('ProfileComponent', () => {
       })
     .compileComponents();
 
-    localStorage.setItem('token', 'aToken');
-    localStorage.setItem('userData', '{\"name\":\"name\",\"bio\":\"bio\",\"cod\":\"cod\",\"email\":\"email\"}');
+    let store = {};
+    const mockLocalStorage = {
+      getItem: (key: string): string => {
+        return key in store ? store[key] : null;
+      },
+      setItem: (key: string, value: string) => {
+        store[key] = `${value}`;
+      },
+      removeItem: (key: string) => {
+        delete store[key];
+      },
+      clear: () => {
+        store = {};
+      }
+    };
+    spyOn(localStorage, 'getItem')
+      .and.callFake(mockLocalStorage.getItem);
+    spyOn(localStorage, 'setItem')
+      .and.callFake(mockLocalStorage.setItem);
+    spyOn(localStorage, 'removeItem')
+      .and.callFake(mockLocalStorage.removeItem);
+    spyOn(localStorage, 'clear')
+      .and.callFake(mockLocalStorage.clear);
+  }));
+
+  beforeEach(() => {
+    const user = {nomeCompleto: 'teste', cod: 123, email: 'abc@abc.com', biografia: 'bio'};
+    localStorage.setItem('userData', JSON.stringify(user));
+    localStorage.setItem('token', 'fakeToken');
+
     fixture = TestBed.createComponent(ProfileComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-
-  }));
+  });
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should ngOnInit', () => {
-    localStorage.clear();
-    component.ngOnInit();
-  });
-
- it('should get formated user data', () => {
-    fixture.detectChanges();
-    expect(fixture.componentInstance.biography).toEqual('bio');
-    expect(fixture.componentInstance.name).toEqual('name');
-    expect(fixture.componentInstance.email).toEqual('email');
-  });
-
-  it('should validate password',  inject([AuthenticationService], (service: AuthenticationService) => {
-    component.user = fakeUser.generateFakeUser();
-    component.password = '1234567';
-    component.validatePassword();
-  }));
-
-  it('should error status', () => {
-    component.errorStatus(401);
-    expect(mockAlert.warn).toHaveBeenCalledWith('Aviso: senha errada!');
-    component.errorStatus(400);
-  });
-
-  // it('should delete', inject([UserService], (service: UserService)  => {
-  //   component.user.cod = 48;
-  //   component.delete();
-  // }));
-
-  it('should delete', ()  => {
-    component.resultDelete();
   });
 
 });

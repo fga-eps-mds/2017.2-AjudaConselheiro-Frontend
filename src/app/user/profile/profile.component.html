@@ -9,14 +9,14 @@
     <!--Card content-->
     <div class="card-body centering">
         <!--Title-->
-        <h4 class="card-title centering">{{name}}</h4>
+        <h4 class="card-title centering">{{user.nomeCompleto}}</h4>
         <!--Text-->
-        <p class="card-text centering"> {{biography}}</p>
-        <p class="card-text centering"> {{email}}</p>
+        <p class="card-text centering"> {{user.biografia}}</p>
+        <p class="card-text centering"> {{user.email}}</p>
 
         <div class="form-group text-center">
             <div class="form-group">
-                <input type="password" id="orangeForm-name" class="form-control" name="password" [(ngModel)]="password" minlength="5" placeholder="Senha" required password>
+                <input type="password" id="orangeForm-name" class="form-control" name="passwordForm" [(ngModel)]="passwordForm" minlength="5" placeholder="Senha" required password>
             </div>
             <button type="button" class="btn btn-danger" (click)="validatePassword()"><i class="fa fa-times" aria-hidden="true"></i>Deletar Conta</button>
             <input [routerLink]="['/usuarios/editar/'] + cod" type="button" class="btn btn-deep-orange" value="Editar">
