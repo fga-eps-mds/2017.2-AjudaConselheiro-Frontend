@@ -37,7 +37,6 @@ export class CouncilGroupDeleteComponent implements OnInit {
           this.councils = res;
         },
         (error) => {
-          console.log(error);
           switch (error) {
             case 204:
             this.alertService.warn('Nenhum agendamento encontrada!');
@@ -47,8 +46,6 @@ export class CouncilGroupDeleteComponent implements OnInit {
             break;
           case 500:
             this.alertService.error('Erro no servidor!');
-            break;
-          default:
             break;
           }
         });
@@ -66,7 +63,6 @@ export class CouncilGroupDeleteComponent implements OnInit {
         this.router.navigate(['/conselho/deletar']);
       },
       (error) => {
-        console.log(error);
         switch (error) {
           case 204:
           this.alertService.warn('Nenhum agendamento encontrada!');
@@ -76,8 +72,6 @@ export class CouncilGroupDeleteComponent implements OnInit {
           break;
         case 500:
           this.alertService.error('Erro no servidor!');
-          break;
-        default:
           break;
         }
       });
