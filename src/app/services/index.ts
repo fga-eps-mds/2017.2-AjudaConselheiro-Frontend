@@ -9,3 +9,4 @@ export * from './ibge/ibge.service';
 export * from './services-utilities/services-utilities.service';
 export * from './posts/post.service';
 export * from './profile/profile.service';
+export * from './notification/notification.service';

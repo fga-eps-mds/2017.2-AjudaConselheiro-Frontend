@@ -81,7 +81,7 @@ export class UserCreateComponent implements OnInit {
           const userData = this.userService.getLoggedUser();
           const userCod = userData.cod;
 
-          this.profileService.setUserProfile(this.data, userCod)
+          this.profileService.setUserProfile(this.data, userCod, 243, localStorage.getItem('token'))
             .subscribe(
               result => console.log(result)
             );

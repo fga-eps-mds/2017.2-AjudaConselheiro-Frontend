@@ -14,18 +14,20 @@ export class ProfileService extends ServicesUtilitiesService {
   private codCounselor = 237;
   private codProfileTest = 243;
   private codNotAuthorized = 246;
+  private codAdmin = 249;
 
   constructor(private http: Http, private alertService: AlertService) {
     super();
   }
 
-  setUserProfile(additionalData: any, userCod: string) {
+
+  setUserProfile(additionalData: any, userCod: string, codProfile: number, token: any) {
     const url = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas/'
       + userCod + '/perfil';
 
     this.headers = new Headers({
       'Content-Type': 'application/json',
-      'appToken': localStorage.getItem('token')
+      'appToken': token
     });
 
     this.request = new RequestOptions({ headers: this.headers });
@@ -34,7 +36,7 @@ export class ProfileService extends ServicesUtilitiesService {
       'camposAdicionais': JSON.stringify(additionalData),
       'tipoPerfil': {
         // In production, change to this.codNotAuthorized
-        'codTipoPerfil': this.codProfileTest,
+        'codTipoPerfil': codProfile,
       }
     };
 

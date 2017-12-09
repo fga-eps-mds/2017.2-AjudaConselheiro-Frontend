@@ -3,36 +3,56 @@ import { NgForm } from '@angular/forms';
 
 import { Subscription } from 'rxjs/Subscription';
 
+import { CouncilGroupSearchAbstract } from './council-group-search-abstract.component';
 import { CouncilGroup } from '../../models/index';
+import { Notification } from '../../models/notification';
 import {
   CouncilGroupService,
   AlertService,
-  IbgeService
+  IbgeService,
+  UserService,
+  NotificationService,
+  ProfileService
 } from '../../services/index';
 
 @Component({
   selector: 'app-council-group-search',
   templateUrl: './council-group-search.component.html',
   styleUrls: ['./council-group-search.component.css'],
-  providers: [CouncilGroupService, IbgeService]
+  providers: [
+    CouncilGroupService,
+    IbgeService,
+    UserService,
+    NotificationService,
+    ProfileService
+  ]
 })
-
-export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
+export class CouncilGroupSearchComponent extends CouncilGroupSearchAbstract implements OnInit, OnDestroy {
   @ViewChild('formCouncilGroupsearch') formCouncilGroupSearch: NgForm;
-  private stateSubs: Subscription;
-  private searchSubs: Subscription;
   public councilGroup: CouncilGroup;
-  public state = '';
-  public stateId = '0';
-  public city = '';
+  private councilSubs: Subscription;
+  private searchSubs: Subscription;
+  private stateSubs: Subscription;
+  public foundCouncil = false;
+  public codGrupo: number;
   public description = '';
-  public found = false;
+  public biography = '';
+  public stateId = '0';
+  public open = false;
+  public state = '';
+  public city = '';
+
 
   constructor(
-    private ibgeService: IbgeService,
-    private councilGroupService: CouncilGroupService,
-    private alertService: AlertService,
-  ) { }
+    public councilGroupService: CouncilGroupService,
+    public notificationService: NotificationService,
+    public profileService: ProfileService,
+    public alertService: AlertService,
+    public ibgeService: IbgeService,
+    public userService: UserService,
+  ) {
+    super(notificationService, alertService, profileService, userService);
+  }
 
   ngOnInit() {
     this.councilGroup = new CouncilGroup();
@@ -44,7 +64,7 @@ export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
   }
 
   searchCouncilGroup(): void {
-    this.found = false;
+    this.foundCouncil = false;
     // Creates new councilGroup to allow multiple searches
     if (this.councilGroup.municipio === undefined) {
       this.councilGroup = new CouncilGroup();
@@ -54,11 +74,13 @@ export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
 
   // Get state sigla with state id and after that register the council group with the state sigla
   getStateAbbr() {
-    this.stateSubs = this.ibgeService.getState(this.stateId)
+    this.stateSubs = this.ibgeService
+      .getState(this.stateId)
       .subscribe(
-        (result) => this.getStateAbbrResult(result),
-        (error) => this.alertService.error('Erro ao selecionar estado'),
-        () => this.getCouncilGroups());
+        result => this.getStateAbbrResult(result),
+        error => this.alertService.error('Erro ao selecionar estado'),
+        () => this.getCouncilGroups()
+      );
   }
 
   getStateAbbrResult(result: any): void {
@@ -68,15 +90,17 @@ export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
   }
 
   getCouncilGroups() {
-    this.searchSubs = this.councilGroupService.getCouncilGroups()
+    this.searchSubs = this.councilGroupService
+      .getCouncilGroups()
       .subscribe(
-        (result) => this.getCouncilGroupsResult(result),
-        (error) => this.alertService.error('Erro no servidor, tente novamente!'));
+        result => this.getCouncilGroupsResult(result),
+        error => this.alertService.error('Erro no servidor, tente novamente!')
+      );
   }
 
   getCouncilGroupsResult(result: any): void {
     this.filterCouncil(result);
-    if (this.found) {
+    if (this.foundCouncil) {
       this.alertService.success('Conselho de ' + this.city + ' encontrado!');
     } else {
       this.alertService.warn('Conselho de ' + this.city + ' não cadastrado!');
@@ -88,8 +112,9 @@ export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
     result.forEach(element => {
       if (element.descricao === this.description) {
         this.councilGroup = element;
+        this.codGrupo = element.codGrupo;
         console.log(this.councilGroup);
-        this.found = true;
+        this.foundCouncil = true;
       }
     });
   }
@@ -104,18 +129,49 @@ export class CouncilGroupSearchComponent implements OnInit, OnDestroy {
   // Listen IBGE state EventEmitter()
   chosenState(state: string) {
     this.city = '';
-    this.found = false;
-    state ? (this.stateId = state) : this.alertService.warn('Nenhum estado selecionado');
+    this.foundCouncil = false;
+    state
+      ? (this.stateId = state)
+      : this.alertService.warn('Nenhum estado selecionado');
   }
 
   // Listen IBGE city EventEmitter()
   chosenCity(city: string) {
-    city ? (this.city = city) : this.alertService.warn('Nenhuma cidade selecionada');
+    city
+      ? (this.city = city)
+      : this.alertService.warn('Nenhuma cidade selecionada');
   }
 
   // Has (state + city) assigned?
   hasLocation(): boolean {
-    console.log('State id: ', this.stateId, '\n\nState: ', this.state, '\n\nCity: ', this.city);
+    console.log(
+      'State id: ',
+      this.stateId,
+      '\n\nState: ',
+      this.state,
+      '\n\nCity: ',
+      this.city
+    );
     return this.stateId && 0 !== this.city.length;
+  }
+
+  sendNotification() {
+    this.closeDialog();
+    this.foundPresident = false;
+
+    // I get all the application's advisors
+    this.councilSubs = this.councilGroupService
+      .getMembersCouncilGroup(this.codGrupo)
+      .subscribe(
+        result => this.getCodMembers(result),
+        error => this.alertService.error('Erro no servidor, tente novamente!'),
+        () => {
+          if (!this.foundPresident && this.go) {
+            this.alertService.error(
+              'Não existe presidente para o conselho escolhido!'
+            );
+          }
+        }
+      );
   }
 }

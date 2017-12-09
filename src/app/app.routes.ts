@@ -32,6 +32,7 @@ import {
   RecoverPasswordComponent,
   PasswordUpdateComponent
 } from './user/user.module';
+import { AdminComponent } from './admin/admin.component';
 
 export const ROUTES: Routes = [
   { path: '', component: HomeComponent },
@@ -55,5 +56,6 @@ export const ROUTES: Routes = [
   { path: 'checklist/update', component: ChecklistUpdateComponent},
   { path: 'usuario-sem-perfil', component: NotProfileComponent},
   { path: 'perfil', component: ProfileComponent},
-  { path: 'recuperar-senha', component: RecoverPasswordComponent}
+  { path: 'recuperar-senha', component: RecoverPasswordComponent},
+  { path: 'admin', component: AdminComponent}
 ];

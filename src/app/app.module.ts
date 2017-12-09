@@ -17,12 +17,14 @@ import { ChecklistModule } from './checklist/checklist.module';
 import { CouncilGroupModule } from './council-group/council-group.module';
 import { LayoutsModule } from './layouts/layouts.module';
 import { RecoverPasswordComponent } from './user/recover-password/recover-password.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     RecoverPasswordComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,

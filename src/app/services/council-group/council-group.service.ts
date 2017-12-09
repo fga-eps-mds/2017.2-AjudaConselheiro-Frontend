@@ -96,4 +96,15 @@ createCouncil(councilGroup: CouncilGroup): Observable<any> {
       .map(this.extractData)
       .catch(this.handleError);
   }
+
+  getMembersCouncilGroup(codGrupo: number): any {
+    this.headers = new Headers ({
+      'Content-Type': 'application/json'
+    });
+    this.request = new RequestOptions({ headers: this.headers });
+
+    return this.http.get(this.url + '/' + codGrupo + '/membros', this.request)
+    .map(this.extractData)
+    .catch(this.handleError);
+  }
 }
