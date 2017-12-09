@@ -34,7 +34,7 @@ export class ProfileComponent implements OnInit {
     if (errorStatus === 401) {
       this.alertService.warn('Aviso: senha errada!');
     } else {
-      this.alertService.error('Erro: Falha no login. Tente novamente...');
+      this.alertService.error('Erro: Não foi possível deletar!');
     }
   }
 
@@ -47,7 +47,7 @@ export class ProfileComponent implements OnInit {
 
   resultDelete() {
     this.authenticationService.logout();
-    this.router.navigate(['/home']);
+    this.router.navigate(['']);
   }
 
   delete() {
