@@ -176,4 +176,56 @@ describe('ProfileComponent', () => {
 
     expect(service.error).toHaveBeenCalledWith('Erro: Não foi possível deletar!');
   });
+
+  it('resultDelete() should go to \'/\'', () => {
+    location = TestBed.get(Location);
+    component.resultDelete();
+    expect(location.path()).toBe('');
+    expect(localStorage.getItem('isLoggedIn')).toEqual('false');
+  });
+
+  it('delete() should call resultDelete() if success', () => {
+    const service = fixture.debugElement.injector.get(UserService);
+
+    // Mocking the login response
+    const fakeResOptions = new ResponseOptions({body: {}});
+    const fakeRes = new Response(fakeResOptions);
+    const loginSpy = spyOn(service, 'delete').and.returnValue(
+      Observable.of(fakeRes)
+    );
+
+    // Mocking delete()
+    const deletSpy = spyOn(component, 'resultDelete').and.returnValue({});
+
+    // Setting form data
+    fixture.detectChanges();
+
+    // Calling the method
+    component.delete();
+
+    expect(component.resultDelete).toHaveBeenCalled();
+  });
+
+  it('delete() should call errorStatus() if error', () => {
+    const service = fixture.debugElement.injector.get(UserService);
+
+    // Mocking the login response
+    const fakeResOptions = new ResponseOptions({body: {}});
+    const fakeRes = new Response(fakeResOptions);
+    const loginSpy = spyOn(service, 'delete').and.returnValue(
+      Observable.throw(fakeRes)
+    );
+
+    // Mocking delete()
+    const deletSpy = spyOn(component, 'errorStatus').and.returnValue({});
+
+    // Setting form data
+    fixture.detectChanges();
+
+    // Calling the method
+    component.delete();
+
+    expect(component.errorStatus).toHaveBeenCalled();
+  });
+
 });

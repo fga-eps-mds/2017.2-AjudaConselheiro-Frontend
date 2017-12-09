@@ -24,7 +24,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     if (!localStorage.getItem('token')) {
-      this.router.navigate(['/home']);
+      this.router.navigate(['']);
     } else {
       this.user = this.userService.getLoggedUser();
     }
