@@ -19,7 +19,7 @@
                 <input type="password" id="orangeForm-name" class="form-control" name="passwordForm" [(ngModel)]="passwordForm" minlength="5" placeholder="Senha" required password>
             </div>
             <button type="button" class="btn btn-danger" (click)="validatePassword()"><i class="fa fa-times" aria-hidden="true"></i>Deletar Conta</button>
-            <input [routerLink]="['/usuarios/editar/'] + cod" type="button" class="btn btn-deep-orange" value="Editar">
+            <input [routerLink]="['/usuarios/editar/'] + user.cod" type="button" class="btn btn-deep-orange" value="Editar">
             <br>
             <br>
         </div>
