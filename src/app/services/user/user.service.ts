@@ -197,8 +197,10 @@ export class UserService extends ServicesUtilitiesService {
       'appIdentifier': 462,
       'appToken': localStorage.getItem('token')
     });
+
     const options: RequestOptions = new RequestOptions({ headers: headers });
     const url = this.url + '/' + cod + '/perfil';
+
     return this.http.delete(url, options)
       .catch(this.handleError);
   }
@@ -240,8 +242,8 @@ export class UserService extends ServicesUtilitiesService {
   // Sets the needed userToken from authentication, necessary for profiles POST
   localStorage.setItem('token', token);
 
-  // Creating the user profile
-  this.profileService.setUserProfile('CPF: ' + cpf, userCod).subscribe();
+    // Creating the user profile
+    this.profileService.setUserProfile('CPF: ' + cpf, userCod, 243, localStorage.getItem('token')).subscribe();
 
     // Removing the login data - For sucess and fail
     localStorage.removeItem('token');
