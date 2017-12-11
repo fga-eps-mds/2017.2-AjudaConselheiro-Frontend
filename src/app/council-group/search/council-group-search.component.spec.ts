@@ -357,5 +357,47 @@ describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
     expect(mockAlert.error).toHaveBeenCalledWith('Não existe presidente para o conselho escolhido!');
 
   });
+  it('should open dialog', () => {
+    component.openDialog();
+  });
+
+  it('should close dialog', () => {
+    component.closeDialog();
+  });
+
+  it('should close dialog', () => {
+    component.closeDialog();
+  });
+
+  it('should get cod members', () => {
+
+    component.getCodMembers(members);
+    members = [];
+    component.getCodMembers(members);
+  });
+
+  it('should get presidente result', () => {
+    const profile = {
+      'camposAdicionais': 'Nada',
+      'tipoPerfil': {
+          'codTipoPerfil': 238,
+          'descricao': 'Conselheiro'
+      }
+  };
+    component.getPresResult(profile, '6417');
+  });
+
+  it('should get cod members', () => {
+    component.codGrupo = 643;
+    component.go = true;
+    component.sendNotification();
+    component.codGrupo = null;
+    component.sendNotification();
+  });
+
+  it('should get presidente', () => {
+    component.notification = null;
+    component.send();
+  });
 
 });
