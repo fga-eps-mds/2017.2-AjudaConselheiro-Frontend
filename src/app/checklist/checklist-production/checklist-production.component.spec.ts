@@ -80,7 +80,7 @@ describe('ChecklistProductionComponent', () => {
     expect(console.warn).toHaveBeenCalled();
   });
 
-  it('savePost() should savePost()(service) if it is error and test route checklist', fakeAsync(() => {
+  it('savePost() should savePost()(service) and test route checklist', fakeAsync(() => {
     location = TestBed.get(Location);
 
     const service = fixture.debugElement.injector.get(PostService);

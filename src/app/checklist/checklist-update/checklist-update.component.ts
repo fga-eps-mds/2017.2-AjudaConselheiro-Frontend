@@ -29,10 +29,6 @@ export class ChecklistUpdateComponent extends ChecklistProductionComponent imple
     alertService: AlertService
   ) {}
 
-  ngOnInit() {
-    console.log('entrou!!');
-  }
-
   onSubmit() {
       // Show questions and anwsers
       console.warn(this.iteratorArray);
