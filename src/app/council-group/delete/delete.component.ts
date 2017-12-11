@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
 import { CouncilGroup } from '../../models/index';
-import { CouncilGroupService, AlertService, IbgeService } from '../../services/index';
+import { CouncilGroupService, AlertService, IbgeService, ProfileService, UserService, NotificationService } from '../../services/index';
+import { CouncilGroupDeleteAbstract } from './delete-abstract.component';
 
 
 @Component({
@@ -12,16 +13,21 @@ import { CouncilGroupService, AlertService, IbgeService } from '../../services/i
   templateUrl: './delete.component.html',
   styleUrls: ['./delete.component.css']
 })
-export class CouncilGroupDeleteComponent implements OnInit {
+export class CouncilGroupDeleteComponent extends CouncilGroupDeleteAbstract implements OnInit {
 
   public councils: any[] = [0];
   council: CouncilGroup;
 
   constructor(
     private councilService: CouncilGroupService,
-    private alertService: AlertService,
+    public alertService: AlertService,
     private router: Router,
-  ) { }
+    public profileService: ProfileService,
+    public userService: UserService,
+    public notificationService: NotificationService
+  ) {
+    super(notificationService, alertService, profileService, userService);
+   }
 
   ngOnInit() {
     this.getAll();

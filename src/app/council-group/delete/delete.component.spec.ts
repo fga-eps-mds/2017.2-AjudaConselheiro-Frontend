@@ -8,8 +8,14 @@ import 'rxjs/add/observable/throw';
 
 
 import { CouncilGroupDeleteComponent } from './delete.component';
-import { CouncilGroupService, AlertService } from '../../services/index';
-import { CouncilGroup } from '../../models/index';
+import {
+  CouncilGroupService,
+  AlertService,
+  ProfileService,
+  UserService,
+  AuthenticationService,
+  NotificationService } from '../../services/index';
+import { CouncilGroup, Notification } from '../../models/index';
 
 
 describe('CouncilGroupDeleteComponent', () => {
@@ -24,6 +30,10 @@ describe('CouncilGroupDeleteComponent', () => {
       providers: [
         CouncilGroupService,
         AlertService,
+        ProfileService,
+        UserService,
+        AuthenticationService,
+        NotificationService
       ],
       imports: [
         HttpModule,
