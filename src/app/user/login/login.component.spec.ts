@@ -27,7 +27,10 @@ describe('LoginComponent', () => {
         HttpModule,
         RouterTestingModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        RouterTestingModule.withRoutes([
+          { path: 'perfil', component: LoginComponent }
+        ]),
       ],
       declarations: [
         LoginComponent

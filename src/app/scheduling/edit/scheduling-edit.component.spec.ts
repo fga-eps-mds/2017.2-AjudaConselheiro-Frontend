@@ -37,7 +37,10 @@ describe('SchedulingCreateComponent', () => {
       imports: [FormsModule,
         HttpModule,
         RouterTestingModule,
-        HttpClientModule
+        HttpClientModule,
+        RouterTestingModule.withRoutes([
+          { path: 'agendamento', component: SchedulingEditComponent }
+        ]),
       ],
       providers: [
         Scheduling,

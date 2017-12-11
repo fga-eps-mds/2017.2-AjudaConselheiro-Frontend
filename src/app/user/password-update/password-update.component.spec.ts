@@ -19,6 +19,7 @@ describe('PasswordUpdateComponent', () => {
         RouterTestingModule,
         HttpModule,
 
+
       ],
       declarations: [ PasswordUpdateComponent ],
       providers: [
