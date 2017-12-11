@@ -32,7 +32,6 @@ export class ChecklistProductionComponent implements OnInit {
   loading = false;
 
   ngOnInit() {
-    console.log('entrou!!');
     this.postService.getPosts();
   }
 
