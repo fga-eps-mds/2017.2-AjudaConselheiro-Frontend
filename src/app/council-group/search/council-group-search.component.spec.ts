@@ -109,7 +109,7 @@ describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  fit('should search council group', () => {
+  it('should search council group', () => {
     const getPostsSpy = spyOn(component, 'getStateAbbr');
 
     component.councilGroup.municipio = undefined;
@@ -120,7 +120,7 @@ describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
     expect(component.getStateAbbr).toHaveBeenCalled();
   });
 
-  fit('should has location', () => {
+  it('should has location', () => {
     let result;
     // Testing the method has location when exists valid state and valid city
     result = component.hasLocation();
@@ -133,7 +133,7 @@ describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
 
   });
 
-  fit('should chosen state', () => {
+  it('should chosen state', () => {
     component.councilGroup = fakeCouncil;
     // Testing the method when is passed valid state
     component.chosenState('52');
@@ -143,7 +143,7 @@ describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
 
   });
 
-  fit('should chosen city', () => {
+  it('should chosen city', () => {
     component.councilGroup = fakeCouncil;
     // Testing the method when is passed valid city
     component.chosenCity('Brasília');
@@ -153,7 +153,7 @@ describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
 
   });
 
-  fit('Should know if user is logged in', () => {
+  it('Should know if user is logged in', () => {
     localStorage.setItem('token', 'appToken');
 
     let result;
@@ -167,7 +167,7 @@ describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
   });
 
 
-  fit('should filter council', () => {
+  it('should filter council', () => {
     const result = [council];
 
     // Testing case where advice is foundCouncil
@@ -186,7 +186,7 @@ describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
 
   });
 
-  fit('should get state abbreviated', () => {
+  it('should get state abbreviated', () => {
     const estado = {
       'id': 52,
       'sigla': 'GO',
@@ -202,7 +202,7 @@ describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
     expect(component.description).toEqual('CAE-GO-Goiânia');
   });
 
-  fit('should get council groups', () => {
+  it('should get council groups', () => {
     const result = [council];
 
     component.description = 'CAE-27-Barra de Santo Antônio';
@@ -218,7 +218,7 @@ describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
   });
 
 
-  fit('getStateAbb() should getState()(service)', () => {
+  it('getStateAbb() should getState()(service)', () => {
 
     const service = fixture.debugElement.injector.get(IbgeService);
 
@@ -237,7 +237,7 @@ describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
     expect(component.getStateAbbrResult).toHaveBeenCalled();
 
   });
-  fit('getStateAbb() should createCouncil()(service) if error', () => {
+  it('getStateAbb() should createCouncil()(service) if error', () => {
     const service = fixture.debugElement.injector.get(IbgeService);
 
     const fakeResOptions = new ResponseOptions({ body: {} });
@@ -254,7 +254,7 @@ describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
     expect(mockAlert.error).toHaveBeenCalledWith('Erro ao selecionar estado');
   });
 
-  fit('getCouncilGroups() should getState()(service)', () => {
+  it('getCouncilGroups() should getState()(service)', () => {
 
     const service = fixture.debugElement.injector.get(CouncilGroupService);
 
@@ -273,7 +273,7 @@ describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
     expect(component.getCouncilGroupsResult).toHaveBeenCalled();
 
   });
-  fit('getCouncilGroups() should getState()(service)', () => {
+  it('getCouncilGroups() should getState()(service)', () => {
 
     const service = fixture.debugElement.injector.get(CouncilGroupService);
 
@@ -294,7 +294,7 @@ describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
 
   });
 
-  fit('sendNotification() should getCodMembers(service)', () => {
+  it('sendNotification() should getCodMembers(service)', () => {
 
     const service = fixture.debugElement.injector.get(CouncilGroupService);
 
@@ -314,7 +314,7 @@ describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
 
   });
 
-  fit('sendNotification() should alertService erro', () => {
+  it('sendNotification() should alertService erro', () => {
 
     const service = fixture.debugElement.injector.get(CouncilGroupService);
 
@@ -334,7 +334,7 @@ describe('CounciCouncilGroupServicelGroupSearchComponent', () => {
   });
 
 
-  fit('sendNotification() should getCodMembers(service)', () => {
+  it('sendNotification() should getCodMembers(service)', () => {
     component.foundPresident = false;
     component.go = true;
 
