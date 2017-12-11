@@ -27,7 +27,7 @@ import {
     ProfileService
   ]
 })
-export class CouncilGroupSearchComponent extends CouncilGroupSearchAbstract implements OnInit, OnDestroy {
+export class CouncilGroupSearchComponent extends CouncilGroupSearchAbstract implements OnInit{
   @ViewChild('formCouncilGroupsearch') formCouncilGroupSearch: NgForm;
   public councilGroup: CouncilGroup;
   private councilSubs: Subscription;
@@ -56,11 +56,6 @@ export class CouncilGroupSearchComponent extends CouncilGroupSearchAbstract impl
 
   ngOnInit() {
     this.councilGroup = new CouncilGroup();
-  }
-
-  ngOnDestroy() {
-    this.stateSubs.unsubscribe();
-    this.searchSubs.unsubscribe();
   }
 
   searchCouncilGroup(): void {
