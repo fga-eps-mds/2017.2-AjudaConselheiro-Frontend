@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs/Subscription';
   providers: [CouncilGroupService, IbgeService]
 })
 
-export class CouncilGroupCreateComponent implements OnInit, OnDestroy {
+export class CouncilGroupCreateComponent implements OnInit {
 
   @ViewChild('formCouncilGroupCreate') formCouncilGroupCreate: NgForm;
   private getStateSubs: Subscription;
@@ -34,10 +34,6 @@ export class CouncilGroupCreateComponent implements OnInit, OnDestroy {
     this.councilGroup = new CouncilGroup();
   }
 
-  ngOnDestroy() {
-    this.getStateSubs.unsubscribe();
-    this.createSubs.unsubscribe();
-  }
 
   createCouncilGroup(): void {
     if (this.councilGroup.municipio === undefined) {
