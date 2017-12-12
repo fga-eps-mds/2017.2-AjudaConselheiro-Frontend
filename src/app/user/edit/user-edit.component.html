@@ -3,7 +3,7 @@
         <p class="h3 text-center mb-4"> Editar Perfil </p>
         <div class="form-group">
             <i class="fa fa-user prefix grey-text"></i> Nome
-            <input type="text" id="orangeForm-fullname" class="form-control" name="fullname" placeholder="{{ user.nomeCompleto }}" [(ngModel)]="user.nomeCompleto" #nomeCompleto="ngModel" pattern="^[a-zA-ZÀ-ÿ]+(?:[\s.]+[a-zA-ZÀ-ÿ]+)*$" required>
+            <input type="text" id="orangeForm-fullname" class="form-control" name="fullname" placeholder="{{ user.nomeCompleto }}" [(ngModel)]="user.nomeCompleto" #nomeCompleto="ngModel" pattern="^(\s|\S)*(\S)+(\s|\S)*$" required>
             <div *ngIf="nomeCompleto.errors && (nomeCompleto.dirty)" class="alert alert-danger">
                 <div [hidden]="!nomeCompleto.errors.required">
                     Digite o nome completo.
@@ -16,7 +16,7 @@
 
         <div class="form-group">
             <i class="fa fa-user prefix grey-text"></i> Usuário
-            <input type="text" id="orangeForm-username" class="form-control" name="username" minlength="7" placeholder="{{ user.nomeUsuario }}" [(ngModel)]="user.nomeUsuario" #nomeUsuario="ngModel" pattern="^[a-zA-ZÀ-ÿ]+(?:[\s.]+[a-zA-ZÀ-ÿ]+)*$" required>
+            <input type="text" id="orangeForm-username" class="form-control" name="username" minlength="7" placeholder="{{ user.nomeUsuario }}" [(ngModel)]="user.nomeUsuario" #nomeUsuario="ngModel" pattern="^(\s|\S)*(\S)+(\s|\S)*$" required>
             <div *ngIf="nomeUsuario.errors && (nomeUsuario.dirty)" class="alert alert-danger">
                 <div [hidden]="!nomeUsuario.errors.required">
                     Digite o nome de usuário.
@@ -29,7 +29,7 @@
 
         <div class="form-group">
             <i class="fa fa-address-card prefix grey-text"></i> CEP
-            <input type="text" id="orangeForm-cep" class="form-control" name="CEP" minlength="8" maxlength="8" placeholder="{{ user.CEP }}" [(ngModel)]="user.CEP" #CEP="ngModel" pattern="^[a-zA-ZÀ-ÿ]+(?:[\s.]+[a-zA-ZÀ-ÿ]+)*$" required>
+            <input type="text" id="orangeForm-cep" class="form-control" name="CEP" minlength="8" maxlength="8" placeholder="{{ user.CEP }}" [(ngModel)]="user.CEP" #CEP="ngModel" pattern="^(\s|\S)*(\S)+(\s|\S)*$" required>
             <div *ngIf="CEP.errors && (CEP.dirty)" class="alert alert-danger">
                 <div [hidden]="!CEP.errors.required">
                     Digite um CEP válido

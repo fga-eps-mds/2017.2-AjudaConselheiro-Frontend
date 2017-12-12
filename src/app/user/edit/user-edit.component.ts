@@ -58,7 +58,14 @@ export class UserEditComponent implements OnInit {
   updateUser(): void {
     this.userService.updateUser(this.user)
       .subscribe(
-        result => this.alertService.success('Seu perfil será atualizado no seu próximo login'),
+        result => {
+          this.alertService.success('Seu perfil será atualizado no seu próximo login'),
+          this.router.navigate(['']);
+          localStorage.removeItem('userData');
+          const user = JSON.stringify(this.user);
+          localStorage.setItem('userData', user);
+          console.clear();
+        },
         error => this.error(error)
       );
   }
