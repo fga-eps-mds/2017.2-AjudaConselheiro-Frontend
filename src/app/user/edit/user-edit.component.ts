@@ -41,8 +41,6 @@ export class UserEditComponent implements OnInit {
   ngOnInit() {
     this.user = this.userService.getLoggedUser();
     this.userName = this.getUserName();
-    console.log(this.user);
-
   }
 
   pressDelete() {

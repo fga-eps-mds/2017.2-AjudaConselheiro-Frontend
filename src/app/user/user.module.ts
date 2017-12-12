@@ -10,14 +10,18 @@ import { UserService, AlertService, AuthenticationService, ProfileService } from
 import { UserEditComponent } from './edit/user-edit.component';
 import { TextMaskModule } from 'angular2-text-mask';
 import { NotProfileComponent } from './not-profile/not-profile.component';
-import { ProfileComponent } from './profile/profile.component';
-import {RecoverPasswordComponent } from './recover-password/recover-password.component';
+import { RecoverPasswordComponent } from './recover-password/recover-password.component';
 import { PasswordUpdateComponent } from './password-update/password-update.component';
 
-export { UserCreateComponent, UserEditComponent, UserListComponent, LoginComponent,
-          NotProfileComponent, ProfileComponent,
-         RecoverPasswordComponent, PasswordUpdateComponent };
-
+export {
+  UserCreateComponent,
+  UserEditComponent,
+  UserListComponent,
+  LoginComponent,
+  NotProfileComponent,
+  RecoverPasswordComponent,
+  PasswordUpdateComponent
+};
 
 @NgModule({
   imports: [
@@ -32,7 +36,6 @@ export { UserCreateComponent, UserEditComponent, UserListComponent, LoginCompone
     UserEditComponent,
     LoginComponent,
     NotProfileComponent,
-    ProfileComponent,
     PasswordUpdateComponent
   ],
   providers: [

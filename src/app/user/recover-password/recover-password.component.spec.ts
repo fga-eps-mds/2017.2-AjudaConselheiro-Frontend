@@ -92,53 +92,53 @@ describe('RecoverPasswordComponent', () => {
 
   }));
 
-  // it('recoverPassword() should reset forms on sucess',
-  //   inject([UserService], (service) => {
+  it('recoverPassword() should reset forms on sucess',
+    inject([UserService], (service) => {
 
-  //   component.form.setValue({
-  //     email: 'email@abc.com',
-  //   });
-  //   fixture.detectChanges();
+    component.form.setValue({
+      email: 'email@abc.com',
+    });
+    fixture.detectChanges();
 
 
-  //   const fakeResOptions = new ResponseOptions({body: {}});
-  //   const fakeRes = new Response(fakeResOptions);
-  //   const spyService = spyOn(service, 'sendNewPassword').and.returnValue(
-  //     Observable.of(fakeRes)
-  //   );
+    const fakeResOptions = new ResponseOptions({body: {}});
+    const fakeRes = new Response(fakeResOptions);
+    const spyService = spyOn(service, 'sendNewPassword').and.returnValue(
+      Observable.of(fakeRes)
+    );
 
-  //   // Creates a reset() spy and update changes
-  //   const spyForm = spyOn(component.form, 'reset').and.callThrough();
-  //   component.recoverPassword();
-  //   fixture.detectChanges();
+    // Creates a reset() spy and update changes
+    const spyForm = spyOn(component.form, 'reset').and.callThrough();
+    component.recoverPassword();
+    fixture.detectChanges();
 
-  //   expect(component.form.reset).toHaveBeenCalled();
+    expect(component.form.reset).toHaveBeenCalled();
 
-  //   const emailValue = component.form.get('email') as any;
-  //   expect(emailValue._value).toBeNull();
+    const emailValue = component.form.get('email') as any;
+    expect(emailValue._value).toBeNull();
 
-  // }));
+  }));
 
-  // it('recoverPassword() should reset forms on fail',
-  //   inject([UserService], (service) => {
+  it('recoverPassword() should reset forms on fail',
+    inject([UserService], (service) => {
 
-  //   component.form.setValue({
-  //     email: 'email@abc.com',
-  //   });
-  //   fixture.detectChanges();
+    component.form.setValue({
+      email: 'email@abc.com',
+    });
+    fixture.detectChanges();
 
-  //   const fakeResOptions = new ResponseOptions({body: {}});
-  //   const fakeRes = new Response(fakeResOptions);
-  //   const spyService = spyOn(service, 'sendNewPassword').and.returnValue(
-  //     Observable.throw(fakeRes)
-  //   );
+    const fakeResOptions = new ResponseOptions({body: {}});
+    const fakeRes = new Response(fakeResOptions);
+    const spyService = spyOn(service, 'sendNewPassword').and.returnValue(
+      Observable.throw(fakeRes)
+    );
 
-  //   const spyForm = spyOn(component.form, 'reset').and.callThrough();
-  //   component.recoverPassword();
-  //   fixture.detectChanges();
-  //   expect(component.form.reset).toHaveBeenCalled();
+    const spyForm = spyOn(component.form, 'reset').and.callThrough();
+    component.recoverPassword();
+    fixture.detectChanges();
+    expect(component.form.reset).toHaveBeenCalled();
 
-  //   const emailValue = component.form.get('email') as any;
-  //   expect(emailValue._value).toBeNull();
-  // }));
+    const emailValue = component.form.get('email') as any;
+    expect(emailValue._value).toBeNull();
+  }));
 });

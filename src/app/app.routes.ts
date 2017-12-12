@@ -23,7 +23,6 @@ import {
   UserListComponent,
   NotProfileComponent,
   LoginComponent,
-  ProfileComponent,
   RecoverPasswordComponent,
   PasswordUpdateComponent
 } from './user/user.module';
@@ -49,7 +48,6 @@ export const ROUTES: Routes = [
   { path: 'conselho/buscar', component: CouncilGroupSearchComponent},
   { path: 'checklist/update', component: ChecklistUpdateComponent},
   { path: 'usuario-sem-perfil', component: NotProfileComponent},
-  { path: 'perfil', component: ProfileComponent},
   { path: 'recuperar-senha', component: RecoverPasswordComponent},
   { path: 'admin', component: AdminComponent}
 ];
