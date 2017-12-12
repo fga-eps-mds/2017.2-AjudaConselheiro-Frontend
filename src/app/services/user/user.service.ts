@@ -28,9 +28,13 @@ export class UserService extends ServicesUtilitiesService {
   updateOptions: RequestOptions = new RequestOptions({ headers: this.updateHeaders });
   codApplicativo = 'codAplicativo=462';
 
-  constructor(private http: Http, private alertService: AlertService,
-    private router: Router, private profileService: ProfileService,
-    private authService: AuthenticationService) {
+  constructor(
+    private http: Http,
+    private alertService: AlertService,
+    private router: Router,
+    private profileService: ProfileService,
+    private authService: AuthenticationService
+  ) {
     super();
   }
 
@@ -78,7 +82,7 @@ export class UserService extends ServicesUtilitiesService {
       }
     })
     .catch(this.handleError);
-}
+  }
 
   getLoggedUser() {
     const localUserValue = localStorage.getItem('userData');
@@ -88,16 +92,17 @@ export class UserService extends ServicesUtilitiesService {
       console.error('No logged user found!');
     }
   }
+
   getPerfilUser() {
     const localUserValue = localStorage.getItem('Profile');
     if (localUserValue) {
       return JSON.parse(localUserValue);
     }
-}
+  }
 
   updateUser(user: User) {
     const cod = this.getUserCod();
-    const href = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS/rest/pessoas/' + cod;
+    const href = this.url + '/' + cod;
 
     const body = {
       'CEP': user.CEP,
@@ -114,8 +119,8 @@ export class UserService extends ServicesUtilitiesService {
       'sexo': user.sexo
     };
 
-    return this.http.put(this.url + '/' + cod, JSON.stringify(body), this.updateOptions)
-      .map((response: Response) => response.json())
+    return this.http.put(href, JSON.stringify(body), this.updateOptions)
+      .map(this.extractData)
       .catch(this.handleError);
   }
 
@@ -156,27 +161,33 @@ export class UserService extends ServicesUtilitiesService {
 
   }
 
-  updateAdditionalFields(telefone: number, segmento: string) {
+  updateAdditionalFields(telefone: number, segmento?: string) {
     const cod = this.getUserCod();
 
-    const headers: Headers = new Headers ({
-      'Content-Type': 'application/json',
-      'appToken': localStorage.getItem('token')
-     });
-
-    const options: RequestOptions = new RequestOptions({ headers: headers });
-
     const body = {
-      'camposAdicionais': 'Telefone ' + telefone + '\n' + 'Segmento' + segmento + '\n',
+      'camposAdicionais': telefone,
       'tipoPerfil': {
         'codTipoPerfil': 243
       }
     };
 
-    return this.http.put(this.url + '/' + cod + '/perfil', JSON.stringify(body), options)
-    .map((response: Response) => response.json())
+    return this.http.put(this.url + '/' + cod + '/perfil', JSON.stringify(body), this.updateOptions)
+    .map(this.extractData)
     .catch(this.handleError);
+  }
 
+  getAdditionalFields() {
+    const cod = this.getUserCod();
+
+    const head: Headers = new Headers({
+      'Content-Type': 'application/json',
+      'appIdentifier': 462
+     });
+    const opt: RequestOptions = new RequestOptions({ headers: head });
+
+    return this.http.get(this.url + '/' + cod + '/perfil', opt)
+    .map(this.extractData)
+    .catch(this.handleError);
   }
 
   getProfilePhoto() {
@@ -187,7 +198,7 @@ export class UserService extends ServicesUtilitiesService {
     .catch(this.handleError);
   }
 
-  delete(cod: Number): Observable<String> {
+  delete(cod: Number) {
     const headers: Headers = new Headers({
       'appIdentifier': 462,
       'appToken': localStorage.getItem('token')
@@ -201,50 +212,47 @@ export class UserService extends ServicesUtilitiesService {
   }
 
   // This function checks if there's a logged user and if it has a 'cod'
-    // Output: The user 'cod' or 'null' if there's no cod
-    getUserCod() {
-      const user = this.getLoggedUser();
+  // Output: The user 'cod' or 'null' if there's no cod
+  getUserCod() {
+    const user = this.getLoggedUser();
 
-      // Checks if there's a user and if this user has a 'cod' attribute.
-      if (user && 'cod' in user) {
-        return user.cod;
-      }
-
-      return null;
+    // Checks if there's a user and if this user has a 'cod' attribute.
+    if (user && 'cod' in user) {
+      return user.cod;
     }
 
-    getUserEmail() {
-      const user = this.getLoggedUser();
+    return null;
+  }
 
+  getUserName() {
+    const user = this.getLoggedUser();
+
+    if (user && 'cod' in user) {
+      return user.nomeUsuario;
+    }
+
+    return null;
+  }
+
+  getUserEmail() {
+    const user = this.getLoggedUser();
       // Checks if there's a user and if this user has a 'email' attribute.
       if (user && 'email' in user) {
         return user.email;
       }
 
-      return null;
-    }
+    return null;
+  }
 
-    getUserName() {
-      const user = this.getLoggedUser();
-
-
-      // Checks if there's a user and if this user has a 'nomeCompleto' attribute.
-      if (user && 'nomeCompleto' in user) {
-        return user.nomeCompleto;
-      }
-
-      return null;
-    }
-
-    private setInitialProfile(userCod: string, cpf: string, token: any) {
-    // Sets the needed userToken from authentication, necessary for profiles POST
-    localStorage.setItem('token', token);
+  private setInitialProfile(userCod: string, cpf: string, token: any) {
+  // Sets the needed userToken from authentication, necessary for profiles POST
+  localStorage.setItem('token', token);
 
     // Creating the user profile
     this.profileService.setUserProfile('CPF: ' + cpf, userCod, 243, localStorage.getItem('token')).subscribe();
 
-      // Removing the login data - For sucess and fail
-      localStorage.removeItem('token');
+    // Removing the login data - For sucess and fail
+    localStorage.removeItem('token');
   }
 
   private extractResponseUserCod(locationString: string) {

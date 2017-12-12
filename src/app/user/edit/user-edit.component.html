@@ -1,12 +1,9 @@
-<br><br><br>
-<link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
 <div class="well">
     <form #formUser="ngForm">
-        <br>
-        <p class="h3 text-center mb-4"> {{ userName }} </p>
+        <p class="h3 text-center mb-4"> Editar Perfil </p>
         <div class="form-group">
-            <i class="fa fa-user prefix grey-text"></i>
-            <input type="text" id="orangeForm-name" class="form-control" name="fullname" placeholder="{{ user.nomeCompleto }}" [(ngModel)]="user.nomeCompleto" #nomeCompleto="ngModel" required>
+            <i class="fa fa-user prefix grey-text"></i> Nome
+            <input type="text" id="orangeForm-fullname" class="form-control" name="fullname" placeholder="{{ user.nomeCompleto }}" [(ngModel)]="user.nomeCompleto" #nomeCompleto="ngModel" pattern="^(\s|\S)*(\S)+(\s|\S)*$" required>
             <div *ngIf="nomeCompleto.errors && (nomeCompleto.dirty)" class="alert alert-danger">
                 <div [hidden]="!nomeCompleto.errors.required">
                     Digite o nome completo.
@@ -18,8 +15,8 @@
         </div>
 
         <div class="form-group">
-            <i class="fa fa-user prefix grey-text"></i>
-            <input type="text" id="orangeForm-name" class="form-control" name="username" minlength="7" placeholder="{{ user.nomeUsuario }}" [(ngModel)]="user.nomeUsuario" #nomeUsuario="ngModel" required>
+            <i class="fa fa-user prefix grey-text"></i> Usuário
+            <input type="text" id="orangeForm-username" class="form-control" name="username" minlength="7" placeholder="{{ user.nomeUsuario }}" [(ngModel)]="user.nomeUsuario" #nomeUsuario="ngModel" pattern="^(\s|\S)*(\S)+(\s|\S)*$" required>
             <div *ngIf="nomeUsuario.errors && (nomeUsuario.dirty)" class="alert alert-danger">
                 <div [hidden]="!nomeUsuario.errors.required">
                     Digite o nome de usuário.
@@ -31,8 +28,8 @@
         </div>
 
         <div class="form-group">
-            <i class="fa fa-address-card prefix grey-text"></i>
-            <input type="text" id="orangeForm-name" class="form-control" name="CEP" minlength="8" maxlength="8" placeholder="{{ user.CEP }}" [(ngModel)]="user.CEP" #CEP="ngModel" required>
+            <i class="fa fa-address-card prefix grey-text"></i> CEP
+            <input type="text" id="orangeForm-cep" class="form-control" name="CEP" minlength="8" maxlength="8" placeholder="{{ user.CEP }}" [(ngModel)]="user.CEP" #CEP="ngModel" pattern="^(\s|\S)*(\S)+(\s|\S)*$" required>
             <div *ngIf="CEP.errors && (CEP.dirty)" class="alert alert-danger">
                 <div [hidden]="!CEP.errors.required">
                     Digite um CEP válido
@@ -44,16 +41,15 @@
         </div>
 
         <div class="form-group">
-            <i class="fa fa-venus-mars prefix grey-text"></i>
-            <input type="text" name="sexo" list="gender" placeholder="Sexo (opcional)" [(ngModel)]="user.sexo" #sexo="ngModel">
-            <datalist id="gender">
-                  <option value="F">Feminino</option>
-                  <option value="M">Masculino</option>
-                </datalist>
+            <i class="fa fa-venus-mars prefix grey-text"></i> Sexo
+            <select class="custom-select" [(ngModel)]="user.sexo" #sexo="ngModel" [ngModelOptions]="{standalone: true}">
+        <option value="F">Feminino</option>
+        <option value="M">Masculino</option>
+      </select>
         </div>
 
         <div class="form-group">
-            <i class="fa fa-envelope prefix grey-text"></i>
+            <i class="fa fa-envelope prefix grey-text"></i> Email
             <input type="email" id="email" class="form-control" name="email" placeholder="email" [(ngModel)]="user.email" #email="ngModel" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
             <div *ngIf="email.errors && (email.dirty)" class="alert alert-danger">
                 <div [hidden]="!email.errors.required">
@@ -61,39 +57,39 @@
                 </div>
                 <div [hidden]="!email.errors.pattern">
                     O formato deve ser
-                    <small><b>joao@abc.com</b></small>
+                    <small>
+            <b>joao@abc.com</b>
+          </small>
                 </div>
             </div>
         </div>
 
         <div class="form-group">
-            <i class="fa fa-map prefix grey-text"></i>
-            <input type="text" id="county" class="form-control" name="county" placeholder="Segmento" [(ngModel)]="user.segmento" #segmento="ngModel">
-        </div>
-
-        <div class="form-group">
-            <i class="fa fa-phone prefix grey-text"></i>
+            <i class="fa fa-phone prefix grey-text"></i> Telefone
             <input type="text" id="phone" class="form-control" name="phone" placeholder="Telefone" [(ngModel)]="user.telefone" #telefone="ngModel" [textMask]="{mask: maskphone}">
         </div>
 
-        <div class="form-group">
-            <i class="fa fa-address-card  prefix grey-text"></i>
-            <input type="text" id="phone" class="form-control" name="cpf" placeholder="CPF" [(ngModel)]="user.CPF" #cpf="ngModel">
-        </div>
-
-
         <div class="form-group text-center">
-            <input type="button" class="btn btn-blue-grey update-button" (click)="updateUser(); updateAdditionalFields(telefone.model, segmento.model)" value="Atualizar" [disabled]="!formUser.form.valid">
-            <a [routerLink]="['/perfil']" class="btn btn-deep-orange back-button">
+            <input type="button" class="btn btn-blue-grey update-button" (click)="updateUser(); updateAdditionalFields(telefone.model)" value="Atualizar" [disabled]="!formUser.form.valid">
+            <a [routerLink]="['/']" class="btn btn-deep-orange back-button">
                 <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Voltar
             </a>
         </div>
 
-        <div class="form-group text-center">
-            Deseja mudar a Senha? <a [routerLink]="['/usuarios/editar/'] + user.cod + '/senha'" value="Editar Senha">Alterar Senha</a>
+        <button *ngIf="!selDelete" type="button" class="btn btn-danger delete-button" (click)="pressDelete()">
+    <i class="fa fa-times" aria-hidden="true"></i>Deletar Conta</button>
+
+        <div *ngIf="selDelete" class="form-group">
             <br>
-            <br>
+            <p>Confirme sua senha para deletar sua conta!</p>
+            <input type="password" id="password" class="form-control" name="password" placeholder="Senha" [(ngModel)]="password" required>
+            <button type="button" class="btn btn-danger delete-button" (click)="validatePassword()">
+      <i class="fa fa-times" aria-hidden="true"></i> Excluir </button>
         </div>
 
+        <div class="form-group text-center">
+            Deseja mudar a Senha?
+            <a [routerLink]="['/usuarios/editar/'] + user.cod + '/senha'" value="Editar Senha">Alterar Senha</a>
+        </div>
     </form>
 </div>

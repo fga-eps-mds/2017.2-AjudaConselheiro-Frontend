@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs/Subscription';
   providers: [CouncilGroupService, IbgeService]
 })
 
-export class CouncilGroupCreateComponent implements OnInit, OnDestroy {
+export class CouncilGroupCreateComponent implements OnInit {
 
   @ViewChild('formCouncilGroupCreate') formCouncilGroupCreate: NgForm;
   private getStateSubs: Subscription;
@@ -34,11 +34,6 @@ export class CouncilGroupCreateComponent implements OnInit, OnDestroy {
     this.councilGroup = new CouncilGroup();
   }
 
-  ngOnDestroy() {
-    this.getStateSubs.unsubscribe();
-    this.createSubs.unsubscribe();
-  }
-
   createCouncilGroup(): void {
     if (this.councilGroup.municipio === undefined) {
       this.councilGroup = new CouncilGroup();
@@ -49,7 +44,7 @@ export class CouncilGroupCreateComponent implements OnInit, OnDestroy {
   }
 
   getStateAbbr(): void {
-    this.getStateSubs = this.ibgeService.getState(this.stateId)
+    this.ibgeService.getState(this.stateId)
       .subscribe(
         (value) => this.getStateAbbrResult(value),
         // Create council after getting right state
@@ -63,7 +58,7 @@ export class CouncilGroupCreateComponent implements OnInit, OnDestroy {
   }
 
   createCouncil(): void {
-    this.createSubs = this.councilGroupService.createCouncil(this.councilGroup)
+    this.councilGroupService.createCouncil(this.councilGroup)
       .subscribe(
         (result) => this.createCouncilResult(),
         (error) => this.createCouncilError(error.status));
