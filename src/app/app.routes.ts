@@ -1,7 +1,12 @@
 import { Routes } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
-import { CouncilGroupCreateComponent, CouncilGroupSearchComponent, CouncilGroupComponent } from './council-group/council-group.module';
+
+import {
+  CouncilGroupCreateComponent,
+  CouncilGroupSearchComponent,
+  CouncilGroupComponent,
+  CouncilGroupDeleteComponent } from './council-group/council-group.module';
 
 import {
   ChecklistComponent,
@@ -44,6 +49,7 @@ export const ROUTES: Routes = [
   { path: 'registrar', component: UserCreateComponent },
   { path: 'usuarios/editar/:id', component: UserEditComponent },
   { path: 'conselho', component: CouncilGroupComponent },
+  { path: 'conselho/deletar', component: CouncilGroupDeleteComponent },
   { path: 'usuarios/editar/:id/senha', component: PasswordUpdateComponent},
   { path: 'conselho/cadastrar', component: CouncilGroupCreateComponent },
   { path: 'conselho/buscar', component: CouncilGroupSearchComponent},
