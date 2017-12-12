@@ -30,7 +30,6 @@ export class UserEditComponent implements OnInit {
   public phone;
   cod: number;
 
-
   constructor(
     private userService: UserService,
     private alertService: AlertService,
@@ -41,6 +40,7 @@ export class UserEditComponent implements OnInit {
   ngOnInit() {
     this.user = this.userService.getLoggedUser();
     this.userName = this.getUserName();
+    this.getAdditionalFields();
   }
 
   pressDelete() {
@@ -64,7 +64,11 @@ export class UserEditComponent implements OnInit {
   }
 
   getAdditionalFields() {
-    this.userService.getAdditionalFields();
+    this.phone = this.userService.getAdditionalFields()
+      .subscribe(
+        result => this.user.telefone = this.phone = result['camposAdicionais'],
+        error => this.alertService.error(error)
+      );
   }
 
   validatePassword() {
@@ -97,7 +101,7 @@ export class UserEditComponent implements OnInit {
     this.userService.updateAdditionalFields(telefone)
       .subscribe(
         error => this.alertService.error(error)
-        );
+      );
   }
 
   private getUserName() {

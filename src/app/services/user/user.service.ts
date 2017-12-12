@@ -179,7 +179,13 @@ export class UserService extends ServicesUtilitiesService {
   getAdditionalFields() {
     const cod = this.getUserCod();
 
-    return this.http.get(this.url + '/' + cod + '/perfil')
+    const head: Headers = new Headers({
+      'Content-Type': 'application/json',
+      'appIdentifier': 462
+     });
+    const opt: RequestOptions = new RequestOptions({ headers: head });
+
+    return this.http.get(this.url + '/' + cod + '/perfil', opt)
     .map(this.extractData)
     .catch(this.handleError);
   }
