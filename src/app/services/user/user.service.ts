@@ -165,13 +165,21 @@ export class UserService extends ServicesUtilitiesService {
     const cod = this.getUserCod();
 
     const body = {
-      'camposAdicionais': 'Telefone ' + telefone,
+      'camposAdicionais': telefone,
       'tipoPerfil': {
         'codTipoPerfil': 243
       }
     };
 
     return this.http.put(this.url + '/' + cod + '/perfil', JSON.stringify(body), this.updateOptions)
+    .map(this.extractData)
+    .catch(this.handleError);
+  }
+
+  getAdditionalFields() {
+    const cod = this.getUserCod();
+
+    return this.http.get(this.url + '/' + cod + '/perfil')
     .map(this.extractData)
     .catch(this.handleError);
   }

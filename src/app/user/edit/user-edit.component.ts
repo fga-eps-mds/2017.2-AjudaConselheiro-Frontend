@@ -27,7 +27,9 @@ export class UserEditComponent implements OnInit {
   public name;
   public biography;
   public email;
+  public phone;
   cod: number;
+
 
   constructor(
     private userService: UserService,
@@ -40,6 +42,7 @@ export class UserEditComponent implements OnInit {
     this.user = this.userService.getLoggedUser();
     this.userName = this.getUserName();
     console.log(this.user);
+
   }
 
   pressDelete() {
@@ -60,6 +63,10 @@ export class UserEditComponent implements OnInit {
         result => this.alertService.success('Seu perfil será atualizado no seu próximo login'),
         error => this.error(error)
       );
+  }
+
+  getAdditionalFields() {
+    this.userService.getAdditionalFields();
   }
 
   validatePassword() {
