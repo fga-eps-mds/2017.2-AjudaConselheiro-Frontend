@@ -28,12 +28,6 @@ describe('FooterComponent', () => {
     expect(compiled.querySelector('footer')).not.toBe(null);
   });
 
-  it('should have two container-fluid elements', () => {
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelectorAll('.container-fluid').length).toBe(2);
-  });
-
-
   it('should have four titles', () => {
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelectorAll('.title').length).toBe(4);
