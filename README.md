@@ -60,9 +60,14 @@ ng test --code-coverage
 Na pasta do projeto haverá uma sub-pasta chamada "coverage", dentro dela os dados estarão em "index.html".
 
 
-## Navigation
+## Navegação
 
-Navigate to the app in http://localhost:4200
+Navegue na aplicação localmente por: http://localhost:4200
+
+## Deploy
+
+acesse o Ajuda Conselheiro via: https://ajudaconselheiro-mdsgpp-22017.firebaseapp.com/ 
+
 
 ## Principais funcionalidades desenvolvidas até o momento:
 - Manter Conselheiro

@@ -1,7 +1,12 @@
 import { Routes } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
-import { CouncilGroupCreateComponent, CouncilGroupSearchComponent, CouncilGroupComponent } from './council-group/council-group.module';
+
+import {
+  CouncilGroupCreateComponent,
+  CouncilGroupSearchComponent,
+  CouncilGroupComponent,
+  CouncilGroupDeleteComponent } from './council-group/council-group.module';
 
 import {
   ChecklistComponent,
@@ -23,10 +28,10 @@ import {
   UserListComponent,
   NotProfileComponent,
   LoginComponent,
-  ProfileComponent,
   RecoverPasswordComponent,
   PasswordUpdateComponent
 } from './user/user.module';
+import { AdminComponent } from './admin/admin.component';
 
 export const ROUTES: Routes = [
   { path: '', component: HomeComponent },
@@ -43,11 +48,12 @@ export const ROUTES: Routes = [
   { path: 'registrar', component: UserCreateComponent },
   { path: 'usuarios/editar/:id', component: UserEditComponent },
   { path: 'conselho', component: CouncilGroupComponent },
+  { path: 'conselho/deletar', component: CouncilGroupDeleteComponent },
   { path: 'usuarios/editar/:id/senha', component: PasswordUpdateComponent},
   { path: 'conselho/cadastrar', component: CouncilGroupCreateComponent },
   { path: 'conselho/buscar', component: CouncilGroupSearchComponent},
   { path: 'checklist/update', component: ChecklistUpdateComponent},
   { path: 'usuario-sem-perfil', component: NotProfileComponent},
-  { path: 'perfil', component: ProfileComponent},
-  { path: 'recuperar-senha', component: RecoverPasswordComponent}
+  { path: 'recuperar-senha', component: RecoverPasswordComponent},
+  { path: 'admin', component: AdminComponent}
 ];

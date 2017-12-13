@@ -6,6 +6,13 @@
   background-color: #fb8c00 ;
 }
 
+h3 {
+  color: white;
+  align-self: auto;
+  margin-left: 5%;
+  margin-bottom: 35%;
+}
+
 .side-nav{
   height: 100%;
   width: 0;
