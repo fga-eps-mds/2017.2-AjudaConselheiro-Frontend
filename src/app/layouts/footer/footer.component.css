@@ -1,3 +1,37 @@
-.tema{
-  margin-top: -100%px;
+.footer {
+  background-color: rgba(0, 0, 0, 0.7);
 }
+
+.table {
+  display: table;
+  width: 100%;
+  margin-left:auto; 
+  margin-right:auto;
+  margin-bottom: 1rem;
+  background-color: transparent;
+}
+
+.text-camp {
+  display: table-cell;
+  max-width: 0px;
+  max-height: 0px;
+  color: white;
+  text-align: center;
+}
+
+.footer-end {
+    background-color: #1C1C1C;
+    color: #fff;
+    text-align: center;
+    min-height: 30px;
+}
+
+hr {
+  /* display: block; */
+  height: 1px;
+  width: 60px;
+  border: 0;
+  border-top: 1px solid #FF6100;
+  /* margin: 1em 0; */
+  padding: 0;
+}-top: -100%px;
