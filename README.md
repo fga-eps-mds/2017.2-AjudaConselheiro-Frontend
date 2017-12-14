@@ -9,40 +9,23 @@ O Ajuda Conselheiro é um sistema web que é direcionado para o Conselho de Alim
 
 # Guia de instalação
 
-Primeiramente, certifique-se de possuir uma versão do Node atualizada.
-
-``` 
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.sh | bash
-```
-```
-nvm install node
-```
-```
-nvm use node
-```
+Primeiramente, certifique-se de possuir o Node.JS > v8. Recomendamos o uso do [NVM - Node Version Manager](https://github.com/creationix/nvm) para instalar e gerenciar a versão estável mais recente do Node.JS.
 
 Depois certifique-se que tenha instalado o angular-cli. Se você é usuário do sistema operacional Linux basta inserir no terminal o seguinte comando:
 ```
 npm install -g @angular/cli
 ```
 
-Dentro da pasta do projeto, insira no terminal:
+Dentro da pasta do projeto, será necessário instalar as dependências do projeto via npm:
 ```
 npm install
 ```
-Para rodar o projeto, insira no terminal:
+
+Para testar localmente o projeto, insira no terminal o comando:
 ```
 ng serve
 ```
 
-Para rodar os testes basta inserir no terminal:
-```
-ng test
-```
-Para rodar a build antes de subir sua branch no projeto basta inserir no terminal:
-```
-ng build --prod
-```
 ### Cobertura de código
 
 Para verificar a cobertura de código entre na brach "development", certifique-se que ela estaja atualizada utilizando o seguinte comando:
@@ -66,7 +49,9 @@ Navegue na aplicação localmente por: http://localhost:4200
 
 ## Deploy
 
-acesse o Ajuda Conselheiro via: https://ajudaconselheiro-mdsgpp-22017.firebaseapp.com/ 
+Acesse o Ajuda Conselheiro via: https://ajudaconselheiro-mdsgpp-22017.firebaseapp.com/
+
+OBS: Atualmente é necessário permitir que o navegador aceite requisições "Mixed Content". Mais informações na issue [TS#144](https://github.com/fga-gpp-mds/2017.2-AjudaConselheiro-Frontend/issues/144)
 
 
 ## Principais funcionalidades desenvolvidas até o momento:
