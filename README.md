@@ -1,6 +1,6 @@
 # Ajuda Conselheiro
 
-![travis](https://travis-ci.org/fga-eps-mds/2017.2-AjudaConselheiro-Frontend.svg?branch=development)
+[![travis](https://travis-ci.org/fga-eps-mds/2017.2-AjudaConselheiro-Frontend.svg?branch=development)](https://travis-ci.org/fga-eps-mds/2017.2-AjudaConselheiro-Frontend/branches)
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
@@ -70,4 +70,4 @@ Uma primeira versão do "Ajuda Conselheiro" está disponivel em: [v1.0](https://
 Uma segunda versão está prevista para ser liberada em 14/12/2017.
 
 ## Licença
-![GNU General Public License v3.0](https://github.com/fga-gpp-mds/2017.2-AjudaConselheiro-Frontend/blob/development/LICENSE)
+[GNU General Public License v3.0](https://github.com/fga-gpp-mds/2017.2-AjudaConselheiro-Frontend/blob/development/LICENSE)
