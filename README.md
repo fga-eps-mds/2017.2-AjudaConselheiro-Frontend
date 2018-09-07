@@ -1,6 +1,6 @@
 # Ajuda Conselheiro
 
-![travis](https://travis-ci.org/fga-gpp-mds/2017.2-AjudaConselheiro-Frontend.svg?branch=development)
+![travis](https://travis-ci.org/fga-eps-mds/2017.2-AjudaConselheiro-Frontend.svg?branch=development)
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
